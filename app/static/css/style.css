@@ -1,0 +1,256 @@
+body {
+    font-family: Noto sans JP;
+    /* フォントファミリーを指定 */
+    margin: 0;
+    /* ページの余白を0に設定 */
+    padding: 0;
+    /* ページの内側の余白を0に設定 */
+    box-sizing: border-box;
+    /* 要素の幅と高さにボーダーとパディングを含める */
+    background-image: url("/static/images/background.jpg");
+    /* 背景画像を指定 */
+    background-size: cover;
+    /* 背景画像を画面いっぱいに表示 */
+    background-attachment: fixed;
+    /* 背景画像を固定 */
+    background-position: center;
+    /* 背景画像を中央に配置 */
+    padding-top: 100px;
+    /* 上部の余白を100pxに設定 */
+    font-size: 16px;
+    /* フォントサイズを16pxに設定 */
+}
+
+body,
+html {
+    height: 100%;
+    /* bodyとhtml要素の高さを100%に設定 */
+    margin: 0;
+    /* ページの余白を0に設定 */
+    padding: 0;
+    /* ページの内側の余白を0に設定 */
+}
+
+header {
+    position: relative;
+    /* 要素を相対的な位置に配置 */
+    height: auto;
+    /* 高さを自動に設定 */
+}
+
+header nav {
+    position: fixed;
+    /* 要素を固定位置に配置 */
+    top: 0;
+    /* 上部からの位置を0に設定 */
+    left: 0;
+    /* 左側からの位置を0に設定 */
+    right: 0;
+    /* 右側からの位置を0に設定 */
+    width: 100%;
+    /* 幅を100%に設定 */
+    height: 125px;
+    /* 高さを140pxに設定 */
+    display: flex;
+    /* 要素をフレックスボックスとして表示 */
+    flex-direction: column;
+    /* 要素を縦方向に配置 */
+    align-items: center;
+    /* 要素を中央に配置 */
+    justify-content: center;
+    /* 要素を中央に配置 */
+    text-align: center;
+    /* テキストを中央に配置 */
+    background-color: rgb(240, 99, 47);
+    /* 背景色を指定 */
+}
+
+/* 画面幅が768px以上の場合 = PCを想定 */
+@media screen and (min-width: 768px) {
+    header nav {
+        width: 100%;
+        /* 幅を70%に設定 */
+        margin: auto;
+        /* 左右の余白を自動に設定 */
+    }
+}
+
+header nav img {
+    display: block;
+    /* 要素をブロック要素として表示 */
+    margin-top: 30px;
+    /* 上部の余白を20pxに設定 */
+    max-height: 70px;
+    /* 最大の高さを70pxに設定 */
+    max-width: 80%;
+    /* 最大の幅を100%に設定 */
+    margin-bottom: -5px;
+    /* 下部の余白を-15pxに設定 */
+}
+
+header nav ul {
+    display: flex;
+    /* 要素をフレックスボックスとして表示 */
+    flex-wrap: wrap;
+    /* 要素を折り返し表示 */
+    justify-content: center;
+    /* 要素を中央に配置 */
+    padding-left: 0;
+    /* 左側の余白を0に設定 */
+    background-color: white;
+    /* 背景色を指定 */
+}
+
+header nav ul li {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* 背景色とテキストの変化を0.3秒で滑らかにする */
+    list-style-type: none;
+    /* リストのマーカーを非表示にする */
+    padding: 10px;
+    /* 上下左右の余白を10pxに設定 */
+    background-color: white;
+    /* 背景色を指定 */
+    color: rgb(0, 68, 204);
+    /* テキストの色を指定 */
+    font-size: 16px;
+    /* フォントサイズを1emに設定 */
+}
+
+@media screen and (max-width: 630px) {
+    header nav ul li {
+        padding-top: 2px;
+        padding-right: 10px;
+        /* 右の余白を10pxに設定 */
+        padding-bottom: 2px;
+        padding-left: 10px;
+        /* 左の余白を10pxに設定 */
+    }
+}
+
+header nav ul li:hover {
+    background-color: rgb(240, 99, 47);
+    /* ホバー時の背景色を指定 */
+    color: white;
+    /* ホバー時のテキストの色を指定 */
+}
+
+header nav ul li a {
+    color: inherit;
+    /* 親要素の色を継承 */
+    text-decoration: none;
+    /* テキストの下線をなくす */
+    white-space: nowrap;
+    /* テキストを折り返さないようにする */
+}
+
+main {
+    margin-top: 100px;
+    /* 上部の余白を120pxに設定 */
+    min-height: calc(100% - 60px);
+    /* 最小の高さを計算して設定 */
+    padding: 2em;
+    /* 上下左右の余白を2emに設定 */
+    background-color: rgba(255, 255, 255, 0.6);
+    /* 背景色を指定 */
+    width: 70%;
+    /* 幅を70%に設定 */
+    margin-left: auto;
+    /* 左側の余白を自動に設定 */
+    margin-right: auto;
+    /* 右側の余白を自動に設定 */
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    /* 背景色を指定 */
+    text-align: center;
+    /* テキストを中央に配置 */
+    width: 100%;
+    /* 幅を100%に設定 */
+    height: 80px;
+    /* 高さを60pxに設定 */
+    z-index: 10;
+    /* 要素の重なり順を指定 */
+    position: relative;
+    /* z-indexを有効にするためにpositionを指定 */
+}
+
+footer p {
+    color: white;
+    /* テキストの色を指定 */
+}
+
+h1 {
+    color: white;
+    font-size: 36px;
+    /* フォントサイズを36pxに設定 */
+    background-color: #F0632F;
+    /* 背景色を指定 */
+    padding: 5px;
+    /* 上下左右の余白を5pxに設定 */
+    border-radius: 5px;
+    /* 角丸を5pxに設定 */
+    text-align: center;
+    /* テキストを中央に配置 */
+}
+
+h2 {
+    color: white;
+    /* テキストの色を指定 */
+    background-color: #F0632F;
+    /* 背景色を指定 */
+    padding: 5px;
+    /* 上下左右の余白を5pxに設定 */
+    text-align: center;
+    /* テキストを中央に配置 */
+    border-radius: 15px;
+    /* 角丸を15pxに設定 */
+}
+
+h3 {
+    color: black;
+    /* テキストの色を指定 */
+    font-size: 24px;
+    /* フォントサイズを24pxに設定 */
+    text-align: center;
+    /* テキストを中央に配置 */
+    margin: 0;
+    /* 外側の空間を0に設定 */
+    padding: 0;
+    /* 内側の空間を0に設定 */
+}
+
+p {
+    color: rgb(34, 34, 34);
+    /* テキストの色を指定 */
+    font-size: 18px;
+    /* フォントサイズを16pxに設定 */
+    line-height: 1.5;
+    /* 行の高さを1.5に設定 */
+}
+
+a {
+    color: rgb(0, 68, 204);
+    /* テキストの色を指定 */
+
+}
+
+a:hover {
+    color: #F0632F;
+    /* ホバリング時の色 */
+}
+
+a.menu-link:hover {
+    color: inherit;
+    /* メニューバーのリンクのホバリング時の色を上書き */
+}
+
+a:active {
+    color: rgb(0, 68, 204);
+    /* activeの色は変わらない */
+}
+
+li {
+    color: rgb(34, 34, 34);
+    /* テキストの色を指定 */
+}

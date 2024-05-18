@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>出場者リスト</title>
+    <style>
+        table {
+          border-collapse: collapse;  /* 枠線を重ねて表示 */
+          width: 100%;  /* テーブルの幅を100%に設定 */
+        }
+        th, td {
+          border: 1px solid black;  /* セルの枠線を設定 */
+          padding: 8px;  /* セルの内側の余白を設定 */
+          text-align: left;  /* テキストを左寄せに設定 */
+        }
+      </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>id</th>
+        <th>year</th>
+        <th>name</th>
+        <th>category</th>
+        <th>country</th>
+        <th>seed right</th>
+        <th>wildcard</th>
+        <th>cancelled</th>
+        <th>move up</th>
+
+        {% for participant in participants %}
+      </tr>
+
+      <tr>
+        <td>{{ participant[0] }}</td>
+        <td>{{ participant[1] }}</td>
+        <td>{{ participant[2] }}</td>
+        <td>{{ participant[3] }}</td>
+        <td>{{ participant[4] }}</td>
+        <td>{{ participant[5] }}</td>
+        <td>{{ participant[6] }}</td>
+        <td>{{ participant[7] }}</td>
+        <td>{{ participant[8] }}</td>
+      </tr>
+
+      {% endfor %}
+    </table>
+    <a href="/dashboard">dashboard</a>
+  </body>
+</html>

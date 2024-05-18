@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>{% block title %}GBBinfo2.0{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/button.css" />
+    <link rel="stylesheet" href="/static/css/dropdown.css" />
+    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    <script
+      src="https://mediafiles.botpress.cloud/f085f534-1c04-4fe7-b24c-45e27c6a6ac2/webchat/config.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <img src="/static/images/header.png" alt="ヘッダー" />
+        <ul>
+          <li><a class="menu-link" href="/{{year}}/top">これだけガイド</a></li>
+          <li><a class="menu-link" href="/{{year}}/rule">ルール</a></li>
+          <li>
+            <a class="menu-link" href="/{{year}}/participants"
+              >Wildcard結果&出場者</a
+            >
+          </li>
+          <li><a class="menu-link" href="/{{year}}/result">大会結果</a></li>
+          <li>
+            <div class="past_gbb_wrap">
+              アーカイブ
+              <ul class="past_gbb_lists">
+                <li class="past_gbb"><a href="/2024/top">GBB2024</a></li>
+                <li class="past_gbb"><a href="/2023/top">GBB2023</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+    <footer>
+      <p>
+        GBBinfo2.0<br />UNofficial website made by tari3210 NOT swissbeatbox
+      </p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'  // 'start', 'center', 'end', or 'nearest'
+                });
+
+                // 少し遅延させてからスクロールする
+                setTimeout(function() {
+                    window.scrollBy(0, -120);  // 100px上にスクロール
+                }, 500);  // 500ms後にスクロール
+            });
+        });
+    </script>
+  </body>
+</html>

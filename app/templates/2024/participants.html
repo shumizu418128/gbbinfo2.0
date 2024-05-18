@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Wildcard結果&出場者 - {{ super() }}{% endblock %}
+
+{% block content %}
+<h1>GBB 2024 Wildcard結果&出場者</h1>
+<form method="GET" action="{{ url_for('participants', year=year) }}">
+    <div>
+        <label for="category">カテゴリー</label>
+        <select name="category" id="category">
+            <option value="Solo">Solo</option>
+            <option value="Tag Team">Tag Team</option>
+            <option value="Loopstation">Loopstation</option>
+            <option value="Producer">Producer</option>
+            <option value="Crew">Crew</option>
+        </select>
+    </div>
+    <div>
+        <label for="ticket_class">出場権区分</label>
+        <select name="ticket_class" id="ticket_class">
+            <option value="all">すべて</option>
+            <option value="wildcard">Wildcard</option>
+            <option value="seed">シード権</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Search</button>
+    </div>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>名前</th>
+            <th>出身国</th>
+            <th>出場権区分</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for participant in participants %}
+        <tr>
+            <td>{{ participant.name }}</td>
+            <td>{{ participant.country }}</td>
+            <td>{{ participant.w_or_s }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
