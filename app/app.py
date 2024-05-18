@@ -54,16 +54,16 @@ def participants(year: int = None):
 
         participant_dict_tmp = {}
 
-        year = participant[1]
+        year_ = participant[1]
         name = participant[2]
-        category = participant[3]
+        category_ = participant[3]
         country = participant[4]
         seed_right = participant[5]
         wildcard = participant[6]
         cancelled = participant[7]
         move_up = participant[8]
 
-        if year != year or category != category:
+        if year_ != year or category_ != category:
             continue
 
         if ticket_class == "wildcard" and bool(wildcard) is False:

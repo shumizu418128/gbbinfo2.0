@@ -1,50 +1,78 @@
 .button-container {
     display: flex;
+    /* フレックスボックスを使用して要素を横並びに配置 */
     flex-wrap: wrap;
+    /* 要素が横幅を超えた場合に折り返す */
     justify-content: center;
+    /* 要素を中央に配置 */
     gap: 4px;
+    /* 要素間の間隔を4ピクセルに設定 */
 }
 
 .button-container a {
     flex: 1 1 calc(33.33% - 10px);
+    /* 要素の幅を均等に分配し、余白を10ピクセルずつ設定 */
     min-width: 100px;
+    /* 要素の最小幅を100ピクセルに設定 */
     color: inherit;
+    /* 親要素からのテキスト色を継承 */
     text-decoration: none;
-    display: flex; /* 新しい行 */
+    /* テキストの下線を削除 */
+    display: flex;
+    /* フレックスボックスを使用して要素を横並びに配置 */
 }
 
 .button-container button {
     width: 100%;
+    /* ボタンの幅を100%に設定 */
     padding: 16px;
+    /* ボタンの内側の余白を16ピクセルに設定 */
     font-size: 28px;
+    /* ボタンのフォントサイズを28ピクセルに設定 */
     box-sizing: border-box;
+    /* ボタンの幅にボーダーボックスを含めます */
     color: rgb(0, 68, 204);
+    /* ボタンのテキスト色を指定 */
     background-color: white;
+    /* ボタンの背景色を白に設定 */
     border: 1px solid rgb(0, 68, 204);
+    /* ボタンの境界線を設定 */
     border-radius: 6px;
+    /* ボタンの角を丸く */
     cursor: pointer;
+    /* マウスカーソルをポインターに変更 */
     transition: all 0.3s ease;
-    height: 100%; /* 新しい行 */
+    /* ボタンの変化を0.3秒かけて滑らかに */
+    height: 100%;
+    /* ボタンの高さを100%に設定 */
 }
 
 .button-container a:hover button {
     color: white;
+    /* ホバー時のテキスト色を白に設定 */
     background-color: rgb(240, 99, 47);
+    /* ホバー時の背景色を指定 */
     border-color: white;
+    /* ホバー時の境界線の色を白に設定 */
 }
 
 .button-container a:active button {
     color: rgb(0, 68, 204);
+    /* アクティブ時のテキスト色を指定 */
     background-color: white;
+    /* アクティブ時の背景色を白に設定 */
     border-color: rgb(0, 68, 204);
+    /* アクティブ時の境界線の色を指定 */
 }
 
 @media (max-width: 768px) {
     .button-container a {
         flex: 1 1 calc(50% - 10px);
+        /* レスポンシブデザイン時の要素の幅を均等に分配し、余白を10ピクセルずつ設定 */
     }
 
     .button-container button {
         font-size: 16px;
+        /* レスポンシブデザイン時のボタンのフォントサイズを16ピクセルに設定 */
     }
 }
