@@ -224,6 +224,9 @@ def add():
         print(f"An error occurred: {e}")
         return redirect(url_for("dashboard", status=f"追加失敗: {e}"))
 
+    finally:
+        cursor.close()
+
     return redirect(url_for("dashboard", status="追加完了: " + name))
 
 
@@ -241,6 +244,8 @@ def update():
     country = request.form["country"].upper()
     seed_right = request.form["seed_right"]
     wildcard = request.form["wildcard"]
+    if wildcard == "":  # Noneに変換
+        wildcard = None
 
     if request.form["cancelled"] == "True":
         cancelled = 1
@@ -269,11 +274,12 @@ def update():
 
     except Exception as e:
         print(f"An error occurred: {e}")
+        return redirect(url_for("dashboard", status=f"変更失敗: {e}"))
 
     finally:
         cursor.close()
 
-    return redirect(url_for("dashboard", status="更新完了: " + name))
+    return redirect(url_for("dashboard", status="変更完了: " + name))
 
 
 @app.route("/delete", methods=["post"])
