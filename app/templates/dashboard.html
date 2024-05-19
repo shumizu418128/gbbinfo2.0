@@ -1,7 +1,8 @@
 <p>dashboard</p>
 <h1>{{ status }}</h1>
 
-<br><br>
+<br><a href="https://freefielder.jp/country_code/">国コード検索</a><br>
+<br>
 <p>add</p>
 <form action="/add" method="post">
     <label for="name">Name</label>
@@ -14,12 +15,12 @@
         <option value="Producer">Producer</option>
         <option value="Crew">Crew</option>
     </select><br>
-    <label for="country">Country</label>
-    <input type="text" id="country" name="country" required><br>
+    <label for="country">ISO Country code</label>
+    <input type="text" id="country" name="country" pattern="[A-Za-z]{2}" required><br>
     <label for="seed_right">Seed Right</label>
     <input type="text" id="seed_right" name="seed_right"><br>
     <label for="wildcard">Wildcard</label>
-    <input type="text" id="wildcard" name="wildcard"><br>
+    <input type="number" id="wildcard" name="wildcard" required><br>
     <label for="move_up">Move Up</label>
     <select id="move_up" name="move_up" required>
         <option value="False">False</option>
@@ -37,12 +38,12 @@
     <input type="text" id="name" name="name"><br>
     <label for="category">Category</label>
     <input type="text" id="category" name="category"><br>
-    <label for="country">Country</label>
-    <input type="text" id="country" name="country"><br>
+    <label for="country">ISO Country code</label>
+    <input type="text" id="country" name="country" pattern="[A-Za-z]{2}" required><br>
     <label for="seed_right">Seed Right</label>
     <input type="text" id="seed_right" name="seed_right"><br>
     <label for="wildcard">Wildcard</label>
-    <input type="text" id="wildcard" name="wildcard"><br>
+    <input type="number" id="wildcard" name="wildcard" required><br>
     <label for="cancelled">Cancelled</label>
     <select id="cancelled" name="cancelled">
         <option value="False">False</option>

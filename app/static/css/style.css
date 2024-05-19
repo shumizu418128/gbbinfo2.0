@@ -7,7 +7,7 @@ body {
     /* ページの内側の余白を0に設定 */
     box-sizing: border-box;
     /* 要素の幅と高さにボーダーとパディングを含める */
-    background-image: url("/static/images/background.jpg");
+    background-image: url("/static/images/background.webp");
     /* 背景画像を指定 */
     background-size: cover;
     /* 背景画像を画面いっぱいに表示 */

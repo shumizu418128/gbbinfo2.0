@@ -1,6 +1,7 @@
 import hashlib
 from datetime import datetime
 
+import country_code
 import pymysql
 from flask import Flask, redirect, render_template, request, session, url_for
 
@@ -63,6 +64,8 @@ def participants(year: int = None):
         cancelled = participant[7]
         move_up = participant[8]
 
+        country_name_ja = country_code.get_country_name_from_code(country)
+
         if year_ != year or category_ != category:
             continue
 
@@ -73,7 +76,7 @@ def participants(year: int = None):
             continue
 
         participant_dict_tmp["name"] = name
-        participant_dict_tmp["country"] = country
+        participant_dict_tmp["country"] = country_name_ja
 
         # 出場権区分について
         if bool(seed_right):
@@ -187,11 +190,16 @@ def add():
     year = datetime.now().year
     name = request.form["name"]  # str
     category = request.form["category"]  # str
-    country = request.form["country"]  # str
+    country = request.form["country"]  # str 2文字のISO国コード 大文字
     seed_right = request.form["seed_right"]  # str or None (シード権を得た大会名)
     wildcard = request.form["wildcard"]  # int or None (順位)
     cancelled = False  # bool (キャンセルしたかどうか) addする時点ではFalse
     move_up = int(bool(request.form["move_up"]))  # bool  (繰り上げ出場かどうか)
+
+    # 国の名前が正しいかどうかを確認
+    # 台湾と入力されたら無条件で許可
+    if country_code.is_valid_country_code(country) is False:
+        return redirect(url_for("dashboard", status="国コードが正しくありません"))
 
     try:
         # SQLクエリを実行
@@ -207,10 +215,7 @@ def add():
 
     except Exception as e:
         print(f"An error occurred: {e}")
-
-    finally:
-        # 接続を閉じる
-        cursor.close()
+        return redirect(url_for("dashboard", status=f"追加失敗: {e}"))
 
     return redirect(url_for("dashboard", status="追加完了"))
 
@@ -232,6 +237,10 @@ def update():
     cancelled = int(bool(request.form["cancelled"]))
     move_up = int(bool(request.form["move_up"]))
     id = request.form["id"]
+
+    # 国の名前が正しいかどうかを確認
+    if country_code.is_valid_country_code(country) is False:
+        return redirect(url_for("dashboard", status="国コードが正しくありません"))
 
     try:
         sql = "UPDATE participants SET year=%s, name=%s, category=%s, country=%s, seed_right=%s, wildcard=%s, cancelled=%s, move_up=%s WHERE id=%s"
