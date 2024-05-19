@@ -111,8 +111,8 @@ COUNTRY_CODE_JA = {
     "カザフスタン": "KZ",
     "ケニア": "KE",
     "キリバス": "KI",
-    "北朝鮮": "KP",
-    "韓国": "KR",
+    "朝鮮民主主義人民共和国 (北朝鮮)": "KP",
+    "大韓民国 (韓国)": "KR",
     "クウェート": "KW",
     "キルギスタン": "KG",
     "ラオス人民民主共和国": "LA",
@@ -206,7 +206,7 @@ COUNTRY_CODE_JA = {
     "スウェーデン": "SE",
     "スイス": "CH",
     "シリア アラブ共和国": "SY",
-    "台湾": "TW",
+    "台湾省/中華民国": "TW",
     "タジキスタン": "TJ",
     "タンザニア連合共和国": "TZ",
     "タイ": "TH",
@@ -240,13 +240,7 @@ COUNTRY_CODE_JA = {
     "ジンバブエ": "ZW"
 }
 
-
-def get_country_name_from_code(country_code):
-    # 国コードを大文字に変換
-    country_code_upper = country_code.upper()
-
-    # 日本語の国名を取得
-    return COUNTRY_CODE_JA.get(country_code_upper, None)
+COUNTRY_CODE_JA = {v: k for k, v in COUNTRY_CODE_JA.items()}
 
 
 def is_valid_country_code(country_code):

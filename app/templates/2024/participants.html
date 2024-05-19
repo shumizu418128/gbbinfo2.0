@@ -3,30 +3,42 @@
 
 {% block content %}
 <h1>GBB 2024 Wildcard結果&出場者</h1>
-<form method="GET" action="{{ url_for('participants', year=year) }}">
-    <div>
-        <label for="category">カテゴリー</label>
-        <select name="category" id="category">
-            <option value="Solo">Solo</option>
-            <option value="Tag Team">Tag Team</option>
-            <option value="Loopstation">Loopstation</option>
-            <option value="Producer">Producer</option>
-            <option value="Crew">Crew</option>
-        </select>
+<form method="GET" action="{{ url_for('participants', year=year) }}" style="margin: 0 auto; width: fit-content;">
+
+    <label for="category">カテゴリー</label>
+    <select name="category" id="category">
+        <option value="Solo" {% if request.args.get('category') == 'Solo' %}selected{% endif %}>Solo</option>
+        <option value="Tag Team" {% if request.args.get('category') == 'Tag Team' %}selected{% endif %}>Tag Team</option>
+        <option value="Loopstation" {% if request.args.get('category') == 'Loopstation' %}selected{% endif %}>Loopstation</option>
+        <option value="Producer" {% if request.args.get('category') == 'Producer' %}selected{% endif %}>Producer</option>
+        <option value="Crew" {% if request.args.get('category') == 'Crew' %}selected{% endif %}>Crew</option>
+    </select>
+    <br>
+    <label for="ticket_class">出場権区分</label>
+    <select name="ticket_class" id="ticket_class">
+        <option value="all" {% if request.args.get('ticket_class') == 'all' %}selected{% endif %}>すべて</option>
+        <option value="wildcard" {% if request.args.get('ticket_class') == 'wildcard' %}selected{% endif %}>Wildcard</option>
+        <option value="seed_right" {% if request.args.get('ticket_class') == 'seed_right' %}selected{% endif %}>シード権</option>
+    </select>
+    <br>
+    <div style="text-align: center;">
+        <button type="submit">検索</button>
     </div>
-    <div>
-        <label for="ticket_class">出場権区分</label>
-        <select name="ticket_class" id="ticket_class">
-            <option value="all">すべて</option>
-            <option value="wildcard">Wildcard</option>
-            <option value="seed">シード権</option>
-        </select>
-    </div>
-    <div>
-        <button type="submit">Search</button>
-    </div>
+
 </form>
-<table>
+{% if request.args.get('ticket_class') == "wildcard" %}
+<h2>{{ request.args.get('category') }} Wildcard結果</h2>
+{% endif %}
+
+{% if request.args.get("ticket_class") == "seed_right" %}
+<h2>{{ request.args.get('category') }} シード権獲得者</h2>
+{% endif %}
+
+{% if request.args.get("ticket_class") == "all" %}
+<h2>{{ request.args.get('category') }} 全出場者一覧</h2>
+{% endif %}
+
+<table style="margin: 0 auto; width: fit-content;">
     <thead>
         <tr>
             <th>名前</th>
@@ -39,7 +51,7 @@
         <tr>
             <td>{{ participant.name }}</td>
             <td>{{ participant.country }}</td>
-            <td>{{ participant.w_or_s }}</td>
+            <td>{{ participant.ticket_class }}</td>
         </tr>
         {% endfor %}
     </tbody>

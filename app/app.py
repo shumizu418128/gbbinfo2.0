@@ -1,11 +1,10 @@
 import hashlib
 from datetime import datetime
 
-import country_code
 import pymysql
 from flask import Flask, redirect, render_template, request, session, url_for
 
-from app import key
+from app import country_code, key
 
 app = Flask(__name__)
 app.secret_key = key.SECRET_KEY
@@ -35,13 +34,15 @@ def admin():
 @app.route('/<int:year>/participants', methods=["GET"])
 def participants(year: int = None):
 
-    if year is None:
-        year = int(request.args.get("year"))
     category = request.args.get("category")
     ticket_class = request.args.get("ticket_class")
 
-    if year is None:
-        year = datetime.now().year
+    if category is None or ticket_class is None:
+        if category is None:
+            category = "Solo"
+        if ticket_class is None:
+            ticket_class = "all"
+        return redirect(url_for('participants', year=year, category=category, ticket_class=ticket_class))
 
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM participants")
@@ -50,7 +51,6 @@ def participants(year: int = None):
 
     participant_front_list = []
 
-    # 5と6を、7と8を統合する
     for participant in participants:
 
         participant_dict_tmp = {}
@@ -63,30 +63,29 @@ def participants(year: int = None):
         wildcard = participant[6]
         cancelled = participant[7]
         move_up = participant[8]
-
-        country_name_ja = country_code.get_country_name_from_code(country)
+        country_name_ja = country_code.COUNTRY_CODE_JA[country]
 
         if year_ != year or category_ != category:
+            continue
+
+        # 出場権区分について
+        if ticket_class == "seed_right" and bool(seed_right) is False:
             continue
 
         if ticket_class == "wildcard" and bool(wildcard) is False:
             continue
 
-        if ticket_class == "seed_right" and bool(seed_right) is False:
-            continue
-
         participant_dict_tmp["name"] = name
         participant_dict_tmp["country"] = country_name_ja
 
-        # 出場権区分について
-        if bool(seed_right):
+        if bool(wildcard) and ticket_class in ["all", "wildcard"]:
+            participant_dict_tmp["ticket_class"] = "Wildcard " + str(wildcard) + "位"
+
+        elif bool(seed_right) and ticket_class in ["all", "seed_right"]:
             participant_dict_tmp["ticket_class"] = seed_right
 
-        elif bool(wildcard):
-            participant_dict_tmp["ticket_class"] = str(wildcard) + "位"
-
         else:
-            participant_dict_tmp["ticket_class"] = "データなし"
+            continue
 
         # 繰り上げ出場について
         if bool(move_up):
@@ -159,7 +158,7 @@ def login():
         return redirect(url_for("dashboard"))
 
 
-@app.route("/logout", methods=["post"])
+@app.route("/logout")
 def logout():
     session.pop("user", None)
     return redirect(url_for("admin"))
@@ -188,13 +187,21 @@ def add():
         return redirect(url_for("admin"))
 
     year = datetime.now().year
-    name = request.form["name"]  # str
+    name = request.form["name"].upper()  # str
     category = request.form["category"]  # str
-    country = request.form["country"]  # str 2文字のISO国コード 大文字
+    country = request.form["country"].upper()  # str 2文字のISO国コード 大文字
     seed_right = request.form["seed_right"]  # str or None (シード権を得た大会名)
     wildcard = request.form["wildcard"]  # int or None (順位)
+
+    if wildcard == "":  # Noneに変換
+        wildcard = None
+
     cancelled = False  # bool (キャンセルしたかどうか) addする時点ではFalse
-    move_up = int(bool(request.form["move_up"]))  # bool  (繰り上げ出場かどうか)
+
+    if request.form["move_up"] == "True":
+        move_up = 1
+    else:
+        move_up = 0
 
     # 国の名前が正しいかどうかを確認
     # 台湾と入力されたら無条件で許可
@@ -217,7 +224,7 @@ def add():
         print(f"An error occurred: {e}")
         return redirect(url_for("dashboard", status=f"追加失敗: {e}"))
 
-    return redirect(url_for("dashboard", status="追加完了"))
+    return redirect(url_for("dashboard", status="追加完了: " + name))
 
 
 @app.route("/update", methods=["post"])
@@ -229,13 +236,22 @@ def update():
         return redirect(url_for("admin"))
 
     year = datetime.now().year
-    name = request.form["name"]
+    name = request.form["name"].upper()
     category = request.form["category"]
-    country = request.form["country"]
+    country = request.form["country"].upper()
     seed_right = request.form["seed_right"]
     wildcard = request.form["wildcard"]
-    cancelled = int(bool(request.form["cancelled"]))
-    move_up = int(bool(request.form["move_up"]))
+
+    if request.form["cancelled"] == "True":
+        cancelled = 1
+    else:
+        cancelled = 0
+
+    if request.form["move_up"] == "True":
+        move_up = 1
+    else:
+        move_up = 0
+
     id = request.form["id"]
 
     # 国の名前が正しいかどうかを確認
@@ -257,7 +273,7 @@ def update():
     finally:
         cursor.close()
 
-    return redirect(url_for("dashboard", status="更新完了"))
+    return redirect(url_for("dashboard", status="更新完了: " + name))
 
 
 @app.route("/delete", methods=["post"])
@@ -281,7 +297,7 @@ def delete():
     finally:
         cursor.close()
 
-    return redirect(url_for("dashboard", status="削除完了"))
+    return redirect(url_for("dashboard", status=f"削除完了: {id}"))
 
 
 if __name__ == "__main__":
