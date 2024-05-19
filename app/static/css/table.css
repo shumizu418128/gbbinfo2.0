@@ -6,20 +6,17 @@ table {
 }
 
 table th {
-    border-bottom: solid 2px #F0632F;
+    border-bottom: solid 3px #F0632F;
     padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 table td {
-    border-bottom: solid 2px rgba(255, 255, 255, 0.4);
+    border-bottom: solid 2px rgba(255, 255, 255, 0.6);
     text-align: center;
     padding: 10px 0;
 }
 
 table tr:nth-child(even) {
     background-color: rgba(255, 255, 255, 0.4)
-}
-
-thead {
-    background-color: rgba(255, 255, 255, 0.4);
 }

@@ -76,3 +76,29 @@
         /* レスポンシブデザイン時のボタンのフォントサイズを16ピクセルに設定 */
     }
 }
+
+.participants_filter {
+    justify-content: center;
+    /* 要素を中央に配置 */
+    gap: 10px;
+    /* 要素間の間隔を10ピクセルに設定 */
+    margin-top: 10px;
+    /* 上部の余白を10ピクセルに設定 */
+    font-size: 30px;
+    /* フォントサイズを20ピクセルに設定 */
+    background-color: white;
+    /* 背景色を指定 */
+    color: rgb(0, 68, 204);
+    /* テキストの色を白に設定 */
+    border: none;
+    /* 境界線を削除 */
+    border-radius: 10px;
+    /* 角を丸く */
+}
+
+.participants_filter:hover {
+    color: white;
+    /* テキストの色を指定 */
+    background-color: rgb(240, 99, 47);
+    /* 背景色を指定 */
+}
