@@ -55,14 +55,14 @@ def participants(year: int = None):
 
         participant_dict_tmp = {}
 
-        year_ = participant[1]
-        name = participant[2]
-        category_ = participant[3]
-        country = participant[4]
-        seed_right = participant[5]
-        wildcard = participant[6]
-        cancelled = participant[7]
-        move_up = participant[8]
+        year_ = participant[1]  # int
+        name = participant[2]  # str
+        category_ = participant[3]  # str
+        country = participant[4]  # str 2文字のISO国コード 大文字
+        seed_right = participant[5]  # str or None
+        wildcard = participant[6]  # int or None
+        cancelled = participant[7]  # bool (sqlではint)
+        move_up = participant[8]  # bool (sqlではint)
         country_name_ja = country_code.COUNTRY_CODE_JA[country]
 
         if year_ != year or category_ != category:
@@ -91,13 +91,20 @@ def participants(year: int = None):
         if bool(move_up):
             participant_dict_tmp["ticket_class"] += " 繰上げ"
 
-        # キャンセルは辞書のすべての要素に横線<s>を引く
-        if bool(cancelled):
-            participant_dict_tmp = {
-                k: "<s>" + v + "</s>" for k, v in participant_dict_tmp.items()}
-            participant_dict_tmp["name"] += " 辞退"
+        # キャンセルについて
+        participant_dict_tmp["cancelled"] = bool(cancelled)
 
-        participant_front_list.append(participant_dict_tmp)
+        if wildcard is None:
+            participant_front_list.append([0, participant_dict_tmp])
+        else:
+            participant_front_list.append([wildcard, participant_dict_tmp])
+
+    # wildcardの昇順にソート
+    # listの要素0番目にあわせてソート
+    participant_front_list.sort(key=lambda x: x[0])
+
+    # wildcardの昇順にソートした後、wildcardの値を削除
+    participant_front_list = [participant[1] for participant in participant_front_list]
 
     return render_template(f"/{year}/participants.html", participants=participant_front_list, year=year)
 

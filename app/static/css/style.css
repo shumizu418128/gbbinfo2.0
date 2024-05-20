@@ -38,6 +38,11 @@ header {
     /* 高さを自動に設定 */
 }
 
+.menu-link {
+    /* 下線を非表示に */
+    text-decoration: none;
+}
+
 header nav {
     position: fixed;
     /* 要素を固定位置に配置 */
@@ -146,7 +151,7 @@ header nav ul li a {
 main {
     margin-top: 100px;
     /* 上部の余白を120pxに設定 */
-    min-height: calc(100% - 60px);
+    min-height: calc(100% - 120px);
     /* 最小の高さを計算して設定 */
     padding: 2em;
     /* 上下左右の余白を2emに設定 */
@@ -169,8 +174,6 @@ footer {
     /* 幅を100%に設定 */
     height: 80px;
     /* 高さを60pxに設定 */
-    z-index: 10;
-    /* 要素の重なり順を指定 */
     position: relative;
     /* z-indexを有効にするためにpositionを指定 */
 }
@@ -253,4 +256,13 @@ a:active {
 li {
     color: rgb(34, 34, 34);
     /* テキストの色を指定 */
+}
+
+hr{
+    border: 1px solid #F0632F;
+    /* 線の色を指定 */
+    margin-top: 30px;
+    /* 上部の余白を30pxに設定 */
+    margin-bottom: 0px;
+    /* 下部の余白を0pxに設定 */
 }

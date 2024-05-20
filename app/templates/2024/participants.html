@@ -40,6 +40,7 @@
 <h2>{{ request.args.get('category') }}<br>全出場者一覧</h2>
 {% endif %}
 
+{% if participants %}
 <table>
     <thead>
         <tr>
@@ -51,13 +52,22 @@
     <tbody>
         {% for participant in participants %}
         <tr>
+            {% if participant.cancelled %}
+            <td><s>{{ participant.name }}</s> 辞退</td>
+            <td><s>{{ participant.country }}</s></td>
+            <td><s>{{ participant.ticket_class }}</s></td>
+            {% else %}
             <td>{{ participant.name }}</td>
             <td>{{ participant.country }}</td>
             <td>{{ participant.ticket_class }}</td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+<p style="text-align: center;">まだ更新されていないか、該当者がいないか... のどちらかです<br>ほかの部門も確認してみてください</p>
+{% endif %}
 
 <p>出場権の詳細は<a href="/2024/rule">ルール</a>をご確認ください。</p>
 <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">

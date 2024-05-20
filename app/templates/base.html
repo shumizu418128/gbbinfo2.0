@@ -19,49 +19,58 @@
       <nav>
         <img src="/static/images/header.webp" alt="ヘッダー" />
         <ul>
-          <li><a class="menu-link" href="/{{year}}/top">Home/これだけガイド</a></li>
-          <li><a class="menu-link" href="/{{year}}/rule">ルール</a></li>
-          <li>
-            <a class="menu-link" href="/{{year}}/participants"
-              >Wildcard結果&出場者</a
-            >
-          </li>
-          <li><a class="menu-link" href="/{{year}}/result">大会結果</a></li>
-          <li>
-            <div class="past_gbb_wrap">
+          <a class="menu-link" href="/{{year}}/top"
+            ><li>Home/これだけガイド</li></a
+          >
+          <a class="menu-link" href="/{{year}}/rule"><li>ルール</li></a>
+
+          <a class="menu-link" href="/{{year}}/participants"
+            ><li>Wildcard結果&出場者</li></a
+          >
+
+          <a class="menu-link" href="/{{year}}/result"><li>大会結果</li></a>
+          <div class="past_gbb_wrap">
+            <li>
               過去のGBB
               <ul class="past_gbb_lists">
-                <li class="past_gbb"><a href="/2024/top">GBB2024</a></li>
-                <li class="past_gbb"><a href="/2023/top">GBB2023</a></li>
+                <a href="/2024/top"><li class="past_gbb">GBB2024</li></a>
+                <a href="/2023/top"><li class="past_gbb">GBB2023</li></a>
               </ul>
-            </div>
-          </li>
+            </li>
+          </div>
         </ul>
       </nav>
     </header>
-    <main>{% block content %}{% endblock %}</main>
+    <main>{% block content %}{% endblock %}
+      <hr />
+      <p style="text-align: center">GBB 2024まであと...</p>
+      <strong>
+      <p id="countdown" style="text-align: center; font-size: 20px"></p><strong></main>
+
+
     <footer>
       <p>
         GBBinfo2.0<br />UNofficial website made by tari3210 NOT swissbeatbox
       </p>
     </footer>
 
+    <script src="\static\scripts\script.js"></script>
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'  // 'start', 'center', 'end', or 'nearest'
-                });
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+            block: "start", // 'start', 'center', 'end', or 'nearest'
+          });
 
-                // 少し遅延させてからスクロールする
-                setTimeout(function() {
-                    window.scrollBy(0, -120);  // 100px上にスクロール
-                }, 500);  // 500ms後にスクロール
-            });
+          // 少し遅延させてからスクロールする
+          setTimeout(function () {
+            window.scrollBy(0, -120); // 100px上にスクロール
+          }, 500); // 500ms後にスクロール
         });
+      });
     </script>
   </body>
 </html>
