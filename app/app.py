@@ -1,21 +1,12 @@
-import hashlib
 from datetime import datetime
 
-import pymysql
-from flask import Flask, redirect, render_template, request, session, url_for
+import pandas as pd
+from flask import Flask, redirect, render_template, request, url_for
 
-from app import country_code, key
+from app import key
 
 app = Flask(__name__)
 app.secret_key = key.SECRET_KEY
-
-# MySQLへの接続設定
-connection = pymysql.connect(
-    host=key.HOST,
-    user=key.USER,
-    password=key.PASSWORD,
-    db=key.DB
-)
 
 
 # /(年度) にアクセスしたときの処理
@@ -24,11 +15,6 @@ def route_top():
     year = datetime.now().year
     content = 'top'
     return redirect(url_for("content", year=year, content=content))
-
-
-@app.route("/admin")
-def admin():
-    return render_template("admin.html")
 
 
 @app.route('/<int:year>/participants', methods=["GET"])
@@ -44,69 +30,86 @@ def participants(year: int = None):
             ticket_class = "all"
         return redirect(url_for('participants', year=year, category=category, ticket_class=ticket_class))
 
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM participants")
-    participants = cursor.fetchall()
-    cursor.close()
+    # csvからデータを取得
+    beatboxers_df = pd.read_csv(f'app/static/csv/gbb{year}_participants.csv')
+    countries_df = pd.read_csv('app/static/csv/countries.csv')
 
+    # Merge data to include country names in beatboxers_df
+    beatboxers_df = beatboxers_df.merge(
+        countries_df[['iso_code', 'name', "name_ja"]],
+        on='iso_code',
+        how='left',
+        suffixes=('', '_country')
+    )
+
+    # フィルター処理
+    # 部門でフィルター
+    beatboxers_df = beatboxers_df[beatboxers_df['category'] == category]
+
+    # 出場区分でフィルター
+    if ticket_class == "wildcard":
+        beatboxers_df = beatboxers_df[
+            beatboxers_df['ticket_class'].str.startswith('Wildcard')
+        ]
+
+    elif ticket_class == "seed_right":
+        beatboxers_df = beatboxers_df[
+            ~beatboxers_df['ticket_class'].str.startswith('Wildcard')
+        ]
+
+    # フロントエンドに渡すデータを整形
     participant_front_list = []
+    for _, row in beatboxers_df.iterrows():
 
-    for participant in participants:
+        # キャンセルした人の場合
+        if "[cancelled]" in row["name"]:
 
-        participant_dict_tmp = {}
-
-        year_ = participant[1]  # int
-        name = participant[2]  # str
-        category_ = participant[3]  # str
-        country = participant[4]  # str 2文字のISO国コード 大文字
-        seed_right = participant[5]  # str or None
-        wildcard = participant[6]  # int or None
-        cancelled = participant[7]  # bool (sqlではint)
-        move_up = participant[8]  # bool (sqlではint)
-        country_name_ja = country_code.COUNTRY_CODE_JA[country]
-
-        if year_ != year or category_ != category:
-            continue
-
-        # 出場権区分について
-        if ticket_class == "seed_right" and bool(seed_right) is False:
-            continue
-
-        if ticket_class == "wildcard" and bool(wildcard) is False:
-            continue
-
-        participant_dict_tmp["name"] = name
-        participant_dict_tmp["country"] = country_name_ja
-
-        if bool(wildcard) and ticket_class in ["all", "wildcard"]:
-            participant_dict_tmp["ticket_class"] = "Wildcard " + str(wildcard) + "位"
-
-        elif bool(seed_right) and ticket_class in ["all", "seed_right"]:
-            participant_dict_tmp["ticket_class"] = seed_right
+            participant = {
+                "name": row["name"].replace("[cancelled] ", ""),
+                "country": row["name_ja"],
+                "ticket_class": row["ticket_class"],
+                "is_cancelled": True
+            }
 
         else:
-            continue
+            participant = {
+                "name": row["name"],
+                "country": row["name_ja"],
+                "ticket_class": row["ticket_class"],
+                "is_cancelled": False
+            }
+        participant_front_list.append(participant)
 
-        # 繰り上げ出場について
-        if bool(move_up):
-            participant_dict_tmp["ticket_class"] += " 繰上げ"
-
-        # キャンセルについて
-        participant_dict_tmp["cancelled"] = bool(cancelled)
-
-        if wildcard is None:
-            participant_front_list.append([0, participant_dict_tmp])
-        else:
-            participant_front_list.append([wildcard, participant_dict_tmp])
-
-    # wildcardの昇順にソート
-    # listの要素0番目にあわせてソート
-    participant_front_list.sort(key=lambda x: x[0])
-
-    # wildcardの昇順にソートした後、wildcardの値を削除
-    participant_front_list = [participant[1] for participant in participant_front_list]
+    # キャンセルした人をリストの最後に移動
+    participant_front_list = sorted(
+        participant_front_list,
+        key=lambda x: x["is_cancelled"]
+    )
 
     return render_template(f"/{year}/participants.html", participants=participant_front_list, year=year)
+
+
+@app.route("/<int:year>/result")
+def result(year: int = None):
+    try:
+        results_df = pd.read_csv(f'app/static/csv/gbb{year}_result.csv')
+        results_df = results_df.fillna("-")
+
+        # フロントエンドに渡すデータを整形
+        results = []
+        for _, row in results_df.iterrows():
+            result = {
+                "category": row["category"],
+                "_1st": row["1"],
+                "_2nd": row["2"],
+                "_3rd": row["3"]
+            }
+            results.append(result)
+
+    except pd.errors.EmptyDataError:
+        results = None
+
+    return render_template(f"/{year}/result.html", results=results, year=year)
 
 
 @app.route("/<int:year>/<string:content>")
@@ -122,195 +125,16 @@ def content(year: int = None, content: str = None):
     if content == "participants":
         return redirect(url_for("participants", year=year))
 
-    return render_template(f"/{year}/{content}.html", year=year)
-
-###############################################################################
-# 管理用機能
-
-
-@app.route("/participants_dashboard")
-def participants_dashboard():
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM participants")
-    participants = cursor.fetchall()
-    cursor.close()
-
-    # participantsの要素を逆順にする
-    participants = participants[::-1]
-
-    # データを処理
-    participant_list = [list(participant) for participant in participants]
-
-    for participant in participant_list:
-        participant[7] = str(bool(participant[7]))
-        participant[8] = str(bool(participant[8]))
-
-    return render_template("participants_dashboard.html", participants=participant_list)
-
-
-@app.route("/login", methods=["post"])
-def login():
-    password = request.form["password"]
-    hashed_password = hashlib.sha256(
-        (password + key.SALT).encode("utf-8")).hexdigest()
-
-    # ユーザー名とパスワードの検証
-    with connection.cursor() as cursor:
-        sql = "SELECT * FROM login WHERE hashed_pass=%s"
-        cursor.execute(sql, hashed_password)
-        user = cursor.fetchone()
-
-    if user:
-        session["user"] = user
-        return redirect(url_for("dashboard"))
-
-
-@app.route("/logout")
-def logout():
-    session.pop("user", None)
-    return redirect(url_for("admin"))
-
-
-@app.route("/dashboard")
-def dashboard():
-    if "user" not in session:
-        return redirect(url_for("admin"))
-
-    status = request.args.get("status")
-
-    if status is None:
-        status = "(´・ω・`)"
-
-    return render_template("dashboard.html", status=status)
-
-
-# GBB出場者の追加
-@app.route("/add", methods=["post"])
-def add():
-    # カーソルを作成
-    cursor = connection.cursor()
-
-    if "user" not in session:
-        return redirect(url_for("admin"))
-
-    year = datetime.now().year
-    name = request.form["name"].upper()  # str
-    category = request.form["category"]  # str
-    country = request.form["country"].upper()  # str 2文字のISO国コード 大文字
-    seed_right = request.form["seed_right"]  # str or None (シード権を得た大会名)
-    wildcard = request.form["wildcard"]  # int or None (順位)
-
-    if wildcard == "":  # Noneに変換
-        wildcard = None
-
-    cancelled = False  # bool (キャンセルしたかどうか) addする時点ではFalse
-
-    if request.form["move_up"] == "True":
-        move_up = 1
-    else:
-        move_up = 0
-
-    # 国の名前が正しいかどうかを確認
-    # 台湾と入力されたら無条件で許可
-    if country_code.is_valid_country_code(country) is False:
-        return redirect(url_for("dashboard", status="国コードが正しくありません"))
+    if content == "result":
+        return redirect(url_for("result", year=year))
 
     try:
-        # SQLクエリを実行
-        sql = "INSERT INTO participants (year, name, category, country, seed_right, wildcard, cancelled, move_up) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-        values = (
-            year, name, category, country, seed_right,
-            wildcard, cancelled, move_up
-        )
-        cursor.execute(sql, values)
+        return render_template(f"/{year}/{content}.html", year=year)
 
-        # 変更をコミット
-        connection.commit()
-
+    # エラーが出たらroute_topにリダイレクト
     except Exception as e:
-        print(f"An error occurred: {e}")
-        return redirect(url_for("dashboard", status=f"追加失敗: {e}"))
-
-    finally:
-        cursor.close()
-
-    return redirect(url_for("dashboard", status="追加完了: " + name))
-
-
-@app.route("/update", methods=["post"])
-def update():
-    # カーソルを作成
-    cursor = connection.cursor()
-
-    if "user" not in session:
-        return redirect(url_for("admin"))
-
-    year = datetime.now().year
-    name = request.form["name"].upper()
-    category = request.form["category"]
-    country = request.form["country"].upper()
-    seed_right = request.form["seed_right"]
-    wildcard = request.form["wildcard"]
-    if wildcard == "":  # Noneに変換
-        wildcard = None
-
-    if request.form["cancelled"] == "True":
-        cancelled = 1
-    else:
-        cancelled = 0
-
-    if request.form["move_up"] == "True":
-        move_up = 1
-    else:
-        move_up = 0
-
-    id = request.form["id"]
-
-    # 国の名前が正しいかどうかを確認
-    if country_code.is_valid_country_code(country) is False:
-        return redirect(url_for("dashboard", status="国コードが正しくありません"))
-
-    try:
-        sql = "UPDATE participants SET year=%s, name=%s, category=%s, country=%s, seed_right=%s, wildcard=%s, cancelled=%s, move_up=%s WHERE id=%s"
-        values = (
-            year, name, category, country, seed_right, wildcard, cancelled, move_up, id
-        )
-        cursor.execute(sql, values)
-
-        connection.commit()
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return redirect(url_for("dashboard", status=f"変更失敗: {e}"))
-
-    finally:
-        cursor.close()
-
-    return redirect(url_for("dashboard", status="変更完了: " + name))
-
-
-@app.route("/delete", methods=["post"])
-def delete():
-    cursor = connection.cursor()
-
-    if "user" not in session:
-        return redirect(url_for("admin"))
-
-    id = request.form["id"]
-
-    try:
-        sql = "DELETE FROM participants WHERE id=%s"
-        cursor.execute(sql, id)
-
-        connection.commit()
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
-    finally:
-        cursor.close()
-
-    return redirect(url_for("dashboard", status=f"削除完了: {id}"))
+        print(e)
+        return redirect(url_for("route_top"))
 
 
 if __name__ == "__main__":

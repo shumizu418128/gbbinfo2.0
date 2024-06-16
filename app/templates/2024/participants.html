@@ -52,7 +52,7 @@
     <tbody>
         {% for participant in participants %}
         <tr>
-            {% if participant.cancelled %}
+            {% if participant.is_cancelled %}
             <td><s>{{ participant.name }}</s> 辞退</td>
             <td><s>{{ participant.country }}</s></td>
             <td><s>{{ participant.ticket_class }}</s></td>
