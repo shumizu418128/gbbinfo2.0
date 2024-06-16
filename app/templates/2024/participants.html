@@ -91,6 +91,10 @@
     <div style="text-align: center;">
         <button type="submit" class="participants_filter">検索</button>
     </div>
-
 </form>
+
+<h2>GBB 2024 出場者世界地図</h2>
+
+<iframe src="{{ url_for('world_map', year=year) }}" width="100%" height="400px"></iframe>
+
 {% endblock %}

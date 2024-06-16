@@ -1,6 +1,6 @@
 from datetime import datetime
 
-import pandas as pd
+from app.participants import create_world_map, get_participants_list, get_results
 from flask import Flask, redirect, render_template, request, url_for
 from flask_caching import Cache
 
@@ -41,6 +41,17 @@ def route_top():
     return redirect(url_for("content", year=year, content=content))
 
 
+# 世界地図の表示
+@app.route('/<int:year>/world_map')
+@cache.cached()
+def world_map(year: int = None):
+
+    # 世界地図作成
+    create_world_map(year)
+
+    return render_template(f'{year}/world_map.html')
+
+
 @app.route('/<int:year>/participants', methods=["GET"])
 @cache.cached(key_prefix=make_cache_key)
 def participants(year: int = None):
@@ -55,85 +66,18 @@ def participants(year: int = None):
             ticket_class = "all"
         return redirect(url_for('participants', year=year, category=category, ticket_class=ticket_class))
 
-    # csvからデータを取得
-    beatboxers_df = pd.read_csv(f'app/static/csv/gbb{year}_participants.csv')
-    countries_df = pd.read_csv('app/static/csv/countries.csv')
+    # 参加者リストを取得
+    participants_list = get_participants_list(year, category, ticket_class)
 
-    # Merge data to include country names in beatboxers_df
-    beatboxers_df = beatboxers_df.merge(
-        countries_df[['iso_code', 'name', "name_ja"]],
-        on='iso_code',
-        how='left',
-        suffixes=('', '_country')
-    )
-
-    # フィルター処理
-    # 部門でフィルター
-    beatboxers_df = beatboxers_df[beatboxers_df['category'] == category]
-
-    # 出場区分でフィルター
-    if ticket_class == "wildcard":
-        beatboxers_df = beatboxers_df[
-            beatboxers_df['ticket_class'].str.startswith('Wildcard')
-        ]
-
-    elif ticket_class == "seed_right":
-        beatboxers_df = beatboxers_df[
-            ~beatboxers_df['ticket_class'].str.startswith('Wildcard')
-        ]
-
-    # フロントエンドに渡すデータを整形
-    participant_front_list = []
-    for _, row in beatboxers_df.iterrows():
-
-        # キャンセルした人の場合
-        if "[cancelled]" in row["name"]:
-
-            participant = {
-                "name": row["name"].replace("[cancelled] ", ""),
-                "country": row["name_ja"],
-                "ticket_class": row["ticket_class"],
-                "is_cancelled": True
-            }
-
-        else:
-            participant = {
-                "name": row["name"],
-                "country": row["name_ja"],
-                "ticket_class": row["ticket_class"],
-                "is_cancelled": False
-            }
-        participant_front_list.append(participant)
-
-    # キャンセルした人をリストの最後に移動
-    participant_front_list = sorted(
-        participant_front_list,
-        key=lambda x: x["is_cancelled"]
-    )
-
-    return render_template(f"/{year}/participants.html", participants=participant_front_list, year=year)
+    return render_template(f"/{year}/participants.html", participants=participants_list, year=year)
 
 
 @app.route("/<int:year>/result")
 @cache.cached()
 def result(year: int = None):
-    try:
-        results_df = pd.read_csv(f'app/static/csv/gbb{year}_result.csv')
-        results_df = results_df.fillna("-")
 
-        # フロントエンドに渡すデータを整形
-        results = []
-        for _, row in results_df.iterrows():
-            result = {
-                "category": row["category"],
-                "_1st": row["1"],
-                "_2nd": row["2"],
-                "_3rd": row["3"]
-            }
-            results.append(result)
-
-    except pd.errors.EmptyDataError:
-        results = None
+    # 結果を取得
+    results = get_results(year)
 
     return render_template(f"/{year}/result.html", results=results, year=year)
 
