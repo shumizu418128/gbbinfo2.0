@@ -70,6 +70,23 @@
 {% endif %}
 
 <p>出場権の詳細は<a href="/2024/rule">ルール</a>をご確認ください。</p>
+
+    {% if request.args.get('category') == "Solo" %}
+    <a href="https://www.instagram.com/p/C5MCF_QrlHd/?img_index=10">Solo部門 Wildcard結果一覧</a>
+
+    {% elif request.args.get('category') == "Tag Team" %}
+    <a href="https://www.instagram.com/p/C5qoFKgtfR5/?img_index=8">Tag Team部門 Wildcard結果一覧</a>
+
+    {% elif request.args.get('category') == "Loopstation" %}
+    <a href="https://www.instagram.com/p/C5JUKNUoYqk/?img_index=8">Loopstation部門 Wildcard結果一覧</a>
+
+    {% elif request.args.get('category') == "Producer" %}
+    <a href="https://www.instagram.com/p/C5tIechNmah/?img_index=5">Producer部門 Wildcard結果一覧</a>
+
+    {% elif request.args.get('category') == "Crew" %}
+    <a href="https://www.instagram.com/p/C5vtSWFtmiJ/?img_index=6">Crew部門 Wildcard結果一覧</a>
+    {% endif %}
+
 <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
 
     <label for="category">部門選択</label>

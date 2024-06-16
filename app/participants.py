@@ -1,5 +1,5 @@
-import pandas as pd
 import folium
+import pandas as pd
 
 
 def get_participants_list(year: int, category: str, ticket_class: str) -> list:
@@ -52,12 +52,14 @@ def get_participants_list(year: int, category: str, ticket_class: str) -> list:
             }
         participants_list.append(participant)
 
-    # キャンセルした人をリストの最後に移動
     participants_list = sorted(
         participants_list,
-        key=lambda x: x["is_cancelled"]
+        key=lambda x: (
+            x["is_cancelled"],  # キャンセルした人を後ろに
+            not x["ticket_class"].startswith("GBB"),  # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
+            x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
+        )
     )
-
     return participants_list
 
 
