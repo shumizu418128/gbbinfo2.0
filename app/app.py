@@ -2,6 +2,7 @@ from datetime import datetime
 
 import pandas as pd
 from flask import Flask, redirect, render_template, request, url_for
+from flask_caching import Cache
 
 from app import key
 
@@ -9,8 +10,31 @@ app = Flask(__name__)
 app.secret_key = key.SECRET_KEY
 
 
+# Redisキャッシュの設定
+# TODO: localの設定のままなので、本番環境では変更が必要
+config = {
+    "CACHE_TYPE": "RedisCache",
+    "CACHE_REDIS_HOST": "localhost",
+    "CACHE_REDIS_PORT": 6379,
+    "CACHE_REDIS_DB": 0,
+    "CACHE_REDIS_URL": "redis://localhost:6379/0",
+    "CACHE_DEFAULT_TIMEOUT": 60 * 60  # 1時間（秒単位）
+}
+app.config.from_mapping(config)
+
+cache = Cache(app)
+
+
+# カスタムキャッシュキーの生成
+def make_cache_key(*args, **kwargs):
+    path = request.path
+    args = str(hash(frozenset(request.args.items())))
+    return f'{path}?{args}'
+
+
 # /(年度) にアクセスしたときの処理
 @app.route("/")
+@cache.cached()
 def route_top():
     year = datetime.now().year
     content = 'top'
@@ -18,6 +42,7 @@ def route_top():
 
 
 @app.route('/<int:year>/participants', methods=["GET"])
+@cache.cached(key_prefix=make_cache_key)
 def participants(year: int = None):
 
     category = request.args.get("category")
@@ -90,6 +115,7 @@ def participants(year: int = None):
 
 
 @app.route("/<int:year>/result")
+@cache.cached()
 def result(year: int = None):
     try:
         results_df = pd.read_csv(f'app/static/csv/gbb{year}_result.csv')
@@ -113,6 +139,7 @@ def result(year: int = None):
 
 
 @app.route("/<int:year>/<string:content>")
+@cache.cached()
 def content(year: int = None, content: str = None):
 
     if year is None:
