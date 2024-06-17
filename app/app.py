@@ -18,11 +18,14 @@ config = {
     "CACHE_REDIS_PORT": 6379,
     "CACHE_REDIS_DB": 0,
     "CACHE_REDIS_URL": "redis://localhost:6379/0",
-    "CACHE_DEFAULT_TIMEOUT": 60 * 60  # 1時間（秒単位）
+    "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 24 * 30  # 30日
 }
 app.config.from_mapping(config)
 
 cache = Cache(app)
+
+# 再起動時にキャッシュをクリア
+cache.clear()
 
 
 # カスタムキャッシュキーの生成
@@ -34,7 +37,7 @@ def make_cache_key(*args, **kwargs):
 
 # /(年度) にアクセスしたときの処理
 @app.route("/")
-# @cache.cached()
+@cache.cached()
 def route_top():
     year = datetime.now().year
     content = 'top'
@@ -43,7 +46,7 @@ def route_top():
 
 # 世界地図の表示
 @app.route('/<int:year>/world_map')
-# @cache.cached()
+@cache.cached()
 def world_map(year: int = None):
 
     # 世界地図作成
@@ -53,7 +56,7 @@ def world_map(year: int = None):
 
 
 @app.route('/<int:year>/participants', methods=["GET"])
-# @cache.cached(key_prefix=make_cache_key)
+@cache.cached(key_prefix=make_cache_key)
 def participants(year: int = None):
 
     category = request.args.get("category")
@@ -73,7 +76,7 @@ def participants(year: int = None):
 
 
 @app.route("/<int:year>/result")
-# @cache.cached()
+@cache.cached()
 def result(year: int = None):
 
     # 結果を取得
@@ -83,7 +86,7 @@ def result(year: int = None):
 
 
 @app.route("/<int:year>/<string:content>")
-# @cache.cached()
+@cache.cached()
 def content(year: int = None, content: str = None):
 
     if year is None:
