@@ -77,7 +77,6 @@ def participants(year: int = None):
     # categoryとticket_classが不正な場合はSolo全出場者を表示
     valid_categories = pd.read_csv(f'app/static/csv/gbb{year}_participants.csv')["category"].unique()
     valid_ticket_classes = ["wildcard", "seed_right", "all"]
-
     valid = all([
         category in valid_categories,
         ticket_class in valid_ticket_classes
