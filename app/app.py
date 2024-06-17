@@ -129,6 +129,18 @@ def content(year: int = None, content: str = None):
         return render_template("404.html"), 404
 
 
+@app.route("/others/<string.content>")
+@cache.cached()
+def others(content: str = None):
+
+    try:
+        return render_template(f"/others/{content}.html")
+
+    # エラー
+    except jinja2.exceptions.TemplateNotFound:
+        return render_template("404.html"), 404
+
+
 @app.errorhandler(404)
 def page_not_found(_):
     return render_template("404.html"), 404
