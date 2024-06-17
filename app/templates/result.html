@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}大会結果 - {{ super() }}{% endblock %}
+
+{% block content %}
+<h1>GBB {{ year }} 大会結果</h1>
+{% if results %}
+<table>
+    <thead>
+        <tr>
+            <th>部門</th>
+            <th>優勝</th>
+            <th>準優勝</th>
+            <th>3位</th>
+        </tr>
+    </thead>
+    {% for result in results %}
+    <tbody>
+        <tr>
+            <td>{{ result.category }}</td>
+            <td>{{ result._1st }}</td>
+            <td>{{ result._2nd }}</td>
+            <td>{{ result._3rd }}</td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+<p>上記入賞者は、全員次回のGBB出場権を獲得しています。</p>
+{% else %}
+<p style="text-align: center;">GBB {{ year }} 開催前</p>
+{% endif %}
+{% endblock %}

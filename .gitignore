@@ -106,7 +106,5 @@ venv.bak/
 app/__pycache__/app.cpython-311.pyc
 **/__pycache__/
 *.pyc
-*.pyc
-app/__pycache__/app.cpython-311.pyc
 app/key.py
-app/templates/2024/world_map.html
+**/world_map.html
