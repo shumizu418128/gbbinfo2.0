@@ -88,7 +88,7 @@ def participants(year: int = None):
     # 参加者リストを取得
     participants_list = get_participants_list(year, category, ticket_class)
 
-    return render_template("/participants.html", participants=participants_list, year=year)
+    return render_template("/participants.html", participants=participants_list, year=year, all_category=valid_categories)
 
 
 @app.route("/<int:year>/result")

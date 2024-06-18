@@ -8,11 +8,9 @@
 
     <label for="category">部門選択</label>
     <select name="category" id="category" class="participants_select">
-        <option value="Solo" {% if request.args.get('category') == 'Solo' %}selected{% endif %}>Solo</option>
-        <option value="Tag Team" {% if request.args.get('category') == 'Tag Team' %}selected{% endif %}>Tag Team</option>
-        <option value="Loopstation" {% if request.args.get('category') == 'Loopstation' %}selected{% endif %}>Loopstation</option>
-        <option value="Producer" {% if request.args.get('category') == 'Producer' %}selected{% endif %}>Producer</option>
-        <option value="Crew" {% if request.args.get('category') == 'Crew' %}selected{% endif %}>Crew</option>
+        {% for c in all_category %}
+        <option value="{{ c }}" {% if request.args.get('category') == c %}selected{% endif %}>{{ c }}</option>
+        {% endfor %}
     </select>
     <br>
     <label for="ticket_class">情報選択</label>
@@ -71,17 +69,15 @@
 
 <p>出場権の詳細は<a href="/{{ year }}/rule">ルール</a>をご確認ください。</p>
 
-<!-- GBBインスタの結果投稿リンクをどうにかして受け取ってここで表示 -->
+<!-- TODO: GBBインスタの結果投稿リンクをどうにかして受け取ってここで表示 -->
 
 <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
 
     <label for="category">部門選択</label>
     <select name="category" id="category" class="participants_select">
-        <option value="Solo" {% if request.args.get('category') == 'Solo' %}selected{% endif %}>Solo</option>
-        <option value="Tag Team" {% if request.args.get('category') == 'Tag Team' %}selected{% endif %}>Tag Team</option>
-        <option value="Loopstation" {% if request.args.get('category') == 'Loopstation' %}selected{% endif %}>Loopstation</option>
-        <option value="Producer" {% if request.args.get('category') == 'Producer' %}selected{% endif %}>Producer</option>
-        <option value="Crew" {% if request.args.get('category') == 'Crew' %}selected{% endif %}>Crew</option>
+        {% for c in all_category %}
+        <option value="{{ c }}" {% if request.args.get('category') == c %}selected{% endif %}>{{ c }}</option>
+        {% endfor %}
     </select>
     <br>
     <label for="ticket_class">情報選択</label>
