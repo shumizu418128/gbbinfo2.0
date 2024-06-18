@@ -133,8 +133,10 @@ def content(year: int = None, content: str = None):
 @cache.cached()
 def others(content: str = None):
 
+    year = available_years[-1]
+
     try:
-        return render_template(f"/others/{content}.html")
+        return render_template(f"/others/{content}.html", year=year)
 
     # エラー
     except jinja2.exceptions.TemplateNotFound:
