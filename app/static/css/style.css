@@ -166,16 +166,12 @@ main {
 }
 
 footer {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     /* 背景色を指定 */
     text-align: center;
     /* テキストを中央に配置 */
     width: 100%;
     /* 幅を100%に設定 */
-    height: 80px;
-    /* 高さを60pxに設定 */
-    position: relative;
-    /* z-indexを有効にするためにpositionを指定 */
 }
 
 footer p {

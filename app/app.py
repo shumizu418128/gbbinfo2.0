@@ -1,10 +1,11 @@
+import jinja2
 import pandas as pd
-from app.participants import create_world_map, get_participants_list, get_results
 from flask import Flask, redirect, render_template, request, url_for
 from flask_caching import Cache
 
 from app import key
-import jinja2
+from app.participants import (create_world_map, get_participants_list,
+                              get_results)
 
 app = Flask(__name__)
 app.secret_key = key.SECRET_KEY
@@ -75,7 +76,8 @@ def participants(year: int = None):
     ticket_class = request.args.get("ticket_class")
 
     # categoryとticket_classが不正な場合はSolo全出場者を表示
-    valid_categories = pd.read_csv(f'app/static/csv/gbb{year}_participants.csv')["category"].unique()
+    valid_categories = pd.read_csv(
+        f'app/static/csv/gbb{year}_participants.csv')["category"].unique()
     valid_ticket_classes = ["wildcard", "seed_right", "all"]
     valid = all([
         category in valid_categories,

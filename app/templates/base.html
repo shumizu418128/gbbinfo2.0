@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="/static/css/button.css" />
     <link rel="stylesheet" href="/static/css/dropdown.css" />
     <link rel="stylesheet" href="/static/css/table.css" />
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon"
+    />
     <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
     <script
       src="https://mediafiles.botpress.cloud/f085f534-1c04-4fe7-b24c-45e27c6a6ac2/webchat/config.js"
@@ -43,45 +51,45 @@
         </ul>
       </nav>
     </header>
-    <main>{% block content %}{% endblock %}
+    <main>
+      {% block content %}{% endblock %}
       <hr />
       <p style="text-align: center">GBB 2024まであと...</p>
       <strong>
-      <p id="countdown" style="text-align: center; font-size: 20px"></p><strong>
-
-      <br>
+        <p id="countdown" style="text-align: center; font-size: 20px"></p>
+      </strong>
+      <br />
       <p>過去のGBB</p>
       <ul>
-      <li><a href="/2024/top">GBB2024</a></li>
-      <li><a href="/2023/top">GBB2023</a></li>
+        <li><a href="/2024/top">GBB2024</a></li>
+        <li><a href="/2023/top">GBB2023</a></li>
       </ul>
-      <a href="https://twitter.com/tari_3210_">当サイト管理人 Twitter</a>
-      </main>
+      <a href="https://twitter.com/tari_3210_">tari3210 Twitter</a>
 
+      <footer>
+        <p>
+          GBBINFO-JPN 2.0<br />UNofficial website made by tari3210<br>NOT swissbeatbox
+        </p>
+      </footer>
 
-    <footer>
-      <p>
-        GBBinfo2.0<br />UNofficial website made by tari3210 NOT swissbeatbox
-      </p>
-    </footer>
+      <script src="\static\scripts\script.js"></script>
+      <script>
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
 
-    <script src="\static\scripts\script.js"></script>
-    <script>
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+              behavior: "smooth",
+              block: "start", // 'start', 'center', 'end', or 'nearest'
+            });
 
-          document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-            block: "start", // 'start', 'center', 'end', or 'nearest'
+            // 少し遅延させてからスクロールする
+            setTimeout(function () {
+              window.scrollBy(0, -120); // 100px上にスクロール
+            }, 500); // 500ms後にスクロール
           });
-
-          // 少し遅延させてからスクロールする
-          setTimeout(function () {
-            window.scrollBy(0, -120); // 100px上にスクロール
-          }, 500); // 500ms後にスクロール
         });
-      });
-    </script>
+      </script>
+    </main>
   </body>
 </html>
