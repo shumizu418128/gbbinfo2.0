@@ -129,7 +129,7 @@ def content(year: int = None, content: str = None):
         return render_template("404.html"), 404
 
 
-@app.route("/others/<string.content>")
+@app.route("/others/<string:content>")
 @cache.cached()
 def others(content: str = None):
 
