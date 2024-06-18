@@ -1,8 +1,318 @@
-{% extends "base.html" %}
-{% block title %}ルール - {{ super() }}{% endblock %}
-
+{% extends "base.html" %} {% block title %}ルール - {{ super() }}{% endblock %}
 {% block content %}
 <h1>GBB 2024 ルール</h1>
-<p>しらね</p>
+<p>
+  Swissbeatbox公式サイトにて、GBB24で実施される部門・Wildcardのルールについて発表がありました。<br />
+  ソースサイト：<a
+    href="https://swissbeatbox.com/newsfeed/gbb-2024-wildcard-competition-rules-and-application/"
+    >GBB 2024 Wildcard Competition Rules and Application</a
+  >
+</p>
 
+<div class="button-container">
+  <a href="others/how_to_plan"><button>現地観戦計画のたてかた</button></a>
+  <a href="2024/top"><button>GBB24 これだけガイド</button></a>
+</div>
+
+<div>
+  <h2>目次</h2>
+
+  <ol>
+    <li>
+      <a href="#p01">注意事項</a>
+    </li>
+
+    <li>
+      <a href="#p02">開催部門一覧</a>
+    </li>
+
+    <li>
+      <a href="#p03">出場シード権 獲得条件</a>
+      <ul>
+        <li>
+          <a href="#p03-1">シード権辞退者一覧</a>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="#p05">Wildcard ルール</a>
+    </li>
+
+    <li>
+      <a href="#p06">ジャッジ一覧</a>
+    </li>
+  </ol>
+</div>
+
+<h2 id="p01">注意事項</h2>
+<p>
+  以下に示す内容は、あくまでもBeatboxファンが知っておくとよりGBBを楽しめる知識として紹介するものです。<br />一部内容において、わかりやすさを優先し、<strong
+    >正確さに欠ける表現を用いることがあります。</strong
+  >
+</p>
+<p>
+  当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねます。<br />Wildcardを提出する方は、<strong
+    ><span style="color: #ff0000"
+      >必ずご自身でルールを今一度ご確認ください。</span
+    ></strong
+  >
+</p>
+
+<div class="button-container">
+  <a href="others/how_to_plan"><button>現地観戦計画のたてかた</button></a>
+  <a href="2024/top"><button>GBB24 これだけガイド</button></a>
+</div>
+
+<h2 id="p02">開催部門一覧</h2>
+<table>
+  <thead>
+    <tr>
+      <th style="width: 30%"><strong>部門</strong></th>
+      <th style="width: 30%"><strong>Wildcard</strong></th>
+      <th style="width: 20%"><strong>シード</strong></th>
+      <th style="width: 20%"><strong>計</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Solo</td>
+      <td>8</td>
+      <td>8</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <td>Loopstation</td>
+      <td>6</td>
+      <td>2</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>Crew</td>
+      <td>3</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Producer showcase</td>
+      <td>3</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Tag Team</td>
+      <td>6</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <strong>Producer showcaseとは</strong><br />
+    Loopstationのセカンドデバイス（Loopstationに接続する端末）ありの部門として、GBB23で新設されました。その代わり、Loopstation部門においてセカンドデバイスの使用が禁止されます。
+  </li>
+</ul>
+<p>忘れられたTag Team Loopstation...😭</p>
+<ul>
+  <li>
+    <strong>4/1追記</strong><br />
+    なぜかSolo部門Wildcard枠が8になりました。<br />
+    理由は結果発表ライブでPepouniから説明がありました。
+  </li>
+</ul>
+
+<h2 id="p03">出場シード権 獲得条件</h2>
+<p>
+  Wildcardを勝ち上がる以外の方法でGBB出場権を得る方法（シード権）と、その該当者は以下の通りです。
+</p>
+
+<h3>GBB23</h3>
+<table>
+  <thead>
+    <tr>
+      <th><strong>シード権</strong></th>
+      <th><strong>該当者</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Solo トップ3<br />→Solo部門</td>
+      <td>
+        <p><s>1.RIVER'</s> 辞退<br /><s>2.NAPOM</s> 辞退<br />3.WING</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Tag Team トップ3<br />→Tag Team部門</td>
+      <td>
+        <p><s>1.ROGUE WAVE</s> 辞退<br />2.JAIRO<br /><s>3.ROFU</s> 辞退</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Loopstation トップ3<br />→Loopstation部門</td>
+      <td>
+        <p><s>1.ROBIN</s> 辞退<br />2.MATEJ<br /><s>3.BIZKIT</s> 辞退</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Producer showcase 優勝<br />→Producer showcase部門</td>
+      <td>
+        <p>SYJO</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Crew 優勝<br />→Crew部門</td>
+      <td>
+        <p><s>SARUKANI</s> 辞退</p>
+      </td>
+    </tr>
+    <tr>
+      <td>U18（18歳未満）優勝<br />→Solo部門</td>
+      <td>
+        <p>JULARD</p>
+      </td>
+    </tr>
+    <tr>
+      <td>7tosmoke 優勝<br />→Solo部門</td>
+      <td>
+        <p>ALEXINHO</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+<h3>その他の大会</h3>
+<p>BEATLAND BEATBOX BATTLEを除き、すべてSolo部門の出場権となります。</p>
+<table>
+  <thead>
+    <tr>
+      <th>
+        <strong>大会名</strong>
+      </th>
+      <th>
+        <strong>日付</strong>
+      </th>
+      <th><strong>優勝</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BEATLAND BEATBOX BATTLE<br />Loopstation部門</td>
+      <td>2023<br />11/18</td>
+      <td>DUNCAN</td>
+    </tr>
+    <tr>
+      <td>BEATLAND BEATBOX BATTLE<br />Solo部門</td>
+      <td>2023<br />11/18</td>
+      <td>KAJI</td>
+    </tr>
+    <tr>
+      <td>FLORIDA BEATBOX FESTIVAL 2024</td>
+      <td>4/6</td>
+      <td>MAXO</td>
+    </tr>
+    <tr>
+      <td>GREAT NORTH BATTLE 2024</td>
+      <td>6/2</td>
+      <td>BLACKROLL</td>
+    </tr>
+    <tr>
+      <td>
+        <span style="color: #ff0000"
+          ><strong>※MENA REGION QUALIFIER</strong></span
+        >
+      </td>
+      <td>7/29</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>BEATCITY JAPAN</td>
+      <td>9/7</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <span style="color: #ff0000"><strong>※MENAリージョン</strong></span
+  >は、中東と北アフリカを合わせた地域を指します。
+</p>
+
+<h2 id="p05">Wildcard ルール</h2>
+<ul>
+  <li>
+    <strong>全部門共通ルール</strong><br />
+    各部門の制限時間を超過した場合、ペナルティとして1秒につき最終順位を1つ下げる
+    <br />提出受付開始日時：1月21日
+  </li>
+</ul>
+<ul>
+  <li>
+    <strong>Solo部門</strong><br />制限時間：2分10秒<br />提出期限：3月9日
+    (23:59 CET)<br />結果発表：3月31日 (時間未定)
+  </li>
+</ul>
+<ul>
+  <li>
+    <strong>Tag Team部門</strong><br />制限時間：2分10秒<br />提出期限：3月23日
+    (23:59 CET)<br />結果発表：4月12日 (時間未定)
+  </li>
+</ul>
+<ul>
+  <li>
+    <strong>Loopstation部門</strong><br />制限時間：3分30秒<br />提出期限：3月9日
+    (23:59 CET)<br />結果発表：3月30日 (時間未定)<br />デバイス制限：RC505 mki, mkiiのみ<br />一部例外あり
+  </li>
+</ul>
+<ul>
+  <li>
+    <strong>Producer showcase部門</strong><br />制限時間：5分<br />提出期限：3月23日
+    (23:59 CET)<br />結果発表：4月13日 (時間未定)<br />使用可能デバイス：無制限
+  </li>
+</ul>
+<ul>
+  <li>
+    <strong>Crew部門</strong><br />制限時間：3分10秒<br />提出期限：3月23日
+    (23:59 CET)<br />結果発表：4月14日 (時間未定)
+  </li>
+</ul>
+
+<h2 id="p06">Wildcardジャッジ一覧</h2>
+<p>GBB24本番のジャッジと、Wildcardジャッジが同じメンバーであるかどうかは不明です。</p>
+<table>
+    <thead>
+        <tr>
+            <th><strong>部門</strong></th>
+            <th><strong>ジャッジ</strong></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Solo</td>
+            <td>FOOTBOXG<br>COLAPS<br>RIVER'</td>
+        </tr>
+        <tr>
+            <td>Tag Team</td>
+            <td>RIVER'<br>COLAPS<br>CHRIS CELIZ</td>
+        </tr>
+        <tr>
+            <td>Loopstation</td>
+            <td>BIZKIT<br>KRISTOF<br>TIONEB</td>
+        </tr>
+        <tr>
+            <td>Producer showcase</td>
+            <td>INKIE<br>KRISTOF<br>TIONEB</td>
+        </tr>
+        <tr>
+            <td>Crew</td>
+            <td>CHRIS CELIZ<br>COLAPS<br>SLIZZER</td>
+        </tr>
+        <tr>
+            <td>7toSmoke</td>
+            <td>ジャッジ不明<br>例年発表なし</td>
+        </tr>
+    </tbody>
+</table>
 {% endblock %}
