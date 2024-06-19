@@ -1,3 +1,4 @@
+import os
 import jinja2
 import pandas as pd
 from flask import Flask, redirect, render_template, request, send_file, url_for
@@ -18,10 +19,10 @@ available_years = key.available_years
 # Redisキャッシュの設定
 config = {
     "CACHE_TYPE": "RedisCache",
-    "CACHE_REDIS_HOST": "redis",
-    "CACHE_REDIS_PORT": 6379,
-    "CACHE_REDIS_DB": 0,
-    "CACHE_REDIS_URL": "redis://redis:6379/0",
+    "CACHE_REDIS_HOST": os.getenv('REDIS_HOST', 'localhost'),
+    "CACHE_REDIS_PORT": int(os.getenv('REDIS_PORT', 6379)),
+    "CACHE_REDIS_DB": int(os.getenv('REDIS_DB', 0)),
+    "CACHE_REDIS_URL": os.getenv('REDIS_URL', 'redis://localhost:6379/0'),
     "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 24 * 30  # 30日
 }
 app.config.from_mapping(config)
