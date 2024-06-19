@@ -5,7 +5,7 @@ from flask import Flask, redirect, render_template, request, send_file, url_for
 from flask_caching import Cache
 from flask_sitemap import Sitemap
 
-from app import key
+import key
 from app.participants import (create_world_map, get_participants_list,
                               get_results)
 
