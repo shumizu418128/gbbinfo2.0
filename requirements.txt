@@ -3,3 +3,5 @@ pandas
 Flask
 Flask-Caching
 Flask-Sitemap
+folium
+pandas
