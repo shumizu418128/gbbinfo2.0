@@ -8,7 +8,7 @@ RUN pip install -r requirements.txt
 
 COPY . /app
 
-RUN ls -l /app
+RUN ls -l /app/app
 
 EXPOSE 8080
 
