@@ -1,4 +1,4 @@
-FROM python:3.7.12-slim-buster
+FROM python:3.9-slim
 
 WORKDIR /app
 
@@ -9,5 +9,7 @@ RUN apt-get -y update
 RUN apt-get -y upgrade
 
 COPY . /app
+
+EXPOSE 8080
 
 CMD python run.py

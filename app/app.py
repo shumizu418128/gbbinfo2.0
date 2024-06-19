@@ -16,13 +16,12 @@ sitemap = Sitemap(app=app)
 available_years = key.available_years
 
 # Redisキャッシュの設定
-# TODO: localの設定のままなので、本番環境では変更が必要
 config = {
     "CACHE_TYPE": "RedisCache",
-    "CACHE_REDIS_HOST": "localhost",
+    "CACHE_REDIS_HOST": "redis",
     "CACHE_REDIS_PORT": 6379,
     "CACHE_REDIS_DB": 0,
-    "CACHE_REDIS_URL": "redis://localhost:6379/0",
+    "CACHE_REDIS_URL": "redis://redis:6379/0",
     "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 24 * 30  # 30日
 }
 app.config.from_mapping(config)
@@ -173,4 +172,4 @@ def page_not_found(_):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True)
