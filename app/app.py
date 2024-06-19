@@ -10,7 +10,7 @@ from . import key
 from .participants import create_world_map, get_participants_list, get_results
 
 app = Flask(__name__)
-app.secret_key = key.SECRET_KEY
+app.secret_key = os.getenv("SECRET_KEY")
 
 sitemap = Sitemap(app=app)
 

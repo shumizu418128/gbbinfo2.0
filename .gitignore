@@ -106,5 +106,4 @@ venv.bak/
 app/__pycache__/app.cpython-311.pyc
 **/__pycache__/
 *.pyc
-app/key.py
 **/world_map.html
