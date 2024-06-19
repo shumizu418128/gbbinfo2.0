@@ -1,7 +1,8 @@
 import jinja2
 import pandas as pd
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, send_file, url_for
 from flask_caching import Cache
+from flask_sitemap import Sitemap
 
 from app import key
 from app.participants import (create_world_map, get_participants_list,
@@ -9,6 +10,8 @@ from app.participants import (create_world_map, get_participants_list,
 
 app = Flask(__name__)
 app.secret_key = key.SECRET_KEY
+
+sitemap = Sitemap(app=app)
 
 available_years = key.available_years
 
@@ -45,7 +48,7 @@ def route_top():
     # 最新年度を表示
     year = available_years[-1]
 
-    return redirect(url_for("content", year=year, content="top"))
+    return render_template(f"{year}/top.html", year=year)
 
 
 # 世界地図の表示
@@ -143,6 +146,25 @@ def others(content: str = None):
     # エラー
     except jinja2.exceptions.TemplateNotFound:
         return render_template("404.html"), 404
+
+
+####################################################################
+# PWS設定
+####################################################################
+
+@app.route("/manifest.json")
+def manifest():
+    return send_file('manifest.json', mimetype='application/manifest+json')
+
+
+@app.route("/service-worker.js")
+def service_worker():
+    return send_file('service-worker.js', mimetype='application/javascript')
+
+
+####################################################################
+# エラーハンドラ
+####################################################################
 
 
 @app.errorhandler(404)
