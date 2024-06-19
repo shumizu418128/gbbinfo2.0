@@ -1,13 +1,6 @@
 # ベースイメージ
 FROM python:3.9-slim
 
-# Redisのインストール
-RUN apt-get update && \
-    apt-get install -y redis-server
-
-# Redisの設定ファイルをコピー
-COPY redis.conf /usr/local/etc/redis/redis.conf
-
 # アプリケーションの作業ディレクトリを設定
 WORKDIR /app
 
@@ -24,4 +17,4 @@ EXPOSE 8080
 RUN ls -l /app/app
 
 # Redisサーバーを起動し、その後にFlaskアプリケーションを起動
-CMD ["redis-server", "/usr/local/etc/redis/redis.conf"] && python run.py
+CMD ["python", "run.py"]

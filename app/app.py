@@ -11,30 +11,16 @@ from .participants import create_world_map, get_participants_list, get_results
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
-
 sitemap = Sitemap(app=app)
-
 available_years = key.available_years
 
-# Redisキャッシュの設定
-config = {
-    "CACHE_TYPE": "RedisCache",
-    "CACHE_REDIS_HOST": os.getenv('REDIS_HOST', 'localhost'),
-    "CACHE_REDIS_PORT": int(os.getenv('REDIS_PORT', 6379)),
-    "CACHE_REDIS_DB": int(os.getenv('REDIS_DB', 0)),
-    "CACHE_REDIS_URL": os.getenv('REDIS_URL', 'redis://localhost:6379/0'),
-    "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 24 * 30  # 30日
-}
-app.config.from_mapping(config)
-
-cache = Cache(app)
-
-# 再起動時にキャッシュをクリア
-cache.clear()
+# キャッシュのデフォルトの有効期限を設定する
+app.config['CACHE_DEFAULT_TIMEOUT'] = 60 * 60 * 24 * 30  # 30d
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 
 # カスタムキャッシュキーの生成
-def make_cache_key(*args, **kwargs):
+def make_cache_key(*args):
     path = request.path
     args = str(hash(frozenset(request.args.items())))
     return f'{path}?{args}'
