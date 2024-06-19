@@ -18,6 +18,8 @@ RUN pip install -r requirements.txt
 # アプリケーションのソースコードをコピー
 COPY . .
 
+EXPOSE 8080
+
 # コンテナ内のディレクトリ構造を確認（オプション）
 RUN ls -l /app/app
 
