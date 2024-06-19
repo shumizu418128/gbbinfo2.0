@@ -1,13 +1,13 @@
 import os
+
 import jinja2
 import pandas as pd
 from flask import Flask, redirect, render_template, request, send_file, url_for
 from flask_caching import Cache
 from flask_sitemap import Sitemap
 
-import key
-from app.participants import (create_world_map, get_participants_list,
-                              get_results)
+from . import key
+from .participants import create_world_map, get_participants_list, get_results
 
 app = Flask(__name__)
 app.secret_key = key.SECRET_KEY
