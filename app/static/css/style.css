@@ -155,7 +155,7 @@ main {
     /* 最小の高さを計算して設定 */
     padding: 2em;
     /* 上下左右の余白を2emに設定 */
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.65);
     /* 背景色を指定 */
     width: 70%;
     /* 幅を70%に設定 */
