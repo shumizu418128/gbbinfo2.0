@@ -1,29 +1,3 @@
-self.addEventListener('install', function(event) {
-    event.waitUntil(
-      caches.open('my-cache').then(function(cache) {
-        const year = new Date().getFullYear(); // 今年を取得
-        return cache.addAll([
-          `/`,
-          `/${year}/top`,
-          `/${year}/ticket`,
-          `/${year}/time_schedule`,
-          `/${year}/stream`,
-          `/${year}/result`,
-          `/others/how_to_plan`,
-          '/static/css/style.css',
-          '/static/css/table.css',
-          '/static/css/dropdown.css',
-          '/static/css/button.css',
-          '/static/images/background.webp',
-          '/static/images/header.webp',
-          '/static/scripts/script.js',
-          '/static/favicon.ico',
-          '/static/icon.png',
-          // 他のキャッシュしたいファイルを追加
-        ]);
-      })
-    );
-  });
 
   self.addEventListener('fetch', function(event) {
     event.respondWith(
