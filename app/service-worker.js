@@ -30,16 +30,36 @@ self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request)
       .then(function(response) {
-        // キャッシュがヒットした場合はキャッシュのレスポンスを返す
+        // キャッシュがヒットした場合
         if (response) {
+          // キャッシュの更新がないか確認する
+          fetch(event.request).then(function(networkResponse) {
+            // ネットワークレスポンスがある場合
+            if (networkResponse && networkResponse.status === 200) {
+              // キャッシュを開く
+              caches.open('my-cache').then(function(cache) {
+                // キャッシュにネットワークレスポンスを保存する
+                cache.put(event.request, networkResponse.clone());
+              });
+            }
+          });
           return response;
         }
-        return fetch(event.request);
-      }
-    )
+        // キャッシュがヒットしなかった場合
+        return fetch(event.request).then(function(networkResponse) {
+          // ネットワークレスポンスがある場合
+          if (networkResponse && networkResponse.status === 200) {
+            // キャッシュを開く
+            caches.open('my-cache').then(function(cache) {
+              // キャッシュにネットワークレスポンスを保存する
+              cache.put(event.request, networkResponse.clone());
+            });
+          }
+          return networkResponse;
+        });
+      })
   );
 });
-
 // アクティベートイベントで古いキャッシュを削除
 self.addEventListener('activate', function(event) {
   const cacheWhitelist = "my-cache";
