@@ -10,6 +10,7 @@ from . import key
 from .participants import create_world_map, get_participants_list, get_results
 
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.secret_key = os.getenv("SECRET_KEY")
 sitemap = Sitemap(app=app)
 available_years = key.available_years
