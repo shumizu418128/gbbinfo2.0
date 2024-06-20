@@ -25,41 +25,28 @@ self.addEventListener('install', function(event) {
     );
   });
 
-// フェッチイベントでキャッシュされたファイルを提供
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        // キャッシュがヒットした場合
-        if (response) {
-          // キャッシュの更新がないか確認する
-          fetch(event.request).then(function(networkResponse) {
-            // ネットワークレスポンスがある場合
-            if (networkResponse && networkResponse.status === 200) {
-              // キャッシュを開く
-              caches.open('my-cache').then(function(cache) {
-                // キャッシュにネットワークレスポンスを保存する
-                cache.put(event.request, networkResponse.clone());
+  self.addEventListener('fetch', function(event) {
+    event.respondWith(
+      // ネットワークからリクエストを取得する
+      fetch(event.request)
+        .then(function(response) {
+          // レスポンスが正常であれば、キャッシュを開き、そのレスポンスをキャッシュに保存する
+          if (response && response.status === 200) {
+            var responseToCache = response.clone();
+            caches.open('my-cache')
+              .then(function(cache) {
+                cache.put(event.request, responseToCache);
               });
-            }
-          });
-          return response;
-        }
-        // キャッシュがヒットしなかった場合
-        return fetch(event.request).then(function(networkResponse) {
-          // ネットワークレスポンスがある場合
-          if (networkResponse && networkResponse.status === 200) {
-            // キャッシュを開く
-            caches.open('my-cache').then(function(cache) {
-              // キャッシュにネットワークレスポンスを保存する
-              cache.put(event.request, networkResponse.clone());
-            });
           }
-          return networkResponse;
-        });
-      })
-  );
-});
+          return response; // レスポンスを返す
+        })
+        .catch(function() {
+          // ネットワークにアクセスできない場合はキャッシュを使用する
+          return caches.match(event.request);
+        })
+    );
+  });
+
 // アクティベートイベントで古いキャッシュを削除
 self.addEventListener('activate', function(event) {
   const cacheWhitelist = "my-cache";
