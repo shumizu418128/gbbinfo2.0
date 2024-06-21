@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}GBB {{ year }} 大会結果 - {{ super() }}{% endblock %}
-
+{% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/result{% endblock %}
 {% block content %}
 <h1>GBB {{ year }} 大会結果</h1>
 {% if results %}
