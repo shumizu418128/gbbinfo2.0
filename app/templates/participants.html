@@ -9,22 +9,18 @@
 <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
 
     <label for="category">部門選択</label>
-    <select name="category" id="category" class="participants_select">
+    <select name="category" id="category" class="participants_select" onchange="this.form.submit()">
         {% for c in all_category %}
         <option value="{{ c }}" {% if request.args.get('category') == c %}selected{% endif %}>{{ c }}</option>
         {% endfor %}
     </select>
     <br>
     <label for="ticket_class">情報選択</label>
-    <select name="ticket_class" id="ticket_class" class="participants_select">
+    <select name="ticket_class" id="ticket_class" class="participants_select" onchange="this.form.submit()">
         <option value="all" {% if request.args.get('ticket_class') == 'all' %}selected{% endif %}>出場者一覧</option>
         <option value="wildcard" {% if request.args.get('ticket_class') == 'wildcard' %}selected{% endif %}>Wildcard結果</option>
         <option value="seed_right" {% if request.args.get('ticket_class') == 'seed_right' %}selected{% endif %}>シード権</option>
     </select>
-    <br>
-    <div style="text-align: center;">
-        <button type="submit" class="participants_filter">検索</button>
-    </div>
 
 </form>
 
@@ -76,23 +72,21 @@
 <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
 
     <label for="category">部門選択</label>
-    <select name="category" id="category" class="participants_select">
+    <select name="category" id="category" class="participants_select" onchange="this.form.submit()">
         {% for c in all_category %}
         <option value="{{ c }}" {% if request.args.get('category') == c %}selected{% endif %}>{{ c }}</option>
         {% endfor %}
     </select>
     <br>
     <label for="ticket_class">情報選択</label>
-    <select name="ticket_class" id="ticket_class" class="participants_select">
+    <select name="ticket_class" id="ticket_class" class="participants_select" onchange="this.form.submit()">
         <option value="all" {% if request.args.get('ticket_class') == 'all' %}selected{% endif %}>出場者一覧</option>
         <option value="wildcard" {% if request.args.get('ticket_class') == 'wildcard' %}selected{% endif %}>Wildcard結果</option>
         <option value="seed_right" {% if request.args.get('ticket_class') == 'seed_right' %}selected{% endif %}>シード権</option>
     </select>
-    <br>
-    <div style="text-align: center;">
-        <button type="submit" class="participants_filter">検索</button>
-    </div>
+
 </form>
+
 
 <h2>GBB {{ year }} 出場者世界地図</h2>
 
