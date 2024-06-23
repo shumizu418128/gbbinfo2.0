@@ -1,4 +1,5 @@
 {
+    "id": "com.onrender.gbbinfo-jpn",
     "name": "GBBINFO-JPN",
     "short_name": "GBBINFO",
     "description": "GBB非公式情報サイト",
@@ -21,6 +22,18 @@
         "src": "/static/icon_512.png",
         "sizes": "512x512",
         "type": "image/png"
+      }
+    ],
+    "launch_handler": {
+        "client_mode": "navigate-existing"
+    },
+    "orientation": "any",
+    "screenshots": [
+      {
+        "src": "/static/screenshot.png",
+        "sizes": "375x667",
+        "type": "image/png",
+        "label": "ホーム画面"
       }
     ]
   }
