@@ -177,12 +177,17 @@ def get_last_commit():
 
 
 ####################################################################
-# Sitemap
+# Sitemap, robots.txt
 ####################################################################
 
 @app.route("/sitemap.xml")
 def sitemap():
     return sitemapper.generate()
+
+
+@app.route("/robots.txt")
+def robots_txt():
+    return send_file("robots.txt", mimetype="text/plain")
 
 
 ####################################################################
