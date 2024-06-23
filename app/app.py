@@ -1,8 +1,10 @@
 import os
 
+import requests
+
 import jinja2
 import pandas as pd
-from flask import Flask, redirect, render_template, request, send_file, url_for
+from flask import Flask, jsonify, redirect, render_template, request, send_file, url_for
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
@@ -13,6 +15,7 @@ app = Flask(__name__)
 sitemapper = Sitemapper()
 sitemapper.init_app(app)
 app.secret_key = os.getenv("SECRET_KEY")
+github_token = os.getenv("GITHUB_TOKEN")
 available_years = key.available_years
 
 # キャッシュのデフォルトの有効期限を設定する
@@ -150,6 +153,27 @@ def others(content: str = None):
     # エラー
     except jinja2.exceptions.TemplateNotFound:
         return render_template("404.html"), 404
+
+
+####################################################################
+# API
+####################################################################
+
+@app.route("/last-commit")
+@cache.cached()
+def get_last_commit():
+    headers = {
+        'Authorization': f'token {github_token}'
+    }
+    response = requests.get("https://api.github.com/repos/shumizu418128/gbbinfo2.0/commits", headers=headers)
+
+    if response.status_code == 403:
+        return jsonify({"error": "APIのレートリミットに達しました。しばらくしてから再試行してください。"}), 403
+
+    if response.status_code != 200:
+        return jsonify({"error": "データの取得に失敗しました"}), 500
+
+    return jsonify(response.json())
 
 
 ####################################################################
