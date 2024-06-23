@@ -12,7 +12,6 @@ from .participants import create_world_map, get_participants_list, get_results
 app = Flask(__name__)
 sitemapper = Sitemapper()
 sitemapper.init_app(app)
-app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.secret_key = os.getenv("SECRET_KEY")
 available_years = key.available_years
 
