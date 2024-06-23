@@ -1,3 +1,8 @@
+body, html, header, nav, ul, li, p, a, h1, h2, h3 {
+    font-family: Noto sans JP;
+    /* フォントファミリーを指定 */
+}
+
 body {
     font-family: Noto sans JP;
     /* フォントファミリーを指定 */
