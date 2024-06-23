@@ -164,7 +164,7 @@ def sitemap_xml():
                         changefreq='yearly', priority=0.3)
 
         # othersフォルダにあるページを全て追加
-        for content in os.listdir("./app/templates/others"):
+        for content in os.listdir("./templates/others"):
             sitemap.add(url_for('others', content=content.replace(
                 ".html", "")), lastmod=year, changefreq='never', priority=0.2)
     return response
