@@ -2,7 +2,7 @@ Jinja2
 pandas
 Flask
 Flask-Caching
-Flask-Sitemap
+flask-sitemapper
 folium
 pandas
 redis

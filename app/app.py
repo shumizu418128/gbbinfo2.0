@@ -4,15 +4,16 @@ import jinja2
 import pandas as pd
 from flask import Flask, redirect, render_template, request, send_file, url_for
 from flask_caching import Cache
-from flask_sitemap import Sitemap
+from flask_sitemapper import Sitemapper
 
 from . import key
 from .participants import create_world_map, get_participants_list, get_results
 
 app = Flask(__name__)
+sitemapper = Sitemapper()
+sitemapper.init_app(app)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.secret_key = os.getenv("SECRET_KEY")
-sitemap = Sitemap(app=app)
 available_years = key.available_years
 
 # キャッシュのデフォルトの有効期限を設定する
@@ -28,6 +29,7 @@ def make_cache_key(*args):
 
 
 # /(年度) にアクセスしたときの処理
+@sitemapper.include(changefreq="weekly", priority=0.8)
 @app.route("/")
 @cache.cached()
 def route_top():
@@ -53,6 +55,8 @@ def world_map(year: int = None):
     return render_template(f'{year}/world_map.html')
 
 
+# 出場者一覧
+@sitemapper.include(changefreq="monthly", priority=1.0, url_variables={"year": available_years})
 @app.route('/<int:year>/participants', methods=["GET"])
 @cache.cached(key_prefix=make_cache_key)
 def participants(year: int = None):
@@ -83,6 +87,8 @@ def participants(year: int = None):
     return render_template("/participants.html", participants=participants_list, year=year, all_category=valid_categories)
 
 
+# 大会結果
+@sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/result")
 @cache.cached()
 def result(year: int = None):
@@ -97,6 +103,21 @@ def result(year: int = None):
     return render_template("/result.html", results=results, year=year)
 
 
+combinations = []
+
+for year in available_years:
+    contents = os.listdir(f"./app/templates/{year}")
+    contents = [content.replace(".html", "") for content in contents]
+    contents.remove("world_map")
+    for content in contents:
+        combinations.append((year, content))
+
+combinations_year = [year for year, _ in combinations]
+combinations_content = [content for _, content in combinations]
+
+
+# 各年度のページ
+@sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": combinations_year, "content": combinations_content})
 @app.route("/<int:year>/<string:content>")
 @cache.cached()
 def content(year: int = None, content: str = None):
@@ -104,13 +125,6 @@ def content(year: int = None, content: str = None):
     # 年度が指定されていない場合は最新年度を表示
     if year not in available_years:
         year = available_years[-1]
-
-    # participants, resultは専用のページにリダイレクト
-    if content == "participants":
-        return redirect(url_for("participants", year=year))
-
-    if content == "result":
-        return redirect(url_for("result", year=year))
 
     # その他のページはそのまま表示
     try:
@@ -121,6 +135,12 @@ def content(year: int = None, content: str = None):
         return render_template("404.html"), 404
 
 
+content_others = os.listdir("./app/templates/others")
+content_others = [content.replace(".html", "") for content in content_others]
+
+
+# その他のページ
+@sitemapper.include(changefreq="never", priority=0.7, url_variables={"content": content_others})
 @app.route("/others/<string:content>")
 @cache.cached()
 def others(content: str = None):
@@ -136,38 +156,12 @@ def others(content: str = None):
 
 
 ####################################################################
-# サイトマップ
+# Sitemap
 ####################################################################
 
-@app.route('/sitemap.xml')
-def sitemap_xml():
-    response = sitemap.sitemap()
-    for year in available_years:
-        sitemap.add(url_for('participants', year=year, category="Solo",
-                    ticket_class="all"), lastmod=year, changefreq='weekly', priority=1.0)
-        sitemap.add(url_for('top', year=year), lastmod=year,
-                    changefreq='weekly', priority=0.9)
-        sitemap.add(url_for('rule', year=year), lastmod=year,
-                    changefreq='yearly', priority=0.8)
-        sitemap.add(url_for('time_schedule', year=year),
-                    lastmod=year, changefreq='yearly', priority=0.7)
-        sitemap.add(url_for('stream', year=year), lastmod=year,
-                    changefreq='yearly', priority=0.6)
-        sitemap.add(url_for('ticket', year=year), lastmod=year,
-                    changefreq='yearly', priority=0.5)
-        sitemap.add(url_for('result', year=year), lastmod=year,
-                    changefreq='yearly', priority=0.4)
-
-        # wildcardsのみ2023を除く
-        if year != 2023:
-            sitemap.add(url_for('wildcards', year=year), lastmod=year,
-                        changefreq='yearly', priority=0.3)
-
-        # othersフォルダにあるページを全て追加
-        for content in os.listdir("./templates/others"):
-            sitemap.add(url_for('others', content=content.replace(
-                ".html", "")), lastmod=year, changefreq='never', priority=0.2)
-    return response
+@app.route("/sitemap.xml")
+def sitemap():
+    return sitemapper.generate()
 
 
 ####################################################################
