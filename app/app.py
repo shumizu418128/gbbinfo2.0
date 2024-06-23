@@ -11,7 +11,6 @@ from .participants import create_world_map, get_participants_list, get_results
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.config["SITEMAP_INCLUDE_RULES_WITHOUT_PARAMS"] = True
 app.secret_key = os.getenv("SECRET_KEY")
 sitemap = Sitemap(app=app)
 available_years = key.available_years
@@ -134,6 +133,41 @@ def others(content: str = None):
     # エラー
     except jinja2.exceptions.TemplateNotFound:
         return render_template("404.html"), 404
+
+
+####################################################################
+# サイトマップ
+####################################################################
+
+@app.route('/sitemap.xml')
+def sitemap_xml():
+    response = sitemap.sitemap()
+    for year in available_years:
+        sitemap.add(url_for('participants', year=year, category="Solo",
+                    ticket_class="all"), lastmod=year, changefreq='weekly', priority=1.0)
+        sitemap.add(url_for('top', year=year), lastmod=year,
+                    changefreq='weekly', priority=0.9)
+        sitemap.add(url_for('rule', year=year), lastmod=year,
+                    changefreq='yearly', priority=0.8)
+        sitemap.add(url_for('time_schedule', year=year),
+                    lastmod=year, changefreq='yearly', priority=0.7)
+        sitemap.add(url_for('stream', year=year), lastmod=year,
+                    changefreq='yearly', priority=0.6)
+        sitemap.add(url_for('ticket', year=year), lastmod=year,
+                    changefreq='yearly', priority=0.5)
+        sitemap.add(url_for('result', year=year), lastmod=year,
+                    changefreq='yearly', priority=0.4)
+
+        # wildcardsのみ2023を除く
+        if year != 2023:
+            sitemap.add(url_for('wildcards', year=year), lastmod=year,
+                        changefreq='yearly', priority=0.3)
+
+        # othersフォルダにあるページを全て追加
+        for content in os.listdir("./app/templates/others"):
+            sitemap.add(url_for('others', content=content.replace(
+                ".html", "")), lastmod=year, changefreq='never', priority=0.2)
+    return response
 
 
 ####################################################################
