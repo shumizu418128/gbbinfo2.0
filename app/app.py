@@ -166,7 +166,7 @@ def sitemap():
 # favicon.ico
 ####################################################################
 
-@app.route("/favicon.ico")
+@app.route("/favicon.ico", methods=["GET"])
 def favicon_ico():
     return send_file("favicon.ico", mimetype="image/vnd.microsoft.icon")
 
