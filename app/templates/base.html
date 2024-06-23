@@ -98,39 +98,7 @@
       <div class="button-container">
         <button id="installButton" class="button_top" style="visibility: hidden;">ホーム画面に追加</button>
       </div>
-      <script>
-        let deferredPrompt;
-        const installButton = document.getElementById('installButton');
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-          // インストールプロンプトを表示する前に発生
-          e.preventDefault();
-          deferredPrompt = e;
-          // ボタンを表示
-          installButton.style.visibility = 'visible';
-
-          installButton.addEventListener('click', (e) => {
-            // プロンプトを表示
-            deferredPrompt.prompt();
-            // ユーザーの応答を待つ
-            deferredPrompt.userChoice.then((choiceResult) => {
-              if (choiceResult.outcome === 'accepted') {
-                console.log('ユーザーがアプリのインストールを受け入れました。');
-              } else {
-                console.log('ユーザーがアプリのインストールを拒否しました。');
-              }
-              deferredPrompt = null;
-            });
-          });
-        });
-
-        window.addEventListener('appinstalled', (evt) => {
-          // アプリがインストールされた後に発生
-          console.log('アプリがインストールされました。');
-          // ボタンを非表示にする
-          installButton.style.visibility = 'hidden';
-        });
-      </script>
+      <script src="\static\scripts\install.js"></script>
       <p>GBBINFO-JPNはPWAに対応しています。<br>ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。</p>
 
       <hr />
@@ -138,7 +106,9 @@
       <strong>
         <p id="countdown" style="text-align: center; font-size: 20px"></p>
       </strong>
-      <br />
+      <br>
+      <p>GBBINFO-JPN 最終更新: <span id="last-deploy-time"></span></p>
+      <script src="\static\scripts\last_modify.js"></script>
       <ul>
         <li><a href="/2024/top">GBB2024</a></li>
         <li><a href="/2023/top">GBB2023</a></li>
@@ -152,24 +122,8 @@
         </p>
       </footer>
 
-      <script src="\static\scripts\script.js"></script>
-      <script>
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            document.querySelector(this.getAttribute("href")).scrollIntoView({
-              behavior: "smooth",
-              block: "start", // 'start', 'center', 'end', or 'nearest'
-            });
-
-            // 少し遅延させてからスクロールする
-            setTimeout(function () {
-              window.scrollBy(0, -120); // 100px上にスクロール
-            }, 500); // 500ms後にスクロール
-          });
-        });
-      </script>
+      <script src="\static\scripts\countdown.js"></script>
+      <script src="\static\scripts\scroll.js"></script>
     </main>
   </body>
 </html>
