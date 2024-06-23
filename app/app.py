@@ -108,7 +108,6 @@ combinations = []
 for year in available_years:
     contents = os.listdir(f"./app/templates/{year}")
     contents = [content.replace(".html", "") for content in contents]
-    contents.remove("world_map")
     for content in contents:
         combinations.append((year, content))
 
