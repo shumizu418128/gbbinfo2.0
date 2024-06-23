@@ -29,7 +29,6 @@ def make_cache_key(*args):
 
 
 # /(年度) にアクセスしたときの処理
-@sitemapper.include(changefreq="weekly", priority=0.8)
 @app.route("/")
 @cache.cached()
 def route_top():
@@ -37,7 +36,7 @@ def route_top():
     # 最新年度を表示
     year = available_years[-1]
 
-    return render_template(f"{year}/top.html", year=year)
+    return redirect(url_for("content", year=year, content="top"))
 
 
 # 世界地図の表示
