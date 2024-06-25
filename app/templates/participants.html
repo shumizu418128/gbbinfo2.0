@@ -41,7 +41,7 @@
     <thead>
         <tr>
             <th>名前</th>
-            <th>出身</th>
+            <th style="white-space: nowrap;">出身</th>
             <th>出場権</th>
         </tr>
     </thead>
@@ -50,11 +50,11 @@
         <tr>
             {% if participant.is_cancelled %}
             <td><s>{{ participant.name }}</s> 辞退</td>
-            <td><s>{{ participant.country }}</s></td>
+            <td style="white-space: nowrap;"><s>{{ participant.country }}</s></td>
             <td><s>{{ participant.ticket_class }}</s></td>
             {% else %}
             <td>{{ participant.name }}</td>
-            <td>{{ participant.country }}</td>
+            <td style="white-space: nowrap;">{{ participant.country }}</td>
             <td>{{ participant.ticket_class }}</td>
             {% endif %}
         </tr>
@@ -65,9 +65,11 @@
 <p style="text-align: center;">まだ更新されていないか、該当者がいないか... のどちらかです<br>ほかの部門も確認してみてください</p>
 {% endif %}
 
-<p>出場権の詳細は<a href="/{{ year }}/rule">ルール</a>をご確認ください。</p>
+{% if request.args.get("ticket_class") == "wildcard" and result_url %}
+<a href="{{ result_url }}">{{ request.args.get('category') }}部門 その他の順位</a>
+{% endif %}
 
-<!-- TODO: GBBインスタの結果投稿リンクをどうにかして受け取ってここで表示 -->
+<p>出場権の詳細は<a href="/{{ year }}/rule">ルール</a>をご確認ください。</p>
 
 <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
 

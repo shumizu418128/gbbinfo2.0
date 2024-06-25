@@ -85,7 +85,13 @@ def participants(year: int = None):
     # 参加者リストを取得
     participants_list = get_participants_list(year, category, ticket_class)
 
-    return render_template("/participants.html", participants=participants_list, year=year, all_category=valid_categories)
+    # 結果URLを取得
+    try:
+        result_url = key.result[year][category]
+    except KeyError:
+        result_url = None
+
+    return render_template("/participants.html", participants=participants_list, year=year, all_category=valid_categories, result_url=result_url)
 
 
 # 大会結果
