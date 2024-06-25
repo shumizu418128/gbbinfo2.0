@@ -40,9 +40,9 @@
 <table>
     <thead>
         <tr>
-            <th>名前</th>
-            <th style="white-space: nowrap;">出身</th>
-            <th>出場権</th>
+            <th style="width: 33%;">名前</th>
+            <th style="width: 33%;">出身</th>
+            <th style="width: 33%;">出場権</th>
         </tr>
     </thead>
     <tbody>
@@ -50,11 +50,11 @@
         <tr>
             {% if participant.is_cancelled %}
             <td><s>{{ participant.name }}</s> 辞退</td>
-            <td style="white-space: nowrap;"><s>{{ participant.country }}</s></td>
+            <td><s>{{ participant.country }}</s></td>
             <td><s>{{ participant.ticket_class }}</s></td>
             {% else %}
             <td>{{ participant.name }}</td>
-            <td style="white-space: nowrap;">{{ participant.country }}</td>
+            <td>{{ participant.country }}</td>
             <td>{{ participant.ticket_class }}</td>
             {% endif %}
         </tr>
