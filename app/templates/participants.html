@@ -69,7 +69,7 @@
 <a href="{{ result_url }}">{{ request.args.get('category') }}部門 その他の順位</a>
 {% endif %}
 
-<p>出場権の詳細は<a href="/{{ year }}/rule">ルール</a>をご確認ください。</p>
+<p>出場権の詳細・結果発表日は<a href="/{{ year }}/rule">ルール</a>をご確認ください。</p>
 
 <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
 
