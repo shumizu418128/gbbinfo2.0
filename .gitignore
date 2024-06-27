@@ -107,3 +107,4 @@ app/__pycache__/app.cpython-311.pyc
 **/__pycache__/
 *.pyc
 **/world_map.html
+/cache-directory
