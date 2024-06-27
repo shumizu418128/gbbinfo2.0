@@ -18,9 +18,8 @@ app.secret_key = os.getenv("SECRET_KEY")
 github_token = os.getenv("GITHUB_TOKEN")
 available_years = key.available_years
 
-# キャッシュのデフォルトの有効期限を設定する
-app.config['CACHE_DEFAULT_TIMEOUT'] = 60 * 60 * 24 * 30  # 30d
-cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+app.config['CACHE_DEFAULT_TIMEOUT'] = 0  # 永続化
+cache = Cache(app, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': 'cache-directory'})
 
 
 # カスタムキャッシュキーの生成
