@@ -215,18 +215,18 @@ def get_last_commit():
     return jsonify(response.json())
 
 
+# 以下、キャッシュ使用不可
+
 ####################################################################
 # Sitemap, robots.txt
 ####################################################################
 
 @app.route("/sitemap.xml")
-@cache.cached()
 def sitemap():
     return sitemapper.generate()
 
 
 @app.route("/robots.txt")
-@cache.cached()
 def robots_txt():
     return send_file("robots.txt", mimetype="text/plain")
 
@@ -236,7 +236,6 @@ def robots_txt():
 ####################################################################
 
 @app.route("/favicon.ico", methods=["GET"])
-@cache.cached()
 def favicon_ico():
     return send_file("favicon.ico", mimetype="image/vnd.microsoft.icon")
 
@@ -246,13 +245,11 @@ def favicon_ico():
 ####################################################################
 
 @app.route("/manifest.json")
-@cache.cached()
 def manifest():
     return send_file('manifest.json', mimetype='application/manifest+json')
 
 
 @app.route("/service-worker.js")
-@cache.cached()
 def service_worker():
     return send_file('service-worker.js', mimetype='application/javascript')
 
@@ -263,7 +260,6 @@ def service_worker():
 
 
 @app.errorhandler(404)
-@cache.cached()
 def page_not_found(_):
     return render_template("404.html"), 404
 
