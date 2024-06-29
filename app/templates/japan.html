@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block title %}GBB {{ year }} 日本代表 -
+GBBINFO-JPN{% endblock %} {% block twitter_title %}GBB{{ year }}日本代表 -
+GBBINFO-JPN{% endblock %} {% block og_title %}GBB{{ year }}日本代表 -
+GBBINFO-JPN{% endblock %} {% block og_url %}https://gbbinfo-jpn.onrender.com/{{
+year }}/japan{% endblock %} {% block content %}
+<h1>GBB {{ year }} 日本代表</h1>
+
+{% if participants %}
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>カテゴリー</th>
+      <th>出場権</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for participant in participants %}
+    <tr>
+      {% if participant.is_cancelled %}
+      <td><s>{{ participant.name }}</s> 辞退</td>
+      <td><s>{{ participant.category }}</s></td>
+      <td><s>{{ participant.ticket_class }}</s></td>
+      {% else %}
+      <td>{{ participant.name }}</td>
+      <td>{{ participant.category }}</td>
+      <td>{{ participant.ticket_class }}</td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>～発表次第更新～</p>
+{% endif %}
+<p>出場権の詳細・結果発表日は<a href="/{{ year }}/rule">ルール</a>をご確認ください。</p>
+{% endblock %}
