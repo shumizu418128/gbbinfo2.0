@@ -231,7 +231,9 @@ def get_japan_participants(year: int) -> list:
         participants_list,
         key=lambda x: (
             x["is_cancelled"],  # キャンセルした人を後ろに
-            x["category"]  # カテゴリー順
+            x["category"],  # カテゴリー順
+            not x["ticket_class"].startswith("GBB"),  # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
+            x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
         )
     )
 
