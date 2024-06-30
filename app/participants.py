@@ -58,6 +58,9 @@ def get_participants_list(year: int, category: str, ticket_class: str) -> list:
             x["is_cancelled"],  # キャンセルした人を後ろに
             not x["ticket_class"].startswith("GBB"),  # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
             x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
+            int(x["ticket_class"].replace("Wildcard ", ""))
+            if x["ticket_class"].startswith("Wildcard") else float('inf')
+            # Wildcard上位を前に
         )
     )
     return participants_list
@@ -234,6 +237,9 @@ def get_japan_participants(year: int) -> list:
             x["category"],  # カテゴリー順
             not x["ticket_class"].startswith("GBB"),  # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
             x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
+            int(x["ticket_class"].replace("Wildcard ", ""))
+            if x["ticket_class"].startswith("Wildcard") else float('inf')
+            # Wildcard上位を前に
         )
     )
 
