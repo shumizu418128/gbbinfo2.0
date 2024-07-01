@@ -58,6 +58,9 @@ def get_participants_list(year: int, category: str, ticket_class: str) -> list:
             x["is_cancelled"],  # キャンセルした人を後ろに
             not x["ticket_class"].startswith("GBB"),  # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
             x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
+            int(x["ticket_class"].replace("Wildcard ", ""))
+            if x["ticket_class"].startswith("Wildcard") else float('inf')
+            # Wildcard上位を前に
         )
     )
     return participants_list
@@ -187,3 +190,57 @@ def create_world_map(year: int):
         ).add_to(beatboxer_map)
 
     beatboxer_map.save(f"app/templates/{year}/world_map.html")
+
+
+def get_japan_participants(year: int) -> list:
+    # csvからデータを取得
+    beatboxers_df = pd.read_csv(f'app/static/csv/gbb{year}_participants.csv')
+    countries_df = pd.read_csv('app/static/csv/countries.csv')
+
+    # Merge data to include country names in beatboxers_df
+    beatboxers_df = beatboxers_df.merge(
+        countries_df[['iso_code', 'name', "name_ja"]],
+        on='iso_code',
+        how='left',
+        suffixes=('', '_country')
+    )
+
+    # 日本代表を取得
+    japan_participants = beatboxers_df[beatboxers_df['name_ja'] == "日本"]
+
+    # フロントエンドに渡すデータを整形
+    participants_list = []
+    for _, row in japan_participants.iterrows():
+
+        # キャンセルした人の場合
+        if "[cancelled]" in row["name"]:
+            participant = {
+                "name": row["name"].replace("[cancelled] ", ""),
+                "category": row["category"],
+                "ticket_class": row["ticket_class"],
+                "is_cancelled": True
+            }
+
+        else:
+            participant = {
+                "name": row["name"],
+                "category": row["category"],
+                "ticket_class": row["ticket_class"],
+                "is_cancelled": False
+            }
+        participants_list.append(participant)
+
+    participants_list = sorted(
+        participants_list,
+        key=lambda x: (
+            x["is_cancelled"],  # キャンセルした人を後ろに
+            x["category"],  # カテゴリー順
+            not x["ticket_class"].startswith("GBB"),  # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
+            x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
+            int(x["ticket_class"].replace("Wildcard ", ""))
+            if x["ticket_class"].startswith("Wildcard") else float('inf')
+            # Wildcard上位を前に
+        )
+    )
+
+    return participants_list

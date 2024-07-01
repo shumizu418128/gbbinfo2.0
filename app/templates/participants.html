@@ -65,8 +65,8 @@
 <p style="text-align: center;">まだ更新されていないか、該当者がいないか... のどちらかです<br>ほかの部門も確認してみてください</p>
 {% endif %}
 
-{% if request.args.get("ticket_class") == "wildcard" and result_url %}
-<a href="{{ result_url }}">{{ request.args.get('category') }}部門 その他の順位</a>
+{% if result_url %}
+<a href="{{ result_url }}">{{ request.args.get('category') }}部門 wildcard その他の順位</a>
 {% endif %}
 
 <p>出場権の詳細・結果発表日は<a href="/{{ year }}/rule">ルール</a>をご確認ください。</p>
@@ -91,7 +91,6 @@
 
 
 <h2>GBB {{ year }} 出場者世界地図</h2>
-
-<iframe src="{{ url_for('world_map', year=year) }}" width="100%" height="400px"></iframe>
-
+<p>国旗をタップorクリックすると、詳細を確認できます。</p>
+<iframe src="{{ url_for('world_map', year=year) }}" width="100%" height="400px" frameborder="0"></iframe>
 {% endblock %}

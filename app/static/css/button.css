@@ -25,8 +25,8 @@
 .button-container button {
     width: 100%;
     /* ボタンの幅を100%に設定 */
-    padding: 16px;
-    /* ボタンの内側の余白を16ピクセルに設定 */
+    padding: 10px;
+    /* ボタンの内側の余白を10ピクセルに設定 */
     font-size: 24px;
     /* ボタンのフォントサイズを24ピクセルに設定 */
     box-sizing: border-box;

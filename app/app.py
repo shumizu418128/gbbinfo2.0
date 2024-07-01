@@ -9,7 +9,7 @@ from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
 from . import key
-from .participants import create_world_map, get_participants_list, get_results
+from .participants import create_world_map, get_japan_participants, get_participants_list, get_results
 
 app = Flask(__name__)
 sitemapper = Sitemapper()
@@ -18,9 +18,15 @@ app.secret_key = os.getenv("SECRET_KEY")
 github_token = os.getenv("GITHUB_TOKEN")
 available_years = key.available_years
 
-# キャッシュのデフォルトの有効期限を設定する
-app.config['CACHE_DEFAULT_TIMEOUT'] = 60 * 60 * 24 * 30  # 30d
-cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+# テスト環境ではキャッシュを無効化
+if os.getenv("SECRET_KEY") is None and os.getenv("GITHUB_TOKEN") is None:
+    app.config['CACHE_TYPE'] = "null"
+    cache = Cache(app, config={'CACHE_TYPE': 'null'})
+
+# 本番環境ではキャッシュを有効化
+else:
+    app.config['CACHE_DEFAULT_TIMEOUT'] = 0  # 永続化
+    cache = Cache(app, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': 'cache-directory'})
 
 
 # カスタムキャッシュキーの生成
@@ -30,7 +36,9 @@ def make_cache_key(*args):
     return f'{path}?{args}'
 
 
+####################################################################
 # /(年度) にアクセスしたときの処理
+####################################################################
 @app.route("/")
 @cache.cached()
 def route_top():
@@ -41,7 +49,9 @@ def route_top():
     return redirect(url_for("content", year=year, content="top"))
 
 
+####################################################################
 # 世界地図の表示
+####################################################################
 @app.route('/<int:year>/world_map')
 @cache.cached()
 def world_map(year: int = None):
@@ -56,7 +66,9 @@ def world_map(year: int = None):
     return render_template(f'{year}/world_map.html')
 
 
+####################################################################
 # 出場者一覧
+####################################################################
 @sitemapper.include(changefreq="monthly", priority=1.0, url_variables={"year": available_years})
 @app.route('/<int:year>/participants', methods=["GET"])
 @cache.cached(key_prefix=make_cache_key)
@@ -94,7 +106,22 @@ def participants(year: int = None):
     return render_template("/participants.html", participants=participants_list, year=year, all_category=valid_categories, result_url=result_url)
 
 
+####################################################################
+# 日本代表
+####################################################################
+@sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
+@app.route("/<int:year>/japan")
+@cache.cached()
+def japan(year: int = None):
+    # 参加者リストを取得
+    participants_list = get_japan_participants(year)
+
+    return render_template("/japan.html", participants=participants_list, year=year)
+
+
+####################################################################
 # 大会結果
+####################################################################
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/result")
 @cache.cached()
@@ -110,6 +137,10 @@ def result(year: int = None):
     return render_template("/result.html", results=results, year=year)
 
 
+####################################################################
+# 各年度のページ
+####################################################################
+
 combinations = []
 
 for year in available_years:
@@ -122,7 +153,6 @@ combinations_year = [year for year, _ in combinations]
 combinations_content = [content for _, content in combinations]
 
 
-# 各年度のページ
 @sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": combinations_year, "content": combinations_content})
 @app.route("/<int:year>/<string:content>")
 @cache.cached()
@@ -141,11 +171,14 @@ def content(year: int = None, content: str = None):
         return render_template("404.html"), 404
 
 
+####################################################################
+# その他のページ
+####################################################################
+
 content_others = os.listdir("./app/templates/others")
 content_others = [content.replace(".html", "") for content in content_others]
 
 
-# その他のページ
 @sitemapper.include(changefreq="never", priority=0.7, url_variables={"content": content_others})
 @app.route("/others/<string:content>")
 @cache.cached()
@@ -181,6 +214,8 @@ def get_last_commit():
 
     return jsonify(response.json())
 
+
+# 以下、キャッシュ使用不可
 
 ####################################################################
 # Sitemap, robots.txt
