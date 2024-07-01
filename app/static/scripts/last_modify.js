@@ -10,16 +10,14 @@ fetch('/last-commit')
     if (data.length > 0) {
       // 最も最近のcommitを取得
       const lastCommit = data[0];
-      const commitTime = new Date(lastCommit.commit.author.date);
-      document.getElementById("last-deploy-time").innerText =
-        commitTime.toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }) + " JST";
+      const commitSha = lastCommit.sha.substring(0, 6);
+      document.getElementById("last-deploy-hash").innerText = commitSha;
     } else {
-      document.getElementById("last-deploy-time").innerText =
-        "取得失敗";
+      document.getElementById("last-deploy-hash").innerText = "-";
     }
   })
   .catch((error) => {
     console.error("取得失敗:", error);
-    document.getElementById("last-deploy-time").innerText =
+    document.getElementById("last-deploy-hash").innerText =
       error.message || "取得失敗";
   });
