@@ -104,7 +104,18 @@ def create_world_map(year: int):
 
     # Initialize a folium map centered around the average latitude and longitude
     map_center = [20, 0]
-    beatboxer_map = folium.Map(location=map_center, zoom_start=3)
+    beatboxer_map = folium.Map(
+        location=map_center,
+        zoom_start=2,
+        zoom_control=True,
+        control_scale=True,
+        min_zoom=1,
+        max_bounds=True,
+        options={
+            'zoomSnap': 0.1,  # ズームのステップを0.1に設定
+            'zoomDelta': 0.1,  # ズームの増減を0.1に設定
+        }
+    )
 
     # Merge data to include country coordinates in beatboxers_df
     beatboxers_df = beatboxers_df.merge(
