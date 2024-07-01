@@ -2,7 +2,7 @@
 fetch('/last-commit')
   .then(response => {
     if (!response.ok) {
-      throw new Error('データの取得に失敗しました');
+      throw new Error('unable to fetch last commit');
     }
     return response.json();
   })
@@ -17,7 +17,7 @@ fetch('/last-commit')
     }
   })
   .catch((error) => {
-    console.error("取得失敗:", error);
+    console.error("unable to fetch last commit:", error);
     document.getElementById("last-deploy-hash").innerText =
-      error.message || "取得失敗";
+      error.message || "unable to fetch last commit";
   });
