@@ -168,20 +168,6 @@ main {
     /* 右側の余白を自動に設定 */
 }
 
-footer {
-    background-color: rgba(0, 0, 0, 0.5);
-    /* 背景色を指定 */
-    text-align: center;
-    /* テキストを中央に配置 */
-    width: 100%;
-    /* 幅を100%に設定 */
-}
-
-footer p {
-    color: white;
-    /* テキストの色を指定 */
-}
-
 h1 {
     color: white;
     font-size: 36px;
@@ -229,6 +215,10 @@ p {
     /* フォントサイズを16pxに設定 */
     line-height: 1.5;
     /* 行の高さを1.5に設定 */
+    margin-top: 8px;
+    /* 上部の余白を8pxに設定 */
+    margin-bottom: 8px;
+    /* 下部の余白を8pxに設定 */
 }
 
 a {
@@ -262,8 +252,22 @@ li {
 hr{
     border: 1px solid #F0632F;
     /* 線の色を指定 */
-    margin-top: 30px;
-    /* 上部の余白を30pxに設定 */
-    margin-bottom: 0px;
-    /* 下部の余白を0pxに設定 */
+    margin-top: 15px;
+    /* 上部の余白を15pxに設定 */
+    margin-bottom: 15px;
+    /* 下部の余白を15pxに設定 */
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 背景色を指定 */
+    text-align: center;
+    /* テキストを中央に配置 */
+    width: 100%;
+    /* 幅を100%に設定 */
+}
+
+footer p {
+    color: white;
+    /* テキストの色を指定 */
 }
