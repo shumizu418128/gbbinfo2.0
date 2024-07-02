@@ -191,6 +191,12 @@ def others(content: str = None):
 
     # エラー
     except jinja2.exceptions.TemplateNotFound:
+
+        # world_mapは404ページだけ表示(404は返さず、200で返す)
+        # これによりJavascriptリダイレクトを防ぐ
+        if content == "world_map":
+            return render_template("404.html")
+
         return render_template("404.html"), 404
 
 

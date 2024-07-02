@@ -36,4 +36,7 @@
 <p>～発表次第更新～</p>
 {% endif %}
 <p>出場権の詳細・結果発表日は<a href="/{{ year }}/rule">ルール</a>をご確認ください。</p>
+<h2>GBB {{ year }} 出場者世界地図</h2>
+<p>国旗をタップorクリックすると、詳細を確認できます。</p>
+<iframe src="{{ url_for('world_map', year=year) }}" width="100%" height="400px" frameborder="0"></iframe>
 {% endblock %}
