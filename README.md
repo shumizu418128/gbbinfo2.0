@@ -7,7 +7,7 @@
     ├── time_schedule
     ├── stream
     ├── result
-    ├── wildcards
-    └── others
-        └── other content
+    └── wildcards
+└── others
+    └── other content
 ```
