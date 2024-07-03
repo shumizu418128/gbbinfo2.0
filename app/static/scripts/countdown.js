@@ -1,12 +1,7 @@
 // カウントダウンの終了日時
-// GBBの開催日時
-
-// カウントダウンの終了日時
 var countDownDate = new Date("Nov 1, 2024 00:00:00 GMT+09:00").getTime();
 
-// 1ミリ秒ごとに更新
-var countdownfunction = setInterval(function() {
-
+function updateCountdown() {
   // 現在の日時をミリ秒で取得
   var nowMillis = new Date().getTime();
 
@@ -31,7 +26,12 @@ var countdownfunction = setInterval(function() {
 
   // カウントダウンが終了したらテキストを表示
   if (distance < 0) {
-    clearInterval(countdownfunction);
     document.getElementById("countdown").innerHTML = "EXPIRED";
+  } else {
+    // 次のフレームで再度呼び出し
+    requestAnimationFrame(updateCountdown);
   }
-}, 1);  // 1ミリ秒ごとに更新
+}
+
+// 初回呼び出し
+requestAnimationFrame(updateCountdown);
