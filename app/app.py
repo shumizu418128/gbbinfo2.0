@@ -247,6 +247,18 @@ def favicon_ico():
 
 
 ####################################################################
+# apple-touch-icon
+####################################################################
+
+@app.route("/apple-touch-icon-120x120-precomposed.png", methods=["GET"])
+@app.route("/apple-touch-icon-120x120.png", methods=["GET"])
+@app.route("/apple-touch-icon-precomposed.png", methods=["GET"])
+@app.route("/apple-touch-icon.png", methods=["GET"])
+def apple_touch_icon():
+    return send_file("icon_512.png", mimetype="image/png")
+
+
+####################################################################
 # PWS設定
 ####################################################################
 
