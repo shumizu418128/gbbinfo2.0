@@ -65,12 +65,16 @@
 {% else %}
 <p style="text-align: center;">まだ更新されていないか、該当者がいないか... のどちらかです<br>ほかの部門も確認してみてください</p>
 {% endif %}
-
-{% if result_url %}
-<a href="{{ result_url }}">{{ request.args.get('category') }}部門 wildcard その他の順位</a>
-{% endif %}
-
-<p>出場権の詳細・結果発表日は<a href="/{{ year }}/rule">ルール</a>をご確認ください。</p>
+<br>
+<div class="button-container">
+    {% if result_url %}
+        <a href="{{ result_url }}"><button type="button">{{ request.args.get('category') }}<br>Wildcard順位</button></a>
+    {% endif %}
+    <a href="/{{year}}/rule"><button type="button">出場権詳細</button></a>
+    <a href="/{{year}}/rule"><button type="button">GBB {{year}}<br>ルール</button></a>
+    <a href="/{{year}}/rule"><button type="button">結果発表日</button></a>
+</div>
+<br>
 
 <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
 

@@ -104,37 +104,3 @@
     background-color: rgb(240, 99, 47);
     /* 背景色を指定 */
 }
-
-.button_top {
-    width: 100%;
-    /* ボタンの幅を100%に設定 */
-    padding: 16px;
-    /* ボタンの内側の余白を16ピクセルに設定 */
-    font-size: 28px;
-    /* ボタンのフォントサイズを28ピクセルに設定 */
-    box-sizing: border-box;
-    /* ボタンの幅にボーダーボックスを含めます */
-    color: rgb(0, 68, 204);
-    /* ボタンのテキスト色を指定 */
-    background-color: white;
-    /* ボタンの背景色を白に設定 */
-    border: 1px solid rgb(0, 68, 204);
-    /* ボタンの境界線を設定 */
-    border-radius: 6px;
-    /* ボタンの角を丸く */
-    cursor: pointer;
-    /* マウスカーソルをポインターに変更 */
-    transition: all 0.3s ease;
-    /* ボタンの変化を0.3秒かけて滑らかに */
-    height: 100%;
-    /* ボタンの高さを100%に設定 */
-}
-
-.button_top:hover {
-    color: white;
-    /* ホバー時のテキスト色を白に設定 */
-    background-color: rgb(240, 99, 47);
-    /* ホバー時の背景色を指定 */
-    border-color: white;
-    /* ホバー時の境界線の色を白に設定 */
-}
