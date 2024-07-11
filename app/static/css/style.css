@@ -238,6 +238,8 @@ a {
     /* テキストの色を指定 */
     font-size: 16px;
     /* フォントサイズを16pxに設定 */
+    word-wrap: break-word;
+    /* 長い単語を折り返す */
 }
 
 a:hover {
