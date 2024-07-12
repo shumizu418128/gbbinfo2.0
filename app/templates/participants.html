@@ -66,15 +66,6 @@
 <p style="text-align: center;">まだ更新されていないか、該当者がいないか... のどちらかです<br>ほかの部門も確認してみてください</p>
 {% endif %}
 <br>
-<div class="button-container">
-    {% if result_url %}
-        <a href="{{ result_url }}"><button type="button">{{ request.args.get('category') }}<br>Wildcard順位</button></a>
-    {% endif %}
-    <a href="/{{year}}/rule"><button type="button">出場権詳細</button></a>
-    <a href="/{{year}}/rule"><button type="button">GBB{{ year }}ルール&ジャッジ</button></a>
-    <a href="/{{year}}/rule"><button type="button">結果発表日</button></a>
-</div>
-<br>
 
 <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
 
@@ -94,6 +85,15 @@
 
 </form>
 
+<br>
+<div class="button-container">
+    {% if result_url %}
+        <a href="{{ result_url }}"><button type="button">{{ request.args.get('category') }}<br>Wildcard順位</button></a>
+    {% endif %}
+    <a href="/{{year}}/rule"><button type="button">出場権詳細</button></a>
+    <a href="/{{year}}/rule"><button type="button">GBB{{ year }}ルール&ジャッジ</button></a>
+    <a href="/{{year}}/rule"><button type="button">結果発表日</button></a>
+</div>
 
 <h2>GBB {{ year }} 出場者世界地図</h2>
 <p>国旗をタップorクリックすると、詳細を確認できます。</p>
