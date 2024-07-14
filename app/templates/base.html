@@ -83,15 +83,9 @@
       <nav>
         <img src="/static/images/header.webp" alt="ヘッダー" />
         <ul>
-          <a class="menu-link" href="/"
-            ><li>Home/これだけガイド</li></a
-          >
+          <a class="menu-link" href="/{{year}}/top"><li>Home/これだけガイド</li></a>
           <a class="menu-link" href="/{{year}}/rule"><li>ルール</li></a>
-
-          <a class="menu-link" href="/{{year}}/participants"
-            ><li>Wildcard結果&出場者</li></a
-          >
-
+          <a class="menu-link" href="/{{year}}/participants"><li>Wildcard結果&出場者</li></a>
           <a class="menu-link" href="/{{year}}/result"><li>大会結果</li></a>
           <div class="past_gbb_wrap">
             <li>
@@ -106,8 +100,39 @@
       </nav>
     </header>
     <main>
+      {% if is_latest_year is false %}
+
+        {% if is_top is true %}
+          <script src="/static/scripts/popup.js"></script>
+          <div class="overlay" onclick="closePopup()"></div>
+          <div class="popup">
+          <p style="text-align: center; font-size: 24px; font-weight: bold;">GBB{{ year }}は<br>終了しました</p>
+          <p style="text-align: center;">ここは、すでに終了したGBB{{ year }}のページです</p>
+            <div class="button-container">
+              <a href="/"><button type="button">GBB最新情報はこちら</button></a>
+            </div><br>
+            <button type="button" onclick="closePopup()">閉じる</button>
+          </div>
+        {% endif %}
+
+        <p style="text-align: center; font-size: 24px; font-weight: bold;">GBB{{ year }}は<br>終了しました</p>
+        <p style="text-align: center;">ここは、すでに終了したGBB{{ year }}のページです</p>
+        <div class="button-container">
+          <a href="/"><button type="button">GBB最新情報はこちら</button></a>
+        </div>
+        <hr>
+      {% endif %}
+
       {% block content %}{% endblock %}
+
       <br />
+      {% if is_latest_year is false %}
+        <p style="text-align: center; font-size: 24px; font-weight: bold;">GBB{{ year }}は<br>終了しました</p>
+        <p style="text-align: center;">ここは、すでに終了したGBB{{ year }}のページです</p>
+        <div class="button-container">
+          <a href="/"><button type="button">GBB最新情報はこちら</button></a>
+        </div>
+      {% endif %}
       <br />
 
       <!-- Twitter -->
@@ -128,7 +153,7 @@
         <p id="countdown" style="text-align: center; font-size: 20px"></p>
       </strong>
       <div class="button-container">
-        <a href="/"><button type="button" style="width: 100%;">トップへ戻る<br>これだけガイド</button></a>
+        <a href="/{{year}}/top"><button type="button" style="width: 100%;">トップへ戻る<br>これだけガイド</button></a>
       </div>
       <div class="button-container" style="margin-top: 4px;">
         <a href="/{{year}}/rule"><button type="button">{{year}}ルール</button></a>

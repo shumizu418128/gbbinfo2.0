@@ -36,6 +36,16 @@ def make_cache_key(*args):
     return f'{path}?{args}'
 
 
+# 最新年度かを判定
+def is_latest_year(year):
+    return year == available_years[-1]
+
+
+# トップかどうかを判定
+def is_top(content):
+    return content == "top"
+
+
 ####################################################################
 # /(年度) にアクセスしたときの処理
 ####################################################################
@@ -103,7 +113,7 @@ def participants(year: int = None):
     except KeyError:
         result_url = None
 
-    return render_template("/participants.html", participants=participants_list, year=year, all_category=valid_categories, result_url=result_url)
+    return render_template("/participants.html", participants=participants_list, year=year, all_category=valid_categories, result_url=result_url, is_latest_year=is_latest_year(year))
 
 
 ####################################################################
@@ -116,7 +126,7 @@ def japan(year: int = None):
     # 参加者リストを取得
     participants_list = get_japan_participants(year)
 
-    return render_template("/japan.html", participants=participants_list, year=year)
+    return render_template("/japan.html", participants=participants_list, year=year, is_latest_year=is_latest_year(year))
 
 
 ####################################################################
@@ -134,7 +144,7 @@ def result(year: int = None):
     # 結果を取得
     results = get_results(year)
 
-    return render_template("/result.html", results=results, year=year)
+    return render_template("/result.html", results=results, year=year, is_latest_year=is_latest_year(year))
 
 
 ####################################################################
@@ -164,7 +174,7 @@ def content(year: int = None, content: str = None):
 
     # その他のページはそのまま表示
     try:
-        return render_template(f"/{year}/{content}.html", year=year)
+        return render_template(f"/{year}/{content}.html", year=year, is_latest_year=is_latest_year(year), is_top=is_top(content))
 
     # エラーが出たらtopを表示
     except jinja2.exceptions.TemplateNotFound:
