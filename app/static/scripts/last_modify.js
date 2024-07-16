@@ -1,4 +1,3 @@
-// サーバーから最終commit時刻を取得
 fetch('/last-commit')
   .then(response => {
     if (!response.ok) {
@@ -8,7 +7,6 @@ fetch('/last-commit')
   })
   .then(data => {
     if (data.length > 0) {
-      // 最も最近のcommitを取得
       const lastCommit = data[0];
       const commitSha = lastCommit.sha.substring(0, 7);
       document.getElementById("last-deploy-hash").innerText = commitSha;

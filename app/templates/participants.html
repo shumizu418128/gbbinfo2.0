@@ -7,6 +7,11 @@
 {% block content %}
 <h1>GBB {{ year }} Wildcard結果&出場者</h1>
 
+{% if is_latest_year %}
+<script src="\static\scripts\last_edit.js"></script>
+<p id="last-deploy-date" style="text-align: center;"></p>
+{% endif %}
+
 <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
 
     <label for="category">部門選択</label>

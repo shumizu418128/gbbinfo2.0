@@ -7,6 +7,11 @@
 {% block content %}
 <h1>GBB {{ year }} 日本代表</h1>
 
+{% if is_latest_year %}
+<script src="\static\scripts\last_edit.js"></script>
+<p id="last-deploy-date" style="text-align: center;"></p>
+{% endif %}
+
 {% if participants %}
 <table>
   <thead>
@@ -33,7 +38,7 @@
   </tbody>
 </table>
 {% else %}
-<p>～発表次第更新～</p>
+<p>日本代表なし</p>
 {% endif %}
 <br>
 
