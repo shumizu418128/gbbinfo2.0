@@ -22,7 +22,7 @@
     <meta property="og:image" content="https://gbbinfo-jpn.onrender.com/static/images/background.webp" />
     <meta property="og:image:secure_url" content="https://gbbinfo-jpn.onrender.com/static/images/background.webp" />
     <meta property="og:site_name" content="GBBINFO-JPN" />
-    <meta property="og:locale" content="ja_JP"  />
+    <meta property="og:locale" content="ja_JP" />
     <meta name="theme-color" content="#F0632F" />
     <link
       rel="icon"
@@ -34,40 +34,52 @@
       href="{{ url_for('static', filename='favicon.ico') }}"
       type="image/x-icon"
     />
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.json" />
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register("/service-worker.js").then(function(registration) {
-            console.log('ServiceWorkerが正常に登録されました: ', registration.scope);
-          }, function(err) {
-            console.log('ServiceWorkerの登録に失敗しました: ', err);
-          });
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("/service-worker.js").then(
+            function (registration) {
+              console.log(
+                "ServiceWorkerが正常に登録されました: ",
+                registration.scope
+              );
+            },
+            function (err) {
+              console.log("ServiceWorkerの登録に失敗しました: ", err);
+            }
+          );
         });
       }
     </script>
-    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-    <script src="\static\scripts\last_modify.js"></script>
-    <script src="\static\scripts\countdown.js"></script>
-    <script src="\static\scripts\scroll.js"></script>
     <script
-      src="https://mediafiles.botpress.cloud/f085f534-1c04-4fe7-b24c-45e27c6a6ac2/webchat/config.js"
-      defer
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-YWXGGR0MST"
     ></script>
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWXGGR0MST"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-YWXGGR0MST');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-YWXGGR0MST");
     </script>
-
-    <!-- User Heat Tag -->
     <script type="text/javascript">
-      (function(add, cla){window['UserHeatTag']=cla;window[cla]=window[cla]||function(){(window[cla].q=window[cla].q||[]).push(arguments)},window[cla].l=1*new Date();var ul=document.createElement('script');var tag = document.getElementsByTagName('script')[0];ul.async=1;ul.src=add;tag.parentNode.insertBefore(ul,tag);})('//uh.nakanohito.jp/uhj2/uh.js', '_uhtracker');_uhtracker({id:'uhI1iWbdvj'});
+      (function (add, cla) {
+        window["UserHeatTag"] = cla;
+        (window[cla] =
+          window[cla] ||
+          function () {
+            (window[cla].q = window[cla].q || []).push(arguments);
+          }),
+          (window[cla].l = 1 * new Date());
+        var ul = document.createElement("script");
+        var tag = document.getElementsByTagName("script")[0];
+        ul.async = 1;
+        ul.src = add;
+        tag.parentNode.insertBefore(ul, tag);
+      })("//uh.nakanohito.jp/uhj2/uh.js", "_uhtracker");
+      _uhtracker({ id: "uhI1iWbdvj" });
     </script>
 
     {% block head %}{% endblock %}
@@ -114,7 +126,7 @@
         <div class="button-container">
           <a href="/"><button type="button">GBB最新情報はこちら</button></a>
         </div>
-        <hr>
+      <hr>
       {% endif %}
 
       {% block content %}{% endblock %}
@@ -133,13 +145,13 @@
       <div style="text-align: center;">
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-lang="ja" data-dnt="true" data-show-count="false">Tweet</a>
       </div>
-      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
       <div class="button-container">
         <button id="installButton" class="button_top" style="visibility: hidden;">ホーム画面に追加</button>
       </div>
-      <script src="\static\scripts\install.js"></script>
-      <p>GBBINFO-JPNはPWAに対応しています。<br>ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。</p>
+      <p>
+        GBBINFO-JPNはPWAに対応しています。<br />ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。
+      </p>
 
       <hr />
       <p style="text-align: center">GBB 2024まであと...</p>
@@ -168,7 +180,18 @@
           <span id="last-deploy-hash">loading...</span>
         </p>
       </footer>
-
     </main>
+
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    <script
+      src="https://mediafiles.botpress.cloud/f085f534-1c04-4fe7-b24c-45e27c6a6ac2/webchat/config.js"
+      defer
+    ></script>
+
+    <script src="\static\scripts\scroll.js"></script>
+    <script src="\static\scripts\last_modify.js"></script>
+    <script src="\static\scripts\countdown.js"></script>
+    <script src="\static\scripts\install.js"></script>
   </body>
 </html>
