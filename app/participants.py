@@ -166,25 +166,9 @@ def create_world_map(year: int):
 
         popup_content += '</div>'
 
-        # 画像に合わせてアイコンのサイズを変更
-        # 丸画像になっている国のリスト
-        country_exception = [
-            "Taiwan",
-            "Hong Kong",
-            "Saudi Arabia",
-            "Iran"
-        ]
-
         # アイコン素材がある国の場合
-        if country_name not in country_exception:
-            icon_size = (56, 42)
-            icon_anchor = (0, 40)
-
-        # アイコン素材がない国の場合
-        else:
-            icon_size = (56, 38)
-            icon_anchor = (28, 5)
-            popup_content += '<br><p style="margin: 5px 0;">※国旗素材の都合で、<br>他国とは違う画像です</p>'
+        icon_size = (48, 48)
+        icon_anchor = (24, 48)
 
         popup = folium.Popup(popup_content, max_width=1000)
 
