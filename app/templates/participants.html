@@ -93,7 +93,7 @@
 <br>
 <div class="button-container">
     {% if result_url %}
-        <a href="{{ result_url }}"><button type="button">{{ request.args.get('category') }}<br>Wildcard順位</button></a>
+        <a href="{{ result_url }}" target="_blank" rel="noopener noreferrer"><button type="button">{{ request.args.get('category') }}<br>Wildcard順位</button></a>
     {% endif %}
     <a href="/{{year}}/rule"><button type="button">出場権詳細</button></a>
     <a href="/{{year}}/rule"><button type="button">GBB{{ year }}ルール&ジャッジ</button></a>
