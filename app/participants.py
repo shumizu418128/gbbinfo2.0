@@ -181,6 +181,7 @@ def create_world_map(year: int):
         folium.Marker(
             location=location,
             popup=popup,
+            tooltip=f"{country_name} / {country_name_ja}",
             icon=flag_icon
         ).add_to(beatboxer_map)
 
