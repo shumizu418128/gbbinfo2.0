@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 
 import requests
@@ -37,8 +38,11 @@ def make_cache_key(*args):
 
 
 # 最新年度かを判定
+# 今年 or 最新年度のみTrue
 def is_latest_year(year):
-    return year == available_years[-1]
+    dt_now = datetime.now()
+    now = dt_now.year
+    return year == available_years[-1] or year == now
 
 
 # トップかどうかを判定
