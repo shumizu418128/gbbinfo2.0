@@ -84,8 +84,6 @@
     /* ボタンの背景色に透明度を50%に設定 */
     pointer-events: none;
     /* クリックイベントを無効にする */
-    text-decoration: line-through;
-    /* 文字に横線を引く */
     color: rgba(0, 68, 204, 0.5);
     /* 文字色にも透明度を50%に設定 */
     border-color: rgba(0, 68, 204, 0.5);
@@ -93,12 +91,12 @@
 }
 
 .button-container a:hover button:disabled {
-    color: rgba(0, 68, 204, 0.5);
-    /* ホバー時の文字色に透明度を50%に設定 */
-    background-color: rgba(255, 255, 255, 0.5);
-    /* ホバー時の背景色に透明度を50%に設定 */
-    border-color: rgba(0, 68, 204, 0.5);
-    /* ホバー時の境界線の色に透明度を50%に設定 */
+    color: rgba(255, 255, 255, 0.5);
+    /* ホバー時のテキスト色を透明度50%の白に設定 */
+    background-color: rgba(240, 99, 47, 0.5);
+    /* ホバー時の背景色を透明度50%に指定 */
+    border-color: rgba(255, 255, 255, 0.5);
+    /* ホバー時の境界線の色を透明度50%の白に設定 */
 }
 
 .participants_filter {
