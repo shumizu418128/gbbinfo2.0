@@ -78,3 +78,7 @@
     color: white;
     /* 文字色を白に設定 */
 }
+
+.member-list {
+    font-size: 12px;
+}

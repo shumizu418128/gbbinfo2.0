@@ -15,26 +15,52 @@
 {% if participants %}
 <table>
   <thead>
-    <tr>
-      <th style="width: 33%">名前</th>
-      <th style="width: 34%">部門</th>
-      <th style="width: 33%">出場権</th>
-    </tr>
+      <tr>
+          <th style="width: 33%;">名前</th>
+          <th style="width: 34%;">出身</th>
+          <th style="width: 33%;">出場権</th>
+      </tr>
   </thead>
   <tbody>
-    {% for participant in participants %}
-    <tr>
-      {% if participant.is_cancelled %}
-        <td><s>{{ participant.name }}</s><br>辞退</td>
-        <td><s>{{ participant.category }}</s></td>
-        <td><s>{{ participant.ticket_class }}</s></td>
-      {% else %}
-        <td>{{ participant.name }}</td>
-        <td>{{ participant.category }}</td>
-        <td>{{ participant.ticket_class }}</td>
-      {% endif %}
-    </tr>
-    {% endfor %}
+      {% for participant in participants %}
+      <tr>
+          <td>
+              {% if participant.members != "" %}
+
+                  {% if participant.is_cancelled %}
+                      【辞退】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
+                  {% else %}
+                      <a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">{{ participant.name }}</a>
+                  {% endif %}
+
+                  <div class="member-list" style="display: none;">{% for member in participant.members.split(',') %}{{ member }}<br>{% endfor %}</div>
+
+              {% else %}
+
+                  {% if participant.is_cancelled %}
+                      【辞退】<br><s>{{ participant.name }}</s>
+                  {% else %}
+                      {{ participant.name }}
+                  {% endif %}
+
+              {% endif %}
+          </td>
+          <td>
+              {% if participant.is_cancelled %}
+              <s>{{ participant.category }}</s>
+              {% else %}
+              {{ participant.category }}
+              {% endif %}
+          </td>
+          <td>
+              {% if participant.is_cancelled %}
+              <s>{{ participant.ticket_class }}</s>
+              {% else %}
+              {{ participant.ticket_class }}
+              {% endif %}
+          </td>
+      </tr>
+      {% endfor %}
   </tbody>
 </table>
 {% else %}

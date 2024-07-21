@@ -50,6 +50,13 @@ def get_participants_list(year: int, category: str, ticket_class: str) -> list:
                 "ticket_class": row["ticket_class"],
                 "is_cancelled": False
             }
+
+        # membersがNaNの場合があるため、その場合は空文字に変換
+        if pd.isna(row["members"]):
+            participant["members"] = ""
+        else:
+            participant["members"] = row["members"]
+
         participants_list.append(participant)
 
     participants_list = sorted(
@@ -224,6 +231,13 @@ def get_japan_participants(year: int) -> list:
                 "ticket_class": row["ticket_class"],
                 "is_cancelled": False
             }
+
+        # membersがNaNの場合があるため、その場合は空文字に変換
+        if pd.isna(row["members"]):
+            participant["members"] = ""
+        else:
+            participant["members"] = row["members"]
+
         participants_list.append(participant)
 
     participants_list = sorted(
