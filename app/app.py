@@ -242,6 +242,16 @@ def get_last_commit():
     return jsonify(response.json())
 
 
+####################################################################
+# discord
+####################################################################
+
+@app.route("/.well-known/discord")
+@cache.cached()
+def discord():
+    return send_file(".well-known/discord")
+
+
 # 以下、キャッシュ使用不可
 
 ####################################################################
