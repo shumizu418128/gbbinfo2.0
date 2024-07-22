@@ -13,7 +13,6 @@
 {% endif %}
 
 <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
-
     <label for="category">部門選択</label>
     <select name="category" id="category" class="participants_select" onchange="this.form.submit()">
         {% for c in all_category %}
@@ -23,11 +22,11 @@
     <br>
     <label for="ticket_class">情報選択</label>
     <select name="ticket_class" id="ticket_class" class="participants_select" onchange="this.form.submit()">
-        <option value="all" {% if request.args.get('ticket_class') == 'all' %}selected{% endif %}>出場者一覧</option>
+        <option value="all" {% if request.args.get('ticket_class') == 'all' %}selected{% endif %}>全出場者</option>
         <option value="wildcard" {% if request.args.get('ticket_class') == 'wildcard' %}selected{% endif %}>Wildcard結果</option>
         <option value="seed_right" {% if request.args.get('ticket_class') == 'seed_right' %}selected{% endif %}>シード権</option>
     </select>
-
+    <input type="hidden" name="cancel" value="{{ request.args.get('cancel') }}">
 </form>
 
 {% if request.args.get('ticket_class') == "wildcard" %}
@@ -41,6 +40,17 @@
 {% if request.args.get("ticket_class") == "all" %}
 <h2>{{ request.args.get('category') }}<br>全出場者一覧</h2>
 {% endif %}
+
+<form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
+    <input type="hidden" name="category" value="{{ request.args.get('category') }}">
+    <input type="hidden" name="ticket_class" value="{{ request.args.get('ticket_class') }}">
+    <label for="cancel">辞退者</label>
+    <select name="cancel" id="cancel" class="participants_select" onchange="this.form.submit()">
+        <option value="show" {% if request.args.get('cancel') == 'show' %}selected{% endif %}>表示</option>
+        <option value="hide" {% if request.args.get('cancel') == 'hide' %}selected{% endif %}>非表示</option>
+        <option value="only_cancelled" {% if request.args.get('cancel') == 'only_cancelled' %}selected{% endif %}>辞退者のみ</option>
+    </select>
+</form>
 
 {% if participants %}
 <table>
@@ -95,6 +105,10 @@
 </table>
 {% else %}
 <p style="text-align: center;">～発表次第更新～</p>
+<br>
+<br>
+<br>
+<hr>
 {% endif %}
 <br>
 

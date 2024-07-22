@@ -2,7 +2,7 @@ import folium
 import pandas as pd
 
 
-def get_participants_list(year: int, category: str, ticket_class: str) -> list:
+def get_participants_list(year: int, category: str, ticket_class: str, cancel: str) -> list:
     # csvからデータを取得
     beatboxers_df = pd.read_csv(f'app/static/csv/gbb{year}_participants.csv')
     countries_df = pd.read_csv('app/static/csv/countries.csv')
@@ -70,6 +70,15 @@ def get_participants_list(year: int, category: str, ticket_class: str) -> list:
             # Wildcard上位を前に
         )
     )
+
+    # cancelが"hide"の場合はキャンセルした人を表示しない
+    if cancel == "hide":
+        participants_list = [participant for participant in participants_list if participant["is_cancelled"] is False]
+
+    # cancelが"only_cancelled"の場合はキャンセルした人のみ表示
+    if cancel == "only_cancelled":
+        participants_list = [participant for participant in participants_list if participant["is_cancelled"] is True]
+
     return participants_list
 
 

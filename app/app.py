@@ -92,24 +92,24 @@ def participants(year: int = None):
     if year not in available_years:
         year = available_years[-1]
 
-    # categoryとticket_classを取得
+    # 引数を取得
     category = request.args.get("category")
     ticket_class = request.args.get("ticket_class")
+    cancel = request.args.get("cancel")
 
-    # categoryとticket_classが不正な場合はSolo全出場者を表示
+    # 引数が不正な場合はSolo全出場者を表示
     valid_categories = pd.read_csv(
         f'app/static/csv/gbb{year}_participants.csv')["category"].unique()
     valid_ticket_classes = ["wildcard", "seed_right", "all"]
-    valid = all([
-        category in valid_categories,
-        ticket_class in valid_ticket_classes
-    ])
+    valid_cancel = ["show", "hide", "only_cancelled"]
 
-    if valid is False:
-        return redirect(url_for('participants', year=year, category="Solo", ticket_class="all"))
+    # 引数が不正な場合はデフォルト値を設定
+    category = category if category in valid_categories else valid_categories[0]
+    ticket_class = ticket_class if ticket_class in valid_ticket_classes else valid_ticket_classes[0]
+    cancel = cancel if cancel in valid_cancel else valid_cancel[0]
 
     # 参加者リストを取得
-    participants_list = get_participants_list(year, category, ticket_class)
+    participants_list = get_participants_list(year, category, ticket_class, cancel)
 
     # 結果URLを取得
     try:
