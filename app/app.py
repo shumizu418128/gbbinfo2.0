@@ -104,9 +104,16 @@ def participants(year: int = None):
     valid_cancel = ["show", "hide", "only_cancelled"]
 
     # 引数が不正な場合はデフォルト値を設定
-    category = category if category in valid_categories else valid_categories[0]
-    ticket_class = ticket_class if ticket_class in valid_ticket_classes else valid_ticket_classes[0]
-    cancel = cancel if cancel in valid_cancel else valid_cancel[0]
+    if any([
+        category not in valid_categories,
+        ticket_class not in valid_ticket_classes,
+        cancel not in valid_cancel
+    ]):
+        category = category if category in valid_categories else valid_categories[0]
+        ticket_class = ticket_class if ticket_class in valid_ticket_classes else valid_ticket_classes[0]
+        cancel = cancel if cancel in valid_cancel else valid_cancel[0]
+
+        return redirect(url_for("participants", year=year, category=category, ticket_class=ticket_class, cancel=cancel))
 
     # 参加者リストを取得
     participants_list = get_participants_list(year, category, ticket_class, cancel)
