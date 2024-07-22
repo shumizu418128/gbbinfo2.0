@@ -100,7 +100,7 @@ def participants(year: int = None):
     # 引数が不正な場合はSolo全出場者を表示
     valid_categories = pd.read_csv(
         f'app/static/csv/gbb{year}_participants.csv')["category"].unique()
-    valid_ticket_classes = ["wildcard", "seed_right", "all"]
+    valid_ticket_classes = ["all", "wildcard", "seed_right"]
     valid_cancel = ["show", "hide", "only_cancelled"]
 
     # 引数が不正な場合はデフォルト値を設定
