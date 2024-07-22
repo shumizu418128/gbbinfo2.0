@@ -52,7 +52,7 @@
                     {{ participant.category }}
                 {% endif %}
             </td>
-            <td>
+            <td {% if participant.ticket_class|length > 10 %} style="font-size: 12px;" {% endif %}>
                 {% if participant.is_cancelled %}
                 <s>{{ participant.ticket_class }}</s>
                 {% else %}
