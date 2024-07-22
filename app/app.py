@@ -242,21 +242,16 @@ def get_last_commit():
     return jsonify(response.json())
 
 
-####################################################################
-# discord
-####################################################################
-
-@app.route("/.well-known/discord")
-@cache.cached()
-def discord():
-    return send_file(".well-known/discord")
-
-
 # 以下、キャッシュ使用不可
 
 ####################################################################
-# Sitemap, robots.txt
+# discord, Sitemap, robots.txt
 ####################################################################
+
+@app.route("/.well-known/discord")
+def discord():
+    return send_file(".well-known/discord")
+
 
 @app.route("/sitemap.xml")
 def sitemap():
