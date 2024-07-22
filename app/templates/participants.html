@@ -44,6 +44,7 @@
 <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
     <input type="hidden" name="category" value="{{ request.args.get('category') }}">
     <input type="hidden" name="ticket_class" value="{{ request.args.get('ticket_class') }}">
+    <label for="cancel">表示選択</label>
     <select name="cancel" id="cancel" class="participants_select" onchange="this.form.submit()">
         <option value="show" {% if request.args.get('cancel') == 'show' %}selected{% endif %}>出場者・辞退者</option>
         <option value="hide" {% if request.args.get('cancel') == 'hide' %}selected{% endif %}>出場者のみ</option>
