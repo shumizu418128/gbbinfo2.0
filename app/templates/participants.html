@@ -5,142 +5,136 @@
 {% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/participants{% endblock %}
 {% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/participants{% endblock %}
 {% block content %}
+
 <h1>GBB {{ year }} Wildcard結果&出場者</h1>
 
-{% if is_latest_year %}
-<script src="\static\scripts\last_edit.js"></script>
-<p id="last-deploy-date" style="text-align: center;"></p>
-{% endif %}
+  {% if is_latest_year %}
+    <script src="\static\scripts\last_edit.js"></script>
+    <p id="last-deploy-date" style="text-align: center;"></p>
+  {% endif %}
 
-<form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
+  <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
     <label for="category">部門選択</label>
     <select name="category" id="category" class="participants_select" onchange="this.form.submit()">
-        {% for c in all_category %}
+      {% for c in all_category %}
         <option value="{{ c }}" {% if request.args.get('category') == c %}selected{% endif %}>{{ c }}</option>
-        {% endfor %}
+      {% endfor %}
     </select>
     <br>
     <label for="ticket_class">情報選択</label>
     <select name="ticket_class" id="ticket_class" class="participants_select" onchange="this.form.submit()">
-        <option value="all" {% if request.args.get('ticket_class') == 'all' %}selected{% endif %}>全出場者</option>
-        <option value="wildcard" {% if request.args.get('ticket_class') == 'wildcard' %}selected{% endif %}>Wildcard結果</option>
-        <option value="seed_right" {% if request.args.get('ticket_class') == 'seed_right' %}selected{% endif %}>シード権</option>
+      <option value="all" {% if request.args.get('ticket_class') == 'all' %}selected{% endif %}>全出場者</option>
+      <option value="wildcard" {% if request.args.get('ticket_class') == 'wildcard' %}selected{% endif %}>Wildcard結果</option>
+      <option value="seed_right" {% if request.args.get('ticket_class') == 'seed_right' %}selected{% endif %}>シード権</option>
     </select>
     <input type="hidden" name="cancel" value="{{ request.args.get('cancel') }}">
-</form>
+  </form>
 
-{% if request.args.get('ticket_class') == "wildcard" %}
-<h2>{{ request.args.get('category') }}<br>Wildcard結果</h2>
-{% endif %}
+  {% if request.args.get('ticket_class') == "wildcard" %}
+    <h2>{{ request.args.get('category') }}<br>Wildcard結果</h2>
+  {% endif %}
 
-{% if request.args.get("ticket_class") == "seed_right" %}
-<h2>{{ request.args.get('category') }}<br>シード権獲得者</h2>
-{% endif %}
+  {% if request.args.get("ticket_class") == "seed_right" %}
+    <h2>{{ request.args.get('category') }}<br>シード権獲得者</h2>
+  {% endif %}
 
-{% if request.args.get("ticket_class") == "all" %}
-<h2>{{ request.args.get('category') }}<br>全出場者一覧</h2>
-{% endif %}
+  {% if request.args.get("ticket_class") == "all" %}
+    <h2>{{ request.args.get('category') }}<br>全出場者一覧</h2>
+  {% endif %}
 
-<form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
+  <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
     <input type="hidden" name="category" value="{{ request.args.get('category') }}">
     <input type="hidden" name="ticket_class" value="{{ request.args.get('ticket_class') }}">
     <label for="cancel">表示選択</label>
     <select name="cancel" id="cancel" class="participants_select" onchange="this.form.submit()">
-        <option value="show" {% if request.args.get('cancel') == 'show' %}selected{% endif %}>出場者・辞退者</option>
-        <option value="hide" {% if request.args.get('cancel') == 'hide' %}selected{% endif %}>出場者のみ</option>
-        <option value="only_cancelled" {% if request.args.get('cancel') == 'only_cancelled' %}selected{% endif %}>辞退者のみ</option>
+      <option value="show" {% if request.args.get('cancel') == 'show' %}selected{% endif %}>出場者・辞退者</option>
+      <option value="hide" {% if request.args.get('cancel') == 'hide' %}selected{% endif %}>出場者のみ</option>
+      <option value="only_cancelled" {% if request.args.get('cancel') == 'only_cancelled' %}selected{% endif %}>辞退者のみ</option>
     </select>
-</form>
+  </form>
 
-{% if participants %}
-<table>
-    <thead>
+  {% if participants %}
+    <table>
+      <thead>
         <tr>
-            <th style="width: 33%;">名前</th>
-            <th style="width: 34%;">出身</th>
-            <th style="width: 33%;">出場権</th>
+          <th style="width: 33%;">名前</th>
+          <th style="width: 34%;">出身</th>
+          <th style="width: 33%;">出場権</th>
         </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
         {% for participant in participants %}
-        <tr>
+          <tr>
             <td>
-                {% if participant.members != "" %}
-
-                    {% if participant.is_cancelled %}
-                        【辞退】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
-                    {% else %}
-                        <a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">{{ participant.name }}</a>
-                    {% endif %}
-
-                    <div class="member-list" style="display: none;">{% for member in participant.members.split(',') %}{{ member }}<br>{% endfor %}</div>
-
+              {% if participant.members != "" %}
+                {% if participant.is_cancelled %}
+                  【辞退】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
                 {% else %}
-
-                    {% if participant.is_cancelled %}
-                        【辞退】<br><s>{{ participant.name }}</s>
-                    {% else %}
-                        {{ participant.name }}
-                    {% endif %}
-
+                  <a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">{{ participant.name }}</a>
                 {% endif %}
+                <div class="member-list" style="display: none;">{% for member in participant.members.split(',') %}{{ member }}<br>{% endfor %}</div>
+              {% else %}
+                {% if participant.is_cancelled %}
+                  【辞退】<br><s>{{ participant.name }}</s>
+                {% else %}
+                  {{ participant.name }}
+                {% endif %}
+              {% endif %}
             </td>
             <td {% if participant.country|length > 5 %} style="font-size: 12px;" {% endif %}>
-                {% if participant.is_cancelled %}
+              {% if participant.is_cancelled %}
                 <s>{{ participant.country }}</s>
-                {% else %}
+              {% else %}
                 {{ participant.country }}
-                {% endif %}
+              {% endif %}
             </td>
             <td {% if participant.ticket_class|length > 10 %} style="font-size: 12px;" {% endif %}>
-                {% if participant.is_cancelled %}
+              {% if participant.is_cancelled %}
                 <s>{{ participant.ticket_class }}</s>
-                {% else %}
+              {% else %}
                 {{ participant.ticket_class }}
-                {% endif %}
+              {% endif %}
             </td>
-        </tr>
+          </tr>
         {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<p style="text-align: center;">～発表次第更新～</p>
-<br>
-<br>
-<br>
-<hr>
-{% endif %}
-<br>
+      </tbody>
+    </table>
+  {% else %}
+    <p style="text-align: center;">～発表次第更新～</p>
+    <br>
+    <br>
+    <br>
+    <hr>
+  {% endif %}
+  <br>
 
-<form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
-
+  <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
     <label for="category">部門選択</label>
     <select name="category" id="category" class="participants_select" onchange="this.form.submit()">
-        {% for c in all_category %}
+      {% for c in all_category %}
         <option value="{{ c }}" {% if request.args.get('category') == c %}selected{% endif %}>{{ c }}</option>
-        {% endfor %}
+      {% endfor %}
     </select>
     <br>
     <label for="ticket_class">情報選択</label>
     <select name="ticket_class" id="ticket_class" class="participants_select" onchange="this.form.submit()">
-        <option value="all" {% if request.args.get('ticket_class') == 'all' %}selected{% endif %}>出場者一覧</option>
-        <option value="wildcard" {% if request.args.get('ticket_class') == 'wildcard' %}selected{% endif %}>Wildcard結果</option>
-        <option value="seed_right" {% if request.args.get('ticket_class') == 'seed_right' %}selected{% endif %}>シード権</option>
+      <option value="all" {% if request.args.get('ticket_class') == 'all' %}selected{% endif %}>出場者一覧</option>
+      <option value="wildcard" {% if request.args.get('ticket_class') == 'wildcard' %}selected{% endif %}>Wildcard結果</option>
+      <option value="seed_right" {% if request.args.get('ticket_class') == 'seed_right' %}selected{% endif %}>シード権</option>
     </select>
+  </form>
 
-</form>
-
-<br>
-<div class="button-container">
+  <br>
+  <div class="button-container">
     {% if result_url %}
-        <a href="{{ result_url }}" target="_blank" rel="noopener noreferrer"><button type="button">{{ request.args.get('category') }}<br>Wildcard順位</button></a>
+      <a href="{{ result_url }}" target="_blank" rel="noopener noreferrer"><button type="button">{{ request.args.get('category') }}<br>Wildcard順位</button></a>
     {% endif %}
     <a href="/{{year}}/rule"><button type="button">出場権詳細</button></a>
-    <a href="/{{year}}/rule"><button type="button">GBB{{ year }}ルール&ジャッジ</button></a>
+    <a href="/{{year}}/rule"><button type="button">GBB{{ year }}ルール&審査員</button></a>
     <a href="/{{year}}/rule"><button type="button">結果発表日</button></a>
-</div>
+  </div>
 
-<h2>GBB {{ year }} 出場者世界地図</h2>
-<p>国旗をタップorクリックすると、詳細を確認できます。</p>
-<iframe src="{{ url_for('world_map', year=year) }}" width="100%" height="400px" frameborder="0"></iframe>
+  <h2>GBB {{ year }} 出場者世界地図</h2>
+  <p>国旗をタップorクリックすると、詳細を確認できます。</p>
+  <iframe src="{{ url_for('world_map', year=year) }}" width="100%" height="400px" frameborder="0"></iframe>
 {% endblock %}
