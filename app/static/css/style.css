@@ -285,3 +285,10 @@ footer p {
     color: white;
     /* テキストの色を指定 */
 }
+
+#disabled-button {
+    font-size: 12px;
+    margin-bottom: 5px;
+    line-height: 1;
+    display: block;
+}
