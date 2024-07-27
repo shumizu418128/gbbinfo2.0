@@ -45,9 +45,9 @@ def is_latest_year(year):
     return year == available_years[-1] or year == now
 
 
-# トップかどうかを判定
-def is_top(content):
-    return content == "top"
+# 過去年度のページのうち、ポップアップを出すページを定義
+def is_popup(content):
+    return content in ["top", "rule", "time_schedule", "ticket", "stream"]
 
 
 ####################################################################
@@ -185,7 +185,7 @@ def content(year: int = None, content: str = None):
 
     # その他のページはそのまま表示
     try:
-        return render_template(f"/{year}/{content}.html", year=year, is_latest_year=is_latest_year(year), is_top=is_top(content))
+        return render_template(f"/{year}/{content}.html", year=year, is_latest_year=is_latest_year(year), is_popup=is_popup(content))
 
     # エラーが出たらtopを表示
     except jinja2.exceptions.TemplateNotFound:
