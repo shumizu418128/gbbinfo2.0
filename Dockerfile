@@ -1,6 +1,9 @@
 # ベースイメージ
 FROM python:3.12-slim
 
+ENV TZ=Asia/Tokyo
+RUN apt-get update && apt-get install -y tzdata
+
 # アプリケーションの作業ディレクトリを設定
 WORKDIR /app
 
