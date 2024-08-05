@@ -109,7 +109,7 @@ def participants(year: int = None):
         ticket_class not in valid_ticket_classes,
         cancel not in valid_cancel
     ]):
-        category = category if category in valid_categories else valid_categories[0]
+        category = category if category in valid_categories else "Solo"
         ticket_class = ticket_class if ticket_class in valid_ticket_classes else valid_ticket_classes[0]
         cancel = cancel if cancel in valid_cancel else valid_cancel[0]
 
