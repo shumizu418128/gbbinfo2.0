@@ -56,9 +56,12 @@ def is_popup(content):
 @app.route("/")
 @cache.cached()
 def route_top():
+    dt_now = datetime.now()
+    now = dt_now.year
+    latest_year = available_years[-1]
 
-    # 最新年度を表示
-    year = available_years[-1]
+    # 今年度 or 最新年度を表示
+    year = now if now in available_years else latest_year
 
     return redirect(url_for("content", year=year, content="top"))
 
