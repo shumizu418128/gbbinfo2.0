@@ -150,14 +150,14 @@ def japan(year: int = None):
 # /year/resultはリダイレクト これによりresultページ内ですべての年度の結果を表示可能
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/result")
-@cache.cached()
+@cache.cached(key_prefix=make_cache_key)
 def result_redirect(year: int = None):
     return redirect(url_for("result", year=year, **request.args))
 
 
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/result")
-@cache.cached()
+@cache.cached(key_prefix=make_cache_key)
 def result():
     year = request.args.get("year")
 
