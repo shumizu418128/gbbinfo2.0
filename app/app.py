@@ -128,7 +128,7 @@ def participants(year: int = None):
     except KeyError:
         result_url = None
 
-    return render_template("/participants.html", participants=participants_list, year=year, all_category=valid_categories, result_url=result_url, is_latest_year=is_latest_year(year))
+    return render_template("/participants.html", participants=participants_list, year=year, all_category=valid_categories, result_url=result_url, is_latest_year=is_latest_year(year), available_years=available_years)
 
 
 ####################################################################
@@ -141,7 +141,7 @@ def japan(year: int = None):
     # 参加者リストを取得
     participants_list = get_japan_participants(year)
 
-    return render_template("/japan.html", participants=participants_list, year=year, is_latest_year=is_latest_year(year))
+    return render_template("/japan.html", participants=participants_list, year=year, is_latest_year=is_latest_year(year), available_years=available_years)
 
 
 ####################################################################
@@ -202,7 +202,7 @@ def content(year: int = None, content: str = None):
 
     # その他のページはそのまま表示
     try:
-        return render_template(f"/{year}/{content}.html", year=year, is_latest_year=is_latest_year(year), is_popup=is_popup(content))
+        return render_template(f"/{year}/{content}.html", year=year, is_latest_year=is_latest_year(year), is_popup=is_popup(content), available_years=available_years)
 
     # エラーが出たらtopを表示
     except jinja2.exceptions.TemplateNotFound:
@@ -225,7 +225,7 @@ def others(content: str = None):
     year = available_years[-1]
 
     try:
-        return render_template(f"/others/{content}.html", year=year)
+        return render_template(f"/others/{content}.html", year=year, available_years=available_years)
 
     # エラー
     except jinja2.exceptions.TemplateNotFound:
