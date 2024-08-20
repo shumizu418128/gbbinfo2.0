@@ -18,6 +18,7 @@ sitemapper.init_app(app)
 app.secret_key = os.getenv("SECRET_KEY")
 github_token = os.getenv("GITHUB_TOKEN")
 available_years = key.available_years
+available_years_str = [str(year) for year in available_years]
 
 # テスト環境ではキャッシュを無効化
 if os.getenv("SECRET_KEY") is None and os.getenv("GITHUB_TOKEN") is None:
@@ -146,19 +147,32 @@ def japan(year: int = None):
 ####################################################################
 # 大会結果
 ####################################################################
+# /year/resultはリダイレクト これによりresultページ内ですべての年度の結果を表示可能
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/result")
 @cache.cached()
-def result(year: int = None):
+def result_redirect(year: int = None):
+    return redirect(url_for("result", year=year, **request.args))
+
+
+@sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
+@app.route("/result")
+@cache.cached()
+def result():
+    year = request.args.get("year")
 
     # 年度が指定されていない場合は最新年度を表示
-    if year not in available_years:
+    if year is None:
         year = available_years[-1]
+        return redirect(url_for("result", year=year, **request.args))  # request.argsを追加
+
+    # 年度が指定されている場合はその年度を表示
+    year = int(year)
 
     # 結果を取得
     results = get_results(year)
 
-    return render_template("/result.html", results=results, year=year, is_latest_year=is_latest_year(year))
+    return render_template("/result.html", results=results, year=year, is_latest_year=is_latest_year(year), available_years=available_years_str)
 
 
 ####################################################################
