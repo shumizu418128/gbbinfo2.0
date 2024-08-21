@@ -176,6 +176,35 @@ def result():
 
 
 ####################################################################
+# ルール
+####################################################################
+@sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": available_years})
+@app.route("/<int:year>/rule")
+@cache.cached()
+def rule(year: int = None):
+
+    # 年度が指定されていない場合は最新年度を表示
+    if year not in available_years:
+        year = available_years[-1]
+
+    participants = get_participants_list(
+        year=year,
+        category="all",
+        ticket_class="seed_right",
+        cancel="hide"
+    )
+
+    cancels = get_participants_list(
+        year=year,
+        category="all",
+        ticket_class="seed_right",
+        cancel="only_cancelled"
+    )
+
+    return render_template(f"/{year}/rule.html", year=year, is_latest_year=is_latest_year(year), available_years=available_years, participants=participants, cancels=cancels)
+
+
+####################################################################
 # 各年度のページ
 ####################################################################
 
@@ -184,6 +213,8 @@ combinations = []
 for year in available_years:
     contents = os.listdir(f"./app/templates/{year}")
     contents = [content.replace(".html", "") for content in contents]
+    contents.remove('rule')
+    contents.remove('world_map')
     for content in contents:
         combinations.append((year, content))
 

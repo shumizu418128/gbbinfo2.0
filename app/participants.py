@@ -17,7 +17,8 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
 
     # フィルター処理
     # 部門でフィルター
-    beatboxers_df = beatboxers_df[beatboxers_df['category'] == category]
+    if category != "all":
+        beatboxers_df = beatboxers_df[beatboxers_df['category'] == category]
 
     # 出場区分でフィルター
     if ticket_class == "wildcard":
@@ -37,7 +38,8 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
         # キャンセルした人の場合
         if "[cancelled]" in row["name"]:
             participant = {
-                "name": row["name"].replace("[cancelled] ", ""),
+                "name": row["name"].replace("[cancelled] ", "").upper(),
+                "category": row["category"],
                 "country": row["name_ja"],
                 "ticket_class": row["ticket_class"],
                 "is_cancelled": True
@@ -45,7 +47,8 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
 
         else:
             participant = {
-                "name": row["name"],
+                "name": row["name"].upper(),
+                "category": row["category"],
                 "country": row["name_ja"],
                 "ticket_class": row["ticket_class"],
                 "is_cancelled": False
@@ -55,7 +58,7 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
         if pd.isna(row["members"]):
             participant["members"] = ""
         else:
-            participant["members"] = row["members"]
+            participant["members"] = row["members"].upper()
 
         participants_list.append(participant)
 
@@ -63,6 +66,8 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
         participants_list,
         key=lambda x: (
             x["is_cancelled"],  # キャンセルした人を後ろに
+            "発表" in x["name"],  # 未定の出場枠を後ろに
+            x["category"],  # カテゴリー順
             not x["ticket_class"].startswith("GBB"),  # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
             x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
             int(x["ticket_class"].replace("Wildcard ", ""))
@@ -118,6 +123,9 @@ def create_world_map(year: int):
     beatboxers_df = beatboxers_df[~beatboxers_df["name"].str.contains(
         r"\[cancelled\]", case=False)]
 
+    # beatboxers_dfから、国コード0の人を削除
+    beatboxers_df = beatboxers_df[beatboxers_df["iso_code"] != 0]
+
     # Initialize a folium map centered around the average latitude and longitude
     map_center = [20, 0]
     beatboxer_map = folium.Map(
@@ -170,13 +178,13 @@ def create_world_map(year: int):
             if members != "":
                 popup_content += f'''
                 <p style="margin: 5px 0;">
-                    <strong style="color: #000000">{name}</strong> ({category})<span style="font-size: 0.7em; color=#222222"><br>【{members}】</span>
+                    <strong style="color: #000000">{name.upper()}</strong> ({category})<span style="font-size: 0.7em; color=#222222"><br>【{members.upper()}】</span>
                 </p>
                 '''
             else:
                 popup_content += f'''
                 <p style="margin: 5px 0;">
-                    <strong style="color: #000000">{name}</strong> ({category})
+                    <strong style="color: #000000">{name.upper()}</strong> ({category})
                 </p>
                 '''
 
@@ -209,6 +217,9 @@ def get_japan_participants(year: int) -> list:
     beatboxers_df = pd.read_csv(f'app/static/csv/gbb{year}_participants.csv')
     countries_df = pd.read_csv('app/static/csv/countries.csv')
 
+    # beatboxers_dfから、国コード0の人を削除
+    beatboxers_df = beatboxers_df[beatboxers_df["iso_code"] != 0]
+
     # Merge data to include country names in beatboxers_df
     beatboxers_df = beatboxers_df.merge(
         countries_df[['iso_code', 'name', "name_ja"]],
@@ -227,7 +238,7 @@ def get_japan_participants(year: int) -> list:
         # キャンセルした人の場合
         if "[cancelled]" in row["name"]:
             participant = {
-                "name": row["name"].replace("[cancelled] ", ""),
+                "name": row["name"].replace("[cancelled] ", "").upper(),
                 "category": row["category"],
                 "ticket_class": row["ticket_class"],
                 "is_cancelled": True
@@ -235,7 +246,7 @@ def get_japan_participants(year: int) -> list:
 
         else:
             participant = {
-                "name": row["name"],
+                "name": row["name"].upper(),
                 "category": row["category"],
                 "ticket_class": row["ticket_class"],
                 "is_cancelled": False
@@ -245,7 +256,7 @@ def get_japan_participants(year: int) -> list:
         if pd.isna(row["members"]):
             participant["members"] = ""
         else:
-            participant["members"] = row["members"]
+            participant["members"] = row["members"].upper()
 
         participants_list.append(participant)
 

@@ -113,7 +113,9 @@
     </tr>
   </tbody>
 </table>
-
+<p>
+  上記のデータは、ルール発表時現在の情報です。実際は、辞退などにより、出場者数が変動します。
+</p>
 <ul>
   <li>
     <strong>Producerとは</strong><br />
@@ -131,117 +133,117 @@
 <p>
   Wildcardを勝ち上がる以外の方法でGBB出場権を得る方法（シード権）と、その該当者は以下の通りです。
 </p>
+{% if participants %}
+<table>
+  <thead>
+  <tr>
+    <th style="width: 33%;">名前</th>
+    <th style="width: 34%;">部門</th>
+    <th style="width: 33%;">出場権</th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for participant in participants %}
+    <tr>
+      <td>
+        {% if participant.members != "" %}
 
-<h3>GBB23</h3>
-<table>
-  <thead>
-    <tr>
-      <th style="width: 50%"><strong>シード権</strong></th>
-      <th style="width: 50%"><strong>該当者</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Solo トップ3<br />→Solo</td>
+          {% if participant.is_cancelled %}
+            【辞退】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
+          {% else %}
+            <a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">{{ participant.name }}</a>
+          {% endif %}
+
+        <div class="member-list" style="display: none;">{% for member in participant.members.split(',') %}{{ member }}<br>{% endfor %}</div>
+
+        {% else %}
+          {% if participant.is_cancelled %}
+            【辞退】<br><s>{{ participant.name }}</s>
+          {% else %}
+            {{ participant.name }}
+          {% endif %}
+        {% endif %}
+
+      </td>
       <td>
-        <p><s>1.RIVER'</s> 辞退<br /><s>2.NAPOM</s> 辞退<br />3.WING</p>
+        {% if participant.is_cancelled %}
+          <s>{{ participant.category }}</s>
+        {% else %}
+          {{ participant.category }}
+        {% endif %}
+      </td>
+      <td {% if participant.ticket_class|length > 10 %} style="font-size: 12px;" {% endif %}>
+        {% if participant.is_cancelled %}
+          <s>{{ participant.ticket_class }}</s>
+        {% else %}
+          {{ participant.ticket_class }}
+        {% endif %}
       </td>
     </tr>
-    <tr>
-      <td>Tag Team トップ3<br />→Tag Team</td>
-      <td>
-        <p><s>1.ROGUE WAVE</s> 辞退<br />2.JAIRO<br /><s>3.ROFU</s> 辞退</p>
-      </td>
-    </tr>
-    <tr>
-      <td>Loopstation トップ3<br />→Loopstation</td>
-      <td>
-        <p><s>1.ROBIN</s> 辞退<br />2.MATEJ<br /><s>3.BIZKIT</s> 辞退</p>
-      </td>
-    </tr>
-    <tr>
-      <td>Producer 優勝<br />→Producer</td>
-      <td>
-        <p>SYJO</p>
-      </td>
-    </tr>
-    <tr>
-      <td>Crew 優勝<br />→Crew</td>
-      <td>
-        <p><s>SARUKANI</s> 辞退</p>
-      </td>
-    </tr>
-    <tr>
-      <td>U18（18歳未満）優勝<br />→Solo</td>
-      <td>
-        <p>JULARD</p>
-      </td>
-    </tr>
-    <tr>
-      <td>7tosmoke 優勝<br />→Solo</td>
-      <td>
-        <p>ALEXINHO</p>
-      </td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
-<br />
-<div class="button-container">
-  <a href="/others/how_to_plan"><button>現地観戦計画のたてかた</button></a>
-  <a href="/{{ year }}/top"><button>GBB{{ year }}これだけガイド</button></a>
-</div>
-<br />
-<h3>その他の大会</h3>
-<p>BEATLAND BEATBOX BATTLEを除き、すべてSolo部門の出場権となります。</p>
+{% else %}
+<p>～発表次第更新～</p>
+{% endif %}
+
+<br>
+<h3>シード権辞退者一覧</h3>
+{% if cancels %}
 <table>
   <thead>
-    <tr>
-      <th>
-        <strong>大会名</strong>
-      </th>
-      <th>
-        <strong>日付</strong>
-      </th>
-      <th><strong>優勝</strong></th>
-    </tr>
+  <tr>
+    <th style="width: 33%;">名前</th>
+    <th style="width: 34%;">部門</th>
+    <th style="width: 33%;">出場権</th>
+  </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>BEATLAND BEATBOX BATTLE<br />Loopstation部門</td>
-      <td>2023<br />11/18</td>
-      <td>DUNCAN</td>
-    </tr>
-    <tr>
-      <td>BEATLAND BEATBOX BATTLE<br />Solo部門</td>
-      <td>2023<br />11/18</td>
-      <td>KAJI</td>
-    </tr>
-    <tr>
-      <td>FLORIDA BEATBOX FESTIVAL 2024</td>
-      <td>4/6</td>
-      <td>MAXO</td>
-    </tr>
-    <tr>
-      <td>GREAT NORTH BATTLE 2024</td>
-      <td>6/2</td>
-      <td>BLACKROLL</td>
-    </tr>
+    {% for participant in cancels %}
     <tr>
       <td>
-        <span style="color: #ff0000"
-          ><strong>※MENA REGION QUALIFIER</strong></span
-        >
+        {% if participant.members != "" %}
+
+          {% if participant.is_cancelled %}
+            【辞退】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
+          {% else %}
+            <a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">{{ participant.name }}</a>
+          {% endif %}
+
+        <div class="member-list" style="display: none;">{% for member in participant.members.split(',') %}{{ member }}<br>{% endfor %}</div>
+
+        {% else %}
+          {% if participant.is_cancelled %}
+            【辞退】<br><s>{{ participant.name }}</s>
+          {% else %}
+            {{ participant.name }}
+          {% endif %}
+        {% endif %}
+
       </td>
-      <td>7/29</td>
-      <td>REMIX</td>
+      <td>
+        {% if participant.is_cancelled %}
+          <s>{{ participant.category }}</s>
+        {% else %}
+          {{ participant.category }}
+        {% endif %}
+      </td>
+      <td {% if participant.ticket_class|length > 10 %} style="font-size: 12px;" {% endif %}>
+        {% if participant.is_cancelled %}
+          <s>{{ participant.ticket_class }}</s>
+        {% else %}
+          {{ participant.ticket_class }}
+        {% endif %}
+      </td>
     </tr>
-    <tr>
-      <td>BEATCITY JAPAN</td>
-      <td>9/7</td>
-      <td>-</td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
+{% else %}
+<p>～発表次第更新～</p>
+{% endif %}
+
+
 <p>
   <span style="color: #ff0000"><strong>※MENAリージョン</strong></span
   >は、中東と北アフリカを合わせた地域を指します。
