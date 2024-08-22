@@ -138,8 +138,15 @@ def participants(year: int = None):
 @app.route("/<int:year>/japan")
 @cache.cached()
 def japan(year: int = None):
+
     # 参加者リストを取得
-    participants_list = get_japan_participants(year)
+    participants_list = get_participants_list(
+        year=year,
+        category="all",
+        ticket_class="all",
+        cancel="show",
+        iso_code=392
+    )
 
     return render_template("/japan.html", participants=participants_list, year=year, is_latest_year=is_latest_year(year), available_years=available_years)
 

@@ -2,7 +2,7 @@ import folium
 import pandas as pd
 
 
-def get_participants_list(year: int, category: str, ticket_class: str, cancel: str, GBB: bool = None) -> list:
+def get_participants_list(year: int, category: str, ticket_class: str, cancel: str, GBB: bool = None, iso_code: int = None) -> list:
     # csvからデータを取得
     beatboxers_df = pd.read_csv(f'app/static/csv/gbb{year}_participants.csv')
     countries_df = pd.read_csv('app/static/csv/countries.csv')
@@ -30,6 +30,10 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
         beatboxers_df = beatboxers_df[
             ~beatboxers_df['ticket_class'].str.startswith('Wildcard')
         ]
+
+    # 国コードでフィルター
+    if iso_code is not None:
+        beatboxers_df = beatboxers_df[beatboxers_df['iso_code'] == iso_code]
 
     # GBBでシード権を獲得した人のみ表示
     if GBB is True:
@@ -78,10 +82,10 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
         participants_list,
         key=lambda x: (
             x["is_cancelled"],  # キャンセルした人を後ろに
-            not x["ticket_class"].startswith("GBB"),  # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
-            x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
             "発表" in x["name"],  # 未定の出場枠を後ろに
             x["category"],  # カテゴリー順
+            not x["ticket_class"].startswith("GBB"),  # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
+            x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
             int(x["ticket_class"].replace("Wildcard ", ""))
             if x["ticket_class"].startswith("Wildcard") else float('inf')
             # Wildcard上位を前に
@@ -222,67 +226,3 @@ def create_world_map(year: int):
         ).add_to(beatboxer_map)
 
     beatboxer_map.save(f"app/templates/{year}/world_map.html")
-
-
-def get_japan_participants(year: int) -> list:
-    # csvからデータを取得
-    beatboxers_df = pd.read_csv(f'app/static/csv/gbb{year}_participants.csv')
-    countries_df = pd.read_csv('app/static/csv/countries.csv')
-
-    # beatboxers_dfから、国コード0の人を削除
-    beatboxers_df = beatboxers_df[beatboxers_df["iso_code"] != 0]
-
-    # Merge data to include country names in beatboxers_df
-    beatboxers_df = beatboxers_df.merge(
-        countries_df[['iso_code', 'name', "name_ja"]],
-        on='iso_code',
-        how='left',
-        suffixes=('', '_country')
-    )
-
-    # 日本代表を取得
-    japan_participants = beatboxers_df[beatboxers_df['name_ja'] == "日本"]
-
-    # フロントエンドに渡すデータを整形
-    participants_list = []
-    for _, row in japan_participants.iterrows():
-
-        # キャンセルした人の場合
-        if "[cancelled]" in row["name"]:
-            participant = {
-                "name": row["name"].replace("[cancelled] ", "").upper(),
-                "category": row["category"],
-                "ticket_class": row["ticket_class"],
-                "is_cancelled": True
-            }
-
-        else:
-            participant = {
-                "name": row["name"].upper(),
-                "category": row["category"],
-                "ticket_class": row["ticket_class"],
-                "is_cancelled": False
-            }
-
-        # membersがNaNの場合があるため、その場合は空文字に変換
-        if pd.isna(row["members"]):
-            participant["members"] = ""
-        else:
-            participant["members"] = row["members"].upper()
-
-        participants_list.append(participant)
-
-    participants_list = sorted(
-        participants_list,
-        key=lambda x: (
-            x["is_cancelled"],  # キャンセルした人を後ろに
-            x["category"],  # カテゴリー順
-            not x["ticket_class"].startswith("GBB"),  # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
-            x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
-            int(x["ticket_class"].replace("Wildcard ", ""))
-            if x["ticket_class"].startswith("Wildcard") else float('inf')
-            # Wildcard上位を前に
-        )
-    )
-
-    return participants_list
