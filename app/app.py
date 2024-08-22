@@ -10,7 +10,7 @@ from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
 from . import key
-from .participants import create_world_map, get_japan_participants, get_participants_list, get_results
+from .participants import create_world_map, get_participants_list, get_results
 
 app = Flask(__name__)
 sitemapper = Sitemapper()
