@@ -133,123 +133,76 @@
 <p>
   Wildcardを勝ち上がる以外の方法でGBB出場権を得る方法（シード権）と、その該当者は以下の通りです。
 </p>
-{% if participants %}
-<table>
-  <thead>
-  <tr>
-    <th style="width: 33%;">名前</th>
-    <th style="width: 34%;">部門</th>
-    <th style="width: 33%;">出場権</th>
-  </tr>
-  </thead>
-  <tbody>
-    {% for participant in participants %}
-    <tr>
-      <td>
-        {% if participant.members != "" %}
+{% for index in range(participants_list|length) %}
+  {% set participants = participants_list[index] %}
+  {% if participants|length > 0 %}
+    {% if index == 0 %}
+      <h3>シード権 - GBB</h3>
+    {% elif index == 1 %}
+      <h3>シード権 - その他</h3>
+    {% elif index == 2 %}
+      <h3>シード権辞退者一覧</h3>
+    {% endif %}
+    <table>
+      <thead>
+      <tr>
+        <th style="width: 33%;">名前</th>
+        <th style="width: 34%;">部門</th>
+        <th style="width: 33%;">出場権</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for participant in participants %}
+        <tr>
+          <td>
+            {% if participant.members != "" %}
 
-          {% if participant.is_cancelled %}
-            【辞退】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
-          {% else %}
-            <a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">{{ participant.name }}</a>
-          {% endif %}
+              {% if participant.is_cancelled %}
+                【辞退】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
+              {% else %}
+                <a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">{{ participant.name }}</a>
+              {% endif %}
 
-        <div class="member-list" style="display: none;">{% for member in participant.members.split(',') %}{{ member }}<br>{% endfor %}</div>
+            <div class="member-list" style="display: none;">{% for member in participant.members.split(',') %}{{ member }}<br>{% endfor %}</div>
 
-        {% else %}
-          {% if participant.is_cancelled %}
-            【辞退】<br><s>{{ participant.name }}</s>
-          {% else %}
-            {{ participant.name }}
-          {% endif %}
-        {% endif %}
+            {% else %}
+              {% if participant.is_cancelled %}
+                【辞退】<br><s>{{ participant.name }}</s>
+              {% else %}
+                {{ participant.name }}
+              {% endif %}
+            {% endif %}
 
-      </td>
-      <td>
-        {% if participant.is_cancelled %}
-          <s>{{ participant.category }}</s>
-        {% else %}
-          {{ participant.category }}
-        {% endif %}
-      </td>
-      <td {% if participant.ticket_class|length > 10 %} style="font-size: 12px;" {% endif %}>
-        {% if participant.is_cancelled %}
-          <s>{{ participant.ticket_class }}</s>
-        {% else %}
-          {{ participant.ticket_class }}
-        {% endif %}
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{% else %}
-<p>～発表次第更新～</p>
-{% endif %}
+          </td>
+          <td>
+            {% if participant.is_cancelled %}
+              <s>{{ participant.category }}</s>
+            {% else %}
+              {{ participant.category }}
+            {% endif %}
+          </td>
+          <td {% if participant.ticket_class|length > 10 %} style="font-size: 12px;" {% endif %}>
+            {% if participant.is_cancelled %}
+              <s>{{ participant.ticket_class }}</s>
+            {% else %}
+              {{ participant.ticket_class }}
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>～発表次第更新～</p>
+  {% endif %}
+  <br>
+{% endfor %}
 
-<br>
-<h3>シード権辞退者一覧</h3>
-{% if cancels %}
-<table>
-  <thead>
-  <tr>
-    <th style="width: 33%;">名前</th>
-    <th style="width: 34%;">部門</th>
-    <th style="width: 33%;">出場権</th>
-  </tr>
-  </thead>
-  <tbody>
-    {% for participant in cancels %}
-    <tr>
-      <td>
-        {% if participant.members != "" %}
+<div class="button-container">
+  <a href="/{{ year }}/participants"><button>Wildcard結果&出場者</button></a>
+</div>
 
-          {% if participant.is_cancelled %}
-            【辞退】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
-          {% else %}
-            <a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">{{ participant.name }}</a>
-          {% endif %}
-
-        <div class="member-list" style="display: none;">{% for member in participant.members.split(',') %}{{ member }}<br>{% endfor %}</div>
-
-        {% else %}
-          {% if participant.is_cancelled %}
-            【辞退】<br><s>{{ participant.name }}</s>
-          {% else %}
-            {{ participant.name }}
-          {% endif %}
-        {% endif %}
-
-      </td>
-      <td>
-        {% if participant.is_cancelled %}
-          <s>{{ participant.category }}</s>
-        {% else %}
-          {{ participant.category }}
-        {% endif %}
-      </td>
-      <td {% if participant.ticket_class|length > 10 %} style="font-size: 12px;" {% endif %}>
-        {% if participant.is_cancelled %}
-          <s>{{ participant.ticket_class }}</s>
-        {% else %}
-          {{ participant.ticket_class }}
-        {% endif %}
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{% else %}
-<p>～発表次第更新～</p>
-{% endif %}
-
-
-<p>
-  <span style="color: #ff0000"><strong>※MENAリージョン</strong></span
-  >は、中東と北アフリカを合わせた地域を指します。
-</p>
-<p>シード権を持つ人が辞退した場合、Wildcard下位からの繰り上げが行われます。</p>
-<p>MENAリージョン大会に関しては、Swissbeatboxが自ら主催するようです。</p>
+<p>シード権を持つ人が辞退した場合、原則として、該当シード権は消滅し、Wildcard下位からの繰り上げが行われます。</p>
 
 <div class="button-container">
   <a href="/others/how_to_plan"><button>現地観戦計画のたてかた</button></a>
@@ -373,6 +326,5 @@
     </tr>
   </tbody>
 </table>
-<br />
 
 {% endblock %}

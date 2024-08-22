@@ -187,11 +187,20 @@ def rule(year: int = None):
     if year not in available_years:
         year = available_years[-1]
 
-    participants = get_participants_list(
+    participants_GBB = get_participants_list(
         year=year,
         category="all",
         ticket_class="seed_right",
-        cancel="hide"
+        cancel="hide",
+        GBB=True
+    )
+
+    participants_except_GBB = get_participants_list(
+        year=year,
+        category="all",
+        ticket_class="seed_right",
+        cancel="hide",
+        GBB=False
     )
 
     cancels = get_participants_list(
@@ -201,7 +210,9 @@ def rule(year: int = None):
         cancel="only_cancelled"
     )
 
-    return render_template(f"/{year}/rule.html", year=year, is_latest_year=is_latest_year(year), available_years=available_years, participants=participants, cancels=cancels)
+    participants_list = [participants_GBB, participants_except_GBB, cancels]
+
+    return render_template(f"/{year}/rule.html", year=year, is_latest_year=is_latest_year(year), available_years=available_years, participants_list=participants_list)
 
 
 ####################################################################

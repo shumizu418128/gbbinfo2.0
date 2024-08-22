@@ -118,7 +118,7 @@
     <br>
     <label for="ticket_class">情報選択</label>
     <select name="ticket_class" id="ticket_class" class="participants_select" onchange="this.form.submit()">
-      <option value="all" {% if request.args.get('ticket_class') == 'all' %}selected{% endif %}>出場者一覧</option>
+      <option value="all" {% if request.args.get('ticket_class') == 'all' %}selected{% endif %}>全出場者</option>
       <option value="wildcard" {% if request.args.get('ticket_class') == 'wildcard' %}selected{% endif %}>Wildcard結果</option>
       <option value="seed_right" {% if request.args.get('ticket_class') == 'seed_right' %}selected{% endif %}>シード権</option>
     </select>

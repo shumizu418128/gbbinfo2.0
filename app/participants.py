@@ -2,7 +2,7 @@ import folium
 import pandas as pd
 
 
-def get_participants_list(year: int, category: str, ticket_class: str, cancel: str) -> list:
+def get_participants_list(year: int, category: str, ticket_class: str, cancel: str, GBB: bool = None) -> list:
     # csvからデータを取得
     beatboxers_df = pd.read_csv(f'app/static/csv/gbb{year}_participants.csv')
     countries_df = pd.read_csv('app/static/csv/countries.csv')
@@ -29,6 +29,18 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
     elif ticket_class == "seed_right":
         beatboxers_df = beatboxers_df[
             ~beatboxers_df['ticket_class'].str.startswith('Wildcard')
+        ]
+
+    # GBBでシード権を獲得した人のみ表示
+    if GBB is True:
+        beatboxers_df = beatboxers_df[
+            beatboxers_df['ticket_class'].str.startswith('GBB')
+        ]
+
+    # GBB以外でシード権を獲得した人のみ表示
+    elif GBB is False:
+        beatboxers_df = beatboxers_df[
+            ~beatboxers_df['ticket_class'].str.startswith('GBB')
         ]
 
     # フロントエンドに渡すデータを整形
