@@ -114,9 +114,9 @@ def get_results(year: int) -> list:
         for _, row in results_df.iterrows():
             result = {
                 "category": row["category"],
-                "_1st": row["1"],
-                "_2nd": row["2"],
-                "_3rd": row["3"]
+                "_1st": row["1"].upper(),
+                "_2nd": row["2"].upper(),
+                "_3rd": row["3"].upper()
             }
             results.append(result)
 
