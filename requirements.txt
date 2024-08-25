@@ -5,3 +5,4 @@ Flask-Caching
 flask-sitemapper
 folium
 redis
+google-generativeai
