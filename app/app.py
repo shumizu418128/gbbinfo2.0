@@ -1,15 +1,15 @@
-from datetime import datetime
 import os
-
-import requests
+from datetime import datetime
 
 import jinja2
 import pandas as pd
-from flask import Flask, jsonify, redirect, render_template, request, send_file, url_for
+import requests
+from flask import (Flask, jsonify, redirect, render_template, request,
+                   send_file, url_for)
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
-from . import key
+from . import gemini, key
 from .participants import create_world_map, get_participants_list, get_results
 
 app = Flask(__name__)
@@ -316,6 +316,13 @@ def get_last_commit():
 ####################################################################
 # discord, Sitemap, robots.txt
 ####################################################################
+
+@app.route("/<int:year>/search", methods=["POST"])
+def search(year: int = available_years[-1]):
+    question = request.json.get("question")
+    response_dict = gemini.search(year=year, question=question)
+    return jsonify(response_dict)
+
 
 @app.route("/.well-known/discord")
 def discord():

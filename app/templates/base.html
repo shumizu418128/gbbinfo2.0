@@ -115,6 +115,18 @@
 
       {% block content %}{% endblock %}
 
+      <h2>GBB {{ year }} なんでも検索</h2>
+      <p style="text-align: center;">気になることを検索してみよう</p>
+      <form id="searchForm" class="search-form-1" action="/{{year}}/search">
+        <input type="text" name="question" id="question" placeholder="例：出場者は誰？" required>
+        <button type="submit" aria-label="検索"></button>
+      </form>
+
+      <div id="loading" class="loading" style="display: none; text-align: center;">
+        検索中...
+      </div>
+      <script src="/static/scripts/search.js"></script>
+
       <br />
       {% if is_latest_year is false %}
         <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}は<br>終了しました</p>
