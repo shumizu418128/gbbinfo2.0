@@ -6,3 +6,5 @@ flask-sitemapper
 folium
 redis
 google-generativeai
+gspread
+oauth2client
