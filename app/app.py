@@ -11,7 +11,7 @@ from flask import (Flask, jsonify, redirect, render_template, request,
                    send_file, url_for)
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
-from google.oauth2.credentials import Credentials
+from google.oauth2.service_account import Credentials
 from oauth2client.service_account import ServiceAccountCredentials
 
 from . import gemini, key
@@ -81,7 +81,7 @@ def get_client():
             credentials_info = json.loads(path)
 
             # 認証情報を作成
-            credentials = Credentials.from_service_account_info(credentials_info, scopes=scope)
+            credentials = Credentials.from_authorized_user_info(credentials_info, scopes=scope)
 
     if client is None:
         client = gspread.authorize(credentials)
