@@ -292,3 +292,7 @@ footer p {
     line-height: 1;
     display: block;
 }
+
+label {
+    color: rgb(34, 34, 34);
+}

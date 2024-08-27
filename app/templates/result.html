@@ -30,6 +30,8 @@
 <p>入賞者のうち、次回GBBの出場権獲得者のみ表示しています。</p>
 {% else %}
 <p>～発表次第更新～</p>
+<script src="\static\scripts\last_edit.js"></script>
+<p id="last-deploy-date" style="text-align: center;"></p>
 {% endif %}
 <br>
 <form method="GET" action="{{ url_for('result') }}" class="participants_form">
