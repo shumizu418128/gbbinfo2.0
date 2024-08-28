@@ -15,7 +15,7 @@ rule - GBB{year}のルール、開催部門一覧、シード権獲得条件、W
 stream - GBB{year}の当日配信URL
 ticket - GBB{year}のチケット、会場
 time_schedule - GBB{year}のタイムスケジュール
-top - GBB{year}開催日
+top - GBB{year}開催日、会場・チケットぴあへの問い合わせ電話番号
 wildcards - GBB{year}のWildcard動画一覧
 result_stream - GBB{year}のWildcardの結果発表配信について
 how_to_plan - GBBを現地観戦するうえで気を付けるべきこと
