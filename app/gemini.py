@@ -78,8 +78,8 @@ def search(year: int, question: str):
         response_dict = {'url': f'/{year}/top'}
 
     # othersディレクトリのリンクがある場合は変換
-    for others_link in ["about", "how_to_plan", "result_stream"]:
-        if response_dict["url"] == f"/{year}/{others_link}":
+    for others_link in ["about", "how_to_plan", "result_stream", "7tosmoke"]:
+        if others_link in response_dict["url"]:
             response_dict["url"] = f"/others/{others_link}"
             break
 

@@ -20,6 +20,7 @@ wildcards - GBB{year}のWildcard動画一覧
 result_stream - GBB{year}のWildcardの結果発表配信について
 how_to_plan - GBBを現地観戦するうえで気を付けるべきこと
 about - このwebサイトについて
+7tosmoke - 7tosmokeについて
 
 もしも適切なWebページが無いと判断した場合、topを選択してください。
 
