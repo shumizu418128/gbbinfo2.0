@@ -266,10 +266,10 @@ li {
 hr {
     border: 1px solid #F0632F;
     /* 線の色を指定 */
-    margin-top: 15px;
-    /* 上部の余白を15pxに設定 */
-    margin-bottom: 15px;
-    /* 下部の余白を15pxに設定 */
+    margin-top: 30px;
+    /* 上部の余白を30pxに設定 */
+    margin-bottom: 30px;
+    /* 下部の余白を30pxに設定 */
 }
 
 footer {
