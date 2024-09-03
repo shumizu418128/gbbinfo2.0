@@ -2,8 +2,8 @@
 {% block title %}GBB {{ year }} 大会結果 - GBBINFO-JPN{% endblock %}
 {% block twitter_title %}GBB{{ year }}:大会結果 - GBBINFO-JPN{% endblock %}
 {% block og_title %}GBB{{ year }}:大会結果 - GBBINFO-JPN{% endblock %}
-{% block og_url %}https://gbbinfo-jpn.onrender.com/result?year={{ year - 1 }}{% endblock %}
-{% block canonical %}https://gbbinfo-jpn.onrender.com/result?year={{ year - 1 }}{% endblock %}
+{% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/result{% endblock %}
+{% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/result{% endblock %}
 {% block content %}
 <h1>GBB {{ year }} 大会結果</h1>
 {% if results %}
