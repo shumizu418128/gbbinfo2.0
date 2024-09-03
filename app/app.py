@@ -36,7 +36,8 @@ if os.getenv("SECRET_KEY") is None and os.getenv("GITHUB_TOKEN") is None:
 else:
     app.config['CACHE_DEFAULT_TIMEOUT'] = 0  # 永続化
     cache = Cache(
-        app, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': 'cache-directory'})
+        app, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': 'cache-directory'}
+    )
 
 
 # カスタムキャッシュキーの生成
@@ -54,9 +55,9 @@ def is_latest_year(year):
     return year == available_years[-1] or year == now
 
 
-# 過去年度のページのうち、ポップアップを出すページを定義
+# 過去年度のページのうち、ポップアップを出さないページを定義
 def is_popup(content):
-    return content in ["top", "rule", "time_schedule", "ticket", "stream"]
+    return content not in ["participants", "result"]  # ここにあるページはポップアップを出さない
 
 
 # Googleスプレッドシートに接続
@@ -82,7 +83,8 @@ def get_client():
             credentials_info = json.loads(path)
 
             # 認証情報を作成
-            credentials = Credentials.from_service_account_info(credentials_info, scopes=scope)
+            credentials = Credentials.from_service_account_info(
+                credentials_info, scopes=scope)
 
     if client is None:
         client = gspread.authorize(credentials)
@@ -284,10 +286,12 @@ def rule(year: int = None):
 
 combinations = []
 
+# 各年度のページを取得(ルール、world_mapは別関数で扱っているので除外)
 for year in available_years:
     contents = os.listdir(f"./app/templates/{year}")
     contents = [content.replace(".html", "") for content in contents]
 
+    # rule, world_mapは除外
     contents.remove('rule')
     if 'world_map' in contents:
         contents.remove('world_map')
@@ -371,15 +375,23 @@ def get_last_commit():
 # 以下、キャッシュ使用不可
 
 ####################################################################
-# discord, Sitemap, robots.txt
+# gemini, discord, Sitemap, robots.txt
 ####################################################################
 
+# 検索機能
 @app.route("/<int:year>/search", methods=["POST"])
 def search(year: int = available_years[-1]):
+
+    # 質問を取得
     question = request.json.get("question")
+
+    # geminiで検索
     response_dict = gemini.search(year=year, question=question)
+
+    # threadスタート
     Thread(target=record_question, args=(
         year, question, response_dict["url"])).start()
+
     return jsonify(response_dict)
 
 
