@@ -55,11 +55,6 @@ def is_latest_year(year):
     return year == available_years[-1] or year == now
 
 
-# 過去年度のページのうち、ポップアップを出さないページを定義
-def is_popup(content):
-    return content not in ["participants", "result"]  # ここにあるページはポップアップを出さない
-
-
 # Googleスプレッドシートに接続
 def get_client():
     global credentials, client
@@ -185,7 +180,16 @@ def participants(year: int = None):
     except KeyError:
         result_url = None
 
-    return render_template("/participants.html", participants=participants_list, year=year, all_category=valid_categories, result_url=result_url, is_latest_year=is_latest_year(year), available_years=available_years)
+    return render_template(
+        "/participants.html",
+        participants=participants_list,
+        year=year,
+        all_category=valid_categories,
+        result_url=result_url,
+        is_latest_year=is_latest_year(year),
+        available_years=available_years,
+        is_popup=False
+    )
 
 
 ####################################################################
@@ -205,7 +209,13 @@ def japan(year: int = None):
         iso_code=392
     )
 
-    return render_template("/japan.html", participants=participants_list, year=year, is_latest_year=is_latest_year(year), available_years=available_years)
+    return render_template(
+        "/japan.html",
+        participants=participants_list,
+        year=year,
+        is_latest_year=is_latest_year(year),
+        available_years=available_years
+    )
 
 
 ####################################################################
@@ -237,7 +247,14 @@ def result():
     # 結果を取得
     results = get_results(year)
 
-    return render_template("/result.html", results=results, year=year, is_latest_year=is_latest_year(year), available_years=available_years_str)
+    return render_template(
+        "/result.html",
+        results=results,
+        year=year,
+        is_latest_year=is_latest_year(year),
+        available_years=available_years_str,  # resultだけ文字列
+        is_popup=False
+    )
 
 
 ####################################################################
@@ -277,7 +294,13 @@ def rule(year: int = None):
 
     participants_list = [participants_GBB, participants_except_GBB, cancels]
 
-    return render_template(f"/{year}/rule.html", year=year, is_latest_year=is_latest_year(year), available_years=available_years, participants_list=participants_list)
+    return render_template(
+        f"/{year}/rule.html",
+        year=year,
+        is_latest_year=is_latest_year(year),
+        available_years=available_years,
+        participants_list=participants_list
+    )
 
 
 ####################################################################
@@ -314,7 +337,12 @@ def content(year: int = None, content: str = None):
 
     # その他のページはそのまま表示
     try:
-        return render_template(f"/{year}/{content}.html", year=year, is_latest_year=is_latest_year(year), is_popup=is_popup(content), available_years=available_years)
+        return render_template(
+            f"/{year}/{content}.html",
+            year=year,
+            is_latest_year=is_latest_year(year),
+            available_years=available_years
+        )
 
     # エラーが出たらtopを表示
     except jinja2.exceptions.TemplateNotFound:
@@ -337,7 +365,12 @@ def others(content: str = None):
     year = available_years[-1]
 
     try:
-        return render_template(f"/others/{content}.html", year=year, available_years=available_years)
+        return render_template(
+            f"/others/{content}.html",
+            year=year,
+            available_years=available_years,
+            is_latest_year=is_latest_year(year)
+        )
 
     # エラー
     except jinja2.exceptions.TemplateNotFound:

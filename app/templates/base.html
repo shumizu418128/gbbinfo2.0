@@ -92,7 +92,7 @@
     <main>
       {% if is_latest_year is false %}
 
-        {% if is_popup is true %}
+        {% if is_popup is not false %}
           <script src="/static/scripts/popup.js"></script>
           <div class="overlay" onclick="closePopup()"></div>
           <div class="popup">
