@@ -1,3 +1,7 @@
+このサイトの詳しい説明はこちら：
+[GBBINFO-JPNの設計図](https://qiita.com/tari3210/items/0561e91774863d165af0)
+
+
 ```
 .
 └── 年度
