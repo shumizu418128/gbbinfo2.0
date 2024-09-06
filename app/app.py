@@ -1,9 +1,7 @@
-import json
 import os
 from datetime import datetime
 from threading import Thread
 
-import gspread
 import jinja2
 import pandas as pd
 import requests
@@ -11,10 +9,8 @@ from flask import (Flask, jsonify, redirect, render_template, request,
                    send_file, url_for)
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
-from google.oauth2.service_account import Credentials
-from oauth2client.service_account import ServiceAccountCredentials
 
-from . import gemini, key
+from . import gemini, key, spreadsheet
 from .participants import create_world_map, get_participants_list, get_results
 
 app = Flask(__name__)
@@ -24,8 +20,6 @@ app.secret_key = os.getenv("SECRET_KEY")
 github_token = os.getenv("GITHUB_TOKEN")
 available_years = key.available_years
 available_years_str = [str(year) for year in available_years]
-credentials = None
-client = None
 
 # テスト環境ではキャッシュを無効化
 if os.getenv("SECRET_KEY") is None and os.getenv("GITHUB_TOKEN") is None:
@@ -36,7 +30,10 @@ if os.getenv("SECRET_KEY") is None and os.getenv("GITHUB_TOKEN") is None:
 else:
     app.config['CACHE_DEFAULT_TIMEOUT'] = 0  # 永続化
     cache = Cache(
-        app, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': 'cache-directory'}
+        app, config={
+            'CACHE_TYPE': 'filesystem',
+            'CACHE_DIR': 'cache-directory'
+        }
     )
 
 
@@ -53,52 +50,6 @@ def is_latest_year(year):
     dt_now = datetime.now()
     now = dt_now.year
     return year == available_years[-1] or year == now
-
-
-# Googleスプレッドシートに接続
-def get_client():
-    global credentials, client
-    if credentials is None:
-
-        # スコープと認証
-        scope = [
-            "https://spreadsheets.google.com/feeds",
-            "https://www.googleapis.com/auth/drive"
-        ]
-        # 認証情報を環境変数から取得
-        path = os.environ.get("GOOGLE_SHEET_CREDENTIALS")
-
-        if path is None:
-            # 認証情報を取得
-            credentials = ServiceAccountCredentials.from_json_keyfile_name(
-                "D://おもちゃ/makesomenoise-4cb78ac4f8b5.json", scope
-            )
-        else:
-            # 環境変数から認証情報を取得
-            credentials_info = json.loads(path)
-
-            # 認証情報を作成
-            credentials = Credentials.from_service_account_info(
-                credentials_info, scopes=scope)
-
-    if client is None:
-        client = gspread.authorize(credentials)
-
-    return client
-
-
-# Googleスプレッドシートに記録
-def record_question(year: int, question: str, answer: str):
-    year_str = str(year)
-    dt_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    client = get_client()
-
-    # スプレッドシートを開く
-    sheet = client.open("gbbinfo-jpn").sheet1
-
-    # 質問と年を記録
-    sheet.append_row([dt_now, year_str, question, answer])
 
 
 ####################################################################
@@ -422,7 +373,7 @@ def search(year: int = available_years[-1]):
     response_dict = gemini.search(year=year, question=question)
 
     # threadスタート
-    Thread(target=record_question, args=(
+    Thread(target=spreadsheet.record_question, args=(
         year, question, response_dict["url"])).start()
 
     return jsonify(response_dict)
