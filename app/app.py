@@ -138,8 +138,7 @@ def participants(year: int = None):
         all_category=valid_categories,
         result_url=result_url,
         is_latest_year=is_latest_year(year),
-        available_years=available_years,
-        is_popup=False
+        available_years=available_years
     )
 
 
@@ -203,8 +202,7 @@ def result():
         results=results,
         year=year,
         is_latest_year=is_latest_year(year),
-        available_years=available_years_str,  # resultだけ文字列
-        is_popup=False
+        available_years=available_years_str  # resultだけ文字列
     )
 
 
