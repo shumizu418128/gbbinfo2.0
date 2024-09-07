@@ -4,7 +4,7 @@ import pandas as pd
 
 def get_participants_list(year: int, category: str, ticket_class: str, cancel: str, GBB: bool = None, iso_code: int = None) -> list:
     # csvからデータを取得
-    beatboxers_df = pd.read_csv(f'app/static/csv/gbb{year}_participants.csv')
+    beatboxers_df = pd.read_csv(f'app/static/csv/{year}_participants.csv')
     countries_df = pd.read_csv('app/static/csv/countries.csv')
 
     # Merge data to include country names in beatboxers_df
@@ -84,7 +84,8 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
             x["is_cancelled"],  # キャンセルした人を後ろに
             "発表" in x["name"],  # 未定の出場枠を後ろに
             x["category"],  # カテゴリー順
-            not x["ticket_class"].startswith("GBB"),  # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
+            # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
+            not x["ticket_class"].startswith("GBB"),
             x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
             int(x["ticket_class"].replace("Wildcard ", ""))
             if x["ticket_class"].startswith("Wildcard") else float('inf')
@@ -94,11 +95,13 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
 
     # cancelが"hide"の場合はキャンセルした人を表示しない
     if cancel == "hide":
-        participants_list = [participant for participant in participants_list if participant["is_cancelled"] is False]
+        participants_list = [
+            participant for participant in participants_list if participant["is_cancelled"] is False]
 
     # cancelが"only_cancelled"の場合はキャンセルした人のみ表示
     if cancel == "only_cancelled":
-        participants_list = [participant for participant in participants_list if participant["is_cancelled"] is True]
+        participants_list = [
+            participant for participant in participants_list if participant["is_cancelled"] is True]
 
     return participants_list
 
@@ -106,7 +109,7 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
 def get_results(year: int) -> list:
 
     try:
-        results_df = pd.read_csv(f'app/static/csv/gbb{year}_result.csv')
+        results_df = pd.read_csv(f'app/static/csv/{year}_result.csv')
         results_df = results_df.fillna("-")
 
         # フロントエンドに渡すデータを整形
@@ -129,7 +132,7 @@ def get_results(year: int) -> list:
 def create_world_map(year: int):
 
     # csvからデータを取得
-    beatboxers_df = pd.read_csv(f'app/static/csv/gbb{year}_participants.csv')
+    beatboxers_df = pd.read_csv(f'app/static/csv/{year}_participants.csv')
     countries_df = pd.read_csv('app/static/csv/countries.csv')
 
     # nanを空白に変換
@@ -187,8 +190,10 @@ def create_world_map(year: int):
         location = (lat, lon)
 
         popup_content = '<div style="font-family: Noto sans JP; font-size: 14px;">'
-        popup_content += f'<h3 style="margin: 0; color: #F0632F;">{country_name}</h3>'
-        popup_content += f'<h4 style="margin: 0; color: #F0632F;">{country_name_ja}</h4>'
+        popup_content += f'<h3 style="margin: 0; color: #F0632F;">{
+            country_name}</h3>'
+        popup_content += f'<h4 style="margin: 0; color: #F0632F;">{
+            country_name_ja}</h4>'
 
         for name, category, members in zip(names, categories, members):
             if members != "":
