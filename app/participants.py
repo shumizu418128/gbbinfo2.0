@@ -145,6 +145,9 @@ def create_world_map(year: int):
     # beatboxers_dfから、国コード0の人を削除
     beatboxers_df = beatboxers_df[beatboxers_df["iso_code"] != 0]
 
+    # beatboxers_dfを、カテゴリーでソート
+    beatboxers_df = beatboxers_df.sort_values(by=["category"])
+
     # Initialize a folium map centered around the average latitude and longitude
     map_center = [20, 0]
     beatboxer_map = folium.Map(
