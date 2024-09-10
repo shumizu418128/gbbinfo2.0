@@ -113,12 +113,27 @@
 
       {% block content %}{% endblock %}
 
-      <h2>GBB {{ year }} なんでも検索</h2>
-      <p style="text-align: center;">気になることを検索してみよう<br>文章で具体的に書くといいかも？</p>
-      <form id="searchForm" class="search-form-1" action="/{{year}}/search">
-        <input type="text" name="question" id="question" placeholder="例：今年の出場者は？" required>
-        <button type="submit" aria-label="検索"></button>
-      </form>
+      {% if is_latest_year is false %}
+        <hr>
+        <h3>GBB{{ year }} なんでも検索</h3>
+        <p style="text-align: center;">GBB{{ year }}の検索のみ可能です<br>GBB{{ year }}は終了しました</p>
+        <form id="searchForm" class="search-form-1" action="/{{year}}/search">
+          <input type="text" name="question" id="question" placeholder="例：GBB{{ year }}の最終結果は？" required>
+          <button type="submit" aria-label="検索"></button>
+        </form>
+        <div style="margin-top: 5px;"></div> <!-- 小さな隙間をあけるためのdiv -->
+        <div class="button-container">
+          <a href="/"><button type="button">GBB最新情報の検索はこちら</button></a>
+        </div>
+        <hr>
+      {% else %}
+        <h2>GBB {{ year }} なんでも検索</h2>
+        <p style="text-align: center;">気になることを検索してみよう<br>文章で具体的に書くといいかも？</p>
+        <form id="searchForm" class="search-form-1" action="/{{year}}/search">
+          <input type="text" name="question" id="question" placeholder="例：今年の出場者は？" required>
+          <button type="submit" aria-label="検索"></button>
+        </form>
+      {% endif %}
 
       <div id="loading" class="loading" style="display: none; text-align: center;">
         検索中...
