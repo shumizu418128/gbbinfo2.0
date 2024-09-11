@@ -53,4 +53,4 @@ def record_question(year: int, question: str, answer: str):
     sheet = client.open("gbbinfo-jpn").sheet1
 
     # 質問と年を記録
-    sheet.append_row([dt_now, year_str, question, answer])
+    sheet.insert_row([dt_now, year_str, question, answer], 2)
