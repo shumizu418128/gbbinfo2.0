@@ -7,6 +7,12 @@
 {% block content %}
 <h1>GBB {{ year }}</h1>
 <p style="text-align: center;">公式よりもわかりやすい！ GBB{{ year }}非公式情報サイト</p>
+
+<form id="searchForm" class="search-form-1" action="/{{year}}/search">
+  <input type="text" name="question" id="question" placeholder="例：今年の出場者は？" required>
+  <button type="submit" aria-label="検索"></button>
+</form>
+
 <h2>これだけガイド</h2>
 <p style="text-align: center;">GBB {{ year }}: 11月 1日～3日</p>
 
