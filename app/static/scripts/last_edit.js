@@ -13,12 +13,16 @@ fetch("/last-commit")
         { timeZone: "Asia/Tokyo" }
       );
       document.getElementById("last-deploy-date").innerText = `最終更新：${commitDate}`;
+      document.getElementById("last-deploy-date2").innerText = `最終更新：${commitDate}`;
     } else {
       document.getElementById("last-deploy-date").innerText = "-";
+      document.getElementById("last-deploy-date2").innerText = "-";
     }
   })
   .catch((error) => {
     console.error("最終更新：取得失敗", error);
     document.getElementById("last-deploy-date").innerText =
+      error.message || "最終更新：取得失敗";
+    document.getElementById("last-deploy-date2").innerText =
       error.message || "最終更新：取得失敗";
   });
