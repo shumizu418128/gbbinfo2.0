@@ -6,23 +6,25 @@ fetch("/last-commit")
     return response.json();
   })
   .then((data) => {
-    if (data.length > 0) {
-      const lastCommit = data[0];
-      const commitDate = new Date(lastCommit.commit.author.date).toLocaleString(
-        "ja-JP",
-        { timeZone: "Asia/Tokyo" }
-      );
-      document.getElementById("last-deploy-date").innerText = `最終更新：${commitDate}`;
-      document.getElementById("last-deploy-date2").innerText = `最終更新：${commitDate}`;
-    } else {
-      document.getElementById("last-deploy-date").innerText = "-";
-      document.getElementById("last-deploy-date2").innerText = "-";
+    const commitDate = data.length > 0 ?
+      new Date(data[0].commit.author.date).toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }) :
+      "-";
+
+    document.getElementById("last-deploy-date").innerText = `最終更新：${commitDate}`;
+
+    // last-deploy-date2が存在する場合のみ更新
+    const lastDeployDate2 = document.getElementById("last-deploy-date2");
+    if (lastDeployDate2) {
+      lastDeployDate2.innerText = `最終更新：${commitDate}`;
     }
   })
   .catch((error) => {
     console.error("最終更新：取得失敗", error);
-    document.getElementById("last-deploy-date").innerText =
-      "最終更新：取得失敗";
-    document.getElementById("last-deploy-date2").innerText =
-      "最終更新：取得失敗";
+    document.getElementById("last-deploy-date").innerText = "最終更新：取得失敗";
+
+    // last-deploy-date2が存在する場合のみ更新
+    const lastDeployDate2 = document.getElementById("last-deploy-date2");
+    if (lastDeployDate2) {
+      lastDeployDate2.innerText = "最終更新：取得失敗";
+    }
   });
