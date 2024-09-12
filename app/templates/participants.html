@@ -9,7 +9,6 @@
 <h1>GBB {{ year }} Wildcard結果&出場者</h1>
 
   {% if is_latest_year %}
-    <script src="\static\scripts\last_edit.js"></script>
     <p id="last-deploy-date" style="text-align: center;"></p>
   {% endif %}
 
@@ -137,4 +136,6 @@
   <h2>GBB {{ year }} 出場者世界地図</h2>
   <p>国旗をタップorクリックすると、詳細を確認できます。</p>
   <iframe src="{{ url_for('world_map', year=year) }}" width="100%" height="400px" frameborder="0"></iframe>
+
+  <script src="/static/scripts/last_edit.js"></script>
 {% endblock %}

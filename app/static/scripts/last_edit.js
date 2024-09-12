@@ -22,7 +22,7 @@ fetch("/last-commit")
   .catch((error) => {
     console.error("最終更新：取得失敗", error);
     document.getElementById("last-deploy-date").innerText =
-      error.message || "最終更新：取得失敗";
+      "最終更新：取得失敗";
     document.getElementById("last-deploy-date2").innerText =
-      error.message || "最終更新：取得失敗";
+      "最終更新：取得失敗";
   });
