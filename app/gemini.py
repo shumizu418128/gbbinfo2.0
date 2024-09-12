@@ -84,7 +84,7 @@ def search(year: int, question: str):
             break
 
     # リンクに説明が含まれている場合は削除
-    if " - " in response_dict["url"]:
-        response_dict["url"] = response_dict["url"].split(" - ")[0]
+    if "%" in response_dict["url"]:
+        response_dict["url"] = response_dict["url"].split("%")[0]
 
     return response_dict
