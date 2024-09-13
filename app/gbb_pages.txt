@@ -13,14 +13,14 @@ participants - GBB{year}の出場者・Wildcardの結果・出場者世界地図
 result - GBB{year}の大会結果
 rule - GBB{year}のルール、開催部門一覧、シード権獲得条件、Wildcardの結果発表日、審査員一覧
 stream - GBB{year}の当日配信URL
-ticket - GBB{year}のチケット、会場
+ticket - GBB{year}のチケット、会場、7toSmokeのチケット、会場
 time_schedule - GBB{year}のタイムスケジュール
 top - GBB{year}開催日、会場・チケットぴあへの問い合わせ電話番号
 wildcards - GBB{year}のWildcard動画一覧
 result_stream - GBB{year}のWildcardの結果発表配信について
 how_to_plan - GBBを現地観戦するうえで気を付けるべきこと
 about - このwebサイトについて
-7tosmoke - 7tosmokeについて
+7tosmoke - 7tosmokeとは何かを解説
 
 もしも適切なWebページが無いと判断した場合、topを選択してください。
 
