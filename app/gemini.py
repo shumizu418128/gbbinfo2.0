@@ -78,9 +78,11 @@ def search(year: int, question: str):
         response_dict = {'url': f'/{year}/top'}
 
     # othersディレクトリのリンクがある場合は変換
-    for others_link in ["about", "how_to_plan", "result_stream", "7tosmoke"]:
-        if others_link in response_dict["url"]:
-            response_dict["url"] = f"/others/{others_link}"
+    others_link = os.listdir(os.getcwd() + '/app/templates/others')
+
+    for link in others_link:
+        if link.replace(".html", "") in response_dict["url"]:
+            response_dict["url"] = f"/others/{link.replace('.html', '')}"
             break
 
     # リンクに説明が含まれている場合は削除
