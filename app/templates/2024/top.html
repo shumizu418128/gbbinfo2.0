@@ -6,7 +6,10 @@
 {% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/top{% endblock %}
 {% block content %}
 <h1>GBB {{ year }}</h1>
-<p style="text-align: center;">公式よりもわかりやすい！<br>GBB{{ year }}非公式情報サイト</p>
+<div style="text-align: center;">
+  <p>11月1日(金) - 11月3日(日)</p>
+  <p>公式よりもわかりやすい！<br>GBB{{ year }}非公式情報サイト</p>
+</div>
 
 {% if is_latest_year is true %}
 <form id="searchForm" class="search-form-1" action="/{{ year }}/search">
@@ -17,7 +20,6 @@
 {% endif %}
 
 <h2>これだけガイド</h2>
-<h3>GBB {{ year }}: 11月 1日～3日</h3>
 
 <div class="button-container">
   <a href="/{{ year }}/participants"><button>Wildcard結果&出場者</button></a>
