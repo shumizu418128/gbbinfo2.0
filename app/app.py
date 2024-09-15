@@ -371,8 +371,15 @@ def search(year: int = available_years[-1]):
     response_dict = gemini.search(year=year, question=question)
 
     # threadスタート
-    Thread(target=spreadsheet.record_question, args=(
-        year, question, response_dict["url"])).start()
+    if question != "テスト":
+        Thread(
+            target=spreadsheet.record_question,
+            args=(
+                year,
+                question,
+                response_dict["url"]
+            )
+        ).start()
 
     return jsonify(response_dict)
 

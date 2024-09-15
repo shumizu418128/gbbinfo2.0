@@ -95,12 +95,12 @@
         <script src="/static/scripts/popup.js"></script>
         <div class="overlay" onclick="closePopup()"></div>
         <div class="popup">
-        <p style="text-align: center; font-size: 36px; font-weight: bold;">☆<br>GBB{{ year }}は<br>終了しました<br>☆</p>
-        <p style="text-align: center;">ここは、すでに終了したGBB{{ year }}のページです</p>
-          <div class="button-container">
-            <a href="/"><button type="button">GBB最新情報はこちら</button></a>
-          </div><br>
-          <button type="button" onclick="closePopup()">閉じる</button>
+          <p style="text-align: center; font-size: 36px; font-weight: bold;">☆<br>GBB{{ year }}は<br>終了しました<br>☆</p>
+          <p style="text-align: center;">ここは、すでに終了したGBB{{ year }}のページです</p>
+            <div class="button-container">
+              <a href="/"><button type="button">GBB最新情報はこちら</button></a>
+            </div><br>
+            <button type="button" onclick="closePopup()">閉じる</button>
         </div>
 
         <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}は<br>終了しました</p>
@@ -134,10 +134,7 @@
         </form>
       {% endif %}
 
-      <div id="loading" class="loading" style="display: none; text-align: center;">
-        検索中...
-      </div>
-      <script src="/static/scripts/search.js"></script>
+      <div id="loading" class="loading"></div>
 
       <br />
       {% if is_latest_year is false %}
@@ -198,6 +195,7 @@
     <script src="/static/scripts/last_modify.js"></script>
     <script src="/static/scripts/countdown.js"></script>
     <script src="/static/scripts/install.js"></script>
+    <script src="/static/scripts/search.js"></script>
 
     <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
     <script
