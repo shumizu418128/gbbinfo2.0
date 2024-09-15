@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/static/css/dropdown.css" />
     <link rel="stylesheet" href="/static/css/table.css" />
     <link rel="stylesheet" href="/static/css/popup.css" />
+    <link rel="stylesheet" href="/static/css/search.css" />
     <link rel="canonical" href={% block canonical %}{% endblock %}>
     <meta name="twitter:title" content={% block twitter_title %}{% endblock %} />
     <meta name="twitter:description" content="Swissbeatboxが主催するHuman Beatboxの世界大会「Grand Beatbox Battle」の各種情報を、日本語に翻訳し見やすくまとめたサイトです。" />
@@ -117,7 +118,7 @@
         <hr>
         <h3>GBB{{ year }} なんでも検索</h3>
         <p style="text-align: center;">GBB{{ year }}の検索のみ可能です<br>GBB{{ year }}は終了しました</p>
-        <form id="searchForm" class="search-form-1" action="/{{year}}/search">
+        <form id="searchForm" class="search-form-1" action="/{{ year }}/search">
           <input type="text" name="question" id="question" placeholder="例：GBB{{ year }}の最終結果は？" required>
           <button type="submit" aria-label="検索"></button>
         </form>
@@ -126,10 +127,11 @@
         </div>
         <hr>
       {% else %}
+        <!-- 最新年度の場合、フォームがページ内に2つ存在することがあるため、idを分ける -->
         <h2>GBB {{ year }} なんでも検索</h2>
         <p style="text-align: center;">気になることを検索してみよう<br>文章で具体的に書くといいかも？</p>
-        <form id="searchForm" class="search-form-1" action="/{{year}}/search">
-          <input type="text" name="question" id="question" placeholder="例：今年の出場者は？" required>
+        <form id="searchForm2" class="search-form-1" action="/{{ year }}/search">
+          <input type="text" name="question" id="question2" placeholder="例：今年の出場者は？" required>
           <button type="submit" aria-label="検索"></button>
         </form>
       {% endif %}

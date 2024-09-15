@@ -1,5 +1,5 @@
 // フォームの送信イベントを取得
-document.getElementById('searchForm').onsubmit = function(event) {
+function handleFormSubmit(event) {
     // デフォルトの送信を防ぐ
     event.preventDefault();
 
@@ -21,5 +21,13 @@ document.getElementById('searchForm').onsubmit = function(event) {
     .then(data => {
         // 取得したURLにリダイレクト
         window.location.href = data.url;
-    })
-};
+    });
+}
+
+// 各フォームにイベントリスナーを追加
+if (document.getElementById('searchForm')) {
+    document.getElementById('searchForm').onsubmit = handleFormSubmit;
+}
+if (document.getElementById('searchForm2')) {
+    document.getElementById('searchForm2').onsubmit = handleFormSubmit;
+}
