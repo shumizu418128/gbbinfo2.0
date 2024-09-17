@@ -10,6 +10,9 @@ table th {
     border-bottom: solid 3px #F0632F;
     padding: 10px 0;
     background-color: rgba(255, 255, 255, 0.3);
+    font-weight: normal;
+    color: black;
+    font-size: 20px;
 }
 
 table td {

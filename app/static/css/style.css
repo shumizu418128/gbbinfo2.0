@@ -207,7 +207,7 @@ h2 {
     text-align: center;
     /* テキストを中央に配置 */
     border-radius: 20px;
-    /* 角丸を15pxに設定 */
+    /* 角丸を20pxに設定 */
     font-weight: normal;
     /* フォントの太さを指定 */
 }
@@ -217,6 +217,10 @@ h3 {
     /* テキストの色を指定 */
     font-size: 24px;
     /* フォントサイズを設定 */
+    background-color: rgba(255, 255, 255, 0.5);
+    /* 背景色を指定 */
+    border-radius: 20px;
+    /* 角丸を20pxに設定 */
     text-align: center;
     /* テキストを中央に配置 */
     margin: 0;
