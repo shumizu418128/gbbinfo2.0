@@ -49,8 +49,6 @@
     /* ボタンの変化を0.3秒かけて滑らかに */
     height: 100%;
     /* ボタンの高さを100%に設定 */
-    font-weight: bold;
-    /* 太文字に */
     font-family: Noto sans JP;
     /* フォントを指定 */
 }

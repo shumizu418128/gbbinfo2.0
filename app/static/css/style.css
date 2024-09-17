@@ -183,7 +183,7 @@ main {
 h1 {
     color: white;
     /* テキストの色を指定 */
-    font-size: 24px;
+    font-size: 28px;
     /* フォントサイズを設定 */
     background-color: #F0632F;
     /* 背景色を指定 */
@@ -191,12 +191,14 @@ h1 {
     /* 上下左右の余白を5pxに設定 */
     text-align: center;
     /* テキストを中央に配置 */
+    font-weight: normal;
+    /* フォントの太さを指定 */
 }
 
 h2 {
     color: white;
     /* テキストの色を指定 */
-    font-size: 20px;
+    font-size: 24px;
     /* フォントサイズを設定 */
     background-color: #F0632F;
     /* 背景色を指定 */
@@ -206,12 +208,14 @@ h2 {
     /* テキストを中央に配置 */
     border-radius: 20px;
     /* 角丸を15pxに設定 */
+    font-weight: normal;
+    /* フォントの太さを指定 */
 }
 
 h3 {
     color: black;
     /* テキストの色を指定 */
-    font-size: 20px;
+    font-size: 24px;
     /* フォントサイズを設定 */
     text-align: center;
     /* テキストを中央に配置 */
@@ -223,6 +227,8 @@ h3 {
     /* 上部の余白を10pxに設定 */
     margin-bottom: 10px;
     /* 下部の余白を10pxに設定 */
+    font-weight: normal;
+    /* フォントの太さを指定 */
 }
 
 p {
