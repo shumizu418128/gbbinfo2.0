@@ -7,6 +7,8 @@
     /* 要素を中央に配置 */
     gap: 4px;
     /* 要素間の間隔を4ピクセルに設定 */
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 .button-container a {
@@ -20,6 +22,8 @@
     /* テキストの下線を削除 */
     display: flex;
     /* フレックスボックスを使用して要素を横並びに配置 */
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 .button-container button {
@@ -47,6 +51,8 @@
     /* ボタンの高さを100%に設定 */
     font-weight: bold;
     /* 太文字に */
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 .button-container a:hover button {
@@ -56,6 +62,8 @@
     /* ホバー時の背景色を指定 */
     border-color: white;
     /* ホバー時の境界線の色を白に設定 */
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 .button-container a:active button {
@@ -65,6 +73,8 @@
     /* アクティブ時の背景色を白に設定 */
     border-color: rgb(0, 68, 204);
     /* アクティブ時の境界線の色を指定 */
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 @media (max-width: 768px) {
@@ -88,6 +98,8 @@
     /* 文字色にも透明度を50%に設定 */
     border-color: rgba(0, 68, 204, 0.5);
     /* 境界線の色を透明度50%に設定 */
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 .button-container a:hover button:disabled {
@@ -97,6 +109,8 @@
     /* ホバー時の背景色を透明度50%に指定 */
     border-color: rgba(255, 255, 255, 0.5);
     /* ホバー時の境界線の色を透明度50%の白に設定 */
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 .participants_filter {
@@ -116,6 +130,8 @@
     /* 境界線を削除 */
     border-radius: 10px;
     /* 角を丸く */
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 .participants_filter:hover {
@@ -123,6 +139,8 @@
     /* テキストの色を指定 */
     background-color: rgb(240, 99, 47);
     /* 背景色を指定 */
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 #disabled-button {
@@ -130,4 +148,6 @@
     margin-bottom: 5px;
     line-height: 1;
     display: block;
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }

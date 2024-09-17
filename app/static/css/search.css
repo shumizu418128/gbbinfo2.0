@@ -34,6 +34,8 @@
     overflow: hidden;
     border: 2px solid #f0632f;
     border-radius: 25px;
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 .search-form-1 input {
@@ -44,10 +46,14 @@
     box-sizing: border-box;
     font-size: 1em;
     outline: none;
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 .search-form-1 input::placeholder{
-    color: #222222;
+    color: #464646;
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 .search-form-1 button {

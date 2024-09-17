@@ -58,6 +58,8 @@
 .participants_form {
     margin: 0 auto;
     text-align: center;
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 .participants_select {
@@ -69,6 +71,8 @@
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 .participants_select:focus {
     outline: none;
@@ -77,8 +81,12 @@
     /* 背景色をオレンジに設定 */
     color: white;
     /* 文字色を白に設定 */
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
 
 .member-list {
     font-size: 12px;
+    font-family: Noto sans JP;
+    /* フォントを指定 */
 }
