@@ -25,7 +25,6 @@ https://gbbinfo-jpn.onrender.com/{year}/
     - None
     - category
     - seeds
-    - wildcard_rules
     - result_date
     - judges
 - stream: GBB{year}の当日配信URL

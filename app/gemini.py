@@ -113,10 +113,6 @@ def search(year: int, question: str):
     if response_dict["parameter"] == "None":
         response_dict["parameter"] = None
 
-    # パラメータのwildcard_rulesとresult_dateは同義
-    if response_dict["parameter"] == "result_date":
-        response_dict["parameter"] = "wildcard_rules"
-
     # topのNoneは問い合わせに変更
     if "top" in response_dict["url"] and response_dict["parameter"] is None:
         response_dict["parameter"] = "contact"
