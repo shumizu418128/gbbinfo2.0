@@ -14,13 +14,13 @@ https://gbbinfo-jpn.onrender.com/{year}/
 - japan: GBB{year}の日本代表出場者
     クエリパラメータ
     - None
-- participants: GBB{year}の出場者・Wildcardの結果・出場者世界地図
+- participants: GBB{year}の出場者・Wildcardの結果順位・出場者世界地図
     クエリパラメータ
     - None
 - result: GBB{year}の大会結果
     クエリパラメータ
     - None
-- rule: GBB{year}の開催部門一覧、シード権獲得条件、ルール、Wildcardの結果発表日、審査員一覧
+- rule: GBB{year}の開催部門一覧、シード権獲得条件、ルール、Wildcardの結果発表日程、審査員一覧
     クエリパラメータ
     - None
     - category
