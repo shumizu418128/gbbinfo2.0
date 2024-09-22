@@ -67,5 +67,5 @@ https://gbbinfo-jpn.onrender.com/{year}/
 
 もしも適切なWebページが無いと判断した場合、ファイル名はtopを、クエリパラメータはNoneを選択してください。
 
-# 回答例1
+# 回答例
 {url_example}
