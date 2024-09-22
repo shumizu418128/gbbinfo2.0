@@ -2,27 +2,71 @@
 以下の文は、Grand Beatbox Battle {year} (略称: GBB{year})に興味があるユーザーから来た質問です。
 「{question}」
 
-質問に対してもっとも適切なWebページを選択してください。
+質問に対してもっとも適切なWebページURLとクエリパラメータを選択してください。
 webサイトのURLは以下の通りです。ディレクトリは必ず{year}になります。
 https://gbbinfo-jpn.onrender.com/{year}/
 
 # 回答のルール
 このURLの後ろに、以下のファイル名を必ず含めてください。
-japan - GBB{year}の日本代表出場者
-participants - GBB{year}の出場者・Wildcardの結果・出場者世界地図
-result - GBB{year}の大会結果
-rule - GBB{year}のルール、開催部門一覧、シード権獲得条件、Wildcardの結果発表日、審査員一覧
-stream - GBB{year}の当日配信URL
-ticket - GBB{year}のチケット、会場、7toSmokeのチケット、会場
-time_schedule - GBB{year}のタイムスケジュール、7toSmokeのタイムスケジュール
-top - GBB{year}開催日、会場・チケットぴあへの問い合わせ電話番号
-wildcards - GBB{year}のWildcard動画一覧
-result_stream - GBB{year}のWildcardの結果発表配信について
-how_to_plan - GBBを現地観戦するうえで気を付けるべきこと
-about - このwebサイトについて
-7tosmoke - 7tosmokeとは何かを解説
+また、別途適切なクエリパラメータを選択し、回答に含めてください。
+以下に書かれていないものを作り出す行為は禁止。
 
-もしも適切なWebページが無いと判断した場合、topを選択してください。
+- japan: GBB{year}の日本代表出場者
+    クエリパラメータ
+    - None
+- participants: GBB{year}の出場者・Wildcardの結果・出場者世界地図
+    クエリパラメータ
+    - None
+- result: GBB{year}の大会結果
+    クエリパラメータ
+    - None
+- rule: GBB{year}の開催部門一覧、シード権獲得条件、ルール、Wildcardの結果発表日、審査員一覧
+    クエリパラメータ
+    - None
+    - category
+    - seeds
+    - wildcard_rules
+    - result_date
+    - judges
+- stream: GBB{year}の当日配信URL
+    クエリパラメータ
+    - None
+- ticket: GBB{year}のチケット、会場
+    クエリパラメータ
+    - None
+- time_schedule: GBB{year}のタイムスケジュール
+    クエリパラメータ
+    - None
+    - 7tosmoke
+- top: GBB{year}開催日
+    クエリパラメータ
+    - None
+    - date
+    - contact
+- wildcards: GBB{year}のWildcard動画一覧
+    クエリパラメータ
+    - None
+- result_stream: GBB{year}のWildcardの結果発表配信について
+    クエリパラメータ
+    - None
+- how_to_plan: GBBを現地観戦するうえで気を付けるべきこと、交通手段、ホテル、当日の行動、持ち物
+    クエリパラメータ
+    - None
+    - transportation
+    - hotel
+    - activities
+    - items
+- about: このwebサイトについて
+    クエリパラメータ
+    - None
+- 7tosmoke: 7tosmokeとは何か、事前予選・当日予選・本戦ルール、7tosmoke最新情報
+    クエリパラメータ
+    - None
+    - qualifying_rules
+    - main_event_rules
+    - latest_info
 
-# 回答例
+もしも適切なWebページが無いと判断した場合、ファイル名はtopを、クエリパラメータはNoneを選択してください。
+
+# 回答例1
 {url_example}

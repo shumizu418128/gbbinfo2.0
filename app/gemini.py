@@ -1,9 +1,11 @@
 import json
-import time
 import os
+import time
+from threading import Thread
 
 import google.generativeai as genai
 
+from . import spreadsheet
 
 api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
@@ -49,7 +51,8 @@ def search(year: int, question: str):
     chat = model.start_chat()
 
     # 回答例 geminiに教える
-    url_example = f"{{\'url\': 'https://gbbinfo-jpn.onrender.com/{year}/top'}}"
+    url_example = f"{{\'url\': 'https://gbbinfo-jpn.onrender.com/{
+        year}/top', 'parameter': 'contact'}}"
 
     # プロンプトを読み込む
     file_path = os.getcwd() + '/app/gbb_pages.txt'
@@ -57,7 +60,8 @@ def search(year: int, question: str):
         prompt = f.read()
 
     # プロンプトを埋め込む
-    prompt = prompt.format(year=year, question=question, url_example=url_example)
+    prompt = prompt.format(year=year, question=question,
+                           url_example=url_example)
     print(question, flush=True)
 
     while True:
@@ -72,7 +76,8 @@ def search(year: int, question: str):
 
     # レスポンスをJSONに変換
     try:
-        response_dict = json.loads(response.text.replace('https://gbbinfo-jpn.onrender.com', ''))
+        response_dict = json.loads(response.text.replace(
+            'https://gbbinfo-jpn.onrender.com', ''))
     except Exception:
         print("Error: response is not JSON", flush=True)
         response_dict = {'url': f'/{year}/top'}
@@ -89,4 +94,42 @@ def search(year: int, question: str):
     if "%" in response_dict["url"]:
         response_dict["url"] = response_dict["url"].split("%")[0]
 
-    return response_dict
+    ########################################################
+
+    # パラメータの例外処理
+    # parameterのNone処理
+    if response_dict["parameter"] == "None":
+        response_dict["parameter"] = None
+
+    # パラメータのwildcard_rulesとresult_dateは同義
+    if response_dict["parameter"] == "result_date":
+        response_dict["parameter"] = "wildcard_rules"
+
+    # topのNoneは問い合わせに変更
+    if "top" in response_dict["url"] and response_dict["parameter"] is None:
+        response_dict["parameter"] = "contact"
+
+    ########################################################
+
+    # threadスタート
+    if question != "テスト":
+
+        # parameterがある場合はURLを変更
+        if bool(response_dict["parameter"]):
+            Thread(
+                target=spreadsheet.record_question,
+                args=(
+                    year,
+                    question,
+                    f"{response_dict["url"]}?scroll={
+                        response_dict["parameter"]}"
+                )
+            ).start()
+            return {"url": f"{response_dict["url"]}?scroll={response_dict["parameter"]}"}
+
+        else:
+            Thread(
+                target=spreadsheet.record_question,
+                args=(year, question, response_dict["url"])
+            ).start()
+            return {"url": response_dict["url"]}

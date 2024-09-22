@@ -33,3 +33,21 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     }, 700); // 700ms後にスクロール
   });
 });
+
+function parameterScroll() {
+  var url = new URL(window.location.href);
+  var target = url.searchParams.get("scroll");
+  if (target) {
+    var element = document.querySelector(`[name="${target}"]`);
+    if (element) {
+      smoothScroll(`[name="${target}"]`, 500);
+      // 少し遅延させてから上へスクロールする
+      setTimeout(function () {
+        window.scrollBy(0, -120); // 120px上にスクロール
+      }, 700); // 700ms後にスクロール
+    }
+  }
+}
+
+// ページ読み込み時に実行
+parameterScroll();
