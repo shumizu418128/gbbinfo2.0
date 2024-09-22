@@ -189,6 +189,8 @@ h1 {
     /* 背景色を指定 */
     padding: 5px;
     /* 上下左右の余白を5pxに設定 */
+    margin-top: 0;
+    /* 上部の余白を0に設定 */
     text-align: center;
     /* テキストを中央に配置 */
     font-weight: normal;
@@ -223,14 +225,16 @@ h3 {
     /* 角丸を20pxに設定 */
     text-align: center;
     /* テキストを中央に配置 */
-    margin: 0;
-    /* 外側の空間を0に設定 */
+    margin-top: 15px;
+    /* 上部の余白を15pxに設定 */
+    margin-bottom: 5px;
+    /* 下部の空間を5pxに設定 */
+    margin-left: 15px;
+    /* 左側の余白を15pxに設定 */
+    margin-right: 15px;
+    /* 右側の余白を15pxに設定 */
     padding: 0;
     /* 内側の空間を0に設定 */
-    margin-top: 10px;
-    /* 上部の余白を10pxに設定 */
-    margin-bottom: 10px;
-    /* 下部の余白を10pxに設定 */
     font-weight: normal;
     /* フォントの太さを指定 */
 }
