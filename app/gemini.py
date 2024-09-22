@@ -111,25 +111,22 @@ def search(year: int, question: str):
 
     ########################################################
 
-    # threadスタート
+    # レスポンスURLの作成
+    response_url = response_dict["url"]
+
+    # パラメータがある場合は追加
+    if bool(response_dict["parameter"]):
+        response_url += f"?scroll={response_dict["parameter"]}"
+
+    # スプシに記録
     if question != "テスト":
+        Thread(
+            target=spreadsheet.record_question,
+            args=(
+                year,
+                question,
+                response_url
+            )
+        ).start()
 
-        # parameterがある場合はURLを変更
-        if bool(response_dict["parameter"]):
-            Thread(
-                target=spreadsheet.record_question,
-                args=(
-                    year,
-                    question,
-                    f"{response_dict["url"]}?scroll={
-                        response_dict["parameter"]}"
-                )
-            ).start()
-            return {"url": f"{response_dict["url"]}?scroll={response_dict["parameter"]}"}
-
-        else:
-            Thread(
-                target=spreadsheet.record_question,
-                args=(year, question, response_dict["url"])
-            ).start()
-            return {"url": response_dict["url"]}
+    return {"url": response_url}
