@@ -167,10 +167,6 @@
         <a href="/{{year}}/rule"><button type="button">{{year}}ルール</button></a>
         <a href="/{{year}}/participants"><button type="button">{{year}}出場者</button></a>
       </div>
-      <p style="text-align: center">GBBに関する質問ができる「GBBINFO-chat」は、画面右下のチャットボタンからも利用できます。</p>
-      <div class="button-container">
-        <a href="https://cdn.botpress.cloud/webchat/v2/shareable.html?botId=f085f534-1c04-4fe7-b24c-45e27c6a6ac2" target="_blank" rel="noopener noreferrer"><button type="button">GBBINFO-chat</button></a>
-      </div>
       <ul>
         {% for y in available_years|reverse %}
           <li><a href="/{{ y }}/top">GBB {{ y }}</a></li>
@@ -199,10 +195,5 @@
     <script src="/static/scripts/install.js"></script>
     <script src="/static/scripts/search.js"></script>
 
-    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-    <script
-      src="https://mediafiles.botpress.cloud/f085f534-1c04-4fe7-b24c-45e27c6a6ac2/webchat/config.js"
-      defer
-    ></script>
   </body>
 </html>
