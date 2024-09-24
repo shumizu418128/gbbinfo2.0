@@ -30,10 +30,10 @@ https://gbbinfo-jpn.onrender.com/{year}/
 - stream: GBB{year}の当日配信URL
     クエリパラメータ
     - None
-- ticket: GBB{year}のチケット、会場
+- ticket: GBB{year}のチケット、会場、7toSmokeのチケット、会場
     クエリパラメータ
     - None
-- time_schedule: GBB{year}のタイムスケジュール
+- time_schedule: GBB{year}のタイムスケジュール、7toSmokeのタイムスケジュール
     クエリパラメータ
     - None
     - 7tosmoke
