@@ -96,12 +96,12 @@
         <script src="/static/scripts/popup.js"></script>
         <div class="overlay" onclick="closePopup()"></div>
         <div class="popup">
-          <p style="text-align: center; font-size: 36px; font-weight: bold;">☆<br>GBB{{ year }}は<br>終了しました<br>☆</p>
-          <p style="text-align: center;">ここは、すでに終了したGBB{{ year }}のページです</p>
-            <div class="button-container">
+          <p style="font-size: 36px; font-weight: bold;">☆<br>GBB{{ year }}は<br>終了しました<br>☆</p>
+          <p>ここは、すでに終了したGBB{{ year }}のページです</p>
+            <div class="button-container" style="margin-bottom: 8px">
               <a href="/"><button type="button">GBB最新情報はこちら</button></a>
-            </div><br>
-            <button type="button" onclick="closePopup()">閉じる</button>
+            </div>
+          <button type="button" onclick="closePopup()">閉じる</button>
         </div>
 
         <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}は<br>終了しました</p>
@@ -113,6 +113,19 @@
       {% endif %}
 
       {% block content %}{% endblock %}
+
+      {% if is_latest_year is false %}
+        <hr />
+        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}は<br>終了しました</p>
+        <p style="text-align: center;">ここは、すでに終了したGBB{{ year }}のページです</p>
+        <div class="button-container">
+          <a href="/"><button type="button">GBB最新情報はこちら</button></a>
+        </div>
+      {% endif %}
+
+      <hr />
+      <p style="text-align: center">GBB 2024まであと...</p>
+      <p id="countdown" style="text-align: center; font-size: 24px"></p>
 
       {% if is_latest_year is false %}
         <hr>
@@ -134,19 +147,10 @@
           <input type="text" name="question" id="question2" placeholder="例：今年の出場者は？" required>
           <button type="submit" aria-label="検索"></button>
         </form>
+        <br>
       {% endif %}
 
       <div id="loading" class="loading"></div>
-
-      <br />
-      {% if is_latest_year is false %}
-        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}は<br>終了しました</p>
-        <p style="text-align: center;">ここは、すでに終了したGBB{{ year }}のページです</p>
-        <div class="button-container">
-          <a href="/"><button type="button">GBB最新情報はこちら</button></a>
-        </div>
-        <br />
-      {% endif %}
 
       <div class="button-container">
         <button id="installButton" class="button_top" style="visibility: hidden;">ホーム画面に追加</button>
@@ -154,11 +158,6 @@
       <p>
         GBBINFO-JPNはPWAに対応しています。<br />ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。
       </p>
-
-      <hr />
-
-      <p style="text-align: center">GBB 2024まであと...</p>
-      <p id="countdown" style="text-align: center; font-size: 24px"></p>
 
       <div class="button-container">
         <a href="/{{year}}/top"><button type="button" style="width: 100%;">トップへ戻る<br>これだけガイド</button></a>

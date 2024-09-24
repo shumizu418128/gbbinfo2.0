@@ -11,19 +11,28 @@
 <script src="/static/scripts/popup.js"></script>
 <script src="/static/scripts/last_edit.js"></script>
 <div class="overlay" onclick="closePopup()"></div>
+
 <div class="popup">
-<p style="text-align: center; font-size: 36px; font-weight: bold;">×××<br>情報なし<br>×××</p>
-<p id="last-deploy-date" style="text-align: center;"></p>
-<p style="text-align: center;">お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。<br>公式発表をお待ちください。</p>
-  <div class="button-container">
-    <button type="button" onclick="closePopup()">閉じる</button>
-  </div>
+  <p style="font-size: 36px; font-weight: bold;">×××<br>情報なし<br>×××</p>
+  <p id="last-deploy-date"></p>
+  <p>お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。<br>公式発表をお待ちください。</p>
+    <div class="button-container" style="margin-bottom: 8px">
+      <a href="/{{ year }}/top?scroll=contact"><button>問い合わせ</button></a>
+    </div>
+  <button type="button" onclick="closePopup()">閉じる</button>
 </div>
-<p id="last-deploy-date2" style="text-align: center;"></p>
+
+<p id="last-deploy-date2"></p>
 <!-- TODO: 更新したらこの表示を消す -->
 
 <p>あべまじゃね？しらんけど。</p>
 <p>～発表次第更新～</p>
+
+<!-- TODO: 更新したらこの表示を消す -->
+<div class="button-container">
+  <a href="/{{ year }}/top?scroll=contact"><button>お問い合わせ</button></a>
+</div>
+<!-- TODO: 更新したらこの表示を消す -->
 
 <div class="button-container">
   <a href=""><button disabled><span id="disabled-button">GBB23では<br>本番7日前発表<br></span>Day1 11/1</button></a>
