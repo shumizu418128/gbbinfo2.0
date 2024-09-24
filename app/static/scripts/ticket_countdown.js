@@ -1,7 +1,7 @@
 // カウントダウンの終了日時
-const countDownDate = new Date("Nov 1, 2024 00:00:00 GMT+09:00").getTime();
+const countDownDate = new Date("Oct 13, 2024 23:59:00 GMT+09:00").getTime();
 
-function updateCountdown() {
+function ticketDeadCountdown() {
   // 現在の日時をミリ秒で取得
   const nowMillis = new Date().getTime();
 
@@ -21,17 +21,17 @@ function updateCountdown() {
   }
 
   // HTMLに表示
-  document.getElementById("countdown").innerHTML = days + "日 " + hours + "時間 " +
+  document.getElementById("ticketDeadCountdown").innerHTML = days + "日 " + hours + "時間 " +
     minutes + "分 " + seconds + "秒 " + milliseconds;
 
   // カウントダウンが終了したらテキストを表示
   if (distance < 0) {
-    document.getElementById("countdown").innerHTML = "0時間 0分 0秒";
+    document.getElementById("ticketDeadCountdown").innerHTML = "0秒 チケット販売終了";
   } else {
     // 次のフレームで再度呼び出し
-    requestAnimationFrame(updateCountdown);
+    requestAnimationFrame(ticketDeadCountdown);
   }
 }
 
 // 初回呼び出し
-requestAnimationFrame(updateCountdown);
+requestAnimationFrame(ticketDeadCountdown);
