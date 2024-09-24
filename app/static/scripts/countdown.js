@@ -33,17 +33,16 @@ function updateCountdown() {
 
   // HTMLに表示
   document.getElementById("countdown").innerHTML =
+    distance1 < 0 ? "0時間 0分 0秒" :
     days1 + "日 " + hours1 + "時間 " +
     minutes1 + "分 " + seconds1 + "秒 " + milliseconds1;
 
-  document.getElementById("ticketDeadCountdown").innerHTML =
-    distance2 < 0 ? "チケット販売終了！" :
-    days2 + "日 " + hours2 + "時間 " +
-    minutes2 + "分 " + seconds2 + "秒 " + milliseconds2;
-
-  // カウントダウンが終了したらテキストを表示
-  if (distance1 < 0) {
-    document.getElementById("countdown").innerHTML = "0時間 0分 0秒";
+  const ticketCountdownElement = document.getElementById("ticketDeadCountdown");
+  if (ticketCountdownElement) {
+    ticketCountdownElement.innerHTML =
+      distance2 < 0 ? "チケット販売終了！" :
+      days2 + "日 " + hours2 + "時間 " +
+      minutes2 + "分 " + seconds2 + "秒 " + milliseconds2;
   }
 
   // 次のフレームで再度呼び出し
