@@ -9,6 +9,7 @@
     /* 要素間の間隔を4ピクセルに設定 */
     font-family: Noto sans JP;
     /* フォントを指定 */
+    margin-top: 4px;
 }
 
 .button-container a {
@@ -51,6 +52,8 @@
     /* ボタンの高さを100%に設定 */
     font-family: Noto sans JP;
     /* フォントを指定 */
+    font-weight: bold;
+    /* フォントの太さを設定 */
 }
 
 .button-container a:hover button {

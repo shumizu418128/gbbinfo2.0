@@ -1,26 +1,39 @@
 table {
     margin: 0 auto;
+    /* テーブルを中央に配置 */
     width: 100%;
+    /* 幅を100%に設定 */
     border-spacing: 0;
+    /* セルの間隔を0に設定 */
     background-color: rgba(255, 255, 255, 0.3);
+    /* 背景色を指定 */
     color: rgb(34, 34, 34);
+    /* テキストの色を指定 */
 }
 
 table th {
     border-bottom: solid 3px #F0632F;
+    /* ヘッダーの下部に境界線を設定 */
     padding: 10px 0;
+    /* 上下のパディングを10pxに設定 */
     background-color: rgba(255, 255, 255, 0.3);
-    font-weight: normal;
+    /* ヘッダーの背景色を指定 */
     color: black;
-    font-size: 20px;
+    /* テキストの色を黒に設定 */
+    font-weight: bold;
+    /* フォントの太さを太字に設定 */
 }
 
 table td {
-    border-bottom: solid 2px rgba(255, 255, 255, 0.5);
+    border-bottom: solid 1px rgba(255, 255, 255, 0.5);
+    /* セルの下部に境界線を設定 */
     text-align: center;
+    /* テキストを中央に配置 */
     padding: 10px 0;
+    /* 上下のパディングを10pxに設定 */
 }
 
 table tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.3)
+    background-color: rgba(255, 255, 255, 0.3);
+    /* 偶数行の背景色を指定 */
 }

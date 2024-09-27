@@ -11,6 +11,8 @@ h2,
 h3 {
     font-family: 'Noto sans JP';
     /* フォントファミリーを指定 */
+    font-weight: 450;
+    /* フォントの太さを指定 */
 }
 
 body {
@@ -193,7 +195,7 @@ h1 {
     /* 上部の余白を0に設定 */
     text-align: center;
     /* テキストを中央に配置 */
-    font-weight: normal;
+    font-weight: bold;
     /* フォントの太さを指定 */
 }
 
@@ -210,8 +212,12 @@ h2 {
     /* テキストを中央に配置 */
     border-radius: 20px;
     /* 角丸を20pxに設定 */
-    font-weight: normal;
+    font-weight: bold;
     /* フォントの太さを指定 */
+    margin-top: 25px;
+    /* 上部の余白を設定 */
+    margin-bottom: 5px;
+    /* 下部の空間を設定 */
 }
 
 h3 {
@@ -235,7 +241,7 @@ h3 {
     /* 右側の余白を15pxに設定 */
     padding: 0;
     /* 内側の空間を0に設定 */
-    font-weight: normal;
+    font-weight: 500;
     /* フォントの太さを指定 */
 }
 
