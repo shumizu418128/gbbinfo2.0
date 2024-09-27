@@ -4,8 +4,8 @@
     top: 50%; /* 縦中央に配置 */
     left: 50%; /* 横中央に配置 */
     transform: translate(-50%, -50%); /* 中央に配置するための変形 */
-    background-color: rgba(255, 255, 255, 0.5); /* 背景色を半透明の白に設定 */
-    padding: 20px; /* 内側の余白を設定 */
+    background-color: rgba(255, 255, 255, 0.7); /* 背景色を半透明の白に設定 */
+    padding: 60px; /* 内側の余白を設定 */
     z-index: 10; /* 他の要素の上に表示 */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 影を追加 */
     text-align: center; /* テキストを中央に配置 */
@@ -15,8 +15,8 @@
         border: 5px solid rgb(240, 99, 47); /* 上部の色 */
         border-top: 5px solid rgb(255, 255, 255); /* 外側の色 */
         border-radius: 50%; /* 丸くする */
-        width: 40px; /* 幅を設定 */
-        height: 40px; /* 高さを設定 */
+        width: 80px; /* 幅を設定 */
+        height: 80px; /* 高さを設定 */
         animation: spin 1s linear infinite; /* 回転アニメーション */
         display: inline-block; /* インラインブロック要素として表示 */
     }

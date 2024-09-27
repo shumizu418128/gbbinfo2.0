@@ -1,9 +1,11 @@
 import json
-import time
 import os
+import time
+from threading import Thread
 
 import google.generativeai as genai
 
+from . import spreadsheet
 
 api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
@@ -43,27 +45,35 @@ model = genai.GenerativeModel(
     generation_config={"response_mime_type": "application/json"}
 )
 
-
-def search(year: int, question: str):
-    # チャットを開始
-    chat = model.start_chat()
-
-    # 回答例 geminiに教える
-    url_example = f"{{\'url\': 'https://gbbinfo-jpn.onrender.com/{year}/top'}}"
-
-    # プロンプトを読み込む
+# プロンプトを読み込む
+if 'prompt' not in locals():
     file_path = os.getcwd() + '/app/gbb_pages.txt'
     with open(file_path, 'r', encoding="utf-8") as f:
         prompt = f.read()
 
+
+def search(year: int, question: str):
+    global prompt
+
+    # チャットを開始
+    chat = model.start_chat()
+
+    # 回答例 geminiに教える
+    url_example = f"{{\'url\': 'https://gbbinfo-jpn.onrender.com/{
+        year}/top', 'parameter': 'contact'}}"
+
     # プロンプトを埋め込む
-    prompt = prompt.format(year=year, question=question, url_example=url_example)
+    prompt_formatted = prompt.format(
+        year=year,
+        question=question,
+        url_example=url_example
+    )
     print(question, flush=True)
 
     while True:
         try:
             # メッセージを送信
-            response = chat.send_message(prompt)
+            response = chat.send_message(prompt_formatted)
         except Exception as e:
             print(e)
             time.sleep(1)
@@ -72,10 +82,17 @@ def search(year: int, question: str):
 
     # レスポンスをJSONに変換
     try:
-        response_dict = json.loads(response.text.replace('https://gbbinfo-jpn.onrender.com', ''))
-    except Exception:
+        response_dict = json.loads(
+            response.text.replace(
+                'https://gbbinfo-jpn.onrender.com', ''
+            )
+        )
+    except json.JSONDecodeError:
         print("Error: response is not JSON", flush=True)
-        response_dict = {'url': f'/{year}/top'}
+        response_dict = {
+            'url': f'/{year}/top',
+            'parameter': None
+        }  # ここでparameterも初期化
 
     # othersディレクトリのリンクがある場合は変換
     others_link = os.listdir(os.getcwd() + '/app/templates/others')
@@ -89,4 +106,35 @@ def search(year: int, question: str):
     if "%" in response_dict["url"]:
         response_dict["url"] = response_dict["url"].split("%")[0]
 
-    return response_dict
+    ########################################################
+
+    # パラメータの例外処理
+    # parameterのNone処理
+    if response_dict["parameter"] == "None":
+        response_dict["parameter"] = None
+
+    # topのNoneは問い合わせに変更
+    if "top" in response_dict["url"] and response_dict["parameter"] is None:
+        response_dict["parameter"] = "contact"
+
+    ########################################################
+
+    # レスポンスURLの作成
+    response_url = response_dict["url"]
+
+    # パラメータがある場合は追加
+    if bool(response_dict["parameter"]):
+        response_url += f"?scroll={response_dict["parameter"]}"
+
+    # スプシに記録
+    if question != "テスト":
+        Thread(
+            target=spreadsheet.record_question,
+            args=(
+                year,
+                question,
+                response_url
+            )
+        ).start()
+
+    return {"url": response_url}

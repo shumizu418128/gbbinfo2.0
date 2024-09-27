@@ -1,6 +1,5 @@
 import os
 from datetime import datetime
-from threading import Thread
 
 import jinja2
 import pandas as pd
@@ -10,7 +9,7 @@ from flask import (Flask, jsonify, redirect, render_template, request,
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
-from . import gemini, key, spreadsheet
+from . import gemini, key
 from .participants import create_world_map, get_participants_list, get_results
 
 app = Flask(__name__)
@@ -37,13 +36,6 @@ else:
     )
 
 
-# カスタムキャッシュキーの生成
-def make_cache_key(*args):
-    path = request.path
-    args = str(hash(frozenset(request.args.items())))
-    return f'{path}?{args}'
-
-
 # 最新年度かを判定
 # 今年 or 最新年度のみTrue
 def is_latest_year(year):
@@ -56,7 +48,7 @@ def is_latest_year(year):
 # /(年度) にアクセスしたときの処理
 ####################################################################
 @app.route("/")
-@cache.cached()
+@cache.cached(query_string=True)
 def route_top():
     dt_now = datetime.now()
     now = dt_now.year
@@ -72,7 +64,7 @@ def route_top():
 # 世界地図の表示
 ####################################################################
 @app.route('/<int:year>/world_map')
-@cache.cached()
+@cache.cached(query_string=True)
 def world_map(year: int = None):
 
     # 年度が指定されていない場合は最新年度を表示
@@ -90,7 +82,7 @@ def world_map(year: int = None):
 ####################################################################
 @sitemapper.include(changefreq="monthly", priority=1.0, url_variables={"year": available_years})
 @app.route('/<int:year>/participants', methods=["GET"])
-@cache.cached(key_prefix=make_cache_key)
+@cache.cached(query_string=True)
 def participants(year: int = None):
 
     # 年度が指定されていない場合は最新年度を表示
@@ -147,7 +139,7 @@ def participants(year: int = None):
 ####################################################################
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/japan")
-@cache.cached()
+@cache.cached(query_string=True)
 def japan(year: int = None):
 
     # 参加者リストを取得
@@ -174,14 +166,14 @@ def japan(year: int = None):
 # /year/resultはリダイレクト これによりresultページ内ですべての年度の結果を表示可能
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/result")
-@cache.cached(key_prefix=make_cache_key)
+@cache.cached(query_string=True)
 def result_redirect(year: int = None):
     return redirect(url_for("result", year=year, **request.args))
 
 
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/result")
-@cache.cached(key_prefix=make_cache_key)
+@cache.cached(query_string=True)
 def result():
     year = request.args.get("year")
 
@@ -211,7 +203,7 @@ def result():
 ####################################################################
 @sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/rule")
-@cache.cached()
+@cache.cached(query_string=True)
 def rule(year: int = None):
 
     # 年度が指定されていない場合は最新年度を表示
@@ -277,7 +269,7 @@ combinations_content = [content for _, content in combinations]
 
 @sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": combinations_year, "content": combinations_content})
 @app.route("/<int:year>/<string:content>")
-@cache.cached()
+@cache.cached(query_string=True)
 def content(year: int = None, content: str = None):
 
     # 年度が指定されていない場合は最新年度を表示
@@ -308,7 +300,7 @@ content_others = [content.replace(".html", "") for content in content_others]
 
 @sitemapper.include(changefreq="never", priority=0.7, url_variables={"content": content_others})
 @app.route("/others/<string:content>")
-@cache.cached()
+@cache.cached(query_string=True)
 def others(content: str = None):
 
     year = available_years[-1]
@@ -337,7 +329,7 @@ def others(content: str = None):
 ####################################################################
 
 @app.route("/last-commit")
-@cache.cached()
+@cache.cached(query_string=True)
 def get_last_commit():
     headers = {
         'Authorization': f'token {github_token}'
@@ -369,17 +361,6 @@ def search(year: int = available_years[-1]):
 
     # geminiで検索
     response_dict = gemini.search(year=year, question=question)
-
-    # threadスタート
-    if question != "テスト":
-        Thread(
-            target=spreadsheet.record_question,
-            args=(
-                year,
-                question,
-                response_dict["url"]
-            )
-        ).start()
 
     return jsonify(response_dict)
 

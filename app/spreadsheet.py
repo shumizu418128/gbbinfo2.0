@@ -44,13 +44,21 @@ def get_client():
 
 # Googleスプレッドシートに記録
 def record_question(year: int, question: str, answer: str):
-    year_str = str(year)
-    dt_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    client = get_client()
+    # 環境変数でローカル環境かどうかを判定
+    github_token = os.getenv("GITHUB_TOKEN")
 
-    # スプレッドシートを開く
-    sheet = client.open("gbbinfo-jpn").sheet1
+    if github_token is not None:
+        year_str = str(year)
+        dt_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    # 質問と年を記録
-    sheet.insert_row([dt_now, year_str, question, answer], 2)
+        client = get_client()
+
+        # スプレッドシートを開く
+        sheet = client.open("gbbinfo-jpn").sheet1
+
+        # 質問と年を記録
+        sheet.insert_row([dt_now, year_str, question, answer], 2)
+
+    else:
+        print(year, question, answer, flush=True)

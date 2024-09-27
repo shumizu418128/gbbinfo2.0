@@ -9,6 +9,7 @@
     padding: 20px;
     z-index: 1000;
     width: 70%; /* 横幅を広げる */
+    text-align: center;
 }
 
 .overlay {
