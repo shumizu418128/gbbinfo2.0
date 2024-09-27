@@ -8,21 +8,12 @@
 <h1>GBB {{ year }} タイムスケジュール</h1>
 
 <!-- TODO: 更新したらこの表示を消す -->
-<script src="/static/scripts/popup.js"></script>
 <script src="/static/scripts/last_edit.js"></script>
-<div class="overlay" onclick="closePopup()"></div>
-
-<div class="popup">
-  <p style="font-size: 36px; font-weight: bold;">×××<br>情報なし<br>×××</p>
+<div style="text-align: center;">
   <p id="last-deploy-date"></p>
-  <p>お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。<br>公式発表をお待ちください。</p>
-    <div class="button-container" style="margin-bottom: 8px">
-      <a href="/{{ year }}/top?scroll=contact"><button>問い合わせ</button></a>
-    </div>
-  <button type="button" onclick="closePopup()">閉じる</button>
+  <p>現在7toSmokeのみ</p>
 </div>
-
-<p id="last-deploy-date2"></p>
+<br>
 <!-- TODO: 更新したらこの表示を消す -->
 
 <p>時刻はあくまでも予定です。</p>
@@ -130,9 +121,8 @@
     </tr>
   </tbody>
 </table>
-<br>
 <p>※7toSmokeは、大会形式上、終了時刻を決められない(バトルを何十回もやる可能性がある)ため、終了時刻の発表は無いと思われます。</p>
-<br>
+
 <div class="button-container">
   <a href="/{{ year - 1 }}/time_schedule"><button type="button">参考<br>昨年度タイムスケジュール</button></a>
 </div>

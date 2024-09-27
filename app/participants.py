@@ -193,10 +193,8 @@ def create_world_map(year: int):
         location = (lat, lon)
 
         popup_content = '<div style="font-family: Noto sans JP; font-size: 14px;">'
-        popup_content += f'<h3 style="margin: 0; color: #F0632F;">{
-            country_name}</h3>'
-        popup_content += f'<h4 style="margin: 0; color: #F0632F;">{
-            country_name_ja}</h4>'
+        popup_content += f'<h3 style="margin: 0; color: #F0632F;">{country_name}</h3>'
+        popup_content += f'<h4 style="margin: 0; color: #F0632F;">{country_name_ja}</h4>'
 
         for name, category, members in zip(names, categories, members):
             if members != "":

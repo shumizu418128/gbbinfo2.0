@@ -59,8 +59,7 @@ def search(year: int, question: str):
     chat = model.start_chat()
 
     # 回答例 geminiに教える
-    url_example = f"{{\'url\': 'https://gbbinfo-jpn.onrender.com/{
-        year}/top', 'parameter': 'contact'}}"
+    url_example = f"{{\'url\': 'https://gbbinfo-jpn.onrender.com/{year}/top', 'parameter': 'contact'}}"
 
     # プロンプトを埋め込む
     prompt_formatted = prompt.format(
@@ -124,7 +123,8 @@ def search(year: int, question: str):
 
     # パラメータがある場合は追加
     if bool(response_dict["parameter"]):
-        response_url += f"?scroll={response_dict["parameter"]}"
+        parameter = response_dict["parameter"]
+        response_url += f"?scroll={parameter}"
 
     # スプシに記録
     if question != "テスト":
