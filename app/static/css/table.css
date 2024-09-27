@@ -1,6 +1,7 @@
 table {
-    margin: 0 auto;
-    /* テーブルを中央に配置 */
+    margin-top: 10px;
+    /* 上部の余白を設定 */
+    margin-bottom: 10px;
     width: 100%;
     /* 幅を100%に設定 */
     border-spacing: 0;
