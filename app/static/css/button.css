@@ -56,6 +56,30 @@
     /* フォントの太さを設定 */
 }
 
+.button-container a:nth-child(even) button {
+    background-color: white; /* 偶数番目のボタンの背景色を薄いオレンジ色に変更 */
+    color: #1b94e0; /* 偶数番目のボタンのテキスト色を変更 */
+    border-color: #1b94e0; /* 偶数番目のボタンの境界線の色を変更 */
+}
+
+.button-container a:nth-child(odd) button:disabled {
+    background-color: rgba(255, 255, 255, 0.5);
+    /* 無効時の背景色に透明度を50%に設定 */
+    color: rgba(0, 68, 204, 0.5);
+    /* 無効時の文字色に透明度を50%に設定 */
+    border-color: rgba(0, 68, 204, 0.5);
+    /* 無効時の境界線の色を透明度50%に設定 */
+}
+
+.button-container a:nth-child(even) button:disabled {
+    background-color: rgba(255, 255, 255, 0.5);
+    /* 無効時の背景色に透明度を50%に設定 */
+    color: rgba(27, 148, 224, 0.5);
+    /* 無効時の文字色に透明度を50%に設定 */
+    border-color: rgba(27, 148, 224, 0.5);
+    /* 無効時の境界線の色を透明度50%に設定 */
+}
+
 .button-container a:hover button {
     color: white;
     /* ホバー時のテキスト色を白に設定 */
@@ -63,17 +87,6 @@
     /* ホバー時の背景色を指定 */
     border-color: white;
     /* ホバー時の境界線の色を白に設定 */
-    font-family: Noto sans JP;
-    /* フォントを指定 */
-}
-
-.button-container a:active button {
-    color: rgb(0, 68, 204);
-    /* アクティブ時のテキスト色を指定 */
-    background-color: white;
-    /* アクティブ時の背景色を白に設定 */
-    border-color: rgb(0, 68, 204);
-    /* アクティブ時の境界線の色を指定 */
     font-family: Noto sans JP;
     /* フォントを指定 */
 }
@@ -88,19 +101,6 @@
         font-size: 18px;
         /* レスポンシブデザイン時のボタンのフォントサイズを16ピクセルに設定 */
     }
-}
-
-.button-container button:disabled {
-    background-color: rgba(255, 255, 255, 0.5);
-    /* ボタンの背景色に透明度を50%に設定 */
-    pointer-events: none;
-    /* クリックイベントを無効にする */
-    color: rgba(0, 68, 204, 0.5);
-    /* 文字色にも透明度を50%に設定 */
-    border-color: rgba(0, 68, 204, 0.5);
-    /* 境界線の色を透明度50%に設定 */
-    font-family: Noto sans JP;
-    /* フォントを指定 */
 }
 
 .button-container a:hover button:disabled {
