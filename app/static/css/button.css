@@ -152,3 +152,7 @@
     font-family: Noto sans JP;
     /* フォントを指定 */
 }
+
+.disabled-button {
+    opacity: 0.5; /* 見た目を無効に見せる */
+}
