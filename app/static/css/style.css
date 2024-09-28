@@ -313,3 +313,10 @@ footer p {
 label {
     color: rgb(34, 34, 34);
 }
+
+::selection {
+    background-color: #071425;
+    /* 選択したテキストの背景色を指定 */
+    color: white;
+    /* 選択したテキストの色を指定 */
+}
