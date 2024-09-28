@@ -124,7 +124,7 @@ def participants(year: int = None):
         result_url = None
 
     return render_template(
-        "/participants.html",
+        "/common/participants.html",
         participants=participants_list,
         year=year,
         all_category=valid_categories,
@@ -152,7 +152,7 @@ def japan(year: int = None):
     )
 
     return render_template(
-        "/japan.html",
+        "/common/japan.html",
         participants=participants_list,
         year=year,
         is_latest_year=is_latest_year(year),
@@ -190,7 +190,7 @@ def result():
     results = get_results(year)
 
     return render_template(
-        "/result.html",
+        "/common/result.html",
         results=results,
         year=year,
         is_latest_year=is_latest_year(year),
@@ -287,7 +287,7 @@ def content(year: int = None, content: str = None):
 
     # エラーが出たらtopを表示
     except jinja2.exceptions.TemplateNotFound:
-        return render_template("404.html"), 404
+        return render_template("/common/404.html"), 404
 
 
 ####################################################################
@@ -319,9 +319,9 @@ def others(content: str = None):
         # world_mapは404ページだけ表示(404は返さず、200で返す)
         # これによりJavascriptリダイレクトを防ぐ
         if content == "world_map":
-            return render_template("404.html")
+            return render_template("/common/404.html")
 
-        return render_template("404.html"), 404
+        return render_template("/common/404.html"), 404
 
 
 ####################################################################
@@ -422,7 +422,7 @@ def service_worker():
 
 @app.errorhandler(404)
 def page_not_found(_):
-    return render_template("404.html"), 404
+    return render_template("/common/404.html"), 404
 
 
 if __name__ == "__main__":
