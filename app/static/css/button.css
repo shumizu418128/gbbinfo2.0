@@ -65,6 +65,24 @@
     /* 偶数番目のボタンの境界線の色を変更 */
 }
 
+.button-container a:nth-child(odd) button.disabled-button {
+    background-color: rgba(255, 255, 255, 0.5);
+    /* 偶数番目のボタンの背景色を薄いオレンジ色に変更 */
+    color: rgba(0, 68, 204, 0.5);
+    /* 偶数番目のボタンのテキスト色を透明度0.5で変更 */
+    border-color: rgba(0, 68, 204, 0.5);
+    /* 偶数番目のボタンの境界線の色を透明度0.5で変更 */
+}
+
+.button-container a:nth-child(even) button.disabled-button {
+    background-color: rgba(255, 255, 255, 0.5);
+    /* 偶数番目のボタンの背景色を薄いオレンジ色に変更 */
+    color: rgba(27, 148, 224, 0.5);
+    /* 偶数番目のボタンのテキスト色を透明度0.5で変更 */
+    border-color: rgba(27, 148, 224, 0.5);
+    /* 偶数番目のボタンの境界線の色を透明度0.5で変更 */
+}
+
 .button-container a:hover button {
     color: white;
     /* ホバー時のテキスト色を白に設定 */
@@ -125,9 +143,4 @@
     display: block;
     font-family: Noto sans JP;
     /* フォントを指定 */
-}
-
-.disabled-button {
-    opacity: 0.5;
-    /* 見た目を無効に見せる */
 }
