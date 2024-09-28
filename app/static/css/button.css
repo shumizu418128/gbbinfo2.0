@@ -90,8 +90,15 @@
     /* ホバー時の背景色を指定 */
     border-color: white;
     /* ホバー時の境界線の色を白に設定 */
-    font-family: Noto sans JP;
-    /* フォントを指定 */
+}
+
+.button-container a:hover button.disabled-button {
+    color: rgba(255, 255, 255, 0.5);
+    /* ホバー時のテキスト色を透明度0.5の白に設定 */
+    background-color: rgba(240, 99, 47, 0.5);
+    /* ホバー時の背景色を透明度0.5のオレンジ色に指定 */
+    border-color: rgba(255, 255, 255, 0.5);
+    /* ホバー時の境界線の色を透明度0.5の白に設定 */
 }
 
 @media (max-width: 768px) {
