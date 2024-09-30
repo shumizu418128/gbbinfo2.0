@@ -1,6 +1,10 @@
 // カウントダウンの終了日時
+// 2024年11月1日 00:00:00
 const countDownDate1 = new Date("Nov 1, 2024 00:00:00 GMT+09:00").getTime();
+
+// チケット販売終了日時（現在未使用）
 const countDownDate2 = new Date("Oct 13, 2024 23:59:00 GMT+09:00").getTime();
+
 
 function updateCountdown() {
   // 現在の日時をミリ秒で取得
