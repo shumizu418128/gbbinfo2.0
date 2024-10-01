@@ -1,6 +1,6 @@
 // カウントダウンの終了日時
-// 2024年11月1日 00:00:00
-const countDownDate1 = new Date("Nov 1, 2024 00:00:00 GMT+09:00").getTime();
+// GBBスタート時刻
+const countDownDate1 = new Date("Nov 1, 2024 15:20:00 GMT+09:00").getTime();
 
 // チケット販売終了日時（現在未使用）
 const countDownDate2 = new Date("Oct 13, 2024 23:59:00 GMT+09:00").getTime();
@@ -35,11 +35,12 @@ function updateCountdown() {
     milliseconds2 = "0" + (milliseconds2 < 10 ? "0" : "") + milliseconds2;
   }
 
-  // HTMLに表示
+  // HTMLに表示 (カウントダウンが終了したら0時間0分0秒と表示)
   document.getElementById("countdown").innerHTML =
     distance1 < 0 ? "0時間 0分 0秒" :
     days1 + "日 " + hours1 + "時間 " +
     minutes1 + "分 " + seconds1 + "秒 " + milliseconds1;
+
 
   const ticketCountdownElement = document.getElementById("ticketDeadCountdown");
   if (ticketCountdownElement) {
