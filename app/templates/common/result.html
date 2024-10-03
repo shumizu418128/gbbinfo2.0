@@ -16,16 +16,16 @@
             <th>3位</th>
         </tr>
     </thead>
-    {% for result in results %}
     <tbody>
+    {% for result in results %}
         <tr>
             <td>{{ result.category }}</td>
             <td>{{ result._1st }}</td>
             <td>{{ result._2nd }}</td>
             <td>{{ result._3rd }}</td>
         </tr>
-    </tbody>
     {% endfor %}
+    </tbody>
 </table>
 <p>入賞者のうち、次回GBBの出場権獲得者のみ表示しています。</p>
 {% else %}
