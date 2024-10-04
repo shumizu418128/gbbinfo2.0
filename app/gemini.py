@@ -51,9 +51,13 @@ if 'prompt' not in locals():
     with open(file_path, 'r', encoding="utf-8") as f:
         prompt = f.read()
 
+# othersファイルを読み込む
+if 'others_link' not in locals():
+    others_link = os.listdir(os.getcwd() + '/app/templates/others')
+
 
 def search(year: int, question: str):
-    global prompt
+    global prompt, others_link
 
     # チャットを開始
     chat = model.start_chat()
@@ -93,9 +97,7 @@ def search(year: int, question: str):
             'parameter': None
         }  # ここでparameterも初期化
 
-    # othersディレクトリのリンクがある場合は変換
-    others_link = os.listdir(os.getcwd() + '/app/templates/others')
-
+    # othersのリンクであればリンクを変更
     for link in others_link:
         if link.replace(".html", "") in response_dict["url"]:
             response_dict["url"] = f"/others/{link.replace('.html', '')}"
