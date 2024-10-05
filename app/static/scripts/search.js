@@ -3,11 +3,16 @@ function handleFormSubmit(event) {
     // デフォルトの送信を防ぐ
     event.preventDefault();
 
-    // ローディング画面を表示
-    document.getElementById('loading').style.display = 'block';
-
     // フォームデータを取得
     const formData = new FormData(this);
+
+    // フォームデータのうちquestionの内容をローディング画面に表示
+    const question = formData.get('question'); // 'question'フィールドの値を取得
+    const loadingElement = document.getElementById('loading');
+
+    // スピナーを表示するためのHTMLを設定
+    loadingElement.innerHTML = `<div>検索中：${question}</div><br>`; // スピナーの上に質問を表示
+    loadingElement.style.display = 'block';
 
     // フェッチAPIを使用してデータを送信
     fetch(this.action, {
