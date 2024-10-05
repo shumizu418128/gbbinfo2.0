@@ -33,6 +33,13 @@
 
 <h2>これだけガイド</h2>
 
+{% if is_latest_year %}
+  <script src="/static/scripts/last_edit.js"></script>
+  <div style="text-align: center;">
+    <p id="last-deploy-date"></p>
+  </div>
+{% endif %}
+
 <div class="button-container">
   <a href="/{{ year }}/participants"><button>Wildcard結果&出場者</button></a>
   <a href="/others/how_to_plan"><button>現地観戦計画のたてかた</button></a>
