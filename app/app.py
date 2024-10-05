@@ -9,7 +9,7 @@ from flask import (Flask, jsonify, redirect, render_template, request,
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
-from . import gemini, key
+from . import gemini, key, spreadsheet
 from .participants import create_world_map, get_participants_list, get_results
 
 app = Flask(__name__)
@@ -20,9 +20,13 @@ github_token = os.getenv("GITHUB_TOKEN")
 available_years = key.available_years
 available_years_str = [str(year) for year in available_years]
 
+# 質問例を読み込む
+example_questions = spreadsheet.get_example_questions()
+
 # テスト環境ではキャッシュを無効化
 if os.getenv("SECRET_KEY") is None and os.getenv("GITHUB_TOKEN") is None:
     app.config['CACHE_TYPE'] = "null"
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
     cache = Cache(app, config={'CACHE_TYPE': 'null'})
 
 # 本番環境ではキャッシュを有効化
@@ -57,7 +61,13 @@ def route_top():
     # 今年度 or 最新年度を表示
     year = now if now in available_years else latest_year
 
-    return redirect(url_for("content", year=year, content="top"))
+    return redirect(
+        url_for(
+            "content",
+            year=year,
+            content="top"
+        )
+    )
 
 
 ####################################################################
@@ -111,7 +121,15 @@ def participants(year: int = None):
             0]
         cancel = cancel if cancel in valid_cancel else valid_cancel[0]
 
-        return redirect(url_for("participants", year=year, category=category, ticket_class=ticket_class, cancel=cancel))
+        return redirect(
+            url_for(
+                "participants",
+                year=year,
+                category=category,
+                ticket_class=ticket_class,
+                cancel=cancel
+            )
+        )
 
     # 参加者リストを取得
     participants_list = get_participants_list(
@@ -130,7 +148,8 @@ def participants(year: int = None):
         all_category=valid_categories,
         result_url=result_url,
         is_latest_year=is_latest_year(year),
-        available_years=available_years
+        available_years=available_years,
+        example_questions=example_questions
     )
 
 
@@ -156,7 +175,8 @@ def japan(year: int = None):
         participants=participants_list,
         year=year,
         is_latest_year=is_latest_year(year),
-        available_years=available_years
+        available_years=available_years,
+        example_questions=example_questions
     )
 
 
@@ -194,7 +214,8 @@ def result():
         results=results,
         year=year,
         is_latest_year=is_latest_year(year),
-        available_years=available_years_str  # resultだけ文字列
+        available_years=available_years_str,  # ここだけstr
+        example_questions=example_questions
     )
 
 
@@ -240,7 +261,8 @@ def rule(year: int = None):
         year=year,
         is_latest_year=is_latest_year(year),
         available_years=available_years,
-        participants_list=participants_list
+        participants_list=participants_list,
+        example_questions=example_questions
     )
 
 
@@ -282,7 +304,8 @@ def content(year: int = None, content: str = None):
             f"/{year}/{content}.html",
             year=year,
             is_latest_year=is_latest_year(year),
-            available_years=available_years
+            available_years=available_years,
+            example_questions=example_questions
         )
 
     # エラーが出たらtopを表示
@@ -310,7 +333,8 @@ def others(content: str = None):
             f"/others/{content}.html",
             year=year,
             available_years=available_years,
-            is_latest_year=is_latest_year(year)
+            is_latest_year=is_latest_year(year),
+            example_questions=example_questions
         )
 
     # エラー

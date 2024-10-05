@@ -168,9 +168,9 @@
       {% else %}
         <!-- 最新年度の場合、フォームがページ内に2つ存在することがあるため、idを分ける -->
         <h2>GBB {{ year }} なんでも検索</h2>
-        <p style="text-align: center;">気になることを検索してみよう<br>文章で具体的に書くといいかも？</p>
+        <p style="text-align: center;">{% for question in example_questions[:3] %}「{{ question }}」{% endfor %}</p>
         <form id="searchForm2" class="search-form-1" action="/{{ year }}/search">
-          <input type="text" name="question" id="question2" placeholder="例：今年の出場者は？" required>
+          <input type="text" name="question" id="question2" placeholder="例：{{ example_questions[3] }}" required>
           <button type="submit" aria-label="検索"></button>
         </form>
         <br>
