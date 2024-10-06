@@ -57,6 +57,11 @@
     box-sizing: border-box;
     /* パディングを含めたボックスサイズ */
     padding: 5px;
+    /* パディングを追加 */
+    background-color: rgb(240, 99, 47);
+    /* ボタンの背景色を設定 */
+    border: none;
+    /* 枠線をなしに */
 }
 
 .search-menu-nav-latest {
