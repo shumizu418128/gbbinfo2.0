@@ -30,9 +30,45 @@ function handleFormSubmit(event) {
 }
 
 // 各フォームにイベントリスナーを追加
-if (document.getElementById('searchForm')) {
-    document.getElementById('searchForm').onsubmit = handleFormSubmit;
+if (document.getElementById('search-form-top')) {
+    document.getElementById('search-form-top').onsubmit = handleFormSubmit;
 }
-if (document.getElementById('searchForm2')) {
-    document.getElementById('searchForm2').onsubmit = handleFormSubmit;
+if (document.getElementById('search-form-bottom')) {
+    document.getElementById('search-form-bottom').onsubmit = handleFormSubmit;
+}
+if (document.getElementById('search-form-nav')) {
+    document.getElementById('search-form-nav').onsubmit = handleFormSubmit;
+}
+
+document.getElementById('bottom-navigation-search').addEventListener('click', function() {
+    const searchMenu = document.getElementById('search-menu-nav');
+    const searchIcon = document.getElementById('search-icon');
+
+    if (searchMenu.style.display === 'none' || searchMenu.style.display === '') {
+        searchMenu.style.display = 'block'; // メニューを表示
+        searchIcon.src = '/static/images/icon-close.webp'; // XボタンのSVGに変更
+    } else {
+        searchMenu.style.display = 'none'; // メニューを非表示
+        searchIcon.src = '/static/images/icon-search.webp'; // 元のSVGに戻す
+    }
+});
+
+// メニューの外側をクリックしたときにメニューを非表示にする処理
+document.addEventListener('click', function(event) {
+    const searchMenu = document.getElementById('search-menu-nav');
+    const bottomNav = document.querySelector('.bottom-navigation');
+    const searchIcon = document.getElementById('search-icon');
+
+    // クリックされた要素がメニューまたはボトムナビゲーションでない場合
+    if (searchMenu.style.display === 'block' && !bottomNav.contains(event.target)) {
+        searchMenu.style.display = 'none'; // メニューを非表示
+        searchIcon.src = '/static/images/icon-search.webp'; // 元のSVGに戻す
+    }
+});
+
+function closeSearchMenu() {
+    const searchMenu = document.getElementById('search-menu-nav');
+    const searchIcon = document.getElementById('search-icon');
+    searchMenu.style.display = 'none'; // メニューを非表示
+    searchIcon.src = '/static/images/icon-search.webp'; // 元のSVGに戻す
 }

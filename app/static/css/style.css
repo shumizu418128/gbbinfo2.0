@@ -59,8 +59,6 @@ header {
 }
 
 header nav {
-    position: fixed;
-    /* 要素を固定位置に配置 */
     top: 0;
     /* 上部からの位置を0に設定 */
     left: 0;
@@ -70,7 +68,7 @@ header nav {
     width: 100%;
     /* 幅を100%に設定 */
     height: 110px;
-    /* 高さを110pxに設定 */
+    /* 高さを設定 */
     display: flex;
     /* 要素をフレックスボックスとして表示 */
     flex-direction: column;
@@ -166,8 +164,6 @@ header nav ul li a {
 }
 
 main {
-    margin-top: 100px;
-    /* 上部の余白を120pxに設定 */
     min-height: calc(100% - 120px);
     /* 最小の高さを計算して設定 */
     padding: 1em;
@@ -303,6 +299,7 @@ footer {
     /* テキストを中央に配置 */
     width: 100%;
     /* 幅を100%に設定 */
+    margin-bottom: 40px;
 }
 
 footer p {

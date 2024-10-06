@@ -11,14 +11,6 @@
   <p>公式よりもわかりやすい！<br>GBB{{ year }} 7toSmoke 非公式情報サイト</p>
 </div>
 
-{% if is_latest_year is true %}
-<form id="searchForm" class="search-form-1" action="/{{ year }}/search">
-  <input type="text" name="question" id="question" placeholder="例：{{ example_questions[3] }}" required>
-  <button type="submit" aria-label="検索"></button>
-</form>
-<div id="loading" class="loading"></div>
-{% endif %}
-
 <h2>これだけガイド</h2>
 
 {% if is_latest_year %}

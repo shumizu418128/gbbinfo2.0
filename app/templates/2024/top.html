@@ -24,8 +24,8 @@
 </div>
 
 {% if is_latest_year is true %}
-<form id="searchForm" class="search-form-1" action="/{{ year }}/search">
-  <input type="text" name="question" id="question" placeholder="例：{{ example_questions[3] }}" required>
+<form id="search-form-top" class="search-form-1" action="/{{ year }}/search">
+  <input type="text" name="question" id="question-top" placeholder="例：{{ example_questions[3] }}" required>
   <button type="submit" aria-label="検索"></button>
 </form>
 <div id="loading" class="loading"></div>

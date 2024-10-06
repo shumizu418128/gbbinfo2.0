@@ -120,7 +120,7 @@
       {% if is_latest_year is false %}
 
         <script src="/static/scripts/popup.js"></script>
-        <div class="overlay" onclick="closePopup()"></div>
+        <div class="background-popup" onclick="closePopup()"></div>
         <div class="popup">
           <p style="font-size: 36px; font-weight: bold;">☆<br>GBB{{ year }}は<br>終了しました<br>☆</p>
           <p>ここは、すでに終了したGBB{{ year }}のページです</p>
@@ -157,8 +157,8 @@
         <hr>
         <h3>GBB{{ year }} なんでも検索</h3>
         <p style="text-align: center;">GBB{{ year }}の検索のみ可能です<br>GBB{{ year }}は終了しました</p>
-        <form id="searchForm" class="search-form-1" action="/{{ year }}/search">
-          <input type="text" name="question" id="question" placeholder="例：GBB{{ year }}の最終結果は？" required>
+        <form id="search-form-bottom" class="search-form-1" action="/{{ year }}/search">
+          <input type="text" name="question" id="question-bottom" placeholder="例：GBB{{ year }}の最終結果は？" required>
           <button type="submit" aria-label="検索"></button>
         </form>
         <div class="button-container">
@@ -166,11 +166,10 @@
         </div>
         <hr>
       {% else %}
-        <!-- 最新年度の場合、フォームがページ内に2つ存在することがあるため、idを分ける -->
         <h2>GBB {{ year }} なんでも検索</h2>
         <p style="text-align: center;">{% for question in example_questions[:3] %}「{{ question }}」{% endfor %}</p>
-        <form id="searchForm2" class="search-form-1" action="/{{ year }}/search">
-          <input type="text" name="question" id="question2" placeholder="例：{{ example_questions[3] }}" required>
+        <form id="search-form-bottom" class="search-form-1" action="/{{ year }}/search">
+          <input type="text" name="question" id="question-bottom" placeholder="例：{{ example_questions[3] }}" required>
           <button type="submit" aria-label="検索"></button>
         </form>
         <br>
@@ -213,6 +212,41 @@
         </p>
       </footer>
     </main>
+
+    <div class="bottom-navigation">
+      <a href="/" class="bottom-navigation-button">
+        <img id="home-icon" src="/static/images/icon-home.webp" alt="Home Icon" height="40px" width="40px">
+      </a>
+      <a href="javascript:void(0);" class="bottom-navigation-button" id="bottom-navigation-search">
+        <img id="search-icon" src="/static/images/icon-search.webp" alt="Search Icon" height="40px" width="40px">
+      </a>
+      {% if is_latest_year is false %}
+        <div id="search-menu-nav" class="search-menu-nav-past" style="display: none;">
+          <button class="close-button" onclick="closeSearchMenu()">✖</button>
+          <h3>GBB{{ year }} なんでも検索</h3>
+          <p style="text-align: center;">GBB{{ year }}の検索のみ可能です<br>GBB{{ year }}は終了しました</p>
+          <form id="search-form-nav" class="search-form-1" action="/{{ year }}/search">
+            <input type="text" name="question" id="question-nav" placeholder="例：GBB{{ year }}の最終結果は？" required>
+            <button type="submit" aria-label="検索"></button>
+          </form>
+          <div class="button-container">
+            <a href="/"><button type="button">GBB最新情報の検索はこちら</button></a>
+          </div>
+          <br>
+        </div>
+      {% else %}
+        <div id="search-menu-nav" class="search-menu-nav-latest" style="display: none;">
+          <button class="close-button" onclick="closeSearchMenu()">✖</button>
+          <h2>GBB {{ year }} なんでも検索</h2>
+          <p style="text-align: center;">{% for question in example_questions[:3] %}「{{ question }}」{% endfor %}</p>
+          <form id="search-form-nav" class="search-form-1" action="/{{ year }}/search">
+            <input type="text" name="question" id="question-nav" placeholder="例：{{ example_questions[3] }}" required>
+            <button type="submit" aria-label="検索"></button>
+          </form>
+          <br>
+        </div>
+      {% endif %}
+    </div>
 
     <script src="/static/scripts/scroll.js"></script>
     <script src="/static/scripts/last_modify.js"></script>
