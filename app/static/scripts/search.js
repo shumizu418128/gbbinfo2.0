@@ -43,12 +43,15 @@ if (document.getElementById('search-form-nav')) {
 document.getElementById('bottom-navigation-search').addEventListener('click', function() {
     const searchMenu = document.getElementById('search-menu-nav');
     const searchIcon = document.getElementById('search-icon');
+    const searchMsg = document.getElementById('search-msg');
 
     if (searchMenu.style.display === 'none' || searchMenu.style.display === '') {
         searchMenu.style.display = 'block'; // メニューを表示
+        searchMsg.textContent = '閉じる';
         searchIcon.src = '/static/images/icon-close.webp'; // XボタンのSVGに変更
     } else {
         searchMenu.style.display = 'none'; // メニューを非表示
+        searchMsg.textContent = '検索'; // 検索ボタンのテキストを変更
         searchIcon.src = '/static/images/icon-search.webp'; // 元のSVGに戻す
     }
 });
@@ -58,10 +61,12 @@ document.addEventListener('click', function(event) {
     const searchMenu = document.getElementById('search-menu-nav');
     const bottomNav = document.querySelector('.bottom-navigation');
     const searchIcon = document.getElementById('search-icon');
+    const searchMsg = document.getElementById('search-msg');
 
     // クリックされた要素がメニューまたはボトムナビゲーションでない場合
     if (searchMenu.style.display === 'block' && !bottomNav.contains(event.target)) {
         searchMenu.style.display = 'none'; // メニューを非表示
+        searchMsg.textContent = '検索'; // 検索ボタンのテキストを変更
         searchIcon.src = '/static/images/icon-search.webp'; // 元のSVGに戻す
     }
 });
@@ -69,6 +74,9 @@ document.addEventListener('click', function(event) {
 function closeSearchMenu() {
     const searchMenu = document.getElementById('search-menu-nav');
     const searchIcon = document.getElementById('search-icon');
+    const searchMsg = document.getElementById('search-msg');
+
     searchMenu.style.display = 'none'; // メニューを非表示
+    searchMsg.textContent = '検索'; // 検索ボタンのテキストを変更
     searchIcon.src = '/static/images/icon-search.webp'; // 元のSVGに戻す
 }

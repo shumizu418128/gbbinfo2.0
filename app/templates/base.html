@@ -214,11 +214,13 @@
     </main>
 
     <div class="bottom-navigation">
-      <a href="/" class="bottom-navigation-button">
+      <button class="bottom-navigation-button" onclick="location.href='/'" style="border-right: 1px solid white;">
         <img id="home-icon" src="/static/images/icon-home.webp" alt="Home Icon" height="40px" width="40px">
-      </a>
-      <button class="bottom-navigation-button" id="bottom-navigation-search">
+        <span>ホーム</span>
+      </button>
+      <button class="bottom-navigation-button" id="bottom-navigation-search" style="border-left: 1px solid white;">
         <img id="search-icon" src="/static/images/icon-search.webp" alt="Search Icon" height="40px" width="40px">
+        <span id="search-msg">検索</span>
       </button>
       {% if is_latest_year is false %}
         <div id="search-menu-nav" class="search-menu-nav-past" style="display: none;">

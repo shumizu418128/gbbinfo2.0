@@ -62,6 +62,25 @@
     /* ボタンの背景色を設定 */
     border: none;
     /* 枠線をなしに */
+    display: flex;
+    /* フレックスコンテナとして設定 */
+    align-items: center;
+    /* 子要素を垂直方向の中心に配置 */
+    justify-content: center;
+    /* 子要素を水平方向の中心に配置 */
+}
+
+.bottom-navigation-button span {
+    cursor: default;
+    /* デフォルトのカーソルに設定 */
+    text-decoration: none;
+    /* テキストの下線を削除 */
+    color: white;
+    /* テキストの色を白に設定 */
+    font-size: 16px;
+    /* フォントサイズを20pxに設定 */
+    margin-left: 3px;
+    /* テキストの左側に5pxのマージンを追加 */
 }
 
 .search-menu-nav-latest {
@@ -95,15 +114,24 @@
 
 .close-button {
     position: absolute;
-    top: -50px; /* 上からの位置 */
-    right: 10px; /* 右からの位置 */
-    width: 50px; /* ボタンの幅 */
-    height: 50px; /* ボタンの高さ */
-    background-color: transparent; /* 背景色を透明に */
-    border: none; /* 枠線をなしに */
-    cursor: pointer; /* カーソルをポインターに */
-    font-size: 40px; /* フォントサイズ */
-    color: #000; /* テキストの色 */
+    top: -50px;
+    /* 上からの位置 */
+    right: 10px;
+    /* 右からの位置 */
+    width: 50px;
+    /* ボタンの幅 */
+    height: 50px;
+    /* ボタンの高さ */
+    background-color: transparent;
+    /* 背景色を透明に */
+    border: none;
+    /* 枠線をなしに */
+    cursor: pointer;
+    /* カーソルをポインターに */
+    font-size: 40px;
+    /* フォントサイズ */
+    color: #000;
+    /* テキストの色 */
 }
 
 .search-menu-nav-past {
