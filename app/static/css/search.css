@@ -5,10 +5,11 @@
     left: 50%; /* 横中央に配置 */
     transform: translate(-50%, -50%); /* 中央に配置するための変形 */
     background-color: rgba(255, 255, 255, 0.7); /* 背景色を半透明の白に設定 */
-    padding: 60px; /* 内側の余白を設定 */
+    padding: 30px; /* 内側の余白を設定 */
     z-index: 10; /* 他の要素の上に表示 */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 影を追加 */
     text-align: center; /* テキストを中央に配置 */
+    width: 300px; /* 幅を設定 */
     /* 検索中のテキストを表示 */
     &::after {
         content: ''; /* サークルの表示 */

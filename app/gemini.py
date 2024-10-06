@@ -62,14 +62,10 @@ def search(year: int, question: str):
     # チャットを開始
     chat = model.start_chat()
 
-    # 回答例 geminiに教える
-    url_example = f"{{\'url\': 'https://gbbinfo-jpn.onrender.com/{year}/top', 'parameter': 'contact'}}"
-
-    # プロンプトを埋め込む
+    # プロンプトに必要事項を埋め込む
     prompt_formatted = prompt.format(
         year=year,
-        question=question,
-        url_example=url_example
+        question=question
     )
     print(question, flush=True)
 
@@ -110,6 +106,7 @@ def search(year: int, question: str):
     ########################################################
 
     # パラメータの例外処理
+
     # parameterのNone処理
     if response_dict["parameter"] == "None":
         response_dict["parameter"] = None
@@ -117,6 +114,14 @@ def search(year: int, question: str):
     # topのNoneは問い合わせに変更
     if "top" in response_dict["url"] and response_dict["parameter"] is None:
         response_dict["parameter"] = "contact"
+
+    # 7toSmoke最新情報の場合は7tosmokeこれだけガイドページに変更
+    condition = (
+        response_dict["parameter"] == "latest_info",
+        response_dict["parameter"] is None
+    )
+    if response_dict["url"] == "/others/7tosmoke" and any(condition):
+        response_dict["url"] = f"/{year}/top_7tosmoke"
 
     ########################################################
 

@@ -69,4 +69,4 @@ https://gbbinfo-jpn.onrender.com/{year}/
 なお、人の名前と思われる文字列が質問の場合、participantsを選んでください。
 
 # 回答例
-{url_example}
+{{'url': 'https://gbbinfo-jpn.onrender.com/{year}/top', 'parameter': 'contact'}}
