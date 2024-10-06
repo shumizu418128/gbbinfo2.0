@@ -77,7 +77,7 @@ def get_example_questions():
     questions = sheet.col_values(3)[1:]  # 最初の要素をスキップ
 
     # ステータスが〇の質問だけを抽出
-    filtered_questions = [q for q, s in zip(questions, status) if s == "〇"]
+    filtered_questions = [q.upper() for q, s in zip(questions, status) if s == "〇"]
 
     # ランダムに3つ選定
     threshold = 0.2
