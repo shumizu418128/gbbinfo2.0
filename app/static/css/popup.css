@@ -68,6 +68,8 @@
     /* 子要素を垂直方向の中心に配置 */
     justify-content: center;
     /* 子要素を水平方向の中心に配置 */
+    cursor: pointer;
+    /* ホバー時にカーソルをポインターに変更 */
 }
 
 .bottom-navigation-button span {
@@ -83,6 +85,8 @@
     /* テキストの左側に5pxのマージンを追加 */
     font-family: 'Noto Sans JP';
     /* フォントファミリーを指定 */
+    cursor: pointer;
+    /* ホバー時にカーソルをポインターに変更 */
 }
 
 .search-menu-nav-latest {
