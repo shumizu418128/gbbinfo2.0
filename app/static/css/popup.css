@@ -168,3 +168,15 @@
     transform: translate(-50%, -30%);
     /* 中央揃えのために位置を調整 */
 }
+
+#search-menu-nav .search-form-1 {
+    margin: 0 20px;
+}
+
+#search-menu-nav h2 {
+    margin: 10px 10px;
+}
+
+.search-menu-nav-past .button-container {
+    margin: 10px 20px;
+}
