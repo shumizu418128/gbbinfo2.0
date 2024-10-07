@@ -81,6 +81,8 @@
     /* フォントサイズを20pxに設定 */
     margin-left: 3px;
     /* テキストの左側に5pxのマージンを追加 */
+    font-family: 'Noto Sans JP';
+    /* フォントファミリーを指定 */
 }
 
 .search-menu-nav-latest {
