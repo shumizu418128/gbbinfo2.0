@@ -50,7 +50,7 @@
 }
 
 .bottom-navigation-button {
-    width: 50%;
+    width: 33.3%;
     /* 各ボタンの幅を50%に設定 */
     text-align: center;
     /* テキストを中央揃え */
@@ -81,7 +81,7 @@
     /* テキストの色を白に設定 */
     font-size: 16px;
     /* フォントサイズを20pxに設定 */
-    margin-left: 3px;
+    margin-left: 5px;
     /* テキストの左側に5pxのマージンを追加 */
     font-family: 'Noto Sans JP';
     /* フォントファミリーを指定 */
@@ -94,11 +94,11 @@
     /* 固定位置 */
     left: 50%;
     /* 水平方向の中央に配置 */
-    bottom: -3px;
+    bottom: -5px;
     /* 下部から-10pxの位置に配置 */
     width: 100%;
     /* 幅を100%に設定 */
-    height: 170px;
+    height: 180px;
     /* 高さを200pxに設定 */
     background-color: rgba(255, 255, 255, 0.9);
     /* 背景色を設定（透明度を追加） */
@@ -179,4 +179,33 @@
 
 .search-menu-nav-past .button-container {
     margin: 20px 20px;
+}
+
+.dropdown-content {
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    bottom: 100%;
+    /* ボタンの下端から上に展開 */
+    left: 50%;
+    /* 親要素の中央に配置 */
+    transform: translateX(-50%);
+    /* 自身の幅の半分だけ左にずらす */
+    width: 33.3%;
+    /* 横幅を親要素の33%に設定 */
+    z-index: 20;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 2px 6px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    color: rgb(0, 68, 204)
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1
 }
