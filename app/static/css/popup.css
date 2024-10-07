@@ -94,11 +94,11 @@
     /* 固定位置 */
     left: 50%;
     /* 水平方向の中央に配置 */
-    bottom: -10px;
+    bottom: -3px;
     /* 下部から-10pxの位置に配置 */
     width: 100%;
     /* 幅を100%に設定 */
-    height: 200px;
+    height: 170px;
     /* 高さを200pxに設定 */
     background-color: rgba(255, 255, 255, 0.9);
     /* 背景色を設定（透明度を追加） */
@@ -178,5 +178,5 @@
 }
 
 .search-menu-nav-past .button-container {
-    margin: 10px 20px;
+    margin: 20px 20px;
 }
