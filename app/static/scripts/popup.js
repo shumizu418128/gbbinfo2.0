@@ -1,6 +1,10 @@
 function showPopup() {
-  document.querySelector(".background-popup").style.display = "block";
-  document.querySelector(".popup").style.display = "block";
+  const backgroundPopup = document.querySelector(".background-popup");
+  const popup = document.querySelector(".popup");
+  if (backgroundPopup && popup) {
+    backgroundPopup.style.display = "block";
+    popup.style.display = "block";
+  }
 }
 
 function closePopup() {
