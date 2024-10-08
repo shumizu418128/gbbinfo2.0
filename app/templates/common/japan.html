@@ -8,74 +8,73 @@
 <h1>GBB {{ year }} 日本代表</h1>
 
 {% if is_latest_year %}
-<script src="\static\scripts\last_edit.js"></script>
-<p id="last-deploy-date" style="text-align: center;"></p>
+  <div style="text-align: center;">
+    <p>{{ last_updated }}</p>
+  </div>
 {% endif %}
 
 {% if participants %}
-<table>
+  <table>
     <thead>
-        <tr>
-            <th style="width: 33%;">名前</th>
-            <th style="width: 34%;">部門</th>
-            <th style="width: 33%;">出場権</th>
-        </tr>
+      <tr>
+        <th style="width: 33%;">名前</th>
+        <th style="width: 34%;">部門</th>
+        <th style="width: 33%;">出場権</th>
+      </tr>
     </thead>
     <tbody>
     {% for participant in participants %}
-        <tr>
-            <td>
-                {% if participant.members != "" %}
+      <tr>
+        <td>
+          {% if participant.members != "" %}
+            {% if participant.is_cancelled %}
+              【辞退】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
+            {% else %}
+              <a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">{{ participant.name }}</a>
+            {% endif %}
 
-                    {% if participant.is_cancelled %}
-                        【辞退】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
-                    {% else %}
-                        <a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">{{ participant.name }}</a>
-                    {% endif %}
+          <div class="member-list" style="display: none;">{% for member in participant.members.split(',') %}{{ member }}<br>{% endfor %}</div>
 
-                <div class="member-list" style="display: none;">{% for member in participant.members.split(',') %}{{ member }}<br>{% endfor %}</div>
+          {% else %}
+            {% if participant.is_cancelled %}
+              【辞退】<br><s>{{ participant.name }}</s>
+            {% else %}
+              {{ participant.name }}
+            {% endif %}
+          {% endif %}
 
-                {% else %}
-
-                    {% if participant.is_cancelled %}
-                        【辞退】<br><s>{{ participant.name }}</s>
-                    {% else %}
-                        {{ participant.name }}
-                    {% endif %}
-
-                {% endif %}
-            </td>
-            <td>
-                {% if participant.is_cancelled %}
-                    <s>{{ participant.category }}</s>
-                {% else %}
-                    {{ participant.category }}
-                {% endif %}
-            </td>
-            <td {% if participant.ticket_class|length > 10 %} style="font-size: 12px;" {% endif %}>
-                {% if participant.is_cancelled %}
-                <s>{{ participant.ticket_class }}</s>
-                {% else %}
-                {{ participant.ticket_class }}
-                {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
+        </td>
+        <td>
+          {% if participant.is_cancelled %}
+            <s>{{ participant.category }}</s>
+          {% else %}
+            {{ participant.category }}
+          {% endif %}
+        </td>
+        <td {% if participant.ticket_class|length > 10 %} style="font-size: 12px;" {% endif %}>
+          {% if participant.is_cancelled %}
+          <s>{{ participant.ticket_class }}</s>
+          {% else %}
+          {{ participant.ticket_class }}
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
     </tbody>
-</table>
+  </table>
 {% else %}
-<p>日本代表なし</p>
+  <p>日本代表なし</p>
 {% endif %}
 <br>
 
 <div class="button-container">
-    {% if result_url %}
-        <a href="{{ result_url }}"><button type="button">{{ request.args.get('category') }}<br>Wildcard順位</button></a>
-    {% endif %}
-    <a href="/{{year}}/participants"><button type="button">GBB{{ year }}<br>全出場者一覧</button></a>
-    <a href="/{{year}}/rule"><button type="button">出場権詳細</button></a>
-    <a href="/{{year}}/rule"><button type="button">GBB{{ year }}ルール&審査員</button></a>
-    <a href="/{{year}}/rule"><button type="button">結果発表日</button></a>
+  {% if result_url %}
+    <a href="{{ result_url }}"><button type="button">{{ request.args.get('category') }}<br>Wildcard順位</button></a>
+  {% endif %}
+  <a href="/{{year}}/participants"><button type="button">GBB{{ year }}<br>全出場者一覧</button></a>
+  <a href="/{{year}}/rule"><button type="button">出場権詳細</button></a>
+  <a href="/{{year}}/rule"><button type="button">GBB{{ year }}ルール&審査員</button></a>
+  <a href="/{{year}}/rule"><button type="button">結果発表日</button></a>
 </div>
 
 <h2>GBB {{ year }} 出場者世界地図</h2>

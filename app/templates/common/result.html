@@ -7,39 +7,40 @@
 {% block content %}
 <h1>GBB {{ year }} 大会結果</h1>
 {% if results %}
-<table>
+  <table>
     <thead>
-        <tr>
-            <th>部門</th>
-            <th>優勝</th>
-            <th>準優勝</th>
-            <th>3位</th>
-        </tr>
+      <tr>
+        <th>部門</th>
+        <th>優勝</th>
+        <th>準優勝</th>
+        <th>3位</th>
+      </tr>
     </thead>
     <tbody>
     {% for result in results %}
-        <tr>
-            <td>{{ result.category }}</td>
-            <td>{{ result._1st }}</td>
-            <td>{{ result._2nd }}</td>
-            <td>{{ result._3rd }}</td>
-        </tr>
+      <tr>
+        <td>{{ result.category }}</td>
+        <td>{{ result._1st }}</td>
+        <td>{{ result._2nd }}</td>
+        <td>{{ result._3rd }}</td>
+      </tr>
     {% endfor %}
     </tbody>
-</table>
-<p>入賞者のうち、次回GBBの出場権獲得者のみ表示しています。</p>
+  </table>
+  <p>入賞者のうち、次回GBBの出場権獲得者のみ表示しています。</p>
 {% else %}
-<p>～発表次第更新～</p>
-<script src="\static\scripts\last_edit.js"></script>
-<p id="last-deploy-date" style="text-align: center;"></p>
+  <div style="text-align: center;">
+    <p>～発表次第更新～</p>
+    <p>{{ last_updated }}</p>
+  </div>
 {% endif %}
 <br>
 <form method="GET" action="{{ url_for('result') }}" class="participants_form">
 <label for="year">その他の年度を確認：</label>
 <select name="year" id="year" class="participants_select" onchange="this.form.submit()">
-    {% for y in available_years %}
-        <option value="{{ y }}" {% if request.args.get('year') == y %}selected{% endif %}>{{ y }}</option>
-    {% endfor %}
+  {% for y in available_years %}
+    <option value="{{ y }}" {% if request.args.get('year') == y %}selected{% endif %}>{{ y }}</option>
+  {% endfor %}
 </select>
 </form>
 {% endblock %}

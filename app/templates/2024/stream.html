@@ -8,12 +8,11 @@
 <h1>GBB {{ year }} 当日配信</h1>
 
 <!-- TODO: 更新したらこの表示を消す -->
-<script src="/static/scripts/last_edit.js"></script>
 <div class="background-popup" onclick="closePopup()"></div>
 
 <div class="popup">
   <p style="font-size: 36px; font-weight: bold;">×××<br>情報なし<br>×××</p>
-  <p id="last-deploy-date"></p>
+  <p>{{ last_updated }}</p>
   <p>お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。<br>公式発表をお待ちください。</p>
     <div class="button-container" style="margin-bottom: 8px">
       <a href="/{{ year }}/top?scroll=contact"><button>お問い合わせ</button></a>
@@ -22,7 +21,7 @@
 </div>
 
 <div style="text-align: center;">
-  <p id="last-deploy-date2"></p>
+  <p>{{ last_updated }}</p>
 </div>
 
 <p>GBB23では本番7日前発表<br>GBB23 7toSmokeは配信なし</p>

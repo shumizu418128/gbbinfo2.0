@@ -23,6 +23,10 @@ available_years_str = [str(year) for year in available_years]
 # 質問例を読み込む
 example_questions = spreadsheet.get_example_questions()
 
+# 現在時刻を読み込む(最終更新日時として使用)
+dt_now = datetime.now()
+last_updated = "最終更新：" + dt_now.strftime("%Y/%m/%d %H:%M:%S")
+
 # テスト環境ではキャッシュを無効化
 if os.getenv("SECRET_KEY") is None and os.getenv("GITHUB_TOKEN") is None:
     app.config['CACHE_TYPE'] = "null"
@@ -149,7 +153,8 @@ def participants(year: int = None):
         result_url=result_url,
         is_latest_year=is_latest_year(year),
         available_years=available_years,
-        example_questions=example_questions
+        example_questions=example_questions,
+        last_updated=last_updated
     )
 
 
@@ -176,7 +181,8 @@ def japan(year: int = None):
         year=year,
         is_latest_year=is_latest_year(year),
         available_years=available_years,
-        example_questions=example_questions
+        example_questions=example_questions,
+        last_updated=last_updated
     )
 
 
@@ -215,7 +221,8 @@ def result():
         year=year,
         is_latest_year=is_latest_year(year),
         available_years=available_years_str,  # ここだけstr
-        example_questions=example_questions
+        example_questions=example_questions,
+        last_updated=last_updated
     )
 
 
@@ -262,7 +269,8 @@ def rule(year: int = None):
         is_latest_year=is_latest_year(year),
         available_years=available_years,
         participants_list=participants_list,
-        example_questions=example_questions
+        example_questions=example_questions,
+        last_updated=last_updated
     )
 
 
@@ -305,7 +313,8 @@ def content(year: int = None, content: str = None):
             year=year,
             is_latest_year=is_latest_year(year),
             available_years=available_years,
-            example_questions=example_questions
+            example_questions=example_questions,
+            last_updated=last_updated
         )
 
     # エラーが出たらtopを表示
@@ -334,7 +343,8 @@ def others(content: str = None):
             year=year,
             available_years=available_years,
             is_latest_year=is_latest_year(year),
-            example_questions=example_questions
+            example_questions=example_questions,
+            last_updated=last_updated
         )
 
     # エラー
