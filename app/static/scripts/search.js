@@ -16,17 +16,17 @@ function handleFormSubmit(event) {
 
     // フェッチAPIを使用してデータを送信
     fetch(this.action, {
-        method: "POST", // POSTメソッドで送信
-        headers: {
-            'Content-Type': 'application/json' // JSON形式で送信
-        },
-        body: JSON.stringify(Object.fromEntries(formData)) // データをJSON形式に変換して送信
-    })
-    .then(response => response.json()) // レスポンスをjsonとして取得
-    .then(data => {
-        // 取得したURLにリダイレクト
-        window.location.href = data.url;
-    });
+            method: "POST", // POSTメソッドで送信
+            headers: {
+                'Content-Type': 'application/json' // JSON形式で送信
+            },
+            body: JSON.stringify(Object.fromEntries(formData)) // データをJSON形式に変換して送信
+        })
+        .then(response => response.json()) // レスポンスをjsonとして取得
+        .then(data => {
+            // 取得したURLにリダイレクト
+            window.location.href = data.url;
+        });
 }
 
 // 各フォームにイベントリスナーを追加
@@ -45,7 +45,7 @@ document.getElementById('bottom-navigation-search').addEventListener('click', fu
     // メニューを開く
     if (searchMenu.style.display === 'none' || searchMenu.style.display === '') {
         openSearchMenu();
-    // メニューを閉じる
+        // メニューを閉じる
     } else {
         closeSearchMenu();
     }
