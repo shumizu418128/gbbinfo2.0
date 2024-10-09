@@ -47,6 +47,12 @@ else:
 # 最新年度かを判定
 # 今年 or 最新年度のみTrue
 def is_latest_year(year):
+    """
+    指定された年度が最新年度または今年であるかを判定します。
+
+    :param year: 判定する年度
+    :return: 最新年度または今年の場合はTrue、それ以外はFalse
+    """
     dt_now = datetime.now()
     now = dt_now.year
     return year == available_years[-1] or year == now
@@ -58,6 +64,10 @@ def is_latest_year(year):
 @app.route("/")
 @cache.cached(query_string=True)
 def route_top():
+    """
+    トップページへのルーティングを処理します。
+    今年度または最新年度にリダイレクトします。
+    """
     dt_now = datetime.now()
     now = dt_now.year
     latest_year = available_years[-1]
@@ -80,7 +90,13 @@ def route_top():
 @app.route('/<int:year>/world_map')
 @cache.cached(query_string=True)
 def world_map(year: int = None):
+    """
+    指定された年度の世界地図を表示します。
+    年度が指定されていない場合は最新年度を表示します。
 
+    :param year: 表示する年度
+    :return: 世界地図のHTMLテンプレート
+    """
     # 年度が指定されていない場合は最新年度を表示
     if year not in available_years:
         year = available_years[-1]
@@ -98,7 +114,13 @@ def world_map(year: int = None):
 @app.route('/<int:year>/participants', methods=["GET"])
 @cache.cached(query_string=True)
 def participants(year: int = None):
+    """
+    指定された年度の出場者一覧を表示します。
+    年度が指定されていない場合は最新年度を表示します。
 
+    :param year: 表示する年度
+    :return: 出場者一覧のHTMLテンプレート
+    """
     # 年度が指定されていない場合は最新年度を表示
     if year not in available_years:
         year = available_years[-1]
@@ -125,6 +147,7 @@ def participants(year: int = None):
             0]
         cancel = cancel if cancel in valid_cancel else valid_cancel[0]
 
+        # 正しい引数にリダイレクト
         return redirect(
             url_for(
                 "participants",
@@ -165,7 +188,12 @@ def participants(year: int = None):
 @app.route("/<int:year>/japan")
 @cache.cached(query_string=True)
 def japan(year: int = None):
+    """
+    指定された年度の日本代表の出場者一覧を表示します。
 
+    :param year: 表示する年度
+    :return: 日本代表のHTMLテンプレート
+    """
     # 参加者リストを取得
     participants_list = get_participants_list(
         year=year,
@@ -194,6 +222,12 @@ def japan(year: int = None):
 @app.route("/<int:year>/result")
 @cache.cached(query_string=True)
 def result_redirect(year: int = None):
+    """
+    指定された年度の結果ページにリダイレクトします。
+
+    :param year: リダイレクト先の年度
+    :return: 結果ページへのリダイレクト
+    """
     return redirect(url_for("result", year=year, **request.args))
 
 
@@ -201,6 +235,12 @@ def result_redirect(year: int = None):
 @app.route("/result")
 @cache.cached(query_string=True)
 def result():
+    """
+    結果ページを表示します。
+    年度が指定されていない場合は最新年度を表示します。
+
+    :return: 結果のHTMLテンプレート
+    """
     year = request.args.get("year")
 
     # 年度が指定されていない場合は最新年度を表示
@@ -233,12 +273,18 @@ def result():
 @app.route("/<int:year>/rule")
 @cache.cached(query_string=True)
 def rule(year: int = None):
+    """
+    指定された年度のルールを表示します。
+    年度が指定されていない場合は最新年度を表示します。
 
+    :param year: 表示する年度
+    :return: ルールのHTMLテンプレート
+    """
     # 年度が指定されていない場合は最新年度を表示
     if year not in available_years:
         year = available_years[-1]
 
-    participants_GBB = get_participants_list(
+    participants_GBB = get_participants_list(  # 昨年度成績上位者
         year=year,
         category="all",
         ticket_class="seed_right",
@@ -246,7 +292,7 @@ def rule(year: int = None):
         GBB=True
     )
 
-    participants_except_GBB = get_participants_list(
+    participants_except_GBB = get_participants_list(  # GBB以外のシード権獲得者
         year=year,
         category="all",
         ticket_class="seed_right",
@@ -254,7 +300,7 @@ def rule(year: int = None):
         GBB=False
     )
 
-    cancels = get_participants_list(
+    cancels = get_participants_list(  # シード権保持者のうち、キャンセルした人
         year=year,
         category="all",
         ticket_class="seed_right",
@@ -278,30 +324,37 @@ def rule(year: int = None):
 # 各年度のページ
 ####################################################################
 
-combinations = []
+combinations = []  # 年度とコンテンツの組み合わせを格納するリスト
 
 # 各年度のページを取得(ルール、world_mapは別関数で扱っているので除外)
-for year in available_years:
-    contents = os.listdir(f"./app/templates/{year}")
-    contents = [content.replace(".html", "") for content in contents]
+for year in available_years:  # 利用可能な年度をループ
+    contents = os.listdir(f"./app/templates/{year}")  # 年度に対応するテンプレートファイルを取得
+    contents = [content.replace(".html", "") for content in contents]  # 拡張子を除去
 
     # rule, world_mapは除外
-    contents.remove('rule')
-    if 'world_map' in contents:
-        contents.remove('world_map')
+    contents.remove('rule')  # 'rule'をリストから削除
+    if 'world_map' in contents:  # 'world_map'が存在する場合
+        contents.remove('world_map')  # 'world_map'をリストから削除
 
-    for content in contents:
-        combinations.append((year, content))
+    for content in contents:  # 各コンテンツに対して
+        combinations.append((year, content))  # 年度とコンテンツの組み合わせを追加
 
-combinations_year = [year for year, _ in combinations]
-combinations_content = [content for _, content in combinations]
+combinations_year = [year for year, _ in combinations]  # 年度のリストを作成
+combinations_content = [content for _, content in combinations]  # コンテンツのリストを作成
 
 
 @sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": combinations_year, "content": combinations_content})
 @app.route("/<int:year>/<string:content>")
 @cache.cached(query_string=True)
 def content(year: int = None, content: str = None):
+    """
+    指定された年度とコンテンツのページを表示します。
+    年度が指定されていない場合は最新年度を表示します。
 
+    :param year: 表示する年度
+    :param content: 表示するコンテンツ
+    :return: コンテンツのHTMLテンプレート
+    """
     # 年度が指定されていない場合は最新年度を表示
     if year not in available_years:
         year = available_years[-1]
@@ -334,7 +387,12 @@ content_others = [content.replace(".html", "") for content in content_others]
 @app.route("/others/<string:content>")
 @cache.cached(query_string=True)
 def others(content: str = None):
+    """
+    その他のページを表示します。
 
+    :param content: 表示するコンテンツ
+    :return: その他のコンテンツのHTMLテンプレート
+    """
     year = available_years[-1]
 
     try:
@@ -365,6 +423,11 @@ def others(content: str = None):
 @app.route("/last-commit")
 @cache.cached(query_string=True)
 def get_last_commit():
+    """
+    GitHubの最新コミット情報を取得します。
+
+    :return: 最新コミット情報のJSONレスポンス
+    """
     headers = {
         'Authorization': f'token {github_token}'
     }
@@ -389,7 +452,12 @@ def get_last_commit():
 # 検索機能
 @app.route("/<int:year>/search", methods=["POST"])
 def search(year: int = available_years[-1]):
+    """
+    指定された年度に対して質問を検索します。
 
+    :param year: 検索する年度
+    :return: 検索結果のJSONレスポンス
+    """
     # 質問を取得
     question = request.json.get("question")
 
@@ -401,16 +469,31 @@ def search(year: int = available_years[-1]):
 
 @app.route("/.well-known/discord")
 def discord():
+    """
+    Discordの設定ファイルを返します。
+
+    :return: Discord設定ファイル
+    """
     return send_file(".well-known/discord")
 
 
 @app.route("/sitemap.xml")
 def sitemap():
+    """
+    サイトマップを生成して返します。
+
+    :return: サイトマップのXML
+    """
     return sitemapper.generate()
 
 
 @app.route("/robots.txt")
 def robots_txt():
+    """
+    robots.txtファイルを返します。
+
+    :return: robots.txtファイル
+    """
     return send_file("robots.txt", mimetype="text/plain")
 
 
@@ -420,6 +503,11 @@ def robots_txt():
 
 @app.route("/favicon.ico", methods=["GET"])
 def favicon_ico():
+    """
+    favicon.icoファイルを返します。
+
+    :return: favicon.icoファイル
+    """
     return send_file("favicon.ico", mimetype="image/vnd.microsoft.icon")
 
 
@@ -432,6 +520,11 @@ def favicon_ico():
 @app.route("/apple-touch-icon-precomposed.png", methods=["GET"])
 @app.route("/apple-touch-icon.png", methods=["GET"])
 def apple_touch_icon():
+    """
+    Appleタッチアイコンを返します。
+
+    :return: Appleタッチアイコンの画像
+    """
     return send_file("icon_512.png", mimetype="image/png")
 
 
@@ -441,11 +534,21 @@ def apple_touch_icon():
 
 @app.route("/manifest.json")
 def manifest():
+    """
+    PWAのマニフェストファイルを返します。
+
+    :return: マニフェストファイル
+    """
     return send_file('manifest.json', mimetype='application/manifest+json')
 
 
 @app.route("/service-worker.js")
 def service_worker():
+    """
+    サービスワーカーのJavaScriptファイルを返します。
+
+    :return: サービスワーカーのJavaScript
+    """
     return send_file('service-worker.js', mimetype='application/javascript')
 
 
@@ -456,6 +559,11 @@ def service_worker():
 
 @app.errorhandler(404)
 def page_not_found(_):
+    """
+    404エラーページを表示します。
+
+    :return: 404エラーページのHTMLテンプレート
+    """
     return render_template("/common/404.html", example_questions=example_questions), 404
 
 
