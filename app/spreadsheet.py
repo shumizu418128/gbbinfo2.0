@@ -14,6 +14,15 @@ client = None
 
 # Googleスプレッドシートに接続
 def get_client():
+    """
+    Googleスプレッドシートに接続するためのクライアントを取得します。
+
+    環境変数から認証情報を取得し、gspreadを使用してGoogleスプレッドシートに接続します。
+    認証情報が未設定の場合は、デフォルトのJSONファイルから取得します。
+
+    Returns:
+        gspread.Client: Googleスプレッドシートに接続するためのクライアントオブジェクト。
+    """
     global credentials, client
     if credentials is None:
 
@@ -46,7 +55,16 @@ def get_client():
 
 # Googleスプレッドシートに記録
 def record_question(year: int, question: str, answer: str):
+    """
+    Googleスプレッドシートに質問と回答を記録します。
 
+    Args:
+        year (int): 質問が関連する年。
+        question (str): 記録する質問。
+        answer (str): 記録する回答。
+
+    環境変数を使用してローカル環境かどうかを判定し、スプレッドシートにデータを挿入します。
+    """
     # 環境変数でローカル環境かどうかを判定
     github_token = os.getenv("GITHUB_TOKEN")
 
@@ -67,6 +85,14 @@ def record_question(year: int, question: str, answer: str):
 
 
 def get_example_questions():
+    """
+    スプレッドシートから例の質問を取得し、ランダムに選定します。
+
+    ステータスが〇の質問のみを抽出し、類似度が閾値未満の質問をランダムに選びます。
+
+    Returns:
+        list: 選定された質問のリスト。
+    """
     client = get_client()
 
     # スプレッドシートを開く

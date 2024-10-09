@@ -3,6 +3,20 @@ import pandas as pd
 
 
 def get_participants_list(year: int, category: str, ticket_class: str, cancel: str, GBB: bool = None, iso_code: int = None) -> list:
+    """
+    GBB参加者のリストを取得します。
+
+    Args:
+        year (int): 参加者の年。
+        category (str): 参加者のカテゴリー。
+        ticket_class (str): 出場権の種類。
+        cancel (str): キャンセルの状態。
+        GBB (bool, optional): GBBでのシード権の有無。
+        iso_code (int, optional): 国コード。
+
+    Returns:
+        list: フィルタリングされた参加者のリスト。
+    """
     # csvからデータを取得
     beatboxers_df = pd.read_csv(f'app/static/csv/{year}_participants.csv')
     countries_df = pd.read_csv('app/static/csv/countries.csv')
@@ -107,7 +121,15 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
 
 
 def get_results(year: int) -> list:
+    """
+    指定された年の結果を取得します。
 
+    Args:
+        year (int): 結果を取得する年。
+
+    Returns:
+        list: 結果のリスト。データが存在しない場合はNoneを返します。
+    """
     try:
         results_df = pd.read_csv(f'app/static/csv/{year}_result.csv')
         results_df = results_df.fillna("-")
@@ -130,7 +152,15 @@ def get_results(year: int) -> list:
 
 
 def create_world_map(year: int):
+    """
+    指定された年の参加者の位置を示す世界地図を作成します。
 
+    Args:
+        year (int): 地図を作成する年。
+
+    Returns:
+        None (ファイルを保存)
+    """
     # csvからデータを取得
     beatboxers_df = pd.read_csv(f'app/static/csv/{year}_participants.csv')
     countries_df = pd.read_csv('app/static/csv/countries.csv')

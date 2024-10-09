@@ -57,6 +57,18 @@ if 'others_link' not in locals():
 
 
 def search(year: int, question: str):
+    """
+    指定された年と質問に基づいてチャットを開始し、モデルからの応答を取得します。
+
+    Args:
+        year (int): 質問が関連する年。
+        question (str): ユーザーからの質問。
+
+    Returns:
+        dict: モデルからの応答を含む辞書。辞書には以下のキーが含まれます。
+            - url (str): レスポンスに含まれるURL。
+            - parameter (any): レスポンスに含まれるパラメータ（存在する場合）。
+    """
     global prompt, others_link
 
     # チャットを開始
