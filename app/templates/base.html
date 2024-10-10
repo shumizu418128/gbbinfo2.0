@@ -184,21 +184,12 @@
       </p>
 
       <div class="button-container">
-        <a href="/{{year}}/top"><button type="button">
+        <a href="/"><button type="button">
           <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044CC"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
-          <span class="button-text-with-icon">ホームへもどる</span>
-          <span class="button-text-with-icon">これだけガイド</span>
+          <span class="button-text-with-icon">ホームへもどる<br>これだけガイド</span>
         </button></a>
       </div>
-      <div class="button-container">
-        <a href="/{{year}}/rule"><button type="button">{{year}}ルール</button></a>
-        <a href="/{{year}}/participants"><button type="button">{{year}}出場者</button></a>
-      </div>
-      <ul>
-        {% for y in available_years|reverse %}
-          <li><a href="/{{ y }}/top">GBB {{ y }}</a></li>
-        {% endfor %}
-      </ul>
+      <hr>
       <a href="https://qiita.com/tari3210/items/0561e91774863d165af0" target="_blank" rel="noopener noreferrer">GBBINFO-JPNの設計図</a>
       <br>
       <a href="https://twitter.com/tari_3210_" target="_blank" rel="noopener noreferrer">tari3210 Twitter</a>
