@@ -55,6 +55,5 @@ function updateCountdown() {
 }
 
 // 初回呼び出し
-window.onload = function() {
-    requestAnimationFrame(updateCountdown);
-}
+// これonloadだとうまくいかない
+requestAnimationFrame(updateCountdown);

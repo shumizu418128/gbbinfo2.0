@@ -57,6 +57,5 @@ function parameterScroll() {
 }
 
 // ページ読み込み時に実行
-window.onload = function() {
-    parameterScroll();
-};
+// これonloadだとうまくいかない
+parameterScroll();
