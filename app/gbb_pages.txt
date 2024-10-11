@@ -14,7 +14,7 @@ https://gbbinfo-jpn.onrender.com/{year}/
 - japan: GBB{year}の日本代表出場者
     クエリパラメータ
     - None
-- participants: GBB{year}の出場者・Wildcardの結果順位・出場者世界地図
+- participants: GBB{year}の出場者・辞退者・Wildcardの結果順位・出場者世界地図
     クエリパラメータ
     - None
 - result: GBB{year}の大会結果
