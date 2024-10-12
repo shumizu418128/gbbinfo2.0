@@ -370,7 +370,7 @@ def content(year: int = None, content: str = None):
             last_updated=last_updated
         )
 
-    # エラーが出たらtopを表示
+    # エラーが出たら404を表示
     except jinja2.exceptions.TemplateNotFound:
         return render_template("/common/404.html", example_questions=example_questions), 404
 
@@ -407,12 +407,6 @@ def others(content: str = None):
 
     # エラー
     except jinja2.exceptions.TemplateNotFound:
-
-        # world_mapは404ページだけ表示(404は返さず、200で返す)
-        # これによりJavascriptリダイレクトを防ぐ
-        if content == "world_map":
-            return render_template("/common/404.html", example_questions=example_questions)
-
         return render_template("/common/404.html", example_questions=example_questions), 404
 
 
