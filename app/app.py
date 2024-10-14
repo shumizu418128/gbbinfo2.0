@@ -129,6 +129,8 @@ def participants(year: int = None):
     category = request.args.get("category")
     ticket_class = request.args.get("ticket_class")
     cancel = request.args.get("cancel")
+    scroll = request.args.get("scroll")
+    value = request.args.get("value") or ""
 
     # 引数が不正な場合はSolo全出場者を表示
     valid_categories = pd.read_csv(
@@ -148,6 +150,19 @@ def participants(year: int = None):
         cancel = cancel if cancel in valid_cancel else valid_cancel[0]
 
         # 正しい引数にリダイレクト
+        if scroll is not None:
+            return redirect(
+                url_for(
+                    "participants",
+                    year=year,
+                    category=category,
+                    ticket_class=ticket_class,
+                    cancel=cancel,
+                    scroll=scroll,
+                    value=value
+                )
+            )
+
         return redirect(
             url_for(
                 "participants",
@@ -177,7 +192,8 @@ def participants(year: int = None):
         is_latest_year=is_latest_year(year),
         available_years=available_years,
         example_questions=example_questions,
-        last_updated=last_updated
+        last_updated=last_updated,
+        value=value
     )
 
 

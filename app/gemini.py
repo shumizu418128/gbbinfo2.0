@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import time
 from threading import Thread
 
@@ -144,6 +145,13 @@ def search(year: int, question: str):
     if bool(response_dict["parameter"]):
         parameter = response_dict["parameter"]
         response_url += f"?scroll={parameter}"
+
+    # participantsのsearch_participantsが指定された場合はvalueに質問を追加
+    if response_dict["parameter"] == "search_participants":
+
+        # 質問が半角英数字である場合のみ
+        if re.match(r'^[a-zA-Z0-9]+$', question):
+            response_url += f"&value={question}"
 
     # スプシに記録
     if question != "テスト":
