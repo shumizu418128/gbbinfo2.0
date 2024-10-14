@@ -109,12 +109,10 @@ function search_participants(year) {
             const table = data.map(participant =>
                 `<tr>
                     <td>
-                        ${participant.members.length > 0 ? `
-                            ${participant.is_cancelled ? '【辞退】<br><s>' : ''}${participant.name}
-                            ${participant.is_cancelled ? '</s>' : ''}
-                        ` : `
-                            ${participant.is_cancelled ? '【辞退】<br><s>' : ''}${participant.name}${participant.is_cancelled ? '</s>' : ''}
-                        `}
+                        ${participant.is_cancelled ? '【辞退】<br><s>' : ''}
+                        ${participant.name}
+                        <div id="small-text">${participant.members}</div>
+                        ${participant.is_cancelled ? '</s>' : ''}
                     </td>
                     <td>${participant.category}</td>
                     <td style="${participant.ticket_class.length > 11 ? 'font-size: 12px;' : ''}">
