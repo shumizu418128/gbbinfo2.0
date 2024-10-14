@@ -148,8 +148,8 @@ def search_participants(year: int, keyword: str) -> list:
     ]
 
     # キーワードで検索(多めに取得)
-    results_name = extract(keyword.upper(), participants_name_list, limit=10)
-    results_members = extract(keyword.upper(), participants_members_list, limit=10)
+    results_name = extract(keyword.upper(), participants_name_list, limit=10, score_cutoff=1)
+    results_members = extract(keyword.upper(), participants_members_list, limit=10, score_cutoff=1)
 
     # 名前とmembersの結果を統合
     combined_results = {result[0]: result[1] for result in results_name + results_members}

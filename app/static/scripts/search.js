@@ -92,7 +92,7 @@ function search_participants(year) {
     document.getElementById('search-participants-result-h3').textContent = '検索結果';
 
     // 検索ワードがアルファベットのみか確認
-    const regex = /^[a-zA-Z0-9]+$/;
+    const regex = /^[a-zA-Z0-9 ]+$/;
     if (input && loadingElement && regex.test(input)) { // 少なくとも2文字以上で検索を開始
         loadingElement.innerHTML = `<div>検索中：${input}</div><br>`; // スピナーの上に質問を表示
         loadingElement.style.display = 'block';
@@ -120,9 +120,14 @@ function search_participants(year) {
                     </td>
                 </tr>`
             ).join('');
-
-            document.getElementById('participants-search-result').innerHTML = `${table}`;
-            loadingElement.style.display = 'none';
+            if (table != '') {
+                document.getElementById('participants-search-result').innerHTML = `${table}`;
+                loadingElement.style.display = 'none';
+            }
+            else {
+                document.getElementById('participants-search-result').innerHTML = '<p>検索結果なし</p>';
+                loadingElement.style.display = 'none';
+            }
         })
         .catch(error => console.error('Error:', error));
     } else if (regex.test(input) == false && input.length > 0) {
