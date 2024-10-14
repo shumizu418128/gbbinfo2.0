@@ -138,7 +138,7 @@
 <h2 name="search_participants">GBB {{ year }} 出場者検索</h2>
 <p id="caution-alphabet">GBB {{ year }} 出場者名を検索できます<br>半角英数字のみ入力してください</p>
 <form id="search-participants" class="search-form-1">
-  <input type="text" name="keyword" id="keyword" placeholder="半角英数字のみ入力" value={{ value }} oninput="search_participants(year={{year}})" pattern="[a-zA-Z0-9]*">
+  <input type="text" name="keyword" id="keyword" placeholder="半角英数字のみ入力" value="{{ value }}" oninput="search_participants(year={{year}})" pattern="[a-zA-Z0-9]*">
 </form>
 
 <div id="loading" class="loading"></div>
