@@ -1,3 +1,4 @@
+from rapidfuzz.process import extract
 import folium
 import pandas as pd
 
@@ -10,7 +11,7 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
         year (int): 参加者の年。
         category (str): 参加者のカテゴリー。
         ticket_class (str): 出場権の種類。
-        cancel (str): キャンセルの状態。
+        cancel (str, "show", "hide", "only_cancelled"): キャンセルの状態。
         GBB (bool, optional): GBBでのシード権の有無。
         iso_code (int, optional): 国コード。
 
@@ -120,6 +121,53 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
     return participants_list
 
 
+# キーワードで検索
+def search_participants(year: int, keyword: str) -> list:
+    """
+    指定された年度の出場者をキーワードで検索します。
+
+    Args:
+        year (int): 検索対象の年度。
+        keyword (str): 検索するキーワード。
+
+    Returns:
+        list: 一致した出場者のリスト。
+    """
+    # 出場者リストを取得
+    participants_list = get_participants_list(
+        year=year,
+        category="all",
+        ticket_class="all",
+        cancel="show"
+    )
+    participants_name_list = [participant["name"] for participant in participants_list]
+    participants_members_list = [participant["members"] for participant in participants_list]
+
+    # キーワードで検索
+    results_name = extract(keyword.upper(), participants_name_list, limit=5)
+    results_members = extract(keyword.upper(), participants_members_list, limit=5)
+
+    # 名前とmembersの結果を統合
+    combined_results = {result[0]: result[1] for result in results_name}  # 名前の結果を辞書に追加
+    for result in results_members:
+        if result[0] not in combined_results:  # 重複を避ける
+            combined_results[result[0]] = result[1]
+
+    # 類似度が高い順に並び替え
+    sorted_results = sorted(combined_results.items(), key=lambda x: x[1], reverse=True)[:5]  # 上位5件を取得
+
+    # 名前だけに変換
+    top_results = [result[0] for result in sorted_results]
+
+    # resultsにない名前のものは削除
+    participants_list = [participant for participant in participants_list if participant["name"] in top_results or participant["members"] in top_results]
+
+    # 結果の順番をtop_resultsに合わせる
+    participants_list = sorted(participants_list, key=lambda participant: top_results.index(participant["name"]) if participant["name"] in top_results else float('inf'))
+
+    return participants_list
+
+
 def get_results(year: int) -> list:
     """
     指定された年の結果を取得します。
@@ -223,8 +271,10 @@ def create_world_map(year: int):
         location = (lat, lon)
 
         popup_content = '<div style="font-family: Noto sans JP; font-size: 14px;">'
-        popup_content += f'<h3 style="margin: 0; color: #F0632F;">{country_name}</h3>'
-        popup_content += f'<h4 style="margin: 0; color: #F0632F;">{country_name_ja}</h4>'
+        popup_content += f'<h3 style="margin: 0; color: #F0632F;">{
+            country_name}</h3>'
+        popup_content += f'<h4 style="margin: 0; color: #F0632F;">{
+            country_name_ja}</h4>'
 
         for name, category, members in zip(names, categories, members):
             if members != "":

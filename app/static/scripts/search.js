@@ -84,3 +84,56 @@ function openSearchMenu() {
     searchIcon.style.display = 'none'; // 検索アイコンを非表示
     closeIcon.style.display = 'block'; // 閉じるアイコンを表示
 }
+
+function search_participants(year) {
+    const input = document.getElementById('keyword').value;
+    const loadingElement = document.getElementById('loading');
+
+    document.getElementById('search-participants-result-h3').textContent = '検索結果';
+
+    // 検索ワードがアルファベットのみか確認
+    const regex = /^[a-zA-Z0-9]+$/;
+    if (input && loadingElement && regex.test(input)) { // 少なくとも2文字以上で検索を開始
+        loadingElement.innerHTML = `<div>検索中：${input}</div><br>`; // スピナーの上に質問を表示
+        loadingElement.style.display = 'block';
+
+        fetch(`/${year}/search_participants`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({keyword: input})
+        })
+        .then(response => response.json())
+        .then(data => {
+            const table = data.map(participant =>
+                `<tr>
+                    <td>
+                        ${participant.members.length > 0 ? `
+                            ${participant.is_cancelled ? '【辞退】<br><s>' : ''}${participant.name}
+                            ${participant.is_cancelled ? '</s>' : ''}
+                        ` : `
+                            ${participant.is_cancelled ? '【辞退】<br><s>' : ''}${participant.name}${participant.is_cancelled ? '</s>' : ''}
+                        `}
+                    </td>
+                    <td>${participant.category}</td>
+                    <td style="${participant.ticket_class.length > 11 ? 'font-size: 12px;' : ''}">
+                        ${participant.is_cancelled ? `<s>${participant.ticket_class}</s>` : participant.ticket_class}
+                    </td>
+                </tr>`
+            ).join('');
+
+            document.getElementById('participants-search-result').innerHTML = `${table}`;
+            loadingElement.style.display = 'none';
+        })
+        .catch(error => console.error('Error:', error));
+    } else if (regex.test(input) == false && input.length > 0) {
+        document.getElementById('participants-search-result').innerHTML = '<tr><td>😭</td><td>😠</td><td>😭</td></tr>';
+        loadingElement.style.display = 'none';
+        document.getElementById('search-participants-result-h3').textContent = '半角英数字のみ入力';
+        document.getElementById('caution-alphabet').innerHTML += '<br><br>半角英数字だけだって言ったじゃん！！😭';
+    } else {
+        document.getElementById('participants-search-result').innerHTML = '<p>検索結果なし</p>';
+        loadingElement.style.display = 'none';
+    }
+}

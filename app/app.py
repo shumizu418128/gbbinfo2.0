@@ -10,7 +10,7 @@ from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
 from . import gemini, key, spreadsheet
-from .participants import create_world_map, get_participants_list, get_results
+from .participants import create_world_map, get_participants_list, get_results, search_participants
 
 app = Flask(__name__)
 sitemapper = Sitemapper()
@@ -457,6 +457,23 @@ def search(year: int = available_years[-1]):
 
     # geminiで検索
     response_dict = gemini.search(year=year, question=question)
+
+    return jsonify(response_dict)
+
+
+@app.route("/<int:year>/search_participants", methods=["POST"])
+def search_participants_by_keyword(year: int = available_years[-1]):
+    """
+    指定された年度に対して出場者を検索します。
+
+    :param year: 検索する年度
+    :return: 検索結果のJSONレスポンス
+    """
+    # 出場者を取得
+    keyword = request.json.get("keyword")
+
+    # geminiで検索
+    response_dict = search_participants(year=year, keyword=keyword)
 
     return jsonify(response_dict)
 

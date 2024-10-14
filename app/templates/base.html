@@ -261,5 +261,12 @@
     <script src="/static/scripts/install.js"></script>
     <script src="/static/scripts/search.js"></script>
 
+    <script>
+      if (window.location.pathname.includes('/participants')) {
+          // 特定の関数を実行する
+          search_participants({{ year }});
+      }
+    </script>
+
   </body>
 </html>
