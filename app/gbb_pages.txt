@@ -33,10 +33,11 @@ https://gbbinfo-jpn.onrender.com/{year}/
 - ticket: GBB{year}のチケット、会場、7toSmokeのチケット、会場
     クエリパラメータ
     - None
-- time_schedule: GBB{year}のタイムスケジュール、7toSmokeのタイムスケジュール
+- time_schedule: GBB{year}のタイムスケジュール、7toSmokeのタイムスケジュール、スペシャルSHOWCASEについて
     クエリパラメータ
     - None
     - 7tosmoke
+    - showcase
 - top: GBB{year}開催日
     クエリパラメータ
     - None
