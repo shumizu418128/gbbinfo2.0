@@ -141,31 +141,51 @@ def search_participants(year: int, keyword: str) -> list:
         cancel="show"
     )
     participants_name_list = [participant["name"] for participant in participants_list]
-    participants_members_list = [participant["members"] for participant in participants_list]
+    participants_members_list = [
+        member.strip()
+        for participant in participants_list
+        for member in participant["members"].split(',')
+    ]
 
-    # キーワードで検索
-    results_name = extract(keyword.upper(), participants_name_list, limit=5)
-    results_members = extract(keyword.upper(), participants_members_list, limit=5)
+    # キーワードで検索(多めに取得)
+    results_name = extract(keyword.upper(), participants_name_list, limit=10)
+    results_members = extract(keyword.upper(), participants_members_list, limit=10)
 
     # 名前とmembersの結果を統合
-    combined_results = {result[0]: result[1] for result in results_name}  # 名前の結果を辞書に追加
-    for result in results_members:
-        if result[0] not in combined_results:  # 重複を避ける
-            combined_results[result[0]] = result[1]
+    combined_results = {result[0]: result[1] for result in results_name + results_members}
 
     # 類似度が高い順に並び替え
-    sorted_results = sorted(combined_results.items(), key=lambda x: x[1], reverse=True)[:5]  # 上位5件を取得
+    sorted_results = sorted(combined_results.items(), key=lambda x: x[1], reverse=True)  # 上位5件を取得
 
     # 名前だけに変換
     top_results = [result[0] for result in sorted_results]
 
-    # resultsにない名前のものは削除
-    participants_list = [participant for participant in participants_list if participant["name"] in top_results or participant["members"] in top_results]
+    # resultsにある名前のデータを取得
+    participants_search_result = []
+    for result in top_results:
 
-    # 結果の順番をtop_resultsに合わせる
-    participants_list = sorted(participants_list, key=lambda participant: top_results.index(participant["name"]) if participant["name"] in top_results else float('inf'))
+        # 1人の部門
+        participant_solos = [
+            participant for participant in participants_list if participant["name"] == result
+        ]
+        participants_search_result.extend(participant_solos)
 
-    return participants_list
+        # チームの部門
+        participant_teams = [
+            participant for participant in participants_list if result in participant["members"]
+        ]
+        participants_search_result.extend(participant_teams)
+
+        if participant_solos == [] and participant_teams == []:
+            print(f"\nError: {result} is not found in participants_list.\n")
+
+    # 元の順序を保持しつつ、重複を削除
+    final_result = [
+        participants_search_result[i] for i in range(len(participants_search_result))
+        if participants_search_result[i] not in participants_search_result[:i]
+    ][:5]
+
+    return final_result
 
 
 def get_results(year: int) -> list:
