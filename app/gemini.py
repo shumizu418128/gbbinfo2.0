@@ -101,42 +101,25 @@ def search(year: int, question: str):
         )
     except json.JSONDecodeError:
         print("Error: response is not JSON", flush=True)
-        response_dict = {
-            'url': f'/{year}/top',
-            'parameter': None
-        }  # ここでparameterも初期化
+        # JSONデコード失敗時のデフォルト値
+        return {'url': f'/{year}/top', 'parameter': 'contact'}
 
     # othersのリンクであればリンクを変更
-    for link in others_link:
-        if link.replace(".html", "") in response_dict["url"]:
-            response_dict["url"] = f"/others/{link.replace('.html', '')}"
-            break
+    others_url = next((f"/others/{link.replace('.html', '')}" for link in others_link if link.replace(".html", "") in response_dict["url"]), None)
+    if others_url:
+        response_dict["url"] = others_url
 
-    # リンクに説明が含まれている場合は削除
-    if "%" in response_dict["url"]:
-        response_dict["url"] = response_dict["url"].split("%")[0]
-
-    ########################################################
-
-    # パラメータの例外処理
-
-    # parameterのNone処理
-    if response_dict["parameter"] == "None":
-        response_dict["parameter"] = None
+    # URLとパラメータの正規化処理
+    response_dict["url"] = response_dict["url"].split("%")[0]
+    response_dict["parameter"] = None if response_dict["parameter"] == "None" else response_dict["parameter"]
 
     # topのNoneは問い合わせに変更
     if "top" in response_dict["url"] and response_dict["parameter"] is None:
         response_dict["parameter"] = "contact"
 
     # 7toSmoke最新情報の場合は7tosmokeこれだけガイドページに変更
-    condition = (
-        response_dict["parameter"] == "latest_info",
-        response_dict["parameter"] is None
-    )
-    if response_dict["url"] == "/others/7tosmoke" and any(condition):
+    if response_dict["url"] == "/others/7tosmoke" and response_dict["parameter"] in ["latest_info", None]:
         response_dict["url"] = f"/{year}/top_7tosmoke"
-
-    ########################################################
 
     # レスポンスURLの作成
     response_url = response_dict["url"]
@@ -148,16 +131,9 @@ def search(year: int, question: str):
 
     # participantsのsearch_participantsが指定された場合はvalueに質問を追加
     if response_dict["parameter"] == "search_participants":
-
-        # 質問が半角英数字である場合
-        regex = r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+'
-
-        if re.match(regex + "$", question):
-            response_url += f"&value={question}"
-
-        # 質問の一部が半角英数字である場合
-        if re.search(regex, question):
-            response_url += f"&value={re.search(regex, question).group()}"
+        match = re.search(r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+', question)
+        if match:
+            response_url += f"&value={match.group()}"
 
     # スプシに記録
     if question != "テスト":
