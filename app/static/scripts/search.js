@@ -115,7 +115,9 @@ function search_participants(year) {
                         <div id="small-text">${participant.members}</div>
                         ${participant.is_cancelled ? '</s>' : ''}
                     </td>
-                    <td>${participant.category}</td>
+                    <td>
+                        ${participant.is_cancelled ? `<s>${participant.category}</s>` : participant.category}
+                    </td>
                     <td style="${participant.ticket_class.length > 11 ? 'font-size: 12px;' : ''}">
                         ${participant.is_cancelled ? `<s>${participant.ticket_class}</s>` : participant.ticket_class}
                     </td>
