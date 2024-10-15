@@ -92,7 +92,8 @@ function search_participants(year) {
     document.getElementById('search-participants-result-h3').textContent = '検索結果';
 
     // 検索ワードがアルファベットのみか確認
-    const regex = /^[a-zA-Z0-9 ]+$/;
+    const regex = /^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:'"\\|{}[\]Ω]+$/;
+
     if (input && loadingElement && regex.test(input)) { // 少なくとも2文字以上で検索を開始
         loadingElement.innerHTML = `<div>検索中：${input}</div><br>`; // スピナーの上に質問を表示
         loadingElement.style.display = 'block';

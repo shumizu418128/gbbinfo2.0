@@ -150,12 +150,14 @@ def search(year: int, question: str):
     if response_dict["parameter"] == "search_participants":
 
         # 質問が半角英数字である場合
-        if re.match(r'^[a-zA-Z0-9 ]+$', question):
+        regex = r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+'
+
+        if re.match(regex + "$", question):
             response_url += f"&value={question}"
 
         # 質問の一部が半角英数字である場合
-        if re.search(r'[a-zA-Z0-9 ]+', question):
-            response_url += f"&value={re.search(r'[a-zA-Z0-9 ]+', question).group()}"
+        if re.search(regex, question):
+            response_url += f"&value={re.search(regex, question).group()}"
 
     # スプシに記録
     if question != "テスト":
