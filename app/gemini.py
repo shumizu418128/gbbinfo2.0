@@ -132,7 +132,7 @@ def search(year: int, question: str):
     if response_dict["parameter"] == "search_participants":
         match = re.search(r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+', question)
         if match:
-            response_url += f"&value={match.group()}"
+            response_url += f"&value={match.group().upper()}"
 
     # スプシに記録
     if question != "テスト":
