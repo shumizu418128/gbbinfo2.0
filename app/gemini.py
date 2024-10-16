@@ -5,6 +5,7 @@ import time
 from threading import Thread
 
 import google.generativeai as genai
+import pykakasi
 
 from . import spreadsheet
 
@@ -56,6 +57,12 @@ if 'prompt' not in locals():
 if 'others_link' not in locals():
     others_link = os.listdir(os.getcwd() + '/app/templates/others')
 
+kakasi = pykakasi.kakasi()
+kakasi.setMode('H', 'a')  # ひらがなをローマ字に変換
+kakasi.setMode('K', 'a')  # カタカナをローマ字に変換
+kakasi.setMode('J', 'a')  # 漢字をローマ字に変換
+converter = kakasi.getConverter()
+
 
 def search(year: int, question: str):
     """
@@ -104,13 +111,21 @@ def search(year: int, question: str):
         return {'url': f'/{year}/top', 'parameter': 'contact'}
 
     # othersのリンクであればリンクを変更
-    others_url = next((f"/others/{link.replace('.html', '')}" for link in others_link if link.replace(".html", "") in response_dict["url"]), None)
+    others_url = next(
+        (
+            f"/others/{link.replace('.html', '')}"
+            for link in others_link
+            if link.replace(".html", "") in response_dict["url"]
+        ),
+        None
+    )
     if others_url:
         response_dict["url"] = others_url
 
     # URLとパラメータの正規化処理
     response_dict["url"] = response_dict["url"].split("%")[0]
     response_dict["parameter"] = None if response_dict["parameter"] == "None" else response_dict["parameter"]
+    response_dict["name"] = None if response_dict["name"] == "None" else response_dict["name"]
 
     # topのNoneは問い合わせに変更
     if "top" in response_dict["url"] and response_dict["parameter"] is None:
@@ -130,9 +145,32 @@ def search(year: int, question: str):
 
     # participantsのsearch_participantsが指定された場合はvalueに質問を追加
     if response_dict["parameter"] == "search_participants":
-        match = re.search(r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+', question)
-        if match:
-            response_url += f"&value={match.group().upper()}"
+
+        # AIが推定した名前を取得
+        possible_name = response_dict["name"]
+
+        # 英数字表記かどうか判定
+        # 記号も対象・Ωは"Sound of Sony Ω"の入力対策
+        match_alphabet = re.match(
+            r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+',
+            possible_name
+        )
+
+        # 英数字表記の場合、大文字に変換して追加
+        if match_alphabet:
+            response_url += f"&value={match_alphabet.group().upper()}"
+
+        # それ以外の場合、ローマ字に変換して追加
+        else:
+            romaji_name = converter.do(possible_name)
+
+            # 一応ちゃんと変換できたか確認
+            match_alphabet = re.match(
+                r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+',
+                romaji_name
+            )
+            if match_alphabet:
+                response_url += f"&value={romaji_name.upper()}"
 
     # スプシに記録
     if question != "テスト":

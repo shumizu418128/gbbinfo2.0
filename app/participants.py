@@ -1,6 +1,16 @@
-from rapidfuzz.process import extract
+import re
+
 import folium
+import mojimoji
 import pandas as pd
+import pykakasi
+from rapidfuzz.process import extract
+
+kakasi = pykakasi.kakasi()
+kakasi.setMode('H', 'a')  # ひらがなをローマ字に変換
+kakasi.setMode('K', 'a')  # カタカナをローマ字に変換
+kakasi.setMode('J', 'a')  # 漢字をローマ字に変換
+converter = kakasi.getConverter()
 
 
 def get_participants_list(year: int, category: str, ticket_class: str, cancel: str, GBB: bool = None, iso_code: int = None) -> list:
@@ -133,6 +143,23 @@ def search_participants(year: int, keyword: str) -> list:
     Returns:
         list: 一致した出場者のリスト。
     """
+    # 全角・半角の表記ゆれを統一
+    # 英数字を半角に変換
+    keyword = mojimoji.han_to_zen(keyword, ascii=False, digit=True)
+
+    # 日本語（カタカナ）を全角に変換
+    keyword = mojimoji.zen_to_han(keyword, kana=False)
+
+    # 入力が英数字表記かどうか判定
+    # 記号も対象・Ωは"Sound of Sony Ω"の入力対策
+    match_alphabet = re.match(
+        r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+',
+        keyword
+    )
+    if match_alphabet is None:
+        # ローマ字に変換
+        keyword = converter.do(keyword)
+
     # 出場者リストを取得
     participants_list = get_participants_list(
         year=year,
@@ -140,7 +167,9 @@ def search_participants(year: int, keyword: str) -> list:
         ticket_class="all",
         cancel="show"
     )
-    participants_name_list = [participant["name"] for participant in participants_list]
+    participants_name_list = [
+        participant["name"] for participant in participants_list
+    ]
     participants_members_list = [
         member.strip()
         for participant in participants_list
@@ -148,14 +177,24 @@ def search_participants(year: int, keyword: str) -> list:
     ]
 
     # キーワードで検索(多めに取得)
-    results_name = extract(keyword.upper(), participants_name_list, limit=10, score_cutoff=1)
-    results_members = extract(keyword.upper(), participants_members_list, limit=10, score_cutoff=1)
+    results_name = extract(
+        keyword.upper(), participants_name_list, limit=10, score_cutoff=1
+    )
+    results_members = extract(
+        keyword.upper(), participants_members_list, limit=10, score_cutoff=1
+    )
 
     # 名前とmembersの結果を統合
-    combined_results = {result[0]: result[1] for result in results_name + results_members}
+    combined_results = {
+        result[0]: result[1]
+        for result in results_name + results_members
+    }
 
     # 類似度が高い順に並び替え
-    sorted_results = sorted(combined_results.items(), key=lambda x: x[1], reverse=True)  # 上位5件を取得
+    sorted_results = sorted(
+        combined_results.items(),
+        key=lambda x: x[1], reverse=True
+    )
 
     # 名前だけに変換
     top_results = [result[0] for result in sorted_results]
@@ -179,7 +218,7 @@ def search_participants(year: int, keyword: str) -> list:
         if participant_solos == [] and participant_teams == []:
             print(f"\nError: {result} is not found in participants_list.\n")
 
-    # 元の順序を保持しつつ、重複を削除
+    # 元の順序を保持しつつ、重複を削除、上位5件を取得
     final_result = [
         participants_search_result[i] for i in range(len(participants_search_result))
         if participants_search_result[i] not in participants_search_result[:i]

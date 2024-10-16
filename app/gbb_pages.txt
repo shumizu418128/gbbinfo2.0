@@ -9,6 +9,7 @@ https://gbbinfo-jpn.onrender.com/{year}/
 # 回答のルール
 このURLの後ろに、以下のファイル名を必ず含めてください。
 また、別途適切なクエリパラメータを選択し、回答に含めてください。
+そして、質問に含まれている「人名」を1つ回答してください。無い場合はNoneと回答してください。
 以下に書かれていないものを作り出す行為は禁止。
 
 - japan: GBB{year}の日本代表出場者
@@ -70,5 +71,8 @@ https://gbbinfo-jpn.onrender.com/{year}/
 もしも適切なWebページが無いと判断した場合、ファイル名はtopを、クエリパラメータはNoneを選択してください。
 なお、人の名前と思われる文字列が質問の場合、ファイル名はparticipantsを、クエリパラメータはsearch_participantsを選択してください。
 
-# 回答例
-{{'url': 'https://gbbinfo-jpn.onrender.com/{year}/top', 'parameter': 'contact'}}
+# 回答例1
+{{'url': 'https://gbbinfo-jpn.onrender.com/{year}/top', 'parameter': 'contact', 'name': 'None'}}
+
+# 回答例2
+{{'url': 'https://gbbinfo-jpn.onrender.com/{year}/participants', 'parameter': 'search_participants', 'name': 'ロフ'}}

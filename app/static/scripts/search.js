@@ -89,12 +89,7 @@ function search_participants(year) {
     const input = document.getElementById('keyword').value;
     const loadingElement = document.getElementById('loading');
 
-    document.getElementById('search-participants-result-h3').textContent = '検索結果';
-
-    // 検索ワードがアルファベットのみか確認
-    const regex = /^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:'"\\|{}[\]Ω]+$/;
-
-    if (regex.test(input)) { // 少なくとも1文字以上で検索を開始
+    if (input) { // 少なくとも1文字以上で検索を開始
         loadingElement.innerHTML = `<div>検索中：${input}</div><br>`; // スピナーの上に質問を表示
         loadingElement.style.display = 'block';
 
@@ -133,11 +128,6 @@ function search_participants(year) {
             }
         })
         .catch(error => console.error('Error:', error));
-    } else if (input.length > 0 && regex.test(input) == false) {
-        document.getElementById('participants-search-result').innerHTML = '<tr><td>😭</td><td>😠</td><td>😭</td></tr>';
-        loadingElement.style.display = 'none';
-        document.getElementById('search-participants-result-h3').textContent = '半角英数字のみ入力';
-        document.getElementById('caution-alphabet').innerHTML += '<br><br>半角英数字だけだって言ったじゃん！！😭';
     } else {
         document.getElementById('participants-search-result').innerHTML = '<p>検索結果なし</p>';
         loadingElement.style.display = 'none';

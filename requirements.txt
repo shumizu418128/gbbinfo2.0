@@ -10,3 +10,5 @@ gspread
 oauth2client
 google-auth
 Levenshtein
+pykakasi
+mojimoji
