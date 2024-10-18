@@ -13,7 +13,7 @@ kakasi.setMode('J', 'a')  # 漢字をローマ字に変換
 converter = kakasi.getConverter()
 
 
-def get_participants_list(year: int, category: str, ticket_class: str, cancel: str, GBB: bool = None, iso_code: int = None) -> list:
+def get_participants_list(year: int, category: str, ticket_class: str, cancel: str, GBB: bool = None, iso_code: int = None):
     """
     GBB参加者のリストを取得します。
 
@@ -132,7 +132,7 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
 
 
 # キーワードで検索
-def search_participants(year: int, keyword: str) -> list:
+def search_participants(year: int, keyword: str):
     """
     指定された年度の出場者をキーワードで検索します。
 
@@ -227,7 +227,7 @@ def search_participants(year: int, keyword: str) -> list:
     return final_result
 
 
-def get_results(year: int) -> list:
+def get_results(year: int):
     """
     指定された年の結果を取得します。
 
