@@ -90,7 +90,7 @@ function search_participants(year) {
     const loadingElement = document.getElementById('loading');
 
     if (input) { // 少なくとも1文字以上で検索を開始
-        loadingElement.innerHTML = `<div>検索中：${input}</div><br>`; // スピナーの上に質問を表示
+        loadingElement.textContent = `検索中：${input}`; // スピナーの上に質問を表示
         loadingElement.style.display = 'block';
 
         fetch(`/${year}/search_participants`, {
