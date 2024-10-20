@@ -74,7 +74,7 @@ def search(year: int, question: str):
 
     Returns:
         dict: モデルからの応答を含む辞書。辞書には以下のキーが含まれます。
-            - url (str): レスポンスURL。
+            url (str): レスポンスURL。
     """
     global prompt, others_link
 
