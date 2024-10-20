@@ -64,6 +64,67 @@ kakasi.setMode('J', 'a')  # 漢字をローマ字に変換
 converter = kakasi.getConverter()
 
 
+def create_url(year: int, url: str, parameter: str | None, name: str | None):
+    """
+    指定された情報に基づいてレスポンスURLを作成します。
+
+    Args:
+        year (int): 質問が関連する年。
+        url (str): ベースURL。
+        parameter (str): スクロール位置を示すパラメータ。
+        name (str): 質問に含まれている名前。
+
+    Returns:
+        str: 作成されたURL。
+    """
+
+    # topのNoneは問い合わせに変更
+    if "top" in url and parameter is None:
+        parameter = "contact"
+
+    # 7toSmoke最新情報の場合は7tosmokeこれだけガイドページに変更
+    if url == "/others/7tosmoke" and parameter in ["latest_info", None]:
+        url = f"/{year}/top_7tosmoke"
+
+    # レスポンスURLの作成
+    response_url = url
+
+    # パラメータがある場合は追加
+    if bool(parameter):
+        response_url += f"?scroll={parameter}"
+
+    # participantsのsearch_participantsが指定された場合はvalueに質問を追加
+    if parameter == "search_participants":
+
+        # AIが推定した名前を取得
+        possible_name = name
+
+        # 英数字表記かどうか判定
+        # 記号も対象・Ωは"Sound of Sony Ω"の入力対策
+        match_alphabet = re.match(
+            r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+',
+            possible_name
+        )
+
+        # 英数字表記の場合、大文字に変換して追加
+        if match_alphabet:
+            response_url += f"&value={match_alphabet.group().upper()}"
+
+        # それ以外の場合、ローマ字に変換して追加
+        else:
+            romaji_name = converter.do(possible_name)
+
+            # 一応ちゃんと変換できたか確認
+            match_alphabet = re.match(
+                r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+',
+                romaji_name
+            )
+            if match_alphabet:
+                response_url += f"&value={romaji_name.upper()}"
+
+    return response_url
+
+
 def search(year: int, question: str):
     """
     指定された年と質問に基づいてチャットを開始し、モデルからの応答を取得します。
@@ -123,54 +184,12 @@ def search(year: int, question: str):
         response_dict["url"] = others_url
 
     # URLとパラメータの正規化処理
-    response_dict["url"] = response_dict["url"].split("%")[0]
-    response_dict["parameter"] = None if response_dict["parameter"] == "None" else response_dict["parameter"]
-    response_dict["name"] = None if response_dict["name"] == "None" else response_dict["name"]
-
-    # topのNoneは問い合わせに変更
-    if "top" in response_dict["url"] and response_dict["parameter"] is None:
-        response_dict["parameter"] = "contact"
-
-    # 7toSmoke最新情報の場合は7tosmokeこれだけガイドページに変更
-    if response_dict["url"] == "/others/7tosmoke" and response_dict["parameter"] in ["latest_info", None]:
-        response_dict["url"] = f"/{year}/top_7tosmoke"
+    url = response_dict["url"].split("%")[0]
+    parameter = None if response_dict["parameter"] == "None" else response_dict["parameter"]
+    name = None if response_dict["name"] == "None" else response_dict["name"]
 
     # レスポンスURLの作成
-    response_url = response_dict["url"]
-
-    # パラメータがある場合は追加
-    if bool(response_dict["parameter"]):
-        parameter = response_dict["parameter"]
-        response_url += f"?scroll={parameter}"
-
-    # participantsのsearch_participantsが指定された場合はvalueに質問を追加
-    if response_dict["parameter"] == "search_participants":
-
-        # AIが推定した名前を取得
-        possible_name = response_dict["name"]
-
-        # 英数字表記かどうか判定
-        # 記号も対象・Ωは"Sound of Sony Ω"の入力対策
-        match_alphabet = re.match(
-            r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+',
-            possible_name
-        )
-
-        # 英数字表記の場合、大文字に変換して追加
-        if match_alphabet:
-            response_url += f"&value={match_alphabet.group().upper()}"
-
-        # それ以外の場合、ローマ字に変換して追加
-        else:
-            romaji_name = converter.do(possible_name)
-
-            # 一応ちゃんと変換できたか確認
-            match_alphabet = re.match(
-                r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+',
-                romaji_name
-            )
-            if match_alphabet:
-                response_url += f"&value={romaji_name.upper()}"
+    response_url = create_url(year, url, parameter, name)
 
     # スプシに記録
     if question != "テスト":
