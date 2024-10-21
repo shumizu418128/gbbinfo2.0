@@ -1,4 +1,5 @@
 import os
+import warnings
 from datetime import datetime
 
 import jinja2
@@ -10,7 +11,8 @@ from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
 from . import gemini, key, spreadsheet
-from .participants import create_world_map, get_participants_list, get_results, search_participants
+from .participants import (create_world_map, get_participants_list,
+                           get_results, search_participants)
 
 app = Flask(__name__)
 sitemapper = Sitemapper()
@@ -27,9 +29,18 @@ example_questions = spreadsheet.get_example_questions()
 dt_now = datetime.now()
 last_updated = "最終更新：" + dt_now.strftime("%Y/%m/%d %H:%M:%S")
 
+# 特定の警告を無視
+warnings.filterwarnings(
+    "ignore",
+    category=UserWarning,
+    message="Flask-Caching: CACHE_TYPE is set to null, caching is effectively disabled."
+)
 # テスト環境ではキャッシュを無効化
-if os.getenv("SECRET_KEY") is None and os.getenv("GITHUB_TOKEN") is None:
+# ローカル環境にはこの環境変数を設定してある
+if os.getenv("ENVIRONMENT_CHECK") == "qawsedrftgyhujikolp":
+    print("\nくぁwせdrftgyふじこlp\n")
     app.config['CACHE_TYPE'] = "null"
+    app.config['DEBUG'] = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     cache = Cache(app, config={'CACHE_TYPE': 'null'})
 
