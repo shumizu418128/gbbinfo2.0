@@ -64,7 +64,6 @@ https://gbbinfo-jpn.onrender.com/{year}/
 - 7tosmoke: 7tosmokeとは何か、事前予選・当日予選ルール、本戦ルール、7tosmoke最新情報
     クエリパラメータ
     - None
-    - about_7tosmoke
     - qualifying_rules
     - main_event_rules
     - latest_info
