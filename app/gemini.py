@@ -94,16 +94,13 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
         response_url += f"?scroll={parameter}"
 
     # participantsのsearch_participantsが指定された場合はvalueに質問を追加
-    if parameter == "search_participants":
-
-        # AIが推定した名前を取得
-        possible_name = name
+    if parameter == "search_participants" and bool(name):
 
         # 英数字表記かどうか判定
         # 記号も対象・Ωは"Sound of Sony Ω"の入力対策
         match_alphabet = re.match(
             r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+',
-            possible_name
+            name
         )
 
         # 英数字表記の場合、大文字に変換して追加
@@ -112,7 +109,7 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
 
         # それ以外の場合、ローマ字に変換して追加
         else:
-            romaji_name = converter.do(possible_name)
+            romaji_name = converter.do(name)
 
             # 一応ちゃんと変換できたか確認
             match_alphabet = re.match(
