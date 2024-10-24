@@ -39,7 +39,10 @@
 <p>7toSmokeは、GBB本戦に比べて最新情報の公開が非常に遅い傾向にあり、そもそも情報が発表されないまま本番を迎えてしまったケースもあります。</p>
 <p>諦めましょう。</p>
 
-<div class="button-container">
-  <a href="/{{ year }}/top?scroll=contact"><button>お問い合わせ</button></a>
-</div>
+{% if is_latest_year %}
+  <div class="button-container">
+    <a href="/{{ year }}/top?scroll=contact"><button>お問い合わせ</button></a>
+  </div>
+{% endif %}
+
 {% endblock %}
