@@ -6,37 +6,12 @@
 {% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/stream{% endblock %}
 {% block content %}
 <h1>GBB {{ year }} 当日配信</h1>
-
-<!-- TODO: 更新したらこの表示を消す -->
-<div class="background-popup" onclick="closePopup()"></div>
-
-<div class="popup">
-  <p style="font-size: 36px; font-weight: bold;">×××<br>情報なし<br>×××</p>
-  <p>{{ last_updated }}</p>
-  <p>お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。<br>公式発表をお待ちください。</p>
-    <div class="button-container" style="margin-bottom: 8px">
-      <a href="/{{ year }}/top?scroll=contact"><button>お問い合わせ</button></a>
-    </div>
-  <button type="button" onclick="closePopup()">閉じる</button>
-</div>
-
-<div style="text-align: center;">
-  <p>{{ last_updated }}</p>
-</div>
-
-<p>GBB23では本番7日前発表<br>GBB23 7toSmokeは配信なし</p>
-<p>～発表次第更新～</p>
-
+<p>ABEMA独占生中継</p>
 <div class="button-container">
-  <a href="/{{ year }}/top?scroll=contact"><button>お問い合わせ</button></a>
-</div>
-<!-- TODO: 更新したらこの表示を消す -->
-
-<div class="button-container">
-  <a href=""><button class="disabled-button">Day1 11/1</button></a>
-  <a href=""><button class="disabled-button">Day2 11/2</button></a>
-  <a href=""><button class="disabled-button">Day3 11/3</button></a>
-  <a href=""><button class="disabled-button">7toSmoke 11/4</button></a>
+  <a href="https://abe.ma/48kXwnx"><button>Day1 11/1</button></a>
+  <a href="https://abe.ma/40gzGHJ"><button>Day2 11/2</button></a>
+  <a href="https://abe.ma/4eT777B"><button>Day3 11/3</button></a>
+  <a href="https://abe.ma/4fxYZJV"><button>7toSmoke 11/4</button></a>
 </div>
 
 {% endblock %}
