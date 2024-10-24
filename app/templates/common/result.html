@@ -35,11 +35,12 @@
   </div>
 {% endif %}
 <br>
-<form method="GET" action="{{ url_for('result') }}" class="participants_form">
+<script src="/static/scripts/result.js"></script>
+<form method="GET" class="participants_form">
 <label for="year">その他の年度を確認：</label>
-<select name="year" id="year" class="participants_select" onchange="this.form.submit()">
+<select name="year" id="year" class="participants_select" onchange="redirect_year()">
   {% for y in available_years %}
-    <option value="{{ y }}" {% if request.args.get('year') == y %}selected{% endif %}>{{ y }}</option>
+    <option value="{{ y }}" {% if year == y %}selected{% endif %}>{{ y }}</option>
   {% endfor %}
 </select>
 </form>

@@ -20,7 +20,6 @@ sitemapper.init_app(app)
 app.secret_key = os.getenv("SECRET_KEY")
 github_token = os.getenv("GITHUB_TOKEN")
 available_years = key.available_years
-available_years_str = [str(year) for year in available_years]
 
 # 質問例を読み込む
 example_questions = spreadsheet.get_example_questions()
@@ -247,35 +246,15 @@ def japan(year: int = None):
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/result")
 @cache.cached(query_string=True)
-def result_redirect(year: int = None):
-    """
-    指定された年度の結果ページにリダイレクトします。
-
-    :param year: リダイレクト先の年度
-    :return: 結果ページへのリダイレクト
-    """
-    return redirect(url_for("result", year=year, **request.args))
-
-
-@sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
-@app.route("/result")
-@cache.cached(query_string=True)
-def result():
+def result(year: int):
     """
     結果ページを表示します。
     年度が指定されていない場合は最新年度を表示します。
 
     :return: 結果のHTMLテンプレート
     """
-    year = request.args.get("year")
 
-    # 年度が指定されていない場合は最新年度を表示
-    if year is None:
-        year = available_years[-1]
-        # request.argsを追加
-        return redirect(url_for("result", year=year, **request.args))
-
-    # 年度が指定されている場合はその年度を表示
+    # int型に変換
     year = int(year)
 
     # 結果を取得
@@ -286,10 +265,30 @@ def result():
         results=results,
         year=year,
         is_latest_year=is_latest_year(year),
-        available_years=available_years_str,  # ここだけstr
+        available_years=available_years,
         example_questions=example_questions,
         last_updated=last_updated
     )
+
+
+# 廃止したリンクのリダイレクト
+@app.route("/result")
+@cache.cached(query_string=True)
+def result_redirect():
+    """
+    すでに廃止したリンクのリダイレクト
+    指定された年度の結果ページにリダイレクトします。
+
+    :return: 指定された年度の結果ページへのリダイレクト
+    """
+    # クエリパラメータを取得
+    year = request.args.get("year")
+
+    # 年度が指定されていない場合は最新年度を表示
+    if year not in available_years:
+        year = available_years[-1]
+
+    return redirect(url_for(f"/{year}/result"))
 
 
 ####################################################################
