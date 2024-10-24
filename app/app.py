@@ -254,9 +254,6 @@ def result(year: int):
     :return: 結果のHTMLテンプレート
     """
 
-    # int型に変換
-    year = int(year)
-
     # 結果を取得
     results = get_results(year)
 
@@ -288,7 +285,7 @@ def result_redirect():
     if year not in available_years:
         year = available_years[-1]
 
-    return redirect(url_for(f"/{year}/result"))
+    return redirect(url_for("result", year=year))
 
 
 ####################################################################
