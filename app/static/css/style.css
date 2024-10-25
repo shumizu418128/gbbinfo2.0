@@ -126,7 +126,7 @@ h2 {
 .sticky {
     position: -webkit-sticky;
     position: sticky;
-    top: 12px; /* 上部に固定 */
+    top: 12px;
 }
 
 h3 {
