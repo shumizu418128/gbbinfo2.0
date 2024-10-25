@@ -14,7 +14,7 @@
     /* 初期状態では非表示 */
     position: absolute;
     /* 絶対的な位置に要素を配置 */
-    background-color: #f9f9f9;
+    background-color: rgb(249, 249, 249);
     /* 背景色を指定 */
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     /* 影の効果を指定 */

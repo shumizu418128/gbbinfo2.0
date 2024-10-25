@@ -33,7 +33,7 @@
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
-    border: 2px solid #f0632f;
+    border: 2px solid rgb(240, 99, 47);
     border-radius: 25px;
     font-family: Noto sans JP;
     /* フォントを指定 */
@@ -52,7 +52,7 @@
 }
 
 .search-form-1 input::placeholder{
-    color: #464646;
+    color: rgb(70, 70, 70);
     font-family: Noto sans JP;
     /* フォントを指定 */
 }
@@ -64,7 +64,7 @@
     width: 50px;
     height: 45px;
     border: none;
-    background-color: #f0632f;
+    background-color: rgb(240, 99, 47);
     cursor: pointer;
     margin: 0;
     padding: 0;

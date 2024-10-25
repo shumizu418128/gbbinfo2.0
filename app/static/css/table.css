@@ -13,7 +13,7 @@ table {
 }
 
 table th {
-    border-bottom: solid 3px #F0632F;
+    border-bottom: solid 3px rgb(240, 99, 47);
     /* ヘッダーの下部に境界線を設定 */
     padding: 10px 0;
     /* 上下のパディングを10pxに設定 */

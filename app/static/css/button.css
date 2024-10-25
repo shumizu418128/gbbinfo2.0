@@ -33,7 +33,7 @@
 }
 
 .button-container a:nth-child(even) .icon {
-    fill: #1b94e0;
+    fill: rgb(27, 148, 224);
 }
 
 .button-container a:nth-child(even) button.disabled-button .icon {
@@ -119,8 +119,8 @@
 }
 
 .button-container a:nth-child(even) button {
-    color: #1b94e0;
-    border-color: #1b94e0;
+    color: rgb(27, 148, 224);
+    border-color: rgb(27, 148, 224);
 }
 
 .button-container a:nth-child(odd) button.disabled-button {

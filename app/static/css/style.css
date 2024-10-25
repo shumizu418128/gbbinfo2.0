@@ -164,7 +164,7 @@ h1 {
     /* テキストの色を指定 */
     font-size: 28px;
     /* フォントサイズを設定 */
-    background-color: #F0632F;
+    background-color: rgb(240, 99, 47);
     /* 背景色を指定 */
     padding: 5px;
     /* 上下左右の余白を5pxに設定 */
@@ -181,7 +181,7 @@ h2 {
     /* テキストの色を指定 */
     font-size: 24px;
     /* フォントサイズを設定 */
-    background-color: #F0632F;
+    background-color: rgb(240, 99, 47);
     /* 背景色を指定 */
     padding: 5px;
     /* 上下左右の余白を5pxに設定 */
@@ -252,7 +252,7 @@ a {
 }
 
 a:hover {
-    color: #F0632F;
+    color: rgb(240, 99, 47);
     /* ホバリング時の色 */
 }
 
@@ -272,7 +272,7 @@ li {
 }
 
 hr {
-    border: 1px solid #F0632F;
+    border: 1px solid rgb(240, 99, 47);
     /* 線の色を指定 */
     margin-top: 30px;
     /* 上部の余白を30pxに設定 */
@@ -297,11 +297,4 @@ footer p {
 
 label {
     color: rgb(34, 34, 34);
-}
-
-::selection {
-    background-color: #071425;
-    /* 選択したテキストの背景色を指定 */
-    color: white;
-    /* 選択したテキストの色を指定 */
 }
