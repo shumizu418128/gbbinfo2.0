@@ -22,15 +22,15 @@ window.onscroll = function() {
         progressBottom.style.borderBottomRightRadius = "6px";
     }
 
-    // 色を動的に変更（オレンジから白へ）
-    const rBottom = 240 + (15 * (scrolled / 100));
-    const gBottom = 99 + (156 * (scrolled / 100));
-    const bBottom = 47 + (208 * (scrolled / 100));
-
     // 色を動的に変更（白からオレンジへ）
     const rTop = 255 - (255 - 240) * (scrolled / 100);
     const gTop = 255 - (255 - 99) * (scrolled / 100);
     const bTop = 255 - (255 - 47) * (scrolled / 100);
+
+    // 色を動的に変更（青から白へ）
+    const rBottom = 0 + (255 * (scrolled / 100));
+    const gBottom = 68 + (187 * (scrolled / 100));
+    const bBottom = 204 + (51 * (scrolled / 100));
 
     progressTop.style.backgroundColor = `rgb(${rTop}, ${gTop}, ${bTop})`;
     progressBottom.style.backgroundColor = `rgb(${rBottom}, ${gBottom}, ${bBottom})`;
