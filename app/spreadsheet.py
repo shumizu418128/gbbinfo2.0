@@ -57,13 +57,12 @@ def get_client():
 def record_question(year: int, question: str, answer: str):
     """
     Googleスプレッドシートに質問と回答を記録します。
+    環境変数を使用してローカル環境かどうかを判定し、スプレッドシートにデータを挿入します。
 
     Args:
         year (int): 質問が関連する年。
         question (str): 記録する質問。
         answer (str): 記録する回答。
-
-    環境変数を使用してローカル環境かどうかを判定し、スプレッドシートにデータを挿入します。
     """
     # 環境変数でローカル環境かどうかを判定
     github_token = os.getenv("GITHUB_TOKEN")
@@ -104,6 +103,9 @@ def get_example_questions():
 
     # ステータスが〇の質問だけを抽出
     filtered_questions = [q.upper().strip() for q, s in zip(questions, status) if s == "〇"]
+
+    # 重複を削除
+    filtered_questions = list(set(filtered_questions))
 
     # ランダムに3つ選定
     threshold = 0.2
