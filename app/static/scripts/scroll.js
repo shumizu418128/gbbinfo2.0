@@ -1,3 +1,21 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const headers = document.querySelectorAll('h2');
+    const headerArray = Array.from(headers);
+    const offsetTops = headerArray.map(header => header.offsetTop);
+
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY + window.innerHeight * 0.3;
+
+        headerArray.forEach((header, index) => {
+            if (scrollPosition >= offsetTops[index] && (index === headerArray.length - 1 || scrollPosition < offsetTops[index + 1])) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        });
+    });
+});
+
 // スクロールに応じてプログレスバーを更新するJavaScript
 window.onscroll = function() {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
