@@ -1,31 +1,36 @@
 #loading {
-    display: none; /* 初期状態では非表示 */
-    position: fixed; /* 固定位置に配置 */
-    top: 50%; /* 縦中央に配置 */
-    left: 50%; /* 横中央に配置 */
-    transform: translate(-50%, -50%); /* 中央に配置するための変形 */
-    background-color: rgba(255, 255, 255, 0.7); /* 背景色を半透明の白に設定 */
-    padding: 30px; /* 内側の余白を設定 */
-    z-index: 30; /* 他の要素の上に表示 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 影を追加 */
-    text-align: center; /* テキストを中央に配置 */
-    width: 300px; /* 幅を設定 */
-    /* 検索中のテキストを表示 */
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 30px;
+    z-index: 30;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 300px;
+
     &::after {
-        content: ''; /* サークルの表示 */
-        border: 5px solid rgb(240, 99, 47); /* 上部の色 */
-        border-top: 5px solid rgb(255, 255, 255); /* 外側の色 */
-        border-radius: 50%; /* 丸くする */
-        width: 80px; /* 幅を設定 */
-        height: 80px; /* 高さを設定 */
-        animation: spin 1s linear infinite; /* 回転アニメーション */
-        display: inline-block; /* インラインブロック要素として表示 */
+        content: '';
+        border: 5px solid rgb(240, 99, 47);
+        border-top: 5px solid rgb(255, 255, 255);
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        animation: spin 1s linear infinite;
+        display: inline-block;
     }
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); } /* 初期状態 */
-    100% { transform: rotate(360deg); } /* 360度回転 */
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .search-form-1 {
@@ -35,8 +40,6 @@
     overflow: hidden;
     border: 2px solid rgb(240, 99, 47);
     border-radius: 25px;
-    font-family: Noto sans JP;
-    /* フォントを指定 */
 }
 
 .search-form-1 input {
@@ -47,14 +50,10 @@
     box-sizing: border-box;
     font-size: 1em;
     outline: none;
-    font-family: Noto sans JP;
-    /* フォントを指定 */
 }
 
-.search-form-1 input::placeholder{
+.search-form-1 input::placeholder {
     color: rgb(70, 70, 70);
-    font-family: Noto sans JP;
-    /* フォントを指定 */
 }
 
 .search-form-1 button {

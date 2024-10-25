@@ -9,7 +9,6 @@
     padding: 20px;
     z-index: 100;
     width: 70%;
-    /* 横幅を広げる */
     text-align: center;
 }
 
@@ -26,147 +25,84 @@
 
 .bottom-navigation {
     display: flex;
-    /* フレックスボックスを使用 */
     justify-content: space-between;
-    /* ボタン間のスペースを均等に */
     width: 100%;
-    /* 幅を100%に設定 */
     position: fixed;
-    /* 固定位置 */
     background-color: rgb(240, 99, 47);
-    /* ナビゲーションバーの背景色を設定 */
     position: fixed;
-    /* ナビゲーションバーを画面の下部に固定 */
     bottom: 0;
-    /* 画面の最下部に配置 */
     left: 0;
-    /* 画面の左端から配置 */
     width: 100%;
-    /* 幅を画面全体に広げる */
     height: 50px;
-    /* ナビゲーションバーの高さを50ピクセルに設定 */
     z-index: 20;
-    /* 他の要素よりも手前に表示 */
 }
 
 .bottom-navigation-button {
     width: 33.3%;
-    /* 各ボタンの幅を50%に設定 */
     text-align: center;
-    /* テキストを中央揃え */
     box-sizing: border-box;
-    /* パディングを含めたボックスサイズ */
     padding: 5px;
-    /* パディングを追加 */
     background-color: rgb(240, 99, 47);
-    /* ボタンの背景色を設定 */
     border: none;
-    /* 枠線をなしに */
     display: flex;
-    /* フレックスコンテナとして設定 */
     align-items: center;
-    /* 子要素を垂直方向の中心に配置 */
     justify-content: center;
-    /* 子要素を水平方向の中心に配置 */
     cursor: pointer;
-    /* ホバー時にカーソルをポインターに変更 */
 }
 
 .bottom-navigation-button span {
     cursor: default;
-    /* デフォルトのカーソルに設定 */
     text-decoration: none;
-    /* テキストの下線を削除 */
     color: white;
-    /* テキストの色を白に設定 */
     font-size: 16px;
-    /* フォントサイズを20pxに設定 */
     margin-left: 5px;
-    /* テキストの左側に5pxのマージンを追加 */
     font-family: 'Noto Sans JP';
-    /* フォントファミリーを指定 */
     cursor: pointer;
-    /* ホバー時にカーソルをポインターに変更 */
 }
 
 .search-menu-nav-latest {
     position: fixed;
-    /* 固定位置 */
     left: 50%;
-    /* 水平方向の中央に配置 */
     bottom: -5px;
-    /* 下部から-10pxの位置に配置 */
     width: 100%;
-    /* 幅を100%に設定 */
     height: 180px;
-    /* 高さを200pxに設定 */
     background-color: rgba(255, 255, 255, 0.9);
-    /* 背景色を設定（透明度を追加） */
     border: 1px solid white;
-    /* 枠線を追加 */
     box-shadow: none;
-    /* 影を削除 */
     z-index: 10;
-    /* 他の要素の上に表示 */
     display: flex;
-    /* フレックスボックスを使用 */
     justify-content: center;
-    /* 中央揃え */
     align-items: center;
-    /* 縦方向の中央揃え */
     transform: translate(-50%, -30%);
-    /* 中央揃えのために位置を調整 */
 }
 
 .close-button {
     position: absolute;
     top: -50px;
-    /* 上からの位置 */
     right: 10px;
-    /* 右からの位置 */
     width: 50px;
-    /* ボタンの幅 */
     height: 50px;
-    /* ボタンの高さ */
     background-color: transparent;
-    /* 背景色を透明に */
     border: none;
-    /* 枠線をなしに */
     cursor: pointer;
-    /* カーソルをポインターに */
     font-size: 40px;
-    /* フォントサイズ */
     color: #000;
-    /* テキストの色 */
 }
 
 .search-menu-nav-past {
     position: fixed;
-    /* 固定位置 */
     left: 50%;
-    /* 水平方向の中央に配置 */
     bottom: -25px;
-    /* 下部から-10pxの位置に配置 */
     width: 100%;
-    /* 幅を100%に設定 */
     height: 250px;
-    /* 高さを200pxに設定 */
     background-color: rgba(255, 255, 255, 0.9);
-    /* 背景色を設定（透明度を追加） */
     border: 1px solid white;
-    /* 枠線を追加 */
     box-shadow: none;
-    /* 影を削除 */
     z-index: 10;
-    /* 他の要素の上に表示 */
     display: flex;
-    /* フレックスボックスを使用 */
     justify-content: center;
-    /* 中央揃え */
     align-items: center;
-    /* 縦方向の中央揃え */
     transform: translate(-50%, -30%);
-    /* 中央揃えのために位置を調整 */
 }
 
 #search-menu-nav .search-form-1 {
@@ -187,13 +123,9 @@
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 2;
     bottom: 100%;
-    /* ボタンの下端から上に展開 */
     left: 50%;
-    /* 親要素の中央に配置 */
     transform: translateX(-50%);
-    /* 自身の幅の半分だけ左にずらす */
     width: 33.3%;
-    /* 横幅を親要素の33%に設定 */
     z-index: 20;
 }
 
@@ -216,7 +148,7 @@
     left: 0;
     width: 0%;
     height: 12px;
-    background-color: white; /* 初期色を白に設定 */
+    background-color: white;
     z-index: 1;
 }
 
@@ -226,6 +158,6 @@
     left: 0;
     width: 0%;
     height: 12px;
-    background-color: rgb(240, 99, 47); /* 初期色をオレンジに設定 */
+    background-color: rgb(240, 99, 47);
     z-index: 1;
 }

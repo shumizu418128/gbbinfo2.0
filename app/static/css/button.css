@@ -1,29 +1,18 @@
-/* 共通のアイコンスタイル */
 .button-container a .icon {
     transition: all 0.3s ease;
-    /* トランジションを設定 */
     cursor: pointer;
-    /* カーソルをポインターに設定 */
-    width: 24px !important;
-    /* 幅を24pxに設定 */
-    height: 24px !important;
-    /* 高さを24pxに設定 */
+    width: 24px;
+    height: 24px;
     vertical-align: middle;
-    /* アイコンをテキストの中央に配置 */
 }
 
 .button-text-with-icon {
     font-size: 24px;
-    /* テキストのフォントサイズを固定 */
     display: block;
-    /* ブロックレベル要素として表示 */
     margin: 0 auto;
-    /* 中央揃え */
     max-width: calc(100% - 24px);
-    /* 最大横幅を設定 */
 }
 
-/* 奇数番目と偶数番目のアイコンの色 */
 .button-container a:nth-child(odd) .icon {
     fill: rgb(0, 68, 204);
 }
@@ -40,13 +29,10 @@
     fill: rgba(27, 148, 224, 0.5);
 }
 
-/* ホバー時のアイコンスタイル */
 .button-container a:hover .icon {
     fill: white;
     transition: all 0.3s ease;
-    /* トランジションを設定 */
     cursor: pointer;
-    /* カーソルをポインターに設定 */
 }
 
 .button-container a:hover button.disabled-button .icon {
@@ -55,67 +41,39 @@
 
 .button-container {
     display: flex;
-    /* フレックスボックスを使用 */
     flex-wrap: wrap;
-    /* 要素を折り返し表示 */
     justify-content: center;
-    /* 要素を中央に配置 */
     gap: 4px;
-    /* 要素間のスペースを設定 */
     font-family: Noto sans JP;
-    /* フォントファミリーを指定 */
     margin-top: 4px;
-    /* 上部の余白を4pxに設定 */
 }
 
 .button-container a {
     flex: 1 1 calc(25% - 10px);
-    /* 各ボタンの幅を25%に設定 */
     min-width: 100px;
-    /* 最小幅を100pxに設定 */
     color: inherit;
-    /* 親要素の色を継承 */
     text-decoration: none;
-    /* テキストの下線をなくす */
     display: flex;
-    /* フレックスコンテナとして設定 */
     font-family: Noto sans JP;
-    /* フォントファミリーを指定 */
 }
 
 .button-container button {
     width: 100%;
-    /* 幅を100%に設定 */
     padding: 10px;
-    /* 上下左右の余白を10pxに設定 */
     font-size: 24px;
-    /* フォントサイズを24pxに設定 */
     box-sizing: border-box;
-    /* パディングを含めたボックスサイズ */
     color: rgb(0, 68, 204);
-    /* テキストの色を指定 */
     background-color: white;
-    /* 背景色を指定 */
     border: 1px solid rgb(0, 68, 204);
-    /* 枠線を追加 */
     border-radius: 6px;
-    /* ボーダーの角を丸くする */
     cursor: pointer;
-    /* カーソルをポインターに設定 */
     transition: all 0.3s ease;
-    /* トランジションを設定 */
     height: 100%;
-    /* 高さを100%に設定 */
     font-family: Noto sans JP;
-    /* フォントファミリーを指定 */
     font-weight: bold;
-    /* フォントウェイトを太字に設定 */
     display: flex;
-    /* フレックスコンテナとして設定 */
     align-items: center;
-    /* 子要素を垂直方向の中心に配置 */
     justify-content: center;
-    /* 子要素を水平方向の中心に配置 */
 }
 
 .button-container a:nth-child(even) button {
@@ -147,37 +105,27 @@
     border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* スマホ用のスタイル */
 @media (max-width: 768px) {
     .button-container a {
         flex: 1 1 calc(50% - 5px);
     }
+
     .button-text-with-icon,
     .button-container button {
         font-size: 16px;
-        /* テキストのフォントサイズを固定 */
     }
 }
 
 .participants_filter {
     justify-content: center;
-    /* 要素を中央に配置 */
     gap: 10px;
-    /* 要素間のスペースを設定 */
     margin-top: 10px;
-    /* 上部の余白を10pxに設定 */
     font-size: 30px;
-    /* フォントサイズを30pxに設定 */
     background-color: white;
-    /* 背景色を指定 */
     color: rgb(0, 68, 204);
-    /* テキストの色を指定 */
     border: none;
-    /* 枠線をなしに */
     border-radius: 10px;
-    /* ボーダーの角を丸くする */
     font-family: Noto sans JP;
-    /* フォントファミリーを指定 */
 }
 
 .participants_filter:hover {
