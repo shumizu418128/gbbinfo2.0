@@ -79,4 +79,11 @@
     padding: 3px;
     border: none;
     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('/static/images/icon-arrow.webp');
+    background-repeat: no-repeat;
+    background-position: right 1px center;
+    background-size: 40px 40px;
 }
