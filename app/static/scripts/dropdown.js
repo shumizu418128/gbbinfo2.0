@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // h2要素のテキストを使用してドロップダウンオプションを生成
     headerArray.forEach((header, index) => {
-        console.log(header.textContent.trim());
         const option = document.createElement('option');
         option.value = index;
         option.textContent = header.textContent.trim(); // テキストをトリムして設定
