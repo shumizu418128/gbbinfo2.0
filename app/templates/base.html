@@ -210,7 +210,6 @@
     </main>
 
     <div class="bottom-navigation">
-
       <button class="bottom-navigation-button" onclick="location.href='/'">
         <img id="home-icon" src="/static/images/icon-home.webp" alt="Home Icon" height="40px" width="40px">
         <span>ホーム</span>
@@ -257,14 +256,16 @@
           </form>
         </div>
       {% endif %}
-
     </div>
+
+    <select class="headerDropdown" style="display: none;"></select>
 
     <script src="/static/scripts/popup.js"></script>
     <script src="/static/scripts/scroll.js"></script>
     <script src="/static/scripts/countdown.js"></script>
     <script src="/static/scripts/install.js"></script>
     <script src="/static/scripts/search.js"></script>
+    <script src="/static/scripts/dropdown.js"></script>
 
     <script>
       if (window.location.pathname.includes('/participants')) {

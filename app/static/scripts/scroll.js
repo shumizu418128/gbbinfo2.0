@@ -1,24 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const headers = document.querySelectorAll('h2');
-    const headerArray = Array.from(headers);
-    const offsetTops = headerArray.map(header => header.offsetTop);
     const background = document.querySelectorAll(".background-progress-scroll");
     const progressElements = document.querySelectorAll(".progress-scroll");
 
     window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY + window.innerHeight * 0.3;
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
-
-        // ヘッダーh2のスクロール固定
-        headerArray.forEach((header, index) => {
-            if (scrollPosition >= offsetTops[index] && (index === headerArray.length - 1 || scrollPosition < offsetTops[index + 1])) {
-                header.classList.add('sticky');
-            } else {
-                header.classList.remove('sticky');
-            }
-        });
 
         // スクロールバーの表示・非表示
         if (winScroll <= 90) {
@@ -45,48 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// スムーズスクロールを実行する関数
-function smoothScroll(target, duration) {
-    // 対象要素を取得
-    const targetElement = document.querySelector(target);
-    // スクロール位置を計算（120pxの余裕を持たせる）
-    const targetPosition = targetElement.getBoundingClientRect().top - 120;
-    // 現在のスクロール位置を取得
-    const startPosition = window.scrollY;
-    let startTime = null;
-
-    // アニメーションを実行する関数
-    function animation(currentTime) {
-        // 開始時間を設定
-        if (startTime === null) startTime = currentTime;
-        // 経過時間を計算
-        const timeElapsed = currentTime - startTime;
-        // スクロール位置を計算
-        const run = ease(timeElapsed, startPosition, targetPosition, duration);
-        // スクロールを実行
-        window.scrollTo(0, run);
-        // 経過時間が指定の時間未満であれば再度アニメーションをリクエスト
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-    }
-
-    // イージング関数
-    function ease(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return (c / 2) * t * t + b;
-        t--;
-        return (-c / 2) * (t * (t - 2) - 1) + b;
-    }
-
-    // アニメーションを開始
-    requestAnimationFrame(animation);
-}
-
 // ページ内の全てのアンカーリンクにクリックイベントを追加
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function(e) {
         e.preventDefault(); // デフォルトの動作を防ぐ
+        const targetElement = document.querySelector(this.getAttribute("href"));
+        const yOffset = -100; // 上部に100pxの余裕を持たせる
+        const y = targetElement.getBoundingClientRect().top + window.scrollY + yOffset;
+
         // スムーズスクロールを実行
-        smoothScroll(this.getAttribute("href"), 400); // 400ms
+        window.scrollTo({top: y, behavior: 'smooth'});
     });
 });
 
@@ -97,8 +52,11 @@ function parameterScroll() {
     if (target) {
         const element = document.querySelector(`[name="${target}"]`); // 対象要素を取得
         if (element) {
+            const yOffset = -100; // 上部に100pxの余裕を持たせる
+            const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+
             // スムーズスクロールを実行
-            smoothScroll(`[name="${target}"]`, 400);
+            window.scrollTo({top: y, behavior: 'smooth'});
         }
     }
 }
