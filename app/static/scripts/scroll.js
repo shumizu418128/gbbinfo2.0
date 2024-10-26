@@ -37,8 +37,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function(e) {
         e.preventDefault(); // デフォルトの動作を防ぐ
         const targetElement = document.querySelector(this.getAttribute("href"));
-        const yOffset = -100; // 上部に100pxの余裕を持たせる
-        const y = targetElement.getBoundingClientRect().top + window.scrollY + yOffset;
+        const y = targetElement.getBoundingClientRect().top + window.scrollY;
 
         // スムーズスクロールを実行
         window.scrollTo({top: y, behavior: 'smooth'});
