@@ -51,8 +51,7 @@ function parameterScroll() {
     if (target) {
         const element = document.querySelector(`[name="${target}"]`); // 対象要素を取得
         if (element) {
-            const yOffset = -100; // 上部に100pxの余裕を持たせる
-            const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+            const y = element.getBoundingClientRect().top + window.scrollY;
 
             // スムーズスクロールを実行
             window.scrollTo({top: y, behavior: 'smooth'});
