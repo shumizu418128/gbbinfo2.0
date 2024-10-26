@@ -21,37 +21,28 @@ window.onscroll = function() {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrolled = (winScroll / height) * 100;
-    const progressTop = document.getElementById("progressTop");
-    const progressBottom = document.getElementById("progressBottom");
-
-    progressTop.style.width = scrolled + "%";
-    progressBottom.style.width = scrolled + "%";
-
-    if (scrolled === 100) {
-        progressTop.style.borderTopRightRadius = "0";
-        progressTop.style.borderBottomRightRadius = "0";
-        progressBottom.style.borderTopRightRadius = "0";
-        progressBottom.style.borderBottomRightRadius = "0";
+    const background = document.querySelectorAll(".background-progress-scroll");
+    const progressElements = document.querySelectorAll(".progress-scroll");
+    if (winScroll <= 90) {
+        background.forEach(bg => {
+            bg.style.display = "none";
+        });
+        progressElements.forEach(progress => {
+            progress.style.display = "none";
+        });
     }
     else {
-        progressTop.style.borderTopRightRadius = "6px";
-        progressTop.style.borderBottomRightRadius = "6px";
-        progressBottom.style.borderTopRightRadius = "6px";
-        progressBottom.style.borderBottomRightRadius = "6px";
+        background.forEach(bg => {
+            bg.style.display = "block";
+        });
+        progressElements.forEach(progress => {
+            progress.style.display = "block";
+        });
     }
 
-    // 色を動的に変更（白からオレンジへ）
-    const rTop = 255 - (255 - 240) * (scrolled / 100);
-    const gTop = 255 - (255 - 99) * (scrolled / 100);
-    const bTop = 255 - (255 - 47) * (scrolled / 100);
-
-    // 色を動的に変更（青から白へ）
-    const rBottom = 0 + (255 * (scrolled / 100));
-    const gBottom = 68 + (187 * (scrolled / 100));
-    const bBottom = 204 + (51 * (scrolled / 100));
-
-    progressTop.style.backgroundColor = `rgb(${rTop}, ${gTop}, ${bTop})`;
-    progressBottom.style.backgroundColor = `rgb(${rBottom}, ${gBottom}, ${bBottom})`;
+    progressElements.forEach(progress => {
+        progress.style.width = scrolled + "%";
+    });
 };
 
 // スムーズスクロールを実行する関数
