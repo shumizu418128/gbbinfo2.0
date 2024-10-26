@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const headers = document.querySelectorAll('h2');
     const headerArray = Array.from(headers).slice(0, -1); // 最後の要素を除外
     const dropdown = document.querySelector('.headerDropdown');
-    const offsetTops = headerArray.map(header => header.offsetTop);
 
     // h2要素のテキストを使用してドロップダウンオプションを生成
     headerArray.forEach((header, index) => {
@@ -20,7 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // スクロールイベントでドロップダウンの選択を更新
     window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
+        const scrollPosition = window.scrollY + 45;
+        const offsetTops = headerArray.map(header => header.offsetTop);
 
         // 画面内最初のh2より上を見ている場合、dropdown非表示
         if (scrollPosition < offsetTops[0]) {
