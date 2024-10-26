@@ -2,10 +2,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const headers = document.querySelectorAll('h2');
     const headerArray = Array.from(headers);
     const offsetTops = headerArray.map(header => header.offsetTop);
+    const background = document.querySelectorAll(".background-progress-scroll");
+    const progressElements = document.querySelectorAll(".progress-scroll");
 
     window.addEventListener('scroll', () => {
         const scrollPosition = window.scrollY + window.innerHeight * 0.3;
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
 
+        // ヘッダーh2のスクロール固定
         headerArray.forEach((header, index) => {
             if (scrollPosition >= offsetTops[index] && (index === headerArray.length - 1 || scrollPosition < offsetTops[index + 1])) {
                 header.classList.add('sticky');
@@ -13,37 +19,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 header.classList.remove('sticky');
             }
         });
+
+        // スクロールバーの表示・非表示
+        if (winScroll <= 90) {
+            background.forEach(bg => {
+                bg.style.display = "none";
+            });
+            progressElements.forEach(progress => {
+                progress.style.display = "none";
+            });
+        }
+        else {
+            background.forEach(bg => {
+                bg.style.display = "block";
+            });
+            progressElements.forEach(progress => {
+                progress.style.display = "block";
+            });
+        }
+
+        // スクロールバーの長さ設定
+        progressElements.forEach(progress => {
+            progress.style.width = scrolled + "%";
+        });
     });
 });
-
-// スクロールに応じてプログレスバーを更新するJavaScript
-window.onscroll = function() {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    const background = document.querySelectorAll(".background-progress-scroll");
-    const progressElements = document.querySelectorAll(".progress-scroll");
-    if (winScroll <= 90) {
-        background.forEach(bg => {
-            bg.style.display = "none";
-        });
-        progressElements.forEach(progress => {
-            progress.style.display = "none";
-        });
-    }
-    else {
-        background.forEach(bg => {
-            bg.style.display = "block";
-        });
-        progressElements.forEach(progress => {
-            progress.style.display = "block";
-        });
-    }
-
-    progressElements.forEach(progress => {
-        progress.style.width = scrolled + "%";
-    });
-};
 
 // スムーズスクロールを実行する関数
 function smoothScroll(target, duration) {
