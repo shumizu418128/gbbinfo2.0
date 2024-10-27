@@ -108,6 +108,7 @@
     color: white;
     background-color: rgb(240, 99, 47);
     border-color: white;
+    transform: scale(1.04);
 }
 
 .button-container a:hover button.disabled-button {
