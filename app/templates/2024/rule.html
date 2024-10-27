@@ -192,15 +192,14 @@
         {% endfor %}
       </tbody>
     </table>
+    <div class="button-container">
+      <a href="/{{ year }}/participants"><button>Wildcard結果</button></a>
+      <a href="/{{ year }}/participants"><button>出場者一覧</button></a>
+    </div>
   {% else %}
     <p>～発表次第更新～</p>
   {% endif %}
 {% endfor %}
-
-<div class="button-container">
-  <a href="/{{ year }}/participants"><button>Wildcard結果</button></a>
-  <a href="/{{ year }}/participants"><button>出場者一覧</button></a>
-</div>
 
 <p>シード権を持つ人が辞退した場合、原則として、該当シード権は消滅し、Wildcard下位からの繰り上げが行われます。</p>
 
