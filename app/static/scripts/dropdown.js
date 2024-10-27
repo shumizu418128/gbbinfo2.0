@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // スクロールイベントでドロップダウンの選択を更新
     window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY + 45;
+        const scrollPosition = window.scrollY + 51;
         const offsetTops = headerArray.map(header => header.offsetTop);
 
         // 画面内最初のh2より上を見ている場合、dropdown非表示
