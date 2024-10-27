@@ -32,6 +32,7 @@
 .bg-pic {
     background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
     fill: white;
     background-color: rgba(0, 0, 0, 0.6);
 }
