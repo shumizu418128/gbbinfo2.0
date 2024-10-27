@@ -86,7 +86,7 @@
     border: none;
     cursor: pointer;
     font-size: 40px;
-    color: #000;
+    color: black;
 }
 
 .search-menu-nav-past {
@@ -147,7 +147,7 @@
     left: 0;
     width: 0%;
     height: 8px;
-    background-color: rgb(240, 99, 47);
+    background: linear-gradient(to left, white, rgb(240, 99, 47));
     z-index: 2;
     display: none;
 }
@@ -157,7 +157,7 @@
     left: 0;
     width: 100%;
     height: 8px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(240, 99, 47);
     z-index: 1;
     display: none;
 }
