@@ -29,6 +29,17 @@
     fill: rgba(27, 148, 224, 0.5);
 }
 
+.bg-pic {
+    background-position: center;
+    background-size: cover;
+    fill: white
+}
+
+.bg-pic .button-text-with-icon {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
 .button-container a:hover .icon {
     fill: white;
     transition: all 0.3s ease;
