@@ -82,7 +82,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-image: url('/static/images/icon-arrow.webp');
+    background-image: url('/static/images/icon/icon-arrow.webp');
     background-repeat: no-repeat;
     background-position: right 1px center;
     background-size: 40px 40px;

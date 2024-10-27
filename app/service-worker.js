@@ -40,7 +40,7 @@ workbox.routing.registerRoute(
 
 self.addEventListener('fetch', (event) => {
     // 特定のファイルをキャッシュする条件を追加
-    const alwaysCacheFiles = ['/static/images/icon-search.webp', '/static/images/icon-close.webp', '/static/images/icon-home.webp']; // 常にキャッシュするファイルのパス
+    const alwaysCacheFiles = ['/static/images/icon/icon-search.webp', '/static/images/icon/icon-close.webp', '/static/images/icon/icon-home.webp']; // 常にキャッシュするファイルのパス
 
     // リクエストされた URL がキャッシュ対象のファイルかどうかを確認
     const requestUrl = new URL(event.request.url);
