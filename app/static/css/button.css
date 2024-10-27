@@ -33,6 +33,7 @@
     background-position: center;
     background-size: cover;
     fill: white;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .bg-pic .button-text-with-icon {
