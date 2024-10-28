@@ -8,10 +8,7 @@
     ├── top
     ├── rule
     ├── participants
-    ├── time_schedule
-    ├── stream
-    └── wildcards
-└── result
+    └── other content
 └── others
     └── other content
 ```
