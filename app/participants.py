@@ -45,12 +45,13 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
     if category != "all":
         beatboxers_df = beatboxers_df[beatboxers_df['category'] == category]
 
-    # 出場区分でフィルター
+    # 出場区分がWildcardの人のみ表示
     if ticket_class == "wildcard":
         beatboxers_df = beatboxers_df[
             beatboxers_df['ticket_class'].str.startswith('Wildcard')
         ]
 
+    # 出場区分がシード権の人のみ表示
     elif ticket_class == "seed_right":
         beatboxers_df = beatboxers_df[
             ~beatboxers_df['ticket_class'].str.startswith('Wildcard')
@@ -70,6 +71,18 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
     elif GBB is False:
         beatboxers_df = beatboxers_df[
             ~beatboxers_df['ticket_class'].str.startswith('GBB')
+        ]
+
+    # キャンセルした人のみを表示
+    if cancel == "only_cancelled":
+        beatboxers_df = beatboxers_df[
+            beatboxers_df['name'].str.startswith("[cancelled]")
+        ]
+
+    # キャンセルした人を非表示
+    if cancel == "hide":
+        beatboxers_df = beatboxers_df[
+            ~beatboxers_df['name'].str.startswith("[cancelled]")
         ]
 
     # フロントエンドに渡すデータを整形
@@ -101,7 +114,13 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
         else:
             participant["members"] = row["members"].upper()
 
-        participants_list.append(participant)
+        # すでに出場者リストに登録されており、countryが違う場合、もとの辞書に追加
+        for p in participants_list:
+            if p["name"] == participant["name"] and p["country"] != participant["country"]:
+                p["country"] += f" / {participant['country']}"
+                break
+        else:
+            participants_list.append(participant)
 
     participants_list = sorted(
         participants_list,
@@ -117,16 +136,6 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
             # Wildcard上位を前に
         )
     )
-
-    # cancelが"hide"の場合はキャンセルした人を表示しない
-    if cancel == "hide":
-        participants_list = [
-            participant for participant in participants_list if participant["is_cancelled"] is False]
-
-    # cancelが"only_cancelled"の場合はキャンセルした人のみ表示
-    if cancel == "only_cancelled":
-        participants_list = [
-            participant for participant in participants_list if participant["is_cancelled"] is True]
 
     return participants_list
 
