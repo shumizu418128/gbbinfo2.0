@@ -147,7 +147,7 @@
     left: 0;
     width: 0%;
     height: 10px;
-    background: linear-gradient(to left, white, rgb(240, 99, 47));
+    background: linear-gradient(to left, white, white, rgb(252, 167, 75), rgb(240, 99, 47), rgb(240, 99, 47));
     z-index: 2;
     display: none;
 }
