@@ -36,9 +36,8 @@ header nav {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: rgb(240, 99, 47);
+    background: linear-gradient(to left, rgb(240, 99, 47), rgb(240, 99, 47), rgb(240, 99, 47), rgb(252, 167, 75));
 }
-
 
 @media screen and (min-width: 768px) {
     header nav {
@@ -104,7 +103,10 @@ main {
 h1 {
     color: white;
     font-size: 28px;
-    background-color: rgb(240, 99, 47);
+    background-image: url("/static/images/button/h1.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding: 5px;
     margin-top: 0;
     text-align: center;
@@ -115,7 +117,7 @@ h1 {
 h2 {
     color: white;
     font-size: 24px;
-    background-color: rgb(240, 99, 47);
+    background: linear-gradient(to bottom left, rgb(240, 99, 47), rgb(240, 99, 47), rgb(252, 167, 75));
     padding: 5px;
     text-align: center;
     font-weight: bold;
