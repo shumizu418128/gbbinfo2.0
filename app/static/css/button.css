@@ -76,7 +76,7 @@
     font-size: 24px;
     box-sizing: border-box;
     color: rgb(0, 68, 204);
-    background-color: white;
+    background-image: linear-gradient(to top right, rgb(246, 169, 141), white, white, white);
     border: 1px solid rgb(0, 68, 204);
     border-radius: 6px;
     cursor: pointer;
@@ -98,25 +98,29 @@
     background-color: rgba(255, 255, 255, 0.5);
     color: rgba(0, 68, 204, 0.5);
     border-color: rgba(0, 68, 204, 0.5);
+    background-image: none;
 }
 
 .button-container a:nth-child(even) button.disabled-button {
     background-color: rgba(255, 255, 255, 0.5);
     color: rgba(27, 148, 224, 0.5);
     border-color: rgba(27, 148, 224, 0.5);
+    background-image: none;
 }
 
 .button-container a:hover button {
     color: white;
     background-color: rgb(240, 99, 47);
+    background-image: none;
     border-color: white;
-    transform: scale(1.04);
+    transform: scale(1.05);
 }
 
 .button-container a:hover button.disabled-button {
     color: rgba(255, 255, 255, 0.5);
     background-color: rgba(240, 99, 47, 0.5);
     border-color: rgba(255, 255, 255, 0.5);
+    background-image: none;
 }
 
 @media (max-width: 768px) {

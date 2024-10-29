@@ -42,7 +42,7 @@
     text-align: center;
     box-sizing: border-box;
     padding: 5px;
-    background-color: rgb(240, 99, 47);
+    background: linear-gradient(to bottom left, rgb(240, 99, 47), rgb(240, 99, 47), rgb(240, 99, 47), rgb(252, 167, 75));
     border: none;
     display: flex;
     align-items: center;
