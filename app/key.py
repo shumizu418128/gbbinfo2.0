@@ -1,4 +1,4 @@
-available_years = [2023, 2024]
+available_years = [2023, 2024, 2025]
 
 result = {
     2024: {

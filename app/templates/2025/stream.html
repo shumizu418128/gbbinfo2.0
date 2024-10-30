@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}GBB {{ year }} 当日配信 - GBBINFO-JPN{% endblock %}
+{% block twitter_title %}GBB{{ year }}:当日配信 - GBBINFO-JPN{% endblock %}
+{% block og_title %}GBB{{ year }}:当日配信 - GBBINFO-JPN{% endblock %}
+{% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/stream{% endblock %}
+{% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/stream{% endblock %}
+{% block content %}
+<h1>GBB {{ year }} 当日配信</h1>
+
+<!-- TODO: 更新したらこの表示を消す -->
+<script src="/static/scripts/popup.js"></script>
+<script src="\static\scripts\last_edit.js"></script>
+<div class="overlay" onclick="closePopup()"></div>
+<div class="popup">
+<p style="text-align: center; font-size: 36px; font-weight: bold;">×××<br>情報なし<br>×××</p>
+<div style="text-align: center;">
+  <p>{{ last_updated }}</p>
+</div>
+<p style="text-align: center;">お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。<br>公式発表をお待ちください。</p>
+  <div class="button-container">
+    <button type="button" onclick="closePopup()">閉じる</button>
+  </div>
+</div>
+<div style="text-align: center;">
+  <p>{{ last_updated }}</p>
+</div>
+<!-- TODO: 更新したらこの表示を消す -->
+
+<p>GBB24では本番8日前公開</p>
+<p>～発表次第更新～</p>
+
+{% endblock %}
