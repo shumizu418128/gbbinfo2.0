@@ -2,6 +2,7 @@ import json
 import os
 import random
 from datetime import datetime
+import ratelimit
 
 import gspread
 import Levenshtein
@@ -54,6 +55,8 @@ def get_client():
 
 
 # Googleスプレッドシートに記録
+# 3秒間に1回のリクエストを許可
+@ratelimit.limits(calls=1, period=3)
 def record_question(year: int, question: str, answer: str):
     """
     Googleスプレッドシートに質問と回答を記録します。
@@ -75,6 +78,13 @@ def record_question(year: int, question: str, answer: str):
 
         # スプレッドシートを開く
         sheet = client.open("gbbinfo-jpn").sheet1
+
+        # 直前の質問(C2)を取得、同じ質問があれば終了
+        last_question = sheet.acell("C2").value
+
+        if last_question == question:
+            print("The same question has already been recorded.", flush=True)
+            return
 
         # 質問と年を記録
         sheet.insert_row([dt_now, year_str, question, answer], 2)
