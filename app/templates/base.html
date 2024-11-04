@@ -121,7 +121,6 @@
       <div class="background-progress-scroll" style="top: 0;"></div>
 
       {% if is_latest_year is false %}
-
         <div class="background-popup" onclick="closePopup()"></div>
         <div class="popup">
           <p style="font-size: 36px; font-weight: bold;">☆<br>GBB{{ year }}は<br>終了しました<br>☆</p>
@@ -131,13 +130,28 @@
             </div>
           <button type="button" onclick="closePopup()">閉じる</button>
         </div>
-
         <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}は<br>終了しました</p>
         <p style="text-align: center;">ここは、すでに終了したGBB{{ year }}のページです</p>
         <div class="button-container">
           <a href="/"><button type="button">GBB最新情報はこちら</button></a>
         </div>
-      <hr>
+        <hr>
+      {% elif is_early_access is true %}
+        <div class="background-popup" onclick="closePopup()"></div>
+        <div class="popup">
+          <p style="font-size: 36px; font-weight: bold;">GBB{{ year }}<br>先行公開中</p>
+          <p>ここは、まだ情報が少ないGBB{{ year }}のページです</p>
+          <div class="button-container" style="margin-bottom: 8px">
+            <a href="/"><button type="button">GBB{{ year - 1 }}の情報はこちら</button></a>
+          </div>
+          <button type="button" onclick="closePopup()">閉じる</button>
+        </div>
+        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}<br>先行公開中</p>
+        <p style="text-align: center;">ここは、まだ情報が少ないGBB{{ year }}のページです</p>
+        <div class="button-container">
+          <a href="/"><button type="button">GBB{{ year - 1 }}の情報はこちら</button></a>
+        </div>
+        <hr>
       {% endif %}
 
       {% block content %}{% endblock %}
@@ -148,6 +162,13 @@
         <p style="text-align: center;">ここは、すでに終了したGBB{{ year }}のページです</p>
         <div class="button-container">
           <a href="/"><button type="button">GBB最新情報はこちら</button></a>
+        </div>
+      {% elif is_early_access is true %}
+        <hr />
+        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}<br>先行公開中</p>
+        <p style="text-align: center;">ここは、まだ情報が少ないGBB{{ year }}のページです</p>
+        <div class="button-container">
+          <a href="/"><button type="button">GBB{{ year - 1 }}の情報はこちら</button></a>
         </div>
       {% endif %}
 

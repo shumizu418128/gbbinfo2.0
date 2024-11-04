@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}GBB {{ year }} タイムスケジュール - GBBINFO-JPN{% endblock %}
+{% block twitter_title %}GBB{{ year }}:タイムスケジュール - GBBINFO-JPN{% endblock %}
+{% block og_title %}GBB{{ year }}:タイムスケジュール - GBBINFO-JPN{% endblock %}
+{% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/time_schedule{% endblock %}
+{% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/time_schedule{% endblock %}
+{% block content %}
+<h1>GBB {{ year }} タイムスケジュール</h1>
+<p>GBB24では本番約1か月前公開</p>
+<p>時刻はあくまでも予定です。<br>GBB21では、予定から約2時間遅延しました。</p>
+
+<!-- TODO: 更新したらこの表示を消す -->
+<script src="/static/scripts/popup.js"></script>
+<script src="\static\scripts\last_edit.js"></script>
+<div class="overlay" onclick="closePopup()"></div>
+<div class="popup">
+<p style="text-align: center; font-size: 36px; font-weight: bold;">×××<br>情報なし<br>×××</p>
+<div style="text-align: center;">
+  <p>{{ last_updated }}</p>
+</div>
+<p style="text-align: center;">お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。<br>公式発表をお待ちください。</p>
+  <div class="button-container">
+    <button type="button" onclick="closePopup()">閉じる</button>
+  </div>
+</div>
+<div style="text-align: center;">
+  <p>{{ last_updated }}</p>
+</div>
+<!-- TODO: 更新したらこの表示を消す -->
+
+<div>
+  <h2>目次</h2>
+  <ol>
+    <li>
+      <a href="#day1">Day1 - ?/?(金)</a>
+    </li>
+
+    <li>
+      <a href="#_7ts">7toSmoke - ?/?(月)</a>
+    </li>
+
+  </ol>
+</div>
+
+<h2 id="day1">Day1 - ?/?(金)</h2>
+<table>
+  <thead>
+    <tr>
+      <th>時刻</th>
+      <th>内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>～発表次第更新～</td>
+      <td>入場開始</td>
+    </tr>
+    <tr>
+      <td>～発表次第更新～</td>
+      <td>スタート</td>
+    </tr>
+    <tr>
+      <td>～発表次第更新～</td>
+      <td>終了</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+<h2 id="_7ts" name="7tosmoke">7toSmoke - ?/?(月)</h2>
+<table>
+  <thead>
+    <tr>
+      <th>時刻</th>
+      <th>内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>～発表次第更新～</td>
+      <td>入場開始</td>
+    </tr>
+    <tr>
+      <td>～発表次第更新～</td>
+      <td>スタート</td>
+    </tr>
+    <tr>
+      <td>～発表次第更新～</td>
+      <td>終了</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+<h2 id="showcase" name="showcase">スペシャルSHOWCASE<br>出演者一覧</h2>
+<ul>
+  <li>M.O.M.</li>
+  <li>MAD TWINZ</li>
+  <li>DHARNI</li>
+  <li>SARUKANI</li>
+  <li>BIZKIT</li>
+  <li>BATACO</li>
+</ul>
+<p>各出演者の出演日時は不明です。</p>
+
+<div class="button-container">
+  <a href="/{{ year - 1 }}/time_schedule"><button type="button">参考<br>昨年度タイムスケジュール</button></a>
+</div>
+
+{% endblock %}

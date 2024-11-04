@@ -68,6 +68,18 @@ def is_latest_year(year):
     return year == available_years[-1] or year == now
 
 
+def is_early_access(year):
+    """
+    指定された年度が、試験公開年度かを判定します。
+
+    :param year: 判定する年度
+    :return: 試験公開年度の場合はTrue、それ以外はFalse
+    """
+    dt_now = datetime.now()
+    now = dt_now.year
+    return year > now
+
+
 ####################################################################
 # /(年度) にアクセスしたときの処理
 ####################################################################
@@ -144,9 +156,25 @@ def participants(year: int = None):
 
     # 引数が不正な場合はSolo全出場者を表示
     valid_categories = pd.read_csv(
-        f'app/static/csv/{year}_participants.csv')["category"].unique()
+        f'app/static/csv/{year}_participants.csv')["category"].unique().tolist()
     valid_ticket_classes = ["all", "wildcard", "seed_right"]
     valid_cancel = ["show", "hide", "only_cancelled"]
+
+    # まだデータがない年度の場合は、空っぽのページを表示
+    if bool(valid_categories) is False:
+        return render_template(
+            "/common/participants.html",
+            participants=[],
+            year=year,
+            all_category=valid_categories,
+            result_url=None,
+            is_latest_year=is_latest_year(year),
+            available_years=available_years,
+            example_questions=example_questions,
+            last_updated=last_updated,
+            value=value,
+            is_early_access=is_early_access(year)
+        )
 
     # 引数が不正な場合はデフォルト値を設定
     if any([
@@ -202,7 +230,8 @@ def participants(year: int = None):
         available_years=available_years,
         example_questions=example_questions,
         last_updated=last_updated,
-        value=value
+        value=value,
+        is_early_access=is_early_access(year)
     )
 
 
@@ -235,7 +264,8 @@ def japan(year: int = None):
         is_latest_year=is_latest_year(year),
         available_years=available_years,
         example_questions=example_questions,
-        last_updated=last_updated
+        last_updated=last_updated,
+        is_early_access=is_early_access(year)
     )
 
 
@@ -264,7 +294,8 @@ def result(year: int):
         is_latest_year=is_latest_year(year),
         available_years=available_years,
         example_questions=example_questions,
-        last_updated=last_updated
+        last_updated=last_updated,
+        is_early_access=is_early_access(year)
     )
 
 
@@ -338,7 +369,8 @@ def rule(year: int = None):
         available_years=available_years,
         participants_list=participants_list,
         example_questions=example_questions,
-        last_updated=last_updated
+        last_updated=last_updated,
+        is_early_access=is_early_access(year)
     )
 
 
@@ -389,7 +421,8 @@ def content(year: int = None, content: str = None):
             is_latest_year=is_latest_year(year),
             available_years=available_years,
             example_questions=example_questions,
-            last_updated=last_updated
+            last_updated=last_updated,
+            is_early_access=is_early_access(year)
         )
 
     # エラーが出たら404を表示
