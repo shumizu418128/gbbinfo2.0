@@ -79,13 +79,6 @@ def record_question(year: int, question: str, answer: str):
         # スプレッドシートを開く
         sheet = client.open("gbbinfo-jpn").sheet1
 
-        # 直前の質問(C2)を取得、同じ質問があれば終了
-        last_question = sheet.acell("C2").value
-
-        if last_question == question:
-            print("The same question has already been recorded.", flush=True)
-            return
-
         # 質問と年を記録
         sheet.insert_row([dt_now, year_str, question, answer], 2)
 
