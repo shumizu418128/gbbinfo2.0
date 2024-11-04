@@ -212,13 +212,13 @@ def search_participants(year: int, keyword: str):
     participants_search_result = []
     for result in top_results:
 
-        # 1人の部門
+        # 1人の部門・チームの部門 (グループ名)
         participant_solos = [
             participant for participant in participants_list if participant["name"] == result
         ]
         participants_search_result.extend(participant_solos)
 
-        # チームの部門
+        # チームの部門 (メンバー名)
         participant_teams = [
             participant for participant in participants_list if result in participant["members"]
         ]
