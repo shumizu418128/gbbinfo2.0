@@ -7,6 +7,7 @@ import pandas as pd
 import requests
 from flask import (Flask, jsonify, redirect, render_template, request,
                    send_file, url_for)
+from flask_babel import Babel, _
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
@@ -20,6 +21,11 @@ sitemapper.init_app(app)
 app.secret_key = os.getenv("SECRET_KEY")
 github_token = os.getenv("GITHUB_TOKEN")
 available_years = key.available_years
+app.config['BABEL_DEFAULT_LOCALE'] = 'ja'  # デフォルト言語を設定
+app.config['BABEL_SUPPORTED_LOCALES'] = ['en', 'ja']  # サポートする言語
+babel = Babel(app)
+
+test = _("test")  # テスト翻訳
 
 # 質問例を読み込む
 example_questions = spreadsheet.get_example_questions()
