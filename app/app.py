@@ -6,7 +6,7 @@ import jinja2
 import pandas as pd
 import requests
 from flask import (Flask, jsonify, redirect, render_template, request,
-                   send_file, url_for)
+                   send_file, session, url_for)
 from flask_babel import Babel, _
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
@@ -84,6 +84,14 @@ def is_early_access(year):
     dt_now = datetime.now()
     now = dt_now.year
     return year > now
+
+
+# Babelによる言語選択の設定
+def get_locale():
+    return session.get('language', 'ja')  # デフォルト言語を日本語に設定
+
+
+babel.init_app(app, locale_selector=get_locale)
 
 
 ####################################################################

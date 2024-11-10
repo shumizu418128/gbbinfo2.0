@@ -7,7 +7,7 @@
 {% block content %}
 <h1>GBB {{ year }} {{ _('ルール') }}</h1>
 <p>
-  {{ _('Swissbeatbox公式サイトにて、GBB %s で実施される部門・Wildcardのルールについて発表がありました。') | format(2024) }}<br />
+  {{ _('Swissbeatbox公式サイトにて、GBB {year} で実施される部門・Wildcardのルールについて発表がありました。').format(year=year) }}<br />
   {{ _('ソースサイト：') }}<a
     href="https://swissbeatbox.com/newsfeed/gbb-2024-wildcard-competition-rules-and-application/"
     target="_blank"
