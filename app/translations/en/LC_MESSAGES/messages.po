@@ -303,7 +303,7 @@ msgstr "Participation Rights"
 #: templates/common/japan.html:31 templates/common/japan.html:40
 #: templates/common/participants.html:78 templates/common/participants.html:87
 msgid "【辞退】"
-msgstr "[drop out]"
+msgstr "[Cancel]"
 
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
