@@ -16,7 +16,7 @@ from .participants import (create_world_map, get_participants_list,
                            get_results, instagram, search_participants)
 
 available_years = [2023, 2024, 2025]
-available_langs = ["ja", "en"]
+available_langs = ["ja", "en", "zh"]  # 利用可能な言語のリスト
 
 app = Flask(__name__)
 sitemapper = Sitemapper()

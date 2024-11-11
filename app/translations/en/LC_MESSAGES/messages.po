@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-11 21:28+0900\n"
+"POT-Creation-Date: 2024-11-11 23:16+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -349,8 +349,8 @@ msgstr ""
 "position for each second."
 
 #: templates/2024/rule.html:221
-msgid "提出受付開始日時：1月21日"
-msgstr "Submission Start Date: January 21"
+msgid "提出受付開始日時"
+msgstr "Submission Start Date"
 
 #: templates/2024/rule.html:225 templates/2024/rule.html:229
 #: templates/2024/rule.html:233 templates/2024/rule.html:237
@@ -938,3 +938,4 @@ msgstr ""
 #: templates/common/result.html:40
 msgid "その他の年度を確認："
 msgstr "Check other years:"
+
