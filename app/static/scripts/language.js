@@ -1,7 +1,7 @@
 const currentUrl = window.location.pathname;
 const JA = document.querySelectorAll('.linkJA');
 const EN = document.querySelectorAll('.linkEN');
-const ZH = document.querySelectorAll('.linkZH');
+const ZH_TW = document.querySelectorAll('.linkZH_TW');
 
 JA.forEach(link => {
     link.href = `/lang?referrer=${currentUrl}&lang=ja`;
@@ -10,6 +10,7 @@ JA.forEach(link => {
 EN.forEach(link => {
     link.href = `/lang?referrer=${currentUrl}&lang=en`;
 });
-ZH.forEach(link => {
-    link.href = `/lang?referrer=${currentUrl}&lang=zh`;
+
+ZH_TW.forEach(link => {
+    link.href = `/lang?referrer=${currentUrl}&lang=zh_Hant_TW`;
 });
