@@ -11,7 +11,7 @@ from flask_babel import Babel, _
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
-from . import gemini, key, spreadsheet
+from . import gemini, key
 from .participants import (create_world_map, get_participants_list,
                            get_results, search_participants)
 
@@ -27,9 +27,6 @@ app.config['BABEL_SUPPORTED_LOCALES'] = available_langs  # 利用可能な言語
 babel = Babel(app)
 
 test = _("test")  # テスト翻訳
-
-# 質問例を読み込む
-example_questions = spreadsheet.get_example_questions()
 
 # 現在時刻を読み込む(最終更新日時として使用)
 dt_now = datetime.now()
@@ -210,7 +207,6 @@ def participants(year: int = None):
             result_url=None,
             is_latest_year=is_latest_year(year),
             available_years=available_years,
-            example_questions=example_questions,
             last_updated=last_updated,
             value=value,
             is_early_access=is_early_access(year)
@@ -268,7 +264,6 @@ def participants(year: int = None):
         result_url=result_url,
         is_latest_year=is_latest_year(year),
         available_years=available_years,
-        example_questions=example_questions,
         last_updated=last_updated,
         value=value,
         is_early_access=is_early_access(year)
@@ -302,7 +297,6 @@ def japan(year: int = None):
         year=year,
         is_latest_year=is_latest_year(year),
         available_years=available_years,
-        example_questions=example_questions,
         last_updated=last_updated,
         is_early_access=is_early_access(year)
     )
@@ -331,7 +325,6 @@ def result(year: int):
         year=year,
         is_latest_year=is_latest_year(year),
         available_years=available_years,
-        example_questions=example_questions,
         last_updated=last_updated,
         is_early_access=is_early_access(year)
     )
@@ -404,7 +397,6 @@ def rule(year: int = None):
         is_latest_year=is_latest_year(year),
         available_years=available_years,
         participants_list=participants_list,
-        example_questions=example_questions,
         last_updated=last_updated,
         is_early_access=is_early_access(year)
     )
@@ -455,14 +447,13 @@ def content(year: int = None, content: str = None):
             year=year,
             is_latest_year=is_latest_year(year),
             available_years=available_years,
-            example_questions=example_questions,
             last_updated=last_updated,
             is_early_access=is_early_access(year)
         )
 
     # エラーが出たら404を表示
     except jinja2.exceptions.TemplateNotFound:
-        return render_template("/common/404.html", example_questions=example_questions), 404
+        return render_template("/common/404.html"), 404
 
 
 ####################################################################
@@ -490,13 +481,12 @@ def others(content: str = None):
             year=year,
             available_years=available_years,
             is_latest_year=is_latest_year(year),
-            example_questions=example_questions,
             last_updated=last_updated
         )
 
     # エラー
     except jinja2.exceptions.TemplateNotFound:
-        return render_template("/common/404.html", example_questions=example_questions), 404
+        return render_template("/common/404.html"), 404
 
 
 ####################################################################
@@ -664,7 +654,7 @@ def page_not_found(_):
 
     :return: 404エラーページのHTMLテンプレート
     """
-    return render_template("/common/404.html", example_questions=example_questions), 404
+    return render_template("/common/404.html"), 404
 
 
 if __name__ == "__main__":

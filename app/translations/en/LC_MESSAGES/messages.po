@@ -414,7 +414,7 @@ msgstr "Click here for the list of main judges"
 #: templates/2024/stream.html:4 templates/2024/stream.html:8
 #: templates/2024/top.html:77 templates/2024/top_7tosmoke.html:36
 msgid "当日配信"
-msgstr "Live Streaming on the Day"
+msgstr "Streaming"
 
 #: templates/2024/stream.html:36
 msgid "観戦のお供に"
