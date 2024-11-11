@@ -1,121 +1,115 @@
-# English translations for PROJECT.
+# Translations template for PROJECT.
 # Copyright (C) 2024 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-11 16:57+0900\n"
-"PO-Revision-Date: 2024-11-10 17:33+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: en\n"
-"Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
 #: templates/base.html:102
-#, fuzzy
 msgid "ホーム/これだけガイド"
-msgstr "Guide"
+msgstr ""
 
 #: templates/2024/stream.html:39 templates/base.html:103
 msgid "Wildcard結果&出場者"
-msgstr "Wildcard Results & Participants"
+msgstr ""
 
 #: templates/2024/top.html:81 templates/base.html:104
 msgid "大会結果"
-msgstr "Tournament Results"
+msgstr ""
 
 #: templates/base.html:107
 msgid "年度選択"
-msgstr "Year Selection"
+msgstr ""
 
 #: templates/base.html:139 templates/base.html:146 templates/base.html:174
 msgid "は"
-msgstr "is"
+msgstr ""
 
 #: templates/base.html:139 templates/base.html:146 templates/base.html:174
-#, fuzzy
 msgid "終了しました"
-msgstr "ended"
+msgstr ""
 
 #: templates/base.html:140 templates/base.html:147 templates/base.html:156
 #: templates/base.html:163 templates/base.html:175
 msgid "ここは、すでに終了したGBB {year} のページです"
-msgstr "This is the page for GBB {year} that has already ended."
+msgstr ""
 
 #: templates/base.html:142 templates/base.html:149 templates/base.html:177
 msgid "GBB最新情報はこちら"
-msgstr "Latest GBB information can be found here."
+msgstr ""
 
 #: templates/base.html:144 templates/base.html:160
 msgid "閉じる"
-msgstr "Close"
+msgstr ""
 
 #: templates/base.html:155 templates/base.html:162 templates/base.html:181
-#, fuzzy
 msgid "先行公開中"
-msgstr "Early Access"
+msgstr ""
 
 #: templates/base.html:158 templates/base.html:165 templates/base.html:184
 msgid "GBB {year} の情報はこちら"
-msgstr "Information about GBB {year} can be found here."
+msgstr ""
 
 #: templates/base.html:182
 msgid "ここは、まだ情報が少ないGBB {year} のページです"
-msgstr "This is the page for GBB {year} which currently has limited information."
+msgstr ""
 
 #: templates/base.html:189
 msgid "次のGBBまであと..."
-msgstr "Time until the next GBB..."
+msgstr ""
 
 #: templates/base.html:194 templates/base.html:205 templates/base.html:271
 #: templates/base.html:284
 msgid "なんでも検索"
-msgstr "Search Anything"
+msgstr ""
 
 #: templates/base.html:195 templates/base.html:272
 msgid "GBB {year} の検索のみ可能です"
-msgstr "Only searches for GBB {year} are possible."
+msgstr ""
 
 #: templates/base.html:195 templates/base.html:272
 msgid "GBB {year} は終了しました"
-msgstr "GBB {year} has ended."
+msgstr ""
 
 #: templates/base.html:197 templates/base.html:274
 msgid "例：GBB {year} の最終結果は？"
-msgstr "Example: What was the final result of GBB {year}?"
+msgstr ""
 
 #: templates/base.html:201 templates/base.html:278
 msgid "GBB最新情報の検索はこちら"
-msgstr "Search for the latest GBB information here."
+msgstr ""
 
 #: templates/2024/top.html:36 templates/base.html:208 templates/base.html:286
 msgid "例：現地観戦計画のたてかた"
-msgstr "Example: How to Plan for On-Site Viewing"
+msgstr ""
 
 #: templates/base.html:217
 msgid "ホーム画面に追加"
-msgstr "Add to Home Screen"
+msgstr ""
 
 #: templates/base.html:220
 msgid "GBBINFO-JPNはPWAに対応しています。"
-msgstr "GBBINFO-JPN is compatible with PWA."
+msgstr ""
 
 #: templates/base.html:220
 msgid "ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。"
 msgstr ""
-"Open the browser menu and tap 'Add to Home Screen' to install it as an "
-"app."
 
 #: templates/base.html:226
 msgid "ホームへもどる"
-msgstr "Return to Home"
+msgstr ""
 
 #: templates/2024/rule.html:21 templates/2024/rule.html:70
 #: templates/2024/rule.html:129 templates/2024/rule.html:208
@@ -124,423 +118,387 @@ msgstr "Return to Home"
 #: templates/2024/top.html:4 templates/2024/top.html:24
 #: templates/2024/top.html:42 templates/base.html:226
 msgid "これだけガイド"
-msgstr "Guide"
+msgstr ""
 
 #: templates/base.html:234
 msgid "GBBINFO-JPNについて"
-msgstr "About GBBINFO-JPN"
+msgstr ""
 
 #: templates/base.html:248
 msgid "ホーム"
-msgstr "Home"
+msgstr ""
 
 #: templates/2024/rule.html:2 templates/2024/rule.html:3
 #: templates/2024/rule.html:4 templates/2024/rule.html:8
 #: templates/2024/rule.html:215 templates/2024/top.html:57
 msgid "ルール"
-msgstr "Rules"
+msgstr ""
 
 #: templates/2024/rule.html:10
 msgid "Swissbeatbox公式サイトにて、GBB {year} で実施される部門・Wildcardのルールについて発表がありました。"
 msgstr ""
-"An announcement has been made on the official Swissbeatbox website "
-"regarding the rules for the categories and Wildcard for GBB {year}."
 
 #: templates/2024/rule.html:11
 msgid "ソースサイト："
-msgstr "Source site:"
+msgstr ""
 
 #: templates/2024/rule.html:20 templates/2024/rule.html:69
 #: templates/2024/rule.html:128 templates/2024/rule.html:207
 #: templates/2024/rule.html:248 templates/2024/rule.html:293
 #: templates/2024/stream.html:41 templates/2024/top.html:61
 msgid "現地観戦計画のたてかた"
-msgstr "How to Plan for On-Site Viewing"
+msgstr ""
 
 #: templates/2024/rule.html:25
 msgid "目次"
-msgstr "Table of Contents"
+msgstr ""
 
 #: templates/2024/rule.html:29 templates/2024/rule.html:54
 msgid "注意事項"
-msgstr "Notes"
+msgstr ""
 
 #: templates/2024/rule.html:33 templates/2024/rule.html:73
 msgid "開催部門一覧"
-msgstr "List of Categories"
+msgstr ""
 
 #: templates/2024/rule.html:37 templates/2024/rule.html:132
 msgid "出場シード権 獲得条件"
-msgstr "Conditions for Earning Seed Rights"
+msgstr ""
 
 #: templates/2024/rule.html:41 templates/2024/rule.html:210
 msgid "Wildcard ルール"
-msgstr "Wildcard Rules"
+msgstr ""
 
 #: templates/2024/rule.html:45 templates/2024/rule.html:252
 msgid "本戦審査員一覧"
-msgstr "List of Main Judges"
+msgstr ""
 
 #: templates/2024/rule.html:49 templates/2024/rule.html:296
 msgid "Wildcard審査員一覧"
-msgstr "List of Wildcard Judges"
+msgstr ""
 
 #: templates/2024/rule.html:56
 msgid "以下に示す内容は、あくまでもBeatboxファンが知っておくとよりGBBを楽しめる知識として紹介するものです。"
 msgstr ""
-"The following information is provided as knowledge that Beatbox fans "
-"should know to enjoy GBB even more."
 
 #: templates/2024/rule.html:56
 msgid "一部内容において、わかりやすさを優先し、"
-msgstr "In some cases, clarity is prioritized,"
+msgstr ""
 
 #: templates/2024/rule.html:57
 msgid "正確さに欠ける表現を用いることがあります。"
-msgstr "and expressions that may lack accuracy may be used."
+msgstr ""
 
 #: templates/2024/rule.html:61
 msgid "当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねます。"
 msgstr ""
-"We cannot be held responsible for any damages arising from the content "
-"published on this site."
 
 #: templates/2024/rule.html:61
 msgid "Wildcardを提出する方は、"
-msgstr "Those submitting a Wildcard,"
+msgstr ""
 
 #: templates/2024/rule.html:63
 msgid "必ずご自身でルールを今一度ご確認ください。"
-msgstr "Please make sure to check the rules yourself once again."
+msgstr ""
 
 #: templates/2024/rule.html:77 templates/2024/rule.html:150
 #: templates/2024/rule.html:214 templates/2024/rule.html:259
 #: templates/2024/rule.html:304
 msgid "部門"
-msgstr "Category"
+msgstr ""
 
 #: templates/2024/rule.html:79
 msgid "シード"
-msgstr "Seed"
+msgstr ""
 
 #: templates/2024/rule.html:80
 msgid "計"
-msgstr "Total"
+msgstr ""
 
 #: templates/2024/rule.html:117
 msgid "上記のデータは、ルール発表時現在の情報です。実際は、辞退などにより、出場者数が変動します。"
 msgstr ""
-"The above data reflects the information at the time of the rule "
-"announcement. In reality, the number of participants may vary due to "
-"withdrawals."
 
 #: templates/2024/rule.html:121
 msgid "Producerとは"
-msgstr "What is a Producer?"
+msgstr ""
 
 #: templates/2024/rule.html:122
 msgid ""
 "Loopstationのセカンドデバイス（Loopstationに接続する端末）ありの部門で、GBB23で\"Producer "
 "showcase\"として新設されました。その代わり、Loopstation部門においてセカンドデバイスの使用が禁止されます。"
 msgstr ""
-"This is a category that allows a second device (a device connected to the"
-" Loopstation) and was newly established as a 'Producer showcase' at "
-"GBB23. However, the use of a second device is prohibited in the "
-"Loopstation category."
 
 #: templates/2024/rule.html:125
 msgid "忘れられたTag Team Loopstation..."
-msgstr "The Forgotten Tag Team Loopstation..."
+msgstr ""
 
 #: templates/2024/rule.html:134
 msgid "Wildcardを勝ち上がる以外の方法でGBB出場権を得る方法（シード権）と、その該当者は以下の通りです。"
 msgstr ""
-"The methods to earn GBB participation rights (seed rights) other than "
-"winning the Wildcard, and the corresponding individuals are as follows."
 
 #: templates/2024/rule.html:140
 msgid "シード権 - GBB"
-msgstr "Seed Rights - GBB"
+msgstr ""
 
 #: templates/2024/rule.html:142
 msgid "シード権 - その他"
-msgstr "Seed Rights - Others"
+msgstr ""
 
 #: templates/2024/rule.html:144
 msgid "シード権辞退者一覧"
-msgstr "List of Seed Right Withdrawals"
+msgstr ""
 
 #: templates/2024/rule.html:149
 msgid "名前"
-msgstr "Name"
+msgstr ""
 
 #: templates/2024/rule.html:151
 msgid "出場権"
-msgstr "Participation Rights"
+msgstr ""
 
 #: templates/2024/rule.html:161 templates/2024/rule.html:170
 msgid "辞退"
-msgstr "Withdrawal"
+msgstr ""
 
 #: templates/2024/rule.html:196 templates/2024/top.html:53
 msgid "Wildcard結果"
-msgstr "Wildcard Results"
+msgstr ""
 
 #: templates/2024/rule.html:197
 msgid "出場者一覧"
-msgstr "List of Participants"
+msgstr ""
 
 #: templates/2024/rule.html:200
 msgid "～発表次第更新～"
-msgstr "Updated as soon as announced"
+msgstr ""
 
 #: templates/2024/rule.html:204
 msgid "シード権を持つ人が辞退した場合、原則として、該当シード権は消滅し、Wildcard下位からの繰り上げが行われます。"
 msgstr ""
-"If a person holding seed rights withdraws, in principle, the "
-"corresponding seed rights will be voided, and a promotion from the "
-"Wildcard lower ranks will take place."
 
 #: templates/2024/rule.html:220
 msgid "全部門共通"
-msgstr "Common to All Categories"
+msgstr ""
 
 #: templates/2024/rule.html:221
 msgid "制限時間を超過した場合、1秒につき最終順位を1つ下げる"
 msgstr ""
-"If the time limit is exceeded, the final ranking will be lowered by one "
-"position for each second."
 
 #: templates/2024/rule.html:221
 msgid "提出受付開始日時：1月21日"
-msgstr "Submission Start Date: January 21"
+msgstr ""
 
 #: templates/2024/rule.html:225 templates/2024/rule.html:229
 msgid "制限時間：2分10秒"
-msgstr "Time Limit: 2 minutes 10 seconds"
+msgstr ""
 
 #: templates/2024/rule.html:225 templates/2024/rule.html:233
 msgid "提出期限：3月9日 (23:59 CET)"
-msgstr "Submission Deadline: March 9 (23:59 CET)"
+msgstr ""
 
 #: templates/2024/rule.html:225
 msgid "結果発表：3月31日 (時間未定)"
-msgstr "Results Announcement: March 31 (Time TBD)"
+msgstr ""
 
 #: templates/2024/rule.html:229 templates/2024/rule.html:237
 #: templates/2024/rule.html:241
 msgid "提出期限：3月23日 (23:59 CET)"
-msgstr "Submission Deadline: March 23 (23:59 CET)"
+msgstr ""
 
 #: templates/2024/rule.html:229
 msgid "結果発表：4月12日 (時間未定)"
-msgstr "Results Announcement: April 12 (Time TBD)"
+msgstr ""
 
 #: templates/2024/rule.html:233
 msgid "制限時間：3分30秒"
-msgstr "Time Limit: 3 minutes 30 seconds"
+msgstr ""
 
 #: templates/2024/rule.html:233
 msgid "結果発表：3月30日 (時間未定)"
-msgstr "Results Announcement: March 30 (Time TBD)"
+msgstr ""
 
 #: templates/2024/rule.html:233
 msgid "RC505 mki, mkiiのみ"
-msgstr "Only RC505 mki, mkii"
+msgstr ""
 
 #: templates/2024/rule.html:233
 msgid "一部例外あり"
-msgstr "Some exceptions apply"
+msgstr ""
 
 #: templates/2024/rule.html:237
 msgid "制限時間：5分"
-msgstr "Time Limit: 5 minutes"
+msgstr ""
 
 #: templates/2024/rule.html:237
 msgid "結果発表：4月13日 (時間未定)"
-msgstr "Results Announcement: April 13 (Time TBD)"
+msgstr ""
 
 #: templates/2024/rule.html:237
 msgid "デバイス制限なし"
-msgstr "No device restrictions"
+msgstr ""
 
 #: templates/2024/rule.html:241
 msgid "制限時間：3分10秒"
-msgstr "Time Limit: 3 minutes 10 seconds"
+msgstr ""
 
 #: templates/2024/rule.html:241
 msgid "結果発表：4月14日 (時間未定)"
-msgstr "Results Announcement: April 14 (Time TBD)"
+msgstr ""
 
 #: templates/2024/rule.html:254
 msgid "Wildcard審査員一覧はこちら"
-msgstr "Click here for the list of Wildcard judges"
+msgstr ""
 
 #: templates/2024/rule.html:260 templates/2024/rule.html:305
 #: templates/2024/top.html:57
 msgid "審査員"
-msgstr "Judges"
+msgstr ""
 
 #: templates/2024/rule.html:286
 msgid "審査員不明"
-msgstr "Judges Unknown"
+msgstr ""
 
 #: templates/2024/rule.html:286
 msgid "例年発表なし"
-msgstr "No announcement in previous years"
+msgstr ""
 
 #: templates/2024/rule.html:298
 msgid "本戦審査員一覧はこちら"
-msgstr "Click here for the list of main judges"
+msgstr ""
 
 #: templates/2024/stream.html:2 templates/2024/stream.html:3
 #: templates/2024/stream.html:4 templates/2024/stream.html:8
 #: templates/2024/top.html:77
 msgid "当日配信"
-msgstr "Live Streaming on the Day"
+msgstr ""
 
 #: templates/2024/stream.html:36
 msgid "観戦のお供に"
-msgstr "For Your Viewing Companion"
+msgstr ""
 
 #: templates/2024/stream.html:37
-#, fuzzy
 msgid "GBB{year}の最新情報をチェックしよう"
-msgstr "Let's Check the Latest Information"
+msgstr ""
 
 #: templates/2024/stream.html:40 templates/2024/top.html:16
 msgid "タイムスケジュール"
-msgstr "Timetable"
+msgstr ""
 
 #: templates/2024/top.html:11
 msgid "開催日"
-msgstr "Event Date"
+msgstr ""
 
 #: templates/2024/top.html:21
 msgid "は終了しました"
-msgstr "has ended"
+msgstr ""
 
 #: templates/2024/top.html:21
 msgid "ページ 先行公開中！"
-msgstr "Page is now available for early access!"
+msgstr ""
 
 #: templates/2024/top.html:24
 msgid "先行公開"
-msgstr "Early Access"
+msgstr ""
 
 #: templates/2024/top.html:31
 msgid "公式よりもわかりやすい！"
-msgstr "Easier to Understand than the Official!"
+msgstr ""
 
 #: templates/2024/top.html:31
 msgid "非公式情報サイト"
-msgstr "Unofficial Information Site"
+msgstr ""
 
 #: templates/2024/top.html:53
 msgid "出場者"
-msgstr "Participants"
+msgstr ""
 
 #: templates/2024/top.html:65 templates/2024/top.html:129
 #: templates/2024/top.html:133
 msgid "会場"
-msgstr "Venue"
+msgstr ""
 
 #: templates/2024/top.html:65
 msgid "チケット"
-msgstr "Tickets"
+msgstr ""
 
 #: templates/2024/top.html:69
 msgid "日本代表"
-msgstr "Japan Representative"
+msgstr ""
 
 #: templates/2024/top.html:73
 msgid "タイム"
-msgstr "Time"
+msgstr ""
 
 #: templates/2024/top.html:73
 msgid "スケジュール"
-msgstr "Schedule"
+msgstr ""
 
 #: templates/2024/top.html:77
 msgid "みんなで鑑賞会"
-msgstr "Viewing Party"
+msgstr ""
 
 #: templates/2024/top.html:86
 msgid "当サイトURL変更のお知らせ"
-msgstr "Notice of URL Change for This Site"
+msgstr ""
 
 #: templates/2024/top.html:87
 msgid "Wildcard結果発表配信"
-msgstr "Wildcard Results Announcement Streaming"
+msgstr ""
 
 #: templates/2024/top.html:88
 msgid "Wildcard一覧"
-msgstr "List of Wildcards"
+msgstr ""
 
 #: templates/2024/top.html:95
 msgid "7toSmokeこれだけガイド"
-msgstr "7toSmoke Guide"
+msgstr ""
 
 #: templates/2024/top.html:101 templates/2024/top.html:115
 msgid "お問い合わせ"
-msgstr "Contact Us"
+msgstr ""
 
 #: templates/2024/top.html:106
 msgid "これらの情報のほかにも、"
-msgstr "In addition to this information,"
+msgstr ""
 
 #: templates/2024/top.html:108
 msgid "未発表の情報(決まっているが、なぜか公式が発表を渋っている)"
 msgstr ""
-"Unannounced information (decided but for some reason the official site is"
-" reluctant to announce)"
 
 #: templates/2024/top.html:109
 msgid "未定事項(そもそも決まってすらいない)"
-msgstr "Undecided matters (not even decided yet)"
+msgstr ""
 
 #: templates/2024/top.html:111
 msgid "このような情報が多く存在します。"
-msgstr "There are many such pieces of information."
+msgstr ""
 
 #: templates/2024/top.html:112
 msgid "GBBの各種情報は、発表が非常に遅いことで有名です。気長に待ちましょう。"
 msgstr ""
-"GBB is known for its very slow announcements of various information. "
-"Let's be patient."
 
 #: templates/2024/top.html:116
 msgid "過去のGBBにおいて、下記番号に電話したらGBB詳細情報を教えてくれた、という報告が相次ぎました。"
 msgstr ""
-"In past GBB events, there have been reports that calling the number below"
-" provided detailed information about GBB."
 
 #: templates/2024/top.html:120
 msgid "場所"
-msgstr "Location"
+msgstr ""
 
 #: templates/2024/top.html:121
 msgid "電話番号"
-msgstr "Phone Number"
+msgstr ""
 
 #: templates/2024/top.html:125
 msgid "チケット販売ページ"
-msgstr "Ticket Sales Page"
+msgstr ""
 
 #: templates/2024/top.html:125
 msgid "記載の番号"
-msgstr "Listed Number"
+msgstr ""
 
 #: templates/2024/top.html:137
 msgid "なお上記電話番号は、当サイトとは無関係です。"
-msgstr "Please note that the above phone number is unrelated to this site."
-
-#~ msgid "ここは、すでに終了したGBB"
-#~ msgstr "This is the page for GBB"
-
-#~ msgid "のページです"
-#~ msgstr "that has already ended."
-
-#~ msgid "さがす"
-#~ msgstr "Search"
+msgstr ""
 

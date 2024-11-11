@@ -99,12 +99,12 @@
       <nav>
         <img src="/static/images/header.webp" alt="ヘッダー"/>
         <ul>
-          <a class="menu-link" href="/{{year}}/top"><li>ホーム/これだけガイド</li></a>
-          <a class="menu-link" href="/{{year}}/participants"><li>Wildcard結果&出場者</li></a>
-          <a class="menu-link" href="/{{year}}/result"><li>大会結果</li></a>
+          <a class="menu-link" href="/{{year}}/top"><li>{{ _('ホーム/これだけガイド') }}</li></a>
+          <a class="menu-link" href="/{{year}}/participants"><li>{{ _('Wildcard結果&出場者') }}</li></a>
+          <a class="menu-link" href="/{{year}}/result"><li>{{ _('大会結果') }}</li></a>
           <div class="past_gbb_wrap">
             <li>
-              年度選択
+              {{ _('年度選択') }}
               <ul class="past_gbb_lists">
                 {% for y in available_years|reverse %}
                   <a href="/{{ y }}/top"><li class="past_gbb">GBB {{ y }}</li></a>
@@ -136,33 +136,33 @@
       {% if is_latest_year is false %}
         <div class="background-popup" onclick="closePopup()"></div>
         <div class="popup">
-          <p style="font-size: 36px; font-weight: bold;">☆<br>GBB{{ year }}は<br>終了しました<br>☆</p>
-          <p>ここは、すでに終了したGBB{{ year }}のページです</p>
+          <p style="font-size: 36px; font-weight: bold;">☆<br>GBB{{ year }}{{ _('は') }}<br>{{ _('終了しました') }}<br>☆</p>
+          <p>{{ _('ここは、すでに終了したGBB {year} のページです').format(year) }}</p>
             <div class="button-container" style="margin-bottom: 8px">
-              <a href="/"><button type="button">GBB最新情報はこちら</button></a>
+              <a href="/"><button type="button">{{ _('GBB最新情報はこちら') }}</button></a>
             </div>
-          <button type="button" onclick="closePopup()">閉じる</button>
+          <button type="button" onclick="closePopup()">{{ _('閉じる') }}</button>
         </div>
-        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}は<br>終了しました</p>
-        <p style="text-align: center;">ここは、すでに終了したGBB{{ year }}のページです</p>
+        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB {{ year }} {{ _('は') }}<br>{{ _('終了しました') }}</p>
+        <p style="text-align: center;">{{ _('ここは、すでに終了したGBB {year} のページです').format(year) }}</p>
         <div class="button-container">
-          <a href="/"><button type="button">GBB最新情報はこちら</button></a>
+          <a href="/"><button type="button">{{ _('GBB最新情報はこちら') }}</button></a>
         </div>
         <hr>
       {% elif is_early_access is true %}
         <div class="background-popup" onclick="closePopup()"></div>
         <div class="popup">
-          <p style="font-size: 36px; font-weight: bold;">GBB{{ year }}<br>先行公開中</p>
-          <p>ここは、まだ情報が少ないGBB{{ year }}のページです</p>
+          <p style="font-size: 36px; font-weight: bold;">GBB{{ year }}<br>{{ _('先行公開中') }}</p>
+          <p>{{ _('ここは、すでに終了したGBB {year} のページです').format(year) }}</p>
           <div class="button-container" style="margin-bottom: 8px">
-            <a href="/"><button type="button">GBB{{ year - 1 }}の情報はこちら</button></a>
+            <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year) }}</button></a>
           </div>
-          <button type="button" onclick="closePopup()">閉じる</button>
+          <button type="button" onclick="closePopup()">{{ _('閉じる') }}</button>
         </div>
-        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}<br>先行公開中</p>
-        <p style="text-align: center;">ここは、まだ情報が少ないGBB{{ year }}のページです</p>
+        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}<br>{{ _('先行公開中') }}</p>
+        <p style="text-align: center;">{{ _('ここは、すでに終了したGBB {year} のページです').format(year) }}</p>
         <div class="button-container">
-          <a href="/"><button type="button">GBB{{ year - 1 }}の情報はこちら</button></a>
+          <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year) }}</button></a>
         </div>
         <hr>
       {% endif %}
@@ -171,42 +171,42 @@
 
       {% if is_latest_year is false %}
         <hr />
-        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}は<br>終了しました</p>
-        <p style="text-align: center;">ここは、すでに終了したGBB{{ year }}のページです</p>
+        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}{{ _('は') }}<br>{{ _('終了しました') }}</p>
+        <p style="text-align: center;">{{ _('ここは、すでに終了したGBB {year} のページです').format(year) }}</p>
         <div class="button-container">
-          <a href="/"><button type="button">GBB最新情報はこちら</button></a>
+          <a href="/"><button type="button">{{ _('GBB最新情報はこちら') }}</button></a>
         </div>
       {% elif is_early_access is true %}
         <hr />
-        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}<br>先行公開中</p>
-        <p style="text-align: center;">ここは、まだ情報が少ないGBB{{ year }}のページです</p>
+        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}<br>{{ _('先行公開中') }}</p>
+        <p style="text-align: center;">{{ _('ここは、まだ情報が少ないGBB {year} のページです').format(year) }}</p>
         <div class="button-container">
-          <a href="/"><button type="button">GBB{{ year - 1 }}の情報はこちら</button></a>
+          <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year) }}</button></a>
         </div>
       {% endif %}
 
       <hr />
-      <p style="text-align: center">GBB 2024まであと...</p>
+      <p style="text-align: center">{{ _('次のGBBまであと...') }}</p>
       <p id="countdown" style="text-align: center; font-size: 24px"></p>
 
       {% if is_latest_year is false %}
         <hr>
-        <h3>GBB{{ year }} なんでも検索</h3>
-        <p style="text-align: center;">GBB{{ year }}の検索のみ可能です<br>GBB{{ year }}は終了しました</p>
+        <h3>GBB {{ year }} {{ _('なんでも検索') }}</h3>
+        <p style="text-align: center;">{{ _('GBB {year} の検索のみ可能です').format(year) }}<br>{{ _('GBB {year} は終了しました').format(year) }}</p>
         <form id="search-form-bottom" class="search-form-1" action="/{{ year }}/search">
-          <input type="text" name="question" id="question-bottom" placeholder="例：GBB{{ year }}の最終結果は？" required>
-          <button type="submit" aria-label="検索"></button>
+          <input type="text" name="question" id="question-bottom" placeholder="{{ _('例：GBB {year} の最終結果は？').format(year) }}" required>
+          <button type="submit"></button>
         </form>
         <div class="button-container">
-          <a href="/"><button type="button">GBB最新情報の検索はこちら</button></a>
+          <a href="/"><button type="button">{{ _('GBB最新情報の検索はこちら') }}</button></a>
         </div>
         <hr>
       {% else %}
-        <h2>GBB {{ year }} なんでも検索</h2>
-        <p style="text-align: center;">{% for question in example_questions[:3] %}「{{ question }}」{% endfor %}</p>
+        <h2>GBB {{ year }} {{ _('なんでも検索') }}</h2>
+
         <form id="search-form-bottom" class="search-form-1" action="/{{ year }}/search">
-          <input type="text" name="question" id="question-bottom" placeholder="例：{{ example_questions[3] }}" required>
-          <button type="submit" aria-label="検索"></button>
+          <input type="text" name="question" id="question-bottom" placeholder="{{ _('例：現地観戦計画のたてかた') }}" required>
+          <button type="submit"></button>
         </form>
         <br>
       {% endif %}
@@ -214,16 +214,16 @@
       <div id="loading" class="loading"></div>
 
       <div class="button-container">
-        <a href="javascript:void(0);"><button id="installButton" class="button_top" style="visibility: hidden;">ホーム画面に追加</button></a>
+        <a href="javascript:void(0);"><button id="installButton" class="button_top" style="visibility: hidden;">{{ _('ホーム画面に追加') }}</button></a>
       </div>
       <p>
-        GBBINFO-JPNはPWAに対応しています。<br />ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。
+        {{ _('GBBINFO-JPNはPWAに対応しています。') }}<br />{{ _('ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。') }}
       </p>
 
       <div class="button-container">
         <a href="/"><button type="button">
           <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044CC"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
-          <span class="button-text-with-icon">ホームへもどる<br>これだけガイド</span>
+          <span class="button-text-with-icon">{{ _('ホームへもどる') }}<br>{{ _('これだけガイド') }}</span>
         </button></a>
       </div>
       <hr>
@@ -231,12 +231,11 @@
       <br>
       <a href="https://twitter.com/tari_3210_" target="_blank" rel="noopener noreferrer">tari3210 Twitter</a>
       <br>
-      <a href="/others/about">GBBINFO-JPNについて</a>
+      <a href="/others/about">{{ _('GBBINFO-JPNについて') }}</a>
 
       <footer>
         <p>
-          GBBINFO-JPN 2.0<br />UNofficial website made by tari3210<br />NOT
-          swissbeatbox
+          GBBINFO-JPN 2.0<br />UNofficial website made by tari3210<br />NOT swissbeatbox
         </p>
       </footer>
       <div class="progress-scroll" style="bottom: 50px"></div>
@@ -246,7 +245,7 @@
     <div class="bottom-navigation">
       <button class="bottom-navigation-button" onclick="location.href='/'">
         <img id="home-icon" src="/static/images/icon/icon-home.webp" alt="Home Icon" height="40px" width="40px">
-        <span>ホーム</span>
+        <span>{{ _('ホーム') }}</span>
       </button>
       <button class="bottom-navigation-button" id="bottom-dropdown" onclick="toggleDropdown()" style="border-right: 1px solid white; border-left: 1px solid white;">
         <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="M144-552v-240h72v130q46-60 114.5-95T480-792q140 0 238 98t98 238h-72q0-109-77.5-186.5T480-720q-62 0-114.5 25.5T277-624h107v72H144Zm0 96h72q0 106 71.5 181.5T462-192l42 71q-6 0-12 .5t-12 .5q-140 0-238-98t-98-238Zm409 109L444-456v-192h72v162l74 75-37 64ZM736 0l-13-56q-14-5-26.5-12T673-84l-55 17-32-55 41-40q-2-9-3-23.5t3-34.5l-41-39 32-56 54 16q11-10 24-17t27-12l13-56h64l13 56q14 5 27 12t24 17l54-15 32 55-40 38q1 7 3 22t-3 37l41 39-32 55-55-16q-11 10-24 16.5T813-56L800 0h-64Zm32-120q30 0 51-21t21-51q0-30-21-51t-51-21q-30 0-51 21t-21 51q0 30 21 51t51 21Z"/></svg>
@@ -269,24 +268,23 @@
       {% if is_latest_year is false %}
         <div id="search-menu-nav" class="search-menu-nav-past" style="display: none;">
           <button class="close-button" onclick="closeSearchMenu()">✖</button>
-          <h3>GBB{{ year }} なんでも検索</h3>
-          <p style="text-align: center;">GBB{{ year }}の検索のみ可能です<br>GBB{{ year }}は終了しました</p>
+          <h3>GBB {{ year }} {{ _('なんでも検索') }}</h3>
+          <p style="text-align: center;">{{ _('GBB {year} の検索のみ可能です').format(year) }}<br>{{ _('GBB {year} は終了しました').format(year) }}</p>
           <form id="search-form-nav" class="search-form-1" action="/{{ year }}/search">
-            <input type="text" name="question" id="question-nav" placeholder="例：GBB{{ year }}の最終結果は？" required>
-            <button type="submit" aria-label="検索"></button>
+            <input type="text" name="question" id="question-nav" placeholder="{{ _('例：GBB {year} の最終結果は？').format(year) }}" required>
+            <button type="submit"></button>
           </form>
           <div class="button-container">
-            <a href="/"><button type="button">GBB最新情報の検索はこちら</button></a>
+            <a href="/"><button type="button">{{ _('GBB最新情報の検索はこちら') }}</button></a>
           </div>
         </div>
       {% else %}
         <div id="search-menu-nav" class="search-menu-nav-latest" style="display: none;">
           <button class="close-button" onclick="closeSearchMenu()">✖</button>
-          <h2>GBB {{ year }} なんでも検索</h2>
-          <p style="text-align: center;">{% for question in example_questions[:3] %}「{{ question }}」{% endfor %}</p>
+          <h2>GBB {{ year }} {{ _('なんでも検索') }}</h2>
           <form id="search-form-nav" class="search-form-1" action="/{{ year }}/search">
-            <input type="text" name="question" id="question-nav" placeholder="例：{{ example_questions[3] }}" required>
-            <button type="submit" aria-label="検索"></button>
+            <input type="text" name="question" id="question-nav" placeholder="{{ _('例：現地観戦計画のたてかた') }}" required>
+            <button type="submit"></button>
           </form>
         </div>
       {% endif %}
