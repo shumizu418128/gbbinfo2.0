@@ -19,7 +19,6 @@ msgstr ""
 "Generated-By: Babel 2.16.0\n"
 
 #: templates/base.html:102
-#, fuzzy
 msgid "ホーム/これだけガイド"
 msgstr "Guide"
 
@@ -44,7 +43,6 @@ msgid "は"
 msgstr "is"
 
 #: templates/base.html:139 templates/base.html:146 templates/base.html:174
-#, fuzzy
 msgid "終了しました"
 msgstr "ended"
 
@@ -62,7 +60,6 @@ msgid "閉じる"
 msgstr "Close"
 
 #: templates/base.html:155 templates/base.html:162 templates/base.html:181
-#, fuzzy
 msgid "先行公開中"
 msgstr "Early Access"
 
@@ -424,7 +421,6 @@ msgid "観戦のお供に"
 msgstr "For Your Viewing Companion"
 
 #: templates/2024/stream.html:37
-#, fuzzy
 msgid "GBB {year} の最新情報をチェックしよう"
 msgstr "Let's Check the Latest Information"
 
@@ -438,7 +434,6 @@ msgstr "Timetable"
 #: templates/2024/ticket.html:2 templates/2024/ticket.html:3
 #: templates/2024/ticket.html:4 templates/2024/ticket.html:8
 #: templates/2024/top_7tosmoke.html:33
-#, fuzzy
 msgid "会場&チケット"
 msgstr "Tickets"
 
@@ -453,12 +448,10 @@ msgid "会場"
 msgstr "Venue"
 
 #: templates/2024/ticket.html:12
-#, fuzzy
 msgid "チケットぴあ"
 msgstr "Tickets"
 
 #: templates/2024/ticket.html:14
-#, fuzzy
 msgid "楽天チケット"
 msgstr "Tickets"
 
@@ -482,7 +475,6 @@ msgstr ""
 "correct, and the English version had many errors."
 
 #: templates/2024/time_schedule.html:35 templates/2024/time_schedule.html:289
-#, fuzzy
 msgid "出演者一覧"
 msgstr "List of Participants"
 
@@ -558,7 +550,6 @@ msgid "アフターパーティー"
 msgstr "After Party"
 
 #: templates/2024/time_schedule.html:247
-#, fuzzy
 msgid "ソース：会場公式サイト"
 msgstr "Source: Official Venue Site"
 
@@ -702,7 +693,6 @@ msgid "なお上記電話番号は、当サイトとは無関係です。"
 msgstr "Please note that the above phone number is unrelated to this site."
 
 #: templates/2024/top_7tosmoke.html:31
-#, fuzzy
 msgid "7toSmokeとは"
 msgstr "7toSmoke Guide"
 
@@ -765,27 +755,22 @@ msgid "トップページ"
 msgstr "Homepage"
 
 #: templates/common/japan.html:66
-#, fuzzy
 msgid "日本代表なし"
 msgstr "No Japan Representative"
 
 #: templates/common/japan.html:72 templates/common/participants.html:136
-#, fuzzy
 msgid "Wildcard順位"
 msgstr "Wildcard Rankings"
 
 #: templates/common/japan.html:74 templates/common/participants.html:49
-#, fuzzy
 msgid "全出場者一覧"
 msgstr "List of All Participants"
 
 #: templates/common/japan.html:75 templates/common/participants.html:138
-#, fuzzy
 msgid "出場権詳細"
 msgstr "Details of Participation Rights"
 
 #: templates/common/japan.html:76 templates/common/participants.html:139
-#, fuzzy
 msgid "ルール&審査員"
 msgstr "Rules & Judges"
 
@@ -794,7 +779,6 @@ msgid "結果発表日"
 msgstr "Announcement Date"
 
 #: templates/common/japan.html:80 templates/common/participants.html:167
-#, fuzzy
 msgid "出場者世界地図"
 msgstr "World Map of Participants"
 
@@ -803,7 +787,6 @@ msgid "国旗をタップorクリックすると、詳細を確認できます�
 msgstr "Tap or click on the flag to view details."
 
 #: templates/common/participants.html:24 templates/common/participants.html:117
-#, fuzzy
 msgid "部門選択"
 msgstr "Select Category"
 
@@ -812,17 +795,14 @@ msgid "情報選択"
 msgstr "Select Information"
 
 #: templates/common/participants.html:33 templates/common/participants.html:126
-#, fuzzy
 msgid "全出場者"
 msgstr "All Participants"
 
 #: templates/common/participants.html:35 templates/common/participants.html:128
-#, fuzzy
 msgid "シード権"
 msgstr "Seed Rights"
 
 #: templates/common/participants.html:45
-#, fuzzy
 msgid "シード権獲得者"
 msgstr "Seed Rights Recipients"
 
@@ -831,12 +811,10 @@ msgid "表示選択"
 msgstr "Select Display"
 
 #: templates/common/participants.html:57
-#, fuzzy
 msgid "出場者・辞退者"
 msgstr "Participants & Withdrawals"
 
 #: templates/common/participants.html:58
-#, fuzzy
 msgid "出場者のみ"
 msgstr "Participants Only"
 
@@ -849,7 +827,6 @@ msgid "出身"
 msgstr "Origin"
 
 #: templates/common/participants.html:146
-#, fuzzy
 msgid "出場者検索"
 msgstr "Participant Search"
 
@@ -875,7 +852,6 @@ msgid "優勝"
 msgstr "Champion"
 
 #: templates/common/result.html:15
-#, fuzzy
 msgid "準優勝"
 msgstr "Runner-Up"
 
