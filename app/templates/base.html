@@ -137,14 +137,14 @@
         <div class="background-popup" onclick="closePopup()"></div>
         <div class="popup">
           <p style="font-size: 36px; font-weight: bold;">☆<br>GBB{{ year }}{{ _('は') }}<br>{{ _('終了しました') }}<br>☆</p>
-          <p>{{ _('ここは、すでに終了したGBB {year} のページです').format(year) }}</p>
+          <p>{{ _('ここは、すでに終了したGBB {year} のページです').format(year=year) }}</p>
             <div class="button-container" style="margin-bottom: 8px">
               <a href="/"><button type="button">{{ _('GBB最新情報はこちら') }}</button></a>
             </div>
           <button type="button" onclick="closePopup()">{{ _('閉じる') }}</button>
         </div>
         <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB {{ year }} {{ _('は') }}<br>{{ _('終了しました') }}</p>
-        <p style="text-align: center;">{{ _('ここは、すでに終了したGBB {year} のページです').format(year) }}</p>
+        <p style="text-align: center;">{{ _('ここは、すでに終了したGBB {year} のページです').format(year=year) }}</p>
         <div class="button-container">
           <a href="/"><button type="button">{{ _('GBB最新情報はこちら') }}</button></a>
         </div>
@@ -153,16 +153,16 @@
         <div class="background-popup" onclick="closePopup()"></div>
         <div class="popup">
           <p style="font-size: 36px; font-weight: bold;">GBB{{ year }}<br>{{ _('先行公開中') }}</p>
-          <p>{{ _('ここは、すでに終了したGBB {year} のページです').format(year) }}</p>
+          <p>{{ _('ここは、すでに終了したGBB {year} のページです').format(year=year) }}</p>
           <div class="button-container" style="margin-bottom: 8px">
-            <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year) }}</button></a>
+            <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year=year-1) }}</button></a>
           </div>
           <button type="button" onclick="closePopup()">{{ _('閉じる') }}</button>
         </div>
         <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}<br>{{ _('先行公開中') }}</p>
-        <p style="text-align: center;">{{ _('ここは、すでに終了したGBB {year} のページです').format(year) }}</p>
+        <p style="text-align: center;">{{ _('ここは、すでに終了したGBB {year} のページです').format(year=year) }}</p>
         <div class="button-container">
-          <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year) }}</button></a>
+          <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year=year-1) }}</button></a>
         </div>
         <hr>
       {% endif %}
@@ -172,16 +172,16 @@
       {% if is_latest_year is false %}
         <hr />
         <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}{{ _('は') }}<br>{{ _('終了しました') }}</p>
-        <p style="text-align: center;">{{ _('ここは、すでに終了したGBB {year} のページです').format(year) }}</p>
+        <p style="text-align: center;">{{ _('ここは、すでに終了したGBB {year} のページです').format(year=year) }}</p>
         <div class="button-container">
           <a href="/"><button type="button">{{ _('GBB最新情報はこちら') }}</button></a>
         </div>
       {% elif is_early_access is true %}
         <hr />
         <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB{{ year }}<br>{{ _('先行公開中') }}</p>
-        <p style="text-align: center;">{{ _('ここは、まだ情報が少ないGBB {year} のページです').format(year) }}</p>
+        <p style="text-align: center;">{{ _('ここは、まだ情報が少ないGBB {year} のページです').format(year=year) }}</p>
         <div class="button-container">
-          <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year) }}</button></a>
+          <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year=year-1) }}</button></a>
         </div>
       {% endif %}
 
@@ -192,9 +192,9 @@
       {% if is_latest_year is false %}
         <hr>
         <h3>GBB {{ year }} {{ _('なんでも検索') }}</h3>
-        <p style="text-align: center;">{{ _('GBB {year} の検索のみ可能です').format(year) }}<br>{{ _('GBB {year} は終了しました').format(year) }}</p>
+        <p style="text-align: center;">{{ _('GBB {year} の検索のみ可能です').format(year=year) }}<br>{{ _('GBB {year} は終了しました').format(year=year) }}</p>
         <form id="search-form-bottom" class="search-form-1" action="/{{ year }}/search">
-          <input type="text" name="question" id="question-bottom" placeholder="{{ _('例：GBB {year} の最終結果は？').format(year) }}" required>
+          <input type="text" name="question" id="question-bottom" placeholder="{{ _('例：GBB {year} の最終結果は？').format(year=year) }}" required>
           <button type="submit"></button>
         </form>
         <div class="button-container">
@@ -269,9 +269,9 @@
         <div id="search-menu-nav" class="search-menu-nav-past" style="display: none;">
           <button class="close-button" onclick="closeSearchMenu()">✖</button>
           <h3>GBB {{ year }} {{ _('なんでも検索') }}</h3>
-          <p style="text-align: center;">{{ _('GBB {year} の検索のみ可能です').format(year) }}<br>{{ _('GBB {year} は終了しました').format(year) }}</p>
+          <p style="text-align: center;">{{ _('GBB {year} の検索のみ可能です').format(year=year) }}<br>{{ _('GBB {year} は終了しました').format(year=year) }}</p>
           <form id="search-form-nav" class="search-form-1" action="/{{ year }}/search">
-            <input type="text" name="question" id="question-nav" placeholder="{{ _('例：GBB {year} の最終結果は？').format(year) }}" required>
+            <input type="text" name="question" id="question-nav" placeholder="{{ _('例：GBB {year} の最終結果は？').format(year=year) }}" required>
             <button type="submit"></button>
           </form>
           <div class="button-container">
