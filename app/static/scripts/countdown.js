@@ -37,17 +37,17 @@ function updateCountdown() {
 
     // HTMLに表示 (カウントダウンが終了したら0時間0分0秒と表示)
     document.getElementById("countdown").innerHTML =
-        distance1 < 0 ? "0時間 0分 0秒" :
-        days1 + "日 " + hours1 + "時間 " +
-        minutes1 + "分 " + seconds1 + "秒 " + milliseconds1;
+        distance1 < 0 ? "and that's TIME!" :
+        days1 + ":" + hours1 + ":" +
+        minutes1 + ":" + seconds1 + ":" + milliseconds1;
 
 
     const ticketCountdownElement = document.getElementById("ticketDeadCountdown");
     if (ticketCountdownElement) {
         ticketCountdownElement.innerHTML =
-            distance2 < 0 ? "チケット販売終了！" :
-            days2 + "日 " + hours2 + "時間 " +
-            minutes2 + "分 " + seconds2 + "秒 " + milliseconds2;
+            distance2 < 0 ? "and that's TIME！" :
+            days2 + ":" + hours2 + ":" +
+            minutes2 + ":" + seconds2 + ":" + milliseconds2;
     }
 
     // 次のフレームで再度呼び出し

@@ -123,13 +123,13 @@ function search_participants(year) {
                 loadingElement.style.display = 'none';
             }
             else {
-                document.getElementById('participants-search-result').innerHTML = '<p>検索結果なし</p>';
+                document.getElementById('participants-search-result').innerHTML = '<p>-</p>';
                 loadingElement.style.display = 'none';
             }
         })
         .catch(error => console.error('Error:', error));
     } else {
-        document.getElementById('participants-search-result').innerHTML = '<p>検索結果なし</p>';
+        document.getElementById('participants-search-result').innerHTML = '<p>-</p>';
         loadingElement.style.display = 'none';
     }
 }

@@ -1,7 +1,8 @@
 Jinja2
 pandas
-Flask
+Flask<3.0.0
 Flask-Caching
+flask-babel==2.0.0
 flask-sitemapper
 folium
 redis

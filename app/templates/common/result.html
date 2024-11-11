@@ -1,19 +1,19 @@
 {% extends "base.html" %}
-{% block title %}GBB {{ year }} 大会結果 - GBBINFO-JPN{% endblock %}
-{% block twitter_title %}GBB{{ year }}:大会結果 - GBBINFO-JPN{% endblock %}
-{% block og_title %}GBB{{ year }}:大会結果 - GBBINFO-JPN{% endblock %}
+{% block title %}GBB {{ year }} {{ _('大会結果') }} - GBBINFO-JPN{% endblock %}
+{% block twitter_title %}GBB{{ year }}:{{ _('大会結果') }} - GBBINFO-JPN{% endblock %}
+{% block og_title %}GBB{{ year }}:{{ _('大会結果') }} - GBBINFO-JPN{% endblock %}
 {% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/result{% endblock %}
 {% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/result{% endblock %}
 {% block content %}
-<h1>GBB {{ year }} 大会結果</h1>
+<h1>GBB {{ year }} {{ _('大会結果') }}</h1>
 {% if results %}
   <table>
     <thead>
       <tr>
-        <th>部門</th>
-        <th>優勝</th>
-        <th>準優勝</th>
-        <th>3位</th>
+        <th>{{ _('部門') }}</th>
+        <th>{{ _('優勝') }}</th>
+        <th>{{ _('準優勝') }}</th>
+        <th>{{ _('3位') }}</th>
       </tr>
     </thead>
     <tbody>
@@ -27,17 +27,17 @@
     {% endfor %}
     </tbody>
   </table>
-  <p>入賞者のうち、次回GBBの出場権獲得者のみ表示しています。</p>
+  <p>{{ _('入賞者のうち、次回GBBの出場権獲得者のみ表示しています。') }}</p>
 {% else %}
   <div style="text-align: center;">
-    <p>～発表次第更新～</p>
+    <p>{{ _('～発表次第更新～') }}</p>
     <p>{{ last_updated }}</p>
   </div>
 {% endif %}
 <br>
 <script src="/static/scripts/result.js"></script>
 <form method="GET" class="participants_form">
-<label for="year">その他の年度を確認：</label>
+<label for="year">{{ _('その他の年度を確認：') }}</label>
 <select name="year" id="year" class="participants_select" onchange="redirect_year()">
   {% for y in available_years %}
     <option value="{{ y }}" {% if year == y %}selected{% endif %}>{{ y }}</option>

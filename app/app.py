@@ -6,11 +6,12 @@ import jinja2
 import pandas as pd
 import requests
 from flask import (Flask, jsonify, redirect, render_template, request,
-                   send_file, url_for)
+                   send_file, session, url_for)
+from flask_babel import Babel, _
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
-from . import gemini, key, spreadsheet
+from . import gemini, key
 from .participants import (create_world_map, get_participants_list,
                            get_results, search_participants)
 
@@ -20,13 +21,16 @@ sitemapper.init_app(app)
 app.secret_key = os.getenv("SECRET_KEY")
 github_token = os.getenv("GITHUB_TOKEN")
 available_years = key.available_years
+available_langs = key.available_langs
+app.config['BABEL_DEFAULT_LOCALE'] = 'ja'  # デフォルト言語を設定
+app.config['BABEL_SUPPORTED_LOCALES'] = available_langs  # 利用可能な言語を設定
+babel = Babel(app)
 
-# 質問例を読み込む
-example_questions = spreadsheet.get_example_questions()
+test = _("test")  # テスト翻訳
 
 # 現在時刻を読み込む(最終更新日時として使用)
 dt_now = datetime.now()
-last_updated = "最終更新：" + dt_now.strftime("%Y/%m/%d %H:%M:%S")
+last_updated = "UPDATE " + dt_now.strftime("%Y/%m/%d %H:%M:%S")
 
 # 特定の警告を無視
 warnings.filterwarnings(
@@ -41,6 +45,7 @@ if os.getenv("ENVIRONMENT_CHECK") == "qawsedrftgyhujikolp":
     app.config['CACHE_TYPE'] = "null"
     app.config['DEBUG'] = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.secret_key = "test"
     cache = Cache(app, config={'CACHE_TYPE': 'null'})
 
 # 本番環境ではキャッシュを有効化
@@ -80,11 +85,55 @@ def is_early_access(year):
     return year > now
 
 
+@babel.localeselector
+def get_locale():
+    # セッションから言語設定を取得し、利用可能な言語の中から最適なものを選択
+    user_lang = session.get('language')
+    return user_lang if user_lang in available_langs else request.accept_languages.best_match(available_langs)
+
+
+####################################################################
+# 言語切り替え
+####################################################################
+@app.route("/lang")
+def lang():
+    """
+    言語を切り替えます。
+
+    :return: リダイレクト先のURL
+    """
+    # クエリパラメータを取得
+    lang = request.args.get("lang")
+    referrer = request.args.get("referrer")
+
+    # 言語が利用可能な言語であればセッションに保存
+    if lang in available_langs:
+        session['language'] = lang
+    else:
+        session['language'] = "ja"
+
+    # リダイレクト先を分析
+    non_content_func = ["participants", "japan", "result", "rule"]
+    year = referrer.split("/")[1]
+    content_name = referrer.split("/")[2]
+
+    # リダイレクト先を決定
+    # others
+    if year == "others":
+        return redirect(url_for("others", content=content_name))
+
+    # content関数以外
+    if content_name in non_content_func:
+        return redirect(url_for(content_name, year=year))
+
+    # content関数
+    return redirect(url_for("content", year=year, content=content_name))
+
+
 ####################################################################
 # /(年度) にアクセスしたときの処理
 ####################################################################
 @app.route("/")
-@cache.cached(query_string=True)
 def route_top():
     """
     トップページへのルーティングを処理します。
@@ -134,7 +183,6 @@ def world_map(year: int = None):
 ####################################################################
 @sitemapper.include(changefreq="monthly", priority=1.0, url_variables={"year": available_years})
 @app.route('/<int:year>/participants', methods=["GET"])
-@cache.cached(query_string=True)
 def participants(year: int = None):
     """
     指定された年度の出場者一覧を表示します。
@@ -170,7 +218,6 @@ def participants(year: int = None):
             result_url=None,
             is_latest_year=is_latest_year(year),
             available_years=available_years,
-            example_questions=example_questions,
             last_updated=last_updated,
             value=value,
             is_early_access=is_early_access(year)
@@ -228,7 +275,6 @@ def participants(year: int = None):
         result_url=result_url,
         is_latest_year=is_latest_year(year),
         available_years=available_years,
-        example_questions=example_questions,
         last_updated=last_updated,
         value=value,
         is_early_access=is_early_access(year)
@@ -240,7 +286,6 @@ def participants(year: int = None):
 ####################################################################
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/japan")
-@cache.cached(query_string=True)
 def japan(year: int = None):
     """
     指定された年度の日本代表の出場者一覧を表示します。
@@ -263,7 +308,6 @@ def japan(year: int = None):
         year=year,
         is_latest_year=is_latest_year(year),
         available_years=available_years,
-        example_questions=example_questions,
         last_updated=last_updated,
         is_early_access=is_early_access(year)
     )
@@ -275,7 +319,6 @@ def japan(year: int = None):
 # /year/resultはリダイレクト これによりresultページ内ですべての年度の結果を表示可能
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/result")
-@cache.cached(query_string=True)
 def result(year: int):
     """
     結果ページを表示します。
@@ -293,7 +336,6 @@ def result(year: int):
         year=year,
         is_latest_year=is_latest_year(year),
         available_years=available_years,
-        example_questions=example_questions,
         last_updated=last_updated,
         is_early_access=is_early_access(year)
     )
@@ -301,7 +343,6 @@ def result(year: int):
 
 # 廃止したリンクのリダイレクト
 @app.route("/result")
-@cache.cached(query_string=True)
 def result_redirect():
     """
     すでに廃止したリンクのリダイレクト
@@ -324,7 +365,6 @@ def result_redirect():
 ####################################################################
 @sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/rule")
-@cache.cached(query_string=True)
 def rule(year: int = None):
     """
     指定された年度のルールを表示します。
@@ -368,7 +408,6 @@ def rule(year: int = None):
         is_latest_year=is_latest_year(year),
         available_years=available_years,
         participants_list=participants_list,
-        example_questions=example_questions,
         last_updated=last_updated,
         is_early_access=is_early_access(year)
     )
@@ -399,7 +438,6 @@ combinations_content = [content for _, content in combinations]  # コンテン�
 
 @sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": combinations_year, "content": combinations_content})
 @app.route("/<int:year>/<string:content>")
-@cache.cached(query_string=True)
 def content(year: int = None, content: str = None):
     """
     指定された年度とコンテンツのページを表示します。
@@ -420,14 +458,13 @@ def content(year: int = None, content: str = None):
             year=year,
             is_latest_year=is_latest_year(year),
             available_years=available_years,
-            example_questions=example_questions,
             last_updated=last_updated,
             is_early_access=is_early_access(year)
         )
 
     # エラーが出たら404を表示
     except jinja2.exceptions.TemplateNotFound:
-        return render_template("/common/404.html", example_questions=example_questions), 404
+        return render_template("/common/404.html"), 404
 
 
 ####################################################################
@@ -440,7 +477,6 @@ content_others = [content.replace(".html", "") for content in content_others]
 
 @sitemapper.include(changefreq="never", priority=0.7, url_variables={"content": content_others})
 @app.route("/others/<string:content>")
-@cache.cached(query_string=True)
 def others(content: str = None):
     """
     その他のページを表示します。
@@ -456,13 +492,12 @@ def others(content: str = None):
             year=year,
             available_years=available_years,
             is_latest_year=is_latest_year(year),
-            example_questions=example_questions,
             last_updated=last_updated
         )
 
     # エラー
     except jinja2.exceptions.TemplateNotFound:
-        return render_template("/common/404.html", example_questions=example_questions), 404
+        return render_template("/common/404.html"), 404
 
 
 ####################################################################
@@ -630,7 +665,7 @@ def page_not_found(_):
 
     :return: 404エラーページのHTMLテンプレート
     """
-    return render_template("/common/404.html", example_questions=example_questions), 404
+    return render_template("/common/404.html"), 404
 
 
 if __name__ == "__main__":
