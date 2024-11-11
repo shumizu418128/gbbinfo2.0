@@ -94,7 +94,7 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
             participant = {
                 "name": row["name"].replace("[cancelled] ", "").upper(),
                 "category": row["category"],
-                "country": row["name_ja"],
+                "country": f"{row["name_ja"]} {row['name_country']}",
                 "ticket_class": row["ticket_class"],
                 "is_cancelled": True
             }
@@ -103,7 +103,7 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
             participant = {
                 "name": row["name"].upper(),
                 "category": row["category"],
-                "country": row["name_ja"],
+                "country": f"{row["name_ja"]} {row['name_country']}",
                 "ticket_class": row["ticket_class"],
                 "is_cancelled": False
             }
@@ -117,7 +117,7 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
         # すでに出場者リストに登録されており、countryが違う場合、もとの辞書に追加
         for p in participants_list:
             if p["name"] == participant["name"] and p["country"] != participant["country"]:
-                p["country"] += f" / {participant['country']}"
+                p["country"] += f", {participant['country']}"
                 break
         else:
             participants_list.append(participant)

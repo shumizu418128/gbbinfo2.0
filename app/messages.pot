@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-11 19:46+0900\n"
+"POT-Creation-Date: 2024-11-11 19:57+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -284,7 +284,7 @@ msgstr ""
 #: templates/2024/rule.html:161 templates/2024/rule.html:170
 #: templates/common/japan.html:31 templates/common/japan.html:40
 #: templates/common/participants.html:78 templates/common/participants.html:87
-msgid "辞退"
+msgid "【辞退】"
 msgstr ""
 
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98

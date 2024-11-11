@@ -75,7 +75,7 @@
             <td>
               {% if participant.members != "" %}
                 {% if participant.is_cancelled %}
-                  【{{ _('辞退') }}】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
+                  {{ _('【辞退】') }}<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
                   <div class="member-list" style="display: none;"><s style="font-size: 12px">{{ participant.members }}</s></div>
                 {% else %}
                   <a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">{{ participant.name }}</a>
@@ -84,7 +84,7 @@
 
               {% else %}
                 {% if participant.is_cancelled %}
-                  【{{ _('辞退') }}】<br><s>{{ participant.name }}</s>
+                  {{ _('【辞退】') }}<br><s>{{ participant.name }}</s>
                 {% else %}
                   {{ participant.name }}
                 {% endif %}

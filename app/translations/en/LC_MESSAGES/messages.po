@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-11 19:46+0900\n"
+"POT-Creation-Date: 2024-11-11 19:57+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -302,8 +302,8 @@ msgstr "Participation Rights"
 #: templates/2024/rule.html:161 templates/2024/rule.html:170
 #: templates/common/japan.html:31 templates/common/japan.html:40
 #: templates/common/participants.html:78 templates/common/participants.html:87
-msgid "辞退"
-msgstr "Withdrawal"
+msgid "【辞退】"
+msgstr "[drop out]"
 
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
@@ -787,7 +787,9 @@ msgstr "No information available"
 #: templates/2025/rule.html:19 templates/2025/ticket.html:19
 #: templates/2025/time_schedule.html:25 templates/2025/wildcards.html:19
 msgid "お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。"
-msgstr "The information you are looking for is not available on this site as there has been no official announcement yet."
+msgstr ""
+"The information you are looking for is not available on this site as "
+"there has been no official announcement yet."
 
 #: templates/2025/rule.html:19 templates/2025/ticket.html:19
 #: templates/2025/time_schedule.html:25 templates/2025/wildcards.html:19
@@ -812,7 +814,9 @@ msgstr "Tickets: Updated as soon as announced"
 
 #: templates/2025/time_schedule.html:14
 msgid "GBB24では、本番約1ヶ月前に公開されましたが、誤記が多くみられました。"
-msgstr "For GBB24, the timetable was released about a month before the main event, but there were many errors."
+msgstr ""
+"For GBB24, the timetable was released about a month before the main "
+"event, but there were many errors."
 
 #: templates/2025/top.html:13
 msgid "未定"
