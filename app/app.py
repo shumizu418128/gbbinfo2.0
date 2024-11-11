@@ -112,8 +112,22 @@ def lang():
     else:
         session['language'] = "ja"
 
-    # リダイレクト
-    return redirect(referrer)
+    # リダイレクト先を分析
+    non_content_func = ["participants", "japan", "result", "rule"]
+    year = referrer.split("/")[1]
+    content_name = referrer.split("/")[2]
+
+    # リダイレクト先を決定
+    # others
+    if year == "others":
+        return redirect(url_for("others", content=content_name))
+
+    # content関数以外
+    if content_name in non_content_func:
+        return redirect(url_for(content_name, year=year))
+
+    # content関数
+    return redirect(url_for("content", year=year, content=content_name))
 
 
 ####################################################################

@@ -1,4 +1,4 @@
-const currentUrl = window.location.href;
+const currentUrl = window.location.pathname;
 const JA = document.querySelectorAll('.linkJA');
 const EN = document.querySelectorAll('.linkEN');
 
@@ -9,4 +9,3 @@ JA.forEach(link => {
 EN.forEach(link => {
     link.href = `/lang?referrer=${currentUrl}&lang=en`;
 });
-
