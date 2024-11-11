@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}GBB {{ year }} 日本代表 - GBBINFO-JPN{% endblock %}
-{% block twitter_title %}GBB{{ year }}:日本代表 - GBBINFO-JPN{% endblock %}
-{% block og_title %}GBB{{ year }}:日本代表 - GBBINFO-JPN{% endblock %}
+{% block title %}GBB {{ year }} {{ _('日本代表') }} - GBBINFO-JPN{% endblock %}
+{% block twitter_title %}GBB{{ year }}:{{ _('日本代表') }} - GBBINFO-JPN{% endblock %}
+{% block og_title %}GBB{{ year }}:{{ _('日本代表') }} - GBBINFO-JPN{% endblock %}
 {% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/japan{% endblock %}
 {% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/japan{% endblock %}
 {% block content %}
-<h1>GBB {{ year }} 日本代表</h1>
+<h1>GBB {{ year }} {{ _('日本代表') }}</h1>
 
 {% if is_latest_year %}
   <div style="text-align: center;">
@@ -17,9 +17,9 @@
   <table>
     <thead>
       <tr>
-        <th style="width: 33%;">名前</th>
-        <th style="width: 34%;">部門</th>
-        <th style="width: 33%;">出場権</th>
+        <th style="width: 33%;">{{ _('名前') }}</th>
+        <th style="width: 34%;">{{ _('部門') }}</th>
+        <th style="width: 33%;">{{ _('出場権') }}</th>
       </tr>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@
         <td>
           {% if participant.members != "" %}
             {% if participant.is_cancelled %}
-              【辞退】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
+              【{{ _('辞退') }}】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
               <div class="member-list" style="display: none;"><s style="font-size: 12px">{{ participant.members }}</s></div>
             {% else %}
               <a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">{{ participant.name }}</a>
@@ -37,7 +37,7 @@
 
           {% else %}
             {% if participant.is_cancelled %}
-              【辞退】<br><s>{{ participant.name }}</s>
+              【{{ _('辞退') }}】<br><s>{{ participant.name }}</s>
             {% else %}
               {{ participant.name }}
             {% endif %}
@@ -63,21 +63,21 @@
     </tbody>
   </table>
 {% else %}
-  <p>日本代表なし</p>
+  <p>{{ _('日本代表なし') }}</p>
 {% endif %}
 <br>
 
 <div class="button-container">
   {% if result_url %}
-    <a href="{{ result_url }}"><button type="button">{{ request.args.get('category') }}<br>Wildcard順位</button></a>
+    <a href="{{ result_url }}"><button type="button">{{ request.args.get('category') }}<br>{{ _('Wildcard順位') }}</button></a>
   {% endif %}
-  <a href="/{{year}}/participants"><button type="button">GBB{{ year }}<br>全出場者一覧</button></a>
-  <a href="/{{year}}/rule"><button type="button">出場権詳細</button></a>
-  <a href="/{{year}}/rule"><button type="button">GBB{{ year }}ルール&審査員</button></a>
-  <a href="/{{year}}/rule"><button type="button">結果発表日</button></a>
+  <a href="/{{year}}/participants"><button type="button">GBB {{ year }} {{ _('全出場者一覧') }}<br></button></a>
+  <a href="/{{year}}/rule"><button type="button">{{ _('出場権詳細') }}</button></a>
+  <a href="/{{year}}/rule"><button type="button">GBB {{ year }} {{ _('ルール&審査員') }}</button></a>
+  <a href="/{{year}}/rule"><button type="button">{{ _('結果発表日') }}</button></a>
 </div>
 
-<h2>GBB {{ year }} 出場者世界地図</h2>
-<p>国旗をタップorクリックすると、詳細を確認できます。</p>
+<h2>GBB {{ year }} {{ _('出場者世界地図') }}</h2>
+<p>{{ _('国旗をタップorクリックすると、詳細を確認できます。') }}</p>
 <iframe src="{{ url_for('world_map', year=year) }}" width="100%" height="400px" frameborder="0"></iframe>
 {% endblock %}

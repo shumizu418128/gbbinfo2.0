@@ -1,47 +1,21 @@
 {% extends "base.html" %}
-{% block title %}GBB {{ year }} 会場&チケット - GBBINFO-JPN{% endblock %}
-{% block twitter_title %}GBB{{ year }}:会場&チケット - GBBINFO-JPN{% endblock %}
-{% block og_title %}GBB{{ year }}:会場&チケット - GBBINFO-JPN{% endblock %}
+{% block title %}GBB {{ year }} {{ _('会場&チケット') }} - GBBINFO-JPN{% endblock %}
+{% block twitter_title %}GBB{{ year }}:{{ _('会場&チケット') }} - GBBINFO-JPN{% endblock %}
+{% block og_title %}GBB{{ year }}:{{ _('会場&チケット') }} - GBBINFO-JPN{% endblock %}
 {% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/ticket{% endblock %}
 {% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/ticket{% endblock %}
 {% block content %}
-<h1>GBB {{ year }} 会場&チケット</h1>
-<h2>【完売】公式販売</h2>
-<p>GBB {{ year }} 会場: <strong>Toyosu PIT</strong>
+<h1>GBB {{ year }} {{ _('会場&チケット') }}</h1>
+<h2>{{ _('【完売】公式販売') }}</h2>
+<p>GBB {{ year }} {{ _('会場') }}: <strong>Toyosu PIT</strong>
 <br>
-<a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2403620&rlsCd=001" target="_blank" rel="noopener noreferrer">チケットぴあ</a>
+<a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2403620&rlsCd=001" target="_blank" rel="noopener noreferrer">{{ _('チケットぴあ') }}</a>
 <a href="https://eplus.jp/sf/detail/4099720001" target="_blank" rel="noopener noreferrer">eplus</a>
-<a href="https://ticket.rakuten.co.jp/event/rtvmbgg/" target="_blank" rel="noopener noreferrer">楽天チケット</a>
+<a href="https://ticket.rakuten.co.jp/event/rtvmbgg/" target="_blank" rel="noopener noreferrer">{{ _('楽天チケット') }}</a>
 </p>
-<p>7toSmoke 会場: <strong>Spotify O-EAST</strong>
+<p>7toSmoke {{ _('会場') }}: <strong>Spotify O-EAST</strong>
 <br>
-<a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2403622&rlsCd=001" target="_blank" rel="noopener noreferrer">7toSmoke チケット</a>
+<a href="https://t.pia.jp/pia/ticketInformation.do?eventCd=2403622&rlsCd=001" target="_blank" rel="noopener noreferrer">7toSmoke {{ _('チケット') }}</a>
 </p>
-
-<h2>チケットぴあ<br>分配について</h2>
-<p>チケットぴあで購入したチケットの分配方法については、購入者に対してメールが送信されています。</p>
-<p>※メールが見つからない場合、迷惑メールなどの別フォルダをご確認ください。</p>
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">⚠️GBB2024チケットの分配のやり方⚠️<br><br>今日からチケットが再分配可能になりましたが、発券がMOALA、分配がチケットぴあで行うため分配のやり方が複雑になっています！<br>MOALAでチケットを発券したら、【チケットぴあに返却】してから【チケットぴあで分配】してくださいね〜〜！！！<a href="https://twitter.com/hashtag/GBB2024?src=hash&amp;ref_src=twsrc%5Etfw">#GBB2024</a><a href="https://twitter.com/hashtag/GBB24?src=hash&amp;ref_src=twsrc%5Etfw">#GBB24</a> <a href="https://t.co/0l8X8ezw8L">pic.twitter.com/0l8X8ezw8L</a></p>&mdash; 黒山羊@ゴート (@kuroyagisansan) <a href="https://twitter.com/kuroyagisansan/status/1849747686989365578?ref_src=twsrc%5Etfw">October 25, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<h3>補足</h3>
-<ul>
-    <li><strong>MOALAでの発券前</strong>
-        <ul>
-            <li>最初から分配が決まっているチケットについては、発券前にチケット詳細から発券・分配が可能です。</li>
-        </ul>
-    </li>
-    <li><strong>既にMOALAで発券が完了</strong>
-        <ul>
-            <li>分配を行う前に【チケットぴあ】への返却が必要です。</li>
-        </ul>
-    </li>
-</ul>
-
-<p>チケットぴあ以外のチケットについては、各チケットサイトHPの案内をご確認ください。</p>
-
-<h2>再販売について</h2>
-<p>一度完売したチケットが、再度購入可能になることがあります。</p>
-<p>原因としては、一度購入した方が、コンビニ決済などの手続きを失念したことによる、在庫の再販売などが考えられます。</p>
-<p>イベントによって大きな差がありますが、一般的に、購入されたチケットのうち2~4割は再販売されることが知られています。</p>
 
 {% endblock %}
