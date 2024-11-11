@@ -1,24 +1,24 @@
 {% extends "base.html" %}
-{% block title %}GBB {{ year }} Wildcard一覧 - GBBINFO-JPN{% endblock %}
-{% block twitter_title %}GBB{{ year }}:Wildcard一覧 - GBBINFO-JPN{% endblock %}
-{% block og_title %}GBB{{ year }}:Wildcard一覧 - GBBINFO-JPN{% endblock %}
+{% block title %}GBB {{ year }} {{ _('Wildcard一覧') }} - GBBINFO-JPN{% endblock %}
+{% block twitter_title %}GBB{{ year }}:{{ _('Wildcard一覧') }} - GBBINFO-JPN{% endblock %}
+{% block og_title %}GBB{{ year }}:{{ _('Wildcard一覧') }} - GBBINFO-JPN{% endblock %}
 {% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/wildcards{% endblock %}
 {% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/wildcards{% endblock %}
 {% block content %}
-<h1>GBB {{ year }} Wildcard一覧</h1>
+<h1>GBB {{ year }} {{ _('Wildcard一覧') }}</h1>
 
 <!-- TODO: 更新したらこの表示を消す -->
 <script src="/static/scripts/popup.js"></script>
 <script src="\static\scripts\last_edit.js"></script>
 <div class="overlay" onclick="closePopup()"></div>
 <div class="popup">
-<p style="text-align: center; font-size: 36px; font-weight: bold;">×××<br>情報なし<br>×××</p>
+<p style="text-align: center; font-size: 36px; font-weight: bold;">×××<br>{{ _('情報なし') }}<br>×××</p>
 <div style="text-align: center;">
   <p>{{ last_updated }}</p>
 </div>
-<p style="text-align: center;">お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。<br>公式発表をお待ちください。</p>
+<p style="text-align: center;">{{ _('お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。') }}<br>{{ _('公式発表をお待ちください。') }}</p>
   <div class="button-container">
-    <button type="button" onclick="closePopup()">閉じる</button>
+    <button type="button" onclick="closePopup()">{{ _('閉じる') }}</button>
   </div>
 </div>
 <div style="text-align: center;">
@@ -26,6 +26,6 @@
 </div>
 <!-- TODO: 更新したらこの表示を消す -->
 
-<p>～後日更新～</p>
+<p>{{ _('～後日更新～') }}</p>
 
 {% endblock %}

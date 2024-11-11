@@ -12,13 +12,13 @@
 <script src="\static\scripts\last_edit.js"></script>
 <div class="overlay" onclick="closePopup()"></div>
 <div class="popup">
-<p style="text-align: center; font-size: 36px; font-weight: bold;">×××<br>情報なし<br>×××</p>
+<p style="text-align: center; font-size: 36px; font-weight: bold;">×××<br>{{ _('情報なし') }}<br>×××</p>
 <div style="text-align: center;">
   <p>{{ last_updated }}</p>
 </div>
-<p style="text-align: center;">お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。<br>公式発表をお待ちください。</p>
+<p style="text-align: center;">{{ _('お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。') }}<br>{{ _('公式発表をお待ちください。') }}</p>
   <div class="button-container">
-    <button type="button" onclick="closePopup()">閉じる</button>
+    <button type="button" onclick="closePopup()">{{ _('閉じる') }}</button>
   </div>
 </div>
 <div style="text-align: center;">
@@ -26,15 +26,8 @@
 </div>
 <!-- TODO: 更新したらこの表示を消す -->
 
-<p>会場：日本のどこか</p>
-<p>チケット：～発表次第更新～</p>
+<p>{{ _('会場：日本のどこか') }}</p>
+<p>{{ _('チケット：～発表次第更新～') }}</p>
 <div style="margin: 100px 0;"></div>
-
-<h2>再販売について</h2>
-<p>
-  一度完売したチケットが、再度購入可能になることがあります。
-  <br>原因としては、一度購入した方が、コンビニ決済などの手続きを失念したことによる、在庫の再販売などが考えられます。
-  <br>イベントによって大きな差がありますが、一般的に、購入されたチケットの2~4割は再販売されることが知られています。
-</p>
 
 {% endblock %}
