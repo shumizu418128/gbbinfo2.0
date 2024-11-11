@@ -116,16 +116,11 @@
             <li>
               LANGUAGE
               <ul class="past_gbb_lists">
-                <a id="linkJA"><li class="past_gbb">日本語</li></a>
-                <a id="linkEN"><li class="past_gbb">English</li></a>
+                <a class="linkJA"><li class="past_gbb">日本語</li></a>
+                <a class="linkEN"><li class="past_gbb">English</li></a>
               </ul>
             </li>
           </div>
-          <script>
-            const currentUrl = window.location.pathname;
-            document.getElementById('linkJA').href = `/lang?referrer=${currentUrl}&lang=ja`;
-            document.getElementById('linkEN').href = `/lang?referrer=${currentUrl}&lang=en`;
-          </script>
         </ul>
       </nav>
     </header>
@@ -226,6 +221,13 @@
           <span class="button-text-with-icon">{{ _('ホームへもどる') }}<br>{{ _('これだけガイド') }}</span>
         </button></a>
       </div>
+      <div style="margin: 50px 0;"></div>
+
+      <h3>{{ _('対応言語') }}</h3>
+      <div class="button-container">
+        <a class="linkJA"><button type="button">日本語</button></a>
+        <a class="linkEN"><button type="button">English</button></a>
+      </div>
       <hr>
       <a href="https://qiita.com/tari3210/items/0561e91774863d165af0" target="_blank" rel="noopener noreferrer">GBBINFO-JPNの設計図</a>
       <br>
@@ -292,6 +294,7 @@
 
     <select class="headerDropdown" style="display: none;"></select>
 
+    <script src="/static/scripts/language.js"></script>
     <script src="/static/scripts/popup.js"></script>
     <script src="/static/scripts/scroll.js"></script>
     <script src="/static/scripts/countdown.js"></script>

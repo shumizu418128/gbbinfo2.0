@@ -104,6 +104,7 @@ def lang():
     """
     # クエリパラメータを取得
     lang = request.args.get("lang")
+    referrer = request.args.get("referrer")
 
     # 言語が利用可能な言語であればセッションに保存
     if lang in available_langs:
@@ -111,12 +112,8 @@ def lang():
     else:
         session['language'] = "ja"
 
-    # リファラーがあればリダイレクト
-    if request.referrer:
-        return redirect(request.referrer)
-    else:
-        referrer = request.args.get("referrer")
-        return redirect(url_for(referrer))
+    # リダイレクト
+    return redirect(referrer)
 
 
 ####################################################################
