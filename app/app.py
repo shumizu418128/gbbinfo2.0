@@ -11,21 +11,21 @@ from flask_babel import Babel, _
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
-from . import gemini, key
+from . import gemini
 from .participants import (create_world_map, get_participants_list,
-                           get_results, search_participants)
+                           get_results, instagram, search_participants)
+
+available_years = [2023, 2024, 2025]
+available_langs = ["ja", "en"]
 
 app = Flask(__name__)
 sitemapper = Sitemapper()
 sitemapper.init_app(app)
 app.secret_key = os.getenv("SECRET_KEY")
 github_token = os.getenv("GITHUB_TOKEN")
-available_years = key.available_years
-available_langs = key.available_langs
 app.config['BABEL_DEFAULT_LOCALE'] = 'ja'  # デフォルト言語を設定
 app.config['BABEL_SUPPORTED_LOCALES'] = available_langs  # 利用可能な言語を設定
 babel = Babel(app)
-
 test = _("test")  # テスト翻訳
 
 # 現在時刻を読み込む(最終更新日時として使用)
@@ -263,7 +263,7 @@ def participants(year: int = None):
 
     # 結果URLを取得
     try:
-        result_url = key.result[year][category]
+        result_url = instagram[year][category]
     except KeyError:
         result_url = None
 
