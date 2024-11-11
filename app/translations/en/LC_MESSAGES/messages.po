@@ -32,7 +32,7 @@ msgstr "Wildcard Results & Participants"
 #: templates/common/result.html:2 templates/common/result.html:3
 #: templates/common/result.html:4 templates/common/result.html:8
 msgid "大会結果"
-msgstr "Tournament Results"
+msgstr "Results"
 
 #: templates/base.html:107
 msgid "年度選択"
