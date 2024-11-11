@@ -1,4 +1,5 @@
 available_years = [2023, 2024, 2025]
+available_langs = ["ja", "en"]
 
 result = {
     2024: {

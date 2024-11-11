@@ -21,8 +21,9 @@ sitemapper.init_app(app)
 app.secret_key = os.getenv("SECRET_KEY")
 github_token = os.getenv("GITHUB_TOKEN")
 available_years = key.available_years
+available_langs = key.available_langs
 app.config['BABEL_DEFAULT_LOCALE'] = 'ja'  # デフォルト言語を設定
-app.config['BABEL_SUPPORTED_LOCALES'] = ['en', 'ja']  # サポートする言語
+app.config['BABEL_SUPPORTED_LOCALES'] = available_langs  # 利用可能な言語を設定
 babel = Babel(app)
 
 test = _("test")  # テスト翻訳
@@ -32,7 +33,7 @@ example_questions = spreadsheet.get_example_questions()
 
 # 現在時刻を読み込む(最終更新日時として使用)
 dt_now = datetime.now()
-last_updated = "最終更新：" + dt_now.strftime("%Y/%m/%d %H:%M:%S")
+last_updated = "UPDATE " + dt_now.strftime("%Y/%m/%d %H:%M:%S")
 
 # 特定の警告を無視
 warnings.filterwarnings(
@@ -47,6 +48,7 @@ if os.getenv("ENVIRONMENT_CHECK") == "qawsedrftgyhujikolp":
     app.config['CACHE_TYPE'] = "null"
     app.config['DEBUG'] = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.secret_key = "test"
     cache = Cache(app, config={'CACHE_TYPE': 'null'})
 
 # 本番環境ではキャッシュを有効化
@@ -86,19 +88,44 @@ def is_early_access(year):
     return year > now
 
 
-# Babelによる言語選択の設定
+@babel.localeselector
 def get_locale():
-    return session.get('language', 'ja')  # デフォルト言語を日本語に設定
+    # セッションから言語設定を取得し、利用可能な言語の中から最適なものを選択
+    user_lang = session.get('language')
+    return user_lang if user_lang in available_langs else request.accept_languages.best_match(available_langs)
 
 
-babel.init_app(app, locale_selector=get_locale)
+####################################################################
+# 言語切り替え
+####################################################################
+@app.route("/lang")
+def lang():
+    """
+    言語を切り替えます。
+
+    :return: リダイレクト先のURL
+    """
+    # クエリパラメータを取得
+    lang = request.args.get("lang")
+
+    # 言語が利用可能な言語であればセッションに保存
+    if lang in available_langs:
+        session['language'] = lang
+    else:
+        session['language'] = "ja"
+
+    # リファラーがあればリダイレクト
+    if request.referrer:
+        return redirect(request.referrer)
+    else:
+        referrer = request.args.get("referrer")
+        return redirect(url_for(referrer))
 
 
 ####################################################################
 # /(年度) にアクセスしたときの処理
 ####################################################################
 @app.route("/")
-@cache.cached(query_string=True)
 def route_top():
     """
     トップページへのルーティングを処理します。
@@ -148,7 +175,6 @@ def world_map(year: int = None):
 ####################################################################
 @sitemapper.include(changefreq="monthly", priority=1.0, url_variables={"year": available_years})
 @app.route('/<int:year>/participants', methods=["GET"])
-@cache.cached(query_string=True)
 def participants(year: int = None):
     """
     指定された年度の出場者一覧を表示します。
@@ -254,7 +280,6 @@ def participants(year: int = None):
 ####################################################################
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/japan")
-@cache.cached(query_string=True)
 def japan(year: int = None):
     """
     指定された年度の日本代表の出場者一覧を表示します。
@@ -289,7 +314,6 @@ def japan(year: int = None):
 # /year/resultはリダイレクト これによりresultページ内ですべての年度の結果を表示可能
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/result")
-@cache.cached(query_string=True)
 def result(year: int):
     """
     結果ページを表示します。
@@ -315,7 +339,6 @@ def result(year: int):
 
 # 廃止したリンクのリダイレクト
 @app.route("/result")
-@cache.cached(query_string=True)
 def result_redirect():
     """
     すでに廃止したリンクのリダイレクト
@@ -338,7 +361,6 @@ def result_redirect():
 ####################################################################
 @sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/rule")
-@cache.cached(query_string=True)
 def rule(year: int = None):
     """
     指定された年度のルールを表示します。
@@ -413,7 +435,6 @@ combinations_content = [content for _, content in combinations]  # コンテン�
 
 @sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": combinations_year, "content": combinations_content})
 @app.route("/<int:year>/<string:content>")
-@cache.cached(query_string=True)
 def content(year: int = None, content: str = None):
     """
     指定された年度とコンテンツのページを表示します。
@@ -454,7 +475,6 @@ content_others = [content.replace(".html", "") for content in content_others]
 
 @sitemapper.include(changefreq="never", priority=0.7, url_variables={"content": content_others})
 @app.route("/others/<string:content>")
-@cache.cached(query_string=True)
 def others(content: str = None):
     """
     その他のページを表示します。

@@ -1,0 +1,415 @@
+# Japanese translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-11-10 17:31+0900\n"
+"PO-Revision-Date: 2024-11-11 13:57+0900\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: app/templates/2024/rule.html:2 app/templates/2024/rule.html:3
+#: app/templates/2024/rule.html:4 app/templates/2024/rule.html:8
+#: app/templates/2024/rule.html:215 app/templates/2024/top.html:57
+msgid "ルール"
+msgstr ""
+
+#: app/templates/2024/rule.html:10
+msgid "Swissbeatbox公式サイトにて、GBB {year} で実施される部門・Wildcardのルールについて発表がありました。"
+msgstr ""
+
+#: app/templates/2024/rule.html:11
+msgid "ソースサイト："
+msgstr ""
+
+#: app/templates/2024/rule.html:20 app/templates/2024/rule.html:69
+#: app/templates/2024/rule.html:128 app/templates/2024/rule.html:207
+#: app/templates/2024/rule.html:248 app/templates/2024/rule.html:293
+#: app/templates/2024/stream.html:41 app/templates/2024/top.html:61
+msgid "現地観戦計画のたてかた"
+msgstr ""
+
+#: app/templates/2024/rule.html:21 app/templates/2024/rule.html:70
+#: app/templates/2024/rule.html:129 app/templates/2024/rule.html:208
+#: app/templates/2024/rule.html:249 app/templates/2024/rule.html:294
+#: app/templates/2024/top.html:2 app/templates/2024/top.html:3
+#: app/templates/2024/top.html:4 app/templates/2024/top.html:24
+#: app/templates/2024/top.html:42
+msgid "これだけガイド"
+msgstr ""
+
+#: app/templates/2024/rule.html:25
+msgid "目次"
+msgstr ""
+
+#: app/templates/2024/rule.html:29 app/templates/2024/rule.html:54
+msgid "注意事項"
+msgstr ""
+
+#: app/templates/2024/rule.html:33 app/templates/2024/rule.html:73
+msgid "開催部門一覧"
+msgstr ""
+
+#: app/templates/2024/rule.html:37 app/templates/2024/rule.html:132
+msgid "出場シード権 獲得条件"
+msgstr ""
+
+#: app/templates/2024/rule.html:41 app/templates/2024/rule.html:210
+msgid "Wildcard ルール"
+msgstr ""
+
+#: app/templates/2024/rule.html:45 app/templates/2024/rule.html:252
+msgid "本戦審査員一覧"
+msgstr ""
+
+#: app/templates/2024/rule.html:49 app/templates/2024/rule.html:296
+msgid "Wildcard審査員一覧"
+msgstr ""
+
+#: app/templates/2024/rule.html:56
+msgid "以下に示す内容は、あくまでもBeatboxファンが知っておくとよりGBBを楽しめる知識として紹介するものです。"
+msgstr ""
+
+#: app/templates/2024/rule.html:56
+msgid "一部内容において、わかりやすさを優先し、"
+msgstr ""
+
+#: app/templates/2024/rule.html:57
+msgid "正確さに欠ける表現を用いることがあります。"
+msgstr ""
+
+#: app/templates/2024/rule.html:61
+msgid "当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねます。"
+msgstr ""
+
+#: app/templates/2024/rule.html:61
+msgid "Wildcardを提出する方は、"
+msgstr ""
+
+#: app/templates/2024/rule.html:63
+msgid "必ずご自身でルールを今一度ご確認ください。"
+msgstr ""
+
+#: app/templates/2024/rule.html:77 app/templates/2024/rule.html:150
+#: app/templates/2024/rule.html:214 app/templates/2024/rule.html:259
+#: app/templates/2024/rule.html:304
+msgid "部門"
+msgstr ""
+
+#: app/templates/2024/rule.html:79
+msgid "シード"
+msgstr ""
+
+#: app/templates/2024/rule.html:80
+msgid "計"
+msgstr ""
+
+#: app/templates/2024/rule.html:117
+msgid "上記のデータは、ルール発表時現在の情報です。実際は、辞退などにより、出場者数が変動します。"
+msgstr ""
+
+#: app/templates/2024/rule.html:121
+msgid "Producerとは"
+msgstr ""
+
+#: app/templates/2024/rule.html:122
+msgid ""
+"Loopstationのセカンドデバイス（Loopstationに接続する端末）ありの部門で、GBB23で\"Producer "
+"showcase\"として新設されました。その代わり、Loopstation部門においてセカンドデバイスの使用が禁止されます。"
+msgstr ""
+
+#: app/templates/2024/rule.html:125
+msgid "忘れられたTag Team Loopstation..."
+msgstr ""
+
+#: app/templates/2024/rule.html:134
+msgid "Wildcardを勝ち上がる以外の方法でGBB出場権を得る方法（シード権）と、その該当者は以下の通りです。"
+msgstr ""
+
+#: app/templates/2024/rule.html:140
+msgid "シード権 - GBB"
+msgstr ""
+
+#: app/templates/2024/rule.html:142
+msgid "シード権 - その他"
+msgstr ""
+
+#: app/templates/2024/rule.html:144
+msgid "シード権辞退者一覧"
+msgstr ""
+
+#: app/templates/2024/rule.html:149
+msgid "名前"
+msgstr ""
+
+#: app/templates/2024/rule.html:151
+msgid "出場権"
+msgstr ""
+
+#: app/templates/2024/rule.html:161 app/templates/2024/rule.html:170
+msgid "辞退"
+msgstr ""
+
+#: app/templates/2024/rule.html:196 app/templates/2024/top.html:53
+msgid "Wildcard結果"
+msgstr ""
+
+#: app/templates/2024/rule.html:197
+msgid "出場者一覧"
+msgstr ""
+
+#: app/templates/2024/rule.html:200
+msgid "～発表次第更新～"
+msgstr ""
+
+#: app/templates/2024/rule.html:204
+msgid "シード権を持つ人が辞退した場合、原則として、該当シード権は消滅し、Wildcard下位からの繰り上げが行われます。"
+msgstr ""
+
+#: app/templates/2024/rule.html:220
+msgid "全部門共通"
+msgstr ""
+
+#: app/templates/2024/rule.html:221
+msgid "制限時間を超過した場合、1秒につき最終順位を1つ下げる"
+msgstr ""
+
+#: app/templates/2024/rule.html:221
+msgid "提出受付開始日時：1月21日"
+msgstr ""
+
+#: app/templates/2024/rule.html:225 app/templates/2024/rule.html:229
+msgid "制限時間：2分10秒"
+msgstr ""
+
+#: app/templates/2024/rule.html:225 app/templates/2024/rule.html:233
+msgid "提出期限：3月9日 (23:59 CET)"
+msgstr ""
+
+#: app/templates/2024/rule.html:225
+msgid "結果発表：3月31日 (時間未定)"
+msgstr ""
+
+#: app/templates/2024/rule.html:229 app/templates/2024/rule.html:237
+#: app/templates/2024/rule.html:241
+msgid "提出期限：3月23日 (23:59 CET)"
+msgstr ""
+
+#: app/templates/2024/rule.html:229
+msgid "結果発表：4月12日 (時間未定)"
+msgstr ""
+
+#: app/templates/2024/rule.html:233
+msgid "制限時間：3分30秒"
+msgstr ""
+
+#: app/templates/2024/rule.html:233
+msgid "結果発表：3月30日 (時間未定)"
+msgstr ""
+
+#: app/templates/2024/rule.html:233
+msgid "RC505 mki, mkiiのみ"
+msgstr ""
+
+#: app/templates/2024/rule.html:233
+msgid "一部例外あり"
+msgstr ""
+
+#: app/templates/2024/rule.html:237
+msgid "制限時間：5分"
+msgstr ""
+
+#: app/templates/2024/rule.html:237
+msgid "結果発表：4月13日 (時間未定)"
+msgstr ""
+
+#: app/templates/2024/rule.html:237
+msgid "デバイス制限なし"
+msgstr ""
+
+#: app/templates/2024/rule.html:241
+msgid "制限時間：3分10秒"
+msgstr ""
+
+#: app/templates/2024/rule.html:241
+msgid "結果発表：4月14日 (時間未定)"
+msgstr ""
+
+#: app/templates/2024/rule.html:254
+msgid "Wildcard審査員一覧はこちら"
+msgstr ""
+
+#: app/templates/2024/rule.html:260 app/templates/2024/rule.html:305
+#: app/templates/2024/top.html:57
+msgid "審査員"
+msgstr ""
+
+#: app/templates/2024/rule.html:286
+msgid "審査員不明"
+msgstr ""
+
+#: app/templates/2024/rule.html:286
+msgid "例年発表なし"
+msgstr ""
+
+#: app/templates/2024/rule.html:298
+msgid "本戦審査員一覧はこちら"
+msgstr ""
+
+#: app/templates/2024/stream.html:2 app/templates/2024/stream.html:3
+#: app/templates/2024/stream.html:4 app/templates/2024/stream.html:8
+#: app/templates/2024/top.html:77
+msgid "当日配信"
+msgstr ""
+
+#: app/templates/2024/stream.html:36
+msgid "観戦のお供に"
+msgstr ""
+
+#: app/templates/2024/stream.html:37
+msgid "最新情報をチェックしよう"
+msgstr ""
+
+#: app/templates/2024/stream.html:39
+msgid "Wildcard結果&出場者"
+msgstr ""
+
+#: app/templates/2024/stream.html:40 app/templates/2024/top.html:16
+msgid "タイムスケジュール"
+msgstr ""
+
+#: app/templates/2024/top.html:11
+msgid "開催日"
+msgstr ""
+
+#: app/templates/2024/top.html:21
+msgid "は終了しました"
+msgstr ""
+
+#: app/templates/2024/top.html:21
+msgid "ページ 先行公開中！"
+msgstr ""
+
+#: app/templates/2024/top.html:24
+msgid "先行公開"
+msgstr ""
+
+#: app/templates/2024/top.html:31
+msgid "公式よりもわかりやすい！"
+msgstr ""
+
+#: app/templates/2024/top.html:31
+msgid "非公式情報サイト"
+msgstr ""
+
+#: app/templates/2024/top.html:36
+msgid "例：現地観戦計画のたてかた"
+msgstr ""
+
+#: app/templates/2024/top.html:53
+msgid "出場者"
+msgstr ""
+
+#: app/templates/2024/top.html:65 app/templates/2024/top.html:129
+#: app/templates/2024/top.html:133
+msgid "会場"
+msgstr ""
+
+#: app/templates/2024/top.html:65
+msgid "チケット"
+msgstr ""
+
+#: app/templates/2024/top.html:69
+msgid "日本代表"
+msgstr ""
+
+#: app/templates/2024/top.html:73
+msgid "タイム"
+msgstr ""
+
+#: app/templates/2024/top.html:73
+msgid "スケジュール"
+msgstr ""
+
+#: app/templates/2024/top.html:77
+msgid "みんなで鑑賞会"
+msgstr ""
+
+#: app/templates/2024/top.html:81
+msgid "大会結果"
+msgstr ""
+
+#: app/templates/2024/top.html:86
+msgid "当サイトURL変更のお知らせ"
+msgstr ""
+
+#: app/templates/2024/top.html:87
+msgid "Wildcard結果発表配信"
+msgstr ""
+
+#: app/templates/2024/top.html:88
+msgid "Wildcard一覧"
+msgstr ""
+
+#: app/templates/2024/top.html:95
+msgid "7toSmokeこれだけガイド"
+msgstr ""
+
+#: app/templates/2024/top.html:101 app/templates/2024/top.html:115
+msgid "お問い合わせ"
+msgstr ""
+
+#: app/templates/2024/top.html:106
+msgid "これらの情報のほかにも、"
+msgstr ""
+
+#: app/templates/2024/top.html:108
+msgid "未発表の情報(決まっているが、なぜか公式が発表を渋っている)"
+msgstr ""
+
+#: app/templates/2024/top.html:109
+msgid "未定事項(そもそも決まってすらいない)"
+msgstr ""
+
+#: app/templates/2024/top.html:111
+msgid "このような情報が多く存在します。"
+msgstr ""
+
+#: app/templates/2024/top.html:112
+msgid "GBBの各種情報は、発表が非常に遅いことで有名です。気長に待ちましょう。"
+msgstr ""
+
+#: app/templates/2024/top.html:116
+msgid "過去のGBBにおいて、下記番号に電話したらGBB詳細情報を教えてくれた、という報告が相次ぎました。"
+msgstr ""
+
+#: app/templates/2024/top.html:120
+msgid "場所"
+msgstr ""
+
+#: app/templates/2024/top.html:121
+msgid "電話番号"
+msgstr ""
+
+#: app/templates/2024/top.html:125
+msgid "チケット販売ページ"
+msgstr ""
+
+#: app/templates/2024/top.html:125
+msgid "記載の番号"
+msgstr ""
+
+#: app/templates/2024/top.html:137
+msgid "なお上記電話番号は、当サイトとは無関係です。"
+msgstr ""
+

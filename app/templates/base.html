@@ -123,8 +123,8 @@
           </div>
           <script>
             const currentUrl = window.location.pathname;
-            document.getElementById('linkJA').href = `/lang?current=${currentUrl}&lang=ja`;
-            document.getElementById('linkEN').href = `/lang?current=${currentUrl}&lang=en`;
+            document.getElementById('linkJA').href = `/lang?referrer=${currentUrl}&lang=ja`;
+            document.getElementById('linkEN').href = `/lang?referrer=${currentUrl}&lang=en`;
           </script>
         </ul>
       </nav>
