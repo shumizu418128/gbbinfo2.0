@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-11 20:32+0900\n"
+"POT-Creation-Date: 2024-11-11 21:28+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,8 +47,7 @@ msgstr ""
 msgid "終了しました"
 msgstr ""
 
-#: templates/base.html:135 templates/base.html:142 templates/base.html:151
-#: templates/base.html:158 templates/base.html:170
+#: templates/base.html:135 templates/base.html:142 templates/base.html:170
 msgid "ここは、すでに終了したGBB {year} のページです"
 msgstr ""
 
@@ -66,42 +65,42 @@ msgstr ""
 msgid "先行公開中"
 msgstr ""
 
-#: templates/base.html:153 templates/base.html:160 templates/base.html:179
-msgid "GBB {year} の情報はこちら"
+#: templates/base.html:151 templates/base.html:158 templates/base.html:177
+msgid "ここは、まだ情報が少ないGBB {year} のページです"
 msgstr ""
 
-#: templates/base.html:177
-msgid "ここは、まだ情報が少ないGBB {year} のページです"
+#: templates/base.html:153 templates/base.html:160 templates/base.html:179
+msgid "GBB {year} の情報はこちら"
 msgstr ""
 
 #: templates/base.html:184
 msgid "次のGBBまであと..."
 msgstr ""
 
-#: templates/base.html:189 templates/base.html:200 templates/base.html:272
-#: templates/base.html:285
+#: templates/base.html:189 templates/base.html:200 templates/base.html:273
+#: templates/base.html:286
 msgid "なんでも検索"
 msgstr ""
 
-#: templates/base.html:190 templates/base.html:273
+#: templates/base.html:190 templates/base.html:274
 msgid "GBB {year} の検索のみ可能です"
 msgstr ""
 
-#: templates/base.html:190 templates/base.html:273
+#: templates/base.html:190 templates/base.html:274
 msgid "GBB {year} は終了しました"
 msgstr ""
 
-#: templates/base.html:192 templates/base.html:275
+#: templates/base.html:192 templates/base.html:276
 msgid "例：GBB {year} の最終結果は？"
 msgstr ""
 
-#: templates/base.html:196 templates/base.html:279
+#: templates/base.html:196 templates/base.html:280
 msgid "GBB最新情報の検索はこちら"
 msgstr ""
 
 #: templates/2024/top.html:36 templates/2024/top_7tosmoke.html:16
 #: templates/2025/top.html:36 templates/2025/top_7tosmoke.html:16
-#: templates/base.html:203 templates/base.html:287
+#: templates/base.html:203 templates/base.html:288
 msgid "例：現地観戦計画のたてかた"
 msgstr ""
 
@@ -135,15 +134,15 @@ msgstr ""
 msgid "これだけガイド"
 msgstr ""
 
-#: templates/base.html:225
+#: templates/base.html:226
 msgid "対応言語"
 msgstr ""
 
-#: templates/base.html:235
+#: templates/base.html:236
 msgid "GBBINFO-JPNについて"
 msgstr ""
 
-#: templates/base.html:249
+#: templates/base.html:250
 msgid "ホーム"
 msgstr ""
 
@@ -331,32 +330,27 @@ msgid "提出受付開始日時：1月21日"
 msgstr ""
 
 #: templates/2024/rule.html:225 templates/2024/rule.html:229
-msgid "制限時間：2分10秒"
-msgstr ""
-
-#: templates/2024/rule.html:225 templates/2024/rule.html:233
-msgid "提出期限：3月9日 (23:59 CET)"
-msgstr ""
-
-#: templates/2024/rule.html:225
-msgid "結果発表：3月31日 (時間未定)"
-msgstr ""
-
-#: templates/2024/rule.html:229 templates/2024/rule.html:237
+#: templates/2024/rule.html:233 templates/2024/rule.html:237
 #: templates/2024/rule.html:241
-msgid "提出期限：3月23日 (23:59 CET)"
+msgid "制限時間"
 msgstr ""
 
-#: templates/2024/rule.html:229
-msgid "結果発表：4月12日 (時間未定)"
+#: templates/2024/rule.html:225 templates/2024/rule.html:229
+#: templates/2024/rule.html:233 templates/2024/rule.html:237
+#: templates/2024/rule.html:241
+msgid "提出期限"
 msgstr ""
 
-#: templates/2024/rule.html:233
-msgid "制限時間：3分30秒"
+#: templates/2024/rule.html:225 templates/2024/rule.html:229
+#: templates/2024/rule.html:233 templates/2024/rule.html:237
+#: templates/2024/rule.html:241
+msgid "結果発表"
 msgstr ""
 
-#: templates/2024/rule.html:233
-msgid "結果発表：3月30日 (時間未定)"
+#: templates/2024/rule.html:225 templates/2024/rule.html:229
+#: templates/2024/rule.html:233 templates/2024/rule.html:237
+#: templates/2024/rule.html:241
+msgid "時間未定"
 msgstr ""
 
 #: templates/2024/rule.html:233
@@ -368,23 +362,7 @@ msgid "一部例外あり"
 msgstr ""
 
 #: templates/2024/rule.html:237
-msgid "制限時間：5分"
-msgstr ""
-
-#: templates/2024/rule.html:237
-msgid "結果発表：4月13日 (時間未定)"
-msgstr ""
-
-#: templates/2024/rule.html:237
 msgid "デバイス制限なし"
-msgstr ""
-
-#: templates/2024/rule.html:241
-msgid "制限時間：3分10秒"
-msgstr ""
-
-#: templates/2024/rule.html:241
-msgid "結果発表：4月14日 (時間未定)"
 msgstr ""
 
 #: templates/2024/rule.html:254
