@@ -87,7 +87,13 @@ def is_early_access(year):
 
 @babel.localeselector
 def get_locale():
-    # セッションから言語設定を取得し、利用可能な言語の中から最適なものを選択
+    """
+    この関数は、ユーザーの言語設定を取得します。
+    利用可能な言語の中から、セッションに保存された言語を優先的に返します。
+    セッションに言語が保存されていない場合は、リクエストの受け入れ言語の中から最適な言語を選択します。
+
+    :return: ユーザーの言語設定
+    """
     user_lang = session.get('language')
     return user_lang if user_lang in available_langs else request.accept_languages.best_match(available_langs)
 
