@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-12 14:03+0900\n"
+"POT-Creation-Date: 2024-11-15 20:30+0900\n"
 "PO-Revision-Date: 2024-11-12 13:58+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ko\n"
@@ -26,84 +26,88 @@ msgstr "홈/이것만 가이드"
 msgid "年度選択"
 msgstr "연도 선택"
 
-#: templates/base.html:133 templates/base.html:140 templates/base.html:168
+#: templates/base.html:134 templates/base.html:141 templates/base.html:169
 msgid "は"
 msgstr "는"
 
-#: templates/base.html:133 templates/base.html:140 templates/base.html:168
+#: templates/base.html:134 templates/base.html:141 templates/base.html:169
 msgid "終了しました"
 msgstr "종료되었습니다"
 
-#: templates/base.html:134 templates/base.html:141 templates/base.html:169
+#: templates/base.html:135 templates/base.html:142 templates/base.html:170
 msgid "ここは、すでに終了したGBB {year} のページです"
 msgstr "여기는 이미 종료된 GBB {year}의 페이지입니다"
 
-#: templates/base.html:136 templates/base.html:143 templates/base.html:171
+#: templates/base.html:137 templates/base.html:144 templates/base.html:172
 msgid "GBB最新情報はこちら"
 msgstr "GBB 최신 정보는 여기에서"
 
 #: templates/2025/rule.html:20 templates/2025/ticket.html:20
 #: templates/2025/time_schedule.html:26 templates/2025/wildcards.html:20
-#: templates/base.html:138 templates/base.html:154
+#: templates/base.html:139 templates/base.html:155
 msgid "閉じる"
 msgstr "닫기"
 
-#: templates/base.html:149 templates/base.html:156 templates/base.html:175
+#: templates/base.html:150 templates/base.html:157 templates/base.html:176
 msgid "先行公開中"
 msgstr "선행 공개 중"
 
-#: templates/base.html:150 templates/base.html:157 templates/base.html:176
+#: templates/base.html:151 templates/base.html:158 templates/base.html:177
 msgid "ここは、まだ情報が少ないGBB {year} のページです"
 msgstr "여기는 아직 정보가 적은 GBB {year}의 페이지입니다"
 
-#: templates/base.html:152 templates/base.html:159 templates/base.html:178
+#: templates/base.html:153 templates/base.html:160 templates/base.html:179
 msgid "GBB {year} の情報はこちら"
 msgstr "GBB {year}의 정보는 여기에서"
 
-#: templates/base.html:183
+#: templates/base.html:184
 msgid "次のGBBまであと..."
 msgstr "다음 GBB까지..."
 
-#: templates/base.html:188 templates/base.html:199 templates/base.html:273
-#: templates/base.html:286
+#: templates/base.html:189 templates/base.html:200 templates/base.html:275
+#: templates/base.html:288
 msgid "なんでも検索"
 msgstr "모든 것 검색"
 
-#: templates/base.html:189 templates/base.html:274
+#: templates/base.html:190 templates/base.html:276
 msgid "GBB {year} の検索のみ可能です"
 msgstr "GBB {year}의 검색만 가능합니다"
 
-#: templates/base.html:189 templates/base.html:274
+#: templates/base.html:190 templates/base.html:276
 msgid "GBB {year} は終了しました"
 msgstr "GBB {year}는 종료되었습니다"
 
-#: templates/base.html:191 templates/base.html:276
+#: templates/base.html:192 templates/base.html:278
 msgid "例：GBB {year} の最終結果は？"
 msgstr "예: GBB {year}의 최종 결과는?"
 
-#: templates/base.html:195 templates/base.html:280
+#: templates/base.html:196 templates/base.html:282
 msgid "GBB最新情報の検索はこちら"
 msgstr "GBB 최신 정보 검색은 여기에서"
 
+#: templates/base.html:201 templates/base.html:289
+msgid "GBB {year} について検索してみよう"
+msgstr "GBB {year}에 대해 검색해 보자"
+
 #: templates/2024/top.html:36 templates/2024/top_7tosmoke.html:16
 #: templates/2025/top.html:36 templates/2025/top_7tosmoke.html:16
-#: templates/base.html:202 templates/base.html:288
+#: templates/base.html:203 templates/base.html:291
 msgid "例：現地観戦計画のたてかた"
 msgstr "예: 현지 관전 계획 세우기"
 
-#: templates/base.html:211
+#: templates/base.html:212
 msgid "ホーム画面に追加"
 msgstr "홈 화면에 추가"
 
-#: templates/base.html:214
+#: templates/base.html:215
 msgid "GBBINFO-JPNはPWAに対応しています。"
 msgstr "GBBINFO-JPN은 PWA를 지원합니다."
 
-#: templates/base.html:214
+#: templates/base.html:215
 msgid "ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。"
 msgstr "브라우저 메뉴를 열고 '홈 화면에 추가'를 탭하면 앱으로 설치할 수 있습니다."
 
-#: templates/base.html:220
+#: templates/base.html:221
 msgid "ホームへもどる"
 msgstr "홈으로 돌아가기"
 
@@ -117,19 +121,19 @@ msgstr "홈으로 돌아가기"
 #: templates/2024/top_7tosmoke.html:22 templates/2025/top.html:2
 #: templates/2025/top.html:3 templates/2025/top.html:4
 #: templates/2025/top.html:24 templates/2025/top.html:42
-#: templates/2025/top_7tosmoke.html:22 templates/base.html:220
+#: templates/2025/top_7tosmoke.html:22 templates/base.html:221
 msgid "これだけガイド"
 msgstr "이것만 가이드"
 
-#: templates/base.html:225
+#: templates/base.html:226
 msgid "対応言語"
 msgstr "지원 언어"
 
-#: templates/base.html:236
+#: templates/base.html:238
 msgid "GBBINFO-JPNについて"
 msgstr "GBBINFO-JPN에 대하여"
 
-#: templates/base.html:250
+#: templates/base.html:252
 msgid "ホーム"
 msgstr "홈"
 

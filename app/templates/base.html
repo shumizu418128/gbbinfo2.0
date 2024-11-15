@@ -198,7 +198,7 @@
         <hr>
       {% else %}
         <h2>GBB {{ year }} {{ _('なんでも検索') }}</h2>
-
+        <p style="text-align: center;">{{ _('GBB {year} について検索してみよう').format(year=year) }}</p>
         <form id="search-form-bottom" class="search-form-1" action="/{{ year }}/search">
           <input type="text" name="question" id="question-bottom" placeholder="{{ _('例：現地観戦計画のたてかた') }}" required>
           <button type="submit"></button>
@@ -286,6 +286,7 @@
         <div id="search-menu-nav" class="search-menu-nav-latest" style="display: none;">
           <button class="close-button" onclick="closeSearchMenu()">✖</button>
           <h2>GBB {{ year }} {{ _('なんでも検索') }}</h2>
+          <p style="text-align: center;">{{ _('GBB {year} について検索してみよう').format(year=year) }}</p>
           <form id="search-form-nav" class="search-form-1" action="/{{ year }}/search">
             <input type="text" name="question" id="question-nav" placeholder="{{ _('例：現地観戦計画のたてかた') }}" required>
             <button type="submit"></button>
