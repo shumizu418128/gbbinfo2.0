@@ -70,7 +70,7 @@ https://gbbinfo-jpn.onrender.com/{year}/
 
 もしも適切なWebページが無いと判断した場合、ファイル名はtopを、クエリパラメータはNoneを選択してください。
 もしも人の名前と思われる文字列が質問の場合、ファイル名はparticipantsを、クエリパラメータはsearch_participantsを選択してください。
-なお、GBBに部門する部門は、Solo, Tag Team, Loopstation, Producer, Crewなどがあります。
+なお、GBBの部門には、Solo, Tag Team, Loopstation, Producer, Crewなどがあります。
 
 # 回答例1
 {{'url': 'https://gbbinfo-jpn.onrender.com/{year}/top', 'parameter': 'contact', 'name': 'None'}}
