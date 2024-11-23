@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="/static/css/table.css" />
     <link rel="stylesheet" href="/static/css/popup.css" />
     <link rel="stylesheet" href="/static/css/search.css" />
+    <link rel="stylesheet" href="/static/css/hamburger.css" />
     <link rel="canonical" href={% block canonical %}{% endblock %}>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,6 +96,32 @@
     {% block head %}{% endblock %}
   </head>
   <body>
+    <div class="hamburger-menu" onclick="toggleMenu(this)">
+      <div class="hamburger-line"></div>
+      <div class="hamburger-line"></div>
+      <div class="hamburger-line"></div>
+      <p>MENU</p>
+    </div>
+    <ul class="menu">
+      <li><a href="/">{{ _('ホーム/これだけガイド') }}</a></li>
+      <li><a href="/{{ year }}/participants">{{_('Wildcard結果')}}/{{_('出場者')}}</a></li>
+      <li><a href="/{{ year }}/rule">{{_('ルール')}}/{{_('審査員')}}</a></li>
+      <li><a href="/others/how_to_plan">{{_('現地観戦計画のたてかた')}}</a></li>
+      <li><a href="/{{ year }}/ticket">{{_('会場')}}&{{_('チケット')}}</a></li>
+      <li><a href="/{{ year }}/japan">{{_('日本代表')}}</a></li>
+      <li><a href="/{{ year }}/time_schedule">{{_('タイムスケジュール')}}</a></li>
+      <li><a href="/{{ year }}/stream">{{_('当日配信')}}</a></li>
+      <li><a href="/{{ year }}/result">{{_('大会結果')}}</a></li>
+      <li>
+        LANGUAGE
+        <ul class="past_gbb_menu">
+          <li class="past_gbb"><a class="linkJA">日本語</a></li>
+          <li class="past_gbb"><a class="linkEN">English</a></li>
+          <li class="past_gbb"><a class="linkZH_TW">繁體中文</a></li>
+          <li class="past_gbb"><a class="linkKO">한국어</a></li>
+        </ul>
+      </li>
+    </ul>
     <header>
       <nav>
         <img src="/static/images/header.webp" alt="ヘッダー"/>
@@ -242,6 +269,7 @@
           GBBINFO-JPN 2.0<br />UNofficial website made by tari3210<br />NOT swissbeatbox
         </p>
       </footer>
+      <div style="margin: 115px 0;"></div>
       <div class="progress-scroll" style="bottom: 50px"></div>
       <div class="background-progress-scroll" style="bottom: 50px"></div>
     </main>

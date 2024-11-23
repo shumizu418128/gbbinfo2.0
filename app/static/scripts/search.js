@@ -55,11 +55,22 @@ document.getElementById('bottom-navigation-search').addEventListener('click', fu
 document.addEventListener('click', function(event) {
     const searchMenu = document.getElementById('search-menu-nav');
     const bottomNav = document.querySelector('.bottom-navigation');
+    const hamburger = document.querySelector('.hamburger-menu');
+    const menu = document.querySelector('.menu');
     // クリックされた要素がメニューまたはボトムナビゲーションでない場合
     if (searchMenu.style.display === 'block' && !bottomNav.contains(event.target)) {
         closeSearchMenu();
     }
+    if (menu.style.display === 'block' && !hamburger.contains(event.target)) {
+        menu.style.display = 'none';
+    }
 });
+
+function toggleMenu() {
+    const menu = document.querySelector('.menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+
 
 function closeSearchMenu() {
     const searchMenu = document.getElementById('search-menu-nav');
