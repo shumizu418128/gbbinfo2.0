@@ -195,12 +195,12 @@ def search_participants(year: int, keyword: str):
         for member in participant["members"].split(',')
     ]
 
-    # キーワードで検索(多めに取得)
+    # キーワードで検索
     results_name = extract(
-        keyword.upper(), participants_name_list, limit=10, score_cutoff=1
+        keyword.upper(), participants_name_list, limit=5, score_cutoff=1
     )
     results_members = extract(
-        keyword.upper(), participants_members_list, limit=10, score_cutoff=1
+        keyword.upper(), participants_members_list, limit=5, score_cutoff=1
     )
 
     # 名前とmembersの結果を統合
