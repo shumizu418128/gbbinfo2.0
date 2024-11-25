@@ -28,13 +28,13 @@
     <meta charset="UTF-8" />
     <title>{% block title %}{% endblock %}</title>
     <meta name="description" content="Swissbeatboxが主催するHuman Beatboxの世界大会「Grand Beatbox Battle」の各種情報を、日本語に翻訳し見やすくまとめたサイトです。">
-    <link rel="stylesheet" href="/static/css/style.css" />
     <link rel="stylesheet" href="/static/css/button.css" />
     <link rel="stylesheet" href="/static/css/dropdown.css" />
-    <link rel="stylesheet" href="/static/css/table.css" />
+    <link rel="stylesheet" href="/static/css/hamburger.css" />
     <link rel="stylesheet" href="/static/css/popup.css" />
     <link rel="stylesheet" href="/static/css/search.css" />
-    <link rel="stylesheet" href="/static/css/hamburger.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/table.css" />
     <link rel="canonical" href={% block canonical %}{% endblock %}>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,24 +103,26 @@
       <p>MENU</p>
     </div>
     <ul class="menu">
-      <li><a href="/">{{ _('ホーム/これだけガイド') }}</a></li>
-      <li><a href="/{{ year }}/participants">{{_('Wildcard結果')}}/{{_('出場者')}}</a></li>
-      <li><a href="/{{ year }}/rule">{{_('ルール')}}/{{_('審査員')}}</a></li>
-      <li><a href="/others/how_to_plan">{{_('現地観戦計画のたてかた')}}</a></li>
-      <li><a href="/{{ year }}/ticket">{{_('会場')}}&{{_('チケット')}}</a></li>
-      <li><a href="/{{ year }}/japan">{{_('日本代表')}}</a></li>
-      <li><a href="/{{ year }}/time_schedule">{{_('タイムスケジュール')}}</a></li>
-      <li><a href="/{{ year }}/stream">{{_('当日配信')}}</a></li>
-      <li><a href="/{{ year }}/result">{{_('大会結果')}}</a></li>
-      <li>
-        LANGUAGE
-        <ul class="past_gbb_menu">
-          <li class="past_gbb"><a class="linkJA">日本語</a></li>
-          <li class="past_gbb"><a class="linkEN">English</a></li>
-          <li class="past_gbb"><a class="linkZH_TW">繁體中文</a></li>
-          <li class="past_gbb"><a class="linkKO">한국어</a></li>
-        </ul>
-      </li>
+      <h3>MENU</h3>
+      <div class="button-container">
+        <a href="/"><button>{{ _('ホーム/これだけガイド') }}</button></a>
+        <a href="/{{ year }}/participants"><button>{{_('Wildcard結果')}}&{{_('出場者')}}</button></a>
+        <a href="/{{ year }}/rule"><button>{{_('ルール')}}&{{_('審査員')}}</button></a>
+        <a href="/others/how_to_plan"><button>{{_('現地観戦計画のたてかた')}}</button></a>
+        <a href="/{{ year }}/ticket"><button>{{_('会場')}}&{{_('チケット')}}</button></a>
+        <a href="/{{ year }}/japan"><button>{{_('日本代表')}}</button></a>
+        <a href="/{{ year }}/time_schedule"><button>{{_('タイムスケジュール')}}</button></a>
+        <a href="/{{ year }}/stream"><button>{{_('当日配信')}}</button></a>
+        <a href="/{{ year }}/result"><button>{{_('大会結果')}}</button></a>
+      </div>
+      <hr>
+      <h3>LANGUAGE</h3>
+      <div class="button-container">
+        <a class="linkJA"><button>日本語</button></a>
+        <a class="linkEN"><button>English</button></a>
+        <a class="linkZH_TW"><button>繁體中文</button></a>
+        <a class="linkKO"><button>한국어</button></a>
+      </div>
     </ul>
     <header>
       <nav>
@@ -325,13 +327,13 @@
 
     <select class="headerDropdown" style="display: none;"></select>
 
+    <script src="/static/scripts/countdown.js"></script>
+    <script src="/static/scripts/dropdown.js"></script>
+    <script src="/static/scripts/install.js"></script>
     <script src="/static/scripts/language.js"></script>
     <script src="/static/scripts/popup.js"></script>
     <script src="/static/scripts/scroll.js"></script>
-    <script src="/static/scripts/countdown.js"></script>
-    <script src="/static/scripts/install.js"></script>
     <script src="/static/scripts/search.js"></script>
-    <script src="/static/scripts/dropdown.js"></script>
 
     <script>
       if (window.location.pathname.includes('/participants')) {
