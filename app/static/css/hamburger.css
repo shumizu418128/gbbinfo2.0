@@ -9,13 +9,15 @@
     position: fixed;
     bottom: 60px;
     right: 20px;
+    border-radius: 5px;
     z-index: 5;
     background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .hamburger-menu p {
     font-size: 12px;
-    color: rgb(240, 99, 47);
+    color: rgb(0, 68, 204);
     margin: 0px;
     margin-top: 2px;
 }
@@ -23,7 +25,7 @@
 .hamburger-line {
     width: 70%;
     height: 4px;
-    background-color: rgb(240, 99, 47);
+    background-color: rgb(0, 68, 204);
     margin-bottom: 6px;
 }
 
@@ -32,9 +34,9 @@
     position: fixed;
     bottom: 115px;
     right: 20px;
-    background-color: white;
+    background: linear-gradient(to left, rgb(240, 99, 47), rgb(240, 99, 47), rgb(252, 167, 75));
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 6;
     width: 70%;
@@ -42,6 +44,14 @@
     height: 300px;
     overflow-x: hidden;
     overflow-y: scroll;
+}
+
+.menu p {
+    margin-top: 12px;
+    margin-bottom: 3px;
+    text-align: center;
+    font-size: 24px;
+    color: white;
 }
 
 @media (max-width: 768px) {

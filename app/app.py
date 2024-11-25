@@ -166,7 +166,7 @@ def route_top():
 ####################################################################
 @app.route('/<int:year>/world_map')
 @cache.cached(query_string=True)
-def world_map(year: int = None):
+def world_map(year: int):
     """
     指定された年度の世界地図を表示します。
     年度が指定されていない場合は最新年度を表示します。
@@ -174,9 +174,6 @@ def world_map(year: int = None):
     :param year: 表示する年度
     :return: 世界地図のHTMLテンプレート
     """
-    # 年度が指定されていない場合は最新年度を表示
-    if year not in available_years:
-        year = available_years[-1]
 
     # 世界地図作成
     create_world_map(year)
@@ -189,7 +186,7 @@ def world_map(year: int = None):
 ####################################################################
 @sitemapper.include(changefreq="monthly", priority=1.0, url_variables={"year": available_years})
 @app.route('/<int:year>/participants', methods=["GET"])
-def participants(year: int = None):
+def participants(year: int):
     """
     指定された年度の出場者一覧を表示します。
     年度が指定されていない場合は最新年度を表示します。
@@ -214,7 +211,7 @@ def participants(year: int = None):
     valid_ticket_classes = ["all", "wildcard", "seed_right"]
     valid_cancel = ["show", "hide", "only_cancelled"]
 
-    # まだデータがない年度の場合は、空っぽのページを表示
+    # そもそもデータがない年度の場合は、空っぽのページを表示
     if bool(valid_categories) is False:
         return render_template(
             "/common/participants.html",
@@ -229,17 +226,20 @@ def participants(year: int = None):
             is_early_access=is_early_access(year)
         )
 
+    # 引数の正当性を確認
+    args_valid = all([
+        category in valid_categories,
+        ticket_class in valid_ticket_classes,
+        cancel in valid_cancel
+    ])
+
     # 引数が不正な場合はデフォルト値を設定
-    if any([
-        category not in valid_categories,
-        ticket_class not in valid_ticket_classes,
-        cancel not in valid_cancel
-    ]):
+    if not args_valid:
         category = category if category in valid_categories else "Solo"
         ticket_class = ticket_class if ticket_class in valid_ticket_classes else "all"
         cancel = cancel if cancel in valid_cancel else "show"
 
-        # 正しい引数にリダイレクト
+        # スクロール引数がある場合、引数の情報を保持してリダイレクト
         if scroll is not None:
             return redirect(
                 url_for(
@@ -253,6 +253,7 @@ def participants(year: int = None):
                 )
             )
 
+        # スクロール引数がない場合のリダイレクト
         return redirect(
             url_for(
                 "participants",
@@ -265,7 +266,11 @@ def participants(year: int = None):
 
     # 参加者リストを取得
     participants_list = get_participants_list(
-        year, category, ticket_class, cancel)
+        year,
+        category,
+        ticket_class,
+        cancel
+    )
 
     # 結果URLを取得
     try:
@@ -292,7 +297,7 @@ def participants(year: int = None):
 ####################################################################
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/japan")
-def japan(year: int = None):
+def japan(year: int):
     """
     指定された年度の日本代表の出場者一覧を表示します。
 
@@ -367,7 +372,7 @@ def result_redirect():
 ####################################################################
 @sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/rule")
-def rule(year: int = None):
+def rule(year: int):
     """
     指定された年度のルールを表示します。
     年度が指定されていない場合は最新年度を表示します。
@@ -375,9 +380,6 @@ def rule(year: int = None):
     :param year: 表示する年度
     :return: ルールのHTMLテンプレート
     """
-    # 年度が指定されていない場合は最新年度を表示
-    if year not in available_years:
-        year = available_years[-1]
 
     participants_GBB = get_participants_list(  # 昨年度成績上位者
         year=year,
@@ -440,7 +442,7 @@ combinations_content = [content for _, content in combinations]  # コンテン�
 
 @sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": combinations_year, "content": combinations_content})
 @app.route("/<int:year>/<string:content>")
-def content(year: int = None, content: str = None):
+def content(year: int, content: str):
     """
     指定された年度とコンテンツのページを表示します。
     年度が指定されていない場合は最新年度を表示します。
@@ -449,9 +451,6 @@ def content(year: int = None, content: str = None):
     :param content: 表示するコンテンツ
     :return: コンテンツのHTMLテンプレート
     """
-    # 年度が指定されていない場合は最新年度を表示
-    if year not in available_years:
-        year = available_years[-1]
 
     # その他のページはそのまま表示
     try:
@@ -479,13 +478,14 @@ content_others = [content.replace(".html", "") for content in content_others]
 
 @sitemapper.include(changefreq="never", priority=0.7, url_variables={"content": content_others})
 @app.route("/others/<string:content>")
-def others(content: str = None):
+def others(content: str):
     """
     その他のページを表示します。
 
     :param content: 表示するコンテンツ
     :return: その他のコンテンツのHTMLテンプレート
     """
+    # 年度は最新に設定
     year = available_years[-1]
 
     try:
