@@ -246,37 +246,6 @@ def search_participants(year: int, keyword: str):
     return final_result
 
 
-def get_results(year: int):
-    """
-    指定された年の結果を取得します。
-
-    Args:
-        year (int): 結果を取得する年。
-
-    Returns:
-        list: 結果のリスト。データが存在しない場合はNoneを返します。
-    """
-    try:
-        results_df = pd.read_csv(f'app/static/csv/{year}_result.csv')
-        results_df = results_df.fillna("-")
-
-        # フロントエンドに渡すデータを整形
-        results = []
-        for _, row in results_df.iterrows():
-            result = {
-                "category": row["category"],
-                "_1st": row["1"].upper(),
-                "_2nd": row["2"].upper(),
-                "_3rd": row["3"].upper()
-            }
-            results.append(result)
-
-    except pd.errors.EmptyDataError:
-        results = None
-
-    return results
-
-
 def create_world_map(year: int):
     """
     指定された年の参加者の位置を示す世界地図を作成します。

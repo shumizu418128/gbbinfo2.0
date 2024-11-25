@@ -12,8 +12,8 @@ from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
 from . import gemini
-from .participants import (create_world_map, get_participants_list,
-                           get_results, instagram, search_participants)
+from .participants import (create_world_map, get_participants_list, instagram,
+                           search_participants)
 
 available_years = [2023, 2024, 2025]
 available_langs = ["ja", "en", "zh_Hant_TW", "ko"]  # 利用可能な言語のリスト
@@ -333,12 +333,8 @@ def result(year: int):
     :return: 結果のHTMLテンプレート
     """
 
-    # 結果を取得
-    results = get_results(year)
-
     return render_template(
         "/common/result.html",
-        results=results,
         year=year,
         is_latest_year=is_latest_year(year),
         available_years=available_years,

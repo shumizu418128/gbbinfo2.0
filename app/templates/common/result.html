@@ -6,35 +6,11 @@
 {% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/result{% endblock %}
 {% block content %}
 <h1>GBB {{ year }} {{ _('大会結果') }}</h1>
-{% if results %}
-  <table>
-    <thead>
-      <tr>
-        <th>{{ _('部門') }}</th>
-        <th>{{ _('優勝') }}</th>
-        <th>{{ _('準優勝') }}</th>
-        <th>{{ _('3位') }}</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for result in results %}
-      <tr>
-        <td>{{ result.category }}</td>
-        <td>{{ result._1st }}</td>
-        <td>{{ result._2nd }}</td>
-        <td>{{ result._3rd }}</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-  <p>{{ _('入賞者のうち、次回GBBの出場権獲得者のみ表示しています。') }}</p>
-{% else %}
-  <div style="text-align: center;">
-    <p>{{ _('～発表次第更新～') }}</p>
-    <p>{{ last_updated }}</p>
-  </div>
-{% endif %}
-<br>
+<p>{{ _('こちらをご覧ください') }}</p>
+<div class="button-container">
+  <a href="https://beatbox.fandom.com/wiki/Grand_Beatbox_Battle_{{ year }}" target="_blank" rel="noopener noreferrer"><button>{{_('大会結果')}}</button></a>
+</div>
+
 <script src="/static/scripts/result.js"></script>
 <form method="GET" class="participants_form">
 <label for="year">{{ _('その他の年度を確認：') }}</label>
