@@ -41,7 +41,9 @@
     z-index: 6;
     width: 70%;
     min-width: 695px;
-    height: 300px;
+    height: 50%;
+    min-height: 240px;
+    max-height: 360px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -58,7 +60,7 @@
     .menu {
         min-width: 260px;
         width: 260px;
-        height: 240px;
+        max-height: none;
     }
 }
 
