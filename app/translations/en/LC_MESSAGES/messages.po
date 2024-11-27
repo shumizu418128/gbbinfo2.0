@@ -20,7 +20,7 @@ msgstr ""
 
 #: templates/base.html:108 templates/base.html:130
 msgid "ホーム/これだけガイド"
-msgstr "Guide"
+msgstr "Home/Guide"
 
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
