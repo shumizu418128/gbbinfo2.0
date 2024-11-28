@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}GBB {{ year }} 会場&チケット - GBBINFO-JPN{% endblock %}
-{% block twitter_title %}GBB{{ year }}:会場&チケット - GBBINFO-JPN{% endblock %}
-{% block og_title %}GBB{{ year }}:会場&チケット - GBBINFO-JPN{% endblock %}
+{% block title %}GBB {{ year }} {{ _('会場&チケット') }} - GBBINFO-JPN{% endblock %}
+{% block twitter_title %}GBB{{ year }}:{{ _('会場&チケット') }} - GBBINFO-JPN{% endblock %}
+{% block og_title %}GBB{{ year }}:{{ _('会場&チケット') }} - GBBINFO-JPN{% endblock %}
 {% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/ticket{% endblock %}
 {% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/ticket{% endblock %}
 {% block content %}
-<h1>GBB {{ year }} 会場&チケット</h1>
+<h1>GBB {{ year }} {{ _('会場&チケット') }}</h1>
 
 <!-- TODO: 更新したらこの表示を消す -->
 <script src="/static/scripts/popup.js"></script>
