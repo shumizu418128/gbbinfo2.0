@@ -105,7 +105,7 @@
     <ul class="menu">
       <p>MENU</p>
       <div class="button-container">
-        <a href="/"><button>{{ _('ホーム/これだけガイド') }}</button></a>
+        <a href="/"><button>Home & {{ _('これだけガイド') }}</button></a>
         <a href="/{{ year }}/participants"><button>{{_('Wildcard結果')}} & {{_('出場者')}}</button></a>
         <a href="/{{ year }}/rule"><button>{{_('ルール')}} & {{_('審査員')}}</button></a>
         <a href="/others/how_to_plan"><button>{{_('現地観戦計画のたてかた')}}</button></a>
@@ -127,7 +127,7 @@
       <nav>
         <img src="/static/images/header.webp" alt="ヘッダー"/>
         <ul>
-          <a class="menu-link" href="/{{year}}/top"><li>{{ _('ホーム/これだけガイド') }}</li></a>
+          <a class="menu-link" href="/{{year}}/top"><li>Home & {{ _('これだけガイド') }}</li></a>
           <div class="past_gbb_wrap">
             <li>
               {{ _('年度選択') }}
@@ -276,13 +276,13 @@
     </main>
 
     <div class="bottom-navigation">
-      <button class="bottom-navigation-button" onclick="location.href='/'">
-        <img id="home-icon" src="/static/images/icon/icon-home.webp" alt="Home Icon" height="40px" width="40px">
-        <span>{{ _('ホーム') }}</span>
-      </button>
       <button class="bottom-navigation-button" id="bottom-dropdown" onclick="toggleDropdown()" style="border-right: 1px solid white; border-left: 1px solid white;">
         <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="M144-552v-240h72v130q46-60 114.5-95T480-792q140 0 238 98t98 238h-72q0-109-77.5-186.5T480-720q-62 0-114.5 25.5T277-624h107v72H144Zm0 96h72q0 106 71.5 181.5T462-192l42 71q-6 0-12 .5t-12 .5q-140 0-238-98t-98-238Zm409 109L444-456v-192h72v162l74 75-37 64ZM736 0l-13-56q-14-5-26.5-12T673-84l-55 17-32-55 41-40q-2-9-3-23.5t3-34.5l-41-39 32-56 54 16q11-10 24-17t27-12l13-56h64l13 56q14 5 27 12t24 17l54-15 32 55-40 38q1 7 3 22t-3 37l41 39-32 55-55-16q-11 10-24 16.5T813-56L800 0h-64Zm32-120q30 0 51-21t21-51q0-30-21-51t-51-21q-30 0-51 21t-21 51q0 30 21 51t51 21Z"/></svg>
         <span>{{ year }}</span>
+      </button>
+      <button class="bottom-navigation-button" onclick="location.href='/'">
+        <img id="home-icon" src="/static/images/icon/icon-home.webp" alt="Home Icon" height="40px" width="40px">
+        <span>Home</span>
       </button>
 
       <div id="dropdown-content" class="dropdown-content" style="display: none;">
