@@ -90,11 +90,14 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
     response_url = url
 
     # パラメータがある場合は追加
-    if bool(parameter):
+    if bool(parameter) and parameter != "search_participants":
         response_url += f"?scroll={parameter}"
 
     # participantsのsearch_participantsが指定された場合はvalueに質問を追加
     if parameter == "search_participants" and bool(name):
+
+        # search_participantsのとき、nameがある場合のみ追加
+        response_url += "?scroll=search_participants"
 
         # 英数字表記かどうか判定
         # 記号も対象・Ωは"Sound of Sony Ω"の入力対策
