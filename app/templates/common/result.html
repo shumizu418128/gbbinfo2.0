@@ -6,10 +6,41 @@
 {% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/result{% endblock %}
 {% block content %}
 <h1>GBB {{ year }} {{ _('大会結果') }}</h1>
-<p>{{ _('こちらをご覧ください') }}</p>
-<div class="button-container">
-  <a href="https://beatbox.fandom.com/wiki/Grand_Beatbox_Battle_{{ year }}" target="_blank" rel="noopener noreferrer"><button>{{_('大会結果')}}</button></a>
-</div>
+
+<form method="GET" action="{{ url_for('result', year=year, category=category) }}" class="participants_form">
+  <label for="category">{{ _('部門選択') }}</label>
+  <select name="category" id="category" class="participants_select" onchange="this.form.submit()">
+    {% for c in all_category %}
+      <option value="{{ c }}" {% if request.args.get('category') == c %}selected{% endif %}>{{ c }}</option>
+    {% endfor %}
+  </select>
+</form>
+
+{% if result %}
+  {% for round_name, matches in result.items() %}
+    <h2>{{ round_name }}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 50%; color: rgb(240, 99, 47);">{{ _('勝ち') }}</th>
+          <th style="width: 10%;"></th>
+          <th style="width: 40%;">{{ _('負け') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for match in matches %}
+          <tr>
+            <td class="winner">{{ match.win }}</td>
+            <td>VS</td>
+            <td>{{ match.lose }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endfor %}
+{% else %}
+  <p>DATA NOT FOUND</p>
+{% endif %}
 
 <script src="/static/scripts/result.js"></script>
 <form method="GET" class="participants_form">

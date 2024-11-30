@@ -39,7 +39,7 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
         list: フィルタリングされた参加者のリスト。
     """
     # csvからデータを取得
-    beatboxers_df = pd.read_csv(f'app/static/csv/{year}_participants.csv')
+    beatboxers_df = pd.read_csv(f'app/static/csv/participants/{year}.csv')
     countries_df = pd.read_csv('app/static/csv/countries.csv')
 
     # Merge data to include country names in beatboxers_df
@@ -257,7 +257,7 @@ def create_world_map(year: int):
         None (ファイルを保存)
     """
     # csvからデータを取得
-    beatboxers_df = pd.read_csv(f'app/static/csv/{year}_participants.csv')
+    beatboxers_df = pd.read_csv(f'app/static/csv/participants/{year}.csv')
     countries_df = pd.read_csv('app/static/csv/countries.csv')
 
     # nanを空白に変換
