@@ -14,6 +14,7 @@ from flask_sitemapper import Sitemapper
 from . import gemini
 from .participants import (create_world_map, get_participants_list, instagram,
                            search_participants)
+from .result import get_result
 
 available_years = [2023, 2024, 2025]
 available_langs = ["ja", "en", "zh_Hant_TW", "ko"]  # 利用可能な言語のリスト
@@ -207,7 +208,7 @@ def participants(year: int):
 
     # 引数が不正な場合はSolo全出場者を表示
     valid_categories = pd.read_csv(
-        f'app/static/csv/{year}_participants.csv')["category"].unique().tolist()
+        f'app/static/csv/participants/{year}.csv')["category"].unique().tolist()
     valid_ticket_classes = ["all", "wildcard", "seed_right"]
     valid_cancel = ["show", "hide", "only_cancelled"]
 
@@ -327,6 +328,20 @@ def japan(year: int):
 ####################################################################
 # 大会結果
 ####################################################################
+
+# 各年度の全カテゴリを取得
+all_category_dict = {}
+for year in available_years:
+    # フォルダの中にあるCSVファイル一覧を取得
+    try:
+        all_category = os.listdir(f"./app/static/csv/result/{year}")
+    except Exception:
+        continue  # ファイルが存在しない場合はスキップ
+
+    all_category = [category.replace(".csv", "") for category in all_category]
+    all_category_dict[year] = all_category
+
+
 # /year/resultはリダイレクト これによりresultページ内ですべての年度の結果を表示可能
 @sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
 @app.route("/<int:year>/result")
@@ -337,6 +352,39 @@ def result(year: int):
 
     :return: 結果のHTMLテンプレート
     """
+    # 引数を取得
+    category = request.args.get("category")
+
+    # カテゴリを取得
+    try:
+        all_category = all_category_dict[year]
+    except KeyError:
+        return render_template(
+            "/common/result.html",
+            year=year,
+            is_latest_year=is_latest_year(year),
+            available_years=available_years,
+            last_updated=last_updated,
+            is_early_access=is_early_access(year)
+        )
+
+    # 引数が正しいか確認
+    # カテゴリが不正な場合はSoloへリダイレクト
+    if category not in all_category:
+        category = "Solo"
+        return redirect(
+            url_for(
+                "result",
+                year=year,
+                category=category
+            )
+        )
+
+    # 結果を取得
+    format, result = get_result(
+        category=category,
+        year=year
+    )
 
     return render_template(
         "/common/result.html",
@@ -344,7 +392,11 @@ def result(year: int):
         is_latest_year=is_latest_year(year),
         available_years=available_years,
         last_updated=last_updated,
-        is_early_access=is_early_access(year)
+        is_early_access=is_early_access(year),
+        result=result,
+        all_category=all_category,
+        category=category,
+        format=format
     )
 
 

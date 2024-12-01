@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const headers = document.querySelectorAll('h2');
-    const headerArray = Array.from(headers).slice(0, -1); // 最後の要素を除外
+    const lastHeader = headers[headers.length - 1];
+    const headerArray = lastHeader && lastHeader.id === "bottom-search-menu" ? Array.from(headers).slice(0, -1) : Array.from(headers);
     const dropdown = document.querySelector('.headerDropdown');
 
     // h2要素のテキストを使用してドロップダウンオプションを生成
