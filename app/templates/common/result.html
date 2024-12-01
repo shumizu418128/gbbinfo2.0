@@ -7,18 +7,20 @@
 {% block content %}
 <h1>GBB {{ year }} {{ _('大会結果') }}</h1>
 
-<form method="GET" action="{{ url_for('result', year=year, category=category) }}" class="participants_form">
-  <label for="category">{{ _('部門選択') }}</label>
-  <select name="category" id="category" class="participants_select" onchange="this.form.submit()">
-    {% for c in all_category %}
-      <option value="{{ c }}" {% if request.args.get('category') == c %}selected{% endif %}>{{ c }}</option>
-    {% endfor %}
-  </select>
-</form>
+{% if all_category %}
+  <form method="GET" action="{{ url_for('result', year=year, category=category) }}" class="participants_form">
+    <label for="category">{{ _('部門選択') }}</label>
+    <select name="category" id="category" class="participants_select" onchange="this.form.submit()">
+      {% for c in all_category %}
+        <option value="{{ c }}" {% if request.args.get('category') == c %}selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select>
+  </form>
+{% endif %}
 
-{% if result %}
+{% if result and format == "tournament" %}
   {% for round_name, matches in result.items() %}
-    <h2>{{ round_name }}</h2>
+    <h2>{{ request.args.get('category') }} - {{ round_name }}</h2>
     <table>
       <thead>
         <tr>
@@ -38,8 +40,28 @@
       </tbody>
     </table>
   {% endfor %}
+{% elif result and format == "ranking" %}
+  {% for round_name, rows in result.items() %}
+    <h2>{{ request.args.get('category') }} - {{ round_name }}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 20%;">{{ _('順位') }}</th>
+          <th style="width: 80%;">{{ _('名前') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+          <tr>
+            <td>{{ row.rank }}</td>
+            <td>{{ row.name }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endfor %}
 {% else %}
-  <p>DATA NOT FOUND</p>
+  <p>{{ _('～発表次第更新～') }}</p>
 {% endif %}
 
 <script src="/static/scripts/result.js"></script>
