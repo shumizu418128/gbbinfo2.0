@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+{% block title %}GBB {{ year }} {{_('【Beatboxer向け】Wildcardレギュレーション解説')}} - GBBINFO-JPN{% endblock %}
+{% block twitter_title %}GBB{{ year }}:{{_('【Beatboxer向け】Wildcardレギュレーション解説')}} - GBBINFO-JPN{% endblock %}
+{% block og_title %}GBB{{ year }}:{{_('【Beatboxer向け】Wildcardレギュレーション解説')}} - GBBINFO-JPN{% endblock %}
+{% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/wildcard_regulation{% endblock %}
+{% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/wildcard_regulation{% endblock %}
+{% block content %}
+<h1>GBB {{ year }} {{_('レギュレーション')}}</h1>
+
+<p>
+    {{ _('Swissbeatbox公式サイトにて、GBB {year} で実施される部門・Wildcardのルールについて発表がありました。').format(year=year) }}<br />
+    {{ _('ソースサイト：') }}<a href="" target="_blank" rel="noopener noreferrer"><!-- TODO: ここにリンクを貼る -->
+    GBB 2025 Wildcard Competition Rules and Application
+    </a><br>
+    {{ _('このページでは、Wildcard提出にあたって重要なルールを解説します。') }}
+</p>
+
+<div class="button-container">
+    <a href="/{{ year }}/top"><button>GBB {{ year }} {{ _('これだけガイド') }}</button></a>
+    <a href="/{{ year }}/top_7tosmoke"><button>{{_('7toSmokeこれだけガイド')}}</button></a>
+    <a href="/{{ year }}/rule"><button>{{ _('【Beatboxファン向け】') }}<br>GBB {{ year }} {{ _('ルール') }}</button></a>
+</div>
+
+<div>
+    <h2>{{ _('目次') }}</h2>
+    <ol>
+        <li>
+            <a href="#p01">{{ _('注意事項') }}</a>
+        </li>
+
+        <li>
+            <a href="#p02">{{ _('開催部門一覧') }}</a>
+        </li>
+
+        <li>
+            <a href="#p03">{{ _('年齢制限') }}</a>
+        </li>
+
+        <li>
+            <a href="#p04">{{ _('Wildcard提出について') }}</a>
+        </li>
+
+        <li>
+            <a href="#p05">{{ _('部門別ルール') }}</a>
+        </li>
+    </ol>
+</div>
+
+<h2 id="p01">{{ _('注意事項') }}</h2>
+<p>
+    {{ _('以下に示す内容は、Wildcardを作るBeatboxer向けの情報です。') }}<br />
+    {{ _('当サイト管理人はBeatboxerではありません。また、当サイト管理人は運営と一切無関係です。') }}
+</p>
+<p>
+    {{ _('当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねます。') }}<br />
+    {{ _('Wildcardを提出する方は、') }}<strong><span style="color: #ff0000">
+    {{ _('必ずご自身でルールを今一度ご確認ください。') }}</span></strong>
+</p>
+<p>
+    {{ _('For Non-Japanese Users:
+    Please note that this article was originally written in Japanese and subsequently translated using AI.
+    As a result, there may be instances of inaccurate translation.
+    For any questions or concerns, please refer to the official website or social media channels.') }}
+</p>
+
+<div class="button-container">
+    <a href="/{{ year }}/top"><button>GBB {{ year }} {{ _('これだけガイド') }}</button></a>
+    <a href="/{{ year }}/top_7tosmoke"><button>{{_('7toSmokeこれだけガイド')}}</button></a>
+</div>
+
+<h2 id="p02">{{ _('開催部門一覧') }}</h2>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 30%">{{ _('部門') }}</th>
+            <th style="width: 30%">Wildcard</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Solo</td>
+            <td>?</td>
+        </tr>
+        <tr>
+            <td>Loopstation</td>
+            <td>?</td>
+        </tr>
+        <tr>
+            <td>Crew</td>
+            <td>?</td>
+        </tr>
+        <tr>
+            <td>Producer</td>
+            <td>?</td>
+        </tr>
+        <tr>
+            <td>Tag Team</td>
+            <td>?</td>
+        </tr>
+    </tbody>
+</table>
+<p>
+    {{ _('上記のデータは、ルール発表時現在の情報です。実際は、辞退などにより、出場者数が変動します。') }}
+</p>
+
+<div class="button-container">
+    <a href="/{{ year }}/top"><button>GBB {{ year }} {{ _('これだけガイド') }}</button></a>
+    <a href="/{{ year }}/top_7tosmoke"><button>{{_('7toSmokeこれだけガイド')}}</button></a>
+</div>
+
+<h2 id="p03">{{ _('年齢制限') }}</h2>
+<ul>
+    <li>{{ _('年齢制限: GBB24開催時に16歳以上であること') }}</li>
+    <li>{{ _('未成年者(18歳未満)の参加:') }}
+        <ul>
+            <li>{{ _('保護者の同伴が必須') }}</li>
+            <li>{{ _('主催者は、保護者の同伴にかかる費用(ビザ、フライト、ホテル、食事など)を負担しない') }}</li>
+            <li>{{ _('上記要件を満たさない、同意できない場合は失格となり、Wildcard下位からの繰り上げが行われる') }}</li>
+        </ul>
+    </li>
+</ul>
+
+<h2 id="p04">{{ _('Wildcard作成・提出について') }}</h2>
+<ul>
+    <li>{{ _('Wildcard提出は一度のみ。一度提出したら、後から別のWildcardを提出することはできない') }}
+        <ul>
+            <li>{{ _('このルールは、GBB 2019で発生したトラブルの対策として設けられている') }}</li>
+        </ul>
+    </li>
+</ul>
+<h3>{{ _('録音方法') }}</h3>
+<ul>
+    <li>{{ _('カメラにはっきり映っていること (マスクや視覚効果で顔や口を覆わないこと)') }}</li>
+    <li>{{ _('リップシンクやその他のビデオ技術は禁止') }}</li>
+    <li>{{ _('撮影と録音は、同時に行うこと') }}</li>
+    <li>{{ _('基本的なダイナミック (コンプレッション)、EQ プラグイン、リバーブは使用可能ただし、録音自体は生の状態で行い、後で編集すること') }}</li>
+    <li>{{ _('キックとスネアに異なる EQ やコンプレッションを施すなどの自動処理は禁止') }}</li>
+    <li>{{ _('録音全体を同じように処理すること') }}</li>
+    <li>{{ _('歪み、遅延、その他の動的処理、周波数歪み効果は禁止') }}</li>
+    <li style="color: red;"><strong>{{ _('上記ルールについて、不正行為の疑いがある場合、Wildcard作成に使ったファイルの追加提出を求められる場合あり') }}</strong></li>
+</ul>
+<h3>{{ _('提出方法') }}</h3>
+<ol>
+    <li>{{ _('WildcardをYouTubeにアップロード') }}</li>
+    <li>{{ _('Swissbeatbox公式サイトにある申請フォームで提出') }}</li>
+</ol>
+<ul>
+    <li style="color: red;"><strong>{{ _('上記2つが両方できていない場合は、失格') }}</strong></li>
+</ul>
+<ul>
+    <li style="color: red; background-color: white;"><strong>{{ _('毎年必ず、申請フォーム入力忘れによる失格者が発生します！！！') }}</strong></li>
+    <li style="background-color: white;"><strong>{{ _('毎年必ず、申請フォーム入力忘れによる失格者が発生します！！！') }}</strong></li>
+    <li style="color: blue; background-color: white;"><strong>{{ _('毎年必ず、申請フォーム入力忘れによる失格者が発生します！！！') }}</strong></li>
+    <li style="background-color: white;"><strong>{{ _('毎年必ず、申請フォーム入力忘れによる失格者が発生します！！！') }}</strong></li>
+    <li style="color: red; background-color: white;"><strong>{{ _('毎年必ず、申請フォーム入力忘れによる失格者が発生します！！！') }}</strong></li>
+</ul>
+<p>{{ _('ぜひここのスクリーンショットをとってSNSで拡散してください。推しが失格にならないために...') }}</p>
+<ul>
+    <li>{{ _('生のオーディオと生のビデオ (カメラのオーディオを含む) の提出が必要') }}</li>
+    <li>{{ _('Solo以外の全部門は、録画中のスクリーンキャプチャの提出も必要') }}</li>
+    <li style="color: red;"><strong>{{ _('上記2つが無い場合は、失格') }}</strong></li>
+</ul>
+<h3>{{ _('Wildcard動画の内容') }}</h3>
+<ul>
+    <li>{{ _('動画の冒頭で、以下のように自己紹介する') }}</li>
+    <ul>
+        <li>My name is 【{{ _('名前') }}】, and this is my 【{{ _('部門') }}】 wildcard for the GBB {{ year }} World League.</li>
+    </ul>
+</ul>
+
+<h2 id="p05">{{ _('部門別ルール') }}</h2>
+<table>
+    <thead>
+        <tr>
+            <th>{{ _('部門') }}</th>
+            <th>{{ _('ルール') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ _('全部門共通') }}</td>
+            <td style="font-size: 14px;">{{ _('制限時間を超過した場合、1秒につき最終順位を1つ下げる') }}<br />{{ _('提出受付開始日時') }} ?/?</td>
+        </tr>
+        <tr>
+            <td>Solo</td>
+            <td style="font-size: 14px;">{{ _('制限時間') }} ?:??<br />{{ _('提出期限') }} ?/? (23:59 CET)<br />{{ _('結果発表') }} ?/? {{ _('時間未定') }}</td>
+        </tr>
+        <tr>
+            <td>Tag Team</td>
+            <td style="font-size: 14px;">{{ _('制限時間') }} ?:??<br />{{ _('提出期限') }} ?/? (23:59 CET)<br />{{ _('結果発表') }} ?/? {{ _('時間未定') }}</td>
+        </tr>
+        <tr>
+            <td>Loopstation</td>
+            <td style="font-size: 14px;">{{ _('制限時間') }} ?:??<br />{{ _('提出期限') }} ?/? (23:59 CET)<br />{{ _('結果発表') }} ?/? {{ _('時間未定') }}<br />{{ _('RC505 mki, mkii, MIDIコントローラーのみ') }}</td>
+        </tr>
+        <tr>
+            <td>Producer</td>
+            <td style="font-size: 14px;">{{ _('制限時間') }} ?:??<br />{{ _('提出期限') }} ?/? (23:59 CET)<br />{{ _('結果発表') }} ?/? {{ _('時間未定') }}<br />{{ _('デバイス制限なし') }}</td>
+        </tr>
+        <tr>
+            <td>Crew</td>
+            <td style="font-size: 14px;">{{ _('制限時間') }} ?:??<br />{{ _('提出期限') }} ?/? (23:59 CET)<br />{{ _('結果発表') }} ?/? {{ _('時間未定') }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Loopstation<br>{{ _('デバイスルール') }}</h3>
+<p>{{ _('以下に示すMIDIコントローラーのうち1つのみ使用可能') }}</p>
+<ul>
+    <li>Launchpad Pro MK3</li>
+    <li>Arturia Beatstep</li>
+    <li>Arturia Keystep</li>
+</ul>
+
+<h3>Producer<br>{{ _('デバイスルール') }}</h3>
+<ul>
+    <li>{{ _('Loopstation単体での出場は禁止') }}</li>
+    <li style="color: red;"><strong>{{ _('事前にデバイス構成をSUPPORT@swissbeatbox.comへ申請すること') }}</strong></li>
+    <li>{{ _('ボイスソース、ボイストリガーのみ') }}</li>
+    <li>{{ _('事前に録音されたサンプルは使用禁止') }}</li>
+    <li>{{ _('FOH (ミキシング デスク) または録音への出力はステレオ信号である必要があり、マルチチャンネル出力は禁止') }}</li>
+</ul>
+{% endblock %}
