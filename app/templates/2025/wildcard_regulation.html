@@ -6,7 +6,7 @@
 {% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/wildcard_regulation{% endblock %}
 {% block content %}
 <h1>GBB {{ year }} {{_('レギュレーション')}}</h1>
-
+<p style="font-size: 30px; text-align: center; font-weight: bold;">- For Beatboxers -</p><hr>
 <p>
     {{ _('Swissbeatbox公式サイトにて、GBB {year} で実施される部門・Wildcardのルールについて発表がありました。').format(year=year) }}<br />
     {{ _('ソースサイト：') }}<a href="" target="_blank" rel="noopener noreferrer"><!-- TODO: ここにリンクを貼る -->
@@ -43,13 +43,22 @@
         <li>
             <a href="#p05">{{ _('部門別ルール') }}</a>
         </li>
+
+        <li>
+            <a href="#p06">{{ _('失格にならないために') }}</a>
+        </li>
     </ol>
+</div>
+
+<div class="button-container">
+    <a href="/{{ year }}/top"><button>GBB {{ year }} {{ _('これだけガイド') }}</button></a>
+    <a href="/{{ year }}/top_7tosmoke"><button>{{_('7toSmokeこれだけガイド')}}</button></a>
 </div>
 
 <h2 id="p01">{{ _('注意事項') }}</h2>
 <p>
     {{ _('以下に示す内容は、Wildcardを作るBeatboxer向けの情報です。') }}<br />
-    {{ _('当サイト管理人はBeatboxerではありません。また、当サイト管理人は運営と一切無関係です。') }}
+    {{ _('当サイト管理人はBeatboxerではありません。また、当サイト管理人はGBB運営と一切無関係です。') }}
 </p>
 <p>
     {{ _('当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねます。') }}<br />
@@ -120,14 +129,12 @@
     </li>
 </ul>
 
+<div class="button-container">
+    <a href="/{{ year }}/top"><button>GBB {{ year }} {{ _('これだけガイド') }}</button></a>
+    <a href="/{{ year }}/top_7tosmoke"><button>{{_('7toSmokeこれだけガイド')}}</button></a>
+</div>
+
 <h2 id="p04">{{ _('Wildcard作成・提出について') }}</h2>
-<ul>
-    <li>{{ _('Wildcard提出は一度のみ。一度提出したら、後から別のWildcardを提出することはできない') }}
-        <ul>
-            <li>{{ _('このルールは、GBB 2019で発生したトラブルの対策として設けられている') }}</li>
-        </ul>
-    </li>
-</ul>
 <h3>{{ _('録音方法') }}</h3>
 <ul>
     <li>{{ _('カメラにはっきり映っていること (マスクや視覚効果で顔や口を覆わないこと)') }}</li>
@@ -160,13 +167,22 @@
     <li>{{ _('Solo以外の全部門は、録画中のスクリーンキャプチャの提出も必要') }}</li>
     <li style="color: red;"><strong>{{ _('上記2つが無い場合は、失格') }}</strong></li>
 </ul>
-<h3>{{ _('Wildcard動画の内容') }}</h3>
 <ul>
-    <li>{{ _('動画の冒頭で、以下のように自己紹介する') }}</li>
-    <ul>
-        <li>My name is 【{{ _('名前') }}】, and this is my 【{{ _('部門') }}】 wildcard for the GBB {{ year }} World League.</li>
-    </ul>
+    <li>{{ _('Wildcard提出は一度のみ。一度提出したら、後から別のWildcardを提出することはできない') }}</li>
+    <li style="color: red;"><strong>{{ _('誤って一度提出したWildcardを削除した場合、失格') }}</strong>
+        <ul>
+            <li>{{ _('このルールは、GBB 2019で発生したトラブルの対策として設けられている') }}</li>
+        </ul>
+    </li>
 </ul>
+<h3>{{ _('Wildcard動画の内容') }}</h3>
+<p>{{ _('動画の冒頭で、以下のように自己紹介する') }}</p>
+<p>"My name is 【{{ _('名前') }}】, and this is my 【{{ _('部門') }}】 wildcard for the GBB {{ year }} World League."</p>
+
+<div class="button-container">
+    <a href="/{{ year }}/top"><button>GBB {{ year }} {{ _('これだけガイド') }}</button></a>
+    <a href="/{{ year }}/top_7tosmoke"><button>{{_('7toSmokeこれだけガイド')}}</button></a>
+</div>
 
 <h2 id="p05">{{ _('部門別ルール') }}</h2>
 <table>
@@ -220,4 +236,18 @@
     <li>{{ _('事前に録音されたサンプルは使用禁止') }}</li>
     <li>{{ _('FOH (ミキシング デスク) または録音への出力はステレオ信号である必要があり、マルチチャンネル出力は禁止') }}</li>
 </ul>
+
+<div class="button-container">
+    <a href="/{{ year }}/top"><button>GBB {{ year }} {{ _('これだけガイド') }}</button></a>
+    <a href="/{{ year }}/top_7tosmoke"><button>{{_('7toSmokeこれだけガイド')}}</button></a>
+</div>
+
+<h2 id="p06">{{ _('失格にならないために') }}</h2>
+<ol>
+    <li><strong>{{ _('Swissbeatbox公式サイトにある申請フォームで提出') }}</strong></li>
+    <li><strong>{{ _('Wildcard動画の作成にあたり使用したすべてのファイルを、バックアップ含め保存しておき、いつでも提出できるようにしておく') }}</strong></li>
+    <li><strong>{{ _('Wildcard提出は一度のみ。一度提出したら、後から別のWildcardを提出することはできない') }}</strong></li>
+</ol>
+<p style="text-align: center;">{{ _('皆さんのWildcardを楽しみにしています！') }}<br>Good luck have fun!</p>
+
 {% endblock %}
