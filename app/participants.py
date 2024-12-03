@@ -22,6 +22,9 @@ kakasi.setMode('K', 'a')  # カタカナをローマ字に変換
 kakasi.setMode('J', 'a')  # 漢字をローマ字に変換
 converter = kakasi.getConverter()
 
+# df事前準備
+countries_df = pd.read_csv('app/static/csv/countries.csv')
+
 
 def get_participants_list(year: int, category: str, ticket_class: str, cancel: str, GBB: bool = None, iso_code: int = None):
     """
@@ -38,9 +41,8 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
     Returns:
         list: フィルタリングされた参加者のリスト。
     """
-    # csvからデータを取得
+    # csvからデータを取得 (ここの処理は毎回行う必要がある)
     beatboxers_df = pd.read_csv(f'app/static/csv/participants/{year}.csv')
-    countries_df = pd.read_csv('app/static/csv/countries.csv')
 
     # Merge data to include country names in beatboxers_df
     beatboxers_df = beatboxers_df.merge(
@@ -258,7 +260,6 @@ def create_world_map(year: int):
     """
     # csvからデータを取得
     beatboxers_df = pd.read_csv(f'app/static/csv/participants/{year}.csv')
-    countries_df = pd.read_csv('app/static/csv/countries.csv')
 
     # nanを空白に変換
     beatboxers_df = beatboxers_df.fillna("")
