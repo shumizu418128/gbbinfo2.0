@@ -51,7 +51,7 @@ https://gbbinfo-jpn.onrender.com/{year}/
 - result_stream: GBB{year}のWildcardの結果発表配信について
     クエリパラメータ
     - None
-- how_to_plan: GBBを現地観戦するうえで気を付けるべきこと、交通手段、ホテル、当日の行動、持ち物
+- how_to_plan: 現地観戦計画のたてかた、GBBを現地観戦するうえで気を付けるべきこと、交通手段、ホテル、当日の行動、持ち物
     クエリパラメータ
     - None
     - transportation
