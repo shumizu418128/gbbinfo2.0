@@ -10,8 +10,11 @@ def get_result(category: str, year: int):
         year (int): 年。
 
     Returns:
-        dict: 結果の辞書。
-        str: 結果の種類。"tournament" または "ranking"。
+        list: 結果の種類と結果の辞書。
+        - 結果の種類: "tournament" または "ranking"。
+        - 結果の辞書: ラウンド名をキーにしたリスト。
+            - トーナメント表の場合: ラウンドごとの勝敗を含む辞書。
+            - ランキング表の場合: ラウンドごとの順位を含む辞書。
     """
     try:
         df = pd.read_csv(f'app/static/csv/result/{year}/{category}.csv')
