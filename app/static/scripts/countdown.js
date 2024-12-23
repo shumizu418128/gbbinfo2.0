@@ -1,6 +1,6 @@
 // カウントダウンの終了日時
 // GBBスタート時刻
-const countDownDate1 = new Date("Nov 1, 2024 15:20:00 GMT+09:00").getTime();
+const countDownDate1 = new Date("Oct 31, 2025 0:00:00 GMT+09:00").getTime();
 
 // チケット販売終了日時（現在未使用）
 const countDownDate2 = new Date("Oct 13, 2024 23:59:00 GMT+09:00").getTime();
