@@ -652,7 +652,7 @@ def robots_txt():
     return send_file("robots.txt", mimetype="text/plain")
 
 
-@app.route("ads.txt")
+@app.route("/ads.txt")
 def ads_txt():
     """
     ads.txtファイルを返します。
