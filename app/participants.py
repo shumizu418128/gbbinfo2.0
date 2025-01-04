@@ -267,11 +267,14 @@ def create_world_map(year: int):
     # Initialize a folium map centered around the average latitude and longitude
     map_center = [20, 0]
     beatboxer_map = folium.Map(
+        tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}',
+        attr='Tiles &copy; Esri &mdash; Source: US National Park Service',
         location=map_center,
         zoom_start=2,
         zoom_control=True,
         control_scale=True,
         min_zoom=1,
+        max_zoom=8,
         max_bounds=True,
         options={
             'zoomSnap': 0.1,  # ズームのステップを0.1に設定
