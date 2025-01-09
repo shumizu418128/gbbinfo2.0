@@ -143,8 +143,10 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
             x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
             # Wildcardの場合、年度と順位でソート
             (
-                int(x["ticket_class"].replace("Wildcard ", "").replace("(", "").replace(")", "").split(" ")[1]) if len(x["ticket_class"].replace("Wildcard ", "").split(" ")) > 1 else float('inf'),
-                int(x["ticket_class"].replace("Wildcard ", "").split(" ")[0]) if x["ticket_class"].startswith("Wildcard") and len(x["ticket_class"].replace("Wildcard ", "").split(" ")) > 1 else float('inf')
+                int(x["ticket_class"].replace("Wildcard ", "").replace("(", "").replace(")", "").split(" ")[
+                    1]) if len(x["ticket_class"].replace("Wildcard ", "").split(" ")) > 1 else float('inf'),
+                int(x["ticket_class"].replace("Wildcard ", "").split(" ")[0]) if x["ticket_class"].startswith(
+                    "Wildcard") and len(x["ticket_class"].replace("Wildcard ", "").split(" ")) > 1 else float('inf')
             )
             if x["ticket_class"].startswith("Wildcard") else (float('inf'), float('inf'))
             # Wildcard上位を前に
@@ -311,6 +313,20 @@ def create_world_map(year: int):
         categories = group["category"].values
         members = group["members"].values
 
+        # チーム数
+        len_group = len(names)
+
+        # beatboxer数
+        beatboxers = []
+        for name, member_names in zip(names, members):
+            if member_names:
+                beatboxers.extend(member_names.upper().split(", "))
+            else:
+                beatboxers.append(name.upper())
+
+        unique_beatboxers = set(beatboxers)
+        len_beatboxers = len(unique_beatboxers)
+
         country_name = group["name_country"].values[0]
         iso_code = group["iso_code"].values[0]
 
@@ -324,14 +340,14 @@ def create_world_map(year: int):
         popup_content = '<div style="font-family: Noto sans JP; font-size: 14px;">'
         popup_content += f'<h3 style="margin: 0; color: #F0632F;">{
             country_name}</h3>'
-        popup_content += f'<h4 style="margin: 0; color: #F0632F;">{
-            country_name_ja}</h4>'
+        popup_content += f'<h4 style="margin: 0; color: #F0632F;"> {
+            len_group} teams<br>{len_beatboxers} members<br>{country_name_ja}</h4>'
 
-        for name, category, members in zip(names, categories, members):
-            if members != "":
+        for name, category, member_names in zip(names, categories, members):
+            if member_names != "":
                 popup_content += f'''
                 <p style="margin: 5px 0;">
-                    <strong style="color: #000000">{name.upper()}</strong> ({category})<span style="font-size: 0.7em; color=#222222"><br>【{members.upper()}】</span>
+                    <strong style="color: #000000">{name.upper()}</strong> ({category})<span style="font-size: 0.7em; color=#222222"><br>【{member_names.upper()}】</span>
                 </p>
                 '''
             else:
