@@ -41,14 +41,22 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
     # csvからデータを取得
     beatboxers_df = pd.read_csv(f'app/static/csv/participants/{year}.csv')
     countries_df = pd.read_csv('app/static/csv/countries.csv')
+    beatboxers_df = beatboxers_df.fillna("")
+    countries_df = countries_df.fillna("")
 
     # Merge data to include country names in beatboxers_df
-    beatboxers_df = beatboxers_df.merge(
+    merged_df = beatboxers_df.merge(
         countries_df[['iso_code', 'name', "name_ja"]],
         on='iso_code',
         how='left',
         suffixes=('', '_country')
     )
+    if merged_df.isnull().any().any():
+        null_columns = merged_df.columns[merged_df.isnull().any()].tolist()
+        null_rows = merged_df[merged_df.isnull().any(axis=1)]
+        error_message = f"Merge operation resulted in NaN values in columns: {null_columns}. Rows with NaN values:\n{null_rows}"
+        raise ValueError(error_message)
+    beatboxers_df = merged_df
 
     # フィルター処理
     # 部門でフィルター
@@ -119,7 +127,7 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
             }
 
         # membersがNaNの場合があるため、その場合は空文字に変換
-        if pd.isna(row["members"]):
+        if row["members"] == "":
             participant["members"] = ""
         else:
             participant["members"] = row["members"].upper()
