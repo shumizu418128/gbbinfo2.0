@@ -341,7 +341,7 @@ def create_world_map(year: int):
         popup_content += f'<h3 style="margin: 0; color: #F0632F;">{
             country_name}</h3>'
         popup_content += f'<h4 style="margin: 0; color: #F0632F;"> {
-            len_group} teams<br>{len_beatboxers} members<br>{country_name_ja}</h4>'
+            len_group} teams<br>{len_beatboxers} beatboxers<br>{country_name_ja}</h4>'
 
         for name, category, member_names in zip(names, categories, members):
             if member_names != "":
