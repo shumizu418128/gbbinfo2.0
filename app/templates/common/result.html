@@ -78,7 +78,7 @@
 <script src="/static/scripts/result.js"></script>
 <form method="GET" class="participants_form">
 <label for="year">{{ _('その他の年度を確認：') }}</label>
-<select name="year" id="year" class="participants_select" onchange="redirect_year()">
+<select name="year" id="year" class="participants_select" onchange="redirect_year('result')">
   {% for y in available_years %}
     <option value="{{ y }}" {% if year == y %}selected{% endif %}>{{ y }}</option>
   {% endfor %}
