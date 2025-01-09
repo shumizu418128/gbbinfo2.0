@@ -141,8 +141,12 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
             # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
             not x["ticket_class"].startswith("GBB"),
             x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
-            int(x["ticket_class"].replace("Wildcard ", ""))
-            if x["ticket_class"].startswith("Wildcard") else float('inf')
+            # Wildcardの場合、年度と順位でソート
+            (
+                int(x["ticket_class"].replace("Wildcard ", "").replace("(", "").replace(")", "").split(" ")[1]) if len(x["ticket_class"].replace("Wildcard ", "").split(" ")) > 1 else float('inf'),
+                int(x["ticket_class"].replace("Wildcard ", "").split(" ")[0]) if x["ticket_class"].startswith("Wildcard") and len(x["ticket_class"].replace("Wildcard ", "").split(" ")) > 1 else float('inf')
+            )
+            if x["ticket_class"].startswith("Wildcard") else (float('inf'), float('inf'))
             # Wildcard上位を前に
         )
     )
