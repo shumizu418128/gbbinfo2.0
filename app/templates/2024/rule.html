@@ -135,14 +135,14 @@
 </p>
 {% for index in range(participants_list|length) %}
   {% set participants = participants_list[index] %}
+  {% if index == 0 %}
+    <h3>{{ _('シード権 - GBB') }}</h3>
+  {% elif index == 1 %}
+    <h3>{{ _('シード権 - その他') }}</h3>
+  {% elif index == 2 %}
+    <h3>{{ _('シード権辞退者一覧') }}</h3>
+  {% endif %}
   {% if participants|length > 0 %}
-    {% if index == 0 %}
-      <h3>{{ _('シード権 - GBB') }}</h3>
-    {% elif index == 1 %}
-      <h3>{{ _('シード権 - その他') }}</h3>
-    {% elif index == 2 %}
-      <h3>{{ _('シード権辞退者一覧') }}</h3>
-    {% endif %}
     <table>
       <thead>
       <tr>
