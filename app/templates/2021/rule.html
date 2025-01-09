@@ -64,10 +64,10 @@
 <table>
   <thead>
     <tr>
-      <th><strong>部門名</strong></th>
-      <th><strong>Wildcard</strong></th>
-      <th><strong>シード権</strong></th>
-      <th><strong>計</strong></th>
+      <th style="width: 20%">部門名</th>
+      <th>Wildcard</th>
+      <th>シード権</th>
+      <th style="width: 22%">計</th>
     </tr>
   </thead>
   <tbody>
@@ -111,14 +111,12 @@
 </p>
 {% for index in range(participants_list|length) %}
   {% set participants = participants_list[index] %}
+  {% if index == 0 %}
+    <h3>シード権 - GBB</h3>
+  {% elif index == 1 %}
+    <h3>シード権 - その他</h3>
+  {% endif %}
   {% if participants|length > 0 %}
-    {% if index == 0 %}
-      <h3>シード権 - GBB</h3>
-    {% elif index == 1 %}
-      <h3>シード権 - その他</h3>
-    {% elif index == 2 %}
-      <h3>シード権辞退者一覧</h3>
-    {% endif %}
     <table>
       <thead>
       <tr>
