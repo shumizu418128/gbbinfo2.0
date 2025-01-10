@@ -197,15 +197,6 @@
 
       <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a>
       <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      <script async="async" defer="defer">
-        function share_button(){
-          let line= '<div class="line-it-button" data-lang="ja" data-type="share-a" data-env="REAL" data-url="{0}" data-color="default" data-size="large" data-count="false" data-ver="3" style="display: none;"></div>';
-          line = line.replace('{0}', window.location.href);
-          return line;
-        }
-      </script>
-      <script async="async" defer="defer">document.write(share_button());</script>
-      <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
 
       {% if is_latest_year is false %}
         <hr />
