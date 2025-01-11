@@ -22,6 +22,9 @@ kakasi.setMode('K', 'a')  # カタカナをローマ字に変換
 kakasi.setMode('J', 'a')  # 漢字をローマ字に変換
 converter = kakasi.getConverter()
 
+# df事前準備
+countries_df = pd.read_csv('app/static/csv/countries.csv')
+
 
 def get_participants_list(year: int, category: str, ticket_class: str, cancel: str, GBB: bool = None, iso_code: int = None):
     """
@@ -38,7 +41,7 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
     Returns:
         list: フィルタリングされた参加者のリスト。
     """
-    # csvからデータを取得
+    # csvからデータを取得 (ここの処理は毎回行う必要がある)
     beatboxers_df = pd.read_csv(f'app/static/csv/participants/{year}.csv')
     countries_df = pd.read_csv('app/static/csv/countries.csv')
     beatboxers_df = beatboxers_df.fillna("")
@@ -107,30 +110,17 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
     participants_list = []
     for _, row in beatboxers_df.iterrows():
 
-        # キャンセルした人の場合
-        if "[cancelled]" in row["name"]:
-            participant = {
-                "name": row["name"].replace("[cancelled] ", "").upper(),
-                "category": row["category"],
-                "country": f"{row["name_ja"]} {row['name_country']}",
-                "ticket_class": row["ticket_class"],
-                "is_cancelled": True
-            }
+        # キャンセルしたかのチェック
+        is_cancelled = "[cancelled]" in row["name"]
 
-        else:
-            participant = {
-                "name": row["name"].upper(),
-                "category": row["category"],
-                "country": f"{row["name_ja"]} {row['name_country']}",
-                "ticket_class": row["ticket_class"],
-                "is_cancelled": False
-            }
-
-        # membersがNaNの場合があるため、その場合は空文字に変換
-        if row["members"] == "":
-            participant["members"] = ""
-        else:
-            participant["members"] = row["members"].upper()
+        participant = {
+            "name": row["name"].replace("[cancelled] ", "").upper(),
+            "category": row["category"],
+            "country": f"{row["name_ja"]} {row['name_country']}",
+            "ticket_class": row["ticket_class"],
+            "is_cancelled": is_cancelled,
+            "members": row["members"].upper()
+        }
 
         # すでに出場者リストに登録されており、countryが違う場合、もとの辞書に追加
         for p in participants_list:
@@ -272,7 +262,6 @@ def create_world_map(year: int):
     """
     # csvからデータを取得
     beatboxers_df = pd.read_csv(f'app/static/csv/participants/{year}.csv')
-    countries_df = pd.read_csv('app/static/csv/countries.csv')
 
     # nanを空白に変換
     beatboxers_df = beatboxers_df.fillna("")
@@ -290,11 +279,14 @@ def create_world_map(year: int):
     # Initialize a folium map centered around the average latitude and longitude
     map_center = [20, 0]
     beatboxer_map = folium.Map(
+        tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}',
+        attr='Tiles &copy; Esri &mdash; Source: US National Park Service',
         location=map_center,
         zoom_start=2,
         zoom_control=True,
         control_scale=True,
         min_zoom=1,
+        max_zoom=8,
         max_bounds=True,
         options={
             'zoomSnap': 0.1,  # ズームのステップを0.1に設定

@@ -185,6 +185,15 @@ def world_map(year: int):
 ####################################################################
 # 出場者一覧
 ####################################################################
+
+# 各年度の全カテゴリを取得
+valid_categories_dict = {}
+for year in available_years:
+    valid_categories = pd.read_csv(
+        f'app/static/csv/participants/{year}.csv')["category"].unique().tolist()
+    valid_categories_dict[year] = valid_categories
+
+
 @sitemapper.include(changefreq="monthly", priority=1.0, url_variables={"year": available_years})
 @app.route('/<int:year>/participants', methods=["GET"])
 def participants(year: int):
@@ -206,19 +215,16 @@ def participants(year: int):
     scroll = request.args.get("scroll")
     value = request.args.get("value") or ""
 
-    # 引数が不正な場合はSolo全出場者を表示
-    valid_categories = pd.read_csv(
-        f'app/static/csv/participants/{year}.csv')["category"].unique().tolist()
-    valid_ticket_classes = ["all", "wildcard", "seed_right"]
-    valid_cancel = ["show", "hide", "only_cancelled"]
-
-    # そもそもデータがない年度の場合は、空っぽのページを表示
-    if bool(valid_categories) is False:
+    # カテゴリを取得
+    try:
+        valid_categories = valid_categories_dict[year]
+    except KeyError:
+        # そもそもデータがない年度の場合は、空っぽのページを表示
         return render_template(
             "/common/participants.html",
             participants=[],
             year=year,
-            all_category=valid_categories,
+            all_category=[],
             result_url=None,
             is_latest_year=is_latest_year(year),
             available_years=available_years,
@@ -226,6 +232,8 @@ def participants(year: int):
             value=value,
             is_early_access=is_early_access(year)
         )
+    valid_ticket_classes = ["all", "wildcard", "seed_right"]
+    valid_cancel = ["show", "hide", "only_cancelled"]
 
     # 引数の正当性を確認
     args_valid = all([
