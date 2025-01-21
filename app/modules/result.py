@@ -30,8 +30,8 @@ def get_result(category: str, year: int):
         # 辞書を作成
         for _, row in df.iterrows():
             round_name = row['round']
-            win = row['win']
-            lose = row['lose']
+            win = row['win'].upper()  # CSV に記載されている名前を大文字に変換
+            lose = row['lose'].upper()  # CSV に記載されている名前を大文字に変換
 
             # ラウンド名がキーになっているリストに追加
             if round_name not in result_dict:
@@ -49,7 +49,7 @@ def get_result(category: str, year: int):
         for _, row in df.iterrows():
             round_name = row['round']
             rank = row['rank']
-            name = row['name']
+            name = row['name'].upper()  # CSV に記載されている名前を大文字に変換
 
             # ラウンド名がキーになっているリストに追加
             if round_name not in result_dict:

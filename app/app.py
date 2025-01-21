@@ -16,7 +16,7 @@ from .modules.participants import (create_world_map, get_participants_list, inst
                            search_participants)
 from .modules.result import get_result
 
-available_years = [2021, 2023, 2024, 2025]
+available_years = [2019, 2021, 2023, 2024, 2025]
 available_langs = ["ja", "en", "zh_Hant_TW", "ko"]  # 利用可能な言語のリスト
 
 app = Flask(__name__)
