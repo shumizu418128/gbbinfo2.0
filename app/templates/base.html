@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<!--
+               ■■■                               
+■                 ■                    ■         
+■     ■■                               ■     ■■  
+■      ■      ■■■■■■                   ■      ■  
+■       ■        ■■                    ■       ■ 
+■       ■        ■       ■■■■■■■■■■■   ■       ■ 
+■       ■■      ■■■                    ■       ■■
+■■  ■          ■  ■                    ■■  ■     
+ ■ ■          ■   ■                     ■ ■      
+  ■■         ■    ■■■■                   ■■      
+ ■■■■■■■                      ■■                 
+ ■     ■      ■■■■■■■■     ■■■■■■                
+ ■■■■■■■    ■■■   ■           ■■                 
+ ■     ■         ■           ■■                  
+ ■■■■■■■        ■           ■■■■■      ■■■■■     
+ ■     ■        ■          ■■■   ■■   ■    ■■■■■ 
+ ■■■■■■■        ■         ■■      ■              
+   ■ ■          ■           ■■■   ■              
+  ■  ■           ■          ■  ■ ■               
+  ■  ■  ■■        ■■■        ■■■■                
+■■   ■■■■                                        
+-->
+<html lang="ja">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="Swissbeatboxが主催するHuman Beatboxの世界大会「Grand Beatbox Battle」の各種情報を、日本語に翻訳し見やすくまとめたサイトです。">
+    <link rel="stylesheet" href="/static/css/button.css" />
+    <link rel="stylesheet" href="/static/css/dropdown.css" />
+    <link rel="stylesheet" href="/static/css/hamburger.css" />
+    <link rel="stylesheet" href="/static/css/popup.css" />
+    <link rel="stylesheet" href="/static/css/search.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/table.css" />
+    <link rel="canonical" href="{% block canonical %}{% endblock %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <meta name="twitter:title" content="{% block twitter_title %}{% endblock %}" />
+    <meta name="twitter:description" content="Swissbeatboxが主催するHuman Beatboxの世界大会「Grand Beatbox Battle」の各種情報を、日本語に翻訳し見やすくまとめたサイトです。" />
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content="https://gbbinfo-jpn.onrender.com/static/images/background.webp" />
+    <meta property="og:title" content="{% block og_title %}{% endblock %}" />
+    <meta property="og:description" content="Swissbeatboxが主催するHuman Beatboxの世界大会「Grand Beatbox Battle」の各種情報を、日本語に翻訳し見やすくまとめたサイトです。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{% block og_url %}{% endblock %}" />
+    <meta property="og:image" content="https://gbbinfo-jpn.onrender.com/static/images/background.webp" />
+    <meta property="og:image:secure_url" content="https://gbbinfo-jpn.onrender.com/static/images/background.webp" />
+    <meta property="og:site_name" content="GBBINFO-JPN" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="theme-color" content="#F0632F" />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("/service-worker.js").then(
+            function (registration) {
+              console.log(
+                "ServiceWorkerが正常に登録されました: ",
+                registration.scope
+              );
+            },
+            function (err) {
+              console.log("ServiceWorkerの登録に失敗しました: ", err);
+            }
+          );
+        });
+      }
+    </script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-YWXGGR0MST"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-YWXGGR0MST");
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7390637277632194"
+    crossorigin="anonymous"></script>
+    <script async src="https://fundingchoicesmessages.google.com/i/pub-7390637277632194?ers=1"></script><script>(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
+
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <div class="hamburger-menu" onclick="toggleMenu(this)">
+      <div class="hamburger-line"></div>
+      <div class="hamburger-line"></div>
+      <div class="hamburger-line"></div>
+      <p>MENU</p>
+    </div>
+    <div class="menu">
+      <p>MENU</p>
+      <div class="button-container">
+        <a href="/"><button>Home & {{ _('これだけガイド') }}</button></a>
+        <a href="/{{ year }}/participants"><button>{{_('Wildcard結果')}} & {{_('出場者')}}</button></a>
+        <a href="/{{ year }}/rule"><button>{{_('ルール')}} & {{_('審査員')}}</button></a>
+        <a href="/others/how_to_plan"><button>{{_('現地観戦計画のたてかた')}}</button></a>
+        <a href="/{{ year }}/time_schedule"><button>{{_('タイムスケジュール')}}</button></a>
+        <a href="/{{ year }}/japan"><button>{{_('日本代表')}}</button></a>
+        <a href="/{{ year }}/ticket"><button>{{_('会場')}} & {{_('チケット')}}</button></a>
+        <a href="/{{ year }}/stream"><button>{{_('当日配信')}}</button></a>
+        <a href="/{{ year }}/result"><button>{{_('大会結果')}}</button></a>
+      </div>
+      <p>LANGUAGE</p>
+      <div class="button-container">
+        <a class="linkJA"><button>日本語</button></a>
+        <a class="linkEN"><button>English</button></a>
+        <a class="linkZH_TW"><button>繁體中文</button></a>
+        <a class="linkKO"><button>한국어</button></a>
+      </div>
+    </div>
+    <header>
+      <nav>
+        <img src="/static/images/header.webp" alt="ヘッダー"/>
+        <ul>
+          <a class="menu-link" href="/{{year}}/top"><li>Home & {{ _('これだけガイド') }}</li></a>
+          <div class="past_gbb_wrap">
+            <li>
+              {{ _('年度選択') }}
+              <ul class="past_gbb_lists">
+                {% for y in available_years|reverse %}
+                  <a href="/{{ y }}/top"><li class="past_gbb">GBB {{ y }}</li></a>
+                {% endfor %}
+              </ul>
+            </li>
+          </div>
+          <div class="past_gbb_wrap">
+            <li>
+              LANGUAGE
+              <ul class="past_gbb_lists">
+                <a class="linkJA"><li class="past_gbb">日本語</li></a>
+                <a class="linkEN"><li class="past_gbb">English</li></a>
+                <a class="linkZH_TW"><li class="past_gbb">繁體中文</li></a>
+                <a class="linkKO"><li class="past_gbb">한국어</li></a>
+              </ul>
+            </li>
+          </div>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="progress-scroll" style="top: 0"></div>
+      <div class="background-progress-scroll" style="top: 0;"></div>
+
+      {% if is_latest_year is false %}
+        <div class="background-popup" onclick="closePopup()"></div>
+        <div class="popup">
+          <p style="font-size: 36px; font-weight: bold;">☆<br>GBB {{ year }} {{ _('は') }}<br>{{ _('終了しました') }}<br>☆</p>
+          <p>{{ _('ここは、すでに終了したGBB {year} のページです').format(year=year) }}</p>
+            <div class="button-container" style="margin-bottom: 8px">
+              <a href="/"><button type="button">{{ _('GBB最新情報はこちら') }}</button></a>
+            </div>
+          <button type="button" onclick="closePopup()">{{ _('閉じる') }}</button>
+        </div>
+        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB {{ year }} {{ _('は') }}<br>{{ _('終了しました') }}</p>
+        <p style="text-align: center;">{{ _('ここは、すでに終了したGBB {year} のページです').format(year=year) }}</p>
+        <div class="button-container">
+          <a href="/"><button type="button">{{ _('GBB最新情報はこちら') }}</button></a>
+        </div>
+        <hr>
+      {% elif is_early_access is true %}
+        <div class="background-popup" onclick="closePopup()"></div>
+        <div class="popup">
+          <p style="font-size: 36px; font-weight: bold;">GBB {{ year }}<br>{{ _('先行公開中') }}</p>
+          <p>{{ _('ここは、まだ情報が少ないGBB {year} のページです').format(year=year) }}</p>
+          <div class="button-container" style="margin-bottom: 8px">
+            <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year=year-1) }}</button></a>
+          </div>
+          <button type="button" onclick="closePopup()">{{ _('閉じる') }}</button>
+        </div>
+        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB {{ year }}<br>{{ _('先行公開中') }}</p>
+        <p style="text-align: center;">{{ _('ここは、まだ情報が少ないGBB {year} のページです').format(year=year) }}</p>
+        <div class="button-container">
+          <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year=year-1) }}</button></a>
+        </div>
+        <hr>
+      {% endif %}
+
+      {% block content %}{% endblock %}
+
+      {% if is_latest_year is false %}
+        <hr />
+        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB {{ year }} {{ _('は') }}<br>{{ _('終了しました') }}</p>
+        <p style="text-align: center;">{{ _('ここは、すでに終了したGBB {year} のページです').format(year=year) }}</p>
+        <div class="button-container">
+          <a href="/"><button type="button">{{ _('GBB最新情報はこちら') }}</button></a>
+        </div>
+      {% elif is_early_access is true %}
+        <hr />
+        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB {{ year }}<br>{{ _('先行公開中') }}</p>
+        <p style="text-align: center;">{{ _('ここは、まだ情報が少ないGBB {year} のページです').format(year=year) }}</p>
+        <div class="button-container">
+          <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year=year-1) }}</button></a>
+        </div>
+      {% endif %}
+
+      <hr />
+      <p style="text-align: center">{{ _('次のGBBまであと...') }}</p>
+      <p id="countdown" style="text-align: center; font-size: 24px"></p>
+
+      {% if is_latest_year is false %}
+        <hr>
+        <h3>GBB {{ year }} {{ _('なんでも検索') }}</h3>
+        <p style="text-align: center;">{{ _('GBB {year} の検索のみ可能です').format(year=year) }}<br>{{ _('GBB {year} は終了しました').format(year=year) }}</p>
+        <form id="search-form-bottom" class="search-form-1" action="/{{ year }}/search">
+          <input type="text" name="question" id="question-bottom" placeholder="{{ _('例：GBB {year} の最終結果は？').format(year=year) }}" required>
+          <button type="submit"></button>
+        </form>
+        <div class="button-container">
+          <a href="/"><button type="button">{{ _('GBB最新情報の検索はこちら') }}</button></a>
+        </div>
+        <hr>
+      {% else %}
+        <h2>GBB {{ year }} {{ _('なんでも検索') }}</h2>
+        <p style="text-align: center;">{{ _('GBB {year} について検索してみよう').format(year=year) }}</p>
+        <form id="search-form-bottom" class="search-form-1" action="/{{ year }}/search">
+          <input type="text" name="question" id="question-bottom" placeholder="{{ _('例：現地観戦計画のたてかた') }}" required>
+          <button type="submit"></button>
+        </form>
+        <br>
+      {% endif %}
+
+      <div id="loading" class="loading"></div>
+
+      <div class="button-container">
+        <a href="javascript:void(0);"><button id="installButton" class="button_top" style="visibility: hidden;">{{ _('ホーム画面に追加') }}</button></a>
+      </div>
+      <p>
+        {{ _('GBBINFO-JPNはPWAに対応しています。') }}<br />{{ _('ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。') }}
+      </p>
+
+      <div class="button-container">
+        <a href="/"><button type="button">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044CC"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
+          <span class="button-text-with-icon">{{ _('ホームへもどる') }}<br>{{ _('これだけガイド') }}</span>
+        </button></a>
+      </div>
+      <div style="margin: 50px 0;"></div>
+
+      <h3>{{ _('対応言語') }}</h3>
+      <div class="button-container">
+        <a class="linkJA"><button type="button">日本語</button></a>
+        <a class="linkEN"><button type="button">English</button></a>
+        <a class="linkZH_TW"><button type="button">繁體中文</button></a>
+        <a class="linkKO"><button type="button">한국어</button></a>
+      </div>
+      <hr>
+      <a href="https://qiita.com/tari3210/items/0561e91774863d165af0" target="_blank" rel="noopener noreferrer">GBBINFO-JPNの設計図</a>
+      <br>
+      <a href="https://twitter.com/tari_3210_" target="_blank" rel="noopener noreferrer">tari3210 Twitter</a>
+      <br>
+      <a href="/others/about">{{ _('GBBINFO-JPNについて') }}</a>
+
+      <footer>
+        <p>
+          GBBINFO-JPN 2.0<br />UNofficial website made by tari3210<br />NOT swissbeatbox
+        </p>
+      </footer>
+      <div style="margin: 115px 0;"></div>
+      <div class="progress-scroll" style="bottom: 50px"></div>
+      <div class="background-progress-scroll" style="bottom: 50px"></div>
+    </main>
+
+    <div class="bottom-navigation">
+      <button class="bottom-navigation-button" id="bottom-dropdown" onclick="toggleDropdown()" style="border-right: 1px solid white; border-left: 1px solid white;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="M144-552v-240h72v130q46-60 114.5-95T480-792q140 0 238 98t98 238h-72q0-109-77.5-186.5T480-720q-62 0-114.5 25.5T277-624h107v72H144Zm0 96h72q0 106 71.5 181.5T462-192l42 71q-6 0-12 .5t-12 .5q-140 0-238-98t-98-238Zm409 109L444-456v-192h72v162l74 75-37 64ZM736 0l-13-56q-14-5-26.5-12T673-84l-55 17-32-55 41-40q-2-9-3-23.5t3-34.5l-41-39 32-56 54 16q11-10 24-17t27-12l13-56h64l13 56q14 5 27 12t24 17l54-15 32 55-40 38q1 7 3 22t-3 37l41 39-32 55-55-16q-11 10-24 16.5T813-56L800 0h-64Zm32-120q30 0 51-21t21-51q0-30-21-51t-51-21q-30 0-51 21t-21 51q0 30 21 51t51 21Z"/></svg>
+        <span>{{ year }}</span>
+      </button>
+      <button class="bottom-navigation-button" onclick="location.href='/'">
+        <img id="home-icon" src="/static/images/icon/icon-home.webp" alt="Home Icon" height="40px" width="40px">
+        <span>Home</span>
+      </button>
+
+      <div id="dropdown-content" class="dropdown-content" style="display: none;">
+        <!-- ここに過去年度のリンクを動的に生成する -->
+        {% for y in available_years %}
+          <a href="/{{ y }}/top">GBB {{ y }}</a>
+        {% endfor %}
+      </div>
+
+      <button class="bottom-navigation-button" id="bottom-navigation-search">
+        <img id="search-icon" src="/static/images/icon/icon-search.webp" alt="Search Icon" height="40px" width="40px">
+        <img id="close-icon" src="/static/images/icon/icon-close.webp" alt="close Icon" height="40px" width="40px" style="display: none;">
+        <span id="search-msg">さがす</span>
+      </button>
+
+      {% if is_latest_year is false %}
+        <div id="search-menu-nav" class="search-menu-nav-past" style="display: none;">
+          <button class="close-button" onclick="closeSearchMenu()">✖</button>
+          <h3>GBB {{ year }} {{ _('なんでも検索') }}</h3>
+          <p style="text-align: center;">{{ _('GBB {year} の検索のみ可能です').format(year=year) }}<br>{{ _('GBB {year} は終了しました').format(year=year) }}</p>
+          <form id="search-form-nav" class="search-form-1" action="/{{ year }}/search">
+            <input type="text" name="question" id="question-nav" placeholder="{{ _('例：GBB {year} の最終結果は？').format(year=year) }}" required>
+            <button type="submit"></button>
+          </form>
+          <div class="button-container">
+            <a href="/"><button type="button">{{ _('GBB最新情報の検索はこちら') }}</button></a>
+          </div>
+        </div>
+      {% else %}
+        <div id="search-menu-nav" class="search-menu-nav-latest" style="display: none;">
+          <button class="close-button" onclick="closeSearchMenu()">✖</button>
+          <h2 id="bottom-search-menu">GBB {{ year }} {{ _('なんでも検索') }}</h2>
+          <p style="text-align: center;">{{ _('GBB {year} について検索してみよう').format(year=year) }}</p>
+          <form id="search-form-nav" class="search-form-1" action="/{{ year }}/search">
+            <input type="text" name="question" id="question-nav" placeholder="{{ _('例：現地観戦計画のたてかた') }}" required>
+            <button type="submit"></button>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+
+    <select class="headerDropdown" style="display: none;"></select>
+
+    <script src="/static/scripts/countdown.js"></script>
+    <script src="/static/scripts/dropdown.js"></script>
+    <script src="/static/scripts/install.js"></script>
+    <script src="/static/scripts/language.js"></script>
+    <script src="/static/scripts/popup.js"></script>
+    <script src="/static/scripts/scroll.js"></script>
+    <script src="/static/scripts/search.js"></script>
+
+    <script>
+      if (window.location.pathname.includes('/participants')) {
+          // 特定の関数を実行する
+          search_participants({{ year }});
+      }
+    </script>
+
+  </body>
+</html>

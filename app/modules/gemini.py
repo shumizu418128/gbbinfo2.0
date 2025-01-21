@@ -7,7 +7,7 @@ from threading import Thread
 import google.generativeai as genai
 import pykakasi
 
-import gbbinfojpn.modules.spreadsheet as spreadsheet
+from . import spreadsheet
 
 api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
@@ -49,13 +49,13 @@ model = genai.GenerativeModel(
 
 # プロンプトを読み込む
 if 'prompt' not in locals():
-    file_path = os.getcwd() + '/gbbinfojpn/prompt.txt'
+    file_path = os.getcwd() + '/app/prompt.txt'
     with open(file_path, 'r', encoding="utf-8") as f:
         prompt = f.read()
 
 # othersファイルを読み込む
 if 'others_link' not in locals():
-    others_link = os.listdir(os.getcwd() + '/gbbinfojpn/templates/others')
+    others_link = os.listdir(os.getcwd() + '/app/templates/others')
 
 kakasi = pykakasi.kakasi()
 kakasi.setMode('H', 'a')  # ひらがなをローマ字に変換
