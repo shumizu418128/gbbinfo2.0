@@ -17,7 +17,7 @@ def get_result(category: str, year: int):
             - ランキング表の場合: ラウンドごとの順位を含む辞書。
     """
     try:
-        df = pd.read_csv(f'app/static/csv/result/{year}/{category}.csv')
+        df = pd.read_csv(f'gbbinfojpn/static/csv/result/{year}/{category}.csv')
     except FileNotFoundError:
         return None
 

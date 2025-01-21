@@ -23,7 +23,7 @@ kakasi.setMode('J', 'a')  # 漢字をローマ字に変換
 converter = kakasi.getConverter()
 
 # df事前準備
-countries_df = pd.read_csv('app/static/csv/countries.csv')
+countries_df = pd.read_csv('gbbinfojpn/static/csv/countries.csv')
 
 
 def get_participants_list(year: int, category: str, ticket_class: str, cancel: str, GBB: bool = None, iso_code: int = None):
@@ -42,8 +42,8 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
         list: フィルタリングされた参加者のリスト。
     """
     # csvからデータを取得 (ここの処理は毎回行う必要がある)
-    beatboxers_df = pd.read_csv(f'app/static/csv/participants/{year}.csv')
-    countries_df = pd.read_csv('app/static/csv/countries.csv')
+    beatboxers_df = pd.read_csv(f'gbbinfojpn/static/csv/participants/{year}.csv')
+    countries_df = pd.read_csv('gbbinfojpn/static/csv/countries.csv')
     beatboxers_df = beatboxers_df.fillna("")
     countries_df = countries_df.fillna("")
 
@@ -261,7 +261,7 @@ def create_world_map(year: int):
         None (ファイルを保存)
     """
     # csvからデータを取得
-    beatboxers_df = pd.read_csv(f'app/static/csv/participants/{year}.csv')
+    beatboxers_df = pd.read_csv(f'gbbinfojpn/static/csv/participants/{year}.csv')
 
     # nanを空白に変換
     beatboxers_df = beatboxers_df.fillna("")
@@ -372,7 +372,7 @@ def create_world_map(year: int):
         popup = folium.Popup(popup_content, max_width=1000)
 
         flag_icon = folium.CustomIcon(
-            icon_image=r"app/static/images/flags/" + country_name + ".webp",  # アイコン画像のパス
+            icon_image=r"gbbinfojpn/static/images/flags/" + country_name + ".webp",  # アイコン画像のパス
             icon_size=icon_size,  # アイコンのサイズ（幅、高さ）
             icon_anchor=icon_anchor  # アイコンのアンカー位置
         )
@@ -384,4 +384,4 @@ def create_world_map(year: int):
             icon=flag_icon
         ).add_to(beatboxer_map)
 
-    beatboxer_map.save(f"app/templates/{year}/world_map.html")
+    beatboxer_map.save(f"gbbinfojpn/templates/{year}/world_map.html")

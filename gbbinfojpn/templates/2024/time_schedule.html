@@ -1,0 +1,300 @@
+{% extends "base.html" %}
+{% block title %}GBB {{ year }} {{ _('タイムスケジュール') }} - GBBINFO-JPN{% endblock %}
+{% block twitter_title %}GBB{{ year }}:{{ _('タイムスケジュール') }} - GBBINFO-JPN{% endblock %}
+{% block og_title %}GBB{{ year }}:{{ _('タイムスケジュール') }} - GBBINFO-JPN{% endblock %}
+{% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/time_schedule{% endblock %}
+{% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/time_schedule{% endblock %}
+{% block content %}
+<h1>GBB {{ year }} {{ _('タイムスケジュール') }}</h1>
+
+<p>{{ _('時刻はあくまでも予定です。') }}</p>
+<p>{{ _('GBB21では、予定から約2時間遅延しました。') }}</p>
+<p>{{ _('GBB23では、本番7日前に日本語版・英語版のタイムスケジュールが公開されましたが、日本語版のみ正しく、英語版には誤記が多くみられました。') }}</p>
+
+<div>
+  <h2>{{ _('目次') }}</h2>
+
+  <ol>
+    <li>
+      <a href="#day1">Day1 - 11/1</a>
+    </li>
+
+    <li>
+      <a href="#day2">Day2 - 11/2</a>
+    </li>
+
+    <li>
+      <a href="#day3">Day3 - 11/3</a>
+    </li>
+
+    <li>
+      <a href="#_7ts">7toSmoke - 11/4</a>
+    </li>
+
+    <li>
+      <a href="#showcase">SPECIAL SHOWCASE {{ _('出演者一覧') }}</a>
+    </li>
+  </ol>
+</div>
+
+<div class="button-container">
+  <a href="/others/how_to_plan"><button>{{ _('現地観戦計画のたてかた') }}</button></a>
+  <a href="/{{ year }}/top"><button>GBB {{ year }} {{ _('これだけガイド') }}</button></a>
+</div>
+
+<h2 id="day1">Day1 - 11/1</h2>
+<table>
+  <thead>
+    <tr>
+      <th>{{ _('時刻') }}</th>
+      <th>{{ _('内容') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>14:05</td>
+      <td>{{ _('入場開始') }}</td>
+    </tr>
+    <tr>
+      <td>14:30</td>
+      <td>{{ _('ABEMA配信スタート') }}</td>
+    </tr>
+    <tr>
+      <td>15:00</td>
+      <td>{{ _('サプライズゲスト') }}</td>
+    </tr>
+    <tr>
+      <td>15:20</td>
+      <td>{{ _('スタート') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>SPECIAL SHOWCASE</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Crew {{ _('予選') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Producer {{ _('予選') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Tag Team {{ _('予選') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Producer {{ _('準決勝') }}</td>
+    </tr>
+    <tr>
+      <td>21:00</td>
+      <td>{{ _('終了') }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="button-container">
+  <a href="/{{ year }}/participants"><button>{{ _('Wildcard結果') }}</button></a>
+  <a href="/{{ year }}/participants"><button>{{ _('出場者一覧') }}</button></a>
+</div>
+
+<h2 id="day2">Day2 - 11/2</h2>
+<table>
+  <thead>
+    <tr>
+      <th>{{ _('時刻') }}</th>
+      <th>{{ _('内容') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>13:00</td>
+      <td>{{ _('入場開始') }}</td>
+    </tr>
+    <tr>
+      <td>13:30</td>
+      <td>{{ _('ABEMA配信スタート') }}</td>
+    </tr>
+    <tr>
+      <td>13:55</td>
+      <td>{{ _('サプライズゲスト') }}</td>
+    </tr>
+    <tr>
+      <td>14:15</td>
+      <td>{{ _('スタート') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>SPECIAL SHOWCASE</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Loopstation {{ _('準々決勝') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Crew {{ _('決勝') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Producer {{ _('決勝') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Solo {{ _('予選') }}</td>
+    </tr>
+    <tr>
+      <td>21:00</td>
+      <td>{{ _('終了') }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="button-container">
+  <a href="/others/how_to_plan"><button>{{ _('現地観戦計画のたてかた') }}</button></a>
+  <a href="/{{ year }}/top"><button>GBB {{ year }} {{ _('これだけガイド') }}</button></a>
+</div>
+
+<h2 id="day3">Day3 - 11/3</h2>
+<table>
+  <thead>
+    <tr>
+      <th>{{ _('時刻') }}</th>
+      <th>{{ _('内容') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>13:00</td>
+      <td>{{ _('入場開始') }}</td>
+    </tr>
+    <tr>
+      <td>13:30</td>
+      <td>{{ _('ABEMA配信スタート') }}</td>
+    </tr>
+    <tr>
+      <td>13:55</td>
+      <td>{{ _('サプライズゲスト') }}</td>
+    </tr>
+    <tr>
+      <td>14:30</td>
+      <td>{{ _('スタート') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>SPECIAL SHOWCASE</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Loopstation {{ _('準決勝・3位決定戦・決勝') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Solo {{ _('準々決勝') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Tag Team {{ _('準決勝') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Solo {{ _('準決勝') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Tag Team {{ _('3位決定戦・決勝') }}</td>
+    </tr>
+    <tr>
+      <td>-</td>
+      <td>Solo {{ _('3位決定戦・決勝') }}</td>
+    </tr>
+    <tr>
+      <td>20:30</td>
+      <td>{{ _('セレモニー') }}</td>
+    </tr>
+    <tr>
+      <td>21:00</td>
+      <td>{{ _('終了') }}</td>
+    </tr>
+    <tr>
+      <td>22:00</td>
+      <td>{{ _('アフターパーティー') }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="button-container">
+  <a href="/{{ year }}/participants"><button>{{ _('Wildcard結果') }}</button></a>
+  <a href="/{{ year }}/participants"><button>{{ _('出場者一覧') }}</button></a>
+</div>
+
+<h2 id="_7ts" name="7tosmoke">7toSmoke - 11/4</h2>
+<table>
+  <thead>
+    <tr>
+      <th>{{ _('時刻') }}</th>
+      <th>{{ _('内容') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>15:00</td>
+      <td>{{ _('入場開始') }}</td>
+    </tr>
+    <tr>
+      <td>15:40</td>
+      <td>{{ _('スタート') }}<br><span style="font-size: 12px;">{{ _('ソース：会場公式サイト') }}</span></td>
+    </tr>
+    <tr>
+      <td>16:25</td>
+      <td>{{ _('予選') }}</td>
+    </tr>
+    <tr>
+      <td>17:00</td>
+      <td>{{ _('ABEMA配信スタート') }}<br><span style="font-size: 12px;">{{ _('ソース：ABEMA配信ページ') }}<br>{{ _('予選開始より遅い理由は不明') }}</span></td>
+    </tr>
+    <tr>
+      <td>19:00</td>
+      <td>{{ _('本戦出場者アナウンス') }}</td>
+    </tr>
+    <tr>
+      <td>19:15</td>
+      <td>{{ _('本戦スタート') }}</td>
+    </tr>
+    <tr>
+      <td>20:35</td>
+      <td>{{ _('セレモニー') }}</td>
+    </tr>
+    <tr>
+      <td>20:40</td>
+      <td>DJ SET</td>
+    </tr>
+    <tr>
+      <td>21:10</td>
+      <td>DJ SET</td>
+    </tr>
+    <tr>
+      <td>22:00</td>
+      <td>{{ _('終了') }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="button-container">
+  <a href="/others/how_to_plan"><button>{{ _('現地観戦計画のたてかた') }}</button></a>
+  <a href="/{{ year }}/top"><button>GBB {{ year }} {{ _('これだけガイド') }}</button></a>
+</div>
+
+<h2 id="showcase" name="showcase">SPECIAL SHOWCASE<br>{{ _('出演者一覧') }}</h2>
+<ul>
+  <li>M.O.M.</li>
+  <li>MAD TWINZ</li>
+  <li>DHARNI</li>
+  <li>SARUKANI</li>
+  <li>BIZKIT</li>
+  <li>BATACO</li>
+</ul>
+<p>{{ _('各出演者の出演日時は不明です。') }}</p>
+
+{% endblock %}
