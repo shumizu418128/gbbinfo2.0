@@ -11,10 +11,10 @@ from flask_babel import Babel, _
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
-from . import gemini
-from .participants import (create_world_map, get_participants_list, instagram,
+from .modules import gemini
+from .modules.participants import (create_world_map, get_participants_list, instagram,
                            search_participants)
-from .result import get_result
+from .modules.result import get_result
 
 available_years = [2021, 2023, 2024, 2025]
 available_langs = ["ja", "en", "zh_Hant_TW", "ko"]  # 利用可能な言語のリスト
