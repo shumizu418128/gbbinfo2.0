@@ -151,6 +151,13 @@ def get_participants_list(year: int, category: str, ticket_class: str, cancel: s
         )
     )
 
+    # 2020年のみ、名前順にソート
+    if year == 2020:
+        participants_list = sorted(
+            participants_list,
+            key=lambda x: x["name"]
+        )
+
     return participants_list
 
 
@@ -337,7 +344,7 @@ def create_world_map(year: int):
 
         location = (lat, lon)
 
-        popup_content = '<div style="font-family: Noto sans JP; font-size: 14px;">'
+        popup_content = '<div style="font-family: Noto Sans JP; font-size: 14px;">'
         popup_content += f'''
         <h3 style="margin: 0; color: #F0632F;">
             {country_name}
@@ -348,6 +355,10 @@ def create_world_map(year: int):
             {len_group} teams<br>{len_beatboxers} beatboxers<br>{country_name_ja}
         </h4>
         '''
+
+        if year == 2020:
+            sorted_names_with_category = sorted(zip(names, categories, members), key=lambda x: (x[0]))
+            names, categories, members = zip(*sorted_names_with_category)
 
         for name, category, member_names in zip(names, categories, members):
             if member_names != "":
@@ -364,6 +375,9 @@ def create_world_map(year: int):
                 '''
 
         popup_content += '</div>'
+
+        if len_group > 7:
+            popup_content = f'<div style="font-family: Noto Sans JP; font-size: 14px; max-height: 300px; overflow-y: scroll;">{popup_content}</div>'
 
         # アイコン素材がある国の場合
         icon_size = (48, 48)
