@@ -201,9 +201,10 @@ def world_map(year: int):
 # 各年度の全カテゴリを取得
 valid_categories_dict = {}
 for year in available_years:
-    valid_categories = pd.read_csv(
-        f'app/static/csv/participants/{year}.csv')["category"].unique().tolist()
-    valid_categories_dict[year] = valid_categories
+    if year != 2022:
+        valid_categories = pd.read_csv(
+            f'app/static/csv/participants/{year}.csv')["category"].unique().tolist()
+        valid_categories_dict[year] = valid_categories
 
 
 @sitemapper.include(changefreq="monthly", priority=1.0, url_variables={"year": available_years})
