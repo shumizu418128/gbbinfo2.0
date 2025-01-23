@@ -357,7 +357,8 @@ def create_world_map(year: int):
         '''
 
         if year == 2020:
-            sorted_names_with_category = sorted(zip(names, categories, members), key=lambda x: (x[0]))
+            sorted_names_with_category = sorted(zip(names, categories, members), key=lambda x: (x[1], x[0]))
+
             names, categories, members = zip(*sorted_names_with_category)
 
         for name, category, member_names in zip(names, categories, members):
