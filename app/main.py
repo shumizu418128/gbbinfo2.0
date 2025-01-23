@@ -28,7 +28,7 @@ from .modules.participants import (
 )
 from .modules.result import get_result
 
-available_years = [2019, 2021, 2023, 2024, 2025]
+available_years = [2019, 2021, 2022, 2023, 2024, 2025]
 available_langs = ["ja", "en", "zh_Hant_TW", "ko"]  # 利用可能な言語のリスト
 
 app = Flask(__name__)
@@ -501,9 +501,10 @@ for year in available_years:  # 利用可能な年度をループ
     contents = [content.replace(".html", "") for content in contents]  # 拡張子を除去
 
     # rule, world_mapは除外
-    contents.remove('rule')  # 'rule'をリストから削除
-    if 'world_map' in contents:  # 'world_map'が存在する場合
-        contents.remove('world_map')  # 'world_map'をリストから削除
+    if 'rule' in contents:
+        contents.remove('rule')
+    if 'world_map' in contents:
+        contents.remove('world_map')
 
     for content in contents:  # 各コンテンツに対して
         combinations.append((year, content))  # 年度とコンテンツの組み合わせを追加
