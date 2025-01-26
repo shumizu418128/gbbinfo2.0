@@ -28,7 +28,7 @@ from .modules.participants import (
 )
 from .modules.result import get_result
 
-available_years = [2019, 2020, 2021, 2022, 2023, 2024, 2025]
+available_years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
 available_langs = ["ja", "en", "zh_Hant_TW", "ko"]  # 利用可能な言語のリスト
 
 app = Flask(__name__)
@@ -36,8 +36,8 @@ sitemapper = Sitemapper()
 sitemapper.init_app(app)
 app.secret_key = os.getenv("SECRET_KEY")
 github_token = os.getenv("GITHUB_TOKEN")
-app.config['BABEL_DEFAULT_LOCALE'] = 'ja'  # デフォルト言語を設定
-app.config['BABEL_SUPPORTED_LOCALES'] = available_langs  # 利用可能な言語を設定
+app.config["BABEL_DEFAULT_LOCALE"] = "ja"  # デフォルト言語を設定
+app.config["BABEL_SUPPORTED_LOCALES"] = available_langs  # 利用可能な言語を設定
 babel = Babel(app)
 test = _("test")  # テスト翻訳
 
@@ -49,26 +49,23 @@ last_updated = "UPDATE " + dt_now.strftime("%Y/%m/%d %H:%M:%S")
 warnings.filterwarnings(
     "ignore",
     category=UserWarning,
-    message="Flask-Caching: CACHE_TYPE is set to null, caching is effectively disabled."
+    message="Flask-Caching: CACHE_TYPE is set to null, caching is effectively disabled.",
 )
 # テスト環境ではキャッシュを無効化
 # ローカル環境にはこの環境変数を設定してある
 if os.getenv("ENVIRONMENT_CHECK") == "qawsedrftgyhujikolp":
     print("\nくぁwせdrftgyふじこlp\n")
-    app.config['CACHE_TYPE'] = "null"
-    app.config['DEBUG'] = True
-    app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.config["CACHE_TYPE"] = "null"
+    app.config["DEBUG"] = True
+    app.config["TEMPLATES_AUTO_RELOAD"] = True
     app.secret_key = "test"
-    cache = Cache(app, config={'CACHE_TYPE': 'null'})
+    cache = Cache(app, config={"CACHE_TYPE": "null"})
 
 # 本番環境ではキャッシュを有効化
 else:
-    app.config['CACHE_DEFAULT_TIMEOUT'] = 0  # 永続化
+    app.config["CACHE_DEFAULT_TIMEOUT"] = 0  # 永続化
     cache = Cache(
-        app, config={
-            'CACHE_TYPE': 'filesystem',
-            'CACHE_DIR': 'cache-directory'
-        }
+        app, config={"CACHE_TYPE": "filesystem", "CACHE_DIR": "cache-directory"}
     )
 
 
@@ -107,8 +104,12 @@ def get_locale():
 
     :return: ユーザーの言語設定
     """
-    user_lang = session.get('language')
-    return user_lang if user_lang in available_langs else request.accept_languages.best_match(available_langs)
+    user_lang = session.get("language")
+    return (
+        user_lang
+        if user_lang in available_langs
+        else request.accept_languages.best_match(available_langs)
+    )
 
 
 ####################################################################
@@ -127,9 +128,9 @@ def lang():
 
     # 言語が利用可能な言語であればセッションに保存
     if lang in available_langs:
-        session['language'] = lang
+        session["language"] = lang
     else:
-        session['language'] = "ja"
+        session["language"] = "ja"
 
     # リダイレクト先を分析
     non_content_func = ["participants", "japan", "result", "rule"]
@@ -165,19 +166,13 @@ def route_top():
     # 今年度 or 最新年度を表示
     year = now if now in available_years else latest_year
 
-    return redirect(
-        url_for(
-            "content",
-            year=year,
-            content="top"
-        )
-    )
+    return redirect(url_for("content", year=year, content="top"))
 
 
 ####################################################################
 # 世界地図の表示
 ####################################################################
-@app.route('/<int:year>/world_map')
+@app.route("/<int:year>/world_map")
 @cache.cached(query_string=True)
 def world_map(year: int):
     """
@@ -191,7 +186,7 @@ def world_map(year: int):
     # 世界地図作成
     create_world_map(year)
 
-    return render_template(f'{year}/world_map.html')
+    return render_template(f"{year}/world_map.html")
 
 
 ####################################################################
@@ -202,13 +197,18 @@ def world_map(year: int):
 valid_categories_dict = {}
 for year in available_years:
     if year != 2022:
-        valid_categories = pd.read_csv(
-            f'app/static/csv/participants/{year}.csv')["category"].unique().tolist()
+        valid_categories = (
+            pd.read_csv(f"app/static/csv/participants/{year}.csv")["category"]
+            .unique()
+            .tolist()
+        )
         valid_categories_dict[year] = valid_categories
 
 
-@sitemapper.include(changefreq="monthly", priority=1.0, url_variables={"year": available_years})
-@app.route('/<int:year>/participants', methods=["GET"])
+@sitemapper.include(
+    changefreq="monthly", priority=1.0, url_variables={"year": available_years}
+)
+@app.route("/<int:year>/participants", methods=["GET"])
 def participants(year: int):
     """
     指定された年度の出場者一覧を表示します。
@@ -243,17 +243,19 @@ def participants(year: int):
             available_years=available_years,
             last_updated=last_updated,
             value=value,
-            is_early_access=is_early_access(year)
+            is_early_access=is_early_access(year),
         )
     valid_ticket_classes = ["all", "wildcard", "seed_right"]
     valid_cancel = ["show", "hide", "only_cancelled"]
 
     # 引数の正当性を確認
-    args_valid = all([
-        category in valid_categories,
-        ticket_class in valid_ticket_classes,
-        cancel in valid_cancel
-    ])
+    args_valid = all(
+        [
+            category in valid_categories,
+            ticket_class in valid_ticket_classes,
+            cancel in valid_cancel,
+        ]
+    )
 
     # 引数が不正な場合はデフォルト値を設定
     if not args_valid:
@@ -271,7 +273,7 @@ def participants(year: int):
                     ticket_class=ticket_class,
                     cancel=cancel,
                     scroll=scroll,
-                    value=value
+                    value=value,
                 )
             )
 
@@ -282,17 +284,12 @@ def participants(year: int):
                 year=year,
                 category=category,
                 ticket_class=ticket_class,
-                cancel=cancel
+                cancel=cancel,
             )
         )
 
     # 参加者リストを取得
-    participants_list = get_participants_list(
-        year,
-        category,
-        ticket_class,
-        cancel
-    )
+    participants_list = get_participants_list(year, category, ticket_class, cancel)
 
     # 結果URLを取得
     try:
@@ -310,14 +307,16 @@ def participants(year: int):
         available_years=available_years,
         last_updated=last_updated,
         value=value,
-        is_early_access=is_early_access(year)
+        is_early_access=is_early_access(year),
     )
 
 
 ####################################################################
 # 日本代表
 ####################################################################
-@sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
+@sitemapper.include(
+    changefreq="yearly", priority=0.8, url_variables={"year": available_years}
+)
 @app.route("/<int:year>/japan")
 def japan(year: int):
     """
@@ -328,11 +327,7 @@ def japan(year: int):
     """
     # 参加者リストを取得
     participants_list = get_participants_list(
-        year=year,
-        category="all",
-        ticket_class="all",
-        cancel="show",
-        iso_code=392
+        year=year, category="all", ticket_class="all", cancel="show", iso_code=392
     )
 
     return render_template(
@@ -342,7 +337,7 @@ def japan(year: int):
         is_latest_year=is_latest_year(year),
         available_years=available_years,
         last_updated=last_updated,
-        is_early_access=is_early_access(year)
+        is_early_access=is_early_access(year),
     )
 
 
@@ -364,7 +359,9 @@ for year in available_years:
 
 
 # /year/resultはリダイレクト これによりresultページ内ですべての年度の結果を表示可能
-@sitemapper.include(changefreq="yearly", priority=0.8, url_variables={"year": available_years})
+@sitemapper.include(
+    changefreq="yearly", priority=0.8, url_variables={"year": available_years}
+)
 @app.route("/<int:year>/result")
 def result(year: int):
     """
@@ -386,26 +383,17 @@ def result(year: int):
             is_latest_year=is_latest_year(year),
             available_years=available_years,
             last_updated=last_updated,
-            is_early_access=is_early_access(year)
+            is_early_access=is_early_access(year),
         )
 
     # 引数が正しいか確認
     # カテゴリが不正な場合はSoloへリダイレクト
     if category not in all_category:
         category = "Solo"
-        return redirect(
-            url_for(
-                "result",
-                year=year,
-                category=category
-            )
-        )
+        return redirect(url_for("result", year=year, category=category))
 
     # 結果を取得
-    format, result = get_result(
-        category=category,
-        year=year
-    )
+    format, result = get_result(category=category, year=year)
 
     return render_template(
         "/common/result.html",
@@ -417,7 +405,7 @@ def result(year: int):
         result=result,
         all_category=all_category,
         category=category,
-        format=format
+        format=format,
     )
 
 
@@ -443,7 +431,9 @@ def result_redirect():
 ####################################################################
 # ルール
 ####################################################################
-@sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": available_years})
+@sitemapper.include(
+    changefreq="weekly", priority=0.8, url_variables={"year": available_years}
+)
 @app.route("/<int:year>/rule")
 def rule(year: int):
     """
@@ -455,26 +445,15 @@ def rule(year: int):
     """
 
     participants_GBB = get_participants_list(  # 昨年度成績上位者
-        year=year,
-        category="all",
-        ticket_class="seed_right",
-        cancel="hide",
-        GBB=True
+        year=year, category="all", ticket_class="seed_right", cancel="hide", GBB=True
     )
 
     participants_except_GBB = get_participants_list(  # GBB以外のシード権獲得者
-        year=year,
-        category="all",
-        ticket_class="seed_right",
-        cancel="hide",
-        GBB=False
+        year=year, category="all", ticket_class="seed_right", cancel="hide", GBB=False
     )
 
     cancels = get_participants_list(  # シード権保持者のうち、キャンセルした人
-        year=year,
-        category="all",
-        ticket_class="seed_right",
-        cancel="only_cancelled"
+        year=year, category="all", ticket_class="seed_right", cancel="only_cancelled"
     )
 
     participants_list = [participants_GBB, participants_except_GBB, cancels]
@@ -486,7 +465,7 @@ def rule(year: int):
         available_years=available_years,
         participants_list=participants_list,
         last_updated=last_updated,
-        is_early_access=is_early_access(year)
+        is_early_access=is_early_access(year),
     )
 
 
@@ -498,23 +477,31 @@ combinations = []  # 年度とコンテンツの組み合わせを格納する�
 
 # 各年度のページを取得(ルール、world_mapは別関数で扱っているので除外)
 for year in available_years:  # 利用可能な年度をループ
-    contents = os.listdir(f"./app/templates/{year}")  # 年度に対応するテンプレートファイルを取得
+    contents = os.listdir(
+        f"./app/templates/{year}"
+    )  # 年度に対応するテンプレートファイルを取得
     contents = [content.replace(".html", "") for content in contents]  # 拡張子を除去
 
     # rule, world_mapは除外
-    if 'rule' in contents:
-        contents.remove('rule')
-    if 'world_map' in contents:
-        contents.remove('world_map')
+    if "rule" in contents:
+        contents.remove("rule")
+    if "world_map" in contents:
+        contents.remove("world_map")
 
     for content in contents:  # 各コンテンツに対して
         combinations.append((year, content))  # 年度とコンテンツの組み合わせを追加
 
 combinations_year = [year for year, _ in combinations]  # 年度のリストを作成
-combinations_content = [content for _, content in combinations]  # コンテンツのリストを作成
+combinations_content = [
+    content for _, content in combinations
+]  # コンテンツのリストを作成
 
 
-@sitemapper.include(changefreq="weekly", priority=0.8, url_variables={"year": combinations_year, "content": combinations_content})
+@sitemapper.include(
+    changefreq="weekly",
+    priority=0.8,
+    url_variables={"year": combinations_year, "content": combinations_content},
+)
 @app.route("/<int:year>/<string:content>")
 def content(year: int, content: str):
     """
@@ -534,7 +521,7 @@ def content(year: int, content: str):
             is_latest_year=is_latest_year(year),
             available_years=available_years,
             last_updated=last_updated,
-            is_early_access=is_early_access(year)
+            is_early_access=is_early_access(year),
         )
 
     # エラーが出たら404を表示
@@ -550,7 +537,9 @@ content_others = os.listdir("./app/templates/others")
 content_others = [content.replace(".html", "") for content in content_others]
 
 
-@sitemapper.include(changefreq="never", priority=0.7, url_variables={"content": content_others})
+@sitemapper.include(
+    changefreq="never", priority=0.7, url_variables={"content": content_others}
+)
 @app.route("/others/<string:content>")
 def others(content: str):
     """
@@ -568,7 +557,7 @@ def others(content: str):
             year=year,
             available_years=available_years,
             is_latest_year=is_latest_year(year),
-            last_updated=last_updated
+            last_updated=last_updated,
         )
 
     # エラー
@@ -580,6 +569,7 @@ def others(content: str):
 # GitHub API (現在は使用していない)
 ####################################################################
 
+
 @app.route("/last-commit")
 @cache.cached(query_string=True)
 def get_last_commit():
@@ -588,14 +578,17 @@ def get_last_commit():
 
     :return: 最新コミット情報のJSONレスポンス
     """
-    headers = {
-        'Authorization': f'token {github_token}'
-    }
+    headers = {"Authorization": f"token {github_token}"}
     response = requests.get(
-        "https://api.github.com/repos/shumizu418128/gbbinfo2.0/commits", headers=headers)
+        "https://api.github.com/repos/shumizu418128/gbbinfo2.0/commits", headers=headers
+    )
 
     if response.status_code == 403:
-        return jsonify({"error": "APIのレートリミットに達しました。しばらくしてから再試行してください。"}), 403
+        return jsonify(
+            {
+                "error": "APIのレートリミットに達しました。しばらくしてから再試行してください。"
+            }
+        ), 403
 
     if response.status_code != 200:
         return jsonify({"error": "データの取得に失敗しました"}), 500
@@ -608,6 +601,7 @@ def get_last_commit():
 ####################################################################
 # gemini, discord, Sitemap, robots.txt
 ####################################################################
+
 
 # 検索機能
 @app.route("/<int:year>/search", methods=["POST"])
@@ -688,6 +682,7 @@ def ads_txt():
 # favicon.ico
 ####################################################################
 
+
 @app.route("/favicon.ico", methods=["GET"])
 def favicon_ico():
     """
@@ -701,6 +696,7 @@ def favicon_ico():
 ####################################################################
 # apple-touch-icon
 ####################################################################
+
 
 @app.route("/apple-touch-icon-120x120-precomposed.png", methods=["GET"])
 @app.route("/apple-touch-icon-120x120.png", methods=["GET"])
@@ -719,6 +715,7 @@ def apple_touch_icon():
 # PWS設定
 ####################################################################
 
+
 @app.route("/manifest.json")
 def manifest():
     """
@@ -726,7 +723,7 @@ def manifest():
 
     :return: マニフェストファイル
     """
-    return send_file('manifest.json', mimetype='application/manifest+json')
+    return send_file("manifest.json", mimetype="application/manifest+json")
 
 
 @app.route("/service-worker.js")
@@ -736,7 +733,7 @@ def service_worker():
 
     :return: サービスワーカーのJavaScript
     """
-    return send_file('service-worker.js', mimetype='application/javascript')
+    return send_file("service-worker.js", mimetype="application/javascript")
 
 
 ####################################################################
