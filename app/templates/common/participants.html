@@ -38,15 +38,15 @@
   </form>
 
   {% if request.args.get('ticket_class') == "wildcard" %}
-    <h2>{{ request.args.get('category') }}<br>{{ _('Wildcard結果') }}</h2>
+    <h2>{{ request.args.get('category') }} {{ _('Wildcard結果') }}</h2>
   {% endif %}
 
   {% if request.args.get("ticket_class") == "seed_right" %}
-    <h2>{{ request.args.get('category') }}<br>{{ _('シード権獲得者') }}</h2>
+    <h2>{{ request.args.get('category') }} {{ _('シード権獲得者') }}</h2>
   {% endif %}
 
   {% if request.args.get("ticket_class") == "all" %}
-    <h2>{{ request.args.get('category') }}<br>{{ _('全出場者一覧') }}</h2>
+    <h2>{{ request.args.get('category') }} {{ _('全出場者一覧') }}</h2>
   {% endif %}
 
   <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
