@@ -7,7 +7,6 @@ import gspread
 import Levenshtein
 import ratelimit
 from google.oauth2.service_account import Credentials
-from oauth2client.service_account import ServiceAccountCredentials
 
 credentials = None
 client = None
@@ -35,18 +34,12 @@ def get_client():
         # 認証情報を環境変数から取得
         path = os.environ.get("GOOGLE_SHEET_CREDENTIALS")
 
-        if path is None:
-            # 認証情報を取得
-            credentials = ServiceAccountCredentials.from_json_keyfile_name(
-                "D://おもちゃ/makesomenoise-4cb78ac4f8b5.json", scope
-            )
-        else:
-            # 環境変数から認証情報を取得
-            credentials_info = json.loads(path)
+        # 環境変数から認証情報を取得
+        credentials_info = json.loads(path)
 
-            # 認証情報を作成
-            credentials = Credentials.from_service_account_info(
-                credentials_info, scopes=scope)
+        # 認証情報を作成
+        credentials = Credentials.from_service_account_info(
+            credentials_info, scopes=scope)
 
     if client is None:
         client = gspread.authorize(credentials)
