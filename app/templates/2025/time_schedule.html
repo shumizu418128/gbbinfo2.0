@@ -8,28 +8,25 @@
 
 <h1>GBB {{ year }} {{ _('タイムスケジュール') }}</h1>
 
-<p>{{ _('時刻はあくまでも予定です。') }}</p>
-<p>{{ _('GBB21では、予定から約2時間遅延しました。') }}</p>
-<p>{{ _('GBB23では、本番7日前に日本語版・英語版のタイムスケジュールが公開されましたが、日本語版のみ正しく、英語版には誤記が多くみられました。') }}</p>
-<p>{{ _('GBB24では、本番約1ヶ月前に公開されましたが、誤記が多くみられました。') }}</p>
-
 <!-- TODO: 更新したらこの表示を消す -->
-<script src="/static/scripts/popup.js"></script>
-<div class="overlay" onclick="closePopup()"></div>
+<div class="background-popup" onclick="closePopup()"></div>
 <div class="popup">
 <p style="text-align: center; font-size: 36px; font-weight: bold;">×××<br>{{ _('情報なし') }}<br>×××</p>
 <div style="text-align: center;">
   <p>{{ last_updated }}</p>
 </div>
 <p style="text-align: center;">{{ _('お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。') }}<br>{{ _('公式発表をお待ちください。') }}</p>
-  <div class="button-container">
-    <button type="button" onclick="closePopup()">{{ _('閉じる') }}</button>
-  </div>
+  <button type="button" onclick="closePopup()">{{ _('閉じる') }}</button>
 </div>
 <div style="text-align: center;">
   <p>{{ last_updated }}</p>
 </div>
 <!-- TODO: 更新したらこの表示を消す -->
+
+<p>{{ _('時刻はあくまでも予定です。') }}</p>
+<p>{{ _('GBB21では、予定から約2時間遅延しました。') }}</p>
+<p>{{ _('GBB23では、本番7日前に日本語版・英語版のタイムスケジュールが公開されましたが、日本語版のみ正しく、英語版には誤記が多くみられました。') }}</p>
+<p>{{ _('GBB24では、本番約1ヶ月前に公開されましたが、誤記が多くみられました。') }}</p>
 
 <div>
   <h2>目次</h2>
