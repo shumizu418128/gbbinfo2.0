@@ -4,7 +4,6 @@ from datetime import datetime
 
 import jinja2
 import pandas as pd
-import requests
 from flask import (
     Flask,
     jsonify,
@@ -20,6 +19,7 @@ from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
 from .modules import gemini
+from .modules.config import Config, TestConfig, available_langs, available_years
 from .modules.participants import (
     create_world_map,
     get_participants_list,
@@ -28,16 +28,10 @@ from .modules.participants import (
 )
 from .modules.result import get_result
 
-available_years = [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
-available_langs = ["ja", "en", "zh_Hant_TW", "ko"]  # 利用可能な言語のリスト
-
 app = Flask(__name__)
 sitemapper = Sitemapper()
 sitemapper.init_app(app)
-app.secret_key = os.getenv("SECRET_KEY")
-github_token = os.getenv("GITHUB_TOKEN")
-app.config["BABEL_DEFAULT_LOCALE"] = "ja"  # デフォルト言語を設定
-app.config["BABEL_SUPPORTED_LOCALES"] = available_langs  # 利用可能な言語を設定
+app.config.from_object(Config)
 babel = Babel(app)
 test = _("test")  # テスト翻訳
 
@@ -55,17 +49,17 @@ warnings.filterwarnings(
 # ローカル環境にはこの環境変数を設定してある
 if os.getenv("ENVIRONMENT_CHECK") == "qawsedrftgyhujikolp":
     print("\nくぁwせdrftgyふじこlp\n")
-    app.config["CACHE_TYPE"] = "null"
-    app.config["DEBUG"] = True
-    app.config["TEMPLATES_AUTO_RELOAD"] = True
-    app.secret_key = "test"
+    app.config.from_object(TestConfig)
     cache = Cache(app, config={"CACHE_TYPE": "null"})
 
 # 本番環境ではキャッシュを有効化
 else:
-    app.config["CACHE_DEFAULT_TIMEOUT"] = 0  # 永続化
     cache = Cache(
-        app, config={"CACHE_TYPE": "filesystem", "CACHE_DIR": "cache-directory"}
+        app,
+        config={
+            "CACHE_TYPE": app.config["CACHE_TYPE"],
+            "CACHE_DIR": app.config["CACHE_DIR"],
+        },
     )
 
 
@@ -563,37 +557,6 @@ def others(content: str):
     # エラー
     except jinja2.exceptions.TemplateNotFound:
         return render_template("/common/404.html"), 404
-
-
-####################################################################
-# GitHub API (現在は使用していない)
-####################################################################
-
-
-@app.route("/last-commit")
-@cache.cached(query_string=True)
-def get_last_commit():
-    """
-    GitHubの最新コミット情報を取得します。
-
-    :return: 最新コミット情報のJSONレスポンス
-    """
-    headers = {"Authorization": f"token {github_token}"}
-    response = requests.get(
-        "https://api.github.com/repos/shumizu418128/gbbinfo2.0/commits", headers=headers
-    )
-
-    if response.status_code == 403:
-        return jsonify(
-            {
-                "error": "APIのレートリミットに達しました。しばらくしてから再試行してください。"
-            }
-        ), 403
-
-    if response.status_code != 200:
-        return jsonify({"error": "データの取得に失敗しました"}), 500
-
-    return jsonify(response.json())
 
 
 # 以下、キャッシュ使用不可
