@@ -34,7 +34,8 @@ table tr:nth-child(even) {
 .post-it {
     padding: 0.5em 1em;
     margin: 2em 0;
-    font-size: 18px;
+    font-size: 16px;
+    color: rgb(34, 34, 34);
     background: rgba(255, 255, 255, 0.5);
     border-left: solid 25px rgb(252, 167, 75);
 }
