@@ -62,6 +62,7 @@ button {
     gap: 4px;
     font-family: Noto sans JP;
     margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 .button-container a {
