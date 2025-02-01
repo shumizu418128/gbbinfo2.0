@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 13:10+0900\n"
+"POT-Creation-Date: 2025-02-01 14:51+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -110,8 +110,8 @@ msgstr "Japan Representative"
 #: templates/2024/ticket.html:10 templates/2024/ticket.html:16
 #: templates/2024/top.html:73 templates/2024/top.html:129
 #: templates/2024/top.html:133 templates/2025/ticket.html:10
-#: templates/2025/top.html:73 templates/2025/top.html:128
-#: templates/2025/top.html:132 templates/base.html:117
+#: templates/2025/top.html:73 templates/2025/top.html:131
+#: templates/2025/top.html:135 templates/base.html:117
 msgid "会場"
 msgstr "Venue"
 
@@ -771,29 +771,29 @@ msgstr ""
 "GBB is known for its very slow announcements of various information. "
 "Let's be patient."
 
-#: templates/2024/top.html:116 templates/2025/top.html:115
+#: templates/2024/top.html:116 templates/2025/top.html:118
 msgid "過去のGBBにおいて、下記番号に電話したらGBB詳細情報を教えてくれた、という報告が相次ぎました。"
 msgstr ""
 "In past GBB events, there have been reports that calling the number below"
 " provided detailed information about GBB."
 
-#: templates/2024/top.html:120 templates/2025/top.html:119
+#: templates/2024/top.html:120 templates/2025/top.html:122
 msgid "場所"
 msgstr "Location"
 
-#: templates/2024/top.html:121 templates/2025/top.html:120
+#: templates/2024/top.html:121 templates/2025/top.html:123
 msgid "電話番号"
 msgstr "Phone Number"
 
-#: templates/2024/top.html:125 templates/2025/top.html:124
+#: templates/2024/top.html:125 templates/2025/top.html:127
 msgid "チケット販売ページ"
 msgstr "Ticket Sales Page"
 
-#: templates/2024/top.html:125 templates/2025/top.html:124
+#: templates/2024/top.html:125 templates/2025/top.html:127
 msgid "記載の番号"
 msgstr "Listed Number"
 
-#: templates/2024/top.html:137 templates/2025/top.html:136
+#: templates/2024/top.html:137 templates/2025/top.html:139
 msgid "なお上記電話番号は、当サイトとは無関係です。"
 msgstr "Please note that the above phone number is unrelated to this site."
 
@@ -879,6 +879,10 @@ msgid "GBB24では、本番約1ヶ月前に公開されましたが、誤記が�
 msgstr ""
 "For GBB24, the timetable was released about a month before the main "
 "event, but there were many errors."
+
+#: templates/2025/top.html:116
+msgid "お探しの情報は、当サイトにありません。下記お問い合わせより、GBB運営に直接お尋ねください。"
+msgstr "The information you are looking for is not on this site. Please contact GBB management directly via the inquiry form below."
 
 #: templates/2025/top_7tosmoke.html:10
 msgid "開催日未定"
