@@ -578,8 +578,12 @@ def search(year: int = available_years[-1]):
     # 質問を取得
     question = request.json.get("question")
 
-    # geminiで検索
-    response_dict = gemini.search(year=year, question=question)
+    # キャッシュ検索
+    response_dict = gemini.search_cache(year=year, question=question)
+
+    # キャッシュがない場合はgeminiで検索
+    if response_dict is None:
+        response_dict = gemini.search(year=year, question=question)
 
     return jsonify(response_dict)
 
