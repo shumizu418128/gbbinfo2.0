@@ -63,6 +63,47 @@ kakasi.setMode('K', 'a')  # カタカナをローマ字に変換
 kakasi.setMode('J', 'a')  # 漢字をローマ字に変換
 converter = kakasi.getConverter()
 
+# URLのキャッシュを辞書として読み込む
+with open(os.getcwd() + '/app/modules/cache.json', 'r', encoding="utf-8") as f:
+    cache = json.load(f)
+
+
+def search_cache(year: int, question: str):
+    """
+    キャッシュの中にユーザーの入力があるか確認し、ある場合は回答を確定します。
+
+    Args:
+        year (int): 質問が関連する年。
+        question (str): ユーザーからの質問。
+    """
+
+    # URLのキャッシュ
+    global cache
+
+    # 前処理
+    question = question.lower().strip()
+
+    # キャッシュにユーザーの入力があるか確認
+    if question in cache:
+        print("Cache hit", flush=True)
+
+        # キャッシュにユーザーの入力がある場合、回答を確定
+        response_url = cache[question].replace("__year__", str(year))
+
+        # スプシに記録
+        if question != "テスト":
+            Thread(
+                target=spreadsheet.record_question,
+                args=(
+                    year,
+                    question,
+                    response_url
+                )
+            ).start()
+
+        return {"url": response_url}
+    return None
+
 
 def create_url(year: int, url: str, parameter: str | None, name: str | None):
     """
