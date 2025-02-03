@@ -25,11 +25,10 @@ def get_client():
     """
     global credentials, client
     if credentials is None:
-
         # スコープと認証
         scope = [
             "https://spreadsheets.google.com/feeds",
-            "https://www.googleapis.com/auth/drive"
+            "https://www.googleapis.com/auth/drive",
         ]
         # 認証情報を環境変数から取得
         path = os.environ.get("GOOGLE_SHEET_CREDENTIALS")
@@ -39,7 +38,8 @@ def get_client():
 
         # 認証情報を作成
         credentials = Credentials.from_service_account_info(
-            credentials_info, scopes=scope)
+            credentials_info, scopes=scope
+        )
 
     if client is None:
         client = gspread.authorize(credentials)
@@ -98,7 +98,9 @@ def get_example_questions():
     questions = sheet.col_values(3)[1:]  # 最初の要素をスキップ
 
     # ステータスが〇の質問だけを抽出
-    filtered_questions = [q.upper().strip() for q, s in zip(questions, status) if s == "〇"]
+    filtered_questions = [
+        q.upper().strip() for q, s in zip(questions, status) if s == "〇"
+    ]
 
     # 重複を削除
     filtered_questions = list(set(filtered_questions))
