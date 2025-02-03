@@ -48,11 +48,11 @@ def get_participants_list(
     Returns:
         list: フィルタリングされた参加者のリスト。
     """
+    global countries_df
+
     # csvからデータを取得 (ここの処理は毎回行う必要がある)
     beatboxers_df = pd.read_csv(f"app/static/csv/participants/{year}.csv")
-    countries_df = pd.read_csv("app/static/csv/countries.csv")
     beatboxers_df = beatboxers_df.fillna("")
-    countries_df = countries_df.fillna("")
 
     # Merge data to include country names in beatboxers_df
     merged_df = beatboxers_df.merge(
