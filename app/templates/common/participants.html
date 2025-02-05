@@ -16,49 +16,23 @@
 
 {% if all_category == [] %}
   <p style="text-align: center;">{{ _('～発表次第更新～') }}</p>
-  <br>
-  <br>
-  <br>
+  <div style="height: 100px;"></div>
 {% else %}
-  <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
-    <label for="category">{{ _('部門選択') }}</label>
-    <select name="category" id="category" class="participants_select" onchange="this.form.submit()">
-      {% for c in all_category %}
-        <option value="{{ c }}" {% if request.args.get('category') == c %}selected{% endif %}>{{ c }}</option>
-      {% endfor %}
-    </select>
-    <br>
-    <label for="ticket_class">{{ _('情報選択') }}</label>
-    <select name="ticket_class" id="ticket_class" class="participants_select" onchange="this.form.submit()">
-      <option value="all" {% if request.args.get('ticket_class') == 'all' %}selected{% endif %}>{{ _('全出場者') }}</option>
-      <option value="wildcard" {% if request.args.get('ticket_class') == 'wildcard' %}selected{% endif %}>{{ _('Wildcard結果') }}</option>
-      <option value="seed_right" {% if request.args.get('ticket_class') == 'seed_right' %}selected{% endif %}>{{ _('シード権') }}</option>
-    </select>
-    <input type="hidden" name="cancel" value="{{ request.args.get('cancel') }}">
-  </form>
+  {% include "includes/participants_form.html" %}
 
   {% if request.args.get('ticket_class') == "wildcard" %}
     <h2>{{ request.args.get('category') }} {{ _('Wildcard結果') }}</h2>
-  {% endif %}
-
-  {% if request.args.get("ticket_class") == "seed_right" %}
+  {% elif request.args.get("ticket_class") == "seed_right" %}
     <h2>{{ request.args.get('category') }} {{ _('シード権獲得者') }}</h2>
-  {% endif %}
-
-  {% if request.args.get("ticket_class") == "all" %}
+  {% elif request.args.get("ticket_class") == "all" %}
     <h2>{{ request.args.get('category') }} {{ _('全出場者一覧') }}</h2>
   {% endif %}
 
-  <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
-    <input type="hidden" name="category" value="{{ request.args.get('category') }}">
-    <input type="hidden" name="ticket_class" value="{{ request.args.get('ticket_class') }}">
-    <label for="cancel">{{ _('表示選択') }}</label>
-    <select name="cancel" id="cancel" class="participants_select" onchange="this.form.submit()">
-      <option value="show" {% if request.args.get('cancel') == 'show' %}selected{% endif %}>{{ _('出場者・辞退者') }}</option>
-      <option value="hide" {% if request.args.get('cancel') == 'hide' %}selected{% endif %}>{{ _('出場者のみ') }}</option>
-      <option value="only_cancelled" {% if request.args.get('cancel') == 'only_cancelled' %}selected{% endif %}>{{ _('辞退者のみ') }}</option>
-    </select>
-  </form>
+  {% if request.args.get('cancel') == "hide" %}
+    <div class="post-it">{{ _('出場者のみ') }}</div>
+  {% elif request.args.get('cancel') == "only_cancelled" %}
+    <div class="post-it">{{ _('辞退者のみ') }}</div>
+  {% endif %}
 
   {% if participants %}
     <table>
@@ -112,24 +86,9 @@
     <p style="text-align: center;">{{ _('～発表次第更新～') }}</p>
     <div style="height: 100px;"></div>
   {% endif %}
-  <br>
-  <form method="GET" action="{{ url_for('participants', year=year) }}" class="participants_form">
-    <label for="category">{{ _('部門選択') }}</label>
-    <select name="category" id="category" class="participants_select" onchange="this.form.submit()">
-      {% for c in all_category %}
-        <option value="{{ c }}" {% if request.args.get('category') == c %}selected{% endif %}>{{ c }}</option>
-      {% endfor %}
-    </select>
-    <br>
-    <label for="ticket_class">{{ _('情報選択') }}</label>
-    <select name="ticket_class" id="ticket_class" class="participants_select" onchange="this.form.submit()">
-      <option value="all" {% if request.args.get('ticket_class') == 'all' %}selected{% endif %}>{{ _('全出場者') }}</option>
-      <option value="wildcard" {% if request.args.get('ticket_class') == 'wildcard' %}selected{% endif %}>{{ _('Wildcard結果') }}</option>
-      <option value="seed_right" {% if request.args.get('ticket_class') == 'seed_right' %}selected{% endif %}>{{ _('シード権') }}</option>
-    </select>
-  </form>
+    {% include "includes/participants_form.html" %}
 {% endif %}
-<br>
+<div style="margin: 40px 0;"></div>
 
 <div class="button-container">
   {% if result_url %}
@@ -139,8 +98,6 @@
   <a href="/{{year}}/rule"><button type="button">GBB {{ year }} {{ _('ルール&審査員') }}</button></a>
   <a href="/{{year}}/rule"><button type="button">{{ _('結果発表日') }}</button></a>
 </div>
-
-<div style="margin: 70px 0;"></div>
 
 {% if all_category != [] %}
   <h2 name="search_participants">{{ _('出場者検索') }}</h2>
@@ -162,7 +119,7 @@
     <tbody id="participants-search-result"></tbody>
   </table>
 
-  <div style="margin: 70px 0;"></div>
+  <div style="margin: 40px 0;"></div>
 
   <h2>{{ _('出場者世界地図') }}</h2>
   <p>GBB {{ year }} {{ _('全出場者を地図にマッピングしました。') }}<br>{{ _('国旗をタップorクリックすると、詳細を確認できます。') }}</p>
