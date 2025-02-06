@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const headers = document.querySelectorAll('h2');
+    const headers = document.querySelectorAll('h1, h2');
     const lastHeader = headers[headers.length - 1];
     const headerArray = lastHeader && lastHeader.id === "bottom-search-menu" ? Array.from(headers).slice(0, -1) : Array.from(headers);
     const dropdown = document.querySelector('.headerDropdown');

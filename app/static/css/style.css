@@ -101,6 +101,7 @@ h1 {
     background-repeat: no-repeat;
     padding: 5px;
     margin-top: 0;
+    margin-bottom: 10px;
     text-align: center;
     font-weight: bold;
     border-radius: 20px;
@@ -114,7 +115,7 @@ h2 {
     text-align: center;
     font-weight: bold;
     margin-top: 25px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 h3 {
