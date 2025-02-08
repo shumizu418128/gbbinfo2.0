@@ -222,9 +222,8 @@ def search(year: int, question: str):
     response_url = create_url(year, url, parameter, name)
 
     # スプシに記録
-    if question != "テスト":
-        Thread(
-            target=spreadsheet.record_question, args=(year, question, response_url)
-        ).start()
+    Thread(
+        target=spreadsheet.record_question, args=(year, question, response_url)
+    ).start()
 
     return {"url": response_url}
