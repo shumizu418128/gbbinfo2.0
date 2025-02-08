@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-09 00:44+0900\n"
+"POT-Creation-Date: 2025-02-09 01:13+0900\n"
 "PO-Revision-Date: 2024-11-12 00:01+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: zh_Hant_TW\n"
@@ -908,8 +908,8 @@ msgid "撮影と録音は、同時に行うこと"
 msgstr "拍攝和錄音需同時進行"
 
 #: templates/2025/wildcard_regulation.html:148
-msgid "基本的なダイナミック (コンプレッション)、EQ プラグイン、リバーブは使用可能ただし、録音自体は生の状態で行い、後で編集すること"
-msgstr "可以使用基本的動態（壓縮）、EQ插件和混響，但錄音本身需保持原始狀態，之後再進行編輯。"
+msgid "基本的なダイナミック (コンプレッション)、EQ プラグイン、リバーブは使用可能。ただし、録音自体は生の状態で行い、後で編集すること"
+msgstr "可以使用基本的動態（壓縮）、等化器插件和殘響，但錄音本身需保持原始狀態，之後再進行編輯。"
 
 #: templates/2025/wildcard_regulation.html:149
 msgid "キックとスネアに異なる EQ やコンプレッションを施すなどの自動処理は禁止"

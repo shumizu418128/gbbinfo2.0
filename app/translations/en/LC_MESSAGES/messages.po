@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-09 00:44+0900\n"
+"POT-Creation-Date: 2025-02-09 01:13+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -827,7 +827,9 @@ msgstr "Wildcard Regulation Explanation (for Beatboxers)"
 
 #: templates/2025/rule.html:114
 msgid "※なぜかCrew部門のみ数字が合わない。原因不明"
-msgstr "The numbers don't add up for the Crew division for some reason. The cause is unknown."
+msgstr ""
+"The numbers don't add up for the Crew division for some reason. The cause"
+" is unknown."
 
 #: templates/2025/stream.html:13
 msgid "GBB24では本番8日前公開"
@@ -961,7 +963,7 @@ msgid "撮影と録音は、同時に行うこと"
 msgstr "Filming and recording must be done simultaneously."
 
 #: templates/2025/wildcard_regulation.html:148
-msgid "基本的なダイナミック (コンプレッション)、EQ プラグイン、リバーブは使用可能ただし、録音自体は生の状態で行い、後で編集すること"
+msgid "基本的なダイナミック (コンプレッション)、EQ プラグイン、リバーブは使用可能。ただし、録音自体は生の状態で行い、後で編集すること"
 msgstr ""
 "Basic dynamics (compression), EQ plugins, and reverb are allowed; "
 "however, the recording itself must be raw and edited later."
@@ -1065,7 +1067,9 @@ msgstr "No MIDI controllers are allowed."
 
 #: templates/2025/wildcard_regulation.html:229
 msgid "マシン内の追加ケーブルは使用可能 ケーブルはデバイスではないとみなされる"
-msgstr "Additional cables inside the machine are allowed; cables are not considered devices."
+msgstr ""
+"Additional cables inside the machine are allowed; cables are not "
+"considered devices."
 
 #: templates/2025/wildcard_regulation.html:234
 msgid "Loopstation単体での出場は禁止"
