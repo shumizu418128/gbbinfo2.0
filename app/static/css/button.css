@@ -1,9 +1,12 @@
+button {
+    font-family: Noto sans JP;
+}
+
 .button-container a .icon {
     transition: all 0.3s ease;
     cursor: pointer;
     width: 24px;
     height: 24px;
-    vertical-align: middle;
 }
 
 .button-text-with-icon {
@@ -59,6 +62,7 @@
     gap: 4px;
     font-family: Noto sans JP;
     margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 .button-container a {

@@ -5,10 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
+        const scrollPercentage = (winScroll / height) * 100;
+        const scrollAbsolute = window.scrollY + 51;
+        const h1_position = document.querySelector("h1").offsetTop;
 
         // スクロールバーの表示・非表示
-        if (winScroll <= 90) {
+        if (scrollAbsolute <= h1_position) {
             background.forEach(bg => {
                 bg.style.display = "none";
             });
@@ -27,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // スクロールバーの長さ設定
         progressElements.forEach(progress => {
-            progress.style.width = scrolled + "%";
+            progress.style.width = scrollPercentage + "%";
         });
     });
 });

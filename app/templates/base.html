@@ -35,18 +35,18 @@
     <link rel="stylesheet" href="/static/css/search.css" />
     <link rel="stylesheet" href="/static/css/style.css" />
     <link rel="stylesheet" href="/static/css/table.css" />
-    <link rel="canonical" href={% block canonical %}{% endblock %}>
+    <link rel="canonical" href="{% block canonical %}{% endblock %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
-    <meta name="twitter:title" content={% block twitter_title %}{% endblock %} />
+    <meta name="twitter:title" content="{% block twitter_title %}{% endblock %}" />
     <meta name="twitter:description" content="Swissbeatboxが主催するHuman Beatboxの世界大会「Grand Beatbox Battle」の各種情報を、日本語に翻訳し見やすくまとめたサイトです。" />
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:image" content="https://gbbinfo-jpn.onrender.com/static/images/background.webp" />
-    <meta property="og:title" content={% block og_title %}{% endblock %} />
+    <meta property="og:title" content="{% block og_title %}{% endblock %}" />
     <meta property="og:description" content="Swissbeatboxが主催するHuman Beatboxの世界大会「Grand Beatbox Battle」の各種情報を、日本語に翻訳し見やすくまとめたサイトです。" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={% block og_url %}{% endblock %} />
+    <meta property="og:url" content="{% block og_url %}{% endblock %}" />
     <meta property="og:image" content="https://gbbinfo-jpn.onrender.com/static/images/background.webp" />
     <meta property="og:image:secure_url" content="https://gbbinfo-jpn.onrender.com/static/images/background.webp" />
     <meta property="og:site_name" content="GBBINFO-JPN" />
@@ -79,6 +79,13 @@
           );
         });
       }
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "q30ags8e1y");
+    </script>
     </script>
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
@@ -112,7 +119,7 @@
       <div class="hamburger-line"></div>
       <p>MENU</p>
     </div>
-    <ul class="menu">
+    <div class="menu">
       <p>MENU</p>
       <div class="button-container">
         <a href="/"><button>Home & {{ _('これだけガイド') }}</button></a>
@@ -132,7 +139,7 @@
         <a class="linkZH_TW"><button>繁體中文</button></a>
         <a class="linkKO"><button>한국어</button></a>
       </div>
-    </ul>
+    </div>
     <header>
       <nav>
         <img src="/static/images/header.webp" alt="ヘッダー"/>
@@ -163,63 +170,27 @@
       </nav>
     </header>
     <main>
-      <div class="progress-scroll" style="top: 0"></div>
-      <div class="background-progress-scroll" style="top: 0;"></div>
+      <div class="progress-scroll" style="top: 41px"></div>
+      <div class="background-progress-scroll" style="top: 41px"></div>
 
       {% if is_latest_year is false %}
-        <div class="background-popup" onclick="closePopup()"></div>
-        <div class="popup">
-          <p style="font-size: 36px; font-weight: bold;">☆<br>GBB {{ year }} {{ _('は') }}<br>{{ _('終了しました') }}<br>☆</p>
-          <p>{{ _('ここは、すでに終了したGBB {year} のページです').format(year=year) }}</p>
-            <div class="button-container" style="margin-bottom: 8px">
-              <a href="/"><button type="button">{{ _('GBB最新情報はこちら') }}</button></a>
-            </div>
-          <button type="button" onclick="closePopup()">{{ _('閉じる') }}</button>
-        </div>
-        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB {{ year }} {{ _('は') }}<br>{{ _('終了しました') }}</p>
-        <p style="text-align: center;">{{ _('ここは、すでに終了したGBB {year} のページです').format(year=year) }}</p>
-        <div class="button-container">
-          <a href="/"><button type="button">{{ _('GBB最新情報はこちら') }}</button></a>
-        </div>
-        <hr>
+        {% include 'includes/popup_ended.html' %}
+        {% include 'includes/ended.html' %}
       {% elif is_early_access is true %}
-        <div class="background-popup" onclick="closePopup()"></div>
-        <div class="popup">
-          <p style="font-size: 36px; font-weight: bold;">GBB {{ year }}<br>{{ _('先行公開中') }}</p>
-          <p>{{ _('ここは、まだ情報が少ないGBB {year} のページです').format(year=year) }}</p>
-          <div class="button-container" style="margin-bottom: 8px">
-            <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year=year-1) }}</button></a>
-          </div>
-          <button type="button" onclick="closePopup()">{{ _('閉じる') }}</button>
-        </div>
-        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB {{ year }}<br>{{ _('先行公開中') }}</p>
-        <p style="text-align: center;">{{ _('ここは、まだ情報が少ないGBB {year} のページです').format(year=year) }}</p>
-        <div class="button-container">
-          <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year=year-1) }}</button></a>
-        </div>
-        <hr>
+        {% include 'includes/popup_early_access.html' %}
+        {% include 'includes/early_access.html' %}
       {% endif %}
 
       {% block content %}{% endblock %}
 
-      <div style="margin: 20px 0;"></div>
+      <div style="margin: 40px 0;"></div>
       <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a>
       <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
       {% if is_latest_year is false %}
-        <hr />
-        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB {{ year }} {{ _('は') }}<br>{{ _('終了しました') }}</p>
-        <p style="text-align: center;">{{ _('ここは、すでに終了したGBB {year} のページです').format(year=year) }}</p>
-        <div class="button-container">
-          <a href="/"><button type="button">{{ _('GBB最新情報はこちら') }}</button></a>
-        </div>
+        {% include 'includes/ended.html' %}
       {% elif is_early_access is true %}
-        <hr />
-        <p style="text-align: center; font-size: 36px; font-weight: bold;">GBB {{ year }}<br>{{ _('先行公開中') }}</p>
-        <p style="text-align: center;">{{ _('ここは、まだ情報が少ないGBB {year} のページです').format(year=year) }}</p>
-        <div class="button-container">
-          <a href="/"><button type="button">{{ _('GBB {year} の情報はこちら').format(year=year-1) }}</button></a>
-        </div>
+        {% include 'includes/early_access.html' %}
       {% endif %}
 
       <hr />
@@ -263,7 +234,7 @@
           <span class="button-text-with-icon">{{ _('ホームへもどる') }}<br>{{ _('これだけガイド') }}</span>
         </button></a>
       </div>
-      <div style="margin: 50px 0;"></div>
+      <div style="margin: 40px 0;"></div>
 
       <h3>{{ _('対応言語') }}</h3>
       <div class="button-container">
@@ -275,7 +246,7 @@
       <hr>
       <a href="https://qiita.com/tari3210/items/0561e91774863d165af0" target="_blank" rel="noopener noreferrer">GBBINFO-JPNの設計図</a>
       <br>
-      <a href="https://twitter.com/tari_3210_" target="_blank" rel="noopener noreferrer">tari3210 Twitter</a>
+      <a href="https://twitter.com/tari_3210_" target="_blank" rel="noopener noreferrer">当サイト管理人 Twitter</a>
       <br>
       <a href="/others/about">{{ _('GBBINFO-JPNについて') }}</a>
 
@@ -289,56 +260,9 @@
       <div class="background-progress-scroll" style="bottom: 50px"></div>
     </main>
 
-    <div class="bottom-navigation">
-      <button class="bottom-navigation-button" id="bottom-dropdown" onclick="toggleDropdown()" style="border-right: 1px solid white; border-left: 1px solid white;">
-        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="M144-552v-240h72v130q46-60 114.5-95T480-792q140 0 238 98t98 238h-72q0-109-77.5-186.5T480-720q-62 0-114.5 25.5T277-624h107v72H144Zm0 96h72q0 106 71.5 181.5T462-192l42 71q-6 0-12 .5t-12 .5q-140 0-238-98t-98-238Zm409 109L444-456v-192h72v162l74 75-37 64ZM736 0l-13-56q-14-5-26.5-12T673-84l-55 17-32-55 41-40q-2-9-3-23.5t3-34.5l-41-39 32-56 54 16q11-10 24-17t27-12l13-56h64l13 56q14 5 27 12t24 17l54-15 32 55-40 38q1 7 3 22t-3 37l41 39-32 55-55-16q-11 10-24 16.5T813-56L800 0h-64Zm32-120q30 0 51-21t21-51q0-30-21-51t-51-21q-30 0-51 21t-21 51q0 30 21 51t51 21Z"/></svg>
-        <span>{{ year }}</span>
-      </button>
-      <button class="bottom-navigation-button" onclick="location.href='/'">
-        <img id="home-icon" src="/static/images/icon/icon-home.webp" alt="Home Icon" height="40px" width="40px">
-        <span>Home</span>
-      </button>
+    {% include 'includes/bottom_navigation.html' %}
 
-      <div id="dropdown-content" class="dropdown-content" style="display: none;">
-        <!-- ここに過去年度のリンクを動的に生成する -->
-        {% for y in available_years %}
-          <a href="/{{ y }}/top">GBB {{ y }}</a>
-        {% endfor %}
-      </div>
-
-      <button class="bottom-navigation-button" id="bottom-navigation-search">
-        <img id="search-icon" src="/static/images/icon/icon-search.webp" alt="Search Icon" height="40px" width="40px">
-        <img id="close-icon" src="/static/images/icon/icon-close.webp" alt="close Icon" height="40px" width="40px" style="display: none;">
-        <span id="search-msg">さがす</span>
-      </button>
-
-      {% if is_latest_year is false %}
-        <div id="search-menu-nav" class="search-menu-nav-past" style="display: none;">
-          <button class="close-button" onclick="closeSearchMenu()">✖</button>
-          <h3>GBB {{ year }} {{ _('なんでも検索') }}</h3>
-          <p style="text-align: center;">{{ _('GBB {year} の検索のみ可能です').format(year=year) }}<br>{{ _('GBB {year} は終了しました').format(year=year) }}</p>
-          <form id="search-form-nav" class="search-form-1" action="/{{ year }}/search">
-            <input type="text" name="question" id="question-nav" placeholder="{{ _('例：GBB {year} の最終結果は？').format(year=year) }}" required>
-            <button type="submit"></button>
-          </form>
-          <div class="button-container">
-            <a href="/"><button type="button">{{ _('GBB最新情報の検索はこちら') }}</button></a>
-          </div>
-        </div>
-      {% else %}
-        <div id="search-menu-nav" class="search-menu-nav-latest" style="display: none;">
-          <button class="close-button" onclick="closeSearchMenu()">✖</button>
-          <h2 id="bottom-search-menu">GBB {{ year }} {{ _('なんでも検索') }}</h2>
-          <p style="text-align: center;">{{ _('GBB {year} について検索してみよう').format(year=year) }}</p>
-          <form id="search-form-nav" class="search-form-1" action="/{{ year }}/search">
-            <input type="text" name="question" id="question-nav" placeholder="{{ _('例：現地観戦計画のたてかた') }}" required>
-            <button type="submit"></button>
-          </form>
-        </div>
-      {% endif %}
-    </div>
-
-    <select class="headerDropdown" style="display: none;"></select>
+    <select class="headerDropdown" style="display: none; height: 41px"></select>
 
     <script src="/static/scripts/countdown.js"></script>
     <script src="/static/scripts/dropdown.js"></script>

@@ -1,59 +1,34 @@
 // カウントダウンの終了日時
-// GBBスタート時刻
-const countDownDate1 = new Date("Nov 1, 2024 15:20:00 GMT+09:00").getTime();
-
-// チケット販売終了日時（現在未使用）
+const countDownDate1 = new Date("Oct 31, 2025 0:00:00 GMT+09:00").getTime();
 const countDownDate2 = new Date("Oct 13, 2024 23:59:00 GMT+09:00").getTime();
 
-
 function updateCountdown() {
-    // 現在の日時をミリ秒で取得
     const nowMillis = new Date().getTime();
 
-    // 終了日時までの時間差
     const distance1 = countDownDate1 - nowMillis;
-    const distance2 = countDownDate2 - nowMillis;
+    // const distance2 = countDownDate2 - nowMillis;
 
-    // 時間、分、秒、ミリ秒に変換
-    const days1 = Math.floor(distance1 / (1000 * 60 * 60 * 24));
-    const hours1 = Math.floor((distance1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes1 = Math.floor((distance1 % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds1 = Math.floor((distance1 % (1000 * 60)) / 1000);
-    let milliseconds1 = distance1 % 1000; // ミリ秒を取得
+    // フォーマット関数
+    function formatCountdown(distance) {
+        if (distance <= 0) return "and that's TIME!";
 
-    const days2 = Math.floor(distance2 / (1000 * 60 * 60 * 24));
-    const hours2 = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
-    let milliseconds2 = distance2 % 1000; // ミリ秒を取得
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const milliseconds = Math.floor(distance % 1000);
 
-    // ミリ秒を3桁に揃える
-    if (milliseconds1 < 100) {
-        milliseconds1 = "0" + (milliseconds1 < 10 ? "0" : "") + milliseconds1;
-    }
-    if (milliseconds2 < 100) {
-        milliseconds2 = "0" + (milliseconds2 < 10 ? "0" : "") + milliseconds2;
+        return `${days} days ${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")} ${String(milliseconds).padStart(3, "0")}`;
     }
 
-    // HTMLに表示 (カウントダウンが終了したら0時間0分0秒と表示)
-    document.getElementById("countdown").innerHTML =
-        distance1 < 0 ? "and that's TIME!" :
-        days1 + ":" + hours1 + ":" +
-        minutes1 + ":" + seconds1 + ":" + milliseconds1;
+    // GBB開催日
+    document.getElementById("countdown").innerHTML = formatCountdown(distance1);
 
-
-    const ticketCountdownElement = document.getElementById("ticketDeadCountdown");
-    if (ticketCountdownElement) {
-        ticketCountdownElement.innerHTML =
-            distance2 < 0 ? "and that's TIME！" :
-            days2 + ":" + hours2 + ":" +
-            minutes2 + ":" + seconds2 + ":" + milliseconds2;
-    }
-
-    // 次のフレームで再度呼び出し
+    // チケット販売カウントダウン（オプション）
+    // const ticketCountdownElement = document.getElementById("ticketDeadCountdown");
+    // if (ticketCountdownElement) {
+    //     ticketCountdownElement.innerHTML = formatCountdown(distance2);
+    // }
     requestAnimationFrame(updateCountdown);
 }
-
-// 初回呼び出し
-// これonloadだとうまくいかない
 requestAnimationFrame(updateCountdown);

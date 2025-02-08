@@ -10,7 +10,7 @@
 {% if request.args.get('scroll') == "date" %}
   <h2>{{_('開催日')}}</h2>
   <div style="text-align: center;">
-    <p style="font-size: 78px; font-weight: bold; line-height: 1.2;">{{ _('未定') }}</p>
+    <p style="font-size: 78px; font-weight: bold; line-height: 1.2;">10/31<br>～<br>11/2</p>
   </div>
   <div class="button-container">
     <a href="/{{ year }}/time_schedule"><button>{{_('タイムスケジュール')}}</button></a>
@@ -27,7 +27,7 @@
 {% endif %}
 
 <div style="text-align: center;">
-  <p>GBB {{ year }}: {{ _('開催日未定') }}</p>
+  <p>GBB {{ year }}: 10/31 - 11/2</p>
   <p>{{_('公式よりもわかりやすい！')}}<br>GBB {{ year }} {{_('非公式情報サイト')}}</p>
 </div>
 
@@ -52,9 +52,9 @@
     <svg class="bg-pic" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044CC"><path d="M440-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM884-20 756-148q-21 12-45 20t-51 8q-75 0-127.5-52.5T480-300q0-75 52.5-127.5T660-480q75 0 127.5 52.5T840-300q0 27-8 51t-20 45L940-76l-56 56ZM660-200q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29ZM441-440q-42 62-42 140t42 140H120v-111q0-34 17-63t47-44q51-26 115-44t142-18Z"/></svg>
     <span class="button-text-with-icon">{{ _('Wildcard結果') }} & {{ _('出場者') }}</span>
   </button></a>
-  <a href="/{{ year }}/rule"><button class="disabled-button">
-    <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044CC"><path d="m576-160-56-56 104-104-104-104 56-56 104 104 104-104 56 56-104 104 104 104-56 56-104-104-104 104Zm79-360L513-662l56-56 85 85 170-170 56 57-225 226ZM80-280v-80h360v80H80Zm0-320v-80h360v80H80Z"/></svg>
-    <span class="button-text-with-icon">{{ _('ルール') }}<br>{{ _('審査員') }}</span>
+  <a href="/{{ year }}/rule"><button style="background-image: url('/static/images/button/inkie.webp');" class="bg-pic">
+    <svg class="bg-pic" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044CC"><path d="m576-160-56-56 104-104-104-104 56-56 104 104 104-104 56 56-104 104 104 104-56 56-104-104-104 104Zm79-360L513-662l56-56 85 85 170-170 56 57-225 226ZM80-280v-80h360v80H80Zm0-320v-80h360v80H80Z"/></svg>
+    <span class="button-text-with-icon">{{_('ルール')}}<br>{{_('審査員')}}</span>
   </button></a>
   <a href="/others/how_to_plan"><button style="background-image: url('/static/images/button/zenhit.webp');" class="bg-pic">
     <svg class="bg-pic" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044CC"><path d="M480-80Q315-220 237.5-339T160-570q0-137 96.5-223.5T480-880q127 0 223.5 89T800-552l84-84 56 56-180 180-180-180 56-56 84 84q0-109-69.5-178.5T480-800q-101 0-170.5 67T240-569q0 83 59 177t181 206q20-18 37-35l34-34q-5-11-8-22t-3-23q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29q-8 0-14.5-1t-13.5-3q-29 30-61.5 61T480-80Z"/></svg>
@@ -68,9 +68,9 @@
     <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044CC"><path d="M480-390Zm-132-53 55 37 77-39 77 39 53-35-40-79H386l-38 77ZM209-160h541L646-369l-83 55-83-41-83 41-85-56-103 210ZM80-80l234-475q10-20 29.5-32.5T386-600h54v-280h280l-40 80 40 80H520v120h50q23 0 42 12t30 32L880-80H80Z"/></svg>
     <span class="button-text-with-icon">{{ _('日本代表') }}</span>
   </button></a>
-  <a href="/{{ year }}/ticket"><button class="disabled-button">
-    <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044CC"><path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm0-160q17 0 28.5-11.5T520-480q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480q0 17 11.5 28.5T480-440Zm0-160q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm320 440H160q-33 0-56.5-23.5T80-240v-160q33 0 56.5-23.5T160-480q0-33-23.5-56.5T80-560v-160q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v160q-33 0-56.5 23.5T800-480q0 33 23.5 56.5T880-400v160q0 33-23.5 56.5T800-160Z"/></svg>
-    <span class="button-text-with-icon">{{ _('会場') }}<br>{{ _('チケット') }}</span>
+  <a href="/{{ year }}/ticket"><button style="background-image: url('/static/images/button/venue.webp');" class="bg-pic">
+    <svg class="bg-pic" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044CC"><path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm0-160q17 0 28.5-11.5T520-480q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480q0 17 11.5 28.5T480-440Zm0-160q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm320 440H160q-33 0-56.5-23.5T80-240v-160q33 0 56.5-23.5T160-480q0-33-23.5-56.5T80-560v-160q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v160q-33 0-56.5 23.5T800-480q0 33 23.5 56.5T880-400v160q0 33-23.5 56.5T800-160Z"/></svg>
+    <span class="button-text-with-icon">{{_('会場')}}<br>{{_('チケット')}}</span>
   </button></a>
   <a href="/{{ year }}/stream"><button class="disabled-button">
     <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044CC"><path d="m380-340 280-180-280-180v360Zm-60 220v-80H160q-33 0-56.5-23.5T80-280v-480q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v480q0 33-23.5 56.5T800-200H640v80H320Z"/></svg>
@@ -86,7 +86,6 @@
   <li><a href="/others/url_change">{{_('当サイトURL変更のお知らせ')}}</a></li>
   <li><a href="/others/result_stream">{{_('Wildcard結果発表配信')}}</a></li>
   <li><a href="/{{ year }}/wildcards">{{_('Wildcard一覧')}}</a></li>
-  <li><a href="https://tari3210.github.io/bcj-maps/" target="_blank" rel="noopener noreferrer">BEATCITY 2024 maps</a></li>
 </ul>
 
 <div class="button-container">
@@ -111,10 +110,13 @@
 <p>{{_('このような情報が多く存在します。')}}</p>
 <p>{{_('GBBの各種情報は、発表が非常に遅いことで有名です。気長に待ちましょう。')}}</p>
 
-<!-- チケット・会場発表次第、お問い合わせ先を書く
-
 {% if is_latest_year is true %}
   <h2 id="contact" name="contact">{{_('お問い合わせ')}}</h2>
+  {% if request.args.get("scroll") == "contact" %}
+    <div class="post-it">
+      {{_('お探しの情報は、当サイトにありません。下記お問い合わせより、GBB運営に直接お尋ねください。')}}
+    </div>
+  {% endif %}
   <p>{{_('過去のGBBにおいて、下記番号に電話したらGBB詳細情報を教えてくれた、という報告が相次ぎました。')}}</p>
   <table>
     <thead>
@@ -128,8 +130,8 @@
       <td><a href="tel:0570017230">0570017230</a></td>
     </tr>
     <tr>
-      <td>GBB {{ year }} {{_('会場')}}<br>Toyosu PIT</td>
-      <td><a href="tel:0335317888">0335317888</a></td>
+      <td>GBB {{ year }} {{_('会場')}}<br>EX THEATER ROPPONGI</td>
+      <td><a href="tel:0364062222">0364062222</a></td>
     </tr>
     <tr>
       <td>7toSmoke {{_('会場')}}<br>Spotify O-EAST</td>
@@ -139,5 +141,4 @@
   <p>{{_('なお上記電話番号は、当サイトとは無関係です。')}}</p>
 {% endif %}
 
--->
 {% endblock %}

@@ -8,34 +8,25 @@
 
 <h1>GBB {{ year }} {{ _('タイムスケジュール') }}</h1>
 
+<!-- TODO: 更新したらこの表示を消す -->
+{% include 'includes/popup_no_info.html' %}
+
 <p>{{ _('時刻はあくまでも予定です。') }}</p>
 <p>{{ _('GBB21では、予定から約2時間遅延しました。') }}</p>
 <p>{{ _('GBB23では、本番7日前に日本語版・英語版のタイムスケジュールが公開されましたが、日本語版のみ正しく、英語版には誤記が多くみられました。') }}</p>
 <p>{{ _('GBB24では、本番約1ヶ月前に公開されましたが、誤記が多くみられました。') }}</p>
 
-<!-- TODO: 更新したらこの表示を消す -->
-<div class="background-popup" onclick="closePopup()"></div>
-<div class="popup">
-<p style="text-align: center; font-size: 36px; font-weight: bold;">×××<br>{{ _('情報なし') }}<br>×××</p>
-<div style="text-align: center;">
-  <p>{{ last_updated }}</p>
-</div>
-<p style="text-align: center;">{{ _('お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。') }}<br>{{ _('公式発表をお待ちください。') }}</p>
-  <button type="button" onclick="closePopup()">{{ _('閉じる') }}</button>
-</div>
-<div style="text-align: center;">
-  <p>{{ last_updated }}</p>
-</div>
-<!-- TODO: 更新したらこの表示を消す -->
-
 <div>
   <h2>目次</h2>
   <ol>
     <li>
-      <a href="#day1">Day1 - ?/?</a>
+      <a href="#day1">Day1 - 10/31</a>
     </li>
     <li>
-      <a href="#day2">Day2 - ?/?</a>
+      <a href="#day2">Day2 - 11/1</a>
+    </li>
+    <li>
+      <a href="#day3">Day3 - 11/2</a>
     </li>
     <li>
       <a href="#_7ts">7toSmoke - ?/?</a>
@@ -43,7 +34,7 @@
   </ol>
 </div>
 
-<h2 id="day1">Day1 - ?/?</h2>
+<h2 id="day1">Day1 - 10/31</h2>
 <table>
   <thead>
     <tr>
@@ -53,11 +44,11 @@
   </thead>
   <tbody>
     <tr>
-      <td>{{ _('～発表次第更新～') }}</td>
+      <td>14:00</td>
       <td>{{ _('入場開始') }}</td>
     </tr>
     <tr>
-      <td>{{ _('～発表次第更新～') }}</td>
+      <td>15:00</td>
       <td>{{ _('スタート') }}</td>
     </tr>
     <tr>
@@ -68,7 +59,7 @@
 </table>
 <br>
 
-<h2 id="day2">Day2 - ?/?</h2>
+<h2 id="day2">Day2 - 11/1</h2>
 <table>
   <thead>
     <tr>
@@ -78,11 +69,36 @@
   </thead>
   <tbody>
     <tr>
-      <td>{{ _('～発表次第更新～') }}</td>
+      <td>13:00</td>
       <td>{{ _('入場開始') }}</td>
     </tr>
     <tr>
+      <td>14:00</td>
+      <td>{{ _('スタート') }}</td>
+    </tr>
+    <tr>
       <td>{{ _('～発表次第更新～') }}</td>
+      <td>{{ _('終了') }}</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+<h2 id="day3">Day3 - 11/2</h2>
+<table>
+  <thead>
+    <tr>
+      <th>{{ _('時刻') }}</th>
+      <th>{{ _('内容') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>13:00</td>
+      <td>{{ _('入場開始') }}</td>
+    </tr>
+    <tr>
+      <td>14:00</td>
       <td>{{ _('スタート') }}</td>
     </tr>
     <tr>

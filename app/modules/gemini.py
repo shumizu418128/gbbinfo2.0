@@ -38,33 +38,33 @@ safety_settings = [
     {
         "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
         "threshold": "BLOCK_NONE",
-    }
+    },
 ]
 
 model = genai.GenerativeModel(
-    model_name='gemini-1.5-flash-latest',
+    model_name="gemini-2.0-flash-exp",
     safety_settings=safety_settings,
-    generation_config={"response_mime_type": "application/json"}
+    generation_config={"response_mime_type": "application/json"},
 )
 
 # プロンプトを読み込む
-if 'prompt' not in locals():
-    file_path = os.getcwd() + '/app/prompt.txt'
-    with open(file_path, 'r', encoding="utf-8") as f:
+if "prompt" not in locals():
+    file_path = os.getcwd() + "/app/prompt.txt"
+    with open(file_path, "r", encoding="utf-8") as f:
         prompt = f.read()
 
 # othersファイルを読み込む
-if 'others_link' not in locals():
-    others_link = os.listdir(os.getcwd() + '/app/templates/others')
+if "others_link" not in locals():
+    others_link = os.listdir(os.getcwd() + "/app/templates/others")
 
 kakasi = pykakasi.kakasi()
-kakasi.setMode('H', 'a')  # ひらがなをローマ字に変換
-kakasi.setMode('K', 'a')  # カタカナをローマ字に変換
-kakasi.setMode('J', 'a')  # 漢字をローマ字に変換
+kakasi.setMode("H", "a")  # ひらがなをローマ字に変換
+kakasi.setMode("K", "a")  # カタカナをローマ字に変換
+kakasi.setMode("J", "a")  # 漢字をローマ字に変換
 converter = kakasi.getConverter()
 
 # URLのキャッシュを辞書として読み込む
-with open(os.getcwd() + '/app/modules/cache.json', 'r', encoding="utf-8") as f:
+with open(os.getcwd() + "/app/modules/cache.json", "r", encoding="utf-8") as f:
     cache = json.load(f)
 
 
@@ -91,15 +91,9 @@ def search_cache(year: int, question: str):
         response_url = cache[question].replace("__year__", str(year))
 
         # スプシに記録
-        if question != "テスト":
-            Thread(
-                target=spreadsheet.record_question,
-                args=(
-                    year,
-                    question,
-                    response_url
-                )
-            ).start()
+        Thread(
+            target=spreadsheet.record_question, args=(year, question, response_url)
+        ).start()
 
         return {"url": response_url}
     return None
@@ -136,15 +130,13 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
 
     # participantsのsearch_participantsが指定された場合はvalueに質問を追加
     if parameter == "search_participants" and bool(name):
-
         # search_participantsのとき、nameがある場合のみ追加
         response_url += "?scroll=search_participants"
 
         # 英数字表記かどうか判定
         # 記号も対象・Ωは"Sound of Sony Ω"の入力対策
         match_alphabet = re.match(
-            r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+',
-            name
+            r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+', name
         )
 
         # 英数字表記の場合、大文字に変換して追加
@@ -157,8 +149,7 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
 
             # 一応ちゃんと変換できたか確認
             match_alphabet = re.match(
-                r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+',
-                romaji_name
+                r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+', romaji_name
             )
             if match_alphabet:
                 response_url += f"&value={romaji_name.upper()}"
@@ -184,10 +175,7 @@ def search(year: int, question: str):
     chat = model.start_chat()
 
     # プロンプトに必要事項を埋め込む
-    prompt_formatted = prompt.format(
-        year=year,
-        question=question
-    )
+    prompt_formatted = prompt.format(year=year, question=question)
     print(question, flush=True)
 
     while True:
@@ -203,14 +191,12 @@ def search(year: int, question: str):
     # レスポンスをJSONに変換
     try:
         response_dict = json.loads(
-            response.text.replace(
-                'https://gbbinfo-jpn.onrender.com', ''
-            )
+            response.text.replace("https://gbbinfo-jpn.onrender.com", "")
         )
     except json.JSONDecodeError:
         print("Error: response is not JSON", flush=True)
         # JSONデコード失敗時のデフォルト値
-        return {'url': f'/{year}/top', 'parameter': 'contact'}
+        return {"url": f"/{year}/top", "parameter": "contact"}
 
     # othersのリンクであればリンクを変更
     others_url = next(
@@ -219,28 +205,24 @@ def search(year: int, question: str):
             for link in others_link
             if link.replace(".html", "") in response_dict["url"]
         ),
-        None
+        None,
     )
     if others_url:
         response_dict["url"] = others_url
 
     # URLとパラメータの正規化処理
     url = response_dict["url"].split("%")[0]
-    parameter = None if response_dict["parameter"] == "None" else response_dict["parameter"]
+    parameter = (
+        None if response_dict["parameter"] == "None" else response_dict["parameter"]
+    )
     name = None if response_dict["name"] == "None" else response_dict["name"]
 
     # レスポンスURLの作成
     response_url = create_url(year, url, parameter, name)
 
     # スプシに記録
-    if question != "テスト":
-        Thread(
-            target=spreadsheet.record_question,
-            args=(
-                year,
-                question,
-                response_url
-            )
-        ).start()
+    Thread(
+        target=spreadsheet.record_question, args=(year, question, response_url)
+    ).start()
 
     return {"url": response_url}
