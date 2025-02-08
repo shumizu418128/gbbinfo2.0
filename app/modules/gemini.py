@@ -91,10 +91,9 @@ def search_cache(year: int, question: str):
         response_url = cache[question].replace("__year__", str(year))
 
         # スプシに記録
-        if question != "テスト":
-            Thread(
-                target=spreadsheet.record_question, args=(year, question, response_url)
-            ).start()
+        Thread(
+            target=spreadsheet.record_question, args=(year, question, response_url)
+        ).start()
 
         return {"url": response_url}
     return None
