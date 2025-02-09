@@ -91,6 +91,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
 }
 
 .button-container a:nth-child(even) button {
