@@ -46,6 +46,7 @@
     margin-bottom: 5px;
     border-radius: 5px;
     font-family: Noto sans JP;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
 }
 
 .participants_select:focus {
