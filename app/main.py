@@ -74,7 +74,7 @@ def is_latest_year(year):
     """
     dt_now = datetime.now()
     now = dt_now.year
-    return year == available_years[-1] or year == now
+    return year == max(available_years) or year == now
 
 
 def is_early_access(year):
@@ -155,7 +155,7 @@ def route_top():
     """
     dt_now = datetime.now()
     now = dt_now.year
-    latest_year = available_years[-1]
+    latest_year = max(available_years)
 
     # 今年度 or 最新年度を表示
     year = now if now in available_years else latest_year
@@ -213,7 +213,7 @@ def participants(year: int):
     """
     # 年度が指定されていない場合は最新年度を表示
     if year not in available_years:
-        year = available_years[-1]
+        year = max(available_years)
 
     # 引数を取得
     category = request.args.get("category")
@@ -417,7 +417,7 @@ def result_redirect():
 
     # 年度が指定されていない場合は最新年度を表示
     if year not in available_years:
-        year = available_years[-1]
+        year = max(available_years)
 
     return redirect(url_for("result", year=year))
 
@@ -543,7 +543,7 @@ def others(content: str):
     :return: その他のコンテンツのHTMLテンプレート
     """
     # 年度は最新に設定
-    year = available_years[-1]
+    year = max(available_years)
 
     try:
         return render_template(
@@ -568,7 +568,7 @@ def others(content: str):
 
 # 検索機能
 @app.route("/<int:year>/search", methods=["POST"])
-def search(year: int = available_years[-1]):
+def search(year: int = max(available_years)):
     """
     指定された年度に対して質問を検索します。
 
@@ -589,7 +589,7 @@ def search(year: int = available_years[-1]):
 
 
 @app.route("/<int:year>/search_participants", methods=["POST"])
-def search_participants_by_keyword(year: int = available_years[-1]):
+def search_participants_by_keyword(year: int = max(available_years)):
     """
     指定された年度に対して出場者を検索します。
 

@@ -5,9 +5,11 @@ import time
 from threading import Thread
 
 import google.generativeai as genai
+import pandas as pd
 import pykakasi
 
 from . import spreadsheet
+from .config import available_years
 
 api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
@@ -67,6 +69,26 @@ converter = kakasi.getConverter()
 with open(os.getcwd() + "/app/modules/cache.json", "r", encoding="utf-8") as f:
     cache = json.load(f)
 
+# 最新年度の出場者一覧を読み込む
+latest_year = max(available_years)
+beatboxers_df = pd.read_csv(f"app/static/csv/participants/{latest_year}.csv")
+beatboxers_df = beatboxers_df.fillna("")
+name_list = (
+    beatboxers_df["name"]
+    .str.replace("[cancelled] ", "", regex=False)
+    .str.lower()
+    .tolist()
+)
+
+# 複数名部門メンバーのリストを読み込む
+members_list = beatboxers_df["members"].astype(str).str.lower().tolist()
+for members in members_list:
+    if members != "":
+        member = members.split(", ")
+        name_list.extend(member)
+
+name_set = set(name_list)
+
 
 def search_cache(year: int, question: str):
     """
@@ -96,6 +118,17 @@ def search_cache(year: int, question: str):
         ).start()
 
         return {"url": response_url}
+
+    # 出場者名と完全一致の場合、出場者一覧ページにリダイレクト
+    if question in name_set:
+        print("Name hit", flush=True)
+
+        response_url = (
+            f"/{year}/participants?scroll=search_participants&value={question.upper()}"
+        )
+
+        return {"url": response_url}
+
     return None
 
 
@@ -188,13 +221,16 @@ def search(year: int, question: str):
         else:
             break
 
+    # レスポンスをダブルクォーテーションに置き換え
+    response_text = response.text.replace("'", '"')
+
     # レスポンスをJSONに変換
     try:
         response_dict = json.loads(
-            response.text.replace("https://gbbinfo-jpn.onrender.com", "")
+            response_text.replace("https://gbbinfo-jpn.onrender.com", "")
         )
-    except json.JSONDecodeError:
-        print("Error: response is not JSON", flush=True)
+    except json.JSONDecodeError as e:
+        print(f"Error: response is not JSON {e}", flush=True)
         # JSONデコード失敗時のデフォルト値
         return {"url": f"/{year}/top", "parameter": "contact"}
 
