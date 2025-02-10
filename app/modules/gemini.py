@@ -44,7 +44,7 @@ safety_settings = [
 ]
 
 model = genai.GenerativeModel(
-    model_name="gemini-2.0-flash-exp",
+    model_name="gemini-2.0-flash-lite-preview",
     safety_settings=safety_settings,
     generation_config={"response_mime_type": "application/json"},
 )
