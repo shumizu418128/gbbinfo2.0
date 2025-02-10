@@ -127,6 +127,11 @@ def search_cache(year: int, question: str):
             f"/{year}/participants?scroll=search_participants&value={question.upper()}"
         )
 
+        # スプシに記録
+        Thread(
+            target=spreadsheet.record_question, args=(year, question, response_url)
+        ).start()
+
         return {"url": response_url}
 
     return None
