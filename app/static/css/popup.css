@@ -64,7 +64,7 @@
     position: fixed;
     left: 50%;
     bottom: 5px;
-    width: 100%;
+    width: 85%;
     height: 180px;
     background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid white;
@@ -93,7 +93,7 @@
     position: fixed;
     left: 50%;
     bottom: -16px;
-    width: 100%;
+    width: 85%;
     height: 250px;
     background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid white;

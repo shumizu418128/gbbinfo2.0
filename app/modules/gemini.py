@@ -70,7 +70,7 @@ converter = kakasi.getConverter()
 with open(os.getcwd() + "/app/modules/cache.json", "r", encoding="utf-8") as f:
     cache = json.load(f)
 
-cache_text = [key for key in cache.keys()]
+cache_text = [key.upper() for key in cache.keys()]
 
 # 最新年度の出場者一覧を読み込む
 latest_year = max(available_years)
