@@ -47,7 +47,7 @@ def get_client():
 
 # Googleスプレッドシートに記録
 # 3秒間に1回のリクエストを許可
-@ratelimit.limits(calls=1, period=3)
+@ratelimit.limits(calls=1, period=3, raise_on_limit=False)
 def record_question(year: int, question: str, answer: str):
     """
     Googleスプレッドシートに質問と回答を記録します。
