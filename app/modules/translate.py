@@ -4,7 +4,7 @@ import polib
 from googletrans import Translator
 
 # 設定
-BASE_DIR = os.path.abspath("app")
+BASE_DIR = os.path.abspath(".")
 LOCALE_DIR = os.path.join(BASE_DIR, "translations")
 POT_FILE = os.path.join(BASE_DIR, "messages.pot")
 CONFIG_FILE = os.path.join(BASE_DIR, "babel.cfg")
