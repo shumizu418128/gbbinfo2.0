@@ -11,8 +11,6 @@
     "会場": "/__year__/ticket",
     "場所": "/__year__/ticket",
     "開催地": "/__year__/ticket",
-    "配信": "/__year__/stream",
-    "配信どこ": "/__year__/stream",
     "審査員": "/__year__/rule?scroll=judges",
     "crew": "/__year__/rule?scroll=category",
     "loop": "/__year__/rule?scroll=category",
