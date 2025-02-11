@@ -605,6 +605,13 @@ def search_participants_by_keyword(year: int = max(available_years)):
     return jsonify(response_dict)
 
 
+@app.route('/search_suggestions', methods=['POST'])
+def search_suggestions():
+    query = request.json.get('input')
+    suggestions = gemini.search_suggestions(query)
+    return jsonify({'suggestions': suggestions})
+
+
 @app.route("/.well-known/discord")
 def discord():
     """

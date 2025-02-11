@@ -72,6 +72,3 @@ def record_question(year: int, question: str, answer: str):
 
         # 質問と年を記録
         sheet.insert_row([dt_now, year_str, question, answer], 2)
-
-    else:
-        print(year, question, answer, flush=True)

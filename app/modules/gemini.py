@@ -7,6 +7,7 @@ from threading import Thread
 import google.generativeai as genai
 import pandas as pd
 import pykakasi
+from rapidfuzz import process
 
 from . import spreadsheet
 from .config import available_years
@@ -68,6 +69,8 @@ converter = kakasi.getConverter()
 # URLのキャッシュを辞書として読み込む
 with open(os.getcwd() + "/app/modules/cache.json", "r", encoding="utf-8") as f:
     cache = json.load(f)
+
+cache_text = [key for key in cache.keys()]
 
 # 最新年度の出場者一覧を読み込む
 latest_year = max(available_years)
@@ -234,6 +237,8 @@ def search(year: int, question: str):
         response_dict = json.loads(
             response_text.replace("https://gbbinfo-jpn.onrender.com", "")
         )
+        if isinstance(response_dict, list) and len(response_dict) > 0:
+            response_dict = response_dict[0]
     except json.JSONDecodeError as e:
         print(f"Error: response is not JSON {e}", flush=True)
         # JSONデコード失敗時のデフォルト値
@@ -261,9 +266,22 @@ def search(year: int, question: str):
     # レスポンスURLの作成
     response_url = create_url(year, url, parameter, name)
 
+    print(year, question, response_url, flush=True)
+
     # スプシに記録
     Thread(
         target=spreadsheet.record_question, args=(year, question, response_url)
     ).start()
 
     return {"url": response_url}
+
+
+def search_suggestions(input: str):
+    input = input.lower().strip()
+
+    # rapidfuzzで類似度を計算し、上位3件を取得
+    suggestions = process.extract(input, cache_text, limit=3)
+    suggestions = [result[0] for result in suggestions]
+
+    # 結果を返す
+    return suggestions

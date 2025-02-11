@@ -144,3 +144,48 @@ function search_participants(year) {
         loadingElement.style.display = 'none';
     }
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const searchForms = document.querySelectorAll('.search-form-1');
+
+    searchForms.forEach(searchForm => {
+        const suggestionsContainer = searchForm.closest('.search-form-1').nextElementSibling;
+
+        searchForm.addEventListener('input', function() {
+            const query = this.querySelector('input').value;
+
+            if (query.length > 0) {
+                fetch('/search_suggestions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ input: query })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    suggestionsContainer.innerHTML = '';
+                    suggestionsContainer.style.display = 'block';
+
+                    if (data.suggestions.length > 0) {
+                        data.suggestions.forEach(item => {
+                            const suggestionItem = document.createElement('div');
+                            suggestionItem.classList.add('suggestion-item');
+                            suggestionItem.textContent = item;
+                            suggestionItem.addEventListener('click', function() {
+                                searchForm.querySelector('input').value = item;
+                                suggestionsContainer.style.display = 'none';
+                                searchForm.querySelector('button').click();
+                            });
+                            suggestionsContainer.appendChild(suggestionItem);
+                        });
+                    } else {
+                        suggestionsContainer.style.display = 'none';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            } else {
+                suggestionsContainer.style.display = 'none';
+            }
+        });
+    });
+});
