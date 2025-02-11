@@ -27,12 +27,11 @@ from .modules.participants import (
     search_participants,
 )
 from .modules.result import get_result
+from .modules.translate import translate
 
 app = Flask(__name__)
 sitemapper = Sitemapper()
 sitemapper.init_app(app)
-babel = Babel(app)
-test = _("test")  # テスト翻訳
 
 # 現在時刻を読み込む(最終更新日時として使用)
 dt_now = datetime.now()
@@ -53,6 +52,7 @@ if os.getenv("ENVIRONMENT_CHECK") == "qawsedrftgyhujikolp":
 
 # 本番環境ではキャッシュを有効化
 else:
+    translate()
     app.config.from_object(Config)
     cache = Cache(
         app,
@@ -62,6 +62,8 @@ else:
         },
     )
 
+babel = Babel(app)
+test = _("test")  # テスト翻訳
 
 # 最新年度かを判定
 # 今年 or 最新年度のみTrue

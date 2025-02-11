@@ -14,3 +14,5 @@ Levenshtein==0.26.1
 pykakasi==2.3.0
 mojimoji==0.0.13
 ratelimit==2.2.1
+googletrans==4.0.0rc1
+polib==1.2.0
