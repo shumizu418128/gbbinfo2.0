@@ -31,7 +31,6 @@ from .modules.result import get_result
 app = Flask(__name__)
 sitemapper = Sitemapper()
 sitemapper.init_app(app)
-app.config.from_object(Config)
 babel = Babel(app)
 test = _("test")  # テスト翻訳
 
@@ -54,6 +53,7 @@ if os.getenv("ENVIRONMENT_CHECK") == "qawsedrftgyhujikolp":
 
 # 本番環境ではキャッシュを有効化
 else:
+    app.config.from_object(Config)
     cache = Cache(
         app,
         config={
@@ -605,11 +605,11 @@ def search_participants_by_keyword(year: int):
     return jsonify(response_dict)
 
 
-@app.route('/search_suggestions', methods=['POST'])
+@app.route("/search_suggestions", methods=["POST"])
 def search_suggestions():
-    input = request.json.get('input')
+    input = request.json.get("input")
     suggestions = gemini.search_suggestions(input)
-    return jsonify({'suggestions': suggestions})
+    return jsonify({"suggestions": suggestions})
 
 
 @app.route("/.well-known/discord")
