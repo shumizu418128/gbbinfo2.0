@@ -568,7 +568,7 @@ def others(content: str):
 
 # 検索機能
 @app.route("/<int:year>/search", methods=["POST"])
-def search(year: int = max(available_years)):
+def search(year: int):
     """
     指定された年度に対して質問を検索します。
 
@@ -589,7 +589,7 @@ def search(year: int = max(available_years)):
 
 
 @app.route("/<int:year>/search_participants", methods=["POST"])
-def search_participants_by_keyword(year: int = max(available_years)):
+def search_participants_by_keyword(year: int):
     """
     指定された年度に対して出場者を検索します。
 
@@ -607,8 +607,8 @@ def search_participants_by_keyword(year: int = max(available_years)):
 
 @app.route('/search_suggestions', methods=['POST'])
 def search_suggestions():
-    query = request.json.get('input')
-    suggestions = gemini.search_suggestions(query)
+    input = request.json.get('input')
+    suggestions = gemini.search_suggestions(input)
     return jsonify({'suggestions': suggestions})
 
 

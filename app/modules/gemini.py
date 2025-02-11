@@ -277,7 +277,18 @@ def search(year: int, question: str):
 
 
 def search_suggestions(input: str):
-    input = input.upper().strip()
+    # inputから4桁・2桁の年削除
+    year = re.search(r"\d{4}", input)
+    year_2 = re.search(r"\d{2}", input)
+    if year:
+        year = year.group()
+        input = input.replace(year, "")
+    if year_2:
+        year_2 = year_2.group()
+        input = input.replace(year_2, "")
+
+    # inputから空白削除
+    input = input.strip().upper().replace("GBB", "")
 
     # rapidfuzzで類似度を計算し、上位3件を取得
     suggestions = process.extract(input, cache_text, limit=3)
