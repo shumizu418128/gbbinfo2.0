@@ -674,6 +674,8 @@ def favicon_ico():
 ####################################################################
 
 
+@app.route("/apple-touch-icon-152x152-precomposed.png", methods=["GET"])
+@app.route("/apple-touch-icon-152x152.png", methods=["GET"])
 @app.route("/apple-touch-icon-120x120-precomposed.png", methods=["GET"])
 @app.route("/apple-touch-icon-120x120.png", methods=["GET"])
 @app.route("/apple-touch-icon-precomposed.png", methods=["GET"])
