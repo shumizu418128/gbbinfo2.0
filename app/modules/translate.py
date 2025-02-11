@@ -38,21 +38,14 @@ def translate():
     for lang in LANGUAGES:
         po_file_path = os.path.join(LOCALE_DIR, lang, "LC_MESSAGES", "messages.po")
 
-        if not os.path.exists(po_file_path):
-            print(f"{po_file_path} が存在しません。スキップします。")
-            continue  # .po ファイルがない場合はスキップ
-
         po = polib.pofile(po_file_path)
-        for entry in po.untranslated_entries():
-            try:
-                translation = translator.translate(
-                    entry.msgid, src="en", dest=lang.split("_")[0]
-                ).text
-                entry.msgstr = translation
-            except Exception as e:
-                print(f"{lang} の翻訳中にエラーが発生しました: {e}")
-                continue
-
+        for entry in po.untranslated_entries() + po.fuzzy_entries():
+            translation = translator.translate(
+                entry.msgid, src="en", dest=lang.split("_")[0]
+            ).text
+            entry.msgstr = translation
+            if "fuzzy" in entry.flags:
+                entry.flags.remove("fuzzy")  # fuzzy フラグを削除
         po.save(po_file_path)
         print(f"{lang} の翻訳を保存しました。", flush=True)
 
