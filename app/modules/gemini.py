@@ -79,12 +79,12 @@ beatboxers_df = beatboxers_df.fillna("")
 name_list = (
     beatboxers_df["name"]
     .str.replace("[cancelled] ", "", regex=False)
-    .str.lower()
+    .str.upper()
     .tolist()
 )
 
 # 複数名部門メンバーのリストを読み込む
-members_list = beatboxers_df["members"].astype(str).str.lower().tolist()
+members_list = beatboxers_df["members"].astype(str).str.upper().tolist()
 for members in members_list:
     if members != "":
         member = members.split(", ")
@@ -106,7 +106,7 @@ def search_cache(year: int, question: str):
     global cache
 
     # 前処理
-    question = question.lower().strip()
+    question = question.upper().strip()
 
     # キャッシュにユーザーの入力があるか確認
     if question in cache:
@@ -277,7 +277,7 @@ def search(year: int, question: str):
 
 
 def search_suggestions(input: str):
-    input = input.lower().strip()
+    input = input.upper().strip()
 
     # rapidfuzzで類似度を計算し、上位3件を取得
     suggestions = process.extract(input, cache_text, limit=3)
