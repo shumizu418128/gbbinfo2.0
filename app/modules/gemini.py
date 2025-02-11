@@ -1,5 +1,6 @@
 import json
 import os
+import random
 import re
 import time
 from threading import Thread
@@ -291,6 +292,7 @@ def search_suggestions(input: str):
     input = input.strip().upper().replace("GBB", "")
 
     # rapidfuzzで類似度を計算し、上位3件を取得
+    random.shuffle(cache_text)
     suggestions = process.extract(input, cache_text, limit=3)
     suggestions = [result[0] for result in suggestions]
 

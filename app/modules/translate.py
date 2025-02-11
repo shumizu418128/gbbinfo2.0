@@ -3,16 +3,6 @@ import os
 import polib
 from googletrans import Translator
 
-# 設定
-BASE_DIR = os.path.abspath("app")
-LOCALE_DIR = os.path.join(BASE_DIR, "translations")
-POT_FILE = os.path.join(BASE_DIR, "messages.pot")
-CONFIG_FILE = os.path.join(BASE_DIR, "babel.cfg")
-LANGUAGES = [
-    d for d in os.listdir(LOCALE_DIR) if os.path.isdir(os.path.join(LOCALE_DIR, d))
-]
-print(f"languages: {LANGUAGES}", flush=True)
-
 
 def translate():
     """
@@ -27,6 +17,15 @@ def translate():
 
     ローカルでの実行を前提としています。
     """
+    # 設定
+    BASE_DIR = os.path.abspath("app")
+    LOCALE_DIR = os.path.join(BASE_DIR, "translations")
+    POT_FILE = os.path.join(BASE_DIR, "messages.pot")
+    CONFIG_FILE = os.path.join(BASE_DIR, "babel.cfg")
+    LANGUAGES = [
+        d for d in os.listdir(LOCALE_DIR) if os.path.isdir(os.path.join(LOCALE_DIR, d))
+    ]
+
     # 1. テンプレートファイルの再生成
     os.system(f"cd {BASE_DIR} && pybabel extract -F {CONFIG_FILE} -o {POT_FILE} .")
 
