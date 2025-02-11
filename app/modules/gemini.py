@@ -107,33 +107,33 @@ def search_cache(year: int, question: str):
     global cache
 
     # 前処理
-    question = question.upper().strip()
+    question_edited = question.upper().strip()
 
     # キャッシュにユーザーの入力があるか確認
-    if question in cache:
+    if question_edited in cache:
         print("Cache hit", flush=True)
 
         # キャッシュにユーザーの入力がある場合、回答を確定
-        response_url = cache[question].replace("__year__", str(year))
+        response_url = cache[question_edited].replace("__year__", str(year))
 
         # スプシに記録
         Thread(
-            target=spreadsheet.record_question, args=(year, question, response_url)
+            target=spreadsheet.record_question,
+            args=(year, question, response_url),
         ).start()
 
         return {"url": response_url}
 
     # 出場者名と完全一致の場合、出場者一覧ページにリダイレクト
-    if question in name_set:
+    if question_edited in name_set:
         print("Name hit", flush=True)
 
-        response_url = (
-            f"/{year}/participants?scroll=search_participants&value={question.upper()}"
-        )
+        response_url = f"/{year}/participants?scroll=search_participants&value={question_edited.upper()}"
 
         # スプシに記録
         Thread(
-            target=spreadsheet.record_question, args=(year, question, response_url)
+            target=spreadsheet.record_question,
+            args=(year, question, response_url),
         ).start()
 
         return {"url": response_url}

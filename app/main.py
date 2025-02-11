@@ -65,6 +65,7 @@ else:
 babel = Babel(app)
 test = _("test")  # テスト翻訳
 
+
 # 最新年度かを判定
 # 今年 or 最新年度のみTrue
 def is_latest_year(year):
@@ -581,7 +582,7 @@ def search(year: int):
     question = request.json.get("question")
 
     # キャッシュ検索
-    response_dict = gemini.search_cache(year=year, question=question)
+    response_dict = gemini.search_cache(year=year, question_edited=question)
 
     # キャッシュがない場合はgeminiで検索
     if response_dict is None:
