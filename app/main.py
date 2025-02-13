@@ -582,7 +582,7 @@ def search(year: int):
     question = request.json.get("question")
 
     # キャッシュ検索
-    response_dict = gemini.search_cache(year=year, question_edited=question)
+    response_dict = gemini.search_cache(year=year, question=question)
 
     # キャッシュがない場合はgeminiで検索
     if response_dict is None:

@@ -103,9 +103,6 @@ def search_cache(year: int, question: str):
         question (str): ユーザーからの質問。
     """
 
-    # URLのキャッシュ
-    global cache
-
     # 前処理
     question_edited = question.upper().strip()
 
