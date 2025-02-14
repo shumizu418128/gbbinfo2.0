@@ -448,6 +448,9 @@ def rule(year: int):
     :param year: 表示する年度
     :return: ルールのHTMLテンプレート
     """
+    # 2022年度の場合はトップページへリダイレクト
+    if year == 2022:
+        return redirect(url_for("content", year=year, content="top"))
 
     participants_GBB = get_participants_list(  # 昨年度成績上位者
         year=year, category="all", ticket_class="seed_right", cancel="hide", GBB=True
@@ -517,6 +520,9 @@ def content(year: int, content: str):
     :param content: 表示するコンテンツ
     :return: コンテンツのHTMLテンプレート
     """
+    # 2022年度の場合はトップページへリダイレクト
+    if year == 2022 and content != "top":
+        return redirect(url_for("content", year=year, content="top"))
 
     # その他のページはそのまま表示
     try:
