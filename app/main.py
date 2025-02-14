@@ -214,9 +214,9 @@ def participants(year: int):
     :param year: 表示する年度
     :return: 出場者一覧のHTMLテンプレート
     """
-    # 年度が指定されていない場合は最新年度を表示
-    if year not in available_years:
-        year = max(available_years)
+    # 2022年度の場合はトップページへリダイレクト
+    if year == 2022:
+        return redirect(url_for("content", year=year, content="top"))
 
     # 引数を取得
     category = request.args.get("category")
@@ -322,6 +322,10 @@ def japan(year: int):
     :param year: 表示する年度
     :return: 日本代表のHTMLテンプレート
     """
+    # 2022年度の場合はトップページへリダイレクト
+    if year == 2022:
+        return redirect(url_for("content", year=year, content="top"))
+
     # 参加者リストを取得
     participants_list = get_participants_list(
         year=year, category="all", ticket_class="all", cancel="show", iso_code=392
@@ -369,6 +373,10 @@ def result(year: int):
     """
     # 引数を取得
     category = request.args.get("category")
+
+    # 2022年度の場合はトップページへリダイレクト
+    if year == 2022:
+        return redirect(url_for("content", year=year, content="top"))
 
     # カテゴリを取得
     try:
