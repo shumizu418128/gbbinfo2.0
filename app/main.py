@@ -581,6 +581,10 @@ def search(year: int):
     # 質問を取得
     question = request.json.get("question")
 
+    # 2022年度の場合はトップページへリダイレクト
+    if year == 2022:
+        return jsonify({"url": "/2022/top"})
+
     # キャッシュ検索
     response_dict = gemini.search_cache(year=year, question=question)
 
