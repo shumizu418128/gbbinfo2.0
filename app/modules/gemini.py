@@ -210,6 +210,20 @@ def search(year: int, question: str):
     """
     global prompt, others_link
 
+    # 年度を推定：数字を検出
+    detect_year = re.search(r"\d{4}", question)
+    detect_year_2 = re.search(r"\d{2}", question)
+
+    if detect_year or detect_year_2:
+        if detect_year:
+            detect_year = int(detect_year.group())
+        else:
+            detect_year = int(detect_year_2.group())
+            detect_year += 2000
+        if detect_year in available_years and detect_year != year:
+            result = search(detect_year, question)
+            return result
+
     # チャットを開始
     chat = model.start_chat()
 
