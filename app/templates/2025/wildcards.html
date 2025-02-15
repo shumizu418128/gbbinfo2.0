@@ -32,11 +32,6 @@
   </li>
 </ul>
 
-<div class="button-container">
-  <a href="/others/how_to_plan"><button>{{_('現地観戦計画のたてかた')}}</button></a>
-  <a href="/{{ year }}/participants"><button>{{_('Wildcard結果')}} & {{_('出場者')}}</button></a>
-</div>
-
 <ul>
   <li>3/29{{ _('締め切り') }}</li>
   <li style="list-style: none; display: inline">
@@ -52,11 +47,6 @@
     </ul>
   </li>
 </ul>
-
-<div class="button-container">
-  <a href="/others/how_to_plan"><button>{{_('現地観戦計画のたてかた')}}</button></a>
-  <a href="/{{ year }}/rule"><button>{{_('ルール')}} & {{_('審査員')}}</button></a>
-</div>
 
 <ul>
   <li>4/5{{ _('締め切り') }}</li>
@@ -83,8 +73,8 @@
 </ul>
 
 <div class="button-container">
-  <a href="/others/how_to_plan"><button>{{_('現地観戦計画のたてかた')}}</button></a>
-  <a href="/{{ year }}/japan"><button>{{_('日本代表')}}</button></a>
+  <a href="/{{ year }}/participants"><button>{{_('Wildcard結果')}} & {{_('出場者')}}</button></a>
+  <a href="/{{ year }}/rule"><button>{{_('ルール')}} & {{_('審査員')}}</button></a>
 </div>
 
 <h2>{{ _('注意事項') }}</h2>
@@ -100,5 +90,9 @@
   {{ _('また、この再生リストにある動画が必ずしもWildcardとして申請された動画であるとは限りません（毎年必ず出場者の手続きミスで失格者が出ます）。') }}
 </p>
 
+<div class="button-container">
+  <a href="/others/how_to_plan"><button>{{_('現地観戦計画のたてかた')}}</button></a>
+  <a href="/{{ year }}/japan"><button>{{_('日本代表')}}</button></a>
+</div>
 
 {% endblock %}
