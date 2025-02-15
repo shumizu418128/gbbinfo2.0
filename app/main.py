@@ -223,7 +223,7 @@ def participants(year: int):
     ticket_class = request.args.get("ticket_class")
     cancel = request.args.get("cancel")
     scroll = request.args.get("scroll")
-    value = request.args.get("value") or ""
+    value = request.args.get("value")
 
     # カテゴリを取得
     try:
