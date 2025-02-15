@@ -71,8 +71,6 @@ converter = kakasi.getConverter()
 with open(os.getcwd() + "/app/modules/cache.json", "r", encoding="utf-8") as f:
     cache = json.load(f)
 
-cache_text = [key.upper() for key in cache.keys()]
-
 # 最新年度の出場者一覧を読み込む
 latest_year = max(available_years)
 beatboxers_df = pd.read_csv(f"app/static/csv/participants/{latest_year}.csv")
@@ -91,8 +89,14 @@ for members in members_list:
         member = members.split(", ")
         name_list.extend(member)
 
-name_set = set(name_list)
+name_list = list(set(name_list))
 
+# 出場者名をキャッシュに追加
+for name in name_list:
+    if not name.startswith("?"):
+        cache[name] = f"/__year__/participants?scroll=search_participants&value={name}"
+
+cache_text = [key for key in cache.keys()]
 
 def search_cache(year: int, question: str):
     """
@@ -112,20 +116,6 @@ def search_cache(year: int, question: str):
 
         # キャッシュにユーザーの入力がある場合、回答を確定
         response_url = cache[question_edited].replace("__year__", str(year))
-
-        # スプシに記録
-        Thread(
-            target=spreadsheet.record_question,
-            args=(year, question, response_url),
-        ).start()
-
-        return {"url": response_url}
-
-    # 出場者名と完全一致の場合、出場者一覧ページにリダイレクト
-    if question_edited in name_set:
-        print("Name hit", flush=True)
-
-        response_url = f"/{year}/participants?scroll=search_participants&value={question_edited.upper()}"
 
         # スプシに記録
         Thread(
@@ -223,6 +213,10 @@ def search(year: int, question: str):
         if detect_year in available_years and detect_year != year:
             result = search(detect_year, question)
             return result
+
+    # 2022年度の場合はトップページへリダイレクト
+    if year == 2022:
+        return {"url": "/2022/top"}
 
     # チャットを開始
     chat = model.start_chat()
