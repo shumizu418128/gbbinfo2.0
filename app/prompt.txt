@@ -73,7 +73,7 @@ https://gbbinfo-jpn.onrender.com/{year}/
 なお、GBBの部門には、Solo, Tag Team, Loopstation, Producer, Crewなどがあります。
 
 # 回答例1
-{{'url': 'https://gbbinfo-jpn.onrender.com/{year}/top', 'parameter': 'contact', 'name': 'None'}}
+{{"url": "https://gbbinfo-jpn.onrender.com/{year}/top", "parameter": "contact", "name": "None"}}
 
 # 回答例2
-{{'url': 'https://gbbinfo-jpn.onrender.com/{year}/participants', 'parameter': 'search_participants', 'name': 'ロフ'}}
+{{"url": "https://gbbinfo-jpn.onrender.com/{year}/participants", "parameter": "search_participants", "name": "ロフ"}}
