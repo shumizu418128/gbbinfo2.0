@@ -15,7 +15,7 @@
 
 <div class="button-container">
   <a href="/others/how_to_plan"><button>{{ _('現地観戦計画のたてかた') }}</button></a>
-  <li><a href="/{{ year }}/wildcards">{{_('Wildcard一覧')}}</a></li>
+  <a href="/{{ year }}/wildcards"><button>{{_('Wildcard一覧')}}</button></a>
 </div>
 <div class="button-container">
   <a href="/{{ year }}/wildcard_regulation"><button>{{ _('【Beatboxer向け】Wildcardレギュレーション解説') }}</button></a>
@@ -239,6 +239,7 @@
     </tr>
   </tbody>
 </table>
+
 <div class="post-it">
   {{ _('※中央ヨーロッパ時間には、サマータイムがあります。2025年のサマータイムは3/30からです。') }}<br />
   {{ _('Tag Team部門・Crew部門参加希望の方はご注意ください。') }}
@@ -246,9 +247,8 @@
 
 <div class="button-container">
   <a href="/others/how_to_plan"><button>{{ _('現地観戦計画のたてかた') }}</button></a>
-  <li><a href="/others/result_stream">{{_('Wildcard結果発表配信')}}</a></li>
+  <a href="/others/result_stream"><button>{{_('Wildcard結果発表配信')}}</button></a>
 </div>
-<div style="margin: 40px 0;"></div>
 
 <h2 id="p06" name="judges">{{ _('本戦審査員一覧') }}</h2>
 <div style="text-align: center;">
@@ -289,11 +289,11 @@
     </tr>
   </tbody>
 </table>
+
 <div class="button-container">
   <a href="/others/how_to_plan"><button>{{ _('現地観戦計画のたてかた') }}</button></a>
   <a href="/{{ year }}/participants"><button>{{ _('Wildcard結果') }} & {{ _('出場者') }}</button></a>
 </div>
-<div style="margin: 40px 0;"></div>
 
 <h2 id="p07">{{ _('Wildcard審査員一覧') }}</h2>
 <div style="text-align: center;">
