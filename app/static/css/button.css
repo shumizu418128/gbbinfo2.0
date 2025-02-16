@@ -1,5 +1,5 @@
 button {
-    font-family: Noto sans JP;
+    font-family: 'Noto sans JP';
 }
 
 .button-container a .icon {
@@ -60,7 +60,7 @@ button {
     flex-wrap: wrap;
     justify-content: center;
     gap: 4px;
-    font-family: Noto sans JP;
+    font-family: 'Noto sans JP';
     margin-top: 4px;
     margin-bottom: 4px;
 }
@@ -71,7 +71,7 @@ button {
     color: inherit;
     text-decoration: none;
     display: flex;
-    font-family: Noto sans JP;
+    font-family: 'Noto sans JP';
 }
 
 .button-container button {
@@ -81,12 +81,12 @@ button {
     box-sizing: border-box;
     color: rgb(0, 68, 204);
     background-image: linear-gradient(to top right, rgb(246, 169, 141), white, white, white);
-    border: 1px solid rgb(0, 68, 204);
+    border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
     height: 100%;
-    font-family: Noto sans JP;
+    font-family: 'Noto sans JP';
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -147,12 +147,12 @@ button {
     background-color: white;
     color: rgb(0, 68, 204);
     border: none;
-    border-radius: 10px;
-    font-family: Noto sans JP;
+    border-radius: 6px;
+    font-family: 'Noto sans JP';
 }
 
 .participants_filter:hover {
     color: white;
     background-color: rgb(240, 99, 47);
-    font-family: Noto sans JP;
+    font-family: 'Noto sans JP';
 }

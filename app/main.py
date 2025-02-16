@@ -224,6 +224,8 @@ def participants(year: int):
     cancel = request.args.get("cancel")
     scroll = request.args.get("scroll")
     value = request.args.get("value")
+    if value is None:
+        value = ""
 
     # カテゴリを取得
     try:

@@ -39,7 +39,7 @@
     {% else %}
       <div id="search-menu-nav" class="search-menu-nav-latest" style="display: none;">
         <button class="close-button" onclick="closeSearchMenu()">✖</button>
-        <h2 id="bottom-search-menu">GBB {{ year }} {{ _('なんでも検索') }}</h2>
+        <h2 style="margin-top: 25px" id="bottom-search-menu">GBB {{ year }} {{ _('なんでも検索') }}</h2>
         <p style="text-align: center;">{{ _('GBB {year} について検索してみよう').format(year=year) }}</p>
         <form id="search-form-nav" class="search-form-1" action="/{{ year }}/search">
           <input type="text" name="question" id="question-nav" placeholder="{{ _('例：現地観戦計画のたてかた') }}" required>

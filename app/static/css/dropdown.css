@@ -33,7 +33,7 @@
 .participants_form {
     margin: 0 auto;
     text-align: center;
-    font-family: Noto sans JP;
+    font-family: 'Noto sans JP';
 }
 
 .participants_select {
@@ -44,8 +44,8 @@
     font-size: 16px;
     margin-top: 5px;
     margin-bottom: 5px;
-    border-radius: 5px;
-    font-family: Noto sans JP;
+    border-radius: 6px;
+    font-family: 'Noto sans JP';
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
 }
 
@@ -53,12 +53,12 @@
     outline: none;
     background-color: rgb(240, 99, 47);
     color: white;
-    font-family: Noto sans JP;
+    font-family: 'Noto sans JP';
 }
 
 .member-list {
     font-size: 12px;
-    font-family: Noto sans JP;
+    font-family: 'Noto sans JP';
 }
 
 .headerDropdown {
@@ -73,7 +73,7 @@
     background-color: white;
     font-size: 24px;
     font-weight: bold;
-    font-family: Noto sans JP;
+    font-family: 'Noto sans JP';
     text-align: center;
     border: none;
     -webkit-appearance: none;

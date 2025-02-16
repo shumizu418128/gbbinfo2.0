@@ -74,6 +74,7 @@
     justify-content: center;
     align-items: center;
     transform: translate(-50%, -30%);
+    border-radius: 6px;
 }
 
 .close-button {
@@ -103,6 +104,7 @@
     justify-content: center;
     align-items: center;
     transform: translate(-50%, -30%);
+    border-radius: 6px;
 }
 
 .dropdown-content {

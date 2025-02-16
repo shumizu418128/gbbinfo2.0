@@ -354,7 +354,7 @@ def create_world_map(year: int):
 
         location = (lat, lon)
 
-        popup_content = '<div style="font-family: Noto Sans JP; font-size: 14px;">'
+        popup_content = '<div style="font-family: \'Noto sans JP\'; font-size: 14px;">'
         popup_content += f"""
         <h3 style="margin: 0; color: #F0632F;">
             {country_name}
@@ -390,7 +390,7 @@ def create_world_map(year: int):
         popup_content += "</div>"
 
         if len_group > 7:
-            popup_content = f'<div style="font-family: Noto Sans JP; font-size: 14px; max-height: 300px; overflow-y: scroll;">{popup_content}</div>'
+            popup_content = f'<div style="font-family: \'Noto sans JP\'; font-size: 14px; max-height: 300px; overflow-y: scroll;">{popup_content}</div>'
 
         # アイコン素材がある国の場合
         icon_size = (48, 48)
