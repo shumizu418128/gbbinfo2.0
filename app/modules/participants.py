@@ -1,29 +1,9 @@
-import re
-
 import folium
-import mojimoji
 import pandas as pd
-import pykakasi
 from rapidfuzz.process import extract
 
-instagram = {
-    2024: {
-        "Solo": "https://www.instagram.com/p/C5MCF_QrlHd/?img_index=10",
-        "Tag Team": "https://www.instagram.com/p/C5qoFKgtfR5/?img_index=8",
-        "Loopstation": "https://www.instagram.com/p/C5JUKNUoYqk/?img_index=8",
-        "Producer": "https://www.instagram.com/p/C5tIechNmah/?img_index=5",
-        "Crew": "https://www.instagram.com/p/C5vtSWFtmiJ/?img_index=7",
-    }
-}
-
-kakasi = pykakasi.kakasi()
-kakasi.setMode("H", "a")  # ひらがなをローマ字に変換
-kakasi.setMode("K", "a")  # カタカナをローマ字に変換
-kakasi.setMode("J", "a")  # 漢字をローマ字に変換
-converter = kakasi.getConverter()
-
 # df事前準備
-countries_df = pd.read_csv("app/static/csv/countries.csv")
+countries_df = pd.read_csv("app/database/countries.csv")
 
 
 def get_participants_list(
@@ -51,7 +31,7 @@ def get_participants_list(
     global countries_df
 
     # csvからデータを取得 (ここの処理は毎回行う必要がある)
-    beatboxers_df = pd.read_csv(f"app/static/csv/participants/{year}.csv")
+    beatboxers_df = pd.read_csv(f"app/database/participants/{year}.csv")
     beatboxers_df = beatboxers_df.fillna("")
 
     # Merge data to include country names in beatboxers_df
@@ -189,22 +169,6 @@ def search_participants(year: int, keyword: str):
     Returns:
         list: 一致した出場者のリスト。
     """
-    # 全角・半角の表記ゆれを統一
-    # 英数字を半角に変換
-    keyword = mojimoji.han_to_zen(keyword, ascii=False, digit=True)
-
-    # 日本語（カタカナ）を全角に変換
-    keyword = mojimoji.zen_to_han(keyword, kana=False)
-
-    # 入力が英数字表記かどうか判定
-    # 記号も対象・Ωは"Sound of Sony Ω"の入力対策
-    match_alphabet = re.match(
-        r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+', keyword
-    )
-    if match_alphabet is None:
-        # ローマ字に変換
-        keyword = converter.do(keyword)
-
     # 出場者リストを取得
     participants_list = get_participants_list(
         year=year, category="all", ticket_class="all", cancel="show"
@@ -278,7 +242,7 @@ def create_world_map(year: int):
         None (ファイルを保存)
     """
     # csvからデータを取得
-    beatboxers_df = pd.read_csv(f"app/static/csv/participants/{year}.csv")
+    beatboxers_df = pd.read_csv(f"app/database/participants/{year}.csv")
 
     # nanを空白に変換
     beatboxers_df = beatboxers_df.fillna("")
@@ -354,7 +318,7 @@ def create_world_map(year: int):
 
         location = (lat, lon)
 
-        popup_content = '<div style="font-family: \'Noto sans JP\'; font-size: 14px;">'
+        popup_content = "<div style=\"font-family: 'Noto sans JP'; font-size: 14px;\">"
         popup_content += f"""
         <h3 style="margin: 0; color: #F0632F;">
             {country_name}
@@ -390,7 +354,7 @@ def create_world_map(year: int):
         popup_content += "</div>"
 
         if len_group > 7:
-            popup_content = f'<div style="font-family: \'Noto sans JP\'; font-size: 14px; max-height: 300px; overflow-y: scroll;">{popup_content}</div>'
+            popup_content = f"<div style=\"font-family: 'Noto sans JP'; font-size: 14px; max-height: 300px; overflow-y: scroll;\">{popup_content}</div>"
 
         # アイコン素材がある国の場合
         icon_size = (48, 48)

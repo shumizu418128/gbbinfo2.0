@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 import pandas as pd
 
 
@@ -17,13 +19,13 @@ def get_result(category: str, year: int):
             - ランキング表の場合: ラウンドごとの順位を含む辞書。
     """
     try:
-        df = pd.read_csv(f"app/static/csv/result/{year}/{category}.csv")
+        df = pd.read_csv(f"app/database/result/{year}/{category}.csv")
     except FileNotFoundError:
         return None
 
     # カラム名を取得
     columns = df.columns.tolist()
-    result_dict = {}
+    result_dict = defaultdict(list)
 
     # トーナメント表の場合
     if "win" in columns:
@@ -34,9 +36,6 @@ def get_result(category: str, year: int):
             lose = row["lose"].upper()  # CSV に記載されている名前を大文字に変換
 
             # ラウンド名がキーになっているリストに追加
-            if round_name not in result_dict:
-                result_dict[round_name] = []
-
             result_dict[round_name].append({"win": win, "lose": lose})
 
         return ["tournament", result_dict]
@@ -49,9 +48,6 @@ def get_result(category: str, year: int):
             name = row["name"].upper()  # CSV に記載されている名前を大文字に変換
 
             # ラウンド名がキーになっているリストに追加
-            if round_name not in result_dict:
-                result_dict[round_name] = []
-
             result_dict[round_name].append({"rank": rank, "name": name})
 
         return ["ranking", result_dict]

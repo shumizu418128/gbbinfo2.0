@@ -23,7 +23,6 @@ from .modules.config import Config, TestConfig, available_langs, available_years
 from .modules.participants import (
     create_world_map,
     get_participants_list,
-    instagram,
     search_participants,
 )
 from .modules.result import get_result
@@ -195,7 +194,7 @@ valid_categories_dict = {}
 for year in available_years:
     if year != 2022:
         valid_categories = (
-            pd.read_csv(f"app/static/csv/participants/{year}.csv")["category"]
+            pd.read_csv(f"app/database/participants/{year}.csv")["category"]
             .unique()
             .tolist()
         )
@@ -290,18 +289,11 @@ def participants(year: int):
     # 参加者リストを取得
     participants_list = get_participants_list(year, category, ticket_class, cancel)
 
-    # 結果URLを取得
-    try:
-        result_url = instagram[year][category]
-    except KeyError:
-        result_url = None
-
     return render_template(
         "/common/participants.html",
         participants=participants_list,
         year=year,
         all_category=valid_categories,
-        result_url=result_url,
         is_latest_year=is_latest_year(year),
         available_years=available_years,
         last_updated=last_updated,
@@ -353,7 +345,7 @@ all_category_dict = {}
 for year in available_years:
     # フォルダの中にあるCSVファイル一覧を取得
     try:
-        all_category = os.listdir(f"./app/static/csv/result/{year}")
+        all_category = os.listdir(f"./app/database/result/{year}")
     except Exception:
         continue  # ファイルが存在しない場合はスキップ
 

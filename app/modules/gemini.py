@@ -68,12 +68,12 @@ kakasi.setMode("J", "a")  # 漢字をローマ字に変換
 converter = kakasi.getConverter()
 
 # URLのキャッシュを辞書として読み込む
-with open(os.getcwd() + "/app/modules/cache.json", "r", encoding="utf-8") as f:
+with open(os.getcwd() + "/app/json/cache.json", "r", encoding="utf-8") as f:
     cache = json.load(f)
 
 # 最新年度の出場者一覧を読み込む
 latest_year = max(available_years)
-beatboxers_df = pd.read_csv(f"app/static/csv/participants/{latest_year}.csv")
+beatboxers_df = pd.read_csv(f"app/database/participants/{latest_year}.csv")
 beatboxers_df = beatboxers_df.fillna("")
 name_list = (
     beatboxers_df["name"]
@@ -97,6 +97,7 @@ for name in name_list:
         cache[name] = f"/__year__/participants?scroll=search_participants&value={name}"
 
 cache_text = [key for key in cache.keys()]
+
 
 def search_cache(year: int, question: str):
     """

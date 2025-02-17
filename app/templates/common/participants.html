@@ -91,9 +91,6 @@
 <div style="margin: 40px 0;"></div>
 
 <div class="button-container">
-  {% if result_url %}
-    <a href="{{ result_url }}" target="_blank" rel="noopener noreferrer"><button type="button">{{ request.args.get('category') }}<br>{{ _('Wildcard順位') }}</button></a>
-  {% endif %}
   <a href="/{{year}}/rule"><button type="button">{{ _('出場権詳細') }}</button></a>
   <a href="/{{year}}/rule"><button type="button">GBB {{ year }} {{ _('ルール&審査員') }}</button></a>
   <a href="/{{year}}/rule?scroll=result_date"><button type="button">{{ _('結果発表日') }}</button></a>
