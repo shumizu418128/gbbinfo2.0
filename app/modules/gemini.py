@@ -112,7 +112,7 @@ def search_cache(year: int, question: str):
     question_edited = question.upper().strip()
 
     # キャッシュにユーザーの入力があるか確認
-    if question_edited in cache:
+    if question_edited in cache_text:
         print("Cache hit", flush=True)
 
         # キャッシュにユーザーの入力がある場合、回答を確定
