@@ -16,7 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // ドロップダウンメニューの変更を監視して、選択されたh2要素にスクロール
     dropdown.addEventListener('change', function() {
         const selectedHeader = headers[this.value];
-        selectedHeader.scrollIntoView({ behavior: 'smooth' });
+        const y = selectedHeader.getBoundingClientRect().top + window.scrollY - 50;
+        window.scrollTo({
+            top: y,
+            behavior: 'smooth'
+        });
     });
 
     function getTextWidth(text, fontSize) {

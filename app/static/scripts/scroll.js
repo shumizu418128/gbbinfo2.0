@@ -39,7 +39,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function(e) {
         e.preventDefault(); // デフォルトの動作を防ぐ
         const targetElement = document.querySelector(this.getAttribute("href"));
-        const y = targetElement.getBoundingClientRect().top + window.scrollY;
+        const y = targetElement.getBoundingClientRect().top + window.scrollY - 50;
 
         // スムーズスクロールを実行
         window.scrollTo({top: y, behavior: 'smooth'});
@@ -53,7 +53,7 @@ function parameterScroll() {
     if (target) {
         const element = document.querySelector(`[name="${target}"]`); // 対象要素を取得
         if (element) {
-            const y = element.getBoundingClientRect().top + window.scrollY;
+            const y = element.getBoundingClientRect().top + window.scrollY - 50;
 
             // スムーズスクロールを実行
             window.scrollTo({top: y, behavior: 'smooth'});
