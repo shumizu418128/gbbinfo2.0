@@ -38,11 +38,12 @@ def translate():
     for lang in LANGUAGES:
         po_file_path = os.path.join(LOCALE_DIR, lang, "LC_MESSAGES", "messages.po")
 
+        # Google Translateはzh-TWをサポート
+        target_lang = "zh-tw" if lang == "zh_Hant_TW" else lang
+
         po = polib.pofile(po_file_path)
         for entry in po.untranslated_entries() + po.fuzzy_entries():
-            translation = translator.translate(
-                entry.msgid, src="en", dest=lang.split("_")[0]
-            ).text
+            translation = translator.translate(entry.msgid, src="ja", dest=target_lang).text
             entry.msgstr = translation
             if "fuzzy" in entry.flags:
                 entry.flags.remove("fuzzy")  # fuzzy フラグを削除

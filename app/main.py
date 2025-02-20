@@ -1,7 +1,9 @@
 import os
 import re
+import sched
+import time
 import warnings
-from datetime import datetime
+from datetime import datetime, timedelta
 from threading import Thread
 
 import jinja2
@@ -52,6 +54,7 @@ if os.getenv("ENVIRONMENT_CHECK") == "qawsedrftgyhujikolp":
     cache = Cache(app, config={"CACHE_TYPE": "null"})
 
 # 本番環境ではキャッシュを有効化
+# 多言語対応のため実際にはworld_mapのみキャッシュを有効化
 else:
     translate()
     app.config.from_object(Config)
@@ -66,8 +69,71 @@ else:
 babel = Babel(app)
 test = _("test")  # テスト翻訳
 
-# 本日のおすすめ動画
+# 本日のおすすめ動画IDを取得
 video_id = spreadsheet.get_video_id()
+s = sched.scheduler(time.time, time.sleep)
+
+
+def update_video_id():
+    """
+    本日のおすすめ動画IDを更新します。
+
+    この関数は、スプレッドシートから最新の動画IDを取得し、
+    グローバル変数 video_id を更新します。
+    また、更新された video_id をコンソールに出力します。
+    """
+    global video_id
+    video_id = spreadsheet.get_video_id()
+    print("video_id を更新しました:", video_id)
+
+
+def schedule_delay_until_midnight():
+    """
+    次の日の午前0時までの遅延時間（秒）を計算します。
+
+    現在時刻から次の午前0時までの秒数を計算し、
+    スケジューラが次の更新をいつ実行すべきかを決定するために使用されます。
+
+    :return: 次の午前0時までの秒数
+    """
+    now = datetime.now()
+    next_midnight = datetime(now.year, now.month, now.day) + timedelta(days=1)
+    delay = (next_midnight - now).total_seconds()
+    return delay
+
+
+def periodic_update():
+    """
+    定期的に動画IDを更新する関数。
+
+    update_video_id() を呼び出して動画IDを更新し、
+    次に schedule_delay_until_midnight() を呼び出して次の午前0時までの遅延時間を取得します。
+    その後、s.enter() を使用して、指定された遅延時間の後に periodic_update() 関数自身を再度実行するようにスケジュールします。
+    """
+    update_video_id()
+    delay = schedule_delay_until_midnight()  # 次の0:00までの秒数
+    s.enter(delay, 1, periodic_update)
+
+
+def run_scheduler():
+    """
+    スケジューラを実行し、定期的な動画IDの更新をスケジュールします。
+
+    最初に schedule_delay_until_midnight() を呼び出して、初回実行までの遅延時間を計算します。
+    次に、s.enter() を使用して、periodic_update() 関数をスケジュールします。
+    最後に、s.run() を呼び出してスケジューラを開始し、スケジュールされたタスクを実行します。
+    """
+    # 初回は次の0:00に実行予定
+    initial_delay = schedule_delay_until_midnight()
+    s.enter(initial_delay, 1, periodic_update)
+    s.run()
+
+
+scheduler_thread = Thread(target=run_scheduler)
+scheduler_thread.daemon = (
+    True  # メインスレッドが終了したら、このスレッドも終了するように設定
+)
+scheduler_thread.start()
 
 
 # 最新年度かを判定
