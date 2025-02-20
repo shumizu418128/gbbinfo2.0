@@ -586,6 +586,9 @@ def search(year: int):
     :param year: 検索する年度
     :return: 検索結果のJSONレスポンス
     """
+    if year == 2022:
+        return jsonify({"url": "/2022/top"})
+
     # 質問を取得
     question = request.json.get("question")
 
