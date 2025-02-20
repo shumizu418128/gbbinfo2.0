@@ -112,6 +112,25 @@
 <p>{{_('GBBの各種情報は、発表が非常に遅いことで有名です。気長に待ちましょう。')}}</p>
 
 {% if is_latest_year is true %}
+  <h2>{{ _('本日のおすすめ動画') }}</h2>
+  <div style="aspect-ratio: 16 / 9; max-width: 640px; margin: 0 auto;">
+    <iframe
+      width="100%" height="100%"
+      src="https://www.youtube.com/embed/{{ video_id }}"
+      frameborder="0" allowfullscreen>
+    </iframe>
+  </div>
+
+  <h3>{{ _('おすすめ動画を追加する') }}</h3>
+  <p style="text-align: center;">{{ _('YouTubeのBeatbox動画を投稿してね') }}</p>
+  <form id="video-form" class="video-form"  style="text-align: center;">
+    <input type="text" name="video_url" id="video_url" placeholder="https://www.youtube.com/watch?v=..." required>
+    <button type="button" onclick="postVideo()">{{_('送信')}}</button>
+  </form>
+  <div id="video-form-message" style="display: none; text-align: center;">{{_('ありがとうございます！')}}</div>
+{% endif %}
+
+{% if is_latest_year is true %}
   <h2 id="contact" name="contact">{{_('お問い合わせ')}}</h2>
   {% if request.args.get("scroll") == "contact" %}
     <div class="post-it">

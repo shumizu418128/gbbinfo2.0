@@ -1,6 +1,8 @@
 import os
+import re
 import warnings
 from datetime import datetime
+from threading import Thread
 
 import jinja2
 import pandas as pd
@@ -18,7 +20,7 @@ from flask_babel import Babel, _
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
-from .modules import gemini
+from .modules import gemini, spreadsheet
 from .modules.config import Config, TestConfig, available_langs, available_years
 from .modules.participants import (
     create_world_map,
@@ -63,6 +65,9 @@ else:
 
 babel = Babel(app)
 test = _("test")  # テスト翻訳
+
+# 本日のおすすめ動画
+video_id = spreadsheet.get_video_id()
 
 
 # 最新年度かを判定
@@ -527,6 +532,7 @@ def content(year: int, content: str):
             available_years=available_years,
             last_updated=last_updated,
             is_early_access=is_early_access(year),
+            video_id=video_id,
         )
 
     # エラーが出たら404を表示
@@ -572,12 +578,10 @@ def others(content: str):
 
 # 以下、キャッシュ使用不可
 
-####################################################################
-# gemini, discord, Sitemap, robots.txt
-####################################################################
 
-
-# 検索機能
+####################################################################
+# 検索, form POST
+####################################################################
 @app.route("/<int:year>/search", methods=["POST"])
 def search(year: int):
     """
@@ -626,6 +630,39 @@ def search_suggestions():
     return jsonify({"suggestions": suggestions})
 
 
+def extract_youtube_video_id(url: str) -> str | None:
+    """
+    YouTubeのURLから動画IDを抽出します。
+
+    :param url: YouTubeのURL
+    :return: 動画ID（存在しない場合はNone）
+    """
+    pattern = r"(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})"
+    match = re.search(pattern, url)
+    return match.group(1) if match else None
+
+
+@app.route("/post_video", methods=["POST"])
+def post_video():
+    """
+    動画のURLを取得します。
+
+    :return: 動画のURL
+    """
+    # 動画のURLからIDを取得
+    video_url = request.json.get("video_url")
+    video_id = extract_youtube_video_id(video_url)
+
+    # スプシに記録
+    if video_id is not None:
+        Thread(target=spreadsheet.record_video_id, args=(video_id, video_url)).start()
+
+    return jsonify({"status": "ok"}), 200
+
+
+####################################################################
+# discord, Sitemap, robots.txt, ads.txt
+####################################################################
 @app.route("/.well-known/discord")
 def discord():
     """
