@@ -1,7 +1,9 @@
 import os
 import re
+import sched
+import time
 import warnings
-from datetime import datetime
+from datetime import datetime, timedelta
 from threading import Thread
 
 import jinja2
@@ -66,8 +68,71 @@ else:
 babel = Babel(app)
 test = _("test")  # テスト翻訳
 
-# 本日のおすすめ動画
+# 本日のおすすめ動画IDを取得
 video_id = spreadsheet.get_video_id()
+s = sched.scheduler(time.time, time.sleep)
+
+
+def update_video_id():
+    """
+    本日のおすすめ動画IDを更新します。
+
+    この関数は、スプレッドシートから最新の動画IDを取得し、
+    グローバル変数 video_id を更新します。
+    また、更新された video_id をコンソールに出力します。
+    """
+    global video_id
+    video_id = spreadsheet.get_video_id()
+    print("video_id を更新しました:", video_id)
+
+
+def schedule_delay_until_midnight():
+    """
+    次の日の午前0時までの遅延時間（秒）を計算します。
+
+    現在時刻から次の午前0時までの秒数を計算し、
+    スケジューラが次の更新をいつ実行すべきかを決定するために使用されます。
+
+    :return: 次の午前0時までの秒数
+    """
+    now = datetime.now()
+    next_midnight = datetime(now.year, now.month, now.day) + timedelta(days=1)
+    delay = (next_midnight - now).total_seconds()
+    return delay
+
+
+def periodic_update():
+    """
+    定期的に動画IDを更新する関数。
+
+    update_video_id() を呼び出して動画IDを更新し、
+    次に schedule_delay_until_midnight() を呼び出して次の午前0時までの遅延時間を取得します。
+    その後、s.enter() を使用して、指定された遅延時間の後に periodic_update() 関数自身を再度実行するようにスケジュールします。
+    """
+    update_video_id()
+    delay = schedule_delay_until_midnight()  # 次の0:00までの秒数
+    s.enter(delay, 1, periodic_update)
+
+
+def run_scheduler():
+    """
+    スケジューラを実行し、定期的な動画IDの更新をスケジュールします。
+
+    最初に schedule_delay_until_midnight() を呼び出して、初回実行までの遅延時間を計算します。
+    次に、s.enter() を使用して、periodic_update() 関数をスケジュールします。
+    最後に、s.run() を呼び出してスケジューラを開始し、スケジュールされたタスクを実行します。
+    """
+    # 初回は次の0:00に実行予定
+    initial_delay = schedule_delay_until_midnight()
+    s.enter(initial_delay, 1, periodic_update)
+    s.run()
+
+
+scheduler_thread = Thread(target=run_scheduler)
+scheduler_thread.daemon = (
+    True  # メインスレッドが終了したら、このスレッドも終了するように設定
+)
+scheduler_thread.start()
 
 
 # 最新年度かを判定
@@ -210,6 +275,7 @@ for year in available_years:
     changefreq="monthly", priority=1.0, url_variables={"year": available_years}
 )
 @app.route("/<int:year>/participants", methods=["GET"])
+@cache.cached(query_string=True)
 def participants(year: int):
     """
     指定された年度の出場者一覧を表示します。
@@ -314,6 +380,7 @@ def participants(year: int):
     changefreq="yearly", priority=0.8, url_variables={"year": available_years}
 )
 @app.route("/<int:year>/japan")
+@cache.cached(query_string=True)
 def japan(year: int):
     """
     指定された年度の日本代表の出場者一覧を表示します。
@@ -363,6 +430,7 @@ for year in available_years:
     changefreq="yearly", priority=0.8, url_variables={"year": available_years}
 )
 @app.route("/<int:year>/result")
+@cache.cached(query_string=True)
 def result(year: int):
     """
     結果ページを表示します。
@@ -415,6 +483,7 @@ def result(year: int):
 
 # 廃止したリンクのリダイレクト
 @app.route("/result")
+@cache.cached(query_string=True)
 def result_redirect():
     """
     すでに廃止したリンクのリダイレクト
@@ -439,6 +508,7 @@ def result_redirect():
     changefreq="weekly", priority=0.8, url_variables={"year": available_years}
 )
 @app.route("/<int:year>/rule")
+@cache.cached(query_string=True)
 def rule(year: int):
     """
     指定された年度のルールを表示します。
@@ -510,6 +580,7 @@ combinations_content = [
     url_variables={"year": combinations_year, "content": combinations_content},
 )
 @app.route("/<int:year>/<string:content>")
+@cache.cached(query_string=True, timeout=3600)
 def content(year: int, content: str):
     """
     指定された年度とコンテンツのページを表示します。
@@ -552,6 +623,7 @@ content_others = [content.replace(".html", "") for content in content_others]
     changefreq="never", priority=0.7, url_variables={"content": content_others}
 )
 @app.route("/others/<string:content>")
+@cache.cached(query_string=True)
 def others(content: str):
     """
     その他のページを表示します。
