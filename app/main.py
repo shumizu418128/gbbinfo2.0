@@ -54,6 +54,7 @@ if os.getenv("ENVIRONMENT_CHECK") == "qawsedrftgyhujikolp":
     cache = Cache(app, config={"CACHE_TYPE": "null"})
 
 # 本番環境ではキャッシュを有効化
+# 多言語対応のため実際にはworld_mapのみキャッシュを有効化
 else:
     translate()
     app.config.from_object(Config)
@@ -275,7 +276,6 @@ for year in available_years:
     changefreq="monthly", priority=1.0, url_variables={"year": available_years}
 )
 @app.route("/<int:year>/participants", methods=["GET"])
-@cache.cached(query_string=True)
 def participants(year: int):
     """
     指定された年度の出場者一覧を表示します。
@@ -380,7 +380,6 @@ def participants(year: int):
     changefreq="yearly", priority=0.8, url_variables={"year": available_years}
 )
 @app.route("/<int:year>/japan")
-@cache.cached(query_string=True)
 def japan(year: int):
     """
     指定された年度の日本代表の出場者一覧を表示します。
@@ -430,7 +429,6 @@ for year in available_years:
     changefreq="yearly", priority=0.8, url_variables={"year": available_years}
 )
 @app.route("/<int:year>/result")
-@cache.cached(query_string=True)
 def result(year: int):
     """
     結果ページを表示します。
@@ -483,7 +481,6 @@ def result(year: int):
 
 # 廃止したリンクのリダイレクト
 @app.route("/result")
-@cache.cached(query_string=True)
 def result_redirect():
     """
     すでに廃止したリンクのリダイレクト
@@ -508,7 +505,6 @@ def result_redirect():
     changefreq="weekly", priority=0.8, url_variables={"year": available_years}
 )
 @app.route("/<int:year>/rule")
-@cache.cached(query_string=True)
 def rule(year: int):
     """
     指定された年度のルールを表示します。
@@ -580,7 +576,6 @@ combinations_content = [
     url_variables={"year": combinations_year, "content": combinations_content},
 )
 @app.route("/<int:year>/<string:content>")
-@cache.cached(query_string=True, timeout=3600)
 def content(year: int, content: str):
     """
     指定された年度とコンテンツのページを表示します。
@@ -623,7 +618,6 @@ content_others = [content.replace(".html", "") for content in content_others]
     changefreq="never", priority=0.7, url_variables={"content": content_others}
 )
 @app.route("/others/<string:content>")
-@cache.cached(query_string=True)
 def others(content: str):
     """
     その他のページを表示します。
