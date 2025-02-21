@@ -28,6 +28,7 @@ from .modules.participants import (
     create_world_map,
     get_participants_list,
     search_participants,
+    yearly_participant_analysis,
 )
 from .modules.result import get_result
 from .modules.translate import translate
@@ -724,6 +725,23 @@ def post_video():
         Thread(target=spreadsheet.record_video_id, args=(video_id, video_url)).start()
 
     return jsonify({"status": "ok"}), 200
+
+
+####################################################################
+# データで見るGBB
+####################################################################
+
+
+@app.route("/analyze_data/<int:year>")
+def analyze_data_yearly(year: int):
+    """
+    データで見るGBBのページを表示します。
+
+    :return: データで見るGBBのHTMLテンプレート
+    """
+    yearly_analysis = yearly_participant_analysis(year=year)
+
+    return jsonify(yearly_analysis)
 
 
 ####################################################################
