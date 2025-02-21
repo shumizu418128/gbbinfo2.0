@@ -216,10 +216,9 @@ def search(year: int, question: str):
         if detect_year == 2022:
             return {"url": "/2022/top"}
 
-        # 2022年度以外の場合はsearch関数を再帰呼び出し
+        # 2022年度以外の場合は年度を更新
         if detect_year in available_years and detect_year != year:
-            result = search(detect_year, question)
-            return result
+            year = detect_year
 
     # チャットを開始
     chat = model.start_chat()
