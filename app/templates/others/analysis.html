@@ -9,11 +9,7 @@
 {% endblock %}
 {% block content %}
 <h1>データで見るGBB</h1>
-<h2>各参加者の出場回数 TOP3</h2>
-<div id="totalIndividualTable"></div>
-
-<h2>Wildcard勝者数ランキング TOP2</h2>
-<div id="totalWildcardIndividualTable"></div>
+<p>対象年度：{{ available_years|min }} - {{ available_years|max }} ({{ available_years|length }}年分)</p>
 
 <h2>国別出場者数 TOP10</h2>
 <canvas class="chart" id="totalCountryChart"></canvas>
@@ -21,11 +17,18 @@
 <h2>国別Wildcard勝者数ランキング TOP10</h2>
 <canvas class="chart" id="totalWildcardCountryChart"></canvas>
 
+<h2>各参加者の出場回数 TOP3</h2>
+<div id="totalIndividualTable"></div>
+
+<h2>Wildcard勝者数ランキング TOP2</h2>
+<div id="totalWildcardIndividualTable"></div>
+
 <script>
 let colorIndex = 0;
 
 function generateColors(numColors) {
     const colors = [];
+    let colorIndex = 0;
     const availableColors = [
         'rgba(255, 99, 132, 0.8)',
         'rgba(54, 162, 235, 0.8)',
