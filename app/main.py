@@ -24,6 +24,7 @@ from .modules.participants import (
     create_world_map,
     get_participants_list,
     search_participants,
+    total_participant_analysis,
     yearly_participant_analysis,
 )
 from .modules.result import get_result
@@ -573,7 +574,7 @@ def others(content: str):
         return render_template("/common/404.html"), 404
 
 
-# 以下、キャッシュ使用不可
+# 以下API
 
 
 ####################################################################
@@ -631,6 +632,7 @@ def search_suggestions():
 # データで見るGBB
 ####################################################################
 @app.route("/analyze_data/<int:year>")
+@cache.cached()
 def analyze_data_yearly(year: int):
     """
     データで見るGBBのページを表示します。
@@ -643,10 +645,25 @@ def analyze_data_yearly(year: int):
     return jsonify(yearly_analysis)
 
 
+@app.route("/analyze_data/total")
+@cache.cached()
+def analyze_data_total():
+    """
+    データで見るGBBのページを表示します。
+
+    :param year: 表示する年度
+    :return: データで見るGBBのHTMLテンプレート
+    """
+    total_analysis = total_participant_analysis()
+
+    return jsonify(total_analysis)
+
+
 ####################################################################
 # discord, Sitemap, robots.txt, ads.txt
 ####################################################################
 @app.route("/.well-known/discord")
+@cache.cached()
 def discord():
     """
     Discordの設定ファイルを返します。
@@ -657,6 +674,7 @@ def discord():
 
 
 @app.route("/sitemap.xml")
+@cache.cached()
 def sitemap():
     """
     サイトマップを生成して返します。
@@ -667,6 +685,7 @@ def sitemap():
 
 
 @app.route("/robots.txt")
+@cache.cached()
 def robots_txt():
     """
     robots.txtファイルを返します。
@@ -677,6 +696,7 @@ def robots_txt():
 
 
 @app.route("/ads.txt")
+@cache.cached()
 def ads_txt():
     """
     ads.txtファイルを返します。
@@ -692,6 +712,7 @@ def ads_txt():
 
 
 @app.route("/favicon.ico", methods=["GET"])
+@cache.cached()
 def favicon_ico():
     """
     favicon.icoファイルを返します。
@@ -712,6 +733,7 @@ def favicon_ico():
 @app.route("/apple-touch-icon-120x120.png", methods=["GET"])
 @app.route("/apple-touch-icon-precomposed.png", methods=["GET"])
 @app.route("/apple-touch-icon.png", methods=["GET"])
+@cache.cached()
 def apple_touch_icon():
     """
     Appleタッチアイコンを返します。
@@ -727,6 +749,7 @@ def apple_touch_icon():
 
 
 @app.route("/manifest.json")
+@cache.cached()
 def manifest():
     """
     PWAのマニフェストファイルを返します。
@@ -737,6 +760,7 @@ def manifest():
 
 
 @app.route("/service-worker.js")
+@cache.cached()
 def service_worker():
     """
     サービスワーカーのJavaScriptファイルを返します。
@@ -752,6 +776,7 @@ def service_worker():
 
 
 @app.errorhandler(404)
+@cache.cached()
 def page_not_found(_):
     """
     404エラーページを表示します。

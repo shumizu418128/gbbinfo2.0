@@ -4,6 +4,9 @@
 {% block og_title %}GBB{{ year }}:{{ _('Wildcard結果&出場者') }} - GBBINFO-JPN{% endblock %}
 {% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/participants{% endblock %}
 {% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/participants{% endblock %}
+{% block head %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
 {% block content %}
 
 <h1>GBB {{ year }} {{ _('Wildcard結果&出場者') }}</h1>
@@ -121,7 +124,12 @@
   <iframe src="{{ url_for('world_map', year=year) }}" width="100%" height="400px" frameborder="0"></iframe>
 {% endif %}
 
-<script src="/static/scripts/result.js"></script>
+<h2>{{ _('国別出場者数') }}</h2>
+<canvas class="chart" id="countryChart"></canvas>
+
+<h2>{{ _('カテゴリー別出場者数') }}</h2>
+<canvas class="chart" id="categoryChart" height="300"></canvas>
+
 <form method="GET" class="participants_form">
 <label for="year">{{ _('その他の年度を確認：') }}</label>
 <select name="year" id="year" class="participants_select" onchange="redirect_year('participants')">
@@ -131,4 +139,5 @@
 </select>
 </form>
 
+<script src="/static/scripts/analysis.js"></script>
 {% endblock %}
