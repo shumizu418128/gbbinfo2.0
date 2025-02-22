@@ -1,7 +1,6 @@
 import json
 import os
 from datetime import datetime
-import random
 
 import gspread
 import ratelimit
@@ -73,57 +72,3 @@ def record_question(year: int, question: str, answer: str):
 
         # 質問と年を記録
         sheet.insert_row([dt_now, year_str, question, answer], 2)
-
-
-@ratelimit.limits(calls=1, period=3, raise_on_limit=False)
-def record_video_id(video_id: str, video_url: str):
-    """
-    Googleスプレッドシートに動画IDを記録します。
-
-    Args:
-        id (str): 記録する動画ID。
-    """
-
-    dt_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    client = get_client()
-
-    # スプレッドシートを開く
-    sheet = client.open("gbbinfo-jpn").worksheet("video_id")
-
-    # 質問と年を記録
-    sheet.insert_row([dt_now, video_id, video_url], 2)
-
-
-def get_video_id():
-    """
-    Googleスプレッドシートから動画IDを取得します。
-
-    Returns:
-        list: 動画IDのリスト。
-    """
-    client = get_client()
-
-    # スプレッドシートを開く
-    sheet = client.open("gbbinfo-jpn").worksheet("video_id")
-
-    # 動画IDを取得
-    video_id_list = sheet.col_values(2)
-    video_id_list.pop(0)
-
-    # 重複を削除
-    unique_id = list(set(video_id_list))
-
-    # 乱数生成 (1日ごとに変わるように)
-    dt_now = datetime.now()
-    date = dt_now.strftime("%Y%m%d")
-    date_int = int(date)
-    random.seed(date_int)
-
-    # 動画IDをシャッフル
-    random.shuffle(unique_id)
-
-    # 動画IDを取得
-    video_id = unique_id[0]
-
-    return video_id
