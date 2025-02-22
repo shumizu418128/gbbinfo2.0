@@ -183,6 +183,8 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
             )
             if match_alphabet:
                 response_url += f"&value={romaji_name.upper()}"
+            else:
+                response_url += f"&value={name}"
 
     return response_url
 
