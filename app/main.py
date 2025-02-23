@@ -194,7 +194,7 @@ def world_map(year: int):
 
 # 各年度の全カテゴリを取得
 valid_categories_dict = {}
-for year in available_years:
+for year in available_years + [2013, 2014, 2015, 2016]:
     if year != 2022:
         valid_categories = (
             pd.read_csv(f"app/database/participants/{year}.csv")["category"]
