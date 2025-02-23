@@ -317,7 +317,7 @@ def create_world_map(year: int):
         unique_beatboxers = set(beatboxers)
         len_beatboxers = len(unique_beatboxers)
 
-        country_name = group["name_country"].values[0]
+        country_name_en = group["name_country"].values[0]
         iso_code = group["iso_code"].values[0]
 
         # 国名を日本語に変換
@@ -330,7 +330,7 @@ def create_world_map(year: int):
         popup_content = "<div style=\"font-family: 'Noto sans JP'; font-size: 14px;\">"
         popup_content += f"""
         <h3 style="margin: 0; color: #F0632F;">
-            {country_name}
+            {country_name_en}
         </h3>
         """
         popup_content += f"""
@@ -373,7 +373,7 @@ def create_world_map(year: int):
 
         flag_icon = folium.CustomIcon(
             icon_image=r"app/static/images/flags/"
-            + country_name
+            + country_name_en
             + ".webp",  # アイコン画像のパス
             icon_size=icon_size,  # アイコンのサイズ（幅、高さ）
             icon_anchor=icon_anchor,  # アイコンのアンカー位置
@@ -382,7 +382,7 @@ def create_world_map(year: int):
         folium.Marker(
             location=location,
             popup=popup,
-            tooltip=f"{country_name} / {country_name_ja}",
+            tooltip=f"{country_name_en} / {country_name_ja}",
             icon=flag_icon,
         ).add_to(beatboxer_map)
 
@@ -511,6 +511,18 @@ def total_participant_analysis():
                         participant_names_set.add(member)
 
     def rank_and_limit(counts, limit):
+        """
+        ランキングを作成し、指定された数に制限します。
+
+        Args:
+            counts (dict): 名前とカウントの辞書。
+            limit (int): ランキングの制限数。
+
+        Returns:
+            dict: ランキングされた名前とカウントの辞書。
+            キーはランキングの順位、値は名前とカウントを含む辞書です。
+        """
+
         sorted_counts = sorted(counts.items(), key=lambda item: item[1], reverse=True)
         ranked_counts = {}
         rank = 1
@@ -530,6 +542,14 @@ def total_participant_analysis():
 
     individual_counts = rank_and_limit(individual_counts, 3)
     wildcard_individual_counts = rank_and_limit(wildcard_individual_counts, 3)
+
+    country_counts_all = {
+        i + 1: {"country": item[0], "count": item[1]}
+        for i, item in enumerate(
+            sorted(country_counts.items(), key=lambda item: item[1], reverse=True)
+        )
+    }
+    create_all_participants_map(country_counts_all)
 
     country_counts = {
         i + 1: {"country": item[0], "count": item[1]}
@@ -554,3 +574,81 @@ def total_participant_analysis():
     }
 
     return total_analytics
+
+
+def create_all_participants_map(country_counts_all: dict):
+    """
+    全年度の出場者数ランキングを示す世界地図を作成します。
+
+    Args:
+        country_counts_all (dict): 国別出場者数ランキング。
+
+    Returns:
+        None (ファイルを保存)
+    """
+    # Initialize a folium map centered around the average latitude and longitude
+    map_center = [20, 0]
+    all_participants_map = folium.Map(
+        tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}",
+        attr="Tiles &copy; Esri &mdash; Source: US National Park Service",
+        location=map_center,
+        zoom_start=2,
+        zoom_control=True,
+        control_scale=True,
+        min_zoom=1,
+        max_zoom=8,
+        max_bounds=True,
+        options={
+            "zoomSnap": 0.1,  # ズームのステップを0.1に設定
+            "zoomDelta": 0.1,  # ズームの増減を0.1に設定
+        },
+    )
+
+    # マーカーを地図に追加
+    for _, data in country_counts_all.items():
+        country_name_ja = data["country"]
+        count = data["count"]
+
+        if country_name_ja == "未定":
+            continue
+
+        # 国の情報を取得
+        country_data = countries_df[countries_df["name_ja"] == country_name_ja]
+        country_name_en = country_data["name"].values[0]
+
+        # 経度、緯度
+        lat = country_data["lat"].values[0]
+        lon = country_data["lon"].values[0]
+        location = (lat, lon)
+
+        # ポップアップコンテンツを作成
+        popup_content = f"""
+        <div style="font-family: 'Noto Sans JP', sans-serif; font-size: 14px;">
+            <h3 style="margin: 0; color: #F0632F;">{country_name_ja}</h3>
+            <h4 style="margin: 0; color: #F0632F;">{country_name_en}</h4>
+            <p style="margin: 5px 0;">出場者数：のべ{count}名
+        </div>
+        """
+
+        # アイコン素材がある国の場合
+        icon_size = (48, 48)
+        icon_anchor = (24, 48)
+
+        popup = folium.Popup(popup_content, max_width=1000)
+
+        flag_icon = folium.CustomIcon(
+            icon_image=r"app/static/images/flags/"
+            + country_name_en
+            + ".webp",  # アイコン画像のパス
+            icon_size=icon_size,  # アイコンのサイズ（幅、高さ）
+            icon_anchor=icon_anchor,  # アイコンのアンカー位置
+        )
+
+        folium.Marker(
+            location=location,
+            popup=popup,
+            tooltip=f"{country_name_en} / {country_name_ja}",
+            icon=flag_icon,
+        ).add_to(all_participants_map)
+
+    all_participants_map.save("app/templates/others/all_participants_map.html")

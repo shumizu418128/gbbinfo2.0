@@ -188,6 +188,21 @@ def world_map(year: int):
     return render_template(f"{year}/world_map.html")
 
 
+@app.route("/others/all_participants_map")
+@cache.cached(query_string=True)
+def all_participants_map():
+    """
+    全年度の出場者の世界地図を表示します。
+
+    :param year: 表示する年度
+    :return: 世界地図のHTMLテンプレート
+    """
+    # mapを作るために必要な関数
+    _ = total_participant_analysis()
+
+    return render_template("others/all_participants_map.html")
+
+
 ####################################################################
 # 出場者一覧
 ####################################################################
