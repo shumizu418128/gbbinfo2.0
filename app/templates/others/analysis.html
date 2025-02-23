@@ -98,7 +98,7 @@ async function renderTotalCharts() {
                     ticks: {
                         maxRotation: 45,   // 45度まで回転
                         minRotation: 45,   // 45度で固定
-                        color: rgb(34, 34, 34)
+                        color: "black"
                     }
                 }
             },
@@ -117,7 +117,7 @@ async function renderTotalCharts() {
         data: {
             labels: labelsWildcardCountry,
             datasets: [{
-                label: 'Wildcard勝利者数',
+                label: 'Wildcard勝者数',
                 data: dataWildcardCountry,
                 backgroundColor: generateColors(labelsWildcardCountry.length),
             }]
@@ -130,7 +130,8 @@ async function renderTotalCharts() {
                 x: {
                     ticks: {
                         maxRotation: 45,   // 45度まで回転
-                        minRotation: 45    // 45度で固定
+                        minRotation: 45,   // 45度で固定
+                        color: "black"
                     }
                 }
             },
