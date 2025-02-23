@@ -454,6 +454,7 @@ def total_participant_analysis():
     # 全年度の出場者データを取得 (2022年は除く)
     years_copy = available_years.copy()
     years_copy.remove(2022)
+    years_copy.remove(2020)
     years_copy += [2013, 2014, 2015, 2016]
 
     individual_counts = defaultdict(int)  # 各参加者の出場回数を記録
