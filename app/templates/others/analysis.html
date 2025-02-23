@@ -9,7 +9,8 @@
 {% endblock %}
 {% block content %}
 <h1>データで見るGBB</h1>
-<p>対象年度：{{ available_years|min }} - {{ available_years|max }} ({{ available_years|length }}年分)</p>
+<p>対象年度：2013 - {{ available_years|max }} ({{ available_years|length + 4}}年分)</p>
+<p>※GBBは2009年から開催されていますが、2009~2012年は世界大会としての実態がなく、ほとんどがスイス人出場者でした。統計データとして近年の傾向を反映するため、2013年以降のみとしています。</p>
 
 <h2>国別出場者数 TOP10</h2>
 <canvas class="chart" id="totalCountryChart"></canvas>

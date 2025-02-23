@@ -10,7 +10,7 @@ from .config import available_years
 countries_df = pd.read_csv("app/database/countries.csv")
 
 beatboxers_df_dict = {}
-for year in available_years:
+for year in available_years + [2013, 2014, 2015, 2016]:
     try:
         beatboxers_df = pd.read_csv(f"app/database/participants/{year}.csv")
         beatboxers_df = beatboxers_df.fillna("")
@@ -454,6 +454,7 @@ def total_participant_analysis():
     # 全年度の出場者データを取得 (2022年は除く)
     years_copy = available_years.copy()
     years_copy.remove(2022)
+    years_copy += [2013, 2014, 2015, 2016]
 
     individual_counts = defaultdict(int)  # 各参加者の出場回数を記録
     country_counts = defaultdict(int)  # 国別出場者数ランキングの作成
@@ -528,7 +529,7 @@ def total_participant_analysis():
         return ranked_counts
 
     individual_counts = rank_and_limit(individual_counts, 3)
-    wildcard_individual_counts = rank_and_limit(wildcard_individual_counts, 2)
+    wildcard_individual_counts = rank_and_limit(wildcard_individual_counts, 3)
 
     country_counts = {
         i + 1: {"country": item[0], "count": item[1]}
