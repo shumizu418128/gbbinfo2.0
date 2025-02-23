@@ -1,9 +1,22 @@
+from collections import defaultdict
+
 import folium
 import pandas as pd
 from rapidfuzz.process import extract
 
+from .config import available_years
+
 # df事前準備
 countries_df = pd.read_csv("app/database/countries.csv")
+
+beatboxers_df_dict = {}
+for year in available_years + [2013, 2014, 2015, 2016]:
+    try:
+        beatboxers_df = pd.read_csv(f"app/database/participants/{year}.csv")
+        beatboxers_df = beatboxers_df.fillna("")
+        beatboxers_df_dict[year] = beatboxers_df
+    except FileNotFoundError:
+        pass
 
 
 def get_participants_list(
@@ -30,9 +43,8 @@ def get_participants_list(
     """
     global countries_df
 
-    # csvからデータを取得 (ここの処理は毎回行う必要がある)
-    beatboxers_df = pd.read_csv(f"app/database/participants/{year}.csv")
-    beatboxers_df = beatboxers_df.fillna("")
+    # データを取得
+    beatboxers_df = beatboxers_df_dict[year]
 
     # Merge data to include country names in beatboxers_df
     merged_df = beatboxers_df.merge(
@@ -242,10 +254,7 @@ def create_world_map(year: int):
         None (ファイルを保存)
     """
     # csvからデータを取得
-    beatboxers_df = pd.read_csv(f"app/database/participants/{year}.csv")
-
-    # nanを空白に変換
-    beatboxers_df = beatboxers_df.fillna("")
+    beatboxers_df = beatboxers_df_dict[year]
 
     # beatboxers_dfから、名前に[cancelled]がついている人を削除
     beatboxers_df = beatboxers_df[
@@ -378,3 +387,170 @@ def create_world_map(year: int):
         ).add_to(beatboxer_map)
 
     beatboxer_map.save(f"app/templates/{year}/world_map.html")
+
+
+def yearly_participant_analysis(year: int):
+    """
+    出場者のデータから分析を行い、結果を保存します。
+
+    Args:
+        year (int): 分析する年。
+
+    Returns:
+        dict: 分析結果。
+        - num_participants: 出場者数
+        - category_count: カテゴリーごとの出場者数
+        - country_count: 国ごとの出場者数
+    """
+    participants_list = get_participants_list(
+        year=year, category="all", ticket_class="all", cancel="hide"
+    )
+
+    # カテゴリーごとの出場者数
+    categories = [participant["category"] for participant in participants_list]
+    category_count = {
+        category: categories.count(category) for category in set(categories)
+    }
+
+    # 国ごとの出場者数
+    countries = [participant["country"] for participant in participants_list]
+    country_count = {}
+    for country in set(countries):
+        country_count[country] = countries.count(country)
+
+    # 出場者数が多い順にソート
+    country_count = dict(
+        sorted(country_count.items(), key=lambda item: item[1], reverse=True)
+    )
+
+    # 結果を保存
+    country_count_ranked = {}
+    rank = 1
+    for country, count in country_count.items():
+        country_count_ranked[rank] = {"country": country, "count": count}
+        rank += 1
+
+    yearly_analytics = {
+        "category_count": category_count,
+        "country_count": country_count_ranked,
+    }
+
+    return yearly_analytics
+
+
+def total_participant_analysis():
+    """
+    全年度の出場者データを集計・分析し、以下のランキングを含む結果を返します。
+
+    returns:
+        dict: 分析結果。
+        - individual_counts: 各参加者の出場回数
+        - country_counts: 国別出場者数ランキング
+        - wildcard_individual_counts: Wildcard勝者数ランキング
+        - wildcard_country_count: 国別Wildcard勝者数ランキング
+    """
+    global available_years
+
+    # 全年度の出場者データを取得 (2022年は除く)
+    years_copy = available_years.copy()
+    years_copy.remove(2022)
+    years_copy += [2013, 2014, 2015, 2016]
+
+    individual_counts = defaultdict(int)  # 各参加者の出場回数を記録
+    country_counts = defaultdict(int)  # 国別出場者数ランキングの作成
+
+    wildcard_individual_counts = defaultdict(int)  # Wildcard勝者数ランキングの作成
+    wildcard_country_count = defaultdict(int)  # 国別Wildcard勝者数ランキングの作成
+
+    for year in years_copy:
+        participants_list = get_participants_list(
+            year=year, category="all", ticket_class="all", cancel="hide"
+        )
+
+        # 重複を除いた参加者名のセット
+        participant_names_set = set()
+        for participant in participants_list:
+            # 各参加者の出場回数をカウント
+            name = participant["name"]
+            if name not in participant_names_set:
+                individual_counts[name] += 1
+                participant_names_set.add(name)
+                country = participant["country"].split(" ")[0]  # 国名は日本語のみ
+                country_counts[country] += 1
+
+            # 各参加者のメンバーの出場回数をカウント
+            members = participant["members"]
+            if members:
+                for member in members.split(", "):
+                    if member not in participant_names_set:
+                        individual_counts[member] += 1
+                        participant_names_set.add(member)
+
+        # Wildcard勝者数ランキングの作成
+        participants_list = get_participants_list(
+            year=year, category="all", ticket_class="wildcard", cancel="hide"
+        )
+
+        # 重複を除いた参加者名のセット
+        participant_names_set = set()
+        for participant in participants_list:
+            # 各参加者の出場回数をカウント
+            name = participant["name"]
+            if name not in participant_names_set:
+                wildcard_individual_counts[name] += 1
+                participant_names_set.add(name)
+                country = participant["country"].split(" ")[0]  # 国名は日本語のみ
+                wildcard_country_count[country] += 1
+
+            # 各参加者のメンバーの出場回数をカウント
+            members = participant["members"]
+            if members:
+                for member in members.split(", "):
+                    if member not in participant_names_set:
+                        wildcard_individual_counts[member] += 1
+                        participant_names_set.add(member)
+
+    def rank_and_limit(counts, limit):
+        sorted_counts = sorted(counts.items(), key=lambda item: item[1], reverse=True)
+        ranked_counts = {}
+        rank = 1
+        previous_count = None
+
+        for i, (name, count) in enumerate(sorted_counts):
+            if i > 0 and count < previous_count:
+                rank += 1
+
+            if rank > limit:
+                break
+
+            ranked_counts[i + 1] = {"name": name, "count": count}
+            previous_count = count
+
+        return ranked_counts
+
+    individual_counts = rank_and_limit(individual_counts, 3)
+    wildcard_individual_counts = rank_and_limit(wildcard_individual_counts, 3)
+
+    country_counts = {
+        i + 1: {"country": item[0], "count": item[1]}
+        for i, item in enumerate(
+            sorted(country_counts.items(), key=lambda item: item[1], reverse=True)[:10]
+        )
+    }
+    wildcard_country_count = {
+        i + 1: {"country": item[0], "count": item[1]}
+        for i, item in enumerate(
+            sorted(
+                wildcard_country_count.items(), key=lambda item: item[1], reverse=True
+            )[:10]
+        )
+    }
+
+    total_analytics = {
+        "individual_counts": individual_counts,
+        "country_counts": country_counts,
+        "wildcard_individual_counts": wildcard_individual_counts,
+        "wildcard_country_count": wildcard_country_count,
+    }
+
+    return total_analytics

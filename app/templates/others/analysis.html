@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% block title %}データで見るGBB - GBBINFO-JPN{% endblock %}
+{% block twitter_title %}データで見るGBB - GBBINFO-JPN{% endblock %}
+{% block og_title %}データで見るGBB - GBBINFO-JPN{% endblock %}
+{% block og_url %}https://gbbinfo-jpn.onrender.com/others/analysis{% endblock %}
+{% block canonical %}https://gbbinfo-jpn.onrender.com/others/analysis{% endblock %}
+{% block head %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+{% block content %}
+<h1>データで見るGBB</h1>
+<p>対象年度：2013 - {{ available_years|max }} ({{ available_years|length + 4}}年分)</p>
+<p>※GBBは2009年から開催されていますが、2009~2012年は世界大会としての実態がなく、ほとんどがスイス人出場者でした。統計データとして近年の傾向を反映するため、2013年以降のみとしています。</p>
+
+<h2>国別出場者数 TOP10</h2>
+<canvas class="chart" id="totalCountryChart"></canvas>
+
+<h2>国別Wildcard勝者数 TOP10</h2>
+<canvas class="chart" id="totalWildcardCountryChart"></canvas>
+
+<h2>出場回数 TOP3</h2>
+<div id="totalIndividualTable"></div>
+
+<h2>Wildcard勝利数 TOP3</h2>
+<div id="totalWildcardIndividualTable"></div>
+
+<script>
+
+function generateColors(numColors) {
+    const colors = [];
+    let colorIndex = 0;
+    const availableColors = [
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+        'rgba(255, 159, 64, 0.6)',
+        'rgba(144, 238, 144, 0.6)',
+        'rgba(255, 182, 193, 0.6)',
+        'rgba(173, 216, 230, 0.6)',
+        'rgba(240, 230, 140, 0.6)',
+        'rgba(220, 220, 220, 0.6)',
+        'rgba(205, 92, 92, 0.6)',
+        'rgba(255, 0, 255, 0.6)',
+        'rgba(0, 255, 255, 0.6)',
+        'rgba(128, 0, 128, 0.6)',
+        'rgba(0, 128, 0, 0.6)',
+        'rgba(0, 0, 128, 0.6)',
+        'rgba(218, 112, 214, 0.6)',
+        'rgba(72, 61, 139, 0.6)',
+        'rgba(107, 142, 35, 0.6)'
+    ];
+
+    for (let i = 0; i < numColors; i++) {
+        colors.push(getColor());
+    }
+    return colors;
+
+    function getColor() {
+        const color = availableColors[colorIndex % availableColors.length];
+        colorIndex++;
+        return color;
+    }
+}
+
+async function fetchTotalAnalyticsData() {
+    const response = await fetch('/analyze_data/total');
+    const data = await response.json();
+    return data;
+}
+
+async function renderTotalCharts() {
+    const analyticsData = await fetchTotalAnalyticsData();
+
+    // 国別出場者数
+    const countryData = analyticsData.country_counts;
+    const labelsCountry = Object.keys(countryData).map(key => countryData[key].country);
+    const dataCountry = Object.values(countryData).map(item => item.count);
+
+    const ctxTotalCountry = document.getElementById('totalCountryChart').getContext('2d');
+    const totalCountryChart = new Chart(ctxTotalCountry, {
+        type: 'bar',
+        data: {
+            labels: labelsCountry,
+            datasets: [{
+                label: '出場者数',
+                data: dataCountry,
+                backgroundColor: generateColors(labelsCountry.length),
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                },
+                x: {
+                    ticks: {
+                        maxRotation: 45,   // 45度まで回転
+                        minRotation: 45,   // 45度で固定
+                        color: "black"
+                    }
+                }
+            },
+            responsive: true,
+        }
+    });
+
+    // 国別Wildcard勝者数ランキング
+    const wildcardCountryData = analyticsData.wildcard_country_count;
+    const labelsWildcardCountry = Object.keys(wildcardCountryData).map(key => wildcardCountryData[key].country);
+    const dataWildcardCountry = Object.values(wildcardCountryData).map(item => item.count);
+
+    const ctxTotalWildcardCountry = document.getElementById('totalWildcardCountryChart').getContext('2d');
+    const totalWildcardCountryChart = new Chart(ctxTotalWildcardCountry, {
+        type: 'bar',
+        data: {
+            labels: labelsWildcardCountry,
+            datasets: [{
+                label: 'Wildcard勝者数',
+                data: dataWildcardCountry,
+                backgroundColor: generateColors(labelsWildcardCountry.length),
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                },
+                x: {
+                    ticks: {
+                        maxRotation: 45,   // 45度まで回転
+                        minRotation: 45,   // 45度で固定
+                        color: "black"
+                    }
+                }
+            },
+            responsive: true,
+        }
+    });
+}
+
+renderTotalCharts();
+
+async function renderTotalTables() {
+    const analyticsData = await fetchTotalAnalyticsData();
+
+    // 個人別出場回数テーブルの描画
+    const individualData = analyticsData.individual_counts;
+    const individualTable = createTable(individualData, 'name', '出場回数');
+    document.getElementById('totalIndividualTable').appendChild(individualTable);
+
+    // 個人別Wildcard勝利数テーブルの描画
+    const wildcardIndividualData = analyticsData.wildcard_individual_counts;
+    const wildcardIndividualTable = createTable(wildcardIndividualData, 'name', 'Wildcard勝利数');
+    document.getElementById('totalWildcardIndividualTable').appendChild(wildcardIndividualTable);
+}
+
+function createTable(data, key1, header2) {
+    const table = document.createElement('table');
+    table.classList.add('data-table'); // 必要に応じてスタイルを適用
+
+    // ヘッダーの追加
+    const headerRow = table.insertRow();
+    const header1 = document.createElement('th');
+    header1.textContent = '名前';
+    headerRow.appendChild(header1);
+    const header2Element = document.createElement('th');
+    header2Element.textContent = header2;
+    headerRow.appendChild(header2Element);
+
+    // データ行の追加
+    for (const itemKey in data) {
+        const item = data[itemKey];
+        const row = table.insertRow();
+
+        const cell1 = row.insertCell();
+        cell1.textContent = item[key1];
+
+        const cell2 = row.insertCell();
+        cell2.textContent = item['count'];
+    }
+
+    return table;
+}
+
+renderTotalTables();
+</script>
+
+{% endblock %}
+
