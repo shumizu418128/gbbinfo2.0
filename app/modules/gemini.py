@@ -287,6 +287,15 @@ def search(year: int, question: str):
 
 
 def search_suggestions(input: str):
+    """
+    ユーザーの入力に基づいて類似する出場者名のリストを取得します。
+
+    Args:
+        input (str): ユーザーからの入力。
+
+    Returns:
+        list: 類似する出場者名のリスト。
+    """
     # inputから4桁・2桁の年削除
     year = re.search(r"\d{4}", input)
     year_2 = re.search(r"\d{2}", input)
