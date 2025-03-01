@@ -34,10 +34,6 @@ app = Flask(__name__)
 sitemapper = Sitemapper()
 sitemapper.init_app(app)
 
-# 現在時刻を読み込む(最終更新日時として使用)
-dt_now = datetime.now()
-last_updated = "UPDATE " + dt_now.strftime("%Y/%m/%d %H:%M:%S")
-
 # 特定の警告を無視
 warnings.filterwarnings(
     "ignore",
@@ -67,7 +63,69 @@ else:
 babel = Babel(app)
 test = _("test")  # テスト翻訳
 
+####################################################################
+# 定数一覧
+####################################################################
+# 現在時刻を読み込む(最終更新日時として使用)
+DT_NOW = datetime.now()
+LAST_UPDATED = "UPDATE " + DT_NOW.strftime("%Y/%m/%d %H:%M:%S")
 
+
+# 各年度の全カテゴリを取得
+VALID_CATEGORIES_DICT = {}
+for year in available_years + [2013, 2014, 2015, 2016]:
+    if year != 2022:
+        valid_categories = (
+            pd.read_csv(f"app/database/participants/{year}.csv")["category"]
+            .unique()
+            .tolist()
+        )
+        VALID_CATEGORIES_DICT[year] = valid_categories
+
+
+# 各年度の全カテゴリを取得
+ALL_CATEGORY_DICT = {}
+for year in available_years:
+    # フォルダの中にあるCSVファイル一覧を取得
+    try:
+        all_category = os.listdir(f"./app/database/result/{year}")
+    except Exception:
+        continue  # ファイルが存在しない場合はスキップ
+
+    all_category = [category.replace(".csv", "") for category in all_category]
+    ALL_CATEGORY_DICT[year] = all_category
+
+
+# 各年度のページを取得(ルール、world_mapは別関数で扱っているので除外)
+combinations = []
+for year in available_years:  # 利用可能な年度をループ
+    contents = os.listdir(
+        f"./app/templates/{year}"
+    )  # 年度に対応するテンプレートファイルを取得
+    contents = [content.replace(".html", "") for content in contents]  # 拡張子を除去
+
+    # rule, world_mapは除外
+    if "rule" in contents:
+        contents.remove("rule")
+    if "world_map" in contents:
+        contents.remove("world_map")
+
+    for content in contents:  # 各コンテンツに対して
+        combinations.append((year, content))  # 年度とコンテンツの組み合わせを追加
+
+COMBINATIONS_YEAR = [year for year, _ in combinations]  # 年度のリストを作成
+COMBINATIONS_CONTENT = [
+    content for _, content in combinations
+]  # コンテンツのリストを作成
+
+
+CONTENT_OTHERS = os.listdir("./app/templates/others")
+CONTENT_OTHERS = [content.replace(".html", "") for content in CONTENT_OTHERS]
+
+
+####################################################################
+# ヘルパー関数
+####################################################################
 # 最新年度かを判定
 # 今年 or 最新年度のみTrue
 def is_latest_year(year):
@@ -206,19 +264,6 @@ def all_participants_map():
 ####################################################################
 # 出場者一覧
 ####################################################################
-
-# 各年度の全カテゴリを取得
-valid_categories_dict = {}
-for year in available_years + [2013, 2014, 2015, 2016]:
-    if year != 2022:
-        valid_categories = (
-            pd.read_csv(f"app/database/participants/{year}.csv")["category"]
-            .unique()
-            .tolist()
-        )
-        valid_categories_dict[year] = valid_categories
-
-
 @sitemapper.include(
     changefreq="monthly", priority=1.0, url_variables={"year": available_years}
 )
@@ -246,7 +291,7 @@ def participants(year: int):
 
     # カテゴリを取得
     try:
-        valid_categories = valid_categories_dict[year]
+        valid_categories = VALID_CATEGORIES_DICT[year]
     except KeyError:
         # そもそもデータがない年度の場合は、空っぽのページを表示
         return render_template(
@@ -257,7 +302,7 @@ def participants(year: int):
             result_url=None,
             is_latest_year=is_latest_year(year),
             available_years=available_years,
-            last_updated=last_updated,
+            last_updated=LAST_UPDATED,
             value=value,
             is_early_access=is_early_access(year),
         )
@@ -314,7 +359,7 @@ def participants(year: int):
         all_category=valid_categories,
         is_latest_year=is_latest_year(year),
         available_years=available_years,
-        last_updated=last_updated,
+        last_updated=LAST_UPDATED,
         value=value,
         is_early_access=is_early_access(year),
     )
@@ -349,7 +394,7 @@ def japan(year: int):
         year=year,
         is_latest_year=is_latest_year(year),
         available_years=available_years,
-        last_updated=last_updated,
+        last_updated=LAST_UPDATED,
         is_early_access=is_early_access(year),
     )
 
@@ -357,20 +402,6 @@ def japan(year: int):
 ####################################################################
 # 大会結果
 ####################################################################
-
-# 各年度の全カテゴリを取得
-all_category_dict = {}
-for year in available_years:
-    # フォルダの中にあるCSVファイル一覧を取得
-    try:
-        all_category = os.listdir(f"./app/database/result/{year}")
-    except Exception:
-        continue  # ファイルが存在しない場合はスキップ
-
-    all_category = [category.replace(".csv", "") for category in all_category]
-    all_category_dict[year] = all_category
-
-
 # /year/resultはリダイレクト これによりresultページ内ですべての年度の結果を表示可能
 @sitemapper.include(
     changefreq="yearly", priority=0.8, url_variables={"year": available_years}
@@ -393,14 +424,14 @@ def result(year: int):
 
     # カテゴリを取得
     try:
-        all_category = all_category_dict[year]
+        all_category = ALL_CATEGORY_DICT[year]
     except KeyError:
         return render_template(
             "/common/result.html",
             year=year,
             is_latest_year=is_latest_year(year),
             available_years=available_years,
-            last_updated=last_updated,
+            last_updated=LAST_UPDATED,
             is_early_access=is_early_access(year),
         )
 
@@ -418,7 +449,7 @@ def result(year: int):
         year=year,
         is_latest_year=is_latest_year(year),
         available_years=available_years,
-        last_updated=last_updated,
+        last_updated=LAST_UPDATED,
         is_early_access=is_early_access(year),
         result=result,
         all_category=all_category,
@@ -485,7 +516,7 @@ def rule(year: int):
         is_latest_year=is_latest_year(year),
         available_years=available_years,
         participants_list=participants_list,
-        last_updated=last_updated,
+        last_updated=LAST_UPDATED,
         is_early_access=is_early_access(year),
     )
 
@@ -493,35 +524,10 @@ def rule(year: int):
 ####################################################################
 # 各年度のページ
 ####################################################################
-
-combinations = []  # 年度とコンテンツの組み合わせを格納するリスト
-
-# 各年度のページを取得(ルール、world_mapは別関数で扱っているので除外)
-for year in available_years:  # 利用可能な年度をループ
-    contents = os.listdir(
-        f"./app/templates/{year}"
-    )  # 年度に対応するテンプレートファイルを取得
-    contents = [content.replace(".html", "") for content in contents]  # 拡張子を除去
-
-    # rule, world_mapは除外
-    if "rule" in contents:
-        contents.remove("rule")
-    if "world_map" in contents:
-        contents.remove("world_map")
-
-    for content in contents:  # 各コンテンツに対して
-        combinations.append((year, content))  # 年度とコンテンツの組み合わせを追加
-
-combinations_year = [year for year, _ in combinations]  # 年度のリストを作成
-combinations_content = [
-    content for _, content in combinations
-]  # コンテンツのリストを作成
-
-
 @sitemapper.include(
     changefreq="weekly",
     priority=0.8,
-    url_variables={"year": combinations_year, "content": combinations_content},
+    url_variables={"year": COMBINATIONS_YEAR, "content": COMBINATIONS_CONTENT},
 )
 @app.route("/<int:year>/<string:content>")
 def content(year: int, content: str):
@@ -544,7 +550,7 @@ def content(year: int, content: str):
             year=year,
             is_latest_year=is_latest_year(year),
             available_years=available_years,
-            last_updated=last_updated,
+            last_updated=LAST_UPDATED,
             is_early_access=is_early_access(year),
         )
 
@@ -556,13 +562,8 @@ def content(year: int, content: str):
 ####################################################################
 # その他のページ
 ####################################################################
-
-content_others = os.listdir("./app/templates/others")
-content_others = [content.replace(".html", "") for content in content_others]
-
-
 @sitemapper.include(
-    changefreq="never", priority=0.7, url_variables={"content": content_others}
+    changefreq="never", priority=0.7, url_variables={"content": CONTENT_OTHERS}
 )
 @app.route("/others/<string:content>")
 def others(content: str):
@@ -581,7 +582,7 @@ def others(content: str):
             year=year,
             available_years=available_years,
             is_latest_year=is_latest_year(year),
-            last_updated=last_updated,
+            last_updated=LAST_UPDATED,
         )
 
     # エラー
@@ -724,8 +725,6 @@ def ads_txt():
 ####################################################################
 # favicon.ico
 ####################################################################
-
-
 @app.route("/favicon.ico", methods=["GET"])
 @cache.cached()
 def favicon_ico():
@@ -740,8 +739,6 @@ def favicon_ico():
 ####################################################################
 # apple-touch-icon
 ####################################################################
-
-
 @app.route("/apple-touch-icon-152x152-precomposed.png", methods=["GET"])
 @app.route("/apple-touch-icon-152x152.png", methods=["GET"])
 @app.route("/apple-touch-icon-120x120-precomposed.png", methods=["GET"])
@@ -761,8 +758,6 @@ def apple_touch_icon():
 ####################################################################
 # PWS設定
 ####################################################################
-
-
 @app.route("/manifest.json")
 @cache.cached()
 def manifest():
@@ -788,8 +783,6 @@ def service_worker():
 ####################################################################
 # エラーハンドラ
 ####################################################################
-
-
 @app.errorhandler(404)
 @cache.cached()
 def page_not_found(_):
