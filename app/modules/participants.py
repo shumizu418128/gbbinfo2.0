@@ -4,13 +4,13 @@ import folium
 import pandas as pd
 from rapidfuzz.process import extract
 
-from .config import available_years
+from .config import AVAILABLE_YEARS
 
 # df事前準備
 countries_df = pd.read_csv("app/database/countries.csv")
 
 beatboxers_df_dict = {}
-for year in available_years + [2013, 2014, 2015, 2016]:
+for year in AVAILABLE_YEARS + [2013, 2014, 2015, 2016]:
     try:
         beatboxers_df = pd.read_csv(f"app/database/participants/{year}.csv")
         beatboxers_df = beatboxers_df.fillna("")
@@ -449,10 +449,10 @@ def total_participant_analysis():
         - wildcard_individual_counts: Wildcard勝者数ランキング
         - wildcard_country_count: 国別Wildcard勝者数ランキング
     """
-    global available_years
+    global AVAILABLE_YEARS
 
     # 全年度の出場者データを取得 (2022年は除く)
-    years_copy = available_years.copy()
+    years_copy = AVAILABLE_YEARS.copy()
     years_copy.remove(2022)
     years_copy.remove(2020)
     years_copy += [2013, 2014, 2015, 2016]

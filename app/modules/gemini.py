@@ -11,14 +11,14 @@ import pykakasi
 from rapidfuzz import process
 
 from . import spreadsheet
-from .config import available_years
+from .config import AVAILABLE_YEARS
 
-api_key = os.environ.get("GEMINI_API_KEY")
-if not api_key:
+API_KEY = os.environ.get("GEMINI_API_KEY")
+if not API_KEY:
     raise ValueError("Please set the GEMINI_API_KEY environment variable")
-genai.configure(api_key=api_key)
+genai.configure(api_key=API_KEY)
 
-safety_settings = [
+SAFETY_SETTINGS = [
     {
         "category": "HARM_CATEGORY_SEXUAL",
         "threshold": "BLOCK_NONE",
@@ -47,7 +47,7 @@ safety_settings = [
 
 model = genai.GenerativeModel(
     model_name="gemini-2.0-flash-lite-preview",
-    safety_settings=safety_settings,
+    safety_settings=SAFETY_SETTINGS,
     generation_config={"response_mime_type": "application/json"},
 )
 
@@ -72,7 +72,7 @@ with open(os.getcwd() + "/app/json/cache.json", "r", encoding="utf-8") as f:
     cache = json.load(f)
 
 # 最新年度の出場者一覧を読み込む
-latest_year = max(available_years)
+latest_year = max(AVAILABLE_YEARS)
 beatboxers_df = pd.read_csv(f"app/database/participants/{latest_year}.csv")
 beatboxers_df = beatboxers_df.fillna("")
 name_list = (
@@ -220,7 +220,7 @@ def search(year: int, question: str):
             return {"url": "/2022/top"}
 
         # 2022年度以外の場合は年度を更新
-        if detect_year in available_years and detect_year != year:
+        if detect_year in AVAILABLE_YEARS and detect_year != year:
             year = detect_year
 
     # チャットを開始

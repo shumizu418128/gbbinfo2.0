@@ -19,7 +19,7 @@ from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
 from .modules import gemini
-from .modules.config import Config, TestConfig, available_langs, available_years
+from .modules.config import AVAILABLE_LANGS, AVAILABLE_YEARS, Config, TestConfig
 from .modules.participants import (
     create_world_map,
     get_participants_list,
@@ -73,7 +73,7 @@ LAST_UPDATED = "UPDATE " + DT_NOW.strftime("%Y/%m/%d %H:%M:%S")
 
 # 各年度の全カテゴリを取得
 VALID_CATEGORIES_DICT = {}
-for year in available_years + [2013, 2014, 2015, 2016]:
+for year in AVAILABLE_YEARS + [2013, 2014, 2015, 2016]:
     if year != 2022:
         valid_categories = (
             pd.read_csv(f"app/database/participants/{year}.csv")["category"]
@@ -85,7 +85,7 @@ for year in available_years + [2013, 2014, 2015, 2016]:
 
 # 各年度の全カテゴリを取得
 ALL_CATEGORY_DICT = {}
-for year in available_years:
+for year in AVAILABLE_YEARS:
     # フォルダの中にあるCSVファイル一覧を取得
     try:
         all_category = os.listdir(f"./app/database/result/{year}")
@@ -98,7 +98,7 @@ for year in available_years:
 
 # 各年度のページを取得(ルール、world_mapは別関数で扱っているので除外)
 combinations = []
-for year in available_years:  # 利用可能な年度をループ
+for year in AVAILABLE_YEARS:  # 利用可能な年度をループ
     contents = os.listdir(
         f"./app/templates/{year}"
     )  # 年度に対応するテンプレートファイルを取得
@@ -137,7 +137,7 @@ def is_latest_year(year):
     """
     dt_now = datetime.now()
     now = dt_now.year
-    return year == max(available_years) or year == now
+    return year == max(AVAILABLE_YEARS) or year == now
 
 
 def is_early_access(year):
@@ -164,8 +164,8 @@ def get_locale():
     user_lang = session.get("language")
     return (
         user_lang
-        if user_lang in available_langs
-        else request.accept_languages.best_match(available_langs)
+        if user_lang in AVAILABLE_LANGS
+        else request.accept_languages.best_match(AVAILABLE_LANGS)
     )
 
 
@@ -184,7 +184,7 @@ def lang():
     referrer = request.args.get("referrer")
 
     # 言語が利用可能な言語であればセッションに保存
-    if lang in available_langs:
+    if lang in AVAILABLE_LANGS:
         session["language"] = lang
     else:
         session["language"] = "ja"
@@ -218,10 +218,10 @@ def route_top():
     """
     dt_now = datetime.now()
     now = dt_now.year
-    latest_year = max(available_years)
+    latest_year = max(AVAILABLE_YEARS)
 
     # 今年度 or 最新年度を表示
-    year = now if now in available_years else latest_year
+    year = now if now in AVAILABLE_YEARS else latest_year
 
     return redirect(url_for("content", year=year, content="top"))
 
@@ -265,7 +265,7 @@ def all_participants_map():
 # 出場者一覧
 ####################################################################
 @sitemapper.include(
-    changefreq="monthly", priority=1.0, url_variables={"year": available_years}
+    changefreq="monthly", priority=1.0, url_variables={"year": AVAILABLE_YEARS}
 )
 @app.route("/<int:year>/participants", methods=["GET"])
 def participants(year: int):
@@ -301,7 +301,7 @@ def participants(year: int):
             all_category=[],
             result_url=None,
             is_latest_year=is_latest_year(year),
-            available_years=available_years,
+            available_years=AVAILABLE_YEARS,
             last_updated=LAST_UPDATED,
             value=value,
             is_early_access=is_early_access(year),
@@ -358,7 +358,7 @@ def participants(year: int):
         year=year,
         all_category=valid_categories,
         is_latest_year=is_latest_year(year),
-        available_years=available_years,
+        available_years=AVAILABLE_YEARS,
         last_updated=LAST_UPDATED,
         value=value,
         is_early_access=is_early_access(year),
@@ -369,7 +369,7 @@ def participants(year: int):
 # 日本代表
 ####################################################################
 @sitemapper.include(
-    changefreq="yearly", priority=0.8, url_variables={"year": available_years}
+    changefreq="yearly", priority=0.8, url_variables={"year": AVAILABLE_YEARS}
 )
 @app.route("/<int:year>/japan")
 def japan(year: int):
@@ -393,7 +393,7 @@ def japan(year: int):
         participants=participants_list,
         year=year,
         is_latest_year=is_latest_year(year),
-        available_years=available_years,
+        available_years=AVAILABLE_YEARS,
         last_updated=LAST_UPDATED,
         is_early_access=is_early_access(year),
     )
@@ -404,7 +404,7 @@ def japan(year: int):
 ####################################################################
 # /year/resultはリダイレクト これによりresultページ内ですべての年度の結果を表示可能
 @sitemapper.include(
-    changefreq="yearly", priority=0.8, url_variables={"year": available_years}
+    changefreq="yearly", priority=0.8, url_variables={"year": AVAILABLE_YEARS}
 )
 @app.route("/<int:year>/result")
 def result(year: int):
@@ -430,7 +430,7 @@ def result(year: int):
             "/common/result.html",
             year=year,
             is_latest_year=is_latest_year(year),
-            available_years=available_years,
+            available_years=AVAILABLE_YEARS,
             last_updated=LAST_UPDATED,
             is_early_access=is_early_access(year),
         )
@@ -448,7 +448,7 @@ def result(year: int):
         "/common/result.html",
         year=year,
         is_latest_year=is_latest_year(year),
-        available_years=available_years,
+        available_years=AVAILABLE_YEARS,
         last_updated=LAST_UPDATED,
         is_early_access=is_early_access(year),
         result=result,
@@ -471,8 +471,8 @@ def result_redirect():
     year = request.args.get("year")
 
     # 年度が指定されていない場合は最新年度を表示
-    if year not in available_years:
-        year = max(available_years)
+    if year not in AVAILABLE_YEARS:
+        year = max(AVAILABLE_YEARS)
 
     return redirect(url_for("result", year=year))
 
@@ -481,7 +481,7 @@ def result_redirect():
 # ルール
 ####################################################################
 @sitemapper.include(
-    changefreq="weekly", priority=0.8, url_variables={"year": available_years}
+    changefreq="weekly", priority=0.8, url_variables={"year": AVAILABLE_YEARS}
 )
 @app.route("/<int:year>/rule")
 def rule(year: int):
@@ -514,7 +514,7 @@ def rule(year: int):
         f"/{year}/rule.html",
         year=year,
         is_latest_year=is_latest_year(year),
-        available_years=available_years,
+        available_years=AVAILABLE_YEARS,
         participants_list=participants_list,
         last_updated=LAST_UPDATED,
         is_early_access=is_early_access(year),
@@ -549,7 +549,7 @@ def content(year: int, content: str):
             f"/{year}/{content}.html",
             year=year,
             is_latest_year=is_latest_year(year),
-            available_years=available_years,
+            available_years=AVAILABLE_YEARS,
             last_updated=LAST_UPDATED,
             is_early_access=is_early_access(year),
         )
@@ -574,13 +574,13 @@ def others(content: str):
     :return: その他のコンテンツのHTMLテンプレート
     """
     # 年度は最新に設定
-    year = max(available_years)
+    year = max(AVAILABLE_YEARS)
 
     try:
         return render_template(
             f"/others/{content}.html",
             year=year,
-            available_years=available_years,
+            available_years=AVAILABLE_YEARS,
             is_latest_year=is_latest_year(year),
             last_updated=LAST_UPDATED,
         )

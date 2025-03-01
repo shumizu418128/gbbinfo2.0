@@ -6,6 +6,9 @@ import gspread
 import ratelimit
 from google.oauth2.service_account import Credentials
 
+# 環境変数でローカル環境かどうかを判定
+ENVIRONMENT_CHECK = os.getenv("ENVIRONMENT_CHECK")
+
 credentials = None
 client = None
 
@@ -60,10 +63,8 @@ def record_question(year: int, question: str, answer: str):
     Returns:
         None: (結果を記録)
     """
-    # 環境変数でローカル環境かどうかを判定
-    github_token = os.getenv("GITHUB_TOKEN")
 
-    if github_token is not None:
+    if ENVIRONMENT_CHECK != "qawsedrftgyhujikolp":
         year_str = str(year)
         dt_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
