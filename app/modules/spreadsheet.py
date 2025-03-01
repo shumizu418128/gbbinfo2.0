@@ -57,6 +57,8 @@ def record_question(year: int, question: str, answer: str):
         year (int): 質問が関連する年。
         question (str): 記録する質問。
         answer (str): 記録する回答。
+    Returns:
+        None: (結果を記録)
     """
     # 環境変数でローカル環境かどうかを判定
     github_token = os.getenv("GITHUB_TOKEN")

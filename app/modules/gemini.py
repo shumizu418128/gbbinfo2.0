@@ -106,6 +106,8 @@ def search_cache(year: int, question: str):
     Args:
         year (int): 質問が関連する年。
         question (str): ユーザーからの質問。
+    Returns:
+        dict: キャッシュにユーザーの入力がある場合、回答を含む辞書。ない場合はNone。
     """
 
     # 前処理
@@ -198,8 +200,7 @@ def search(year: int, question: str):
         question (str): ユーザーからの質問。
 
     Returns:
-        dict: モデルからの応答を含む辞書。辞書には以下のキーが含まれます。
-            url (str): レスポンスURL。
+        dict: モデルからの応答を含む辞書。URLが含まれます。
     """
     global prompt, others_link
 

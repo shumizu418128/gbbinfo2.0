@@ -251,7 +251,7 @@ def create_world_map(year: int):
         year (int): 地図を作成する年。
 
     Returns:
-        None (ファイルを保存)
+        None: (ファイルを保存)
     """
     # csvからデータを取得
     beatboxers_df = beatboxers_df_dict[year]
@@ -442,7 +442,7 @@ def total_participant_analysis():
     """
     全年度の出場者データを集計・分析し、以下のランキングを含む結果を返します。
 
-    returns:
+    Returns:
         dict: 分析結果。
         - individual_counts: 各参加者の出場回数
         - country_counts: 国別出場者数ランキング
@@ -585,7 +585,7 @@ def create_all_participants_map(country_counts_all: dict):
         country_counts_all (dict): 国別出場者数ランキング。
 
     Returns:
-        None (ファイルを保存)
+        None: (ファイルを保存)
     """
     # Initialize a folium map centered around the average latitude and longitude
     map_center = [20, 0]
