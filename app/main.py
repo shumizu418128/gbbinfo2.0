@@ -676,7 +676,7 @@ def analyze_data_total():
 
 
 ####################################################################
-# discord, Sitemap, robots.txt, ads.txt
+# discord, Sitemap, robots.txt, ads.txt, naver認証
 ####################################################################
 @app.route("/.well-known/discord")
 @cache.cached()
@@ -720,6 +720,17 @@ def ads_txt():
     :return: ads.txtファイル
     """
     return send_file("ads.txt", mimetype="text/plain")
+
+
+@app.route("NAVERC158F33394CB78FEFEFEFEFEFEFEFEFEF00C17F0A68707317.HTML")
+@cache.cached()
+def naver_verification():
+    """
+    NAVERの認証ファイルを返します。
+
+    :return: NAVERの認証ファイル
+    """
+    return send_file("naverc158f3394cb78ff00c17f0a687073317.html")
 
 
 ####################################################################
