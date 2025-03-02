@@ -722,7 +722,7 @@ def ads_txt():
     return send_file("ads.txt", mimetype="text/plain")
 
 
-@app.route("NAVERC158F33394CB78FEFEFEFEFEFEFEFEFEF00C17F0A68707317.HTML")
+@app.route("/NAVERC158F33394CB78FEFEFEFEFEFEFEFEFEF00C17F0A68707317.HTML")
 @cache.cached()
 def naver_verification():
     """
