@@ -55,7 +55,7 @@ model = genai.GenerativeModel(
 if "prompt" not in locals():
     file_path = os.getcwd() + "/app/prompt.txt"
     with open(file_path, "r", encoding="utf-8") as f:
-        prompt = f.read()
+        PROMPT = f.read()
 
 # othersファイルを読み込む
 if "others_link" not in locals():
@@ -202,7 +202,7 @@ def search(year: int, question: str):
     Returns:
         dict: モデルからの応答を含む辞書。URLが含まれます。
     """
-    global prompt, others_link
+    global PROMPT, others_link
 
     # 年度を推定：数字を検出
     detect_year = re.search(r"\d{4}", question)
@@ -227,7 +227,7 @@ def search(year: int, question: str):
     chat = model.start_chat()
 
     # プロンプトに必要事項を埋め込む
-    prompt_formatted = prompt.format(year=year, question=question)
+    prompt_formatted = PROMPT.format(year=year, question=question)
     print(question, flush=True)
 
     while True:

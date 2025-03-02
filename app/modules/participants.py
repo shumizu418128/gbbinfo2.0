@@ -7,7 +7,7 @@ from rapidfuzz.process import extract
 from .config import AVAILABLE_YEARS
 
 # df事前準備
-countries_df = pd.read_csv("app/database/countries.csv")
+COUNTRIES_DF = pd.read_csv("app/database/countries.csv")
 
 beatboxers_df_dict = {}
 for year in AVAILABLE_YEARS + [2013, 2014, 2015, 2016]:
@@ -41,14 +41,14 @@ def get_participants_list(
     Returns:
         list: フィルタリングされた参加者のリスト。
     """
-    global countries_df
+    global COUNTRIES_DF
 
     # データを取得
     beatboxers_df = beatboxers_df_dict[year]
 
     # Merge data to include country names in beatboxers_df
     merged_df = beatboxers_df.merge(
-        countries_df[["iso_code", "name", "name_ja"]],
+        COUNTRIES_DF[["iso_code", "name", "name_ja"]],
         on="iso_code",
         how="left",
         suffixes=("", "_country"),
@@ -287,7 +287,7 @@ def create_world_map(year: int):
 
     # Merge data to include country coordinates in beatboxers_df
     beatboxers_df = beatboxers_df.merge(
-        countries_df[["iso_code", "lat", "lon", "name"]],
+        COUNTRIES_DF[["iso_code", "lat", "lon", "name"]],
         on="iso_code",
         how="left",
         suffixes=("", "_country"),
@@ -322,7 +322,7 @@ def create_world_map(year: int):
 
         # 国名を日本語に変換
         # countries_dfからiso_codeが一致する行を取得
-        country_data = countries_df[countries_df["iso_code"] == iso_code]
+        country_data = COUNTRIES_DF[COUNTRIES_DF["iso_code"] == iso_code]
         country_name_ja = country_data["name_ja"].values[0]
 
         location = (lat, lon)
@@ -614,7 +614,7 @@ def create_all_participants_map(country_counts_all: dict):
             continue
 
         # 国の情報を取得
-        country_data = countries_df[countries_df["name_ja"] == country_name_ja]
+        country_data = COUNTRIES_DF[COUNTRIES_DF["name_ja"] == country_name_ja]
         country_name_en = country_data["name"].values[0]
 
         # 経度、緯度

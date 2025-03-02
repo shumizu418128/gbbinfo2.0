@@ -9,6 +9,12 @@ from google.oauth2.service_account import Credentials
 # 環境変数でローカル環境かどうかを判定
 ENVIRONMENT_CHECK = os.getenv("ENVIRONMENT_CHECK")
 
+# スコープと認証
+SCOPE = [
+    "https://spreadsheets.google.com/feeds",
+    "https://www.googleapis.com/auth/drive",
+]
+
 credentials = None
 client = None
 
@@ -26,11 +32,6 @@ def get_client():
     """
     global credentials, client
     if credentials is None:
-        # スコープと認証
-        scope = [
-            "https://spreadsheets.google.com/feeds",
-            "https://www.googleapis.com/auth/drive",
-        ]
         # 認証情報を環境変数から取得
         path = os.environ.get("GOOGLE_SHEET_CREDENTIALS")
 
@@ -39,7 +40,7 @@ def get_client():
 
         # 認証情報を作成
         credentials = Credentials.from_service_account_info(
-            credentials_info, scopes=scope
+            credentials_info, scopes=SCOPE
         )
 
     if client is None:
