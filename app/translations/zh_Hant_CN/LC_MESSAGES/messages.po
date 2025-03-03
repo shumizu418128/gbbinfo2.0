@@ -292,11 +292,7 @@ msgstr "對於本網站刊載的內容所造成的任何損失，我們概不負
 #: templates/2024/rule.html:61 templates/2025/rule.html:60
 #: templates/2025/wildcard_regulation.html:65
 msgid "Wildcardを提出する方は、"
-msgstr ""
-"提交通配符的用户，\n"
-"\n"
-"response json schema\n"
-"{\"translated_text\": \"(在这里翻译文本)\"}"
+msgstr "提交萬用字元的人，"
 
 #: templates/2024/rule.html:63 templates/2025/rule.html:61
 #: templates/2025/wildcard_regulation.html:66
@@ -471,7 +467,7 @@ msgstr "時間未定"
 #: templates/2024/rule.html:233 templates/2025/rule.html:230
 #: templates/2025/wildcard_regulation.html:217
 msgid "RC505 mki, mkiiのみ"
-msgstr "RC505 mki、mkiiのみ"
+msgstr "僅限RC505 mki、mkii"
 
 #: templates/2024/rule.html:233
 msgid "一部例外あり"
