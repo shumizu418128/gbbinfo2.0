@@ -4,6 +4,7 @@ import time
 
 import google.generativeai as genai
 import polib
+from tqdm import tqdm
 
 SAFETY_SETTINGS = [
     {
@@ -85,9 +86,12 @@ def translate():
         po_file_path = os.path.join(LOCALE_DIR, lang, "LC_MESSAGES", "messages.po")
         po = polib.pofile(po_file_path)
 
-        for entry in po.untranslated_entries() + po.fuzzy_entries():
+        for entry in tqdm(
+            po.untranslated_entries() + po.fuzzy_entries(), desc=f"{lang} の翻訳"
+        ):
             # geminiチャットを開始
             while True:
+                time.sleep(2)
                 try:
                     chat = model.start_chat()
                     response = chat.send_message(
@@ -97,12 +101,12 @@ def translate():
                     break
                 except Exception as e:
                     print(f"翻訳エラー：{e}\n再試行中...", flush=True)
-                    time.sleep(1)
 
             # 翻訳を保存
             if isinstance(response_json, list):
                 response_json = response_json[0]
-            translation = response_json["translated_text"]
+            translation = list(response_json.values())[0]
+
             entry.msgstr = translation
 
             if "fuzzy" in entry.flags:
