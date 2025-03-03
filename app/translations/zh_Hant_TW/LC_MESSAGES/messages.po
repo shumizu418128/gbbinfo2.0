@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-20 21:21+0900\n"
+"POT-Creation-Date: 2025-03-03 20:30+0900\n"
 "PO-Revision-Date: 2024-11-12 00:01+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_Hant_TW <LL@li.org>\n"
@@ -17,6 +17,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.17.0\n"
+
+#: templates/base.html:30 templates/base.html:43 templates/base.html:47
+msgid ""
+"Swissbeatboxが主催するHuman Beatboxの世界大会「Grand Beatbox "
+"Battle」の各種情報を、見やすくまとめたサイトです。"
+msgstr ""
+"該網站提供了有關SwissBeatBox主持的有關人類Beatbox世界冠軍“ Grand Beatbox Battle”的易於閱讀的各種信息。"
 
 #: templates/2024/rule.html:21 templates/2024/rule.html:70
 #: templates/2024/rule.html:129 templates/2024/rule.html:208
@@ -46,8 +53,9 @@ msgstr "這麼做的指南"
 #: templates/2025/rule.html:295 templates/2025/rule.html:335
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:54
 #: templates/2025/wildcards.html:76 templates/base.html:119
-#: templates/common/participants.html:24 templates/common/result.html:91
+#: templates/common/participants.html:27 templates/common/result.html:90
 #: templates/includes/participants_form.html:12
+#: templates/others/result_stream.html:27
 msgid "Wildcard結果"
 msgstr "Wildcard結果"
 
@@ -55,7 +63,7 @@ msgstr "Wildcard結果"
 #: templates/2025/rule.html:295 templates/2025/rule.html:335
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:54
 #: templates/2025/wildcards.html:76 templates/base.html:119
-#: templates/common/result.html:91
+#: templates/common/result.html:90 templates/others/result_stream.html:27
 msgid "出場者"
 msgstr "參賽者"
 
@@ -117,8 +125,8 @@ msgstr "日本代表"
 #: templates/2024/ticket.html:10 templates/2024/ticket.html:16
 #: templates/2024/top.html:73 templates/2024/top.html:129
 #: templates/2024/top.html:133 templates/2025/ticket.html:10
-#: templates/2025/top.html:74 templates/2025/top.html:153
-#: templates/2025/top.html:157 templates/base.html:124
+#: templates/2025/top.html:74 templates/2025/top.html:136
+#: templates/2025/top.html:140 templates/base.html:124
 msgid "会場"
 msgstr "場地"
 
@@ -298,7 +306,7 @@ msgstr "請務必再次確認自己的規則。"
 #: templates/2025/wildcard_regulation.html:84
 #: templates/2025/wildcard_regulation.html:141
 #: templates/2025/wildcard_regulation.html:198 templates/common/japan.html:21
-#: templates/common/participants.html:112
+#: templates/common/participants.html:115
 msgid "部門"
 msgstr "部門"
 
@@ -349,21 +357,21 @@ msgstr "種子權辭退者名單"
 
 #: templates/2024/rule.html:149 templates/2025/rule.html:144
 #: templates/2025/wildcard_regulation.html:141 templates/common/japan.html:20
-#: templates/common/participants.html:41
-#: templates/common/participants.html:111 templates/common/result.html:50
+#: templates/common/participants.html:44
+#: templates/common/participants.html:114 templates/common/result.html:50
 msgid "名前"
 msgstr "姓名"
 
 #: templates/2024/rule.html:151 templates/2025/rule.html:146
-#: templates/common/japan.html:22 templates/common/participants.html:43
-#: templates/common/participants.html:113
+#: templates/common/japan.html:22 templates/common/participants.html:46
+#: templates/common/participants.html:116
 msgid "出場権"
 msgstr "參賽權"
 
 #: templates/2024/rule.html:161 templates/2024/rule.html:170
 #: templates/2025/rule.html:156 templates/2025/rule.html:165
 #: templates/common/japan.html:31 templates/common/japan.html:40
-#: templates/common/participants.html:52 templates/common/participants.html:61
+#: templates/common/participants.html:55 templates/common/participants.html:64
 msgid "【辞退】"
 msgstr "【辭退】"
 
@@ -379,7 +387,7 @@ msgstr "參賽者名單"
 #: templates/2025/time_schedule.html:55 templates/2025/time_schedule.html:83
 #: templates/2025/time_schedule.html:111 templates/2025/time_schedule.html:131
 #: templates/2025/time_schedule.html:135 templates/2025/time_schedule.html:139
-#: templates/common/participants.html:18 templates/common/participants.html:86
+#: templates/common/participants.html:21 templates/common/participants.html:89
 #: templates/common/result.html:64
 msgid "～発表次第更新～"
 msgstr "～隨著發佈更新～"
@@ -393,7 +401,8 @@ msgstr "持有種子權的人辭退時，該種子權將原則上消失，並將
 msgid "全部門共通"
 msgstr "所有部門通用"
 
-#: templates/2024/rule.html:221
+#: templates/2024/rule.html:221 templates/2025/rule.html:218
+#: templates/2025/wildcard_regulation.html:205
 msgid "制限時間を超過した場合、1秒につき最終順位を1つ下げる"
 msgstr "超過限制時間的話，每超過一秒，最終排名下降一位"
 
@@ -495,7 +504,7 @@ msgstr "檢查GBB {year} 的最新資訊"
 
 #: templates/2024/stream.html:39 templates/common/participants.html:2
 #: templates/common/participants.html:3 templates/common/participants.html:4
-#: templates/common/participants.html:9
+#: templates/common/participants.html:12
 msgid "Wildcard結果&出場者"
 msgstr "Wildcard結果與參賽者"
 
@@ -700,51 +709,51 @@ msgstr "7toSmoke這麼做的指南"
 
 #: templates/2024/top.html:101 templates/2024/top.html:115
 #: templates/2024/top_7tosmoke.html:44 templates/2025/top.html:101
-#: templates/2025/top.html:134 templates/2025/top_7tosmoke.html:44
+#: templates/2025/top.html:117 templates/2025/top_7tosmoke.html:44
 msgid "お問い合わせ"
 msgstr "聯繫我們"
 
-#: templates/2024/top.html:106 templates/2025/top.html:106
+#: templates/2024/top.html:106 templates/2025/top.html:108
 msgid "これらの情報のほかにも、"
 msgstr "除了這些資訊，"
 
-#: templates/2024/top.html:108 templates/2025/top.html:108
+#: templates/2024/top.html:108 templates/2025/top.html:110
 msgid "未発表の情報(決まっているが、なぜか公式が発表を渋っている)"
 msgstr "未發佈的資訊（已確定，但官方卻不願發佈）"
 
-#: templates/2024/top.html:109 templates/2025/top.html:109
+#: templates/2024/top.html:109 templates/2025/top.html:111
 msgid "未定事項(そもそも決まってすらいない)"
 msgstr "未定事項（根本還未決定）"
 
-#: templates/2024/top.html:111 templates/2025/top.html:111
+#: templates/2024/top.html:111 templates/2025/top.html:113
 msgid "このような情報が多く存在します。"
 msgstr "這類資訊有很多。"
 
-#: templates/2024/top.html:112 templates/2025/top.html:112
+#: templates/2024/top.html:112 templates/2025/top.html:114
 msgid "GBBの各種情報は、発表が非常に遅いことで有名です。気長に待ちましょう。"
 msgstr "GBB的各種資訊以發佈非常緩慢而聞名。請耐心等待。"
 
-#: templates/2024/top.html:116 templates/2025/top.html:140
+#: templates/2024/top.html:116 templates/2025/top.html:123
 msgid "過去のGBBにおいて、下記番号に電話したらGBB詳細情報を教えてくれた、という報告が相次ぎました。"
 msgstr "在過去的GBB中，有報告稱如果撥打以下號碼，會告訴你GBB的詳細資訊。"
 
-#: templates/2024/top.html:120 templates/2025/top.html:144
+#: templates/2024/top.html:120 templates/2025/top.html:127
 msgid "場所"
 msgstr "地點"
 
-#: templates/2024/top.html:121 templates/2025/top.html:145
+#: templates/2024/top.html:121 templates/2025/top.html:128
 msgid "電話番号"
 msgstr "電話號碼"
 
-#: templates/2024/top.html:125 templates/2025/top.html:149
+#: templates/2024/top.html:125 templates/2025/top.html:132
 msgid "チケット販売ページ"
 msgstr "票券銷售頁面"
 
-#: templates/2024/top.html:125 templates/2025/top.html:149
+#: templates/2024/top.html:125 templates/2025/top.html:132
 msgid "記載の番号"
 msgstr "所列的號碼"
 
-#: templates/2024/top.html:137 templates/2025/top.html:161
+#: templates/2024/top.html:137 templates/2025/top.html:144
 msgid "なお上記電話番号は、当サイトとは無関係です。"
 msgstr "請注意，上述電話號碼與本網站無關。"
 
@@ -800,10 +809,6 @@ msgid "【Beatboxer向け】Wildcardレギュレーション解説"
 msgstr "【給Beatboxer】Wildcard規則說明"
 
 #: templates/2025/rule.html:218 templates/2025/wildcard_regulation.html:205
-msgid "制限時間を超過すると、1秒につき最終順位を1つ下げる"
-msgstr "超過限制時間時，每超過1秒，最終排名將下降1名"
-
-#: templates/2025/rule.html:218 templates/2025/wildcard_regulation.html:205
 msgid "制限時間を使い切らず余らせた場合、3秒につき最終順位を1つ下げる"
 msgstr "若未使用完限制時間，每剩餘3秒，最終排名將下降1名"
 
@@ -823,27 +828,7 @@ msgstr "GBB24在比賽前8天公開"
 msgid "GBB24では、本番約1ヶ月前に公開されましたが、誤記が多くみられました。"
 msgstr "GBB24在比賽前約1個月公開，但有很多錯誤。"
 
-#: templates/2025/top.html:115
-msgid "本日のおすすめ動画"
-msgstr "今天推薦的視頻"
-
-#: templates/2025/top.html:124
-msgid "おすすめ動画を追加する"
-msgstr "添加推薦的視頻"
-
-#: templates/2025/top.html:125
-msgid "YouTubeのBeatbox動画を投稿してね"
-msgstr "在YouTube上發布Beatbox視頻"
-
-#: templates/2025/top.html:128
-msgid "送信"
-msgstr "發送"
-
-#: templates/2025/top.html:130
-msgid "ありがとうございます！"
-msgstr "謝謝你！"
-
-#: templates/2025/top.html:137
+#: templates/2025/top.html:120
 msgid "お探しの情報は、当サイトにありません。下記お問い合わせより、GBB運営に直接お尋ねください。"
 msgstr "您所尋找的資訊在本網站上沒有。請透過以下諮詢方式直接洽詢GBB營運單位。"
 
@@ -1093,75 +1078,85 @@ msgstr "無日本代表"
 msgid "Wildcard順位"
 msgstr "Wildcard排名"
 
-#: templates/common/japan.html:74 templates/common/participants.html:28
+#: templates/common/japan.html:74 templates/common/participants.html:31
 msgid "全出場者一覧"
 msgstr "所有參賽者名單"
 
-#: templates/common/japan.html:75 templates/common/participants.html:94
-#: templates/common/result.html:89
+#: templates/common/japan.html:75 templates/common/participants.html:97
+#: templates/common/result.html:88
 msgid "出場権詳細"
 msgstr "參賽權詳細"
 
-#: templates/common/japan.html:76 templates/common/participants.html:95
-#: templates/common/result.html:90
+#: templates/common/japan.html:76 templates/common/participants.html:98
+#: templates/common/result.html:89 templates/others/result_stream.html:16
 msgid "ルール&審査員"
 msgstr "規則與評審"
 
-#: templates/common/japan.html:77 templates/common/participants.html:96
+#: templates/common/japan.html:77 templates/common/participants.html:99
+#: templates/others/result_stream.html:17
+#: templates/others/result_stream.html:28
 msgid "結果発表日"
 msgstr "結果發佈日"
 
-#: templates/common/japan.html:80 templates/common/participants.html:119
+#: templates/common/japan.html:80 templates/common/participants.html:122
 msgid "出場者世界地図"
 msgstr "參賽者世界地圖"
 
-#: templates/common/japan.html:81 templates/common/participants.html:120
+#: templates/common/japan.html:81 templates/common/participants.html:123
 msgid "国旗をタップorクリックすると、詳細を確認できます。"
 msgstr "點擊或點擊國旗可以查看詳細資訊。"
 
-#: templates/common/japan.html:86 templates/common/participants.html:126
-#: templates/common/result.html:80
+#: templates/common/japan.html:85 templates/common/participants.html:134
+#: templates/common/result.html:79
 msgid "その他の年度を確認："
 msgstr "查看其他年度："
 
-#: templates/common/participants.html:26
+#: templates/common/participants.html:29
 msgid "シード権獲得者"
 msgstr "獲得種子權的參賽者"
 
-#: templates/common/participants.html:32
+#: templates/common/participants.html:35
 #: templates/includes/participants_form.html:19
 msgid "出場者のみ"
 msgstr "僅參賽者"
 
-#: templates/common/participants.html:34
+#: templates/common/participants.html:37
 #: templates/includes/participants_form.html:20
 msgid "辞退者のみ"
 msgstr "僅辭退者"
 
-#: templates/common/participants.html:42
+#: templates/common/participants.html:45
 msgid "出身"
 msgstr "出身地"
 
-#: templates/common/participants.html:100
 #: templates/common/participants.html:103
+#: templates/common/participants.html:106
 msgid "出場者検索"
 msgstr "參賽者搜尋"
 
-#: templates/common/participants.html:101
+#: templates/common/participants.html:104
 msgid "出場者名を検索できます"
 msgstr "您可以搜索參賽者名稱"
 
-#: templates/common/participants.html:101
+#: templates/common/participants.html:104
 msgid "半角英数字推奨"
 msgstr "建議使用半角英數字"
 
-#: templates/common/participants.html:107
+#: templates/common/participants.html:110
 msgid "検索結果"
 msgstr "搜尋結果"
 
-#: templates/common/participants.html:120
+#: templates/common/participants.html:123
 msgid "全出場者を地図にマッピングしました。"
 msgstr "所有參賽者已在地圖上標示。"
+
+#: templates/common/participants.html:127
+msgid "国別出場者数"
+msgstr "國家選手人數"
+
+#: templates/common/participants.html:130
+msgid "カテゴリー別出場者数"
+msgstr "一類參賽者的數量"
 
 #: templates/common/result.html:12 templates/common/result.html:69
 #: templates/includes/participants_form.html:2
@@ -1251,9 +1246,3 @@ msgstr "您所尋找的資訊尚未有官方發佈，因此在本網站上不存
 #: templates/includes/popup_no_info.html:7
 msgid "公式発表をお待ちください。"
 msgstr "請耐心等待官方發佈。"
-
-#~ msgid "完売"
-#~ msgstr "已售完"
-
-#~ msgid "～後日更新～"
-#~ msgstr "～後續更新～"

@@ -1,7 +1,44 @@
+import json
 import os
+import time
 
+import google.generativeai as genai
 import polib
-from googletrans import Translator
+
+SAFETY_SETTINGS = [
+    {
+        "category": "HARM_CATEGORY_SEXUAL",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_DANGEROUS",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_HARASSMENT",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_HATE_SPEECH",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+        "threshold": "BLOCK_NONE",
+    },
+]
+
+prompt = """
+translate following text to {lang}
+{source_text}
+
+response json schema
+{{"translated_text": "(translated text here)"}}
+"""
 
 
 def translate():
@@ -18,6 +55,17 @@ def translate():
     ローカルでの実行を前提としています。
     """
     # 設定
+    API_KEY = os.environ.get("GEMINI_API_KEY")
+    if not API_KEY:
+        raise ValueError("Please set the GEMINI_API_KEY environment variable")
+    genai.configure(api_key=API_KEY)
+
+    model = genai.GenerativeModel(
+        model_name="gemini-2.0-flash-lite-preview",
+        safety_settings=SAFETY_SETTINGS,
+        generation_config={"response_mime_type": "application/json"},
+    )
+
     BASE_DIR = os.path.abspath("app")
     LOCALE_DIR = os.path.join(BASE_DIR, "translations")
     POT_FILE = os.path.join(BASE_DIR, "messages.pot")
@@ -26,31 +74,44 @@ def translate():
         d for d in os.listdir(LOCALE_DIR) if os.path.isdir(os.path.join(LOCALE_DIR, d))
     ]
 
-    # 1. テンプレートファイルの再生成
+    # テンプレートファイルの再生成
     os.system(f"cd {BASE_DIR} && pybabel extract -F {CONFIG_FILE} -o {POT_FILE} .")
 
-    # 2. 翻訳ファイルのマージ
+    # 翻訳ファイルのマージ
     os.system(f"cd {BASE_DIR} && pybabel update -i {POT_FILE} -d {LOCALE_DIR}")
 
-    # 3. 未翻訳部分を googletrans で翻訳
-    translator = Translator()
-
+    # geminiで翻訳
     for lang in LANGUAGES:
         po_file_path = os.path.join(LOCALE_DIR, lang, "LC_MESSAGES", "messages.po")
-
-        # Google Translateはzh-TWをサポート
-        target_lang = "zh-tw" if lang == "zh_Hant_TW" else lang
-
         po = polib.pofile(po_file_path)
+
         for entry in po.untranslated_entries() + po.fuzzy_entries():
-            translation = translator.translate(entry.msgid, src="ja", dest=target_lang).text
+            # geminiチャットを開始
+            while True:
+                try:
+                    chat = model.start_chat()
+                    response = chat.send_message(
+                        prompt.format(lang=lang, source_text=entry.msgid)
+                    )
+                    response_json = json.loads(response.text)
+                    break
+                except Exception as e:
+                    print(f"翻訳エラー：{e}\n再試行中...", flush=True)
+                    time.sleep(1)
+
+            # 翻訳を保存
+            if isinstance(response_json, list):
+                response_json = response_json[0]
+            translation = response_json["translated_text"]
             entry.msgstr = translation
+
             if "fuzzy" in entry.flags:
                 entry.flags.remove("fuzzy")  # fuzzy フラグを削除
+
         po.save(po_file_path)
         print(f"{lang} の翻訳を保存しました。", flush=True)
 
-    # 4. 再コンパイル
+    # 再コンパイル
     os.system(f"cd {BASE_DIR} && pybabel compile -d {LOCALE_DIR}")
 
     print("翻訳が完了しました！", flush=True)
