@@ -34,11 +34,15 @@ SAFETY_SETTINGS = [
 ]
 
 prompt = """
-translate following text to {lang}
-{source_text}
+# Task
+Translate the following text into {lang}.
 
-response json schema
-{{"translated_text": "(translated text here)"}}
+# Input
+Text: {source_text}
+Target Language: {lang}
+
+# Output Format (JSON)
+{{"translated_text": "string"}}
 """
 
 

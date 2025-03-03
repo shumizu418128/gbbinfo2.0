@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-03 20:41+0900\n"
+"POT-Creation-Date: 2025-03-03 22:00+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:133
 #: templates/2025/wildcard_regulation.html:190
 #: templates/2025/wildcard_regulation.html:250 templates/base.html:118
-#: templates/base.html:140 templates/base.html:228
+#: templates/base.html:142 templates/base.html:232
 msgid "これだけガイド"
 msgstr "Guide"
 
@@ -155,72 +155,72 @@ msgstr "Streaming"
 msgid "大会結果"
 msgstr "Results"
 
-#: templates/base.html:143
+#: templates/base.html:145
 msgid "年度選択"
 msgstr "Year Selection"
 
-#: templates/base.html:189
+#: templates/base.html:193
 msgid "次のGBBまであと..."
 msgstr "Time until the next GBB..."
 
-#: templates/base.html:194 templates/base.html:206
+#: templates/base.html:198 templates/base.html:210
 #: templates/includes/bottom_navigation.html:28
 #: templates/includes/bottom_navigation.html:42
 msgid "なんでも検索"
 msgstr "Search Anything"
 
-#: templates/base.html:195 templates/includes/bottom_navigation.html:29
+#: templates/base.html:199 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} の検索のみ可能です"
 msgstr "Only searches for GBB {year} are possible."
 
-#: templates/base.html:195 templates/includes/bottom_navigation.html:29
+#: templates/base.html:199 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} は終了しました"
 msgstr "GBB {year} has ended."
 
-#: templates/base.html:197 templates/includes/bottom_navigation.html:31
+#: templates/base.html:201 templates/includes/bottom_navigation.html:31
 #, python-brace-format
 msgid "例：GBB {year} の最終結果は？"
 msgstr "Example: What was the final result of GBB {year}?"
 
-#: templates/base.html:202 templates/includes/bottom_navigation.html:36
+#: templates/base.html:206 templates/includes/bottom_navigation.html:36
 msgid "GBB最新情報の検索はこちら"
 msgstr "Search for the latest GBB information here."
 
-#: templates/base.html:207 templates/includes/bottom_navigation.html:43
+#: templates/base.html:211 templates/includes/bottom_navigation.html:43
 #, python-brace-format
 msgid "GBB {year} について検索してみよう"
 msgstr "Let's search for information about GBB {year}."
 
 #: templates/2024/top.html:36 templates/2024/top_7tosmoke.html:16
 #: templates/2025/top.html:36 templates/2025/top_7tosmoke.html:16
-#: templates/base.html:209 templates/includes/bottom_navigation.html:45
+#: templates/base.html:213 templates/includes/bottom_navigation.html:45
 msgid "例：現地観戦計画のたてかた"
 msgstr "Example: How to Plan for On-Site Viewing"
 
-#: templates/base.html:219
+#: templates/base.html:223
 msgid "ホーム画面に追加"
 msgstr "Add to Home Screen"
 
-#: templates/base.html:222
+#: templates/base.html:226
 msgid "GBBINFO-JPNはPWAに対応しています。"
 msgstr "GBBINFO-JPN is compatible with PWA."
 
-#: templates/base.html:222
+#: templates/base.html:226
 msgid "ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。"
 msgstr ""
 "Open the browser menu and tap 'Add to Home Screen' to install it as an app."
 
-#: templates/base.html:228
+#: templates/base.html:232
 msgid "ホームへもどる"
 msgstr "Return to Home"
 
-#: templates/base.html:233
+#: templates/base.html:237
 msgid "対応言語"
 msgstr "Available Languages"
 
-#: templates/base.html:245
+#: templates/base.html:251
 msgid "GBBINFO-JPNについて"
 msgstr "About GBBINFO-JPN"
 
