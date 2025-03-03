@@ -23,7 +23,7 @@ KO.forEach(link => {
 });
 
 ZH_CN.forEach(link => {
-    link.href = `/lang?referrer=${currentUrl}&lang=zh_Hans_CN`;
+    link.href = `/lang?referrer=${currentUrl}&lang=zh_Hant_CN`;
 });
 
 DE.forEach(link => {
