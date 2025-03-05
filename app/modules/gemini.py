@@ -111,7 +111,7 @@ def search_cache(year: int, question: str):
     """
 
     # 前処理
-    question_edited = question.upper().strip()
+    question_edited = question.strip()
 
     # キャッシュにユーザーの入力があるか確認
     if question_edited in cache_text:
