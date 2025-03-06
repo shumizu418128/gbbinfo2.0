@@ -301,7 +301,7 @@ msgstr ""
 #: templates/2024/rule.html:61 templates/2025/rule.html:60
 #: templates/2025/wildcard_regulation.html:65
 msgid "Wildcardを提出する方は、"
-msgstr "Wildcardを提出する方は、"
+msgstr "Wer eine Wildcard einreicht,"
 
 #: templates/2024/rule.html:63 templates/2025/rule.html:61
 #: templates/2025/wildcard_regulation.html:66
