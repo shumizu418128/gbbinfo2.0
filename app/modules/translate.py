@@ -43,6 +43,11 @@ Target Language: {lang}
 
 # Output Format (JSON)
 {{"translated_text": "string"}}
+
+# Note
+The output will be parsed using Python's `json.loads` function.
+Please ensure that any characters requiring escaping for `json.loads` to correctly parse the JSON are properly escaped.
+This includes, but is not limited to, double quotes, backslashes, and control characters.
 """
 
 
@@ -104,12 +109,14 @@ def translate():
                     response_json = json.loads(response.text)
                     break
                 except Exception as e:
+                    print(response.text)
                     print(f"翻訳エラー：{e}\n再試行中...", flush=True)
 
             # 翻訳を保存
             if isinstance(response_json, list):
                 response_json = response_json[0]
             translation = list(response_json.values())[0]
+            translation = translation.replace("\\", "")
 
             entry.msgstr = translation
 

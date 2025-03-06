@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-03 23:25+0900\n"
+"POT-Creation-Date: 2025-03-07 00:51+0900\n"
 "PO-Revision-Date: 2025-03-03 20:35+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr "这是一个汇集了Swissbeatbox主办的人声节拍世界大赛“Gra
 #: templates/2025/wildcard_regulation.html:133
 #: templates/2025/wildcard_regulation.html:190
 #: templates/2025/wildcard_regulation.html:250 templates/base.html:118
-#: templates/base.html:142 templates/base.html:232
+#: templates/base.html:144 templates/base.html:236
 msgid "これだけガイド"
 msgstr "仅此指南"
 
@@ -152,71 +152,71 @@ msgstr "当日发布"
 msgid "大会結果"
 msgstr "大会结果"
 
-#: templates/base.html:145
+#: templates/base.html:147
 msgid "年度選択"
 msgstr "年度选择"
 
-#: templates/base.html:193
+#: templates/base.html:197
 msgid "次のGBBまであと..."
 msgstr "距离下一次GBB还有..."
 
-#: templates/base.html:198 templates/base.html:210
+#: templates/base.html:202 templates/base.html:214
 #: templates/includes/bottom_navigation.html:28
 #: templates/includes/bottom_navigation.html:42
 msgid "なんでも検索"
 msgstr "万事皆可搜索"
 
-#: templates/base.html:199 templates/includes/bottom_navigation.html:29
+#: templates/base.html:203 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} の検索のみ可能です"
 msgstr "仅可搜索 GBB {year}"
 
-#: templates/base.html:199 templates/includes/bottom_navigation.html:29
+#: templates/base.html:203 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} は終了しました"
 msgstr "GBB {year} 已结束"
 
-#: templates/base.html:201 templates/includes/bottom_navigation.html:31
+#: templates/base.html:205 templates/includes/bottom_navigation.html:31
 #, python-brace-format
 msgid "例：GBB {year} の最終結果は？"
 msgstr "例如：GBB {year} 的最终结果是什么？"
 
-#: templates/base.html:206 templates/includes/bottom_navigation.html:36
+#: templates/base.html:210 templates/includes/bottom_navigation.html:36
 msgid "GBB最新情報の検索はこちら"
 msgstr "点击此处搜索GBB最新信息"
 
-#: templates/base.html:211 templates/includes/bottom_navigation.html:43
+#: templates/base.html:215 templates/includes/bottom_navigation.html:43
 #, python-brace-format
 msgid "GBB {year} について検索してみよう"
 msgstr "搜索 GBB {year}"
 
 #: templates/2024/top.html:36 templates/2024/top_7tosmoke.html:16
 #: templates/2025/top.html:36 templates/2025/top_7tosmoke.html:16
-#: templates/base.html:213 templates/includes/bottom_navigation.html:45
+#: templates/base.html:217 templates/includes/bottom_navigation.html:45
 msgid "例：現地観戦計画のたてかた"
 msgstr "例如：现场观赛计划的制定方法"
 
-#: templates/base.html:223
+#: templates/base.html:227
 msgid "ホーム画面に追加"
 msgstr "添加到主屏幕"
 
-#: templates/base.html:226
+#: templates/base.html:230
 msgid "GBBINFO-JPNはPWAに対応しています。"
 msgstr "GBBINFO-JPN 支持 PWA。"
 
-#: templates/base.html:226
+#: templates/base.html:230
 msgid "ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。"
 msgstr "打开浏览器菜单，点击“添加到主屏幕”，即可作为应用程序安装。"
 
-#: templates/base.html:232
+#: templates/base.html:236
 msgid "ホームへもどる"
 msgstr "返回主页"
 
-#: templates/base.html:237
+#: templates/base.html:241
 msgid "対応言語"
 msgstr "支持的语言"
 
-#: templates/base.html:251
+#: templates/base.html:257
 msgid "GBBINFO-JPNについて"
 msgstr "关于GBBINFO-JPN"
 

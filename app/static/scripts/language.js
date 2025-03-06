@@ -5,6 +5,8 @@ const ZH_TW = document.querySelectorAll('.linkZH_TW');
 const KO = document.querySelectorAll('.linkKO');
 const ZH_CN = document.querySelectorAll('.linkZH_CN');
 const DE = document.querySelectorAll('.linkDE');
+const MS = document.querySelectorAll('.linkMS');
+const ID = document.querySelectorAll('.linkID');
 
 JA.forEach(link => {
     link.href = `/lang?referrer=${currentUrl}&lang=ja`;
@@ -28,4 +30,12 @@ ZH_CN.forEach(link => {
 
 DE.forEach(link => {
     link.href = `/lang?referrer=${currentUrl}&lang=de`;
+});
+
+MS.forEach(link => {
+    link.href = `/lang?referrer=${currentUrl}&lang=ms`;
+});
+
+ID.forEach(link => {
+    link.href = `/lang?referrer=${currentUrl}&lang=id`;
 });

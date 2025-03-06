@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-03 23:25+0900\n"
+"POT-Creation-Date: 2025-03-07 00:51+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:133
 #: templates/2025/wildcard_regulation.html:190
 #: templates/2025/wildcard_regulation.html:250 templates/base.html:118
-#: templates/base.html:142 templates/base.html:232
+#: templates/base.html:144 templates/base.html:236
 msgid "これだけガイド"
 msgstr ""
 
@@ -151,71 +151,71 @@ msgstr ""
 msgid "大会結果"
 msgstr ""
 
-#: templates/base.html:145
+#: templates/base.html:147
 msgid "年度選択"
 msgstr ""
 
-#: templates/base.html:193
+#: templates/base.html:197
 msgid "次のGBBまであと..."
 msgstr ""
 
-#: templates/base.html:198 templates/base.html:210
+#: templates/base.html:202 templates/base.html:214
 #: templates/includes/bottom_navigation.html:28
 #: templates/includes/bottom_navigation.html:42
 msgid "なんでも検索"
 msgstr ""
 
-#: templates/base.html:199 templates/includes/bottom_navigation.html:29
+#: templates/base.html:203 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} の検索のみ可能です"
 msgstr ""
 
-#: templates/base.html:199 templates/includes/bottom_navigation.html:29
+#: templates/base.html:203 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} は終了しました"
 msgstr ""
 
-#: templates/base.html:201 templates/includes/bottom_navigation.html:31
+#: templates/base.html:205 templates/includes/bottom_navigation.html:31
 #, python-brace-format
 msgid "例：GBB {year} の最終結果は？"
 msgstr ""
 
-#: templates/base.html:206 templates/includes/bottom_navigation.html:36
+#: templates/base.html:210 templates/includes/bottom_navigation.html:36
 msgid "GBB最新情報の検索はこちら"
 msgstr ""
 
-#: templates/base.html:211 templates/includes/bottom_navigation.html:43
+#: templates/base.html:215 templates/includes/bottom_navigation.html:43
 #, python-brace-format
 msgid "GBB {year} について検索してみよう"
 msgstr ""
 
 #: templates/2024/top.html:36 templates/2024/top_7tosmoke.html:16
 #: templates/2025/top.html:36 templates/2025/top_7tosmoke.html:16
-#: templates/base.html:213 templates/includes/bottom_navigation.html:45
+#: templates/base.html:217 templates/includes/bottom_navigation.html:45
 msgid "例：現地観戦計画のたてかた"
 msgstr ""
 
-#: templates/base.html:223
+#: templates/base.html:227
 msgid "ホーム画面に追加"
 msgstr ""
 
-#: templates/base.html:226
+#: templates/base.html:230
 msgid "GBBINFO-JPNはPWAに対応しています。"
 msgstr ""
 
-#: templates/base.html:226
+#: templates/base.html:230
 msgid "ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。"
 msgstr ""
 
-#: templates/base.html:232
+#: templates/base.html:236
 msgid "ホームへもどる"
 msgstr ""
 
-#: templates/base.html:237
+#: templates/base.html:241
 msgid "対応言語"
 msgstr ""
 
-#: templates/base.html:251
+#: templates/base.html:257
 msgid "GBBINFO-JPNについて"
 msgstr ""
 
