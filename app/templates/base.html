@@ -127,14 +127,11 @@
       </div>
       <p>LANGUAGE</p>
       <div class="button-container">
-        <a class="linkJA"><button>日本語</button></a>
-        <a class="linkEN"><button>English</button></a>
-        <a class="linkZH_TW"><button>繁體中文</button></a>
-        <a class="linkKO"><button>한국어</button></a>
-        <a class="linkDE"><button>Deutsch</button></a>
-        <a class="linkZH_CN"><button>简体中文</button></a>
-        <a class="linkMS"><button>Bahasa Melayu</button></a>
-        <a class="linkID"><button>Bahasa Indonesia</button></a>
+        {% for lang_code, lang_name in lang_name.items() %}
+          <a href="/lang?referrer={{ current_url }}&lang={{ lang_code }}">
+            <button>{{ lang_name }}</button>
+          </a>
+        {% endfor %}
       </div>
     </div>
     <header>
@@ -156,14 +153,9 @@
             <li>
               LANGUAGE
               <ul class="past_gbb_lists">
-                <a class="linkJA"><li class="past_gbb">日本語</li></a>
-                <a class="linkEN"><li class="past_gbb">English</li></a>
-                <a class="linkZH_TW"><li class="past_gbb">繁體中文</li></a>
-                <a class="linkKO"><li class="past_gbb">한국어</li></a>
-                <a class="linkDE"><li class="past_gbb">Deutsch</li></a>
-                <a class="linkZH_CN"><li class="past_gbb">简体中文</li></a>
-                <a class="linkMS"><li class="past_gbb">Bahasa MY</li></a>
-                <a class="linkID"><li class="past_gbb">Bahasa ID</li></a>
+                {% for lang_code, lang_name in lang_name.items() %}
+                  <a href="/lang?referrer={{ current_url }}&lang={{ lang_code }}"><li class="past_gbb">{{ lang_name }}</li></a>
+                {% endfor %}
               </ul>
             </li>
           </div>
@@ -240,14 +232,11 @@
 
       <h3>{{ _('対応言語') }}</h3>
       <div class="button-container">
-        <a class="linkJA"><button>日本語</button></a>
-        <a class="linkEN"><button>English</button></a>
-        <a class="linkZH_TW"><button>繁體中文</button></a>
-        <a class="linkKO"><button>한국어</button></a>
-        <a class="linkDE"><button>Deutsch</button></a>
-        <a class="linkZH_CN"><button>简体中文</button></a>
-        <a class="linkMS"><button>Bahasa Melayu</button></a>
-        <a class="linkID"><button>Bahasa Indonesia</button></a>
+        {% for lang_code, lang_name in lang_name.items() %}
+          <a href="/lang?referrer={{ current_url }}&lang={{ lang_code }}">
+            <button>{{ lang_name }}</button>
+          </a>
+        {% endfor %}
       </div>
       <hr>
       <a href="https://qiita.com/tari3210/items/0561e91774863d165af0" target="_blank" rel="noopener noreferrer">GBBINFO-JPNの設計図</a>
@@ -275,7 +264,6 @@
     <script src="/static/scripts/countdown.js"></script>
     <script src="/static/scripts/dropdown.js"></script>
     <script src="/static/scripts/install.js"></script>
-    <script src="/static/scripts/language.js"></script>
     <script src="/static/scripts/popup.js"></script>
     <script src="/static/scripts/scroll.js"></script>
     <script src="/static/scripts/search.js"></script>

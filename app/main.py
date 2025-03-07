@@ -6,6 +6,7 @@ import jinja2
 import pandas as pd
 from flask import (
     Flask,
+    g,
     jsonify,
     redirect,
     render_template,
@@ -19,7 +20,13 @@ from flask_caching import Cache
 from flask_sitemapper import Sitemapper
 
 from .modules import gemini
-from .modules.config import AVAILABLE_LANGS, AVAILABLE_YEARS, Config, TestConfig
+from .modules.config import (
+    AVAILABLE_LANGS,
+    AVAILABLE_YEARS,
+    LANG_NAME,
+    Config,
+    TestConfig,
+)
 from .modules.participants import (
     create_world_map,
     get_participants_list,
@@ -121,6 +128,30 @@ COMBINATIONS_CONTENT = [
 
 CONTENT_OTHERS = os.listdir("./app/templates/others")
 CONTENT_OTHERS = [content.replace(".html", "") for content in CONTENT_OTHERS]
+
+
+####################################################################
+# すべてのページに送る共通変数
+####################################################################
+@app.before_request
+def set_request_data():
+    g.current_url = request.path
+
+
+@app.context_processor
+def inject_variables():
+    """
+    すべてのページに送る共通変数を設定します。
+
+    :return: 共通変数
+    """
+    return dict(
+        available_years=AVAILABLE_YEARS,
+        available_langs=AVAILABLE_LANGS,
+        lang_name=LANG_NAME,
+        last_updated=LAST_UPDATED,
+        current_url=g.current_url,
+    )
 
 
 ####################################################################
@@ -301,8 +332,6 @@ def participants(year: int):
             all_category=[],
             result_url=None,
             is_latest_year=is_latest_year(year),
-            available_years=AVAILABLE_YEARS,
-            last_updated=LAST_UPDATED,
             value=value,
             is_early_access=is_early_access(year),
         )
@@ -358,8 +387,6 @@ def participants(year: int):
         year=year,
         all_category=valid_categories,
         is_latest_year=is_latest_year(year),
-        available_years=AVAILABLE_YEARS,
-        last_updated=LAST_UPDATED,
         value=value,
         is_early_access=is_early_access(year),
     )
@@ -393,8 +420,6 @@ def japan(year: int):
         participants=participants_list,
         year=year,
         is_latest_year=is_latest_year(year),
-        available_years=AVAILABLE_YEARS,
-        last_updated=LAST_UPDATED,
         is_early_access=is_early_access(year),
     )
 
@@ -430,8 +455,6 @@ def result(year: int):
             "/common/result.html",
             year=year,
             is_latest_year=is_latest_year(year),
-            available_years=AVAILABLE_YEARS,
-            last_updated=LAST_UPDATED,
             is_early_access=is_early_access(year),
         )
 
@@ -448,8 +471,6 @@ def result(year: int):
         "/common/result.html",
         year=year,
         is_latest_year=is_latest_year(year),
-        available_years=AVAILABLE_YEARS,
-        last_updated=LAST_UPDATED,
         is_early_access=is_early_access(year),
         result=result,
         all_category=all_category,
@@ -514,9 +535,7 @@ def rule(year: int):
         f"/{year}/rule.html",
         year=year,
         is_latest_year=is_latest_year(year),
-        available_years=AVAILABLE_YEARS,
         participants_list=participants_list,
-        last_updated=LAST_UPDATED,
         is_early_access=is_early_access(year),
     )
 
@@ -549,8 +568,6 @@ def content(year: int, content: str):
             f"/{year}/{content}.html",
             year=year,
             is_latest_year=is_latest_year(year),
-            available_years=AVAILABLE_YEARS,
-            last_updated=LAST_UPDATED,
             is_early_access=is_early_access(year),
         )
 
@@ -580,9 +597,7 @@ def others(content: str):
         return render_template(
             f"/others/{content}.html",
             year=year,
-            available_years=AVAILABLE_YEARS,
             is_latest_year=is_latest_year(year),
-            last_updated=LAST_UPDATED,
         )
 
     # エラー
