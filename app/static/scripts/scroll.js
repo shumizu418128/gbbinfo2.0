@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrollPercentage = (winScroll / height) * 100;
-        const scrollAbsolute = window.scrollY + 51;
+        const scrollAbsolute = window.scrollY + 50;
         const h1_position = document.querySelector("h1").offsetTop;
 
         // スクロールバーの表示・非表示
@@ -62,5 +62,4 @@ function parameterScroll() {
 }
 
 // ページ読み込み時に実行
-// これonloadだとうまくいかない
-parameterScroll();
+document.addEventListener('DOMContentLoaded', parameterScroll);
