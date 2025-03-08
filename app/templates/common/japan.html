@@ -69,12 +69,12 @@
 
 <div class="button-container">
   {% if result_url %}
-    <a href="{{ result_url }}"><button type="button">{{ request.args.get('category') }}<br>{{ _('Wildcard順位') }}</button></a>
+    <a href="{{ result_url }}"><button>{{ request.args.get('category') }}<br>{{ _('Wildcard順位') }}</button></a>
   {% endif %}
-  <a href="/{{year}}/participants"><button type="button">GBB {{ year }} {{ _('全出場者一覧') }}<br></button></a>
-  <a href="/{{year}}/rule"><button type="button">{{ _('出場権詳細') }}</button></a>
-  <a href="/{{year}}/rule"><button type="button">GBB {{ year }} {{ _('ルール&審査員') }}</button></a>
-  <a href="/{{year}}/rule"><button type="button">{{ _('結果発表日') }}</button></a>
+  <a href="/{{year}}/participants"><button>GBB {{ year }} {{ _('全出場者一覧') }}<br></button></a>
+  <a href="/{{year}}/rule"><button>{{ _('出場権詳細') }}</button></a>
+  <a href="/{{year}}/rule"><button>GBB {{ year }} {{ _('ルール&審査員') }}</button></a>
+  <a href="/{{year}}/rule?scroll=result_date"><button>{{ _('結果発表日') }}</button></a>
 </div>
 
 <h2>GBB {{ year }} {{ _('出場者世界地図') }}</h2>
