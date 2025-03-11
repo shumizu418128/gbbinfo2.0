@@ -47,7 +47,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:250 templates/base.html:118
 #: templates/base.html:144 templates/base.html:236
 msgid "これだけガイド"
-msgstr "Guide"
+msgstr "guide"
 
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53

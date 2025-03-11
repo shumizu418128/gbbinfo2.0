@@ -46,7 +46,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:250 templates/base.html:118
 #: templates/base.html:144 templates/base.html:236
 msgid "これだけガイド"
-msgstr "이것만 가이드"
+msgstr "가이드"
 
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
@@ -708,7 +708,7 @@ msgstr "Wildcard 목록"
 #: templates/2025/wildcard_regulation.html:191
 #: templates/2025/wildcard_regulation.html:251
 msgid "7toSmokeこれだけガイド"
-msgstr "7toSmoke 이것만 가이드"
+msgstr "7toSmoke 가이드"
 
 #: templates/2024/top.html:101 templates/2024/top.html:115
 #: templates/2024/top_7tosmoke.html:44 templates/2025/top.html:101
