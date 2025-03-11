@@ -177,3 +177,10 @@ footer p {
 label {
     color: rgb(34, 34, 34);
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-top: 10px;
+}
