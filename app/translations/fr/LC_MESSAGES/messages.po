@@ -1308,7 +1308,7 @@ msgstr "Informations sur GBB {year} ici"
 
 #: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
 msgid "は"
-msgstr "ha"
+msgstr "est"
 
 #: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
 msgid "終了しました"

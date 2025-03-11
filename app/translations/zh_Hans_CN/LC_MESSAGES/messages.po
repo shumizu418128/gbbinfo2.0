@@ -1193,7 +1193,7 @@ msgstr "GBB {year} 的信息在这里"
 
 #: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
 msgid "は"
-msgstr "哈"
+msgstr "是"
 
 #: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
 msgid "終了しました"
