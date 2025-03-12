@@ -805,7 +805,6 @@ def manifest():
 
 
 @app.route("/service-worker.js")
-@cache.cached()
 def service_worker():
     """
     サービスワーカーのJavaScriptファイルを返します。
