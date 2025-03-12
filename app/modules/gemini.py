@@ -99,6 +99,7 @@ for name in name_list:
 cache_text = [key for key in cache.keys()]
 
 
+# MARK: キャッシュ検索
 def search_cache(year: int, question: str):
     """
     キャッシュの中にユーザーの入力があるか確認し、ある場合は回答を確定します。
@@ -131,6 +132,7 @@ def search_cache(year: int, question: str):
     return None
 
 
+# MARK: URL作成
 def create_url(year: int, url: str, parameter: str | None, name: str | None):
     """
     指定された情報に基づいてレスポンスURLを作成します。
@@ -191,6 +193,7 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
     return response_url
 
 
+# MARK: gemini ページ内検索
 def search(year: int, question: str):
     """
     指定された年と質問に基づいてチャットを開始し、モデルからの応答を取得します。
@@ -287,6 +290,7 @@ def search(year: int, question: str):
     return {"url": response_url}
 
 
+# MARK: 出場者名類似度検索
 def search_suggestions(input: str):
     """
     ユーザーの入力に基づいて類似する出場者名のリストを取得します。

@@ -19,6 +19,7 @@ for year in AVAILABLE_YEARS + [2013, 2014, 2015, 2016]:
         pass
 
 
+# MARK: 出場者リストの取得
 def get_participants_list(
     year: int,
     category: str,
@@ -169,7 +170,7 @@ def get_participants_list(
     return participants_list
 
 
-# キーワードで検索
+# MARK: 出場者名 類似度検索
 def search_participants(year: int, keyword: str):
     """
     指定された年度の出場者をキーワードで検索します。
@@ -243,6 +244,7 @@ def search_participants(year: int, keyword: str):
     return final_result
 
 
+# MARK: 年度ごとの世界地図
 def create_world_map(year: int):
     """
     指定された年の参加者の位置を示す世界地図を作成します。
@@ -389,6 +391,7 @@ def create_world_map(year: int):
     beatboxer_map.save(f"app/templates/{year}/world_map.html")
 
 
+# MARK: 年度ごとの出場者分析
 def yearly_participant_analysis(year: int):
     """
     出場者のデータから分析を行い、結果を保存します。
@@ -438,6 +441,7 @@ def yearly_participant_analysis(year: int):
     return yearly_analytics
 
 
+# MARK: 全年度の出場者分析
 def total_participant_analysis():
     """
     全年度の出場者データを集計・分析し、以下のランキングを含む結果を返します。
@@ -577,6 +581,7 @@ def total_participant_analysis():
     return total_analytics
 
 
+# MARK: 全年度 出場者世界地図
 def create_all_participants_map(country_counts_all: dict):
     """
     全年度の出場者数ランキングを示す世界地図を作成します。
