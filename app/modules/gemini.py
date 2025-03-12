@@ -97,6 +97,7 @@ for name in name_list:
         cache[name] = f"/__year__/participants?scroll=search_participants&value={name}"
 
 cache_text = [key for key in cache.keys()]
+cache_text_upper = [key.upper() for key in cache_text]
 
 
 # MARK: キャッシュ検索
@@ -113,9 +114,10 @@ def search_cache(year: int, question: str):
 
     # 前処理
     question_edited = question.strip()
+    question_upper = question_edited.upper()
 
     # キャッシュにユーザーの入力があるか確認
-    if question_edited in cache_text:
+    if question_upper in cache_text_upper:
         print("Cache hit", flush=True)
 
         # キャッシュにユーザーの入力がある場合、回答を確定
