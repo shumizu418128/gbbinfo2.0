@@ -135,6 +135,10 @@ CONTENT_OTHERS = [content.replace(".html", "") for content in CONTENT_OTHERS]
 ####################################################################
 @app.before_request
 def set_request_data():
+    """
+    リクエストごとに実行される関数。
+    リクエストのURLをグローバル変数に保存します。
+    """
     g.current_url = request.path
 
 
@@ -654,6 +658,11 @@ def search_participants_by_keyword(year: int):
 
 @app.route("/search_suggestions", methods=["POST"])
 def search_suggestions():
+    """
+    入力に基づいて検索候補を返します。
+
+    :return: 検索候補のJSONレスポンス
+    """
     input = request.json.get("input")
     suggestions = gemini.search_suggestions(input)
     return jsonify({"suggestions": suggestions})
