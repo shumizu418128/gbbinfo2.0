@@ -23,7 +23,7 @@ from .modules import gemini
 from .modules.config import (
     AVAILABLE_LANGS,
     AVAILABLE_YEARS,
-    LANG_NAME,
+    LANG_NAMES,
     Config,
     TestConfig,
 )
@@ -152,7 +152,7 @@ def inject_variables():
     return dict(
         available_years=AVAILABLE_YEARS,
         available_langs=AVAILABLE_LANGS,
-        lang_name=LANG_NAME,
+        lang_names=LANG_NAMES,
         last_updated=LAST_UPDATED,
         current_url=g.current_url,
     )

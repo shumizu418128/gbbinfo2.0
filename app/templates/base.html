@@ -122,14 +122,26 @@
         <a href="/{{ year }}/stream"><button>{{_('当日配信')}}</button></a>
         <a href="/{{ year }}/result"><button>{{_('大会結果')}}</button></a>
       </div>
+
+      <!-- 日本語のみ独立divを作る -->
       <p>LANGUAGE</p>
-      <div class="button-container">
-        {% for lang_code, lang_name in lang_name.items() %}
-          <a href="/lang?referrer={{ current_url }}&lang={{ lang_code }}">
-            <button>{{ lang_name }}</button>
+      {% with first_lang = lang_names.items()|list|first %}
+        <div class="button-container">
+          <a href="/lang?referrer={{ current_url }}&lang={{ first_lang[0] }}">
+            <button>{{ first_lang[1] }}</button>
           </a>
-        {% endfor %}
-      </div>
+        </div>
+        <div class="button-container">
+          {% for lang_code, lang_name in lang_names.items() %}
+            {% if not loop.first %}
+              <a href="/lang?referrer={{ current_url }}&lang={{ lang_code }}">
+                <button>{{ lang_name }}</button>
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endwith %}
+
     </div>
     <header>
       <nav>
@@ -150,7 +162,7 @@
             <li>
               LANGUAGE
               <ul class="past_gbb_lists">
-                {% for lang_code, lang_name in lang_name.items() %}
+                {% for lang_code, lang_name in lang_names.items() %}
                   <a href="/lang?referrer={{ current_url }}&lang={{ lang_code }}"><li class="past_gbb">{{ lang_name }}</li></a>
                 {% endfor %}
               </ul>
@@ -228,13 +240,22 @@
       <div style="margin: 100px 0;"></div>
 
       <h3>{{ _('対応言語') }}</h3>
-      <div class="button-container">
-        {% for lang_code, lang_name in lang_name.items() %}
-          <a href="/lang?referrer={{ current_url }}&lang={{ lang_code }}">
-            <button>{{ lang_name }}</button>
+      {% with first_lang = lang_names.items()|list|first %}
+        <div class="button-container">
+          <a href="/lang?referrer={{ current_url }}&lang={{ first_lang[0] }}">
+            <button>{{ first_lang[1] }}</button>
           </a>
-        {% endfor %}
-      </div>
+        </div>
+        <div class="button-container">
+          {% for lang_code, lang_name in lang_names.items() %}
+            {% if not loop.first %}
+              <a href="/lang?referrer={{ current_url }}&lang={{ lang_code }}">
+                <button>{{ lang_name }}</button>
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endwith %}
       <hr>
       <a href="https://qiita.com/tari3210/items/0561e91774863d165af0" target="_blank" rel="noopener noreferrer">GBBINFO-JPNの設計図</a>
       <br>
