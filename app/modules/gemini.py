@@ -71,23 +71,27 @@ converter = kakasi.getConverter()
 with open(os.getcwd() + "/app/json/cache.json", "r", encoding="utf-8") as f:
     cache = json.load(f)
 
-# 最新年度の出場者一覧を読み込む
-latest_year = max(AVAILABLE_YEARS)
-beatboxers_df = pd.read_csv(f"app/database/participants/{latest_year}.csv")
-beatboxers_df = beatboxers_df.fillna("")
-name_list = (
-    beatboxers_df["name"]
-    .str.replace("[cancelled] ", "", regex=False)
-    .str.upper()
-    .tolist()
-)
+# 最新年度と1年前の出場者一覧を読み込む
+years_to_consider = sorted(AVAILABLE_YEARS, reverse=True)[:2]
 
-# 複数名部門メンバーのリストを読み込む
-members_list = beatboxers_df["members"].astype(str).str.upper().tolist()
-for members in members_list:
-    if members != "":
-        member = members.split(", ")
-        name_list.extend(member)
+name_list = []
+for year in years_to_consider:
+    beatboxers_df = pd.read_csv(f"app/database/participants/{year}.csv")
+    beatboxers_df = beatboxers_df.fillna("")
+    names = (
+        beatboxers_df["name"]
+        .str.replace("[cancelled] ", "", regex=False)
+        .str.upper()
+        .tolist()
+    )
+    name_list.extend(names)
+
+    # 複数名部門メンバーのリストを読み込む
+    team_members_list = beatboxers_df["members"].astype(str).str.upper().tolist()
+    for team_members in team_members_list:
+        if team_members != "":
+            member = team_members.split(", ")
+            name_list.extend(member)
 
 name_list = list(set(name_list))
 

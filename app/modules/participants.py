@@ -11,12 +11,10 @@ COUNTRIES_DF = pd.read_csv("app/database/countries.csv")
 
 beatboxers_df_dict = {}
 for year in AVAILABLE_YEARS + [2013, 2014, 2015, 2016]:
-    try:
+    if year != 2022:
         beatboxers_df = pd.read_csv(f"app/database/participants/{year}.csv")
         beatboxers_df = beatboxers_df.fillna("")
         beatboxers_df_dict[year] = beatboxers_df
-    except FileNotFoundError:
-        pass
 
 
 # MARK: 出場者リストの取得
