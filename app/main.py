@@ -218,6 +218,14 @@ def lang():
     lang = request.args.get("lang")
     referrer = request.args.get("referrer")
 
+    # referrerがない場合はトップページへリダイレクト
+    if referrer is None:
+        return redirect(url_for("route_top"))
+
+    # langがない場合はセッションに保存された言語を利用
+    if lang is None:
+        lang = session.get("language")
+
     # 言語が利用可能な言語であればセッションに保存
     if lang in AVAILABLE_LANGS:
         session["language"] = lang
