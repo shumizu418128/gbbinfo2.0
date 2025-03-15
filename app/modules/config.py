@@ -2,7 +2,6 @@ import os
 
 # 利用可能な年度と言語のリスト
 AVAILABLE_YEARS = [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
-AVAILABLE_LANGS = ["ja", "en", "zh_Hant_TW", "ko", "zh_Hans_CN", "de", "ms", "id", "fr"]
 LANG_NAMES = {
     "ja": "日本語",
     "en": "English",
@@ -14,6 +13,7 @@ LANG_NAMES = {
     "id": "Bahasa ID",
     "fr": "Français",
 }
+AVAILABLE_LANGS = list(LANG_NAMES.keys())
 
 
 # Flaskの設定
