@@ -103,11 +103,12 @@
   <h2 name="search_participants">{{ _('出場者検索') }}</h2>
   <p>GBB {{ year }} {{ _('出場者名を検索できます') }}<br>{{ _('半角英数字推奨') }}</p>
   <form id="search-participants" class="search-form-1" onsubmit="return false;">
-    <input type="text" name="keyword" id="keyword" value="{{ value }}" placeholder="{{ _('出場者検索') }}" oninput="search_participants(year={{year}})">
+    <input type="text" name="keyword" id="keyword" value="{{ value }}" placeholder="{{ _('出場者検索') }}" oninput="searchParticipants(year={{year}})">
   </form>
   <div id="loading" class="loading"></div>
 
   <h3 id="search-participants-result-h3">{{ _('検索結果') }}</h3>
+  <div id="exact-match-message" style="text-align: center;"></div>
   <table>
     <thead>
       <tr>

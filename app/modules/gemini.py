@@ -21,27 +21,27 @@ genai.configure(api_key=API_KEY)
 SAFETY_SETTINGS = [
     {
         "category": "HARM_CATEGORY_SEXUAL",
-        "threshold": "BLOCK_NONE",
+        "threshold": "BLOCK_ONLY_HIGH",
     },
     {
         "category": "HARM_CATEGORY_DANGEROUS",
-        "threshold": "BLOCK_NONE",
+        "threshold": "BLOCK_ONLY_HIGH",
     },
     {
         "category": "HARM_CATEGORY_HARASSMENT",
-        "threshold": "BLOCK_NONE",
+        "threshold": "BLOCK_ONLY_HIGH",
     },
     {
         "category": "HARM_CATEGORY_HATE_SPEECH",
-        "threshold": "BLOCK_NONE",
+        "threshold": "BLOCK_ONLY_HIGH",
     },
     {
         "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-        "threshold": "BLOCK_NONE",
+        "threshold": "BLOCK_ONLY_HIGH",
     },
     {
         "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-        "threshold": "BLOCK_NONE",
+        "threshold": "BLOCK_ONLY_HIGH",
     },
 ]
 
@@ -239,29 +239,32 @@ def search(year: int, question: str):
     prompt_formatted = PROMPT.format(year=year, question=question)
     print(question, flush=True)
 
-    while True:
+    for _ in range(5):
         try:
             # メッセージを送信
             response = chat.send_message(prompt_formatted)
+
+            # レスポンスをダブルクォーテーションに置き換え
+            response_text = response.text.replace("'", '"')
+
+            # レスポンスをJSONに変換
+            response_dict = json.loads(
+                response_text.replace("https://gbbinfo-jpn.onrender.com", "")
+            )
+            if isinstance(response_dict, list) and len(response_dict) > 0:
+                response_dict = response_dict[0]
+
+        # エラーが発生した場合は1秒待ってリトライ
         except Exception as e:
             print(e)
             time.sleep(1)
+
+        # 成功したらループを抜ける
         else:
             break
 
-    # レスポンスをダブルクォーテーションに置き換え
-    response_text = response.text.replace("'", '"')
-
-    # レスポンスをJSONに変換
-    try:
-        response_dict = json.loads(
-            response_text.replace("https://gbbinfo-jpn.onrender.com", "")
-        )
-        if isinstance(response_dict, list) and len(response_dict) > 0:
-            response_dict = response_dict[0]
-    except json.JSONDecodeError as e:
-        print(f"Error: response is not JSON {e}", flush=True)
-        # JSONデコード失敗時のデフォルト値
+    # 5回試行しても成功しなかった場合
+    else:
         return {"url": f"/{year}/top", "parameter": "contact"}
 
     # othersのリンクであればリンクを変更

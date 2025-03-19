@@ -5,7 +5,6 @@ function handleSearchFormSubmit(event) {
     const question = formData.get('question');
     const loadingElement = document.getElementById('loading');
 
-    loadingElement.innerHTML = `<div>検索中：${question}</div><br>`;
     loadingElement.style.display = 'block';
 
     fetch(this.action, {
@@ -45,9 +44,10 @@ function toggleSearchMenu() {
 function searchParticipants(year) {
     const input = document.getElementById('keyword').value;
     const loadingElement = document.getElementById('loading');
+    const resultElement = document.getElementById('participants-search-result');
+    const exactMatch = document.getElementById('exact-match-message');
 
     if (input) {
-        loadingElement.textContent = `検索中：${input}`;
         loadingElement.style.display = 'block';
 
         fetch(`/${year}/search_participants`, {
@@ -59,8 +59,14 @@ function searchParticipants(year) {
         })
         .then(response => response.json())
         .then(data => {
-            const table = data.map(participant =>
-                `<tr>
+            const input = document.getElementById('keyword').value;
+            let exactMatchFound = false;
+
+            const table = data.map(participant => {
+                if (participant.name === input.toUpperCase()) {
+                    exactMatchFound = true;
+                }
+                return `<tr>
                     <td>
                         ${participant.is_cancelled ? '【辞退】<br><s>' : ''}
                         ${participant.name}
@@ -73,17 +79,23 @@ function searchParticipants(year) {
                     <td style="${participant.ticket_class.length > 11 ? 'font-size: 12px;' : ''}">
                         ${participant.is_cancelled ? `<s>${participant.ticket_class}</s>` : participant.ticket_class}
                     </td>
-                </tr>`
-            ).join('');
+                </tr>`;
+            }).join('');
 
-            const resultElement = document.getElementById('participants-search-result');
             resultElement.innerHTML = table ? table : '<p>-</p>';
             loadingElement.style.display = 'none';
+            if (!exactMatchFound) {
+                exactMatch.style.display = 'block';
+                exactMatch.textContent = `「${input}」は見つかりませんでした。`;
+            } else {
+                exactMatch.style.display = 'none';
+            }
         })
         .catch(error => console.error('Error:', error));
     } else {
         document.getElementById('participants-search-result').innerHTML = '<p>-</p>';
         loadingElement.style.display = 'none';
+        exactMatch.style.display = 'none';
     }
 }
 
@@ -153,16 +165,22 @@ function toggleMenu() {
 // イベントリスナーの登録
 document.addEventListener('DOMContentLoaded', function() {
     // 検索フォーム
-    const searchForms = document.querySelectorAll('.search-form-1');
-    searchForms.forEach(setupSearchSuggestions);
-
     const topSearchForm = document.getElementById('search-form-top');
     const bottomSearchForm = document.getElementById('search-form-bottom');
     const navSearchForm = document.getElementById('search-form-nav');
 
-    if (topSearchForm) topSearchForm.onsubmit = handleSearchFormSubmit;
-    if (bottomSearchForm) bottomSearchForm.onsubmit = handleSearchFormSubmit;
-    if (navSearchForm) navSearchForm.onsubmit = handleSearchFormSubmit;
+    if (topSearchForm) {
+        topSearchForm.onsubmit = handleSearchFormSubmit;
+        setupSearchSuggestions(topSearchForm);
+    }
+    if (bottomSearchForm) {
+        bottomSearchForm.onsubmit = handleSearchFormSubmit;
+        setupSearchSuggestions(bottomSearchForm);
+    }
+    if (navSearchForm) {
+        navSearchForm.onsubmit = handleSearchFormSubmit;
+        setupSearchSuggestions(navSearchForm);
+    }
 
     // ナビゲーションメニュー
     const bottomNavigationSearch = document.getElementById('bottom-navigation-search');
