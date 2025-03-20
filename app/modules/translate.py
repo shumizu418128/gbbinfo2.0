@@ -96,7 +96,7 @@ def translate():
         po = polib.pofile(po_file_path)
 
         for entry in tqdm(
-            po.untranslated_entries() + po.fuzzy_entries(), desc=f"{lang} の翻訳"
+            po.untranslated_entries() + po.fuzzy_entries(), desc=f"{lang} の翻訳", leave=False
         ):
             # geminiチャットを開始
             while True:
