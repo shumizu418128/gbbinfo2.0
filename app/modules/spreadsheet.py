@@ -65,6 +65,7 @@ def record_question(year: int, question: str, answer: str):
         None: (結果を記録)
     """
 
+    # ローカル環境の場合は記録しない
     if ENVIRONMENT_CHECK != "qawsedrftgyhujikolp":
         year_str = str(year)
         dt_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

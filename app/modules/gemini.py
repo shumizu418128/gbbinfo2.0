@@ -74,10 +74,13 @@ with open(os.getcwd() + "/app/json/cache.json", "r", encoding="utf-8") as f:
 # 最新年度と1年前の出場者一覧を読み込む
 years_to_consider = sorted(AVAILABLE_YEARS, reverse=True)[:2]
 
+# 出場者名リストを作成
 name_list = []
 for year in years_to_consider:
     beatboxers_df = pd.read_csv(f"app/database/participants/{year}.csv")
     beatboxers_df = beatboxers_df.fillna("")
+
+    # まずは個人出場者・チーム名のリストを読み込む
     names = (
         beatboxers_df["name"]
         .str.replace("[cancelled] ", "", regex=False)
@@ -100,6 +103,7 @@ for name in name_list:
     if not name.startswith("?"):
         cache[name] = f"/__year__/participants?scroll=search_participants&value={name}"
 
+# キャッシュのキーをリストに変換
 cache_text = [key for key in cache.keys()]
 cache_text_upper = [key.upper() for key in cache_text]
 
@@ -217,6 +221,7 @@ def search(year: int, question: str):
     detect_year = re.search(r"\d{4}", question)
     detect_year_2 = re.search(r"\d{2}", question)
 
+    # 数字が検出された場合、そこから年度を推定
     if detect_year or detect_year_2:
         if detect_year:
             detect_year = int(detect_year.group())
@@ -239,7 +244,10 @@ def search(year: int, question: str):
     prompt_formatted = PROMPT.format(year=year, question=question)
     print(question, flush=True)
 
-    for _ in range(5):
+    # n回トライ
+    n = 5
+
+    for _ in range(n):
         try:
             # メッセージを送信
             response = chat.send_message(prompt_formatted)
@@ -263,7 +271,7 @@ def search(year: int, question: str):
         else:
             break
 
-    # 5回試行しても成功しなかった場合
+    # n回試行しても成功しなかった場合
     else:
         return {"url": f"/{year}/top", "parameter": "contact"}
 
@@ -310,7 +318,7 @@ def search_suggestions(input: str):
     Returns:
         list: 類似する出場者名のリスト。
     """
-    # inputから4桁・2桁の年削除
+    # 下処理：inputから4桁・2桁の年削除
     year = re.search(r"\d{4}", input)
     year_2 = re.search(r"\d{2}", input)
     if year:
@@ -320,7 +328,7 @@ def search_suggestions(input: str):
         year_2 = year_2.group()
         input = input.replace(year_2, "")
 
-    # inputから空白削除
+    # 下処理：inputから空白削除
     input = input.strip().upper().replace("GBB", "")
 
     # rapidfuzzで類似度を計算し、上位3件を取得

@@ -9,6 +9,7 @@ from .config import AVAILABLE_YEARS
 # df事前準備
 COUNTRIES_DF = pd.read_csv("app/database/countries.csv")
 
+# 出場者データを読み込む
 beatboxers_df_dict = {}
 for year in AVAILABLE_YEARS + [2013, 2014, 2015, 2016]:
     if year != 2022:
@@ -45,7 +46,7 @@ def get_participants_list(
     # データを取得
     beatboxers_df = beatboxers_df_dict[year]
 
-    # Merge data to include country names in beatboxers_df
+    # 国コードと出場者データをマージ
     merged_df = beatboxers_df.merge(
         COUNTRIES_DF[["iso_code", "name", "name_ja"]],
         on="iso_code",
@@ -130,6 +131,7 @@ def get_participants_list(
         else:
             participants_list.append(participant)
 
+    # ソート
     participants_list = sorted(
         participants_list,
         key=lambda x: (
@@ -191,7 +193,7 @@ def search_participants(year: int, keyword: str):
         for member in participant["members"].split(",")
     ]
 
-    # キーワードで検索
+    # キーワードで検索 (名前とmembers)
     results_name = extract(
         keyword.upper(), participants_name_list, limit=5, score_cutoff=1
     )
@@ -267,7 +269,7 @@ def create_world_map(year: int):
     # beatboxers_dfを、カテゴリーでソート
     beatboxers_df = beatboxers_df.sort_values(by=["category"])
 
-    # Initialize a folium map centered around the average latitude and longitude
+    # mapを作成
     map_center = [20, 0]
     beatboxer_map = folium.Map(
         tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}",
@@ -285,7 +287,7 @@ def create_world_map(year: int):
         },
     )
 
-    # Merge data to include country coordinates in beatboxers_df
+    # 国データをマージ
     beatboxers_df = beatboxers_df.merge(
         COUNTRIES_DF[["iso_code", "lat", "lon", "name"]],
         on="iso_code",
@@ -296,7 +298,6 @@ def create_world_map(year: int):
     # 国ごとに参加者をグループ化
     coord_participants = beatboxers_df.groupby(["lat", "lon"])
 
-    # Add markers to the map
     # 国ごとにまとめてマーカーを追加
     for (lat, lon), group in coord_participants:
         names = group["name"].values
@@ -314,9 +315,11 @@ def create_world_map(year: int):
             else:
                 beatboxers.append(name.upper())
 
+        # 重複を削除
         unique_beatboxers = set(beatboxers)
         len_beatboxers = len(unique_beatboxers)
 
+        # 国の情報を取得
         country_name_en = group["name_country"].values[0]
         iso_code = group["iso_code"].values[0]
 
@@ -325,6 +328,7 @@ def create_world_map(year: int):
         country_data = COUNTRIES_DF[COUNTRIES_DF["iso_code"] == iso_code]
         country_name_ja = country_data["name_ja"].values[0]
 
+        # マーカーの緯度経度とポップアップを設定
         location = (lat, lon)
 
         popup_content = "<div style=\"font-family: 'Noto sans JP'; font-size: 14px;\">"
@@ -339,6 +343,7 @@ def create_world_map(year: int):
         </h4>
         """
 
+        # 2020年のみ、名前順にソート
         if year == 2020:
             sorted_names_with_category = sorted(
                 zip(names, categories, members), key=lambda x: (x[1], x[0])
@@ -346,6 +351,7 @@ def create_world_map(year: int):
 
             names, categories, members = zip(*sorted_names_with_category)
 
+        # ポップアップに出場者を追加
         for name, category, member_names in zip(names, categories, members):
             if member_names != "":
                 popup_content += f"""
@@ -362,6 +368,7 @@ def create_world_map(year: int):
 
         popup_content += "</div>"
 
+        # ポップアップが長い場合はスクロール可能にする
         if len_group > 7:
             popup_content = f"<div style=\"font-family: 'Noto sans JP'; font-size: 14px; max-height: 300px; overflow-y: scroll;\">{popup_content}</div>"
 
@@ -369,8 +376,10 @@ def create_world_map(year: int):
         icon_size = (48, 48)
         icon_anchor = (24, 48)
 
+        # 作ったポップアップをfoliumのPopupオブジェクトに入れる
         popup = folium.Popup(popup_content, max_width=1000)
 
+        # アイコンを設定
         flag_icon = folium.CustomIcon(
             icon_image=r"app/static/images/flags/"
             + country_name_en
@@ -379,6 +388,7 @@ def create_world_map(year: int):
             icon_anchor=icon_anchor,  # アイコンのアンカー位置
         )
 
+        # マーカーを追加
         folium.Marker(
             location=location,
             popup=popup,
@@ -526,11 +536,13 @@ def total_participant_analysis():
             キーはランキングの順位、値は名前とカウントを含む辞書です。
         """
 
+        # カウントを降順にソート
         sorted_counts = sorted(counts.items(), key=lambda item: item[1], reverse=True)
         ranked_counts = {}
         rank = 1
         previous_count = None
 
+        # ランキングを作成
         for i, (name, count) in enumerate(sorted_counts):
             if i > 0 and count < previous_count:
                 rank += 1
@@ -543,9 +555,13 @@ def total_participant_analysis():
 
         return ranked_counts
 
+    # 個人別出場回数ランキング
     individual_counts = rank_and_limit(individual_counts, 3)
+
+    # 個人別Wildcard勝者数ランキング
     wildcard_individual_counts = rank_and_limit(wildcard_individual_counts, 3)
 
+    # 全世界の出場者数一覧
     country_counts_all = {
         i + 1: {"country": item[0], "count": item[1]}
         for i, item in enumerate(
@@ -554,12 +570,15 @@ def total_participant_analysis():
     }
     create_all_participants_map(country_counts_all)
 
+    # 国別出場者数ランキング
     country_counts = {
         i + 1: {"country": item[0], "count": item[1]}
         for i, item in enumerate(
             sorted(country_counts.items(), key=lambda item: item[1], reverse=True)[:10]
         )
     }
+
+    # 国別Wildcard勝者数ランキング
     wildcard_country_count = {
         i + 1: {"country": item[0], "count": item[1]}
         for i, item in enumerate(
@@ -569,6 +588,7 @@ def total_participant_analysis():
         )
     }
 
+    # 結果を返す
     total_analytics = {
         "individual_counts": individual_counts,
         "country_counts": country_counts,
@@ -590,7 +610,7 @@ def create_all_participants_map(country_counts_all: dict):
     Returns:
         None: (ファイルを保存)
     """
-    # Initialize a folium map centered around the average latitude and longitude
+    # マップを作成
     map_center = [20, 0]
     all_participants_map = folium.Map(
         tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}",
@@ -613,6 +633,7 @@ def create_all_participants_map(country_counts_all: dict):
         country_name_ja = data["country"]
         count = data["count"]
 
+        # 出場者未定はスキップ
         if country_name_ja == "未定":
             continue
 
@@ -638,8 +659,10 @@ def create_all_participants_map(country_counts_all: dict):
         icon_size = (48, 48)
         icon_anchor = (24, 48)
 
+        # ポップアップを作成
         popup = folium.Popup(popup_content, max_width=1000)
 
+        # アイコンを設定
         flag_icon = folium.CustomIcon(
             icon_image=r"app/static/images/flags/"
             + country_name_en
@@ -648,6 +671,7 @@ def create_all_participants_map(country_counts_all: dict):
             icon_anchor=icon_anchor,  # アイコンのアンカー位置
         )
 
+        # マーカーを追加
         folium.Marker(
             location=location,
             popup=popup,
