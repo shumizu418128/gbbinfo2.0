@@ -71,6 +71,9 @@ converter = kakasi.getConverter()
 with open(os.getcwd() + "/app/json/cache.json", "r", encoding="utf-8") as f:
     cache = json.load(f)
 
+# cacheのkeyをすべて大文字に変換しておく
+cache = {key.upper(): value for key, value in cache.items()}
+
 # 最新年度と1年前の出場者一覧を読み込む
 years_to_consider = sorted(AVAILABLE_YEARS, reverse=True)[:2]
 
@@ -105,7 +108,6 @@ for name in name_list:
 
 # キャッシュのキーをリストに変換
 cache_text = [key for key in cache.keys()]
-cache_text_upper = [key.upper() for key in cache_text]
 
 
 # MARK: キャッシュ検索
@@ -121,11 +123,10 @@ def search_cache(year: int, question: str):
     """
 
     # 前処理
-    question_edited = question.strip()
-    question_upper = question_edited.upper()
+    question_edited = question.strip().upper()
 
     # キャッシュにユーザーの入力があるか確認
-    if question_upper in cache_text_upper:
+    if question_edited in cache:
         print("Cache hit", flush=True)
 
         # キャッシュにユーザーの入力がある場合、回答を確定
