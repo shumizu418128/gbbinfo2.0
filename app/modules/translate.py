@@ -96,7 +96,7 @@ def translate():
         po = polib.pofile(po_file_path)
 
         for entry in tqdm(
-            po.untranslated_entries() + po.fuzzy_entries(), desc=f"{lang} の翻訳", leave=False
+            po.untranslated_entries() + po.fuzzy_entries(), desc=f"{lang} の翻訳"
         ):
             # geminiチャットを開始
             while True:
@@ -124,10 +124,22 @@ def translate():
                 entry.flags.remove("fuzzy")  # fuzzy フラグを削除
 
         po.save(po_file_path)
-        print(f"{lang} の翻訳を保存しました。", flush=True)
 
     # 再コンパイル
     os.system(f"cd {BASE_DIR} && pybabel compile -d {LOCALE_DIR}")
+
+    # 不要な翻訳を削除
+    for lang in LANGUAGES:
+        # ファイルを読み込む
+        po_file_path = os.path.join(LOCALE_DIR, lang, "LC_MESSAGES", "messages.po")
+        with open(po_file_path, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+
+        with open(po_file_path, "w", encoding="utf-8") as f:
+            for line in lines[:-1]:  # 最後の行は空行なので削除
+                if not line.startswith("#~ "):
+                    f.write(line)
+        print(f"{lang} の不要な翻訳を削除しました。", flush=True)
 
     print("翻訳が完了しました！", flush=True)
 

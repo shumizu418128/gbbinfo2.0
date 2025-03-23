@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-20 17:03+0900\n"
+"POT-Creation-Date: 2025-03-23 15:10+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -318,7 +318,7 @@ msgstr "Please make sure to check the rules yourself once again."
 #: templates/2025/wildcard_regulation.html:84
 #: templates/2025/wildcard_regulation.html:141
 #: templates/2025/wildcard_regulation.html:198 templates/common/japan.html:21
-#: templates/common/participants.html:116
+#: templates/common/participants.html:117
 msgid "部門"
 msgstr "Category"
 
@@ -377,13 +377,13 @@ msgstr "List of Seed Right Withdrawals"
 #: templates/2024/rule.html:149 templates/2025/rule.html:144
 #: templates/2025/wildcard_regulation.html:141 templates/common/japan.html:20
 #: templates/common/participants.html:44
-#: templates/common/participants.html:115 templates/common/result.html:50
+#: templates/common/participants.html:116 templates/common/result.html:50
 msgid "名前"
 msgstr "Name"
 
 #: templates/2024/rule.html:151 templates/2025/rule.html:146
 #: templates/common/japan.html:22 templates/common/participants.html:46
-#: templates/common/participants.html:117
+#: templates/common/participants.html:118
 msgid "出場権"
 msgstr "Participation Rights"
 
@@ -721,6 +721,7 @@ msgstr "Wildcard Results Announcement Streaming"
 #: templates/2025/rule.html:337 templates/2025/top.html:89
 #: templates/2025/wildcards.html:2 templates/2025/wildcards.html:3
 #: templates/2025/wildcards.html:4 templates/2025/wildcards.html:8
+#: templates/common/participants.html:100
 #: templates/others/result_stream.html:28
 msgid "Wildcard一覧"
 msgstr "List of Wildcards"
@@ -1191,15 +1192,15 @@ msgstr "Details of Participation Rights"
 msgid "結果発表日"
 msgstr "Announcement Date"
 
-#: templates/common/japan.html:80 templates/common/participants.html:123
+#: templates/common/japan.html:80 templates/common/participants.html:124
 msgid "出場者世界地図"
 msgstr "World Map of Participants"
 
-#: templates/common/japan.html:81 templates/common/participants.html:124
+#: templates/common/japan.html:81 templates/common/participants.html:125
 msgid "国旗をタップorクリックすると、詳細を確認できます。"
 msgstr "Tap or click on the flag to view details."
 
-#: templates/common/japan.html:85 templates/common/participants.html:135
+#: templates/common/japan.html:85 templates/common/participants.html:136
 #: templates/common/result.html:79
 msgid "その他の年度を確認："
 msgstr "Check other years:"
@@ -1222,32 +1223,32 @@ msgstr "Withdrawals Only"
 msgid "出身"
 msgstr "Origin"
 
-#: templates/common/participants.html:103
-#: templates/common/participants.html:106
+#: templates/common/participants.html:104
+#: templates/common/participants.html:107
 msgid "出場者検索"
 msgstr "Participant Search"
 
-#: templates/common/participants.html:104
+#: templates/common/participants.html:105
 msgid "出場者名を検索できます"
 msgstr "You can search for participant names."
 
-#: templates/common/participants.html:104
+#: templates/common/participants.html:105
 msgid "半角英数字推奨"
 msgstr "Half-width alphanumeric characters are recommended."
 
-#: templates/common/participants.html:110
+#: templates/common/participants.html:111
 msgid "検索結果"
 msgstr "Search Results"
 
-#: templates/common/participants.html:124
+#: templates/common/participants.html:125
 msgid "全出場者を地図にマッピングしました。"
 msgstr "All participants have been mapped on the map."
 
-#: templates/common/participants.html:128
+#: templates/common/participants.html:129
 msgid "国別出場者数"
 msgstr "Number of contestants by country"
 
-#: templates/common/participants.html:131
+#: templates/common/participants.html:132
 msgid "カテゴリー別出場者数"
 msgstr "Number of contestants by category"
 
@@ -1337,7 +1338,3 @@ msgstr ""
 
 #: templates/includes/popup_no_info.html:7
 msgid "公式発表をお待ちください。"
-msgstr "Please wait for the official announcement."
-
-#~ msgid "は"
-#~ msgstr "is"

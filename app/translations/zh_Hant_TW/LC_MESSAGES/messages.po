@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-20 17:03+0900\n"
+"POT-Creation-Date: 2025-03-23 15:10+0900\n"
 "PO-Revision-Date: 2024-11-12 00:01+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_Hant_TW <LL@li.org>\n"
@@ -309,7 +309,7 @@ msgstr "請務必再次確認自己的規則。"
 #: templates/2025/wildcard_regulation.html:84
 #: templates/2025/wildcard_regulation.html:141
 #: templates/2025/wildcard_regulation.html:198 templates/common/japan.html:21
-#: templates/common/participants.html:116
+#: templates/common/participants.html:117
 msgid "部門"
 msgstr "部門"
 
@@ -361,13 +361,13 @@ msgstr "種子權辭退者名單"
 #: templates/2024/rule.html:149 templates/2025/rule.html:144
 #: templates/2025/wildcard_regulation.html:141 templates/common/japan.html:20
 #: templates/common/participants.html:44
-#: templates/common/participants.html:115 templates/common/result.html:50
+#: templates/common/participants.html:116 templates/common/result.html:50
 msgid "名前"
 msgstr "姓名"
 
 #: templates/2024/rule.html:151 templates/2025/rule.html:146
 #: templates/common/japan.html:22 templates/common/participants.html:46
-#: templates/common/participants.html:117
+#: templates/common/participants.html:118
 msgid "出場権"
 msgstr "參賽權"
 
@@ -696,6 +696,7 @@ msgstr "Wildcard結果發佈直播"
 #: templates/2025/rule.html:337 templates/2025/top.html:89
 #: templates/2025/wildcards.html:2 templates/2025/wildcards.html:3
 #: templates/2025/wildcards.html:4 templates/2025/wildcards.html:8
+#: templates/common/participants.html:100
 #: templates/others/result_stream.html:28
 msgid "Wildcard一覧"
 msgstr "Wildcard列表"
@@ -1102,15 +1103,15 @@ msgstr "參賽權詳細"
 msgid "結果発表日"
 msgstr "結果發佈日"
 
-#: templates/common/japan.html:80 templates/common/participants.html:123
+#: templates/common/japan.html:80 templates/common/participants.html:124
 msgid "出場者世界地図"
 msgstr "參賽者世界地圖"
 
-#: templates/common/japan.html:81 templates/common/participants.html:124
+#: templates/common/japan.html:81 templates/common/participants.html:125
 msgid "国旗をタップorクリックすると、詳細を確認できます。"
 msgstr "點擊或點擊國旗可以查看詳細資訊。"
 
-#: templates/common/japan.html:85 templates/common/participants.html:135
+#: templates/common/japan.html:85 templates/common/participants.html:136
 #: templates/common/result.html:79
 msgid "その他の年度を確認："
 msgstr "查看其他年度："
@@ -1133,32 +1134,32 @@ msgstr "僅辭退者"
 msgid "出身"
 msgstr "出身地"
 
-#: templates/common/participants.html:103
-#: templates/common/participants.html:106
+#: templates/common/participants.html:104
+#: templates/common/participants.html:107
 msgid "出場者検索"
 msgstr "參賽者搜尋"
 
-#: templates/common/participants.html:104
+#: templates/common/participants.html:105
 msgid "出場者名を検索できます"
 msgstr "您可以搜索參賽者名稱"
 
-#: templates/common/participants.html:104
+#: templates/common/participants.html:105
 msgid "半角英数字推奨"
 msgstr "建議使用半角英數字"
 
-#: templates/common/participants.html:110
+#: templates/common/participants.html:111
 msgid "検索結果"
 msgstr "搜尋結果"
 
-#: templates/common/participants.html:124
+#: templates/common/participants.html:125
 msgid "全出場者を地図にマッピングしました。"
 msgstr "所有參賽者已在地圖上標示。"
 
-#: templates/common/participants.html:128
+#: templates/common/participants.html:129
 msgid "国別出場者数"
 msgstr "國家選手人數"
 
-#: templates/common/participants.html:131
+#: templates/common/participants.html:132
 msgid "カテゴリー別出場者数"
 msgstr "一類參賽者的數量"
 
@@ -1245,7 +1246,3 @@ msgstr "您所尋找的資訊尚未有官方發佈，因此在本網站上不存
 
 #: templates/includes/popup_no_info.html:7
 msgid "公式発表をお待ちください。"
-msgstr "請耐心等待官方發佈。"
-
-#~ msgid "は"
-#~ msgstr "是"
