@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-23 15:10+0900\n"
+"POT-Creation-Date: 2025-03-24 12:10+0900\n"
 "PO-Revision-Date: 2024-11-12 13:58+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ko <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr "가이드"
 #: templates/2025/rule.html:66 templates/2025/rule.html:191
 #: templates/2025/rule.html:295 templates/2025/ticket.html:23
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:54
-#: templates/2025/wildcards.html:76 templates/base.html:116
+#: templates/2025/wildcards.html:80 templates/base.html:116
 #: templates/common/participants.html:27 templates/common/result.html:90
 #: templates/includes/participants_form.html:12
 #: templates/others/result_stream.html:27
@@ -63,7 +63,7 @@ msgstr "Wildcard 결과"
 #: templates/2024/top.html:53 templates/2025/rule.html:66
 #: templates/2025/rule.html:295 templates/2025/ticket.html:23
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:54
-#: templates/2025/wildcards.html:76 templates/base.html:116
+#: templates/2025/wildcards.html:80 templates/base.html:116
 #: templates/common/result.html:90 templates/others/result_stream.html:27
 msgid "出場者"
 msgstr "출전자"
@@ -76,14 +76,14 @@ msgstr "출전자"
 #: templates/2025/rule.html:212 templates/2025/time_schedule.html:62
 #: templates/2025/top.html:58 templates/2025/wildcard_regulation.html:21
 #: templates/2025/wildcard_regulation.html:199
-#: templates/2025/wildcards.html:77 templates/base.html:117
+#: templates/2025/wildcards.html:81 templates/base.html:117
 msgid "ルール"
 msgstr "규칙"
 
 #: templates/2024/rule.html:260 templates/2024/rule.html:305
 #: templates/2024/top.html:57 templates/2025/rule.html:262
 #: templates/2025/rule.html:304 templates/2025/time_schedule.html:62
-#: templates/2025/top.html:58 templates/2025/wildcards.html:77
+#: templates/2025/top.html:58 templates/2025/wildcards.html:81
 #: templates/base.html:117
 msgid "審査員"
 msgstr "심사위원"
@@ -99,7 +99,7 @@ msgstr "심사위원"
 #: templates/2025/rule.html:294 templates/2025/rule.html:336
 #: templates/2025/time_schedule.html:61 templates/2025/time_schedule.html:117
 #: templates/2025/time_schedule.html:145 templates/2025/top.html:62
-#: templates/2025/top_7tosmoke.html:34 templates/2025/wildcards.html:94
+#: templates/2025/top_7tosmoke.html:34 templates/2025/wildcards.html:104
 #: templates/base.html:118
 msgid "現地観戦計画のたてかた"
 msgstr "현지 관전 계획 세우기"
@@ -119,7 +119,7 @@ msgstr "타임 스케줄"
 
 #: templates/2024/top.html:69 templates/2025/rule.html:204
 #: templates/2025/ticket.html:24 templates/2025/time_schedule.html:118
-#: templates/2025/top.html:70 templates/2025/wildcards.html:95
+#: templates/2025/top.html:70 templates/2025/wildcards.html:105
 #: templates/base.html:120 templates/common/japan.html:2
 #: templates/common/japan.html:3 templates/common/japan.html:4
 #: templates/common/japan.html:8
@@ -245,7 +245,7 @@ msgstr "목차"
 #: templates/2024/rule.html:29 templates/2024/rule.html:54
 #: templates/2024/wildcards.html:70 templates/2025/rule.html:28
 #: templates/2025/rule.html:53 templates/2025/wildcard_regulation.html:28
-#: templates/2025/wildcard_regulation.html:58 templates/2025/wildcards.html:80
+#: templates/2025/wildcard_regulation.html:58 templates/2025/wildcards.html:84
 msgid "注意事項"
 msgstr "주의 사항"
 
@@ -784,29 +784,29 @@ msgstr ""
 msgid "諦めましょう。"
 msgstr "포기합시다."
 
-#: templates/2024/wildcards.html:9 templates/2025/wildcards.html:10
+#: templates/2024/wildcards.html:9 templates/2025/wildcards.html:11
 msgid "各部門の締め切り期日は、中央ヨーロッパ時刻を基準に表記しています。"
 msgstr "각 부문의 마감 기한은 중앙 유럽 시간을 기준으로 표기하고 있습니다."
 
 #: templates/2024/wildcards.html:11 templates/2024/wildcards.html:36
-#: templates/2025/wildcards.html:12 templates/2025/wildcards.html:36
-#: templates/2025/wildcards.html:52
+#: templates/2025/wildcards.html:16 templates/2025/wildcards.html:40
+#: templates/2025/wildcards.html:56
 msgid "締め切り"
 msgstr "마감"
 
-#: templates/2024/wildcards.html:72 templates/2025/wildcards.html:82
+#: templates/2024/wildcards.html:72 templates/2025/wildcards.html:86
 msgid "今回公開するWildcard一覧は、有志が作成した、非公式のものです。"
 msgstr "이번에 공개하는 Wildcard 목록은 자원봉사자가 작성한 비공식적인 것입니다."
 
-#: templates/2024/wildcards.html:73 templates/2025/wildcards.html:83
+#: templates/2024/wildcards.html:73 templates/2025/wildcards.html:87
 msgid "作成者：ぬる湯さん"
 msgstr "작성자: 누루유님"
 
-#: templates/2024/wildcards.html:77 templates/2025/wildcards.html:87
+#: templates/2024/wildcards.html:77 templates/2025/wildcards.html:91
 msgid "すべて手作業で制作されたものであるため、重複や欠落がある可能性があります。"
 msgstr "모두 수작업으로 제작된 것이므로 중복이나 누락이 있을 수 있습니다."
 
-#: templates/2024/wildcards.html:80 templates/2025/wildcards.html:90
+#: templates/2024/wildcards.html:80 templates/2025/wildcards.html:94
 msgid ""
 "また、この再生リストにある動画が必ずしもWildcardとして申請された動画であるとは限りません（毎年必ず出場者の手続きミスで失格者が出ます）。"
 msgstr ""
@@ -1077,6 +1077,10 @@ msgstr "Wildcard 비디오 제작에 사용된 모든 파일을 백업을 포함
 #: templates/2025/wildcard_regulation.html:260
 msgid "皆さんのWildcardを楽しみにしています！"
 msgstr "여러분의 Wildcard를 기대하고 있습니다!"
+
+#: templates/2025/wildcards.html:12
+msgid "各部門の詳細ルールに関しては、<a href=\"/{{ year }}/rule\">ルール&審査員</a>をご確認ください。"
+msgstr "각 부서의 상세 규칙은 <a href=\"/{{ year }}/rule\">규칙 & 심사위원</a>을 확인하십시오."
 
 #: templates/common/404.html:13
 msgid "まもなくトップページへリダイレクトされます"
