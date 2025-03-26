@@ -86,7 +86,7 @@ function searchParticipants(year) {
             loadingElement.style.display = 'none';
             if (!exactMatchFound) {
                 exactMatch.style.display = 'block';
-                exactMatch.textContent = `「${input}」は見つかりませんでした。`;
+                exactMatch.textContent = `not found: "${input}" は見つかりませんでした。`;
             } else {
                 exactMatch.style.display = 'none';
             }
