@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-24 12:10+0900\n"
+"POT-Creation-Date: 2025-03-27 12:34+0900\n"
 "PO-Revision-Date: 2025-03-03 20:36+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
@@ -23,9 +23,9 @@ msgid ""
 "Swissbeatboxが主催するHuman Beatboxの世界大会「Grand Beatbox "
 "Battle」の各種情報を、見やすくまとめたサイトです。"
 msgstr ""
-"Dies ist eine Website, die verschiedene Informationen über die \"Grand "
-"Beatbox Battle\", den Weltmeisterschaftswettbewerb im Human Beatbox, der von"
-" Swissbeatbox veranstaltet wird, übersichtlich zusammenfasst."
+"Dies ist eine Website, die verschiedene Informationen über die \\'Grand "
+"Beatbox Battle\\', den Weltmeisterschaftswettbewerb im Human Beatbox, der "
+"von Swissbeatbox veranstaltet wird, übersichtlich zusammenfasst."
 
 #: templates/2024/rule.html:21 templates/2024/rule.html:70
 #: templates/2024/rule.html:129 templates/2024/rule.html:208
@@ -52,20 +52,20 @@ msgstr "Führer"
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
 #: templates/2025/rule.html:66 templates/2025/rule.html:191
-#: templates/2025/rule.html:295 templates/2025/ticket.html:23
+#: templates/2025/rule.html:307 templates/2025/ticket.html:23
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:54
 #: templates/2025/wildcards.html:80 templates/base.html:116
 #: templates/common/participants.html:27 templates/common/result.html:90
 #: templates/includes/participants_form.html:12
-#: templates/others/result_stream.html:27
+#: templates/others/result_stream.html:39
 msgid "Wildcard結果"
 msgstr "Wildcard-Ergebnis"
 
 #: templates/2024/top.html:53 templates/2025/rule.html:66
-#: templates/2025/rule.html:295 templates/2025/ticket.html:23
+#: templates/2025/rule.html:307 templates/2025/ticket.html:23
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:54
 #: templates/2025/wildcards.html:80 templates/base.html:116
-#: templates/common/result.html:90 templates/others/result_stream.html:27
+#: templates/common/result.html:90 templates/others/result_stream.html:39
 msgid "出場者"
 msgstr "Teilnehmer"
 
@@ -82,8 +82,8 @@ msgid "ルール"
 msgstr "Regeln"
 
 #: templates/2024/rule.html:260 templates/2024/rule.html:305
-#: templates/2024/top.html:57 templates/2025/rule.html:262
-#: templates/2025/rule.html:304 templates/2025/time_schedule.html:62
+#: templates/2024/top.html:57 templates/2025/rule.html:274
+#: templates/2025/rule.html:316 templates/2025/time_schedule.html:62
 #: templates/2025/top.html:58 templates/2025/wildcards.html:81
 #: templates/base.html:117
 msgid "審査員"
@@ -96,11 +96,11 @@ msgstr "Jury"
 #: templates/2024/time_schedule.html:155 templates/2024/time_schedule.html:285
 #: templates/2024/top.html:61 templates/2024/top_7tosmoke.html:34
 #: templates/2025/rule.html:17 templates/2025/rule.html:65
-#: templates/2025/rule.html:203 templates/2025/rule.html:249
-#: templates/2025/rule.html:294 templates/2025/rule.html:336
+#: templates/2025/rule.html:203 templates/2025/rule.html:261
+#: templates/2025/rule.html:306 templates/2025/rule.html:348
 #: templates/2025/time_schedule.html:61 templates/2025/time_schedule.html:117
 #: templates/2025/time_schedule.html:145 templates/2025/top.html:62
-#: templates/2025/top_7tosmoke.html:34 templates/2025/wildcards.html:104
+#: templates/2025/top_7tosmoke.html:34 templates/2025/wildcards.html:110
 #: templates/base.html:118
 msgid "現地観戦計画のたてかた"
 msgstr "So planen Sie eine Live-Veranstaltung"
@@ -120,7 +120,7 @@ msgstr "Zeitplan"
 
 #: templates/2024/top.html:69 templates/2025/rule.html:204
 #: templates/2025/ticket.html:24 templates/2025/time_schedule.html:118
-#: templates/2025/top.html:70 templates/2025/wildcards.html:105
+#: templates/2025/top.html:70 templates/2025/wildcards.html:111
 #: templates/base.html:120 templates/common/japan.html:2
 #: templates/common/japan.html:3 templates/common/japan.html:4
 #: templates/common/japan.html:8
@@ -242,7 +242,8 @@ msgid "ソースサイト："
 msgstr "Quell-Website:"
 
 #: templates/2024/rule.html:25 templates/2024/time_schedule.html:15
-#: templates/2025/rule.html:25 templates/2025/wildcard_regulation.html:25
+#: templates/2025/rule.html:25 templates/2025/time_schedule.html:20
+#: templates/2025/wildcard_regulation.html:25
 msgid "目次"
 msgstr "Inhaltsverzeichnis"
 
@@ -271,12 +272,12 @@ msgid "Wildcard ルール"
 msgstr "Platzhalter-Regel"
 
 #: templates/2024/rule.html:45 templates/2024/rule.html:252
-#: templates/2025/rule.html:44 templates/2025/rule.html:253
+#: templates/2025/rule.html:44 templates/2025/rule.html:265
 msgid "本戦審査員一覧"
 msgstr "Liste der Juroren des Hauptturniers"
 
 #: templates/2024/rule.html:49 templates/2024/rule.html:296
-#: templates/2025/rule.html:48 templates/2025/rule.html:298
+#: templates/2025/rule.html:48 templates/2025/rule.html:310
 msgid "Wildcard審査員一覧"
 msgstr "Wildcard-Jury-Liste"
 
@@ -315,11 +316,11 @@ msgstr "Bitte überprüfen Sie die Regeln noch einmal selbst."
 #: templates/2024/rule.html:214 templates/2024/rule.html:259
 #: templates/2024/rule.html:304 templates/2025/rule.html:73
 #: templates/2025/rule.html:145 templates/2025/rule.html:211
-#: templates/2025/rule.html:261 templates/2025/rule.html:303
+#: templates/2025/rule.html:273 templates/2025/rule.html:315
 #: templates/2025/wildcard_regulation.html:84
 #: templates/2025/wildcard_regulation.html:141
 #: templates/2025/wildcard_regulation.html:198 templates/common/japan.html:21
-#: templates/common/participants.html:117
+#: templates/common/participants.html:125
 msgid "部門"
 msgstr "Abteilung"
 
@@ -379,13 +380,13 @@ msgstr "Liste der Verzichtenden auf Setzrechte"
 #: templates/2024/rule.html:149 templates/2025/rule.html:144
 #: templates/2025/wildcard_regulation.html:141 templates/common/japan.html:20
 #: templates/common/participants.html:44
-#: templates/common/participants.html:116 templates/common/result.html:50
+#: templates/common/participants.html:124 templates/common/result.html:50
 msgid "名前"
 msgstr "Name"
 
 #: templates/2024/rule.html:151 templates/2025/rule.html:146
 #: templates/common/japan.html:22 templates/common/participants.html:46
-#: templates/common/participants.html:118
+#: templates/common/participants.html:126
 msgid "出場権"
 msgstr "Teilnahmeberechtigung"
 
@@ -402,9 +403,9 @@ msgid "出場者一覧"
 msgstr "Liste der Teilnehmer"
 
 #: templates/2024/rule.html:200 templates/2025/rule.html:195
-#: templates/2025/rule.html:268 templates/2025/rule.html:272
-#: templates/2025/rule.html:276 templates/2025/rule.html:280
-#: templates/2025/rule.html:284 templates/2025/stream.html:14
+#: templates/2025/rule.html:280 templates/2025/rule.html:284
+#: templates/2025/rule.html:288 templates/2025/rule.html:292
+#: templates/2025/rule.html:296 templates/2025/stream.html:14
 #: templates/2025/time_schedule.html:55 templates/2025/time_schedule.html:83
 #: templates/2025/time_schedule.html:111 templates/2025/time_schedule.html:131
 #: templates/2025/time_schedule.html:135 templates/2025/time_schedule.html:139
@@ -502,19 +503,19 @@ msgstr "Eine Ausnahme besteht"
 msgid "デバイス制限なし"
 msgstr "Keine Gerätebeschränkung"
 
-#: templates/2024/rule.html:254 templates/2025/rule.html:255
+#: templates/2024/rule.html:254 templates/2025/rule.html:267
 msgid "Wildcard審査員一覧はこちら"
 msgstr "Die Liste der Wildcard-Juroren finden Sie hier"
 
-#: templates/2024/rule.html:286 templates/2025/rule.html:288
+#: templates/2024/rule.html:286 templates/2025/rule.html:300
 msgid "審査員不明"
 msgstr "Jury unbekannt"
 
-#: templates/2024/rule.html:286 templates/2025/rule.html:288
+#: templates/2024/rule.html:286 templates/2025/rule.html:300
 msgid "例年発表なし"
 msgstr "Keine Ankündigung wie jedes Jahr"
 
-#: templates/2024/rule.html:298 templates/2025/rule.html:332
+#: templates/2024/rule.html:298 templates/2025/rule.html:344
 msgid "本戦審査員一覧はこちら"
 msgstr "Die Liste der Juroren des Hauptturniers finden Sie hier"
 
@@ -712,7 +713,7 @@ msgstr "Gemeinsame Vorführung"
 msgid "当サイトURL変更のお知らせ"
 msgstr "Bekanntmachung zur Änderung der Website-URL"
 
-#: templates/2024/top.html:87 templates/2025/rule.html:250
+#: templates/2024/top.html:87 templates/2025/rule.html:262
 #: templates/2025/top.html:88
 msgid "Wildcard結果発表配信"
 msgstr "Bekanntgabe der Wildcard-Ergebnisse"
@@ -720,11 +721,11 @@ msgstr "Bekanntgabe der Wildcard-Ergebnisse"
 #: templates/2024/top.html:88 templates/2024/wildcards.html:2
 #: templates/2024/wildcards.html:3 templates/2024/wildcards.html:4
 #: templates/2024/wildcards.html:8 templates/2025/rule.html:18
-#: templates/2025/rule.html:337 templates/2025/top.html:89
+#: templates/2025/rule.html:349 templates/2025/top.html:89
 #: templates/2025/wildcards.html:2 templates/2025/wildcards.html:3
 #: templates/2025/wildcards.html:4 templates/2025/wildcards.html:8
-#: templates/common/participants.html:100
-#: templates/others/result_stream.html:28
+#: templates/common/participants.html:108
+#: templates/others/result_stream.html:40
 msgid "Wildcard一覧"
 msgstr "Wildcard-Liste"
 
@@ -884,8 +885,7 @@ msgid "GBB24では本番8日前公開"
 msgstr "GBB24 wird 8 Tage vor dem Event veröffentlicht"
 
 #: templates/2025/ticket.html:22 templates/common/japan.html:76
-#: templates/common/participants.html:98 templates/common/result.html:89
-#: templates/others/result_stream.html:16
+#: templates/common/result.html:89 templates/others/result_stream.html:16
 msgid "ルール&審査員"
 msgstr "Regeln & Jury"
 
@@ -1181,10 +1181,11 @@ msgid "皆さんのWildcardを楽しみにしています！"
 msgstr "Ich freue mich auf euer Wildcard!"
 
 #: templates/2025/wildcards.html:12
-msgid "各部門の詳細ルールに関しては、<a href=\"/{{ year }}/rule\">ルール&審査員</a>をご確認ください。"
+#, python-brace-format
+msgid "各部門の詳細ルールに関しては、<a href=\"/{year}/rule\">ルール&審査員</a>をご確認ください。"
 msgstr ""
-"Die detaillierten Regeln für jede Abteilung finden Sie unter <a href=\"/{{ "
-"year }}/rule\">Regeln & Juroren</a>."
+"Die detaillierten Regeln für jede Abteilung finden Sie unter <a "
+"href=\"/{year}/rule\">Regeln & Jury</a>."
 
 #: templates/common/404.html:13
 msgid "まもなくトップページへリダイレクトされます"
@@ -1212,27 +1213,27 @@ msgstr "Wildcard-Rangfolge"
 msgid "全出場者一覧"
 msgstr "Liste aller Teilnehmer"
 
-#: templates/common/japan.html:75 templates/common/participants.html:97
+#: templates/common/japan.html:75 templates/common/participants.html:106
 #: templates/common/result.html:88
 msgid "出場権詳細"
 msgstr "Teilnahmeberechtigungsdetails"
 
-#: templates/common/japan.html:77 templates/common/participants.html:99
+#: templates/common/japan.html:77 templates/common/participants.html:107
 #: templates/others/result_stream.html:17
 msgid "結果発表日"
 msgstr "Bekanntmachung des Ergebnisses"
 
-#: templates/common/japan.html:80 templates/common/participants.html:124
+#: templates/common/japan.html:80 templates/common/participants.html:132
 msgid "出場者世界地図"
 msgstr "Weltkarte der Teilnehmer"
 
-#: templates/common/japan.html:81 templates/common/participants.html:125
+#: templates/common/japan.html:81 templates/common/participants.html:133
 msgid "国旗をタップorクリックすると、詳細を確認できます。"
 msgstr ""
 "Tippen oder klicken Sie auf die Flagge, um weitere Informationen zu "
 "erhalten."
 
-#: templates/common/japan.html:85 templates/common/participants.html:136
+#: templates/common/japan.html:85 templates/common/participants.html:144
 #: templates/common/result.html:79
 msgid "その他の年度を確認："
 msgstr "Weitere Jahre prüfen:"
@@ -1255,32 +1256,32 @@ msgstr "Nur die Personen, die ihren Rücktritt erklären."
 msgid "出身"
 msgstr "Herkunft"
 
-#: templates/common/participants.html:104
-#: templates/common/participants.html:107
+#: templates/common/participants.html:112
+#: templates/common/participants.html:115
 msgid "出場者検索"
 msgstr "Teilnehmersuche"
 
-#: templates/common/participants.html:105
+#: templates/common/participants.html:113
 msgid "出場者名を検索できます"
 msgstr "Sie können nach den Namen der Teilnehmer suchen"
 
-#: templates/common/participants.html:105
+#: templates/common/participants.html:113
 msgid "半角英数字推奨"
 msgstr "Halbbreite alphanumerische Zeichen empfohlen"
 
-#: templates/common/participants.html:111
+#: templates/common/participants.html:119
 msgid "検索結果"
 msgstr "Suchergebnisse"
 
-#: templates/common/participants.html:125
+#: templates/common/participants.html:133
 msgid "全出場者を地図にマッピングしました。"
 msgstr "Ich habe alle Teilnehmer auf einer Karte abgebildet."
 
-#: templates/common/participants.html:129
+#: templates/common/participants.html:137
 msgid "国別出場者数"
 msgstr "Anzahl der Teilnehmer nach Land"
 
-#: templates/common/participants.html:132
+#: templates/common/participants.html:140
 msgid "カテゴリー別出場者数"
 msgstr "Teilnehmerzahl nach Kategorie"
 
@@ -1371,3 +1372,4 @@ msgstr ""
 
 #: templates/includes/popup_no_info.html:7
 msgid "公式発表をお待ちください。"
+msgstr "Bitte warten Sie auf die offizielle Ankündigung."

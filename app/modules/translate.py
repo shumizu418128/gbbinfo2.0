@@ -136,7 +136,7 @@ def translate():
             lines = f.readlines()
 
         with open(po_file_path, "w", encoding="utf-8") as f:
-            for line in lines[:-1]:  # 最後の行は空行なので削除
+            for line in lines:
                 if not line.startswith("#~ "):
                     f.write(line)
         print(f"{lang} の不要な翻訳を削除しました。", flush=True)
