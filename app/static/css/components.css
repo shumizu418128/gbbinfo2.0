@@ -20,16 +20,12 @@ button {
     fill: rgb(0, 68, 204);
 }
 
-.button-container a:nth-child(odd) button.disabled-button .icon {
-    fill: rgba(0, 68, 204, 0.2);
-}
-
 .button-container a:nth-child(even) .icon {
     fill: rgb(27, 148, 224);
 }
 
-.button-container a:nth-child(even) button.disabled-button .icon {
-    fill: rgba(27, 148, 224, 0.2);
+.button-container a button.disabled-button .icon {
+    display: none;
 }
 
 .bg-pic {
@@ -52,7 +48,7 @@ button {
 }
 
 .button-container a:hover button.disabled-button .icon {
-    fill: rgba(255, 255, 255, 0.2);
+    display: none;
 }
 
 .button-container {
@@ -80,7 +76,7 @@ button {
     font-size: 24px;
     box-sizing: border-box;
     color: rgb(0, 68, 204);
-    background-image: linear-gradient(to top right, rgb(246, 169, 141), white, white, white);
+    background-color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -91,7 +87,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
 }
 
 .button-container a:nth-child(even) button {
@@ -99,17 +95,11 @@ button {
     border-color: rgb(27, 148, 224);
 }
 
-.button-container a:nth-child(odd) button.disabled-button {
+.button-container a button.disabled-button,
+.button-container a:hover button.disabled-button {
     background-color: rgba(255, 255, 255, 0.2);
-    color: rgba(0, 68, 204, 0.2);
-    border-color: rgba(0, 68, 204, 0.2);
-    background-image: none;
-}
-
-.button-container a:nth-child(even) button.disabled-button {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: rgba(27, 148, 224, 0.2);
-    border-color: rgba(27, 148, 224, 0.2);
+    color: rgba(0, 0, 0, 0.2);
+    text-decoration: line-through;
     background-image: none;
 }
 
@@ -119,13 +109,6 @@ button {
     background-image: none;
     border-color: white;
     transform: scale(1.05);
-}
-
-.button-container a:hover button.disabled-button {
-    color: rgba(255, 255, 255, 0.2);
-    background-color: rgba(240, 99, 47, 0.2);
-    border-color: rgba(255, 255, 255, 0.2);
-    background-image: none;
 }
 
 @media (max-width: 768px) {
@@ -278,7 +261,7 @@ button {
     position: fixed;
     bottom: 115px;
     right: 20px;
-    background: linear-gradient(to left, rgb(240, 99, 47), rgb(240, 99, 47), rgb(252, 167, 75));
+    background: rgb(240, 99, 47);
     padding: 5px;
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -359,7 +342,7 @@ button {
     text-align: center;
     box-sizing: border-box;
     padding: 5px;
-    background: linear-gradient(to top right, rgb(246, 169, 141), white, white, white);
+    background: white;
     border: none;
     display: flex;
     align-items: center;
@@ -452,7 +435,7 @@ button {
     left: 0;
     width: 0%;
     height: 10px;
-    background: linear-gradient(to left, white, rgb(252, 167, 75), rgb(240, 99, 47), rgb(240, 99, 47));
+    background: white;
     z-index: 3;
     display: none;
 }
