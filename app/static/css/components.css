@@ -21,7 +21,7 @@ button {
 }
 
 .button-container a:nth-child(odd) button.disabled-button .icon {
-    fill: rgba(0, 68, 204, 0.5);
+    fill: rgba(0, 68, 204, 0.2);
 }
 
 .button-container a:nth-child(even) .icon {
@@ -29,7 +29,7 @@ button {
 }
 
 .button-container a:nth-child(even) button.disabled-button .icon {
-    fill: rgba(27, 148, 224, 0.5);
+    fill: rgba(27, 148, 224, 0.2);
 }
 
 .bg-pic {
@@ -52,7 +52,7 @@ button {
 }
 
 .button-container a:hover button.disabled-button .icon {
-    fill: rgba(255, 255, 255, 0.5);
+    fill: rgba(255, 255, 255, 0.2);
 }
 
 .button-container {
@@ -100,16 +100,16 @@ button {
 }
 
 .button-container a:nth-child(odd) button.disabled-button {
-    background-color: rgba(255, 255, 255, 0.5);
-    color: rgba(0, 68, 204, 0.5);
-    border-color: rgba(0, 68, 204, 0.5);
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(0, 68, 204, 0.2);
+    border-color: rgba(0, 68, 204, 0.2);
     background-image: none;
 }
 
 .button-container a:nth-child(even) button.disabled-button {
-    background-color: rgba(255, 255, 255, 0.5);
-    color: rgba(27, 148, 224, 0.5);
-    border-color: rgba(27, 148, 224, 0.5);
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(27, 148, 224, 0.2);
+    border-color: rgba(27, 148, 224, 0.2);
     background-image: none;
 }
 
@@ -122,9 +122,9 @@ button {
 }
 
 .button-container a:hover button.disabled-button {
-    color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(240, 99, 47, 0.5);
-    border-color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(240, 99, 47, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
     background-image: none;
 }
 
