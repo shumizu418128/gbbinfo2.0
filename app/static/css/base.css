@@ -36,7 +36,7 @@ header nav {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: rgb(240, 99, 47);
+    background: rgb(255, 100, 23);
 }
 
 @media screen and (min-width: 768px) {
@@ -65,14 +65,14 @@ header nav ul li {
     transition: background-color 0.3s ease, color 0.3s ease;
     list-style-type: none;
     padding: 12px 6px;
-    background-image: linear-gradient(to top right, rgb(246, 169, 141), white, white, white);
+    background-color: white;
     color: rgb(0, 68, 204);
     font-size: 16px;
 }
 
 header nav ul li:hover {
     background-image: none;
-    background-color: rgb(240, 99, 47);
+    background-color: rgb(255, 100, 23);
     color: white;
 }
 
@@ -94,7 +94,7 @@ main {
 h1 {
     color: white;
     font-size: 28px;
-    background: rgb(240, 99, 47);
+    background: rgb(255, 100, 23);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -109,7 +109,7 @@ h1 {
 h2 {
     color: white;
     font-size: 24px;
-    background: rgb(240, 99, 47);
+    background: rgb(255, 100, 23);
     padding: 5px;
     text-align: center;
     font-weight: bold;
@@ -121,7 +121,7 @@ h2 {
 h3 {
     color: white;
     font-size: 20px;
-    background: rgb(240, 99, 47);
+    background: rgb(255, 100, 23);
     border-radius: 6px;
     text-align: center;
     margin-top: 15px;
@@ -146,7 +146,7 @@ a {
 }
 
 a:hover {
-    color: rgb(240, 99, 47);
+    color: rgb(255, 100, 23);
 }
 
 a:active {
@@ -158,7 +158,7 @@ li {
 }
 
 hr {
-    border: 1px solid rgb(240, 99, 47);
+    border: 1px solid rgb(255, 100, 23);
     margin-top: 30px;
     margin-bottom: 30px;
 }

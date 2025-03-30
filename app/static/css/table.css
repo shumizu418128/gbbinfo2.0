@@ -8,7 +8,7 @@ table {
 }
 
 table th {
-    border-bottom: solid 4px rgb(240, 99, 47);
+    border-bottom: solid 4px rgb(255, 100, 23);
     padding: 10px 0;
     background-color: rgba(255, 255, 255, 0.3);
     color: black;
@@ -25,7 +25,7 @@ table tr:nth-child(even) {
 }
 
 .winner {
-    color: rgb(240, 99, 47);
+    color: rgb(255, 100, 23);
     font-weight: bold;
     background-color: rgba(255, 255, 255, 0.3);
 }

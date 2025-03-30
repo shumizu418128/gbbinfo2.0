@@ -333,12 +333,12 @@ def create_world_map(year: int):
 
         popup_content = "<div style=\"font-family: 'Noto sans JP'; font-size: 14px;\">"
         popup_content += f"""
-        <h3 style="margin: 0; color: #F0632F;">
+        <h3 style="margin: 0; color: #ff6417;">
             {country_name_en}
         </h3>
         """
         popup_content += f"""
-        <h4 style="margin: 0; color: #F0632F;">
+        <h4 style="margin: 0; color: #ff6417;">
             {len_group} teams<br>{len_beatboxers} beatboxers<br>{country_name_ja}
         </h4>
         """
@@ -649,8 +649,8 @@ def create_all_participants_map(country_counts_all: dict):
         # ポップアップコンテンツを作成
         popup_content = f"""
         <div style="font-family: 'Noto Sans JP', sans-serif; font-size: 14px;">
-            <h3 style="margin: 0; color: #F0632F;">{country_name_ja}</h3>
-            <h4 style="margin: 0; color: #F0632F;">{country_name_en}</h4>
+            <h3 style="margin: 0; color: #ff6417;">{country_name_ja}</h3>
+            <h4 style="margin: 0; color: #ff6417;">{country_name_en}</h4>
             <p style="margin: 5px 0;">出場者数：のべ{count}チーム
         </div>
         """
