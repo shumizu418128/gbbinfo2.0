@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-31 14:16+0900\n"
+"POT-Creation-Date: 2025-03-31 14:38+0900\n"
 "PO-Revision-Date: 2025-03-07 17:18+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -288,12 +288,12 @@ msgstr ""
 " Beatbox afin de profiter davantage de GBB."
 
 #: templates/2024/rule.html:56 templates/2025/rule.html:56
-msgid "一部内容において、わかりやすさを優先し、"
-msgstr "En partie, pour privilégier la clarté,"
+msgid "一部内容において、わかりやすさを優先します。"
+msgstr "Pour des raisons de clarté, certains contenus seront simplifiés."
 
 #: templates/2024/rule.html:57 templates/2025/rule.html:56
-msgid "正確さに欠ける表現を用いることがあります。"
-msgstr "Il arrive que j'utilise des expressions imprécises."
+msgid "これにより、正確さに欠ける表現を用いることがあります。"
+msgstr "Cela peut conduire à une imprécision dans l'expression."
 
 #: templates/2024/rule.html:61 templates/2025/rule.html:59
 #: templates/2025/wildcard_regulation.html:64

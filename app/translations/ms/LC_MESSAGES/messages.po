@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-31 14:16+0900\n"
+"POT-Creation-Date: 2025-03-31 14:38+0900\n"
 "PO-Revision-Date: 2025-03-07 00:17+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ms <LL@li.org>\n"
@@ -288,12 +288,12 @@ msgstr ""
 "Beatbox dapat menikmati GBB dengan lebih baik."
 
 #: templates/2024/rule.html:56 templates/2025/rule.html:56
-msgid "一部内容において、わかりやすさを優先し、"
-msgstr "Dalam beberapa aspek, keutamaan diberikan kepada kejelasan."
+msgid "一部内容において、わかりやすさを優先します。"
+msgstr "Untuk sebahagian kandungan, kejelasan diutamakan."
 
 #: templates/2024/rule.html:57 templates/2025/rule.html:56
-msgid "正確さに欠ける表現を用いることがあります。"
-msgstr "Kadang-kadang menggunakan ungkapan yang tidak tepat."
+msgid "これにより、正確さに欠ける表現を用いることがあります。"
+msgstr "Ini mungkin menggunakan ungkapan yang kurang tepat."
 
 #: templates/2024/rule.html:61 templates/2025/rule.html:59
 #: templates/2025/wildcard_regulation.html:64

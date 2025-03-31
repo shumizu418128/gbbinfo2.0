@@ -34,20 +34,15 @@ SAFETY_SETTINGS = [
 ]
 
 prompt = """
-# Task
-Translate the following text into {lang}.
-
 # Input
 Text: {source_text}
-Target Language: {lang}
+Language: {lang}
 
-# Output Format (JSON)
+# Output
 {{"translated_text": "string"}}
 
 # Note
-The output will be parsed using Python's `json.loads` function.
-Please ensure that any characters requiring escaping for `json.loads` to correctly parse the JSON are properly escaped.
-This includes, but is not limited to, double quotes, backslashes, and control characters.
+Ensure proper JSON escaping for quotes, backslashes, and control characters.
 """
 
 

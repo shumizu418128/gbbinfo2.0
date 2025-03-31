@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-31 14:16+0900\n"
+"POT-Creation-Date: 2025-03-31 14:38+0900\n"
 "PO-Revision-Date: 2025-03-03 20:35+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -279,12 +279,12 @@ msgid "以下に示す内容は、あくまでもBeatboxファンが知ってお
 msgstr "以下内容仅作为Beatbox粉丝了解更多GBB的知识而介绍。"
 
 #: templates/2024/rule.html:56 templates/2025/rule.html:56
-msgid "一部内容において、わかりやすさを優先し、"
-msgstr "在某些内容中，为了易于理解，"
+msgid "一部内容において、わかりやすさを優先します。"
+msgstr "为了易于理解，将简化部分内容。"
 
 #: templates/2024/rule.html:57 templates/2025/rule.html:56
-msgid "正確さに欠ける表現を用いることがあります。"
-msgstr "有时会使用不准确的表达方式。"
+msgid "これにより、正確さに欠ける表現を用いることがあります。"
+msgstr "这可能会导致表达不准确。"
 
 #: templates/2024/rule.html:61 templates/2025/rule.html:59
 #: templates/2025/wildcard_regulation.html:64
