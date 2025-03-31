@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-31 14:38+0900\n"
+"POT-Creation-Date: 2025-03-31 23:31+0900\n"
 "PO-Revision-Date: 2025-03-07 17:18+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -160,7 +160,7 @@ msgstr "Résultats du tournoi"
 
 #: templates/base.html:153
 msgid "年度選択"
-msgstr "Sélection de l'année"
+msgstr "Choix d'année"
 
 #: templates/base.html:198
 msgid "次のGBBまであと..."
