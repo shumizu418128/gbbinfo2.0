@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 12:34+0900\n"
+"POT-Creation-Date: 2025-03-31 14:16+0900\n"
 "PO-Revision-Date: 2025-03-03 20:36+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
@@ -1220,8 +1220,8 @@ msgstr "Teilnahmeberechtigungsdetails"
 
 #: templates/common/japan.html:77 templates/common/participants.html:107
 #: templates/others/result_stream.html:17
-msgid "結果発表日"
-msgstr "Bekanntmachung des Ergebnisses"
+msgid "Wildcard結果発表日"
+msgstr "Bekanntmachung des Wildcard-Ergebnisses"
 
 #: templates/common/japan.html:80 templates/common/participants.html:132
 msgid "出場者世界地図"
