@@ -50,7 +50,13 @@ warnings.filterwarnings(
 # テスト環境ではキャッシュを無効化
 # ローカル環境にはこの環境変数を設定してある
 if os.getenv("ENVIRONMENT_CHECK") == "qawsedrftgyhujikolp":
-    print("\nくぁwせdrftgyふじこlp\n")
+    print("\n")
+    print("******************************************************************")
+    print("*                                                                *")
+    print("*         GBBINFO-JPN is running in test mode!                   *")
+    print("*         Access the application at http://127.0.0.1:8080        *")
+    print("*                                                                *")
+    print("******************************************************************")
     app.config.from_object(TestConfig)
     cache = Cache(app, config={"CACHE_TYPE": "null"})
 
