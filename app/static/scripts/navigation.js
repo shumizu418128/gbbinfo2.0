@@ -59,7 +59,11 @@ document.addEventListener('DOMContentLoaded', function() {
             progressElements.forEach(progress => progress.style.display = "block");
         }
 
-        progressElements.forEach(progress => progress.style.width = scrollPercentage + "%");
+        // スクロールバーの長さを更新
+        progressElements.forEach(progress => {
+            const roundedScrollPercentage = Math.round(scrollPercentage / 10) * 10;
+            progress.style.width = roundedScrollPercentage + "%";
+        });
     }
 
     function updateDropdownSelection(headerArray, dropdown, offsetTops) {
