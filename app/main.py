@@ -144,6 +144,8 @@ def set_request_data():
     """
     リクエストごとに実行される関数。
     リクエストのURLをグローバル変数に保存します。
+
+    :return: なし
     """
     g.current_url = request.path
 
@@ -264,6 +266,8 @@ def route_top():
     """
     トップページへのルーティングを処理します。
     今年度または最新年度にリダイレクトします。
+
+    :return: トップページへのリダイレクト
     """
     dt_now = datetime.now()
     now = dt_now.year
