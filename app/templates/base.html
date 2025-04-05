@@ -240,22 +240,13 @@
       <div style="margin: 100px 0;"></div>
 
       <h3>{{ _('対応言語') }}</h3>
-      {% with first_lang = lang_names.items()|list|first %}
-        <div class="button-container">
-          <a href="/lang?referrer={{ current_url }}&lang={{ first_lang[0] }}">
-            <button>{{ first_lang[1] }}</button>
+      <div class="button-container">
+        {% for lang_code, lang_name in lang_names.items() %}
+          <a href="/lang?referrer={{ current_url }}&lang={{ lang_code }}">
+            <button>{{ lang_name }}</button>
           </a>
-        </div>
-        <div class="button-container">
-          {% for lang_code, lang_name in lang_names.items() %}
-            {% if not loop.first %}
-              <a href="/lang?referrer={{ current_url }}&lang={{ lang_code }}">
-                <button>{{ lang_name }}</button>
-              </a>
-            {% endif %}
-          {% endfor %}
-        </div>
-      {% endwith %}
+        {% endfor %}
+      </div>
       <hr>
       <a href="https://qiita.com/tari3210/items/0561e91774863d165af0" target="_blank" rel="noopener noreferrer">GBBINFO-JPNの設計図</a>
       <br>
@@ -286,7 +277,7 @@
 
     <script>
       if (window.location.pathname.includes('/participants') && window.location.search.includes('value')) {
-          // 特定の関数を実行する
+          // flask変数を入れて実行するために、あえてwindow.onloadを使う
           searchParticipants({{ year }});
       }
     </script>

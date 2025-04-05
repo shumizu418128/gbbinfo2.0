@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-31 23:31+0900\n"
+"POT-Creation-Date: 2025-04-05 23:31+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -223,7 +223,7 @@ msgstr "Return to Home"
 msgid "対応言語"
 msgstr "Available Languages"
 
-#: templates/base.html:264
+#: templates/base.html:255
 msgid "GBBINFO-JPNについて"
 msgstr "About GBBINFO-JPN"
 
@@ -525,7 +525,7 @@ msgstr "For Your Viewing Companion"
 #: templates/2024/stream.html:37
 #, python-brace-format
 msgid "GBB {year} の最新情報をチェックしよう"
-msgstr "Let's Check the Latest Information"
+msgstr "Check out the latest information on GBB {year}"
 
 #: templates/2024/stream.html:39 templates/common/participants.html:2
 #: templates/common/participants.html:3 templates/common/participants.html:4

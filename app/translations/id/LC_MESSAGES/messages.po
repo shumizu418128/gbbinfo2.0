@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-31 23:31+0900\n"
+"POT-Creation-Date: 2025-04-05 23:31+0900\n"
 "PO-Revision-Date: 2025-03-07 00:18+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: id <LL@li.org>\n"
@@ -185,7 +185,7 @@ msgstr "GBB {year} telah berakhir"
 #: templates/base.html:206 templates/includes/bottom_navigation.html:31
 #, python-brace-format
 msgid "例：GBB {year} の最終結果は？"
-msgstr "Contoh: Apa hasil akhir GBB {tahun}?"
+msgstr "Contoh: Hasil akhir GBB {year}?"
 
 #: templates/base.html:211 templates/includes/bottom_navigation.html:36
 msgid "GBB最新情報の検索はこちら"
@@ -224,7 +224,7 @@ msgstr "Kembali ke beranda"
 msgid "対応言語"
 msgstr "Bahasa yang Didukung"
 
-#: templates/base.html:264
+#: templates/base.html:255
 msgid "GBBINFO-JPNについて"
 msgstr "Tentang GBBINFO-JPN"
 

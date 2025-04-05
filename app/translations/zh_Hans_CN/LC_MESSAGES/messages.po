@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-31 23:31+0900\n"
+"POT-Creation-Date: 2025-04-05 23:31+0900\n"
 "PO-Revision-Date: 2025-03-03 20:35+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -219,7 +219,7 @@ msgstr "返回主页"
 msgid "対応言語"
 msgstr "支持的语言"
 
-#: templates/base.html:264
+#: templates/base.html:255
 msgid "GBBINFO-JPNについて"
 msgstr "关于GBBINFO-JPN"
 

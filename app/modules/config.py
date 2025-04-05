@@ -12,6 +12,9 @@ LANG_NAMES = {
     "ms": "Bahasa MY",
     "id": "Bahasa ID",
     "fr": "Français",
+    "hu": "Magyar",
+    "it": "Italiano",
+    "hi": "हिन्दी",
 }
 AVAILABLE_LANGS = list(LANG_NAMES.keys())
 
