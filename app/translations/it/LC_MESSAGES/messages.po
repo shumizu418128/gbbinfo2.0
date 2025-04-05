@@ -160,7 +160,7 @@ msgstr "Risultati del concorso"
 
 #: templates/base.html:153
 msgid "年度選択"
-msgstr "Selezione dell'anno"
+msgstr "Anno"
 
 #: templates/base.html:198
 msgid "次のGBBまであと..."

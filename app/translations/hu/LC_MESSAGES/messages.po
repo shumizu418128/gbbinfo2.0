@@ -160,7 +160,7 @@ msgstr "Eredmények"
 
 #: templates/base.html:153
 msgid "年度選択"
-msgstr "Év kiválasztása"
+msgstr "Év"
 
 #: templates/base.html:198
 msgid "次のGBBまであと..."
