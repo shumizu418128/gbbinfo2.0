@@ -123,24 +123,14 @@
         <a href="/{{ year }}/result"><button>{{_('大会結果')}}</button></a>
       </div>
 
-      <!-- 日本語のみ独立divを作る -->
       <p>LANGUAGE</p>
-      {% with first_lang = lang_names.items()|list|first %}
-        <div class="button-container">
-          <a href="/lang?referrer={{ current_url }}&lang={{ first_lang[0] }}">
-            <button>{{ first_lang[1] }}</button>
+      <div class="button-container">
+        {% for lang_code, lang_name in lang_names.items() %}
+          <a href="/lang?referrer={{ current_url }}&lang={{ lang_code }}">
+            <button>{{ lang_name }}</button>
           </a>
-        </div>
-        <div class="button-container">
-          {% for lang_code, lang_name in lang_names.items() %}
-            {% if not loop.first %}
-              <a href="/lang?referrer={{ current_url }}&lang={{ lang_code }}">
-                <button>{{ lang_name }}</button>
-              </a>
-            {% endif %}
-          {% endfor %}
-        </div>
-      {% endwith %}
+        {% endfor %}
+      </div>
 
     </div>
     <header>
