@@ -4,17 +4,17 @@ import os
 AVAILABLE_YEARS = [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
 LANG_NAMES = {
     "ja": "日本語",
+    "ko": "한국어",
     "en": "English",
     "zh_Hant_TW": "繁體中文",
-    "ko": "한국어",
-    "zh_Hans_CN": "简体中文",
-    "de": "Deutsch",
-    "ms": "Bahasa MY",
-    "id": "Bahasa ID",
     "fr": "Français",
+    "zh_Hans_CN": "简体中文",
+    "ms": "Bahasa MY",
+    "ta": "தமிழ்",
     "hu": "Magyar",
-    "it": "Italiano",
+    "de": "Deutsch",
     "hi": "हिन्दी",
+    "it": "Italiano",
 }
 AVAILABLE_LANGS = list(LANG_NAMES.keys())
 

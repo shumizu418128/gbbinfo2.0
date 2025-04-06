@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-06 13:11+0900\n"
+"POT-Creation-Date: 2025-04-06 14:21+0900\n"
 "PO-Revision-Date: 2024-11-12 00:01+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_Hant_TW <LL@li.org>\n"
@@ -43,7 +43,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:133
 #: templates/2025/wildcard_regulation.html:190
 #: templates/2025/wildcard_regulation.html:250 templates/base.html:115
-#: templates/base.html:150 templates/base.html:237
+#: templates/base.html:140 templates/base.html:227
 msgid "これだけガイド"
 msgstr "指南"
 
@@ -55,7 +55,7 @@ msgstr "指南"
 #: templates/2025/wildcards.html:80 templates/base.html:116
 #: templates/common/participants.html:27 templates/common/result.html:90
 #: templates/includes/participants_form.html:12
-#: templates/others/result_stream.html:39
+#: templates/others/result_stream.html:40
 msgid "Wildcard結果"
 msgstr "Wildcard結果"
 
@@ -63,7 +63,7 @@ msgstr "Wildcard結果"
 #: templates/2025/rule.html:307 templates/2025/ticket.html:23
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:54
 #: templates/2025/wildcards.html:80 templates/base.html:116
-#: templates/common/result.html:90 templates/others/result_stream.html:39
+#: templates/common/result.html:90 templates/others/result_stream.html:40
 msgid "出場者"
 msgstr "參賽者"
 
@@ -113,6 +113,7 @@ msgstr "如何制定現場觀賽計畫"
 #: templates/2025/time_schedule.html:4 templates/2025/time_schedule.html:9
 #: templates/2025/top.html:16 templates/2025/top.html:66
 #: templates/2025/top_7tosmoke.html:35 templates/base.html:119
+#: templates/others/translation.html:19
 msgid "タイムスケジュール"
 msgstr "時間表"
 
@@ -121,7 +122,7 @@ msgstr "時間表"
 #: templates/2025/top.html:70 templates/2025/wildcards.html:111
 #: templates/base.html:120 templates/common/japan.html:2
 #: templates/common/japan.html:3 templates/common/japan.html:4
-#: templates/common/japan.html:8
+#: templates/common/japan.html:8 templates/others/translation.html:20
 msgid "日本代表"
 msgstr "日本代表"
 
@@ -146,81 +147,82 @@ msgstr "票券"
 #: templates/2025/stream.html:4 templates/2025/stream.html:8
 #: templates/2025/time_schedule.html:89 templates/2025/top.html:78
 #: templates/2025/top_7tosmoke.html:36 templates/base.html:122
+#: templates/others/translation.html:22
 msgid "当日配信"
 msgstr "當日直播"
 
 #: templates/2024/top.html:81 templates/2025/top.html:82
 #: templates/base.html:123 templates/common/result.html:2
 #: templates/common/result.html:3 templates/common/result.html:4
-#: templates/common/result.html:8
+#: templates/common/result.html:8 templates/others/translation.html:23
 msgid "大会結果"
 msgstr "比賽結果"
 
-#: templates/base.html:153
+#: templates/base.html:143
 msgid "年度選択"
 msgstr "年度選擇"
 
-#: templates/base.html:198
+#: templates/base.html:188
 msgid "次のGBBまであと..."
 msgstr "距離下一個GBB還有..."
 
-#: templates/base.html:203 templates/base.html:215
+#: templates/base.html:193 templates/base.html:205
 #: templates/includes/bottom_navigation.html:28
 #: templates/includes/bottom_navigation.html:42
 msgid "なんでも検索"
 msgstr "搜尋任何東西"
 
-#: templates/base.html:204 templates/includes/bottom_navigation.html:29
+#: templates/base.html:194 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} の検索のみ可能です"
 msgstr "僅能搜尋GBB {year}"
 
-#: templates/base.html:204 templates/includes/bottom_navigation.html:29
+#: templates/base.html:194 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} は終了しました"
 msgstr "GBB {year} 已結束"
 
-#: templates/base.html:206 templates/includes/bottom_navigation.html:31
+#: templates/base.html:196 templates/includes/bottom_navigation.html:31
 #, python-brace-format
 msgid "例：GBB {year} の最終結果は？"
 msgstr "例：GBB {year} 的最終結果是什麼？"
 
-#: templates/base.html:211 templates/includes/bottom_navigation.html:36
+#: templates/base.html:201 templates/includes/bottom_navigation.html:36
 msgid "GBB最新情報の検索はこちら"
 msgstr "在這裡搜尋最新的GBB資訊"
 
-#: templates/base.html:216 templates/includes/bottom_navigation.html:43
+#: templates/base.html:206 templates/includes/bottom_navigation.html:43
 #, python-brace-format
 msgid "GBB {year} について検索してみよう"
 msgstr "讓我們來搜尋GBB {year} 的資訊吧"
 
 #: templates/2024/top.html:36 templates/2024/top_7tosmoke.html:16
 #: templates/2025/top.html:36 templates/2025/top_7tosmoke.html:16
-#: templates/base.html:218 templates/includes/bottom_navigation.html:45
+#: templates/base.html:208 templates/includes/bottom_navigation.html:45
 msgid "例：現地観戦計画のたてかた"
 msgstr "例：如何制定現場觀賽計畫"
 
-#: templates/base.html:228
+#: templates/base.html:218
 msgid "ホーム画面に追加"
 msgstr "添加到主畫面"
 
-#: templates/base.html:231
+#: templates/base.html:221
 msgid "GBBINFO-JPNはPWAに対応しています。"
 msgstr "GBBINFO-JPN支援PWA。"
 
-#: templates/base.html:231
+#: templates/base.html:221
 msgid "ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。"
 msgstr "打開瀏覽器菜單，點擊「添加到主畫面」，即可作為應用程式安裝。"
 
-#: templates/base.html:237
+#: templates/base.html:227
 msgid "ホームへもどる"
 msgstr "返回主頁"
 
-#: templates/base.html:242
+#: templates/base.html:232
 msgid "対応言語"
 msgstr "支援語言"
 
-#: templates/base.html:255
+#: templates/base.html:245
 msgid "GBBINFO-JPNについて"
 msgstr "關於GBBINFO-JPN"
 
@@ -508,7 +510,7 @@ msgstr "檢查GBB {year} 的最新資訊"
 
 #: templates/2024/stream.html:39 templates/common/participants.html:2
 #: templates/common/participants.html:3 templates/common/participants.html:4
-#: templates/common/participants.html:12
+#: templates/common/participants.html:12 templates/others/translation.html:17
 msgid "Wildcard結果&出場者"
 msgstr "Wildcard結果與參賽者"
 
@@ -517,6 +519,7 @@ msgstr "Wildcard結果與參賽者"
 #: templates/2024/top_7tosmoke.html:33 templates/2025/ticket.html:2
 #: templates/2025/ticket.html:3 templates/2025/ticket.html:4
 #: templates/2025/ticket.html:8 templates/2025/top_7tosmoke.html:33
+#: templates/others/translation.html:21
 msgid "会場&チケット"
 msgstr "場地與票券"
 
@@ -698,7 +701,7 @@ msgstr "Wildcard結果發佈直播"
 #: templates/2025/wildcards.html:2 templates/2025/wildcards.html:3
 #: templates/2025/wildcards.html:4 templates/2025/wildcards.html:8
 #: templates/common/participants.html:108
-#: templates/others/result_stream.html:40
+#: templates/others/result_stream.html:41
 msgid "Wildcard一覧"
 msgstr "Wildcard列表"
 
@@ -807,6 +810,10 @@ msgid ""
 "また、この再生リストにある動画が必ずしもWildcardとして申請された動画であるとは限りません（毎年必ず出場者の手続きミスで失格者が出ます）。"
 msgstr "此外，這個播放列表中的視頻不一定是作為Wildcard申請的視頻（每年都會因為參賽者的手續錯誤而出現失格者）。"
 
+#: templates/2024/world_map.html:2 templates/2024/world_map.html:3
+msgid "出場者マップ"
+msgstr "參賽者地圖"
+
 #: templates/2025/rule.html:21 templates/2025/rule.html:124
 #: templates/2025/wildcard_regulation.html:2
 #: templates/2025/wildcard_regulation.html:3
@@ -831,7 +838,8 @@ msgid "GBB24では本番8日前公開"
 msgstr "GBB24在比賽前8天公開"
 
 #: templates/2025/ticket.html:22 templates/common/japan.html:76
-#: templates/common/result.html:89 templates/others/result_stream.html:16
+#: templates/common/result.html:89 templates/others/result_stream.html:17
+#: templates/others/translation.html:18
 msgid "ルール&審査員"
 msgstr "規則與評審"
 
@@ -1104,7 +1112,7 @@ msgid "出場権詳細"
 msgstr "參賽權詳細"
 
 #: templates/common/japan.html:77 templates/common/participants.html:107
-#: templates/others/result_stream.html:17
+#: templates/others/result_stream.html:18
 msgid "Wildcard結果発表日"
 msgstr "外卡結果發表日"
 
@@ -1252,3 +1260,107 @@ msgstr "您所尋找的資訊尚未有官方發佈，因此在本網站上不存
 #: templates/includes/popup_no_info.html:7
 msgid "公式発表をお待ちください。"
 msgstr "請等待官方公告。"
+
+#: templates/others/translation.html:2 templates/others/translation.html:3
+#: templates/others/translation.html:4 templates/others/translation.html:9
+msgid "各ページの翻訳提供について"
+msgstr "關於各個頁面的翻譯提供"
+
+#: templates/others/translation.html:10
+msgid "GBBINFO-JPNは、一部を除き、各ページの翻訳をAI Geminiを用いて提供しています。"
+msgstr "GBBINFO-JPN 除了部分內容外，使用 AI Gemini 翻譯每個頁面。"
+
+#: templates/others/translation.html:11
+msgid "AIによる翻訳のため、誤りがある可能性があります。"
+msgstr "由於是AI翻譯，所以可能會有錯誤。"
+
+#: templates/others/translation.html:12
+msgid ""
+"翻訳を提供しているページ・提供対象国は、以下の通りです。なお、提供対象国は、2025年1月1日以降の当サイトへのアクセス記録から、対応すべきと判断された国を選定しています。"
+msgstr ""
+"我們提供的翻譯頁面和國家如下所示。請注意，提供的國家/地區是根據 2025 年 1 月 1 "
+"日之後對我們網站的訪問記錄確定的，以選定需要支援的國家/地區。"
+
+#: templates/others/translation.html:15
+msgid "対応年度：2024年・2025年以降"
+msgstr "適用年份：2024年・2025年之後"
+
+#: templates/others/translation.html:29
+msgid "提供対象国"
+msgstr "提供國家"
+
+#: templates/others/translation.html:31
+msgid "日本"
+msgstr "日本"
+
+#: templates/others/translation.html:32
+msgid "韓国"
+msgstr "韓國"
+
+#: templates/others/translation.html:33
+msgid "オーストラリア"
+msgstr "澳洲"
+
+#: templates/others/translation.html:34
+msgid "アメリカ"
+msgstr "美國"
+
+#: templates/others/translation.html:35
+msgid "台湾"
+msgstr "台灣"
+
+#: templates/others/translation.html:36
+msgid "カナダ"
+msgstr "加拿大"
+
+#: templates/others/translation.html:37
+msgid "中国"
+msgstr "中國"
+
+#: templates/others/translation.html:38
+msgid "マレーシア"
+msgstr "馬來西亞"
+
+#: templates/others/translation.html:39
+msgid "フランス"
+msgstr "法國"
+
+#: templates/others/translation.html:40
+msgid "ハンガリー"
+msgstr "匈牙利"
+
+#: templates/others/translation.html:41
+msgid "ドイツ"
+msgstr "德國"
+
+#: templates/others/translation.html:42
+msgid "インド"
+msgstr "印度"
+
+#: templates/others/translation.html:43
+msgid "香港"
+msgstr "香港"
+
+#: templates/others/translation.html:44
+msgid "シンガポール"
+msgstr "新加坡"
+
+#: templates/others/translation.html:45
+msgid "スイス"
+msgstr "瑞士"
+
+#: templates/others/translation.html:46
+msgid "イギリス"
+msgstr "英國"
+
+#: templates/others/translation.html:47
+msgid "ニュージーランド"
+msgstr "紐西蘭"
+
+#: templates/others/translation.html:51
+msgid "上記の提供対象国で話されている言語のうち、AI翻訳が可能な言語に対応しています。なお、提供対象国は、アクセス状況に応じて随時追加予定です。"
+msgstr "我們支援在上述國家/地區使用的 AI 翻譯語言。 此外，提供國家/地區可能會根據存取狀態隨時變更。"
+
+#: templates/others/translation.html:53
+msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
+msgstr "未提供翻譯的頁面將以原文日語顯示。"

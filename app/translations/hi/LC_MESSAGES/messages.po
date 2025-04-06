@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-06 13:11+0900\n"
+"POT-Creation-Date: 2025-04-06 14:21+0900\n"
 "PO-Revision-Date: 2024-04-05 21:11+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: hi <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:133
 #: templates/2025/wildcard_regulation.html:190
 #: templates/2025/wildcard_regulation.html:250 templates/base.html:115
-#: templates/base.html:150 templates/base.html:237
+#: templates/base.html:140 templates/base.html:227
 msgid "これだけガイド"
 msgstr "मार्गदर्शिका"
 
@@ -57,7 +57,7 @@ msgstr "मार्गदर्शिका"
 #: templates/2025/wildcards.html:80 templates/base.html:116
 #: templates/common/participants.html:27 templates/common/result.html:90
 #: templates/includes/participants_form.html:12
-#: templates/others/result_stream.html:39
+#: templates/others/result_stream.html:40
 msgid "Wildcard結果"
 msgstr "वाइल्डकार्ड परिणाम"
 
@@ -65,7 +65,7 @@ msgstr "वाइल्डकार्ड परिणाम"
 #: templates/2025/rule.html:307 templates/2025/ticket.html:23
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:54
 #: templates/2025/wildcards.html:80 templates/base.html:116
-#: templates/common/result.html:90 templates/others/result_stream.html:39
+#: templates/common/result.html:90 templates/others/result_stream.html:40
 msgid "出場者"
 msgstr "प्रतिभागियों"
 
@@ -115,6 +115,7 @@ msgstr "स्थानीय मैच देखने की योजना �
 #: templates/2025/time_schedule.html:4 templates/2025/time_schedule.html:9
 #: templates/2025/top.html:16 templates/2025/top.html:66
 #: templates/2025/top_7tosmoke.html:35 templates/base.html:119
+#: templates/others/translation.html:19
 msgid "タイムスケジュール"
 msgstr "समय सारिणी"
 
@@ -123,7 +124,7 @@ msgstr "समय सारिणी"
 #: templates/2025/top.html:70 templates/2025/wildcards.html:111
 #: templates/base.html:120 templates/common/japan.html:2
 #: templates/common/japan.html:3 templates/common/japan.html:4
-#: templates/common/japan.html:8
+#: templates/common/japan.html:8 templates/others/translation.html:20
 msgid "日本代表"
 msgstr "जापान प्रतिनिधि"
 
@@ -148,83 +149,84 @@ msgstr "टिकट"
 #: templates/2025/stream.html:4 templates/2025/stream.html:8
 #: templates/2025/time_schedule.html:89 templates/2025/top.html:78
 #: templates/2025/top_7tosmoke.html:36 templates/base.html:122
+#: templates/others/translation.html:22
 msgid "当日配信"
 msgstr "आज की डिलीवरी"
 
 #: templates/2024/top.html:81 templates/2025/top.html:82
 #: templates/base.html:123 templates/common/result.html:2
 #: templates/common/result.html:3 templates/common/result.html:4
-#: templates/common/result.html:8
+#: templates/common/result.html:8 templates/others/translation.html:23
 msgid "大会結果"
 msgstr "परिणाम"
 
-#: templates/base.html:153
+#: templates/base.html:143
 msgid "年度選択"
 msgstr "वार्षिक चयन"
 
-#: templates/base.html:198
+#: templates/base.html:188
 msgid "次のGBBまであと..."
 msgstr "अगले GBB तक..."
 
-#: templates/base.html:203 templates/base.html:215
+#: templates/base.html:193 templates/base.html:205
 #: templates/includes/bottom_navigation.html:28
 #: templates/includes/bottom_navigation.html:42
 msgid "なんでも検索"
 msgstr "kuchh bhi khoj"
 
-#: templates/base.html:204 templates/includes/bottom_navigation.html:29
+#: templates/base.html:194 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} の検索のみ可能です"
 msgstr "GBB {year} की ही खोज कर सकते हैं"
 
-#: templates/base.html:204 templates/includes/bottom_navigation.html:29
+#: templates/base.html:194 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} は終了しました"
 msgstr "GBB {year} समाप्त हो गया है"
 
-#: templates/base.html:206 templates/includes/bottom_navigation.html:31
+#: templates/base.html:196 templates/includes/bottom_navigation.html:31
 #, python-brace-format
 msgid "例：GBB {year} の最終結果は？"
 msgstr "GBB {year} का अंतिम परिणाम क्या है?"
 
-#: templates/base.html:211 templates/includes/bottom_navigation.html:36
+#: templates/base.html:201 templates/includes/bottom_navigation.html:36
 msgid "GBB最新情報の検索はこちら"
 msgstr "यहाँ GBB नवीनतम जानकारी खोजें"
 
-#: templates/base.html:216 templates/includes/bottom_navigation.html:43
+#: templates/base.html:206 templates/includes/bottom_navigation.html:43
 #, python-brace-format
 msgid "GBB {year} について検索してみよう"
 msgstr "हमें GBB {year} के बारे में खोजने दीजिए।"
 
 #: templates/2024/top.html:36 templates/2024/top_7tosmoke.html:16
 #: templates/2025/top.html:36 templates/2025/top_7tosmoke.html:16
-#: templates/base.html:218 templates/includes/bottom_navigation.html:45
+#: templates/base.html:208 templates/includes/bottom_navigation.html:45
 msgid "例：現地観戦計画のたてかた"
 msgstr "उदाहरण के लिए: एक स्थानीय मैच देखने की योजना कैसे बनाएं"
 
-#: templates/base.html:228
+#: templates/base.html:218
 msgid "ホーム画面に追加"
 msgstr "होम स्क्रीन पर जोड़ें"
 
-#: templates/base.html:231
+#: templates/base.html:221
 msgid "GBBINFO-JPNはPWAに対応しています。"
 msgstr "GBBINFO-JPN PWA ke saath compatibility hai."
 
-#: templates/base.html:231
+#: templates/base.html:221
 msgid "ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。"
 msgstr ""
 "ब्राउज़र मेनू खोलें और \"होम स्क्रीन में जोड़ें\" पर टैप करें, आप इसे एक ऐप "
 "के रूप में इंस्टॉल कर सकते हैं।"
 
-#: templates/base.html:237
+#: templates/base.html:227
 msgid "ホームへもどる"
 msgstr "घर वापस जाएँ"
 
-#: templates/base.html:242
+#: templates/base.html:232
 msgid "対応言語"
 msgstr "भाषा"
 
-#: templates/base.html:255
+#: templates/base.html:245
 msgid "GBBINFO-JPNについて"
 msgstr "GBBINFO-JPN के बारे में"
 
@@ -528,7 +530,7 @@ msgstr "GBB {year} ki taaja jaankaari jaanch karein"
 
 #: templates/2024/stream.html:39 templates/common/participants.html:2
 #: templates/common/participants.html:3 templates/common/participants.html:4
-#: templates/common/participants.html:12
+#: templates/common/participants.html:12 templates/others/translation.html:17
 msgid "Wildcard結果&出場者"
 msgstr "वाइल्डकार्ड परिणाम और प्रतिभागी"
 
@@ -537,6 +539,7 @@ msgstr "वाइल्डकार्ड परिणाम और प्रत
 #: templates/2024/top_7tosmoke.html:33 templates/2025/ticket.html:2
 #: templates/2025/ticket.html:3 templates/2025/ticket.html:4
 #: templates/2025/ticket.html:8 templates/2025/top_7tosmoke.html:33
+#: templates/others/translation.html:21
 msgid "会場&チケット"
 msgstr "स्थल और टिकट"
 
@@ -721,7 +724,7 @@ msgstr "वाइल्डकार्ड परिणाम घोषणा प
 #: templates/2025/wildcards.html:2 templates/2025/wildcards.html:3
 #: templates/2025/wildcards.html:4 templates/2025/wildcards.html:8
 #: templates/common/participants.html:108
-#: templates/others/result_stream.html:40
+#: templates/others/result_stream.html:41
 msgid "Wildcard一覧"
 msgstr "स्ट्रिंग"
 
@@ -844,6 +847,10 @@ msgstr ""
 "में सबमिट किए गए वीडियो नहीं होते हैं (हर साल, प्रस्तुतकर्ता की प्रक्रिया "
 "संबंधी त्रुटि के कारण अयोग्य घोषित किए जाते हैं)।"
 
+#: templates/2024/world_map.html:2 templates/2024/world_map.html:3
+msgid "出場者マップ"
+msgstr "प्रतियोगी मानचित्र"
+
 #: templates/2025/rule.html:21 templates/2025/rule.html:124
 #: templates/2025/wildcard_regulation.html:2
 #: templates/2025/wildcard_regulation.html:3
@@ -873,7 +880,8 @@ msgid "GBB24では本番8日前公開"
 msgstr "GBB24 में, लॉन्च से 8 दिन पहले रिलीज़"
 
 #: templates/2025/ticket.html:22 templates/common/japan.html:76
-#: templates/common/result.html:89 templates/others/result_stream.html:16
+#: templates/common/result.html:89 templates/others/result_stream.html:17
+#: templates/others/translation.html:18
 msgid "ルール&審査員"
 msgstr "नियम और जजों"
 
@@ -1190,7 +1198,7 @@ msgid "出場権詳細"
 msgstr "विस्तृत योग्यता"
 
 #: templates/common/japan.html:77 templates/common/participants.html:107
-#: templates/others/result_stream.html:17
+#: templates/others/result_stream.html:18
 msgid "Wildcard結果発表日"
 msgstr "स्ट्रिंग"
 
@@ -1340,3 +1348,114 @@ msgstr ""
 #: templates/includes/popup_no_info.html:7
 msgid "公式発表をお待ちください。"
 msgstr "इंतजार करें आधिकारिक घोषणा।"
+
+#: templates/others/translation.html:2 templates/others/translation.html:3
+#: templates/others/translation.html:4 templates/others/translation.html:9
+msgid "各ページの翻訳提供について"
+msgstr "प्रत्येक पृष्ठ के अनुवाद प्रदान करने के बारे में"
+
+#: templates/others/translation.html:10
+msgid "GBBINFO-JPNは、一部を除き、各ページの翻訳をAI Geminiを用いて提供しています。"
+msgstr ""
+"GBBINFO-JPN, कुछ को छोड़कर, प्रत्येक पृष्ठ का अनुवाद AI Gemini का उपयोग करके"
+" प्रदान करता है।"
+
+#: templates/others/translation.html:11
+msgid "AIによる翻訳のため、誤りがある可能性があります。"
+msgstr "कृत्रिम बुद्धिमत्ता द्वारा अनुवाद के कारण त्रुटियाँ हो सकती हैं।"
+
+#: templates/others/translation.html:12
+msgid ""
+"翻訳を提供しているページ・提供対象国は、以下の通りです。なお、提供対象国は、2025年1月1日以降の当サイトへのアクセス記録から、対応すべきと判断された国を選定しています。"
+msgstr ""
+"वह पृष्ठ/देश जहां अनुवाद प्रदान किया जाता है, इस प्रकार है। इसके अतिरिक्त, "
+"लक्षित देशों को 1 जनवरी, 2025 को या उसके बाद साइट पर एक्सेस रिकॉर्ड के आधार "
+"पर चुना जाएगा।"
+
+#: templates/others/translation.html:15
+msgid "対応年度：2024年・2025年以降"
+msgstr "वर्ष: 2024, 2025 और उसके बाद"
+
+#: templates/others/translation.html:29
+msgid "提供対象国"
+msgstr "देश प्रदान करना"
+
+#: templates/others/translation.html:31
+msgid "日本"
+msgstr "जापान"
+
+#: templates/others/translation.html:32
+msgid "韓国"
+msgstr "कोरियाई"
+
+#: templates/others/translation.html:33
+msgid "オーストラリア"
+msgstr "ऑस्ट्रेलिया"
+
+#: templates/others/translation.html:34
+msgid "アメリカ"
+msgstr "अमरीका"
+
+#: templates/others/translation.html:35
+msgid "台湾"
+msgstr "ताइवान"
+
+#: templates/others/translation.html:36
+msgid "カナダ"
+msgstr "कनाडा"
+
+#: templates/others/translation.html:37
+msgid "中国"
+msgstr "चीन"
+
+#: templates/others/translation.html:38
+msgid "マレーシア"
+msgstr "मलेशिया"
+
+#: templates/others/translation.html:39
+msgid "フランス"
+msgstr "फ़्रांस"
+
+#: templates/others/translation.html:40
+msgid "ハンガリー"
+msgstr "हंगरी"
+
+#: templates/others/translation.html:41
+msgid "ドイツ"
+msgstr "जर्मनी"
+
+#: templates/others/translation.html:42
+msgid "インド"
+msgstr "भारत"
+
+#: templates/others/translation.html:43
+msgid "香港"
+msgstr "हाँगकाँग"
+
+#: templates/others/translation.html:44
+msgid "シンガポール"
+msgstr "सिंगापुर"
+
+#: templates/others/translation.html:45
+msgid "スイス"
+msgstr "स्विट्जरलैंड"
+
+#: templates/others/translation.html:46
+msgid "イギリス"
+msgstr "यूनाइटेड किंगडम"
+
+#: templates/others/translation.html:47
+msgid "ニュージーランド"
+msgstr "न्यूजीलैंड"
+
+#: templates/others/translation.html:51
+msgid "上記の提供対象国で話されている言語のうち、AI翻訳が可能な言語に対応しています。なお、提供対象国は、アクセス状況に応じて随時追加予定です。"
+msgstr ""
+"उपरोक्त देशों में बोली जाने वाली भाषाओं में से, यह उन भाषाओं का समर्थन करता "
+"है जिनमें एआई अनुवाद संभव है। कृपया ध्यान दें कि देशों को एक्सेस स्थिति के "
+"आधार पर समय-समय पर जोड़ा जाएगा।"
+
+#: templates/others/translation.html:53
+msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
+msgstr ""
+"वह पृष्ठ जो अनुवाद प्रदान नहीं करते हैं, मूल जापानी में प्रदर्शित होंगे।"
