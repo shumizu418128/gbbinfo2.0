@@ -56,13 +56,17 @@ window.onload = function() {
     showPopup();
 };
 
-document.addEventListener('click', function(event) {
+function handleDocumentClick(event) {
     var dropdownContent = document.getElementById("dropdown-content");
     var dropdownButton = document.getElementById("bottom-dropdown");
-    if (dropdownContent && dropdownButton && dropdownContent.style.display === 'block' && !dropdownButton.contains(event.target)) {
-        dropdownContent.style.display = 'none';
+    if (dropdownContent && dropdownButton && dropdownContent.style.display === 'block') {
+        if (!dropdownButton.contains(event.target)) {
+            dropdownContent.style.display = 'none';
+        }
     }
-});
+}
+
+document.addEventListener('click', handleDocumentClick);
 
 window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 window.addEventListener("appinstalled", handleAppInstalled);

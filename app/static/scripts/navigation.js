@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollAbsolute = window.scrollY + 50;
         const h1_position = document.querySelector("h1").offsetTop;
 
+        // スクロール位置が最初の<h1>要素より上にある場合、プログレスバーと背景を非表示にする
         if (scrollAbsolute <= h1_position) {
             background.forEach(bg => bg.style.display = "none");
             progressElements.forEach(progress => progress.style.display = "none");
