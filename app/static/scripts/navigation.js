@@ -4,7 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const lastHeader = headers[headers.length - 1];
     const headerArray = lastHeader && lastHeader.id === "bottom-search-menu" ? Array.from(headers).slice(0, -1) : Array.from(headers);
     const dropdown = document.querySelector('.headerDropdown');
-    const offsetTops = headerArray.map(header => header.offsetTop);
+    let offsetTops = [];
+
+    // すべてのコンテンツがロードされた後に位置情報を計算
+    window.addEventListener('load', function() {
+        offsetTops = headerArray.map(header => header.offsetTop);
+    });
 
     headerArray.forEach((header, index) => {
         const option = document.createElement('option');
@@ -68,13 +73,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateDropdownSelection(headerArray, dropdown, offsetTops) {
+        // 現在の位置情報を取得
+        const currentOffsetTops = headerArray.map(header => header.offsetTop);
         const scrollPosition = window.scrollY + 51;
 
-        if (scrollPosition < offsetTops[0]) {
+        if (scrollPosition < currentOffsetTops[0]) {
             dropdown.style.display = 'none';
         } else {
             for (let index = headerArray.length - 1; index >= 0; index--) {
-                if ((scrollPosition >= offsetTops[index])) {
+                if ((scrollPosition >= currentOffsetTops[index])) {
                     dropdown.value = index;
                     dropdown.style.display = '';
                     const dropdownWidth = dropdown.offsetWidth - 80;
