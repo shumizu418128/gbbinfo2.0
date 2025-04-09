@@ -42,11 +42,8 @@
 
 <h2>{{_('これだけガイド')}}</h2>
 
-{% if is_latest_year %}
-  <div style="text-align: center;">
-    <p>{{ last_updated }}</p>
-  </div>
-{% endif %}
+<p style="text-align: center">{{ _('Solo Wildcard結果発表までの残り時間') }}</p>
+<p id="countdown-wildcard" style="text-align: center; font-size: 24px"></p>
 
 <div class="button-container">
   <a href="/{{ year }}/participants"><button style="background-image: url('/static/images/button/dice.webp');" class="bg-pic">
@@ -89,9 +86,14 @@
   <li><a href="/{{ year }}/wildcards">{{_('Wildcard一覧')}}</a></li>
 </ul>
 
+{% if is_latest_year %}
+  <div style="text-align: center;">
+    <p>{{ last_updated }}</p>
+  </div>
+{% endif %}
+
 <div style="text-align: center;">
-  <p>Wildcardを見る会<br>Wildcard結果発表を見る会<p>
-  <p>ビト森にて随時開催中！</p>
+  <p>Wildcardを見る会<br>Wildcard結果発表を見る会<br>ビト森にて随時開催中！</p>
 </div>
 
 <div class="button-container">

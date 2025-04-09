@@ -1,12 +1,6 @@
-// カウントダウンの終了日時 (GBB開催日時)
-const countdownEndTime = new Date("Oct 31, 2025 14:00:00 GMT+09:00").getTime();
-
-function updateTimer() {
-    const nowTime = new Date().getTime();
-    const timeLeft = countdownEndTime - nowTime;
-
+function updateTimerDisplay(endTime, elementId, message) {
     function formatTimeLeft(timeLeft) {
-        if (timeLeft <= 0) return "and that's TIME!";
+        if (timeLeft <= 0) return message;
 
         const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -17,8 +11,23 @@ function updateTimer() {
         return `${days} days ${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")} ${String(milliseconds).padStart(3, "0")}`;
     }
 
-    document.getElementById("countdown").innerHTML = formatTimeLeft(timeLeft);
-    requestAnimationFrame(updateTimer);
+    function update() {
+        const nowTime = new Date().getTime();
+        const timeLeft = endTime - nowTime;
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.innerHTML = formatTimeLeft(timeLeft);
+        }
+        requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
 }
 
-requestAnimationFrame(updateTimer);
+// Wildcard結果発表までのカウントダウン
+const wildcardEndTime = new Date("Apr 17, 2025 0:00:00 GMT+09:00").getTime();
+updateTimerDisplay(wildcardEndTime, "countdown-wildcard", "and that's TIME!");
+
+// カウントダウンの終了日時 (GBB開催日時)
+const countdownEndTime = new Date("Oct 31, 2025 14:00:00 GMT+09:00").getTime();
+updateTimerDisplay(countdownEndTime, "countdown", "and that's TIME!");
