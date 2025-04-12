@@ -27,7 +27,7 @@
 <button class="close-button" onclick="toggleSearchMenu()">✖</button>
         <h3>GBB {{ year }} {{ _('なんでも検索') }}</h3>
         <p style="text-align: center;">{{ _('GBB {year} の検索のみ可能です').format(year=year) }}<br>{{ _('GBB {year} は終了しました').format(year=year) }}</p>
-        <form id="search-form-nav" class="search-form-1" action="/{{ year }}/search">
+        <form id="search-form-nav" class="search-container" action="/{{ year }}/search">
           <input type="text" name="question" id="question-nav" placeholder="{{ _('例：GBB {year} の最終結果は？').format(year=year) }}" required>
           <button type="submit"></button>
         </form>
@@ -41,7 +41,7 @@
         <button class="close-button" onclick="toggleSearchMenu()">✖</button>
         <h2 style="margin-top: 25px" id="bottom-search-menu">GBB {{ year }} {{ _('なんでも検索') }}</h2>
         <p style="text-align: center;">{{ _('GBB {year} について検索してみよう').format(year=year) }}</p>
-        <form id="search-form-nav" class="search-form-1" action="/{{ year }}/search">
+        <form id="search-form-nav" class="search-container" action="/{{ year }}/search">
           <input type="text" name="question" id="question-nav" placeholder="{{ _('例：現地観戦計画のたてかた') }}" required>
           <button type="submit"></button>
         </form>

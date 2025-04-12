@@ -101,7 +101,7 @@ function searchParticipants(year) {
 
 // 検索候補の表示処理
 function setupSearchSuggestions(searchForm) {
-    const suggestionsContainer = searchForm.closest('.search-form-1').nextElementSibling;
+    const suggestionsContainer = searchForm.closest('.search-container').nextElementSibling;
 
     searchForm.addEventListener('input', function() {
         const query = this.querySelector('input').value;
