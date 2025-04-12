@@ -138,20 +138,20 @@
         <img src="/static/images/header.webp" alt="ヘッダー"/>
         <ul>
           <a class="menu-link" href="/{{year}}/top"><li>Home & {{ _('これだけガイド') }}</li></a>
-          <div class="past_gbb_wrap">
+          <div class="nav_dropdown_container">
             <li>
               {{ _('年度選択') }}
-              <ul class="past_gbb_lists">
+              <ul class="nav_dropdown">
                 {% for y in available_years|reverse %}
                   <a href="/{{ y }}/top"><li class="past_gbb">{{ y }}</li></a>
                 {% endfor %}
               </ul>
             </li>
           </div>
-          <div class="past_gbb_wrap">
+          <div class="nav_dropdown_container">
             <li>
               LANGUAGE
-              <ul class="past_gbb_lists">
+              <ul class="nav_dropdown">
                 {% for lang_code, lang_name in lang_names.items() %}
                   <a href="/lang?referrer={{ current_url }}&lang={{ lang_code }}"><li class="past_gbb">{{ lang_name }}</li></a>
                 {% endfor %}

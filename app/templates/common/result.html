@@ -10,7 +10,7 @@
 {% if all_category %}
   <form method="GET" action="{{ url_for('result', year=year, category=category) }}" class="participants_form">
     <label for="category">{{ _('部門選択') }}</label>
-    <select name="category" id="category" class="participants_select" onchange="this.form.submit()">
+    <select name="category" id="category" class="filter-select" onchange="this.form.submit()">
       {% for c in all_category %}
         <option value="{{ c }}" {% if request.args.get('category') == c %}selected{% endif %}>{{ c }}</option>
       {% endfor %}
@@ -67,7 +67,7 @@
 {% if all_category %}
   <form method="GET" action="{{ url_for('result', year=year, category=category) }}" class="participants_form">
     <label for="category">{{ _('部門選択') }}</label>
-    <select name="category" id="category" class="participants_select" onchange="this.form.submit()">
+    <select name="category" id="category" class="filter-select" onchange="this.form.submit()">
       {% for c in all_category %}
         <option value="{{ c }}" {% if request.args.get('category') == c %}selected{% endif %}>{{ c }}</option>
       {% endfor %}
@@ -77,7 +77,7 @@
 
 <form method="GET" class="participants_form">
 <label for="year">{{ _('その他の年度を確認：') }}</label>
-<select name="year" id="year" class="participants_select" onchange="redirect_year('result')">
+<select name="year" id="year" class="filter-select" onchange="redirect_year('result')">
   {% for y in available_years %}
     <option value="{{ y }}" {% if year == y %}selected{% endif %}>{{ y }}</option>
   {% endfor %}
