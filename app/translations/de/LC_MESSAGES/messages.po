@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-13 00:14+0900\n"
+"POT-Creation-Date: 2025-04-14 00:35+0900\n"
 "PO-Revision-Date: 2025-03-03 20:36+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
@@ -1273,8 +1273,8 @@ msgid "辞退者のみ"
 msgstr "Nur die Personen, die ihren Rücktritt erklären."
 
 #: templates/common/participants.html:45
-msgid "出身"
-msgstr "Herkunft"
+msgid "国"
+msgstr "Land"
 
 #: templates/common/participants.html:112
 #: templates/common/participants.html:115

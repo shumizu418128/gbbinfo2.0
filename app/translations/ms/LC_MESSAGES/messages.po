@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-13 00:14+0900\n"
+"POT-Creation-Date: 2025-04-14 00:35+0900\n"
 "PO-Revision-Date: 2025-03-07 00:17+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ms <LL@li.org>\n"
@@ -1254,8 +1254,8 @@ msgid "辞退者のみ"
 msgstr "Hanya mereka yang menarik diri"
 
 #: templates/common/participants.html:45
-msgid "出身"
-msgstr "asal"
+msgid "国"
+msgstr "negara"
 
 #: templates/common/participants.html:112
 #: templates/common/participants.html:115
