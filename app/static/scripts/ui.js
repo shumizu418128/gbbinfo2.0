@@ -78,7 +78,8 @@ if (installButton) {
 
 // 注目キーワードの表示
 function showKeywordOptions(keyword) {
-    showPopup();
+    document.querySelector(".background-popup-keyword").style.display = "block";
+    document.querySelector(".popup").style.display = "block";
 
     if (keyword === 'wildcard') {
         document.getElementById('wildcardOptions').style.display = 'block';
@@ -87,4 +88,12 @@ function showKeywordOptions(keyword) {
         document.getElementById('resultOptions').style.display = 'block';
         document.getElementById('wildcardOptions').style.display = 'none';
     }
+}
+
+// 注目キーワードの非表示
+function closeKeywordOptions() {
+    document.querySelector(".background-popup-keyword").style.display = "none";
+    document.querySelector(".popup").style.display = "none";
+    document.getElementById('wildcardOptions').style.display = 'none';
+    document.getElementById('resultOptions').style.display = 'none';
 }

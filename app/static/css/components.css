@@ -295,7 +295,7 @@ button {
     text-align: center;
 }
 
-.background-popup {
+.background-popup, .background-popup-keyword {
     display: none;
     position: fixed;
     top: 0;
