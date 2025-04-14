@@ -38,6 +38,41 @@
   </form>
   <div class="suggestions"></div>
   <div id="loading" class="loading"></div>
+
+  <div style="margin: 20px"></div>
+
+  <div style="text-align: center;">
+    <b>{{_('注目キーワード')}}</b>
+  </div>
+
+  <div class="button-container">
+    <a href="javascript:void(0);"><button onclick="showKeywordOptions('wildcard')">{{_('ワイルドカード')}}</button></a>
+    <a href="javascript:void(0);"><button onclick="showKeywordOptions('result')">{{_('結果')}}</button></a>
+  </div>
+  <div class="popup">
+    <div id="wildcardOptions" style="display: none;">
+      <b>{{_('ワイルドカード')}}</b>
+      <div class="button-container">
+        <a href="/{{ year }}/participants"><button>{{_('ワイルドカード')}}<br>{{_('結果')}}</button></a>
+        <a href="/{{ year }}/wildcards"><button>{{_('ワイルドカード')}}<br>{{_('動画一覧')}}</button></a>
+        <a href="/{{ year }}/rule"><button>{{_('ワイルドカード')}}<br>{{_('ルール')}}</button></a>
+        <a href="/{{ year }}/rule?scroll=result_date"><button>{{_('ワイルドカード')}}<br>{{_('提出締切')}}</button></a>
+        <a href="/{{ year }}/rule?scroll=judge"><button>{{_('ワイルドカード')}}<br>{{_('審査員')}}</button></a>
+        <a href="/{{ year }}/rule?scroll=category"><button>{{_('ワイルドカード')}}<br>{{_('通過人数')}}</button></a>
+      </div>
+    </div>
+    <div id="resultOptions" style="display: none;">
+      <b>{{_('結果')}}</b>
+      <div class="button-container">
+        <a href="/{{ year }}/result"><button>GBB {{ year }}<br>{{_('大会結果')}}</button></a>
+        <a href="/{{ year - 1 }}/result"><button>GBB {{ year - 1 }}<br>{{_('大会結果')}}</button></a>
+        <a href="/{{ year }}/participants"><button>{{_('Wildcard結果')}}</button></a>
+      </div>
+    </div>
+    <button onclick="closePopup()">{{_('閉じる')}}</button>
+  </div>
+
+  <div class="background-popup" onclick="closePopup()"></div>
 {% endif %}
 
 <h2>{{_('これだけガイド')}}</h2>

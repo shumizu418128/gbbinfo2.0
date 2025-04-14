@@ -56,6 +56,7 @@ window.onload = function() {
     showPopup();
 };
 
+// ドロップダウンのクリックイベント
 function handleDocumentClick(event) {
     var dropdownContent = document.getElementById("dropdown-content");
     var dropdownButton = document.getElementById("bottom-dropdown");
@@ -73,4 +74,17 @@ window.addEventListener("appinstalled", handleAppInstalled);
 
 if (installButton) {
     installButton.addEventListener("click", handleInstallButtonClick);
+}
+
+// 注目キーワードの表示
+function showKeywordOptions(keyword) {
+    showPopup();
+
+    if (keyword === 'wildcard') {
+        document.getElementById('wildcardOptions').style.display = 'block';
+        document.getElementById('resultOptions').style.display = 'none';
+    } else if (keyword === 'result') {
+        document.getElementById('resultOptions').style.display = 'block';
+        document.getElementById('wildcardOptions').style.display = 'none';
+    }
 }
