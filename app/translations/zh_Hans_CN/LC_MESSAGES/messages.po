@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 01:01+0900\n"
+"POT-Creation-Date: 2025-04-15 01:08+0900\n"
 "PO-Revision-Date: 2025-03-03 20:35+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -861,7 +861,7 @@ msgstr "关键词"
 #: templates/2025/top.html:58 templates/2025/top.html:59
 #: templates/2025/top.html:60
 msgid "ワイルドカード"
-msgstr "通配符"
+msgstr "Wildcard"
 
 #: templates/2025/top.html:50 templates/2025/top.html:56
 #: templates/2025/top.html:65
@@ -1394,5 +1394,3 @@ msgstr "支持人工智能翻译上述目标国家使用的语言。目标国家
 #: templates/others/translation.html:54
 msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
 msgstr "未提供翻译的页面将以原文日语显示。"
-
-

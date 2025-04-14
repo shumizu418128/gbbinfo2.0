@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 01:01+0900\n"
+"POT-Creation-Date: 2025-04-15 01:08+0900\n"
 "PO-Revision-Date: 2024-11-12 13:58+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ko <LL@li.org>\n"
@@ -869,7 +869,7 @@ msgstr "주목 키워드"
 #: templates/2025/top.html:58 templates/2025/top.html:59
 #: templates/2025/top.html:60
 msgid "ワイルドカード"
-msgstr "와일드카드"
+msgstr "Wildcard"
 
 #: templates/2025/top.html:50 templates/2025/top.html:56
 #: templates/2025/top.html:65
@@ -1408,5 +1408,3 @@ msgstr ""
 #: templates/others/translation.html:54
 msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
 msgstr "번역을 제공하지 않는 페이지는 원문인 일본어로 표시됩니다."
-
-

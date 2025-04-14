@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 01:01+0900\n"
+"POT-Creation-Date: 2025-04-15 01:08+0900\n"
 "PO-Revision-Date: 2025-03-03 20:36+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
@@ -1528,5 +1528,3 @@ msgid "翻訳を提供していないページは、原文である日本語で�
 msgstr ""
 "Seiten, die keine Übersetzung anbieten, werden im Original, also auf "
 "Japanisch, angezeigt."
-
-

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 01:01+0900\n"
+"POT-Creation-Date: 2025-04-15 01:08+0900\n"
 "PO-Revision-Date: 2025-03-07 00:17+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ms <LL@li.org>\n"
@@ -913,7 +913,7 @@ msgstr "kata kunci yang menarik"
 #: templates/2025/top.html:58 templates/2025/top.html:59
 #: templates/2025/top.html:60
 msgid "ワイルドカード"
-msgstr "Kad bebas"
+msgstr "Wildcard"
 
 #: templates/2025/top.html:50 templates/2025/top.html:56
 #: templates/2025/top.html:65
@@ -1508,5 +1508,3 @@ msgid "翻訳を提供していないページは、原文である日本語で�
 msgstr ""
 "Laman yang tidak menyediakan terjemahan dipaparkan dalam bahasa asalnya, "
 "iaitu bahasa Jepun."
-
-

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 01:01+0900\n"
+"POT-Creation-Date: 2025-04-15 01:08+0900\n"
 "PO-Revision-Date: 2024-04-05 21:11+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: hi <LL@li.org>\n"
@@ -906,7 +906,7 @@ msgstr "मुख्य खोजशब्द"
 #: templates/2025/top.html:58 templates/2025/top.html:59
 #: templates/2025/top.html:60
 msgid "ワイルドカード"
-msgstr "वाइल्डकार्ड"
+msgstr "Wildcard"
 
 #: templates/2025/top.html:50 templates/2025/top.html:56
 #: templates/2025/top.html:65
@@ -1492,5 +1492,3 @@ msgstr ""
 msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
 msgstr ""
 "वह पृष्ठ जो अनुवाद प्रदान नहीं करते हैं, मूल जापानी में प्रदर्शित होंगे।"
-
-
