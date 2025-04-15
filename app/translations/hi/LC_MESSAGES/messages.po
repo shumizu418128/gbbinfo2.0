@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 14:45+0900\n"
+"POT-Creation-Date: 2025-04-15 16:57+0900\n"
 "PO-Revision-Date: 2024-04-05 21:11+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: hi <LL@li.org>\n"
@@ -184,7 +184,7 @@ msgstr "जीबीबी तक का शेष समय"
 #: templates/includes/bottom_navigation.html:28
 #: templates/includes/bottom_navigation.html:42
 msgid "なんでも検索"
-msgstr "kuchh bhi khoj"
+msgstr "कुछ भी खोजें"
 
 #: templates/base.html:194 templates/includes/bottom_navigation.html:29
 #, python-brace-format
@@ -222,7 +222,7 @@ msgstr "होम स्क्रीन पर जोड़ें"
 
 #: templates/base.html:221
 msgid "GBBINFO-JPNはPWAに対応しています。"
-msgstr "GBBINFO-JPN PWA ke saath compatibility hai."
+msgstr "GBBINFO-JPN पीडब्ल्यूए के साथ संगत है।"
 
 #: templates/base.html:221
 msgid "ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。"
@@ -298,12 +298,12 @@ msgstr "वाइल्डकार्ड नियम"
 #: templates/2024/rule.html:45 templates/2024/rule.html:252
 #: templates/2025/rule.html:44 templates/2025/rule.html:264
 msgid "本戦審査員一覧"
-msgstr "स्ट्रिंग"
+msgstr "मुख्य प्रतियोगिता न्यायाधीश सूची"
 
 #: templates/2024/rule.html:49 templates/2024/rule.html:296
 #: templates/2025/rule.html:48 templates/2025/rule.html:309
 msgid "Wildcard審査員一覧"
-msgstr "स्ट्रिंग"
+msgstr "वाइल्डकार्ड न्यायाधीश सूची"
 
 #: templates/2024/rule.html:56 templates/2025/rule.html:55
 msgid "以下に示す内容は、あくまでもBeatboxファンが知っておくとよりGBBを楽しめる知識として紹介するものです。"
@@ -548,7 +548,7 @@ msgstr "देखने के लिए साथ"
 #: templates/2024/stream.html:37
 #, python-brace-format
 msgid "GBB {year} の最新情報をチェックしよう"
-msgstr "GBB {year} ki taaja jaankaari jaanch karein"
+msgstr "जीबीबी {year} की ताजा जानकारी जांच करें"
 
 #: templates/2024/stream.html:39 templates/common/participants.html:2
 #: templates/common/participants.html:3 templates/common/participants.html:4
@@ -620,7 +620,7 @@ msgstr "प्रवेश शुरू"
 #: templates/2024/time_schedule.html:60 templates/2024/time_schedule.html:117
 #: templates/2024/time_schedule.html:174 templates/2024/time_schedule.html:255
 msgid "ABEMA配信スタート"
-msgstr "ABEMA ààààààà"
+msgstr "ABEMA प्रसारण प्रारंभ"
 
 #: templates/2024/time_schedule.html:64 templates/2024/time_schedule.html:121
 #: templates/2024/time_schedule.html:178
@@ -690,7 +690,7 @@ msgstr "प्रारंभिक दौर की शुरुआत से �
 
 #: templates/2024/time_schedule.html:259
 msgid "本戦出場者アナウンス"
-msgstr "स्ट्रिंग"
+msgstr "मुख्य प्रतियोगिता प्रतिभागी घोषणा"
 
 #: templates/2024/time_schedule.html:263
 msgid "本戦スタート"
@@ -728,7 +728,7 @@ msgstr "अघोषित सूचना साइट"
 
 #: templates/2024/top.html:77
 msgid "みんなで鑑賞会"
-msgstr "sabhee mil kar dekhana"
+msgstr "सभी मिलकर देखें"
 
 #: templates/2024/top.html:86 templates/2025/top.html:130
 msgid "当サイトURL変更のお知らせ"
@@ -748,7 +748,7 @@ msgstr "वाइल्डकार्ड परिणाम घोषणा प
 #: templates/common/participants.html:107
 #: templates/others/result_stream.html:40 templates/others/translation.html:24
 msgid "Wildcard一覧"
-msgstr "स्ट्रिंग"
+msgstr "वाइल्डकार्ड सूची"
 
 #: templates/2024/top.html:101 templates/2024/top.html:115
 #: templates/2024/top_7tosmoke.html:44 templates/2025/top.html:159
@@ -808,7 +808,7 @@ msgstr "उपरोक्त फ़ोन नंबर इस साइट स�
 
 #: templates/2024/top_7tosmoke.html:31 templates/2025/top_7tosmoke.html:31
 msgid "7toSmokeとは"
-msgstr "7toSmoke kya hai?"
+msgstr "7toSmoke क्या है?"
 
 #: templates/2024/top_7tosmoke.html:32 templates/2025/top_7tosmoke.html:32
 msgid "7toSmokeルール&参加方法"
@@ -895,8 +895,8 @@ msgstr "नियम और जजों"
 #: templates/2025/time_schedule.html:17
 msgid "GBB24では、本番約1ヶ月前に公開されましたが、誤記が多くみられました。"
 msgstr ""
-"GBB24 mein, yah ek maheene pahale jaaree kiya gaya tha, lekin galatiyaan "
-"kaafi dekhee gaee."
+"जीबीबी 24 में, यह एक महीने पहले जारी किया गया था, लेकिन गलतियां काफी देखी "
+"गईं।"
 
 #: templates/2025/top.html:45
 msgid "注目キーワード"
@@ -907,7 +907,7 @@ msgstr "मुख्य खोजशब्द"
 #: templates/2025/top.html:58 templates/2025/top.html:59
 #: templates/2025/top.html:60 templates/2025/top.html:61
 msgid "ワイルドカード"
-msgstr "Wildcard"
+msgstr "वाइल्डकार्ड"
 
 #: templates/2025/top.html:50 templates/2025/top.html:56
 #: templates/2025/top.html:71
@@ -1210,7 +1210,9 @@ msgstr ""
 
 #: templates/2025/wildcard_regulation.html:257
 msgid "Wildcard動画の作成にあたり使用したすべてのファイルを、バックアップ含め保存しておき、いつでも提出できるようにしておく"
-msgstr "स्ट्रिंग"
+msgstr ""
+"वाइल्डकार्ड वीडियो बनाने में उपयोग की गई सभी फ़ाइलों को बैकअप सहित सहेजें और"
+" किसी भी समय प्रस्तुत करने के लिए तैयार रखें"
 
 #: templates/2025/wildcard_regulation.html:260
 msgid "皆さんのWildcardを楽しみにしています！"
@@ -1242,7 +1244,7 @@ msgstr "कोई अनुवाद नहीं"
 
 #: templates/common/japan.html:72
 msgid "Wildcard順位"
-msgstr "स्ट्रिंग"
+msgstr "वाइल्डकार्ड रैंकिंग"
 
 #: templates/common/japan.html:75 templates/common/participants.html:105
 #: templates/common/result.html:88
@@ -1252,7 +1254,7 @@ msgstr "विस्तृत योग्यता"
 #: templates/common/japan.html:77 templates/common/participants.html:106
 #: templates/others/result_stream.html:18
 msgid "Wildcard結果発表日"
-msgstr "स्ट्रिंग"
+msgstr "वाइल्डकार्ड परिणाम घोषणा तिथि"
 
 #: templates/common/japan.html:80 templates/common/participants.html:131
 msgid "出場者世界地図"

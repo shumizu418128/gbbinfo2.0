@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 14:45+0900\n"
+"POT-Creation-Date: 2025-04-15 16:57+0900\n"
 "PO-Revision-Date: 2024-11-12 00:01+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_Hant_TW <LL@li.org>\n"
@@ -899,7 +899,7 @@ msgstr "關閉"
 
 #: templates/2025/top.html:91
 msgid "Solo Wildcard結果発表までの残り時間"
-msgstr "Solo Wildcard 结果发布前的剩余时间"
+msgstr "Solo Wildcard 結果發佈前的剩餘時間"
 
 #: templates/2025/top.html:178
 msgid "お探しの情報は、当サイトにありません。下記お問い合わせより、GBB運営に直接お尋ねください。"

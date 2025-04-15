@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 14:45+0900\n"
+"POT-Creation-Date: 2025-04-15 16:57+0900\n"
 "PO-Revision-Date: 2025-03-07 17:18+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:251 templates/base.html:115
 #: templates/base.html:140 templates/base.html:227
 msgid "これだけガイド"
-msgstr "guide"
+msgstr "Guide"
 
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
@@ -68,7 +68,7 @@ msgstr "guide"
 #: templates/includes/participants_form.html:12
 #: templates/others/result_stream.html:39
 msgid "Wildcard結果"
-msgstr "Résultat de remplacement"
+msgstr "Résultats Wildcard"
 
 #: templates/2024/top.html:53 templates/2025/rule.html:66
 #: templates/2025/rule.html:306 templates/2025/ticket.html:23
@@ -89,7 +89,7 @@ msgstr "Participants"
 #: templates/2025/wildcard_regulation.html:199
 #: templates/2025/wildcards.html:81 templates/base.html:117
 msgid "ルール"
-msgstr "règle"
+msgstr "Règles"
 
 #: templates/2024/rule.html:260 templates/2024/rule.html:305
 #: templates/2024/top.html:57 templates/2025/rule.html:273
@@ -283,7 +283,7 @@ msgstr "Avertissements"
 #: templates/2025/wildcard_regulation.html:32
 #: templates/2025/wildcard_regulation.html:80
 msgid "開催部門一覧"
-msgstr "Liste des départements organisateurs"
+msgstr "Liste des catégories"
 
 #: templates/2024/rule.html:37 templates/2024/rule.html:132
 #: templates/2025/rule.html:36 templates/2025/rule.html:127
@@ -293,7 +293,7 @@ msgstr "Conditions d'obtention du statut de tête de série"
 #: templates/2024/rule.html:41 templates/2024/rule.html:210
 #: templates/2025/rule.html:40 templates/2025/rule.html:207
 msgid "Wildcard ルール"
-msgstr "Règle de caractère générique"
+msgstr "Règles Wildcard"
 
 #: templates/2024/rule.html:45 templates/2024/rule.html:252
 #: templates/2025/rule.html:44 templates/2025/rule.html:264
@@ -346,15 +346,15 @@ msgstr "Veuillez consulter les règles par vous-même une fois de plus."
 #: templates/2025/wildcard_regulation.html:198 templates/common/japan.html:21
 #: templates/common/participants.html:124
 msgid "部門"
-msgstr "division"
+msgstr "catégorie"
 
 #: templates/2024/rule.html:79 templates/2025/rule.html:75
 msgid "シード"
-msgstr "graine"
+msgstr "tête de série"
 
 #: templates/2024/rule.html:80 templates/2025/rule.html:76
 msgid "計"
-msgstr "Compter"
+msgstr "Total"
 
 #: templates/2024/rule.html:117 templates/2025/rule.html:114
 #: templates/2025/wildcard_regulation.html:112

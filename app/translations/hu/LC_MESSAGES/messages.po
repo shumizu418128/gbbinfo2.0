@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 14:45+0900\n"
+"POT-Creation-Date: 2025-04-15 16:57+0900\n"
 "PO-Revision-Date: 2024-04-05 21:06+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: hu <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:251 templates/base.html:115
 #: templates/base.html:140 templates/base.html:227
 msgid "これだけガイド"
-msgstr "útmutató"
+msgstr "Útmutató"
 
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
@@ -68,7 +68,7 @@ msgstr "útmutató"
 #: templates/includes/participants_form.html:12
 #: templates/others/result_stream.html:39
 msgid "Wildcard結果"
-msgstr "Vadon élő kártya eredményei"
+msgstr "Wildcard eredmények"
 
 #: templates/2024/top.html:53 templates/2025/rule.html:66
 #: templates/2025/rule.html:306 templates/2025/ticket.html:23
@@ -89,7 +89,7 @@ msgstr "résztvevő"
 #: templates/2025/wildcard_regulation.html:199
 #: templates/2025/wildcards.html:81 templates/base.html:117
 msgid "ルール"
-msgstr "szabály"
+msgstr "Szabályok"
 
 #: templates/2024/rule.html:260 templates/2024/rule.html:305
 #: templates/2024/top.html:57 templates/2025/rule.html:273
@@ -162,7 +162,7 @@ msgstr "jegy"
 #: templates/2025/top_7tosmoke.html:36 templates/base.html:122
 #: templates/others/translation.html:22
 msgid "当日配信"
-msgstr "A napi kézbesítés"
+msgstr "Élő közvetítés"
 
 #: templates/2024/top.html:81 templates/2025/top.html:73
 #: templates/2025/top.html:74 templates/2025/top.html:125
@@ -236,7 +236,7 @@ msgstr "Vissza a főoldalra"
 
 #: templates/base.html:232
 msgid "対応言語"
-msgstr "nyelv"
+msgstr "Támogatott nyelvek"
 
 #: templates/base.html:245
 msgid "GBBINFO-JPNについて"
@@ -293,7 +293,7 @@ msgstr "A részvétel jogának megszerzésének feltételei"
 #: templates/2024/rule.html:41 templates/2024/rule.html:210
 #: templates/2025/rule.html:40 templates/2025/rule.html:207
 msgid "Wildcard ルール"
-msgstr "Helyettesítő karakter szabály"
+msgstr "Wildcard szabályok"
 
 #: templates/2024/rule.html:45 templates/2024/rule.html:252
 #: templates/2025/rule.html:44 templates/2025/rule.html:264
@@ -346,15 +346,15 @@ msgstr "Kérjük, mindenképpen ellenőrizze újra a szabályokat."
 #: templates/2025/wildcard_regulation.html:198 templates/common/japan.html:21
 #: templates/common/participants.html:124
 msgid "部門"
-msgstr "osztály"
+msgstr "Osztály"
 
 #: templates/2024/rule.html:79 templates/2025/rule.html:75
 msgid "シード"
-msgstr "mag"
+msgstr "kiemelt"
 
 #: templates/2024/rule.html:80 templates/2025/rule.html:76
 msgid "計"
-msgstr "mérés"
+msgstr "összesen"
 
 #: templates/2024/rule.html:117 templates/2025/rule.html:114
 #: templates/2025/wildcard_regulation.html:112

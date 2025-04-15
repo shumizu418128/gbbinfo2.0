@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 14:45+0900\n"
+"POT-Creation-Date: 2025-04-15 16:57+0900\n"
 "PO-Revision-Date: 2025-03-03 20:36+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:251 templates/base.html:115
 #: templates/base.html:140 templates/base.html:227
 msgid "これだけガイド"
-msgstr "Führer"
+msgstr "Guide"
 
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
@@ -151,7 +151,7 @@ msgstr "Veranstaltungsort"
 #: templates/2025/ticket.html:11 templates/2025/top.html:117
 #: templates/base.html:121
 msgid "チケット"
-msgstr "Fahrkarte"
+msgstr "Ticket"
 
 #: templates/2024/stream.html:2 templates/2024/stream.html:3
 #: templates/2024/stream.html:4 templates/2024/stream.html:8
@@ -162,7 +162,7 @@ msgstr "Fahrkarte"
 #: templates/2025/top_7tosmoke.html:36 templates/base.html:122
 #: templates/others/translation.html:22
 msgid "当日配信"
-msgstr "Am selben Tag geliefert"
+msgstr "Live-Stream"
 
 #: templates/2024/top.html:81 templates/2025/top.html:73
 #: templates/2025/top.html:74 templates/2025/top.html:125
@@ -351,11 +351,11 @@ msgstr "Abteilung"
 
 #: templates/2024/rule.html:79 templates/2025/rule.html:75
 msgid "シード"
-msgstr "Saatgut"
+msgstr "Seed"
 
 #: templates/2024/rule.html:80 templates/2025/rule.html:76
 msgid "計"
-msgstr "Zählen"
+msgstr "Gesamt"
 
 #: templates/2024/rule.html:117 templates/2025/rule.html:114
 #: templates/2025/wildcard_regulation.html:112

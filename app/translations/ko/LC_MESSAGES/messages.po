@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 14:45+0900\n"
+"POT-Creation-Date: 2025-04-15 16:57+0900\n"
 "PO-Revision-Date: 2024-11-12 13:58+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ko <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:251 templates/base.html:115
 #: templates/base.html:140 templates/base.html:227
 msgid "これだけガイド"
-msgstr "가이드"
+msgstr "필수 가이드"
 
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
@@ -746,7 +746,7 @@ msgstr "미발표 정보(결정되었지만, 왜인지 공식이 발표를 미�
 
 #: templates/2024/top.html:109 templates/2025/top.html:169
 msgid "未定事項(そもそも決まってすらいない)"
-msgstr "미정 사항(아예 결정되지도 않은)"
+msgstr "미정 사항(결정되지 않은 사항)"
 
 #: templates/2024/top.html:111 templates/2025/top.html:171
 msgid "このような情報が多く存在します。"
@@ -891,7 +891,7 @@ msgstr "결과 발표 방송"
 
 #: templates/2025/top.html:62
 msgid "出場枠の数"
-msgstr "출장 틀의 수"
+msgstr "출전 자격의 수"
 
 #: templates/2025/top.html:76 templates/common/japan.html:74
 #: templates/common/participants.html:31

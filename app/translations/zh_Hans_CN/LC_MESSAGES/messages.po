@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 14:45+0900\n"
+"POT-Creation-Date: 2025-04-15 16:57+0900\n"
 "PO-Revision-Date: 2025-03-03 20:35+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -148,7 +148,7 @@ msgstr "会场"
 #: templates/2025/ticket.html:11 templates/2025/top.html:117
 #: templates/base.html:121
 msgid "チケット"
-msgstr "票"
+msgstr "门票"
 
 #: templates/2024/stream.html:2 templates/2024/stream.html:3
 #: templates/2024/stream.html:4 templates/2024/stream.html:8
@@ -497,7 +497,7 @@ msgstr "仅限 RC505 mki, mkii"
 
 #: templates/2024/rule.html:233
 msgid "一部例外あり"
-msgstr "一部例外。"
+msgstr "有部分例外"
 
 #: templates/2024/rule.html:237 templates/2025/rule.html:234
 #: templates/2025/wildcard_regulation.html:221
@@ -1100,7 +1100,7 @@ msgstr "禁止使用MIDI控制器"
 
 #: templates/2025/wildcard_regulation.html:237
 msgid "マシン内の追加ケーブルは使用可能 ケーブルはデバイスではないとみなされる"
-msgstr "机器内的额外电缆可以使用。电缆被认为是设备。"
+msgstr "机器内的额外电缆可以使用。电缆不被视为设备。"
 
 #: templates/2025/wildcard_regulation.html:242
 msgid "Loopstation単体での出場は禁止"
@@ -1190,7 +1190,7 @@ msgstr "仅限参赛者"
 #: templates/common/participants.html:37
 #: templates/includes/participants_form.html:20
 msgid "辞退者のみ"
-msgstr "仅限被解雇者"
+msgstr "仅限退赛者"
 
 #: templates/common/participants.html:45
 msgid "国"

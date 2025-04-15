@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 14:45+0900\n"
+"POT-Creation-Date: 2025-04-15 16:57+0900\n"
 "PO-Revision-Date: 2025-03-07 00:17+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ms <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgstr "Peraturan"
 #: templates/2025/top.html:61 templates/2025/top.html:101
 #: templates/2025/wildcards.html:81 templates/base.html:117
 msgid "審査員"
-msgstr "juri"
+msgstr "Juri"
 
 #: templates/2024/rule.html:20 templates/2024/rule.html:69
 #: templates/2024/rule.html:128 templates/2024/rule.html:207
@@ -145,7 +145,7 @@ msgstr "Wakil Jepun"
 #: templates/2025/top.html:117 templates/2025/top.html:194
 #: templates/2025/top.html:198 templates/base.html:121
 msgid "会場"
-msgstr "tempat"
+msgstr "Tempat"
 
 #: templates/2024/ticket.html:18 templates/2024/top.html:73
 #: templates/2025/ticket.html:11 templates/2025/top.html:117
@@ -346,7 +346,7 @@ msgstr "Sila semak semula peraturan sendiri."
 #: templates/2025/wildcard_regulation.html:198 templates/common/japan.html:21
 #: templates/common/participants.html:124
 msgid "部門"
-msgstr "bahagian"
+msgstr "Bahagian"
 
 #: templates/2024/rule.html:79 templates/2025/rule.html:75
 msgid "シード"
@@ -354,7 +354,7 @@ msgstr "Benih"
 
 #: templates/2024/rule.html:80 templates/2025/rule.html:76
 msgid "計"
-msgstr "kira-kira"
+msgstr "Jumlah"
 
 #: templates/2024/rule.html:117 templates/2025/rule.html:114
 #: templates/2025/wildcard_regulation.html:112
@@ -602,7 +602,7 @@ msgstr "Senarai pelakon"
 #: templates/2025/time_schedule.html:41 templates/2025/time_schedule.html:69
 #: templates/2025/time_schedule.html:97 templates/2025/time_schedule.html:125
 msgid "時刻"
-msgstr "waktu"
+msgstr "Waktu"
 
 #: templates/2024/time_schedule.html:50 templates/2024/time_schedule.html:107
 #: templates/2024/time_schedule.html:164 templates/2024/time_schedule.html:237
@@ -626,7 +626,7 @@ msgstr "Penstriman ABEMA bermula"
 #: templates/2024/time_schedule.html:64 templates/2024/time_schedule.html:121
 #: templates/2024/time_schedule.html:178
 msgid "サプライズゲスト"
-msgstr "tetamu kejutan"
+msgstr "Tetamu Kejutan"
 
 #: templates/2024/time_schedule.html:68 templates/2024/time_schedule.html:125
 #: templates/2024/time_schedule.html:182 templates/2024/time_schedule.html:247
@@ -659,7 +659,7 @@ msgstr "Suku akhir"
 
 #: templates/2024/time_schedule.html:137 templates/2024/time_schedule.html:141
 msgid "決勝"
-msgstr "akhir"
+msgstr "Akhir"
 
 #: templates/2024/time_schedule.html:190
 msgid "準決勝・3位決定戦・決勝"
@@ -675,7 +675,7 @@ msgstr "Upacara"
 
 #: templates/2024/time_schedule.html:222
 msgid "アフターパーティー"
-msgstr "selepas parti"
+msgstr "Selepas Parti"
 
 #: templates/2024/time_schedule.html:247
 msgid "ソース：会場公式サイト"
@@ -919,7 +919,7 @@ msgstr "Wildcard"
 #: templates/2025/top.html:50 templates/2025/top.html:56
 #: templates/2025/top.html:71
 msgid "結果"
-msgstr "rentetan"
+msgstr "Keputusan"
 
 #: templates/2025/top.html:57
 msgid "動画一覧"
@@ -1294,7 +1294,7 @@ msgstr "Hanya mereka yang menarik diri"
 
 #: templates/common/participants.html:45
 msgid "国"
-msgstr "negara"
+msgstr "Negara"
 
 #: templates/common/participants.html:111
 #: templates/common/participants.html:114
@@ -1332,11 +1332,11 @@ msgstr "Pilih jabatan"
 
 #: templates/common/result.html:27
 msgid "勝ち"
-msgstr "menang"
+msgstr "Menang"
 
 #: templates/common/result.html:29
 msgid "負け"
-msgstr "kalah"
+msgstr "Kalah"
 
 #: templates/common/result.html:49
 msgid "順位"

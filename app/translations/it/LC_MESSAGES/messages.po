@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 14:45+0900\n"
+"POT-Creation-Date: 2025-04-15 16:57+0900\n"
 "PO-Revision-Date: 2024-04-05 21:11+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: it <LL@li.org>\n"
@@ -162,7 +162,7 @@ msgstr "biglietto"
 #: templates/2025/top_7tosmoke.html:36 templates/base.html:122
 #: templates/others/translation.html:22
 msgid "当日配信"
-msgstr "Consegna di oggi"
+msgstr "Streaming del giorno"
 
 #: templates/2024/top.html:81 templates/2025/top.html:73
 #: templates/2025/top.html:74 templates/2025/top.html:125
@@ -298,7 +298,7 @@ msgstr "Regola wildcard"
 #: templates/2024/rule.html:45 templates/2024/rule.html:252
 #: templates/2025/rule.html:44 templates/2025/rule.html:264
 msgid "本戦審査員一覧"
-msgstr "(Traduzione qui)"
+msgstr "Elenco dei giudici della competizione principale"
 
 #: templates/2024/rule.html:49 templates/2024/rule.html:296
 #: templates/2025/rule.html:48 templates/2025/rule.html:309
@@ -350,11 +350,11 @@ msgstr "reparto"
 
 #: templates/2024/rule.html:79 templates/2025/rule.html:75
 msgid "シード"
-msgstr "seme"
+msgstr "testa di serie"
 
 #: templates/2024/rule.html:80 templates/2025/rule.html:76
 msgid "計"
-msgstr "misurare"
+msgstr "totale"
 
 #: templates/2024/rule.html:117 templates/2025/rule.html:114
 #: templates/2025/wildcard_regulation.html:112
@@ -390,7 +390,7 @@ msgstr ""
 
 #: templates/2024/rule.html:139 templates/2025/rule.html:134
 msgid "シード権 - GBB"
-msgstr "Testo tradotto"
+msgstr "Posizione di testa - GBB"
 
 #: templates/2024/rule.html:141 templates/2025/rule.html:136
 msgid "シード権 - その他"
@@ -1298,7 +1298,7 @@ msgstr "Solo i rinunciatari"
 
 #: templates/common/participants.html:45
 msgid "国"
-msgstr "(testo tradotto qui)"
+msgstr "Paese"
 
 #: templates/common/participants.html:111
 #: templates/common/participants.html:114
@@ -1386,7 +1386,7 @@ msgstr "Tutti i concorrenti"
 
 #: templates/includes/participants_form.html:13
 msgid "シード権"
-msgstr "testo"
+msgstr "Posizione di testa"
 
 #: templates/includes/participants_form.html:16
 msgid "表示選択"

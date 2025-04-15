@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 14:45+0900\n"
+"POT-Creation-Date: 2025-04-15 16:57+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:251 templates/base.html:115
 #: templates/base.html:140 templates/base.html:227
 msgid "これだけガイド"
-msgstr "guide"
+msgstr "Quick Guide"
 
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
@@ -307,8 +307,8 @@ msgstr "Wildcard Judge List"
 #: templates/2024/rule.html:56 templates/2025/rule.html:55
 msgid "以下に示す内容は、あくまでもBeatboxファンが知っておくとよりGBBを楽しめる知識として紹介するものです。"
 msgstr ""
-"The following content is introduced as knowledge that Beatbox fans can enjoy"
-" GBB more."
+"The following information is provided as knowledge that will help Beatbox "
+"fans better enjoy GBB."
 
 #: templates/2024/rule.html:56 templates/2025/rule.html:56
 msgid "一部内容において、わかりやすさを優先します。"
@@ -417,7 +417,7 @@ msgstr "Participation Rights"
 #: templates/common/japan.html:31 templates/common/japan.html:40
 #: templates/common/participants.html:55 templates/common/participants.html:64
 msgid "辞退"
-msgstr "cancel"
+msgstr "Withdraw"
 
 #: templates/2024/rule.html:197 templates/2024/time_schedule.html:99
 #: templates/2024/time_schedule.html:229 templates/2025/rule.html:192
@@ -564,7 +564,7 @@ msgstr "Wildcard Results & Participants"
 #: templates/2025/ticket.html:8 templates/2025/top_7tosmoke.html:33
 #: templates/others/translation.html:21
 msgid "会場&チケット"
-msgstr "Tickets"
+msgstr "Venue & Tickets"
 
 #: templates/2024/ticket.html:9
 msgid "【完売】公式販売"
@@ -770,7 +770,7 @@ msgstr ""
 
 #: templates/2024/top.html:109 templates/2025/top.html:169
 msgid "未定事項(そもそも決まってすらいない)"
-msgstr "Undecided matters (not even decided yet)"
+msgstr "Pending matters (yet to be determined)"
 
 #: templates/2024/top.html:111 templates/2025/top.html:171
 msgid "このような情報が多く存在します。"
@@ -904,7 +904,7 @@ msgstr ""
 
 #: templates/2025/top.html:45
 msgid "注目キーワード"
-msgstr "Keyword"
+msgstr "Featured Keywords"
 
 #: templates/2025/top.html:49 templates/2025/top.html:54
 #: templates/2025/top.html:56 templates/2025/top.html:57
