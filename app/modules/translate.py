@@ -50,7 +50,7 @@ Text: {source_text}
 Language: {lang}
 
 # Output
-{{"translated_text": "string"}}
+{{"translated_text": "(ここに翻訳文)"}}
 
 # Note
 - Ensure proper JSON escaping for quotes, backslashes, and control characters.
@@ -176,7 +176,8 @@ def translate():
                     result = validate_placeholders(entry.msgid, translation)
 
                     # プレースホルダーが一致する場合は翻訳を保存
-                    if result:
+                    # 明らかに不正な翻訳はスキップ
+                    if result and translation not in "ここに翻訳文":
                         entry.msgstr = translation
 
                         # fuzzy フラグを削除
