@@ -721,7 +721,6 @@ def analyze_data_total():
 # MARK: Sitemap, 認証系
 ####################################################################
 @app.route("/.well-known/discord")
-@cache.cached()
 def discord():
     """
     Discordの設定ファイルを返します。
@@ -743,7 +742,6 @@ def sitemap():
 
 
 @app.route("/robots.txt")
-@cache.cached()
 def robots_txt():
     """
     robots.txtファイルを返します。
@@ -754,7 +752,6 @@ def robots_txt():
 
 
 @app.route("/ads.txt")
-@cache.cached()
 def ads_txt():
     """
     ads.txtファイルを返します。
@@ -765,7 +762,6 @@ def ads_txt():
 
 
 @app.route("/naverc158f3394cb78ff00c17f0a687073317.html")
-@cache.cached()
 def naver_verification():
     """
     NAVERの認証ファイルを返します。
@@ -779,7 +775,6 @@ def naver_verification():
 # MARK: favicon.ico
 ####################################################################
 @app.route("/favicon.ico", methods=["GET"])
-@cache.cached()
 def favicon_ico():
     """
     favicon.icoファイルを返します。
@@ -798,7 +793,6 @@ def favicon_ico():
 @app.route("/apple-touch-icon-120x120.png", methods=["GET"])
 @app.route("/apple-touch-icon-precomposed.png", methods=["GET"])
 @app.route("/apple-touch-icon.png", methods=["GET"])
-@cache.cached()
 def apple_touch_icon():
     """
     Appleタッチアイコンを返します。
@@ -812,7 +806,6 @@ def apple_touch_icon():
 # MARK: PWS設定
 ####################################################################
 @app.route("/manifest.json")
-@cache.cached()
 def manifest():
     """
     PWAのマニフェストファイルを返します。
@@ -836,7 +829,6 @@ def service_worker():
 # MARK: エラーハンドラ
 ####################################################################
 @app.errorhandler(404)
-@cache.cached()
 def page_not_found(_):
     """
     404エラーページを表示します。
