@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-16 13:15+0900\n"
+"POT-Creation-Date: 2025-04-16 18:13+0900\n"
 "PO-Revision-Date: 2024-11-12 13:58+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ko <LL@li.org>\n"
@@ -908,8 +908,8 @@ msgid "閉じる"
 msgstr "닫기"
 
 #: templates/2025/top.html:93
-msgid "Solo Wildcard結果発表までの残り時間"
-msgstr "솔로 와일드카드 결과 발표까지 남은 시간"
+msgid "結果発表までの残り時間"
+msgstr "결과 발표까지 남은 시간"
 
 #: templates/2025/top.html:180
 msgid "お探しの情報は、当サイトにありません。下記お問い合わせより、GBB運営に直接お尋ねください。"
@@ -1421,3 +1421,4 @@ msgstr ""
 #: templates/others/translation.html:55
 msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
 msgstr "번역을 제공하지 않는 페이지는 원문인 일본어로 표시됩니다."
+

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-16 13:15+0900\n"
+"POT-Creation-Date: 2025-04-16 18:13+0900\n"
 "PO-Revision-Date: 2025-04-16 13:02+0900\n"
 "Last-Translator: GBBINFO-JPN Translation Team <support@gbbinfo.com>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -947,8 +947,8 @@ msgid "閉じる"
 msgstr "Lukk"
 
 #: templates/2025/top.html:93
-msgid "Solo Wildcard結果発表までの残り時間"
-msgstr "Gjenstående tid til Solo Wildcard-resultatene blir annonsert"
+msgid "結果発表までの残り時間"
+msgstr "Tiden som er igjen til resultatene offentliggjøres."
 
 #: templates/2025/top.html:180
 msgid "お探しの情報は、当サイトにありません。下記お問い合わせより、GBB運営に直接お尋ねください。"
@@ -1509,3 +1509,4 @@ msgstr ""
 msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
 msgstr ""
 "Sider som ikke tilbyr oversettelse, vil vises på originalspråket, japansk."
+
