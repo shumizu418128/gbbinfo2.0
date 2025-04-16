@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 16:57+0900\n"
+"POT-Creation-Date: 2025-04-16 09:42+0900\n"
 "PO-Revision-Date: 2024-04-05 21:11+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: it <LL@li.org>\n"
@@ -84,7 +84,7 @@ msgstr "Concorrenti"
 #: templates/2025/rule.html:2 templates/2025/rule.html:3
 #: templates/2025/rule.html:4 templates/2025/rule.html:8
 #: templates/2025/rule.html:212 templates/2025/time_schedule.html:62
-#: templates/2025/top.html:58 templates/2025/top.html:101
+#: templates/2025/top.html:59 templates/2025/top.html:101
 #: templates/2025/wildcard_regulation.html:21
 #: templates/2025/wildcard_regulation.html:199
 #: templates/2025/wildcards.html:81 templates/base.html:117
@@ -94,7 +94,7 @@ msgstr "regola"
 #: templates/2024/rule.html:260 templates/2024/rule.html:305
 #: templates/2024/top.html:57 templates/2025/rule.html:273
 #: templates/2025/rule.html:315 templates/2025/time_schedule.html:62
-#: templates/2025/top.html:61 templates/2025/top.html:101
+#: templates/2025/top.html:62 templates/2025/top.html:101
 #: templates/2025/wildcards.html:81 templates/base.html:117
 msgid "審査員"
 msgstr "giuria"
@@ -131,11 +131,10 @@ msgstr "programma"
 
 #: templates/2024/top.html:69 templates/2025/rule.html:204
 #: templates/2025/ticket.html:24 templates/2025/time_schedule.html:118
-#: templates/2025/top.html:63 templates/2025/top.html:113
-#: templates/2025/wildcards.html:110 templates/base.html:120
-#: templates/common/japan.html:2 templates/common/japan.html:3
-#: templates/common/japan.html:4 templates/common/japan.html:8
-#: templates/others/translation.html:20
+#: templates/2025/top.html:113 templates/2025/wildcards.html:110
+#: templates/base.html:120 templates/common/japan.html:2
+#: templates/common/japan.html:3 templates/common/japan.html:4
+#: templates/common/japan.html:8 templates/others/translation.html:20
 msgid "日本代表"
 msgstr "Rappresentativa giapponese"
 
@@ -502,11 +501,9 @@ msgstr "risultati"
 
 #: templates/2024/rule.html:225 templates/2024/rule.html:229
 #: templates/2024/rule.html:233 templates/2024/rule.html:237
-#: templates/2024/rule.html:241 templates/2025/rule.html:222
-#: templates/2025/rule.html:226 templates/2025/rule.html:230
-#: templates/2025/rule.html:234 templates/2025/rule.html:238
-#: templates/2025/wildcard_regulation.html:209
-#: templates/2025/wildcard_regulation.html:213
+#: templates/2024/rule.html:241 templates/2025/rule.html:226
+#: templates/2025/rule.html:230 templates/2025/rule.html:234
+#: templates/2025/rule.html:238 templates/2025/wildcard_regulation.html:213
 #: templates/2025/wildcard_regulation.html:217
 #: templates/2025/wildcard_regulation.html:221
 #: templates/2025/wildcard_regulation.html:225
@@ -912,6 +909,7 @@ msgstr "parole chiave principali"
 #: templates/2025/top.html:56 templates/2025/top.html:57
 #: templates/2025/top.html:58 templates/2025/top.html:59
 #: templates/2025/top.html:60 templates/2025/top.html:61
+#: templates/2025/top.html:62 templates/2025/top.html:63
 msgid "ワイルドカード"
 msgstr "Wildcard"
 
@@ -921,18 +919,22 @@ msgid "結果"
 msgstr "risultato"
 
 #: templates/2025/top.html:57
+msgid "結果発表日"
+msgstr "(ここに翻訳文)"
+
+#: templates/2025/top.html:58
 msgid "動画一覧"
 msgstr "Elenco video"
 
-#: templates/2025/top.html:59
+#: templates/2025/top.html:60
 msgid "提出締切"
 msgstr "Scadenza"
 
-#: templates/2025/top.html:60
+#: templates/2025/top.html:61
 msgid "結果発表配信"
 msgstr "Trasmissione dell'annuncio dei risultati"
 
-#: templates/2025/top.html:62
+#: templates/2025/top.html:63
 msgid "出場枠の数"
 msgstr "Numero di posti disponibili"
 

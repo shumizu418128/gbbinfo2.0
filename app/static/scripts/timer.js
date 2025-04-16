@@ -25,7 +25,7 @@ function updateTimerDisplay(endTime, elementId, message) {
 }
 
 // Wildcard結果発表までのカウントダウン
-const wildcardEndTime = new Date("Apr 17, 2025 0:00:00 GMT+09:00").getTime();
+const wildcardEndTime = new Date("Apr 16, 2025 18:00:00 GMT+09:00").getTime();
 updateTimerDisplay(wildcardEndTime, "countdown-wildcard", "and that's TIME!");
 
 // カウントダウンの終了日時 (GBB開催日時)
