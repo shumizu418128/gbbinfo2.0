@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-16 09:42+0900\n"
+"POT-Creation-Date: 2025-04-16 13:15+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,8 +33,8 @@ msgstr ""
 #: templates/2024/top.html:95 templates/2024/top_7tosmoke.html:22
 #: templates/2025/time_schedule.html:146 templates/2025/top.html:2
 #: templates/2025/top.html:3 templates/2025/top.html:4
-#: templates/2025/top.html:24 templates/2025/top.html:89
-#: templates/2025/top.html:153 templates/2025/top_7tosmoke.html:22
+#: templates/2025/top.html:24 templates/2025/top.html:91
+#: templates/2025/top.html:155 templates/2025/top_7tosmoke.html:22
 #: templates/2025/wildcard_regulation.html:19
 #: templates/2025/wildcard_regulation.html:20
 #: templates/2025/wildcard_regulation.html:54
@@ -57,17 +57,17 @@ msgstr ""
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
 #: templates/2025/rule.html:66 templates/2025/rule.html:191
 #: templates/2025/rule.html:306 templates/2025/ticket.html:23
-#: templates/2025/time_schedule.html:90 templates/2025/top.html:75
-#: templates/2025/top.html:97 templates/2025/wildcards.html:80
-#: templates/base.html:116 templates/common/participants.html:27
-#: templates/common/result.html:90 templates/includes/participants_form.html:12
+#: templates/2025/time_schedule.html:90 templates/2025/top.html:99
+#: templates/2025/wildcards.html:80 templates/base.html:116
+#: templates/common/participants.html:27 templates/common/result.html:90
+#: templates/includes/participants_form.html:12
 #: templates/others/result_stream.html:39
 msgid "Wildcard結果"
 msgstr ""
 
 #: templates/2024/top.html:53 templates/2025/rule.html:66
 #: templates/2025/rule.html:306 templates/2025/ticket.html:23
-#: templates/2025/time_schedule.html:90 templates/2025/top.html:97
+#: templates/2025/time_schedule.html:90 templates/2025/top.html:99
 #: templates/2025/wildcards.html:80 templates/base.html:116
 #: templates/common/result.html:90 templates/others/result_stream.html:39
 msgid "出場者"
@@ -79,7 +79,7 @@ msgstr ""
 #: templates/2025/rule.html:2 templates/2025/rule.html:3
 #: templates/2025/rule.html:4 templates/2025/rule.html:8
 #: templates/2025/rule.html:212 templates/2025/time_schedule.html:62
-#: templates/2025/top.html:59 templates/2025/top.html:101
+#: templates/2025/top.html:59 templates/2025/top.html:103
 #: templates/2025/wildcard_regulation.html:21
 #: templates/2025/wildcard_regulation.html:199 templates/2025/wildcards.html:81
 #: templates/base.html:117
@@ -89,7 +89,7 @@ msgstr ""
 #: templates/2024/rule.html:260 templates/2024/rule.html:305
 #: templates/2024/top.html:57 templates/2025/rule.html:273
 #: templates/2025/rule.html:315 templates/2025/time_schedule.html:62
-#: templates/2025/top.html:62 templates/2025/top.html:101
+#: templates/2025/top.html:62 templates/2025/top.html:103
 #: templates/2025/wildcards.html:81 templates/base.html:117
 msgid "審査員"
 msgstr ""
@@ -104,7 +104,7 @@ msgstr ""
 #: templates/2025/rule.html:203 templates/2025/rule.html:260
 #: templates/2025/rule.html:305 templates/2025/rule.html:347
 #: templates/2025/time_schedule.html:61 templates/2025/time_schedule.html:117
-#: templates/2025/time_schedule.html:145 templates/2025/top.html:105
+#: templates/2025/time_schedule.html:145 templates/2025/top.html:107
 #: templates/2025/top_7tosmoke.html:34 templates/2025/wildcards.html:109
 #: templates/base.html:118
 msgid "現地観戦計画のたてかた"
@@ -118,7 +118,7 @@ msgstr ""
 #: templates/2024/top_7tosmoke.html:35 templates/2025/ticket.html:25
 #: templates/2025/time_schedule.html:2 templates/2025/time_schedule.html:3
 #: templates/2025/time_schedule.html:4 templates/2025/time_schedule.html:9
-#: templates/2025/top.html:16 templates/2025/top.html:109
+#: templates/2025/top.html:16 templates/2025/top.html:111
 #: templates/2025/top_7tosmoke.html:35 templates/base.html:119
 #: templates/others/translation.html:19
 msgid "タイムスケジュール"
@@ -126,7 +126,7 @@ msgstr ""
 
 #: templates/2024/top.html:69 templates/2025/rule.html:204
 #: templates/2025/ticket.html:24 templates/2025/time_schedule.html:118
-#: templates/2025/top.html:113 templates/2025/wildcards.html:110
+#: templates/2025/top.html:115 templates/2025/wildcards.html:110
 #: templates/base.html:120 templates/common/japan.html:2
 #: templates/common/japan.html:3 templates/common/japan.html:4
 #: templates/common/japan.html:8 templates/others/translation.html:20
@@ -136,13 +136,13 @@ msgstr ""
 #: templates/2024/ticket.html:10 templates/2024/ticket.html:16
 #: templates/2024/top.html:73 templates/2024/top.html:129
 #: templates/2024/top.html:133 templates/2025/ticket.html:10
-#: templates/2025/top.html:117 templates/2025/top.html:194
-#: templates/2025/top.html:198 templates/base.html:121
+#: templates/2025/top.html:119 templates/2025/top.html:196
+#: templates/2025/top.html:200 templates/base.html:121
 msgid "会場"
 msgstr ""
 
 #: templates/2024/ticket.html:18 templates/2024/top.html:73
-#: templates/2025/ticket.html:11 templates/2025/top.html:117
+#: templates/2025/ticket.html:11 templates/2025/top.html:119
 #: templates/base.html:121
 msgid "チケット"
 msgstr ""
@@ -152,14 +152,14 @@ msgstr ""
 #: templates/2024/top.html:77 templates/2024/top_7tosmoke.html:36
 #: templates/2025/stream.html:2 templates/2025/stream.html:3
 #: templates/2025/stream.html:4 templates/2025/stream.html:8
-#: templates/2025/time_schedule.html:89 templates/2025/top.html:121
+#: templates/2025/time_schedule.html:89 templates/2025/top.html:123
 #: templates/2025/top_7tosmoke.html:36 templates/base.html:122
 #: templates/others/translation.html:22
 msgid "当日配信"
 msgstr ""
 
 #: templates/2024/top.html:81 templates/2025/top.html:73
-#: templates/2025/top.html:74 templates/2025/top.html:125
+#: templates/2025/top.html:74 templates/2025/top.html:127
 #: templates/base.html:123 templates/common/result.html:2
 #: templates/common/result.html:3 templates/common/result.html:4
 #: templates/common/result.html:8 templates/others/translation.html:23
@@ -699,19 +699,19 @@ msgstr ""
 msgid "みんなで鑑賞会"
 msgstr ""
 
-#: templates/2024/top.html:86 templates/2025/top.html:130
+#: templates/2024/top.html:86 templates/2025/top.html:132
 msgid "当サイトURL変更のお知らせ"
 msgstr ""
 
 #: templates/2024/top.html:87 templates/2025/rule.html:261
-#: templates/2025/top.html:131
+#: templates/2025/top.html:133
 msgid "Wildcard結果発表配信"
 msgstr ""
 
 #: templates/2024/top.html:88 templates/2024/wildcards.html:2
 #: templates/2024/wildcards.html:3 templates/2024/wildcards.html:4
 #: templates/2024/wildcards.html:8 templates/2025/rule.html:18
-#: templates/2025/rule.html:348 templates/2025/top.html:132
+#: templates/2025/rule.html:348 templates/2025/top.html:134
 #: templates/2025/wildcards.html:2 templates/2025/wildcards.html:3
 #: templates/2025/wildcards.html:4 templates/2025/wildcards.html:8
 #: templates/common/participants.html:107
@@ -720,52 +720,52 @@ msgid "Wildcard一覧"
 msgstr ""
 
 #: templates/2024/top.html:101 templates/2024/top.html:115
-#: templates/2024/top_7tosmoke.html:44 templates/2025/top.html:159
-#: templates/2025/top.html:175 templates/2025/top_7tosmoke.html:44
+#: templates/2024/top_7tosmoke.html:44 templates/2025/top.html:161
+#: templates/2025/top.html:177 templates/2025/top_7tosmoke.html:44
 msgid "お問い合わせ"
 msgstr ""
 
-#: templates/2024/top.html:106 templates/2025/top.html:166
+#: templates/2024/top.html:106 templates/2025/top.html:168
 msgid "これらの情報のほかにも、"
 msgstr ""
 
-#: templates/2024/top.html:108 templates/2025/top.html:168
+#: templates/2024/top.html:108 templates/2025/top.html:170
 msgid "未発表の情報(決まっているが、なぜか公式が発表を渋っている)"
 msgstr ""
 
-#: templates/2024/top.html:109 templates/2025/top.html:169
+#: templates/2024/top.html:109 templates/2025/top.html:171
 msgid "未定事項(そもそも決まってすらいない)"
 msgstr ""
 
-#: templates/2024/top.html:111 templates/2025/top.html:171
+#: templates/2024/top.html:111 templates/2025/top.html:173
 msgid "このような情報が多く存在します。"
 msgstr ""
 
-#: templates/2024/top.html:112 templates/2025/top.html:172
+#: templates/2024/top.html:112 templates/2025/top.html:174
 msgid "GBBの各種情報は、発表が非常に遅いことで有名です。気長に待ちましょう。"
 msgstr ""
 
-#: templates/2024/top.html:116 templates/2025/top.html:181
+#: templates/2024/top.html:116 templates/2025/top.html:183
 msgid "過去のGBBにおいて、下記番号に電話したらGBB詳細情報を教えてくれた、という報告が相次ぎました。"
 msgstr ""
 
-#: templates/2024/top.html:120 templates/2025/top.html:185
+#: templates/2024/top.html:120 templates/2025/top.html:187
 msgid "場所"
 msgstr ""
 
-#: templates/2024/top.html:121 templates/2025/top.html:186
+#: templates/2024/top.html:121 templates/2025/top.html:188
 msgid "電話番号"
 msgstr ""
 
-#: templates/2024/top.html:125 templates/2025/top.html:190
+#: templates/2024/top.html:125 templates/2025/top.html:192
 msgid "チケット販売ページ"
 msgstr ""
 
-#: templates/2024/top.html:125 templates/2025/top.html:190
+#: templates/2024/top.html:125 templates/2025/top.html:192
 msgid "記載の番号"
 msgstr ""
 
-#: templates/2024/top.html:137 templates/2025/top.html:202
+#: templates/2024/top.html:137 templates/2025/top.html:204
 msgid "なお上記電話番号は、当サイトとは無関係です。"
 msgstr ""
 
@@ -853,15 +853,17 @@ msgstr ""
 #: templates/2025/top.html:58 templates/2025/top.html:59
 #: templates/2025/top.html:60 templates/2025/top.html:61
 #: templates/2025/top.html:62 templates/2025/top.html:63
+#: templates/2025/top.html:75 templates/2025/top.html:77
+#: templates/2025/top.html:78
 msgid "ワイルドカード"
 msgstr ""
 
 #: templates/2025/top.html:50 templates/2025/top.html:56
-#: templates/2025/top.html:71
+#: templates/2025/top.html:71 templates/2025/top.html:75
 msgid "結果"
 msgstr ""
 
-#: templates/2025/top.html:57
+#: templates/2025/top.html:57 templates/2025/top.html:77
 msgid "結果発表日"
 msgstr ""
 
@@ -873,7 +875,7 @@ msgstr ""
 msgid "提出締切"
 msgstr ""
 
-#: templates/2025/top.html:61
+#: templates/2025/top.html:61 templates/2025/top.html:78
 msgid "結果発表配信"
 msgstr ""
 
@@ -886,17 +888,17 @@ msgstr ""
 msgid "全出場者一覧"
 msgstr ""
 
-#: templates/2025/top.html:83 templates/includes/popup_early_access.html:9
+#: templates/2025/top.html:85 templates/includes/popup_early_access.html:9
 #: templates/includes/popup_ended.html:9
 #: templates/includes/popup_no_info.html:8
 msgid "閉じる"
 msgstr ""
 
-#: templates/2025/top.html:91
+#: templates/2025/top.html:93
 msgid "Solo Wildcard結果発表までの残り時間"
 msgstr ""
 
-#: templates/2025/top.html:178
+#: templates/2025/top.html:180
 msgid "お探しの情報は、当サイトにありません。下記お問い合わせより、GBB運営に直接お尋ねください。"
 msgstr ""
 
@@ -1327,19 +1329,19 @@ msgid "韓国"
 msgstr ""
 
 #: templates/others/translation.html:34
-msgid "オーストラリア"
-msgstr ""
-
-#: templates/others/translation.html:35
 msgid "アメリカ"
 msgstr ""
 
+#: templates/others/translation.html:35
+msgid "オーストラリア"
+msgstr ""
+
 #: templates/others/translation.html:36
-msgid "台湾"
+msgid "ノルウェー"
 msgstr ""
 
 #: templates/others/translation.html:37
-msgid "カナダ"
+msgid "台湾"
 msgstr ""
 
 #: templates/others/translation.html:38
@@ -1347,23 +1349,23 @@ msgid "中国"
 msgstr ""
 
 #: templates/others/translation.html:39
-msgid "マレーシア"
+msgid "カナダ"
 msgstr ""
 
 #: templates/others/translation.html:40
-msgid "フランス"
+msgid "マレーシア"
 msgstr ""
 
 #: templates/others/translation.html:41
-msgid "ハンガリー"
+msgid "フランス"
 msgstr ""
 
 #: templates/others/translation.html:42
-msgid "ドイツ"
+msgid "ハンガリー"
 msgstr ""
 
 #: templates/others/translation.html:43
-msgid "インド"
+msgid "シンガポール"
 msgstr ""
 
 #: templates/others/translation.html:44
@@ -1371,11 +1373,11 @@ msgid "香港"
 msgstr ""
 
 #: templates/others/translation.html:45
-msgid "シンガポール"
+msgid "ドイツ"
 msgstr ""
 
 #: templates/others/translation.html:46
-msgid "スイス"
+msgid "インド"
 msgstr ""
 
 #: templates/others/translation.html:47
@@ -1383,14 +1385,18 @@ msgid "イギリス"
 msgstr ""
 
 #: templates/others/translation.html:48
+msgid "スイス"
+msgstr ""
+
+#: templates/others/translation.html:49
 msgid "ニュージーランド"
 msgstr ""
 
-#: templates/others/translation.html:52
+#: templates/others/translation.html:53
 msgid "上記の提供対象国で話されている言語のうち、AI翻訳が可能な言語に対応しています。なお、提供対象国は、アクセス状況に応じて随時追加予定です。"
 msgstr ""
 
-#: templates/others/translation.html:54
+#: templates/others/translation.html:55
 msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
 msgstr ""
 

@@ -1,4 +1,3 @@
-import json
 import os
 import re
 import sys
@@ -44,18 +43,23 @@ LANGUAGES = [
 ]
 API_KEY = os.environ.get("GEMINI_API_KEY")
 
-prompt = """
-# Input
-Text: {source_text}
-Language: {lang}
+prompt = "Translate the following text to {lang}. Return only the translated text: {source_text}"
 
-# Output
-{{"translated_text": "(ここに翻訳文)"}}
-
-# Note
-- Ensure proper JSON escaping for quotes, backslashes, and control characters.
-- Placeholders enclosed in {{}} (e.g., {{year}}) are variable names and should not be translated.
-"""
+# 本当はconfig.pyにあるが、importの都合上ここに書く
+LANG_NAMES = {
+    "ja": "日本語",
+    "ko": "한국어",
+    "en": "English",
+    "zh_Hant_TW": "繁體中文",
+    "fr": "Français",
+    "zh_Hans_CN": "简体中文",
+    "ms": "Bahasa MY",
+    "ta": "தமிழ்",
+    "hu": "Magyar",
+    "de": "Deutsch",
+    "no": "Norsk",
+    "zh_Hant_HK": "廣東話",
+}
 
 
 def extract_placeholders(text):
@@ -126,7 +130,6 @@ def translate():
     model = genai.GenerativeModel(
         model_name="gemini-2.0-flash-lite-preview",
         safety_settings=SAFETY_SETTINGS,
-        generation_config={"response_mime_type": "application/json"},
     )
 
     # テンプレートファイルの再生成
@@ -141,6 +144,7 @@ def translate():
 
         # 既存の翻訳のプレースホルダーを検証
         print(f"\n{lang}の翻訳を検証中...")
+
         for entry in po:
             if entry.msgstr:  # 翻訳が存在する場合のみチェック
                 result = validate_placeholders(entry.msgid, entry.msgstr)
@@ -155,6 +159,8 @@ def translate():
         for entry in tqdm(
             po.untranslated_entries() + po.fuzzy_entries(), desc=f"{lang} の翻訳"
         ):
+            lang_name = LANG_NAMES.get(lang, lang)
+
             # geminiチャットを開始
             while True:
                 time.sleep(1.5)
@@ -162,22 +168,16 @@ def translate():
                     # geminiに翻訳を依頼
                     chat = model.start_chat()
                     response = chat.send_message(
-                        prompt.format(lang=lang, source_text=entry.msgid)
+                        prompt.format(lang=lang_name, source_text=entry.msgid)
                     )
-                    response_json = json.loads(response.text)
-
-                    # レスポンスの形式を確認
-                    if isinstance(response_json, list):
-                        response_json = response_json[0]
-                    translation = list(response_json.values())[0]
-                    translation = translation.replace("\\", "")
+                    translation = response.text.replace("\n", "")
 
                     # プレースホルダーの検証
                     result = validate_placeholders(entry.msgid, translation)
 
                     # プレースホルダーが一致する場合は翻訳を保存
                     # 明らかに不正な翻訳はスキップ
-                    if result and translation not in "ここに翻訳文":
+                    if result:
                         entry.msgstr = translation
 
                         # fuzzy フラグを削除

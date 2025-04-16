@@ -1,21 +1,21 @@
-# Hindi translations for PROJECT.
-# Copyright (C) 2024 ORGANIZATION
+# Chinese (Traditional, Hong Kong SAR China) translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-16 09:42+0900\n"
-"PO-Revision-Date: 2024-04-05 21:11+0900\n"
+"POT-Creation-Date: 2025-04-16 13:15+0900\n"
+"PO-Revision-Date: 2025-04-16 11:54+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: hi <LL@li.org>\n"
-"Language: hi\n"
+"Language-Team: zh_Hant_HK <LL@li.org>\n"
+"Language: zh_Hant_HK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: templates/base.html:30 templates/base.html:40 templates/base.html:44
@@ -23,9 +23,7 @@ msgid ""
 "Swissbeatboxが主催するHuman Beatboxの世界大会「Grand Beatbox "
 "Battle」の各種情報を、見やすくまとめたサイトです。"
 msgstr ""
-"यह एक वेबसाइट है जो स्विसबीटबॉक्स द्वारा आयोजित ह्यूमन बीटबॉक्स वर्ल्ड "
-"चैम्पियनशिप \"ग्रैंड बीटबॉक्स बैटल\" की विभिन्न जानकारी को आसानी से सुलभ "
-"बनाती है।"
+"此網站整理了 Swissbeatbox 主辦的人聲 Beatbox 世界大賽「Grand Beatbox Battle」的各種資訊，方便查閱。"
 
 #: templates/2024/rule.html:21 templates/2024/rule.html:70
 #: templates/2024/rule.html:129 templates/2024/rule.html:208
@@ -37,8 +35,8 @@ msgstr ""
 #: templates/2024/top.html:95 templates/2024/top_7tosmoke.html:22
 #: templates/2025/time_schedule.html:146 templates/2025/top.html:2
 #: templates/2025/top.html:3 templates/2025/top.html:4
-#: templates/2025/top.html:24 templates/2025/top.html:89
-#: templates/2025/top.html:153 templates/2025/top_7tosmoke.html:22
+#: templates/2025/top.html:24 templates/2025/top.html:91
+#: templates/2025/top.html:155 templates/2025/top_7tosmoke.html:22
 #: templates/2025/wildcard_regulation.html:19
 #: templates/2025/wildcard_regulation.html:20
 #: templates/2025/wildcard_regulation.html:54
@@ -55,28 +53,27 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:251 templates/base.html:115
 #: templates/base.html:140 templates/base.html:227
 msgid "これだけガイド"
-msgstr "मार्गदर्शिका"
+msgstr "簡單指南"
 
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
 #: templates/2025/rule.html:66 templates/2025/rule.html:191
 #: templates/2025/rule.html:306 templates/2025/ticket.html:23
-#: templates/2025/time_schedule.html:90 templates/2025/top.html:75
-#: templates/2025/top.html:97 templates/2025/wildcards.html:80
-#: templates/base.html:116 templates/common/participants.html:27
-#: templates/common/result.html:90
+#: templates/2025/time_schedule.html:90 templates/2025/top.html:99
+#: templates/2025/wildcards.html:80 templates/base.html:116
+#: templates/common/participants.html:27 templates/common/result.html:90
 #: templates/includes/participants_form.html:12
 #: templates/others/result_stream.html:39
 msgid "Wildcard結果"
-msgstr "वाइल्डकार्ड परिणाम"
+msgstr "外卡結果"
 
 #: templates/2024/top.html:53 templates/2025/rule.html:66
 #: templates/2025/rule.html:306 templates/2025/ticket.html:23
-#: templates/2025/time_schedule.html:90 templates/2025/top.html:97
+#: templates/2025/time_schedule.html:90 templates/2025/top.html:99
 #: templates/2025/wildcards.html:80 templates/base.html:116
 #: templates/common/result.html:90 templates/others/result_stream.html:39
 msgid "出場者"
-msgstr "प्रतिभागियों"
+msgstr "參加者"
 
 #: templates/2024/rule.html:2 templates/2024/rule.html:3
 #: templates/2024/rule.html:4 templates/2024/rule.html:8
@@ -84,20 +81,20 @@ msgstr "प्रतिभागियों"
 #: templates/2025/rule.html:2 templates/2025/rule.html:3
 #: templates/2025/rule.html:4 templates/2025/rule.html:8
 #: templates/2025/rule.html:212 templates/2025/time_schedule.html:62
-#: templates/2025/top.html:59 templates/2025/top.html:101
+#: templates/2025/top.html:59 templates/2025/top.html:103
 #: templates/2025/wildcard_regulation.html:21
 #: templates/2025/wildcard_regulation.html:199
 #: templates/2025/wildcards.html:81 templates/base.html:117
 msgid "ルール"
-msgstr "नियम"
+msgstr "規則"
 
 #: templates/2024/rule.html:260 templates/2024/rule.html:305
 #: templates/2024/top.html:57 templates/2025/rule.html:273
 #: templates/2025/rule.html:315 templates/2025/time_schedule.html:62
-#: templates/2025/top.html:62 templates/2025/top.html:101
+#: templates/2025/top.html:62 templates/2025/top.html:103
 #: templates/2025/wildcards.html:81 templates/base.html:117
 msgid "審査員"
-msgstr "न्यायाधीश"
+msgstr "評審員"
 
 #: templates/2024/rule.html:20 templates/2024/rule.html:69
 #: templates/2024/rule.html:128 templates/2024/rule.html:207
@@ -109,11 +106,11 @@ msgstr "न्यायाधीश"
 #: templates/2025/rule.html:203 templates/2025/rule.html:260
 #: templates/2025/rule.html:305 templates/2025/rule.html:347
 #: templates/2025/time_schedule.html:61 templates/2025/time_schedule.html:117
-#: templates/2025/time_schedule.html:145 templates/2025/top.html:105
+#: templates/2025/time_schedule.html:145 templates/2025/top.html:107
 #: templates/2025/top_7tosmoke.html:34 templates/2025/wildcards.html:109
 #: templates/base.html:118
 msgid "現地観戦計画のたてかた"
-msgstr "स्थानीय मैच देखने की योजना कैसे बनाएं"
+msgstr "現場觀戰計劃指南"
 
 #: templates/2021/time_schedule.html:2 templates/2021/time_schedule.html:3
 #: templates/2021/time_schedule.html:4 templates/2024/stream.html:40
@@ -123,217 +120,209 @@ msgstr "स्थानीय मैच देखने की योजना �
 #: templates/2024/top_7tosmoke.html:35 templates/2025/ticket.html:25
 #: templates/2025/time_schedule.html:2 templates/2025/time_schedule.html:3
 #: templates/2025/time_schedule.html:4 templates/2025/time_schedule.html:9
-#: templates/2025/top.html:16 templates/2025/top.html:109
+#: templates/2025/top.html:16 templates/2025/top.html:111
 #: templates/2025/top_7tosmoke.html:35 templates/base.html:119
 #: templates/others/translation.html:19
 msgid "タイムスケジュール"
-msgstr "समय सारिणी"
+msgstr "時間表"
 
 #: templates/2024/top.html:69 templates/2025/rule.html:204
 #: templates/2025/ticket.html:24 templates/2025/time_schedule.html:118
-#: templates/2025/top.html:113 templates/2025/wildcards.html:110
+#: templates/2025/top.html:115 templates/2025/wildcards.html:110
 #: templates/base.html:120 templates/common/japan.html:2
 #: templates/common/japan.html:3 templates/common/japan.html:4
 #: templates/common/japan.html:8 templates/others/translation.html:20
 msgid "日本代表"
-msgstr "जापान प्रतिनिधि"
+msgstr "日本代表"
 
 #: templates/2024/ticket.html:10 templates/2024/ticket.html:16
 #: templates/2024/top.html:73 templates/2024/top.html:129
 #: templates/2024/top.html:133 templates/2025/ticket.html:10
-#: templates/2025/top.html:117 templates/2025/top.html:194
-#: templates/2025/top.html:198 templates/base.html:121
+#: templates/2025/top.html:119 templates/2025/top.html:196
+#: templates/2025/top.html:200 templates/base.html:121
 msgid "会場"
-msgstr "स्टेज"
+msgstr "場地"
 
 #: templates/2024/ticket.html:18 templates/2024/top.html:73
-#: templates/2025/ticket.html:11 templates/2025/top.html:117
+#: templates/2025/ticket.html:11 templates/2025/top.html:119
 #: templates/base.html:121
 msgid "チケット"
-msgstr "टिकट"
+msgstr "門票"
 
 #: templates/2024/stream.html:2 templates/2024/stream.html:3
 #: templates/2024/stream.html:4 templates/2024/stream.html:8
 #: templates/2024/top.html:77 templates/2024/top_7tosmoke.html:36
 #: templates/2025/stream.html:2 templates/2025/stream.html:3
 #: templates/2025/stream.html:4 templates/2025/stream.html:8
-#: templates/2025/time_schedule.html:89 templates/2025/top.html:121
+#: templates/2025/time_schedule.html:89 templates/2025/top.html:123
 #: templates/2025/top_7tosmoke.html:36 templates/base.html:122
 #: templates/others/translation.html:22
 msgid "当日配信"
-msgstr "आज की डिलीवरी"
+msgstr "當日直播"
 
 #: templates/2024/top.html:81 templates/2025/top.html:73
-#: templates/2025/top.html:74 templates/2025/top.html:125
+#: templates/2025/top.html:74 templates/2025/top.html:127
 #: templates/base.html:123 templates/common/result.html:2
 #: templates/common/result.html:3 templates/common/result.html:4
 #: templates/common/result.html:8 templates/others/translation.html:23
 msgid "大会結果"
-msgstr "परिणाम"
+msgstr "比賽結果"
 
 #: templates/base.html:143
 msgid "年度選択"
-msgstr "वार्षिक चयन"
+msgstr "年度選擇"
 
 #: templates/base.html:188
 msgid "GBBまでの残り時間"
-msgstr "जीबीबी तक का शेष समय"
+msgstr "距離 GBB 開始前的剩餘時間"
 
 #: templates/base.html:193 templates/base.html:205
 #: templates/includes/bottom_navigation.html:28
 #: templates/includes/bottom_navigation.html:42
 msgid "なんでも検索"
-msgstr "कुछ भी खोजें"
+msgstr "搜尋任何內容"
 
 #: templates/base.html:194 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} の検索のみ可能です"
-msgstr "GBB {year} की ही खोज कर सकते हैं"
+msgstr "只可搜尋 GBB {year}。"
 
 #: templates/base.html:194 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} は終了しました"
-msgstr "GBB {year} समाप्त हो गया है"
+msgstr "GBB {year} 結束了"
 
 #: templates/base.html:196 templates/includes/bottom_navigation.html:31
 #, python-brace-format
 msgid "例：GBB {year} の最終結果は？"
-msgstr "GBB {year} का अंतिम परिणाम क्या है?"
+msgstr "例如：GBB {year} 的最終結果是？"
 
 #: templates/base.html:201 templates/includes/bottom_navigation.html:36
 msgid "GBB最新情報の検索はこちら"
-msgstr "यहाँ GBB नवीनतम जानकारी खोजें"
+msgstr "按此搜尋 GBB 最新資訊"
 
 #: templates/base.html:206 templates/includes/bottom_navigation.html:43
 #, python-brace-format
 msgid "GBB {year} について検索してみよう"
-msgstr "हमें GBB {year} के बारे में खोजने दीजिए।"
+msgstr "讓我們來搜尋關於 GBB {year} 的資訊。"
 
 #: templates/2024/top.html:36 templates/2024/top_7tosmoke.html:16
 #: templates/2025/top.html:36 templates/2025/top_7tosmoke.html:16
 #: templates/base.html:208 templates/includes/bottom_navigation.html:45
 msgid "例：現地観戦計画のたてかた"
-msgstr "उदाहरण के लिए: एक स्थानीय मैच देखने की योजना कैसे बनाएं"
+msgstr "例子：現場觀戰計劃的制定方法"
 
 #: templates/base.html:218
 msgid "ホーム画面に追加"
-msgstr "होम स्क्रीन पर जोड़ें"
+msgstr "加入主畫面"
 
 #: templates/base.html:221
 msgid "GBBINFO-JPNはPWAに対応しています。"
-msgstr "GBBINFO-JPN पीडब्ल्यूए के साथ संगत है।"
+msgstr "GBBINFO-JPN支援PWA。"
 
 #: templates/base.html:221
 msgid "ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。"
-msgstr ""
-"ब्राउज़र मेनू खोलें और \"होम स्क्रीन में जोड़ें\" पर टैप करें, आप इसे एक ऐप "
-"के रूप में इंस्टॉल कर सकते हैं।"
+msgstr "打開瀏覽器選單，點擊「新增至主畫面」，即可作為應用程式安裝。"
 
 #: templates/base.html:227
 msgid "ホームへもどる"
-msgstr "घर वापस जाएँ"
+msgstr "返回主頁"
 
 #: templates/base.html:232
 msgid "対応言語"
-msgstr "भाषा"
+msgstr "支援語言"
 
 #: templates/base.html:245
 msgid "GBBINFO-JPNについて"
-msgstr "GBBINFO-JPN के बारे में"
+msgstr "關於GBBINFO-JPN"
 
 #: templates/base.html:249 templates/others/translation.html:2
 #: templates/others/translation.html:3 templates/others/translation.html:4
 #: templates/others/translation.html:9
 msgid "各ページの翻訳提供について"
-msgstr "प्रत्येक पृष्ठ के अनुवाद प्रदान करने के बारे में"
+msgstr "關於各頁面的翻譯提供"
 
 #: templates/base.html:269
 msgid "いい景色だろ？"
-msgstr "क्या यह एक अच्छी जगह है, है ना?"
+msgstr "這景色很棒吧？"
 
 #: templates/2024/rule.html:10 templates/2025/rule.html:10
 #: templates/2025/wildcard_regulation.html:11
 #, python-brace-format
 msgid "Swissbeatbox公式サイトにて、GBB {year} で実施される部門・Wildcardのルールについて発表がありました。"
-msgstr ""
-"स्विसबीटबॉक्स वेबसाइट ने GBB {year} में आयोजित होने वाले वाइल्डकार्ड विभाग "
-"के नियमों की घोषणा की।"
+msgstr "在Swissbeatbox官方網站上，關於GBB {year} 舉辦的部門・Wildcard的規則已經發布。"
 
 #: templates/2024/rule.html:11 templates/2025/rule.html:11
 #: templates/2025/wildcard_regulation.html:12
 msgid "ソースサイト："
-msgstr "स्रोत साइट:"
+msgstr "來源網站："
 
 #: templates/2024/rule.html:25 templates/2024/time_schedule.html:15
 #: templates/2025/rule.html:25 templates/2025/time_schedule.html:20
 #: templates/2025/wildcard_regulation.html:25
 msgid "目次"
-msgstr "अनुक्रमणिका"
+msgstr "目錄"
 
 #: templates/2024/rule.html:29 templates/2024/rule.html:54
 #: templates/2024/wildcards.html:70 templates/2025/rule.html:28
 #: templates/2025/rule.html:53 templates/2025/wildcard_regulation.html:28
 #: templates/2025/wildcard_regulation.html:58 templates/2025/wildcards.html:84
 msgid "注意事項"
-msgstr "ध्यान दें"
+msgstr "注意事項"
 
 #: templates/2024/rule.html:33 templates/2024/rule.html:73
 #: templates/2025/rule.html:32 templates/2025/rule.html:69
 #: templates/2025/wildcard_regulation.html:32
 #: templates/2025/wildcard_regulation.html:80
 msgid "開催部門一覧"
-msgstr "प्रतियोगिता विभाग सूची"
+msgstr "舉辦部門一覽"
 
 #: templates/2024/rule.html:37 templates/2024/rule.html:132
 #: templates/2025/rule.html:36 templates/2025/rule.html:127
 msgid "出場シード権 獲得条件"
-msgstr "खेलने की बीज स्थिति प्राप्त करने के नियम"
+msgstr "參賽種子資格 獲得條件"
 
 #: templates/2024/rule.html:41 templates/2024/rule.html:210
 #: templates/2025/rule.html:40 templates/2025/rule.html:207
 msgid "Wildcard ルール"
-msgstr "वाइल्डकार्ड नियम"
+msgstr "萬用字元規則"
 
 #: templates/2024/rule.html:45 templates/2024/rule.html:252
 #: templates/2025/rule.html:44 templates/2025/rule.html:264
 msgid "本戦審査員一覧"
-msgstr "मुख्य प्रतियोगिता न्यायाधीश सूची"
+msgstr "正賽評審名單"
 
 #: templates/2024/rule.html:49 templates/2024/rule.html:296
 #: templates/2025/rule.html:48 templates/2025/rule.html:309
 msgid "Wildcard審査員一覧"
-msgstr "वाइल्डकार्ड न्यायाधीश सूची"
+msgstr "萬眾期待評審名單"
 
 #: templates/2024/rule.html:56 templates/2025/rule.html:55
 msgid "以下に示す内容は、あくまでもBeatboxファンが知っておくとよりGBBを楽しめる知識として紹介するものです。"
-msgstr ""
-"यह केवल बीटबॉक्स प्रशंसकों के लिए है जो अधिक जीबीबी का आनंद लेने के लिए "
-"जानकारी पेश करते हैं।"
+msgstr "以下所示內容，僅供Beatbox愛好者參考，以增進對GBB的理解。"
 
 #: templates/2024/rule.html:56 templates/2025/rule.html:56
 msgid "一部内容において、わかりやすさを優先します。"
-msgstr "कुछ सामग्री में, स्पष्टता को प्राथमिकता दी जाएगी।"
+msgstr "為咗方便理解，我哋會用淺顯易明嘅表達方式。"
 
 #: templates/2024/rule.html:57 templates/2025/rule.html:56
 msgid "これにより、正確さに欠ける表現を用いることがあります。"
-msgstr "इससे सटीकता की कमी हो सकती है।"
+msgstr "因此，部分表達可能會缺乏準確性。"
 
 #: templates/2024/rule.html:61 templates/2025/rule.html:59
 #: templates/2025/wildcard_regulation.html:64
 msgid "当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねます。"
-msgstr ""
-"हम इस वेबसाइट पर प्रकाशित सामग्री से होने वाले किसी भी नुकसान के लिए कोई "
-"जिम्मेदारी नहीं लेते हैं।"
+msgstr "對於因本網站刊載的內容而引致的任何損失，我們概不負責。"
 
 #: templates/2024/rule.html:61 templates/2025/rule.html:60
 #: templates/2025/wildcard_regulation.html:65
 msgid "Wildcardを提出する方は、"
-msgstr "स्ट्रीमिंग के लिए वाइल्डकार्ड सबमिट करने वाले"
+msgstr "提交 Wildcard 的人士，"
 
 #: templates/2024/rule.html:63 templates/2025/rule.html:61
 #: templates/2025/wildcard_regulation.html:66
 msgid "必ずご自身でルールを今一度ご確認ください。"
-msgstr "कृपया एक बार फिर से नियम जाँच लें।"
+msgstr "請務必再次確認您自己的規則。"
 
 #: templates/2024/rule.html:77 templates/2024/rule.html:150
 #: templates/2024/rule.html:214 templates/2024/rule.html:259
@@ -345,83 +334,77 @@ msgstr "कृपया एक बार फिर से नियम जाँ
 #: templates/2025/wildcard_regulation.html:198 templates/common/japan.html:21
 #: templates/common/participants.html:124
 msgid "部門"
-msgstr "विभाग"
+msgstr "部門"
 
 #: templates/2024/rule.html:79 templates/2025/rule.html:75
 msgid "シード"
-msgstr "सीड"
+msgstr "種子"
 
 #: templates/2024/rule.html:80 templates/2025/rule.html:76
 msgid "計"
-msgstr "गणना"
+msgstr "總計"
 
 #: templates/2024/rule.html:117 templates/2025/rule.html:114
 #: templates/2025/wildcard_regulation.html:112
 msgid "上記のデータは、ルール発表時現在の情報です。実際は、辞退などにより、出場者数が変動します。"
-msgstr ""
-"उपरोक्त डेटा नियम घोषणा के समय वर्तमान जानकारी है। वास्तव में, त्याग आदि के "
-"कारण प्रतिभागियों की संख्या में उतार-चढ़ाव होगा।"
+msgstr "以上數據為規則發佈時的資料。實際情況可能會因退出等原因而導致參賽人數變動。"
 
 #: templates/2024/rule.html:121 templates/2025/rule.html:118
 msgid "Producerとは"
-msgstr "निर्माता"
+msgstr "Producer類別"
 
 #: templates/2024/rule.html:122 templates/2025/rule.html:120
 msgid ""
 "Loopstationのセカンドデバイス（Loopstationに接続する端末）ありの部門で、GBB23で\"Producer "
 "showcase\"として新設されました。その代わり、Loopstation部門においてセカンドデバイスの使用が禁止されます。"
 msgstr ""
-"Loopstation का दूसरा उपकरण (Loopstation से कनेक्ट होने वाला टर्मिनल) के साथ "
-"एक नया विभाग बनाया गया है, जो GBB23 में \"Producer showcase\" के रूप में "
-"शुरू हुआ। इसके बदले, Loopstation विभाग में दूसरे उपकरण का उपयोग प्रतिबंधित "
-"है।"
+"新增Loopstation第二裝置（連接Loopstation的終端）部門，在GBB23作為\"Producer "
+"showcase\"。取而代之的是，Loopstation部門禁止使用第二裝置。"
 
 #: templates/2024/rule.html:125 templates/2025/rule.html:116
 msgid "忘れられたTag Team Loopstation..."
-msgstr "वह टैग टीम लूपस्टेशन भूल गया..."
+msgstr "被遺忘的Tag Team Loopstation..."
 
 #: templates/2024/rule.html:134 templates/2025/rule.html:129
 msgid "Wildcardを勝ち上がる以外の方法でGBB出場権を得る方法（シード権）と、その該当者は以下の通りです。"
-msgstr ""
-"Wildcard को जीतने के अलावा GBB में प्रवेश पाने के तरीके (सीट अधिकार) और उनके"
-" हकदार इस प्रकार हैं।"
+msgstr "除了通過Wildcard晉級之外，獲得GBB參賽資格的方式（種子權），以及符合資格的參賽者如下："
 
 #: templates/2024/rule.html:139 templates/2025/rule.html:134
 msgid "シード権 - GBB"
-msgstr "सीड अधिकार - GBB"
+msgstr "種子權 - GBB"
 
 #: templates/2024/rule.html:141 templates/2025/rule.html:136
 msgid "シード権 - その他"
-msgstr "सीड अधिकार - अन्य"
+msgstr "種子權 - 其他"
 
 #: templates/2024/rule.html:143 templates/2025/rule.html:138
 msgid "シード権辞退者一覧"
-msgstr "सीड अधिकार त्याग करने वालों की सूची"
+msgstr "放棄種子權者名單"
 
 #: templates/2024/rule.html:149 templates/2025/rule.html:144
 #: templates/2025/wildcard_regulation.html:141 templates/common/japan.html:20
 #: templates/common/participants.html:44
 #: templates/common/participants.html:123 templates/common/result.html:50
 msgid "名前"
-msgstr "नाम"
+msgstr "姓名"
 
 #: templates/2024/rule.html:151 templates/2025/rule.html:146
 #: templates/common/japan.html:22 templates/common/participants.html:46
 #: templates/common/participants.html:125
 msgid "出場権"
-msgstr "अधिकार"
+msgstr "參賽資格"
 
 #: templates/2024/rule.html:161 templates/2024/rule.html:170
 #: templates/2025/rule.html:156 templates/2025/rule.html:165
 #: templates/common/japan.html:31 templates/common/japan.html:40
 #: templates/common/participants.html:55 templates/common/participants.html:64
 msgid "辞退"
-msgstr "इन्कार करना"
+msgstr "放棄"
 
 #: templates/2024/rule.html:197 templates/2024/time_schedule.html:99
 #: templates/2024/time_schedule.html:229 templates/2025/rule.html:192
 msgid "出場者一覧"
-msgstr "स्ट्रीमर्स की सूची"
+msgstr "參賽者名單"
 
 #: templates/2024/rule.html:200 templates/2025/rule.html:195
 #: templates/2025/rule.html:279 templates/2025/rule.html:283
@@ -433,30 +416,26 @@ msgstr "स्ट्रीमर्स की सूची"
 #: templates/common/participants.html:21 templates/common/participants.html:89
 #: templates/common/result.html:64
 msgid "～発表次第更新～"
-msgstr "जैसे ही घोषणा की जाएगी, अपडेट किया जाएगा।"
+msgstr "～公佈後更新～"
 
 #: templates/2024/rule.html:204 templates/2025/rule.html:200
 msgid "シード権を持つ人が辞退した場合、原則として、該当シード権は消滅し、Wildcard下位からの繰り上げが行われます。"
-msgstr ""
-"यदि कोई वरीयता प्राप्त खिलाड़ी हट जाता है, तो आम तौर पर, संबंधित वरीयता "
-"समाप्त हो जाएगी, और वाइल्डकार्ड श्रेणी से एक खिलाड़ी को पदोन्नत किया जाएगा।"
+msgstr "如果擁有種子權的人放棄，原則上該種子權將會失效，並且會從外卡 (Wildcard) 的下位進行遞補。"
 
 #: templates/2024/rule.html:220 templates/2025/rule.html:217
 #: templates/2025/wildcard_regulation.html:204
 msgid "全部門共通"
-msgstr "सभी विभागों के लिए"
+msgstr "全部門通用"
 
 #: templates/2024/rule.html:221 templates/2025/rule.html:218
 #: templates/2025/wildcard_regulation.html:205
 msgid "制限時間を超過した場合、1秒につき最終順位を1つ下げる"
-msgstr ""
-"यदि समय सीमा पार हो जाती है, तो अंतिम रैंकिंग को प्रति सेकंड एक स्थान कम कर "
-"दिया जाएगा।"
+msgstr "如果超過時限，每秒鐘最終排名將下降一位。"
 
 #: templates/2024/rule.html:221 templates/2025/rule.html:218
 #: templates/2025/wildcard_regulation.html:205
 msgid "提出受付開始日時"
-msgstr "प्रस्तुत करने की शुरुआत तिथि"
+msgstr "提交開始日期及時間"
 
 #: templates/2024/rule.html:225 templates/2024/rule.html:229
 #: templates/2024/rule.html:233 templates/2024/rule.html:237
@@ -469,7 +448,7 @@ msgstr "प्रस्तुत करने की शुरुआत ति�
 #: templates/2025/wildcard_regulation.html:221
 #: templates/2025/wildcard_regulation.html:225
 msgid "制限時間"
-msgstr "समय सीमा"
+msgstr "限制時間"
 
 #: templates/2024/rule.html:225 templates/2024/rule.html:229
 #: templates/2024/rule.html:233 templates/2024/rule.html:237
@@ -482,7 +461,7 @@ msgstr "समय सीमा"
 #: templates/2025/wildcard_regulation.html:221
 #: templates/2025/wildcard_regulation.html:225
 msgid "提出期限"
-msgstr "अंतिम तिथि"
+msgstr "截止日期"
 
 #: templates/2024/rule.html:225 templates/2024/rule.html:229
 #: templates/2024/rule.html:233 templates/2024/rule.html:237
@@ -495,7 +474,7 @@ msgstr "अंतिम तिथि"
 #: templates/2025/wildcard_regulation.html:221
 #: templates/2025/wildcard_regulation.html:225
 msgid "結果発表"
-msgstr "परिणाम घोषणा"
+msgstr "結果公佈"
 
 #: templates/2024/rule.html:225 templates/2024/rule.html:229
 #: templates/2024/rule.html:233 templates/2024/rule.html:237
@@ -506,52 +485,52 @@ msgstr "परिणाम घोषणा"
 #: templates/2025/wildcard_regulation.html:221
 #: templates/2025/wildcard_regulation.html:225
 msgid "時間未定"
-msgstr "समय अनिर्धारित"
+msgstr "時間未定"
 
 #: templates/2024/rule.html:233 templates/2025/rule.html:230
 #: templates/2025/wildcard_regulation.html:217
 msgid "RC505 mki, mkiiのみ"
-msgstr "केवल RC505 mki, mkii"
+msgstr "只有 RC505 mki、mkii"
 
 #: templates/2024/rule.html:233
 msgid "一部例外あり"
-msgstr "कुछ अपवाद हैं"
+msgstr "部分例外。"
 
 #: templates/2024/rule.html:237 templates/2025/rule.html:234
 #: templates/2025/wildcard_regulation.html:221
 msgid "デバイス制限なし"
-msgstr "कोई डिवाइस प्रतिबंध नहीं"
+msgstr "沒有設備限制"
 
 #: templates/2024/rule.html:254 templates/2025/rule.html:266
 msgid "Wildcard審査員一覧はこちら"
-msgstr "यहाँ वाइल्डकार्ड जूरी सूची है"
+msgstr "外卡賽評審名單在此"
 
 #: templates/2024/rule.html:286 templates/2025/rule.html:299
 msgid "審査員不明"
-msgstr "अज्ञात परीक्षक"
+msgstr "評審員不明"
 
 #: templates/2024/rule.html:286 templates/2025/rule.html:299
 msgid "例年発表なし"
-msgstr "कोई वार्षिक घोषणा नहीं"
+msgstr "往年未有公布"
 
 #: templates/2024/rule.html:298 templates/2025/rule.html:343
 msgid "本戦審査員一覧はこちら"
-msgstr "यहाँ मुख्य न्यायाधीशों की सूची दी गई है"
+msgstr "本戰評審委員名單在此"
 
 #: templates/2024/stream.html:36
 msgid "観戦のお供に"
-msgstr "देखने के लिए साथ"
+msgstr "觀戰時的最佳夥伴"
 
 #: templates/2024/stream.html:37
 #, python-brace-format
 msgid "GBB {year} の最新情報をチェックしよう"
-msgstr "जीबीबी {year} की ताजा जानकारी जांच करें"
+msgstr "來查看 GBB {year} 的最新資訊吧"
 
 #: templates/2024/stream.html:39 templates/common/participants.html:2
 #: templates/common/participants.html:3 templates/common/participants.html:4
 #: templates/common/participants.html:12 templates/others/translation.html:17
 msgid "Wildcard結果&出場者"
-msgstr "वाइल्डकार्ड परिणाम और प्रतिभागी"
+msgstr "外卡賽結果&參賽者"
 
 #: templates/2024/ticket.html:2 templates/2024/ticket.html:3
 #: templates/2024/ticket.html:4 templates/2024/ticket.html:8
@@ -560,446 +539,417 @@ msgstr "वाइल्डकार्ड परिणाम और प्रत
 #: templates/2025/ticket.html:8 templates/2025/top_7tosmoke.html:33
 #: templates/others/translation.html:21
 msgid "会場&チケット"
-msgstr "स्थल और टिकट"
+msgstr "場地&門票"
 
 #: templates/2024/ticket.html:9
 msgid "【完売】公式販売"
-msgstr "बिक गया"
+msgstr "【已售罄】官方發售"
 
 #: templates/2024/ticket.html:12
 msgid "チケットぴあ"
-msgstr "टिकेट पिया"
+msgstr "Ticket PIA"
 
 #: templates/2024/ticket.html:14
 msgid "楽天チケット"
-msgstr "楽天チケット"
+msgstr "Rakuten 門票"
 
 #: templates/2024/time_schedule.html:10 templates/2025/time_schedule.html:14
 msgid "時刻はあくまでも予定です。"
-msgstr "समय केवल एक अनुमान है।"
+msgstr "所有時間均為暫定安排。"
 
 #: templates/2024/time_schedule.html:11 templates/2025/time_schedule.html:15
 msgid "GBB21では、予定から約2時間遅延しました。"
-msgstr "GBB21 में लगभग 2 घंटे की देरी हुई।"
+msgstr "GBB21 延遲了約 2 個小時。"
 
 #: templates/2024/time_schedule.html:12 templates/2025/time_schedule.html:16
 msgid "GBB23では、本番7日前に日本語版・英語版のタイムスケジュールが公開されましたが、日本語版のみ正しく、英語版には誤記が多くみられました。"
-msgstr ""
-"GBB23 में, वास्तविक कार्यक्रम से 7 दिन पहले जापानी और अंग्रेजी समय सारिणी "
-"प्रकाशित की गई थी, लेकिन केवल जापानी संस्करण ही सही था, जबकि अंग्रेजी "
-"संस्करण में कई गलतियाँ थीं।"
+msgstr "在 GBB23 中，正式比賽前 7 天發布了日語和英語的時間表，但只有日語版是正確的，英語版有很多錯誤。"
 
 #: templates/2024/time_schedule.html:35 templates/2024/time_schedule.html:289
 msgid "出演者一覧"
-msgstr "अदाकारों की सूची"
+msgstr "出演者名單"
 
 #: templates/2024/time_schedule.html:49 templates/2024/time_schedule.html:106
 #: templates/2024/time_schedule.html:163 templates/2024/time_schedule.html:236
 #: templates/2025/time_schedule.html:41 templates/2025/time_schedule.html:69
 #: templates/2025/time_schedule.html:97 templates/2025/time_schedule.html:125
 msgid "時刻"
-msgstr "समय"
+msgstr "時間"
 
 #: templates/2024/time_schedule.html:50 templates/2024/time_schedule.html:107
 #: templates/2024/time_schedule.html:164 templates/2024/time_schedule.html:237
 #: templates/2025/time_schedule.html:42 templates/2025/time_schedule.html:70
 #: templates/2025/time_schedule.html:98 templates/2025/time_schedule.html:126
 msgid "内容"
-msgstr "सामग्री"
+msgstr "內容"
 
 #: templates/2024/time_schedule.html:56 templates/2024/time_schedule.html:113
 #: templates/2024/time_schedule.html:170 templates/2024/time_schedule.html:243
 #: templates/2025/time_schedule.html:48 templates/2025/time_schedule.html:76
 #: templates/2025/time_schedule.html:104 templates/2025/time_schedule.html:132
 msgid "入場開始"
-msgstr "प्रवेश शुरू"
+msgstr "開始入場"
 
 #: templates/2024/time_schedule.html:60 templates/2024/time_schedule.html:117
 #: templates/2024/time_schedule.html:174 templates/2024/time_schedule.html:255
 msgid "ABEMA配信スタート"
-msgstr "ABEMA प्रसारण प्रारंभ"
+msgstr "ABEMA 播放開始"
 
 #: templates/2024/time_schedule.html:64 templates/2024/time_schedule.html:121
 #: templates/2024/time_schedule.html:178
 msgid "サプライズゲスト"
-msgstr "आश्चर्य अतिथि"
+msgstr "驚喜嘉賓"
 
 #: templates/2024/time_schedule.html:68 templates/2024/time_schedule.html:125
 #: templates/2024/time_schedule.html:182 templates/2024/time_schedule.html:247
 #: templates/2025/time_schedule.html:52 templates/2025/time_schedule.html:80
 #: templates/2025/time_schedule.html:108 templates/2025/time_schedule.html:136
 msgid "スタート"
-msgstr "शुरू"
+msgstr "開始"
 
 #: templates/2024/time_schedule.html:76 templates/2024/time_schedule.html:80
 #: templates/2024/time_schedule.html:84 templates/2024/time_schedule.html:145
 #: templates/2024/time_schedule.html:251
 msgid "予選"
-msgstr "प्रारंभिक दौर"
+msgstr "初賽"
 
 #: templates/2024/time_schedule.html:88 templates/2024/time_schedule.html:198
 #: templates/2024/time_schedule.html:202
 msgid "準決勝"
-msgstr "सेमीफाइनल"
+msgstr "準決賽"
 
 #: templates/2024/time_schedule.html:92 templates/2024/time_schedule.html:149
 #: templates/2024/time_schedule.html:218 templates/2024/time_schedule.html:279
 #: templates/2025/time_schedule.html:56 templates/2025/time_schedule.html:84
 #: templates/2025/time_schedule.html:112 templates/2025/time_schedule.html:140
 msgid "終了"
-msgstr "समाप्त"
+msgstr "結束"
 
 #: templates/2024/time_schedule.html:133 templates/2024/time_schedule.html:194
 msgid "準々決勝"
-msgstr "क्वार्टर फाइनल"
+msgstr "八強賽"
 
 #: templates/2024/time_schedule.html:137 templates/2024/time_schedule.html:141
 msgid "決勝"
-msgstr "अंतिम"
+msgstr "決賽"
 
 #: templates/2024/time_schedule.html:190
 msgid "準決勝・3位決定戦・決勝"
-msgstr "सेमीफाइनल · तीसरा स्थान प्लेऑफ़ · फाइनल"
+msgstr "準決賽、季軍戰、決賽"
 
 #: templates/2024/time_schedule.html:206 templates/2024/time_schedule.html:210
 msgid "3位決定戦・決勝"
-msgstr "तीसरा स्थान प्लेऑफ़ - फाइनल"
+msgstr "季軍戰・決賽"
 
 #: templates/2024/time_schedule.html:214 templates/2024/time_schedule.html:267
 msgid "セレモニー"
-msgstr "समारोह"
+msgstr "頒獎典禮"
 
 #: templates/2024/time_schedule.html:222
 msgid "アフターパーティー"
-msgstr "पार्टी के बाद"
+msgstr "派對後聚會"
 
 #: templates/2024/time_schedule.html:247
 msgid "ソース：会場公式サイト"
-msgstr "स्रोत: वेबसाइट"
+msgstr "來源：會場官方網站"
 
 #: templates/2024/time_schedule.html:255
 msgid "ソース：ABEMA配信ページ"
-msgstr "स्रोत: ABEMA वितरण पृष्ठ"
+msgstr "來源：ABEMA 播放頁面"
 
 #: templates/2024/time_schedule.html:255
 msgid "予選開始より遅い理由は不明"
-msgstr "प्रारंभिक दौर की शुरुआत से देरी का कारण अज्ञात है।"
+msgstr "原因不明，比預賽開始時間遲。"
 
 #: templates/2024/time_schedule.html:259
 msgid "本戦出場者アナウンス"
-msgstr "मुख्य प्रतियोगिता प्रतिभागी घोषणा"
+msgstr "本賽參賽者公告"
 
 #: templates/2024/time_schedule.html:263
 msgid "本戦スタート"
-msgstr "मुख्य खेल शुरू"
+msgstr "本賽開始"
 
 #: templates/2024/time_schedule.html:298
 msgid "各出演者の出演日時は不明です。"
-msgstr "प्रत्येक कलाकार की प्रदर्शन तिथियाँ अज्ञात हैं।"
+msgstr "各出演者的演出日期及時間均未有顯示。"
 
 #: templates/2024/top.html:11 templates/2025/top.html:11
 msgid "開催日"
-msgstr "आयोजन की तारीख"
+msgstr "舉行日期"
 
 #: templates/2024/top.html:21 templates/2025/top.html:21
 msgid "は終了しました"
-msgstr "समाप्त हो गया"
+msgstr "已完成"
 
 #: templates/2024/top.html:21 templates/2025/top.html:21
 msgid "ページ 先行公開中！"
-msgstr "पेज पहले से ही लाइव है!"
+msgstr "頁面 搶先看！"
 
 #: templates/2024/top.html:24 templates/2025/top.html:24
 msgid "先行公開"
-msgstr "प्रारंभिक रिलीज"
+msgstr "先行公開"
 
 #: templates/2024/top.html:31 templates/2024/top_7tosmoke.html:11
 #: templates/2025/top.html:31 templates/2025/top_7tosmoke.html:11
 msgid "公式よりもわかりやすい！"
-msgstr "सूत्र से भी आसान!"
+msgstr "比公式更容易理解！"
 
 #: templates/2024/top.html:31 templates/2024/top_7tosmoke.html:11
 #: templates/2025/top.html:31 templates/2025/top_7tosmoke.html:11
 msgid "非公式情報サイト"
-msgstr "अघोषित सूचना साइट"
+msgstr "非官方資訊網站"
 
 #: templates/2024/top.html:77
 msgid "みんなで鑑賞会"
-msgstr "सभी मिलकर देखें"
+msgstr "一起欣賞會"
 
-#: templates/2024/top.html:86 templates/2025/top.html:130
+#: templates/2024/top.html:86 templates/2025/top.html:132
 msgid "当サイトURL変更のお知らせ"
-msgstr "वेबसाइट यूआरएल परिवर्तन की सूचना"
+msgstr "本網站網址變更通知"
 
 #: templates/2024/top.html:87 templates/2025/rule.html:261
-#: templates/2025/top.html:131
+#: templates/2025/top.html:133
 msgid "Wildcard結果発表配信"
-msgstr "वाइल्डकार्ड परिणाम घोषणा प्रसारण"
+msgstr "外卡賽結果發表直播"
 
 #: templates/2024/top.html:88 templates/2024/wildcards.html:2
 #: templates/2024/wildcards.html:3 templates/2024/wildcards.html:4
 #: templates/2024/wildcards.html:8 templates/2025/rule.html:18
-#: templates/2025/rule.html:348 templates/2025/top.html:132
+#: templates/2025/rule.html:348 templates/2025/top.html:134
 #: templates/2025/wildcards.html:2 templates/2025/wildcards.html:3
 #: templates/2025/wildcards.html:4 templates/2025/wildcards.html:8
 #: templates/common/participants.html:107
 #: templates/others/result_stream.html:40 templates/others/translation.html:24
 msgid "Wildcard一覧"
-msgstr "वाइल्डकार्ड सूची"
+msgstr "外卡資格列表"
 
 #: templates/2024/top.html:101 templates/2024/top.html:115
-#: templates/2024/top_7tosmoke.html:44 templates/2025/top.html:159
-#: templates/2025/top.html:175 templates/2025/top_7tosmoke.html:44
+#: templates/2024/top_7tosmoke.html:44 templates/2025/top.html:161
+#: templates/2025/top.html:177 templates/2025/top_7tosmoke.html:44
 msgid "お問い合わせ"
-msgstr "संपर्क करें"
+msgstr "聯絡我們"
 
-#: templates/2024/top.html:106 templates/2025/top.html:166
+#: templates/2024/top.html:106 templates/2025/top.html:168
 msgid "これらの情報のほかにも、"
-msgstr "इसके अलावा"
+msgstr "除了這些資訊之外，"
 
-#: templates/2024/top.html:108 templates/2025/top.html:168
+#: templates/2024/top.html:108 templates/2025/top.html:170
 msgid "未発表の情報(決まっているが、なぜか公式が発表を渋っている)"
-msgstr ""
-"वह जानकारी जो अभी तक जारी नहीं की गई है (तय हो गई है, लेकिन पता नहीं क्यों, "
-"आधिकारिक तौर पर जारी करने से हिचकिचा रहा है)"
+msgstr "未公開資訊（已經確定，但官方基於某些原因未有公布）"
 
-#: templates/2024/top.html:109 templates/2025/top.html:169
+#: templates/2024/top.html:109 templates/2025/top.html:171
 msgid "未定事項(そもそも決まってすらいない)"
-msgstr "अनिश्चित मामले (अभी तक तय नहीं हुआ)"
+msgstr "待定事項（甚至尚未決定）"
 
-#: templates/2024/top.html:111 templates/2025/top.html:171
+#: templates/2024/top.html:111 templates/2025/top.html:173
 msgid "このような情報が多く存在します。"
-msgstr "इस तरह की जानकारी बहुत है।"
+msgstr "還存在許多這樣的資訊。"
 
-#: templates/2024/top.html:112 templates/2025/top.html:172
+#: templates/2024/top.html:112 templates/2025/top.html:174
 msgid "GBBの各種情報は、発表が非常に遅いことで有名です。気長に待ちましょう。"
-msgstr ""
-"GBB की विभिन्न जानकारी की घोषणा बहुत देर से होने के लिए प्रसिद्ध है। धैर्य "
-"रखें।"
+msgstr "GBB嘅各種資訊公布一向都好慢。請大家耐心等候。"
 
-#: templates/2024/top.html:116 templates/2025/top.html:181
+#: templates/2024/top.html:116 templates/2025/top.html:183
 msgid "過去のGBBにおいて、下記番号に電話したらGBB詳細情報を教えてくれた、という報告が相次ぎました。"
-msgstr ""
-"मुझे पिछली GBB में कई रिपोर्टें मिलीं कि यदि निम्नलिखित नंबर पर कॉल किया गया"
-" तो GBB विवरण प्रदान किए गए।"
+msgstr "在過去的GBB中，有多個報告稱撥打以下號碼可以獲得GBB的詳細信息。"
 
-#: templates/2024/top.html:120 templates/2025/top.html:185
+#: templates/2024/top.html:120 templates/2025/top.html:187
 msgid "場所"
-msgstr "स्थान"
+msgstr "地點"
 
-#: templates/2024/top.html:121 templates/2025/top.html:186
+#: templates/2024/top.html:121 templates/2025/top.html:188
 msgid "電話番号"
-msgstr "टेलीफोन नंबर"
+msgstr "電話號碼"
 
-#: templates/2024/top.html:125 templates/2025/top.html:190
+#: templates/2024/top.html:125 templates/2025/top.html:192
 msgid "チケット販売ページ"
-msgstr "टिकट बिक्री पृष्ठ"
+msgstr "門票銷售頁面"
 
-#: templates/2024/top.html:125 templates/2025/top.html:190
+#: templates/2024/top.html:125 templates/2025/top.html:192
 msgid "記載の番号"
-msgstr "सूचीबद्ध संख्या"
+msgstr "所列號碼"
 
-#: templates/2024/top.html:137 templates/2025/top.html:202
+#: templates/2024/top.html:137 templates/2025/top.html:204
 msgid "なお上記電話番号は、当サイトとは無関係です。"
-msgstr "उपरोक्त फ़ोन नंबर इस साइट से असंबंधित है।"
+msgstr "請注意，以上電話號碼與本網站無關。"
 
 #: templates/2024/top_7tosmoke.html:31 templates/2025/top_7tosmoke.html:31
 msgid "7toSmokeとは"
-msgstr "7toSmoke क्या है?"
+msgstr "7toSmoke 是什麼？"
 
 #: templates/2024/top_7tosmoke.html:32 templates/2025/top_7tosmoke.html:32
 msgid "7toSmokeルール&参加方法"
-msgstr "7toSmoke नियम और भाग लेने का तरीका"
+msgstr "7toSmoke 規則及參與方法"
 
 #: templates/2024/top_7tosmoke.html:39 templates/2025/top_7tosmoke.html:39
 msgid ""
 "7toSmokeは、GBB本戦に比べて最新情報の公開が非常に遅い傾向にあり、そもそも情報が発表されないまま本番を迎えてしまったケースもあります。"
-msgstr ""
-"7toSmoke, GBB मुख्य कार्यक्रम की तुलना में नवीनतम जानकारी बहुत देर से जारी "
-"करने की प्रवृत्ति है, और ऐसे मामले भी हैं जिनमें जानकारी की घोषणा किए बिना "
-"वास्तविक घटना हो गई।"
+msgstr "7toSmoke相比GBB正賽，公開最新資訊的速度往往非常慢，甚至有資訊未公開就迎來了正式比賽的情況。"
 
 #: templates/2024/top_7tosmoke.html:40 templates/2025/top_7tosmoke.html:40
 msgid "諦めましょう。"
-msgstr "हार मान लो।"
+msgstr "放棄吧。"
 
 #: templates/2024/wildcards.html:9 templates/2025/wildcards.html:11
 msgid "各部門の締め切り期日は、中央ヨーロッパ時刻を基準に表記しています。"
-msgstr "विभिन्न विभागों की समय सीमा मध्य यूरोप समय के आधार पर लिखी गई है।"
+msgstr "各部門嘅截止日期都以中歐時間為基準。"
 
 #: templates/2024/wildcards.html:11 templates/2024/wildcards.html:36
 #: templates/2025/wildcards.html:16 templates/2025/wildcards.html:40
 #: templates/2025/wildcards.html:56
 msgid "締め切り"
-msgstr "समय सीमा"
+msgstr "截止日期"
 
 #: templates/2024/wildcards.html:72 templates/2025/wildcards.html:86
 msgid "今回公開するWildcard一覧は、有志が作成した、非公式のものです。"
-msgstr ""
-"यह सार्वजनिक किया गया वाइल्डकार्ड सूची स्वैच्छिक रूप से बनाई गई है और यह "
-"अनौपचारिक है।"
+msgstr "本次公開的外卡資格名單，是由志願者製作的非官方資料。"
 
 #: templates/2024/wildcards.html:73 templates/2025/wildcards.html:87
 msgid "作成者：ぬる湯さん"
-msgstr "लेखक: नुर्सू"
+msgstr "作者：ぬる湯さん"
 
 #: templates/2024/wildcards.html:77 templates/2025/wildcards.html:91
 msgid "すべて手作業で制作されたものであるため、重複や欠落がある可能性があります。"
-msgstr "यह सब हाथ से बनाया गया है, इसलिए दोहराव और चूक हो सकती है।"
+msgstr "由於全部內容均為人手整理，可能存在重複或遺漏的情況。"
 
 #: templates/2024/wildcards.html:80 templates/2025/wildcards.html:94
 msgid ""
 "また、この再生リストにある動画が必ずしもWildcardとして申請された動画であるとは限りません（毎年必ず出場者の手続きミスで失格者が出ます）。"
-msgstr ""
-"यह भी ध्यान दें कि इस प्लेलिस्ट में मौजूद वीडियो हमेशा वाइल्डकार्ड के रूप "
-"में सबमिट किए गए वीडियो नहीं होते हैं (हर साल, प्रस्तुतकर्ता की प्रक्रिया "
-"संबंधी त्रुटि के कारण अयोग्य घोषित किए जाते हैं)।"
+msgstr "此外，此播放清單中的影片不一定都是以Wildcard身分申請的影片（每年都會有參賽者因程序錯誤而被取消資格）。"
 
 #: templates/2025/rule.html:21 templates/2025/rule.html:124
 #: templates/2025/wildcard_regulation.html:2
 #: templates/2025/wildcard_regulation.html:3
 #: templates/2025/wildcard_regulation.html:4
 msgid "【Beatboxer向け】Wildcardレギュレーション解説"
-msgstr "beatboxer के लिए】 वाइल्डकार्ड विनियमन विवरण"
+msgstr "【給Beatboxer】Wildcard規例解說"
 
 #: templates/2025/rule.html:218 templates/2025/wildcard_regulation.html:205
 msgid "制限時間を使い切らず余らせた場合、3秒につき最終順位を1つ下げる"
-msgstr ""
-"यदि समय सीमा समाप्त नहीं हुई है, तो प्रत्येक 3 सेकंड के लिए अंतिम रैंकिंग को"
-" 1 स्थान नीचे ले जाया जाएगा।"
+msgstr "若未用盡時限而有所剩餘，每3秒將使最終排名下降1位。"
 
 #: templates/2025/rule.html:244 templates/2025/wildcard_regulation.html:230
 msgid "※中央ヨーロッパ時間には、サマータイムがあります。2025年のサマータイムは3/30からです。"
-msgstr ""
-"मध्य यूरोपियन समय में डेलाइट सेविंग टाइम है। 2025 में डेलाइट सेविंग टाइम "
-"3/30 से शुरू होगा।"
+msgstr "※歐洲中部時間有夏令時間。2025年的夏令時間從3/30開始。"
 
 #: templates/2025/rule.html:245 templates/2025/wildcard_regulation.html:231
 msgid "Tag Team部門・Crew部門参加希望の方はご注意ください。"
-msgstr ""
-"टैग टीम और क्रू श्रेणी में भाग लेने के इच्छुक लोगों को कृपया ध्यान दें।"
+msgstr "請注意，有興趣參加Tag Team組別或Crew組別的人士。"
 
 #: templates/2025/stream.html:13
 msgid "GBB24では本番8日前公開"
-msgstr "GBB24 में, लॉन्च से 8 दिन पहले रिलीज़"
+msgstr "GBB24 在正式比賽前 8 天公開"
 
 #: templates/2025/ticket.html:22 templates/common/japan.html:76
 #: templates/common/result.html:89 templates/others/result_stream.html:17
 #: templates/others/translation.html:18
 msgid "ルール&審査員"
-msgstr "नियम और जजों"
+msgstr "規則及評判"
 
 #: templates/2025/time_schedule.html:17
 msgid "GBB24では、本番約1ヶ月前に公開されましたが、誤記が多くみられました。"
-msgstr ""
-"जीबीबी 24 में, यह एक महीने पहले जारी किया गया था, लेकिन गलतियां काफी देखी "
-"गईं।"
+msgstr "在 GBB24 中，它在大約一個月前公開，但出現了很多錯誤。"
 
 #: templates/2025/top.html:45
 msgid "注目キーワード"
-msgstr "मुख्य खोजशब्द"
+msgstr "重點關鍵字"
 
 #: templates/2025/top.html:49 templates/2025/top.html:54
 #: templates/2025/top.html:56 templates/2025/top.html:57
 #: templates/2025/top.html:58 templates/2025/top.html:59
 #: templates/2025/top.html:60 templates/2025/top.html:61
 #: templates/2025/top.html:62 templates/2025/top.html:63
+#: templates/2025/top.html:75 templates/2025/top.html:77
+#: templates/2025/top.html:78
 msgid "ワイルドカード"
-msgstr "वाइल्डकार्ड"
+msgstr "萬用字元"
 
 #: templates/2025/top.html:50 templates/2025/top.html:56
-#: templates/2025/top.html:71
+#: templates/2025/top.html:71 templates/2025/top.html:75
 msgid "結果"
-msgstr "परिणाम"
+msgstr "結果"
 
-#: templates/2025/top.html:57
+#: templates/2025/top.html:57 templates/2025/top.html:77
 msgid "結果発表日"
-msgstr "(यहां अनुवाद)"
+msgstr "結果公佈日期"
 
 #: templates/2025/top.html:58
 msgid "動画一覧"
-msgstr "वीडियो लिस्ट"
+msgstr "影片列表"
 
 #: templates/2025/top.html:60
 msgid "提出締切"
-msgstr "अंतिम तिथि"
+msgstr "截止日期"
 
-#: templates/2025/top.html:61
+#: templates/2025/top.html:61 templates/2025/top.html:78
 msgid "結果発表配信"
-msgstr "परिणाम घोषणा प्रसारण"
+msgstr "結果公佈直播"
 
 #: templates/2025/top.html:63
 msgid "出場枠の数"
-msgstr "भाग लेने वालों की संख्या"
+msgstr "參賽名額數量"
 
 #: templates/2025/top.html:76 templates/common/japan.html:74
 #: templates/common/participants.html:31
 msgid "全出場者一覧"
-msgstr "सभी प्रतिभागी सूची"
+msgstr "全體參賽者名單"
 
-#: templates/2025/top.html:83 templates/includes/popup_early_access.html:9
+#: templates/2025/top.html:85 templates/includes/popup_early_access.html:9
 #: templates/includes/popup_ended.html:9
 #: templates/includes/popup_no_info.html:8
 msgid "閉じる"
-msgstr "बंद करें"
+msgstr "關閉"
 
-#: templates/2025/top.html:91
+#: templates/2025/top.html:93
 msgid "Solo Wildcard結果発表までの残り時間"
-msgstr "सोलो वाइल्डकार्ड के परिणामों की घोषणा तक शेष समय"
+msgstr "Solo Wildcard 結果公布前的剩餘時間"
 
-#: templates/2025/top.html:178
+#: templates/2025/top.html:180
 msgid "お探しの情報は、当サイトにありません。下記お問い合わせより、GBB運営に直接お尋ねください。"
-msgstr ""
-"मुझे जो जानकारी चाहिए, वह इस साइट पर उपलब्ध नहीं है। कृपया नीचे दिए गए "
-"संपर्क से सीधे GBB प्रशासन से संपर्क करें।"
+msgstr "您查詢的資料在本網站找不到。請透過以下查詢，直接向GBB營運查詢。"
 
 #: templates/2025/top_7tosmoke.html:10
 msgid "開催日未定"
-msgstr "तारीख तय नहीं"
+msgstr "舉行日期未定"
 
 #: templates/2025/wildcard_regulation.html:8
 msgid "レギュレーション"
-msgstr "नियमन"
+msgstr "規則"
 
 #: templates/2025/wildcard_regulation.html:15
 msgid "このページでは、Wildcard提出にあたって重要なルールを解説します。"
-msgstr ""
-"इस पृष्ठ पर, हम वाइल्डकार्ड सबमिशन के लिए महत्वपूर्ण नियमों की व्याख्या "
-"करेंगे।"
+msgstr "在此頁面上，我們將解釋提交 Wildcard 時的重要規則。"
 
 #: templates/2025/wildcard_regulation.html:21
 msgid "【Beatboxファン向け】"
-msgstr "बीटबॉक्स प्रशंसकों के लिए"
+msgstr "【Beatbox粉絲向け】"
 
 #: templates/2025/wildcard_regulation.html:36
 #: templates/2025/wildcard_regulation.html:120
 msgid "年齢制限"
-msgstr "आयु प्रतिबंध"
+msgstr "年齡限制"
 
 #: templates/2025/wildcard_regulation.html:40
 msgid "Wildcard提出について"
-msgstr "वाइल्डकार्ड प्रस्ताव के बारे में"
+msgstr "關於Wildcard的提議"
 
 #: templates/2025/wildcard_regulation.html:44
 #: templates/2025/wildcard_regulation.html:194
 msgid "部門別ルール"
-msgstr "विभाग नियम"
+msgstr "各部門規則"
 
 #: templates/2025/wildcard_regulation.html:48
 #: templates/2025/wildcard_regulation.html:254
 msgid "失格にならないために"
-msgstr "अयोग्य न होने के लिए"
+msgstr "避免被取消資格"
 
 #: templates/2025/wildcard_regulation.html:60
 msgid "以下に示す内容は、Wildcardを作るBeatboxer向けの情報です。"
-msgstr ""
-"यह नीचे दिए गए विवरण वाइल्डकार्ड बनाने के लिए बीटबॉक्सर के लिए जानकारी है।"
+msgstr "以下所示內容是針對製作Wildcard的Beatboxer的資訊。"
 
 #: templates/2025/wildcard_regulation.html:61
 msgid "当サイト管理人はBeatboxerではありません。また、当サイト管理人はGBB運営と一切無関係です。"
-msgstr ""
-"इस साइट के व्यवस्थापक बीटबॉक्सर नहीं हैं। साथ ही, इस साइट के व्यवस्थापक "
-"जीबीडी के संचालन से पूरी तरह से असंबंधित हैं।"
+msgstr "本網站管理員並非Beatboxer。此外，本網站管理員與GBB營運完全無關。"
 
 #: templates/2025/wildcard_regulation.html:69
 msgid ""
@@ -1008,120 +958,102 @@ msgid ""
 "    As a result, there may be instances of inaccurate translation.\n"
 "    For any questions or concerns, please refer to the official website or social media channels."
 msgstr ""
-"गैर-जापानी उपयोगकर्ताओं के लिए:\n"
-"कृपया ध्यान दें कि यह लेख मूल रूप से जापानी में लिखा गया था और बाद में एआई का उपयोग करके अनुवादित किया गया था।\n"
-"नतीजतन, गलत अनुवाद के उदाहरण हो सकते हैं।\n"
-"किसी भी प्रश्न या चिंता के लिए, कृपया आधिकारिक वेबसाइट या सोशल मीडिया चैनलों को देखें।"
+"致非日語使用者：\n"
+"請注意，本文最初是用日語撰寫，其後使用 AI 翻譯。因此，翻譯可能不準確。\n"
+"如有任何疑問或疑慮，請參閱官方網站或社交媒體渠道。"
 
 #: templates/2025/wildcard_regulation.html:122
 msgid "年齢制限: 本番当日、16歳以上であること"
-msgstr "उम्र की पाबन्दी: प्रदर्शन के दिन, 16 साल या उससे अधिक उम्र के हो।"
+msgstr "年齡限制：活動當日年滿16歲或以上。"
 
 #: templates/2025/wildcard_regulation.html:123
 msgid "未成年者(18歳未満)の参加:"
-msgstr "अल्पवयस्क (18 वर्ष से कम उम्र) की भागीदारी:"
+msgstr "未滿18歲人士之參與："
 
 #: templates/2025/wildcard_regulation.html:125
 msgid "保護者の同伴が必須"
-msgstr "अभिभावकों के साथ होना चाहिए"
+msgstr "必須由家長陪同"
 
 #: templates/2025/wildcard_regulation.html:126
 msgid "主催者は、保護者の同伴にかかる費用(ビザ、フライト、ホテル、食事など)を負担しない"
-msgstr ""
-"आयोजक अभिभावकों के साथ आने के खर्चों (वीज़ा, उड़ानें, होटल, भोजन आदि) का वहन"
-" नहीं करेंगे।"
+msgstr "主辦單位不承擔監護人陪同所需費用（簽證、機票、酒店、膳食等）。"
 
 #: templates/2025/wildcard_regulation.html:127
 msgid "上記要件を満たさない、同意できない場合は失格となり、Wildcard下位からの繰り上げが行われる"
-msgstr ""
-"यदि आप उपरोक्त आवश्यकताओं को पूरा नहीं करते हैं और सहमत नहीं हैं, तो आपको "
-"अयोग्य घोषित कर दिया जाएगा, और वाइल्डकार्ड के निचले स्तर से उन्नयन किया "
-"जाएगा।"
+msgstr "如果不同意或未能滿足上述要求，將被取消資格，並將從外卡候選人中進行遞補。"
 
 #: templates/2025/wildcard_regulation.html:137
 msgid "Wildcard作成・提出について"
-msgstr "वाइल्डकार्ड निर्माण और प्रस्तुतियाँ"
+msgstr "關於Wildcard的製作及提交"
 
 #: templates/2025/wildcard_regulation.html:139
 msgid "Wildcard動画の内容"
-msgstr "Wildcard वीडियो का विषय"
+msgstr "Wildcard 影片嘅內容"
 
 #: templates/2025/wildcard_regulation.html:140
 msgid "動画の冒頭で、以下のように自己紹介する"
-msgstr "वीडियो की शुरुआत में, मैं इस तरह अपना परिचय देता हूँ।"
+msgstr "影片開頭，自我介紹如下"
 
 #: templates/2025/wildcard_regulation.html:143
 msgid "このルールに関する表記は、原文では非常に強い表現で示されています。"
-msgstr "इस नियम के बारे में धारणा मूल पाठ में बहुत मजबूत है।"
+msgstr "這條規則的措辭，在原文中用詞非常強烈。"
 
 #: templates/2025/wildcard_regulation.html:144
 msgid "また、過去にこのルールに違反したことで失格処分になった事例があります。"
-msgstr ""
-"इसके अलावा, अतीत में इस नियम का उल्लंघन करने के कारण अयोग्य घोषित किए जाने "
-"के उदाहरण हैं।"
+msgstr "此外，過去曾有因違反此規則而被取消資格的案例。"
 
 #: templates/2025/wildcard_regulation.html:147
 msgid "録音方法"
-msgstr "रिकॉर्डिंग विधि"
+msgstr "錄音方法"
 
 #: templates/2025/wildcard_regulation.html:149
 msgid "カメラにはっきり映っていること (マスクや視覚効果で顔や口を覆わないこと)"
-msgstr ""
-"यह सुनिश्चित करें कि कैमरा स्पष्ट रूप से दिखाई दे (चेहरे या मुंह को मास्क या"
-" दृश्य प्रभावों से न ढकें)"
+msgstr "喺鏡頭前要清晰可見（切勿用口罩或者視覺效果遮擋面部同口部）"
 
 #: templates/2025/wildcard_regulation.html:150
 msgid "リップシンクやその他のビデオ技術は禁止"
-msgstr "लिप सिंक और अन्य वीडियो तकनीकें प्रतिबंधित हैं"
+msgstr "禁止唇同步和其他影片技術"
 
 #: templates/2025/wildcard_regulation.html:151
 msgid "撮影と録音は、同時に行うこと"
-msgstr "शूटिंग और रिकॉर्डिंग एक साथ करें"
+msgstr "影片同錄音要同時進行。"
 
 #: templates/2025/wildcard_regulation.html:152
 msgid "基本的なダイナミック (コンプレッション)、EQ プラグイン、リバーブは使用可能。ただし、録音自体は生の状態で行い、後で編集すること"
-msgstr ""
-"मूलभूत डायनामिक्स (कम्प्रेशन), EQ प्लग-इन, और रिवर्ब उपलब्ध हैं। हालांकि, "
-"रिकॉर्डिंग को कच्चा ही लिया जाएगा और बाद में संपादित किया जाएगा।"
+msgstr "可以用基本嘅動態處理（壓縮）、EQ 插件同混響效果。不過，錄音本身一定要用原聲錄製，之後先可以編輯。"
 
 #: templates/2025/wildcard_regulation.html:153
 msgid "キックとスネアに異なる EQ やコンプレッションを施すなどの自動処理は禁止"
-msgstr ""
-"किक और स्नैयर पर अलग-अलग EQ और कम्प्रेशन जैसे स्वचालित प्रसंस्करण निषिद्ध "
-"है।"
+msgstr "禁止對踢鼓和底鼓進行不同的 EQ 或壓縮等自動處理。"
 
 #: templates/2025/wildcard_regulation.html:154
 msgid "録音全体を同じように処理すること"
-msgstr "पूरी रिकॉर्डिंग को एक ही तरह से संसाधित करना"
+msgstr "以相同方式處理整個錄音"
 
 #: templates/2025/wildcard_regulation.html:155
 msgid "歪み、遅延、その他の動的処理、周波数歪み効果は禁止"
-msgstr ""
-"विकृति, विलंब, अन्य गतिशील प्रसंस्करण, और आवृत्ति विरूपण प्रभाव निषिद्ध हैं।"
+msgstr "禁止使用失真、延遲、其他動態處理同頻率失真效果"
 
 #: templates/2025/wildcard_regulation.html:156
 msgid "上記ルールについて、不正行為の疑いがある場合、Wildcard作成に使ったファイルの追加提出を求められる場合あり"
-msgstr ""
-"यदि उपरोक्त नियम के संबंध में कदाचार का संदेह है, तो वाइल्डकार्ड बनाने के "
-"लिए उपयोग की गई फ़ाइलों को अतिरिक्त रूप से जमा करने का अनुरोध किया जा सकता "
-"है।"
+msgstr "關於上述規則，若懷疑有不當行為，可能會被要求額外提交用於Wildcard製作的文件。"
 
 #: templates/2025/wildcard_regulation.html:159
 msgid "提出方法"
-msgstr "प्रस्तुत करने का तरीका"
+msgstr "提交方法"
 
 #: templates/2025/wildcard_regulation.html:161
 msgid "WildcardをYouTubeにアップロード"
-msgstr "YouTube पर वाइल्डकार्ड अपलोड करें"
+msgstr "將Wildcard上傳到YouTube"
 
 #: templates/2025/wildcard_regulation.html:162
 #: templates/2025/wildcard_regulation.html:256
 msgid "Swissbeatbox公式サイトにある申請フォームで提出"
-msgstr "Swissbeatbox वेबसाइट पर मौजूद आवेदन फॉर्म जमा करें।"
+msgstr "提交 Swissbeatbox 官方網站上的申請表格"
 
 #: templates/2025/wildcard_regulation.html:165
 msgid "上記2つが両方できていない場合は、失格"
-msgstr "यदि उपरोक्त दोनों में से कोई भी काम नहीं कर रहा है, तो अयोग्य।"
+msgstr "如果上述兩者都沒有做到，則取消資格"
 
 #: templates/2025/wildcard_regulation.html:168
 #: templates/2025/wildcard_regulation.html:169
@@ -1129,378 +1061,351 @@ msgstr "यदि उपरोक्त दोनों में से को�
 #: templates/2025/wildcard_regulation.html:171
 #: templates/2025/wildcard_regulation.html:172
 msgid "毎年必ず、申請フォーム入力忘れによる失格者が発生します！！！"
-msgstr ""
-"प्रति वर्ष, आवेदन फार्म भरने में चूक के कारण हमेशा अयोग्य घोषित लोग होते "
-"हैं!!!"
+msgstr "每年都一定會發生因申請表格填寫錯誤而導致的失格者！！！"
 
 #: templates/2025/wildcard_regulation.html:174
 msgid "ぜひここのスクリーンショットをとってSNSで拡散してください。推しが失格にならないために..."
-msgstr ""
-"कृपया यहाँ स्क्रीनशॉट लें और इसे सोशल मीडिया पर फैलाएँ। मेरे पसंदीदा को "
-"अयोग्य होने से बचाने के लिए..."
+msgstr "建議將此部分截圖並在社交媒體分享，以免您支持的選手因此而被取消資格。"
 
 #: templates/2025/wildcard_regulation.html:176
 msgid "生のオーディオと生のビデオ (カメラのオーディオを含む) の提出が必要"
-msgstr ""
-"\"कच्चे ऑडियो और कच्चे वीडियो (कैमरे ऑडियो सहित) प्रस्तुत करने की आवश्यकता "
-"है"
+msgstr "需要提交原始音頻和原始視頻（包括攝像頭音頻）"
 
 #: templates/2025/wildcard_regulation.html:177
 msgid "Solo以外の全部門は、録画中のスクリーンキャプチャの提出も必要"
-msgstr ""
-"सोल के अलावा सभी विभागों को रिकॉर्डिंग के दौरान स्क्रीन कैप्चर जमा करने की "
-"भी आवश्यकता होती है।"
+msgstr "除了Solo以外的所有部門，也需要提交錄影螢幕擷取畫面。"
 
 #: templates/2025/wildcard_regulation.html:178
 msgid "上記2つが無い場合は、失格"
-msgstr "यदि उपरोक्त दो नहीं हैं, तो अयोग्य।"
+msgstr "如果沒有上述兩者，將被取消資格"
 
 #: templates/2025/wildcard_regulation.html:181
 #: templates/2025/wildcard_regulation.html:258
 msgid "Wildcard提出は一度のみ。一度提出したら、後から別のWildcardを提出することはできない"
-msgstr ""
-"विल্ডकार्ड का एक ही बार प्रस्ताव किया जा सकता है। एक बार सबमिट करने के बाद, "
-"आप बाद में दूसरा वाइल्डकार्ड सबमिट नहीं कर सकते।"
+msgstr "Wildcard 提案只可以提交一次。提交後，不可再提交另一個 Wildcard 提案。"
 
 #: templates/2025/wildcard_regulation.html:182
 msgid "誤って一度提出したWildcardを削除した場合、失格"
-msgstr ""
-"यदि आप गलती से एक बार सबमिट किए गए वाइल्डकार्ड को हटा देते हैं, तो आप अयोग्य"
-" हो जाएंगे।"
+msgstr "如果錯誤地刪除提交過的 Wildcard，將會被取消資格。"
 
 #: templates/2025/wildcard_regulation.html:184
 msgid "このルールは、GBB 2019で発生したトラブルの対策として設けられている"
-msgstr ""
-"यह नियम जीबीबी 2019 में हुई समस्या के समाधान के तौर पर स्थापित किया गया है।"
+msgstr "這條規則是作為GBB 2019年發生的問題的對策而制定的。"
 
 #: templates/2025/wildcard_regulation.html:234
 #: templates/2025/wildcard_regulation.html:240
 msgid "デバイスルール"
-msgstr "डिवाइस नियम"
+msgstr "裝置規則"
 
 #: templates/2025/wildcard_regulation.html:236
 msgid "MIDIコントローラーの使用は禁止"
-msgstr "MIDI कंट्रोलर का उपयोग प्रतिबंधित है।"
+msgstr "禁止使用MIDI控制器"
 
 #: templates/2025/wildcard_regulation.html:237
 msgid "マシン内の追加ケーブルは使用可能 ケーブルはデバイスではないとみなされる"
-msgstr ""
-"मशीन के अंदर अतिरिक्त केबल उपलब्ध हैं। केबल को उपकरण नहीं माना जाता है।"
+msgstr "機器內的其他電纜可用。 電纜不被視為設備。"
 
 #: templates/2025/wildcard_regulation.html:242
 msgid "Loopstation単体での出場は禁止"
-msgstr "लूपस्टेशन का उपयोग करके एकल प्रतिस्पर्धा प्रतिबंधित है"
+msgstr "禁止單獨使用 Loop Station 參賽"
 
 #: templates/2025/wildcard_regulation.html:243
 msgid "事前にデバイス構成をSUPPORT@swissbeatbox.comへ申請すること"
-msgstr ""
-"पहले से SUPPORT@swissbeatbox.com पर डिवाइस कॉन्फ़िगरेशन का अनुरोध करें।"
+msgstr "事先向SUPPORT@swissbeatbox.com申請設備配置。"
 
 #: templates/2025/wildcard_regulation.html:244
 msgid "ボイスソース、ボイストリガーのみ"
-msgstr "सिर्फ वॉयस सोर्स, वॉयस ट्रिगर"
+msgstr "只限聲音來源及聲音觸發器"
 
 #: templates/2025/wildcard_regulation.html:245
 msgid "事前に録音されたサンプルは使用禁止"
-msgstr "पहले से रिकॉर्ड किए गए नमूनों का उपयोग प्रतिबंधित है।"
+msgstr "禁止使用預先錄製的樣本。"
 
 #: templates/2025/wildcard_regulation.html:246
 msgid "FOH (ミキシング デスク) または録音への出力はステレオ信号である必要があり、マルチチャンネル出力は禁止"
-msgstr ""
-"FOH (मिक्सिंग डेस्क) या रिकॉर्डिंग में आउटपुट स्टीरियो सिग्नल होना चाहिए, "
-"मल्टीचैनल आउटपुट निषिद्ध है।"
+msgstr "FOH（混音台）或者錄音嘅輸出必須係立體聲信號，唔可以用多聲道輸出"
 
 #: templates/2025/wildcard_regulation.html:257
 msgid "Wildcard動画の作成にあたり使用したすべてのファイルを、バックアップ含め保存しておき、いつでも提出できるようにしておく"
-msgstr ""
-"वाइल्डकार्ड वीडियो बनाने में उपयोग की गई सभी फ़ाइलों को बैकअप सहित सहेजें और"
-" किसी भी समय प्रस्तुत करने के लिए तैयार रखें"
+msgstr "在製作Wildcard影片時使用的所有檔案，包括備份，都應保存並隨時準備提交。"
 
 #: templates/2025/wildcard_regulation.html:260
 msgid "皆さんのWildcardを楽しみにしています！"
-msgstr "मैं आपके वाइल्डकार्ड का इंतजार कर रहा हूँ!"
+msgstr "我期待着大家的Wildcard！"
 
 #: templates/2025/wildcards.html:12
 #, python-brace-format
 msgid "各部門の詳細ルールに関しては、<a href=\"/{year}/rule\">ルール&審査員</a>をご確認ください。"
-msgstr ""
-"प्रत्येक विभाग के विस्तृत नियमों के लिए, कृपया <a href=\"/{year}/rule\">नियम"
-" और न्यायाधीश</a> देखें।"
+msgstr "有關各部門的詳細規則，請參閱<a href=\"/{year}/rule\">規則&評審</a>。"
 
 #: templates/common/404.html:13
 msgid "まもなくトップページへリダイレクトされます"
-msgstr "शीर्ष पृष्ठ पर शीघ्र ही रीडायरेक्ट किया जाएगा।"
+msgstr "即將重新導向至首頁"
 
 #: templates/common/404.html:13
 msgid "リダイレクトされない場合、以下のボタンをご利用ください"
-msgstr ""
-"यदि पुनर्निर्देशित नहीं किया जाता है, तो नीचे दिए गए बटन का उपयोग करें।"
+msgstr "如果未重定向，請使用以下按鈕。"
 
 #: templates/common/404.html:16
 msgid "トップページ"
-msgstr "शीर्ष पृष्ठ"
+msgstr "首頁"
 
 #: templates/common/japan.html:66
 msgid "日本代表なし"
-msgstr "कोई अनुवाद नहीं"
+msgstr "沒有日本代表"
 
 #: templates/common/japan.html:72
 msgid "Wildcard順位"
-msgstr "वाइल्डकार्ड रैंकिंग"
+msgstr "外卡排名"
 
 #: templates/common/japan.html:75 templates/common/participants.html:105
 #: templates/common/result.html:88
 msgid "出場権詳細"
-msgstr "विस्तृत योग्यता"
+msgstr "參賽資格詳情"
 
 #: templates/common/japan.html:77 templates/common/participants.html:106
 #: templates/others/result_stream.html:18
 msgid "Wildcard結果発表日"
-msgstr "वाइल्डकार्ड परिणाम घोषणा तिथि"
+msgstr "外卡賽結果發表日"
 
 #: templates/common/japan.html:80 templates/common/participants.html:131
 msgid "出場者世界地図"
-msgstr "दुनिया का एथलीट मानचित्र"
+msgstr "參賽者世界地圖"
 
 #: templates/common/japan.html:81 templates/common/participants.html:132
 msgid "国旗をタップorクリックすると、詳細を確認できます。"
-msgstr "ध्वज को टैप या क्लिक करने पर, आप विवरण देख सकते हैं।"
+msgstr "撳一下國旗就可以睇到更詳細嘅資料。"
 
 #: templates/common/japan.html:85 templates/common/participants.html:143
 #: templates/common/result.html:79
 msgid "その他の年度を確認："
-msgstr "अन्य वर्षों की जाँच करें:"
+msgstr "查看其他年份："
 
 #: templates/common/participants.html:29
 msgid "シード権獲得者"
-msgstr "बीज अधिकार धारक"
+msgstr "種子資格獲得者"
 
 #: templates/common/participants.html:35
 #: templates/includes/participants_form.html:19
 msgid "出場者のみ"
-msgstr "सिर्फ प्रतिभागियों के लिए"
+msgstr "僅限參加者"
 
 #: templates/common/participants.html:37
 #: templates/includes/participants_form.html:20
 msgid "辞退者のみ"
-msgstr "केवल अस्वीकार करने वाले"
+msgstr "只有辭退者"
 
 #: templates/common/participants.html:45
 msgid "国"
-msgstr "देश"
+msgstr "國家"
 
 #: templates/common/participants.html:111
 #: templates/common/participants.html:114
 msgid "出場者検索"
-msgstr "खिलाड़ियों को खोजें"
+msgstr "參賽者搜尋"
 
 #: templates/common/participants.html:112
 msgid "出場者名を検索できます"
-msgstr "आप प्रतिभागियों के नामों की खोज कर सकते हैं"
+msgstr "你可以搜尋參賽者姓名。"
 
 #: templates/common/participants.html:112
 msgid "半角英数字推奨"
-msgstr "अक्षर और संख्याएँ"
+msgstr "建議使用半形英數"
 
 #: templates/common/participants.html:118
 msgid "検索結果"
-msgstr "खोज परिणाम"
+msgstr "搜尋結果"
 
 #: templates/common/participants.html:132
 msgid "全出場者を地図にマッピングしました。"
-msgstr "मैने सभी प्रतिभागियों को मानचित्र पर दर्शाया।"
+msgstr "我已將所有參賽者繪製在地圖上。"
 
 #: templates/common/participants.html:136
 msgid "国別出場者数"
-msgstr "देश द्वारा प्रतिभागियों की संख्या"
+msgstr "各國家/地區的參賽者人數"
 
 #: templates/common/participants.html:139
 msgid "カテゴリー別出場者数"
-msgstr "श्रेणी के अनुसार प्रतिभागियों की संख्या"
+msgstr "按類別劃分的參賽者人數"
 
 #: templates/common/result.html:12 templates/common/result.html:69
 #: templates/includes/participants_form.html:2
 msgid "部門選択"
-msgstr "विभाग चयन"
+msgstr "部門選擇"
 
 #: templates/common/result.html:27
 msgid "勝ち"
-msgstr "जीत"
+msgstr "贏"
 
 #: templates/common/result.html:29
 msgid "負け"
-msgstr "हार"
+msgstr "輸"
 
 #: templates/common/result.html:49
 msgid "順位"
-msgstr "रैंक"
+msgstr "排名"
 
 #: templates/includes/early_access.html:2
 #: templates/includes/popup_early_access.html:4
 msgid "先行公開中"
-msgstr "प्रारंभिक रिलीज"
+msgstr "搶先公開中"
 
 #: templates/includes/early_access.html:3
 #: templates/includes/popup_early_access.html:5
 #, python-brace-format
 msgid "ここは、まだ情報が少ないGBB {year} のページです"
-msgstr "यह GBB {year} का पृष्ठ है जहाँ अभी भी कम जानकारी है।"
+msgstr "這是一個關於GBB {year} 的頁面，資訊尚不充足"
 
 #: templates/includes/early_access.html:5
 #: templates/includes/popup_early_access.html:7
 #, python-brace-format
 msgid "GBB {year} の情報はこちら"
-msgstr "GBB {year} की जानकारी यहां है"
+msgstr "GBB {year} 的資訊在這裡"
 
 #: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
 msgid "終了しました"
-msgstr "समाप्त"
+msgstr "已完成"
 
 #: templates/includes/ended.html:3 templates/includes/popup_ended.html:5
 #, python-brace-format
 msgid "ここは、すでに終了したGBB {year} のページです"
-msgstr "यह पहले से ही समाप्त हो चुके GBB {year} का पृष्ठ है।"
+msgstr "這裡是已結束的GBB {year} 的頁面"
 
 #: templates/includes/ended.html:5 templates/includes/popup_ended.html:7
 msgid "GBB最新情報はこちら"
-msgstr "यहाँ GBB से नवीनतम जानकारी है"
+msgstr "此處是 GBB 最新資訊"
 
 #: templates/includes/participants_form.html:9
 msgid "情報選択"
-msgstr "जानकारी चयन"
+msgstr "資訊選擇"
 
 #: templates/includes/participants_form.html:11
 msgid "全出場者"
-msgstr "सभी प्रतियोगी"
+msgstr "所有参赛者"
 
 #: templates/includes/participants_form.html:13
 msgid "シード権"
-msgstr "सीड अधिकार"
+msgstr "種子資格"
 
 #: templates/includes/participants_form.html:16
 msgid "表示選択"
-msgstr "चुनने के लिए"
+msgstr "選擇選項"
 
 #: templates/includes/participants_form.html:18
 msgid "出場者・辞退者"
-msgstr "भाग लेने वाले और नाम वापस लेने वाले"
+msgstr "參賽者 / 退賽者"
 
 #: templates/includes/popup_no_info.html:3
 msgid "情報なし"
-msgstr "जानकारी नहीं"
+msgstr "無資訊"
 
 #: templates/includes/popup_no_info.html:7
 msgid "お探しの情報は、公式発表がまだ無いため、当サイトのどこにも存在しません。"
-msgstr ""
-"मुझे जिस जानकारी की तलाश है वह अभी तक आधिकारिक तौर पर घोषित नहीं की गई है, "
-"इसलिए यह हमारी वेबसाइट पर कहीं भी मौजूद नहीं है।"
+msgstr "由於官方尚未發布相關資訊，因此在本網站上找不到您要尋找的內容。"
 
 #: templates/includes/popup_no_info.html:7
 msgid "公式発表をお待ちください。"
-msgstr "इंतजार करें आधिकारिक घोषणा।"
+msgstr "請等待官方公告。"
 
 #: templates/others/translation.html:10
 msgid "GBBINFO-JPNは、一部を除き、各ページの翻訳をAI Geminiを用いて提供しています。"
-msgstr ""
-"GBBINFO-JPN, कुछ को छोड़कर, प्रत्येक पृष्ठ का अनुवाद AI Gemini का उपयोग करके"
-" प्रदान करता है।"
+msgstr "GBBINFO-JPN 嘅部分頁面，除咗部分之外，都係用 AI Gemini 嚟提供翻譯。"
 
 #: templates/others/translation.html:11
 msgid "AIによる翻訳のため、誤りがある可能性があります。"
-msgstr "कृत्रिम बुद्धिमत्ता द्वारा अनुवाद के कारण त्रुटियाँ हो सकती हैं।"
+msgstr "由於是AI翻譯，可能存在錯誤。"
 
 #: templates/others/translation.html:12
 msgid ""
 "翻訳を提供しているページ・提供対象国は、以下の通りです。なお、提供対象国は、2025年1月1日以降の当サイトへのアクセス記録から、対応すべきと判断された国を選定しています。"
 msgstr ""
-"वह पृष्ठ/देश जहां अनुवाद प्रदान किया जाता है, इस प्रकार है। इसके अतिरिक्त, "
-"लक्षित देशों को 1 जनवरी, 2025 को या उसके बाद साइट पर एक्सेस रिकॉर्ड के आधार "
-"पर चुना जाएगा।"
+"我們提供翻譯的頁面和提供翻譯的國家/地區如下。 請注意，提供的國家/地區是根據 2025 年 1 月 1 "
+"日之後對我們網站的訪問記錄，並選擇被認為需要支持的國家/地區。"
 
 #: templates/others/translation.html:15
 msgid "対応年度：2024年以降"
-msgstr "प्रतिक्रिया वर्ष: 2024 और उसके बाद"
+msgstr "對應年份：2024年或之後"
 
 #: templates/others/translation.html:30
 msgid "提供対象国"
-msgstr "देश प्रदान करना"
+msgstr "提供國家"
 
 #: templates/others/translation.html:32
 msgid "日本"
-msgstr "जापान"
+msgstr "日本"
 
 #: templates/others/translation.html:33
 msgid "韓国"
-msgstr "कोरियाई"
+msgstr "韓國"
 
 #: templates/others/translation.html:34
-msgid "オーストラリア"
-msgstr "ऑस्ट्रेलिया"
+msgid "アメリカ"
+msgstr "美國"
 
 #: templates/others/translation.html:35
-msgid "アメリカ"
-msgstr "अमरीका"
+msgid "オーストラリア"
+msgstr "澳洲"
 
 #: templates/others/translation.html:36
-msgid "台湾"
-msgstr "ताइवान"
+msgid "ノルウェー"
+msgstr "挪威"
 
 #: templates/others/translation.html:37
-msgid "カナダ"
-msgstr "कनाडा"
+msgid "台湾"
+msgstr "台灣"
 
 #: templates/others/translation.html:38
 msgid "中国"
-msgstr "चीन"
+msgstr "中國"
 
 #: templates/others/translation.html:39
-msgid "マレーシア"
-msgstr "मलेशिया"
+msgid "カナダ"
+msgstr "加拿大"
 
 #: templates/others/translation.html:40
-msgid "フランス"
-msgstr "फ़्रांस"
+msgid "マレーシア"
+msgstr "馬來西亞"
 
 #: templates/others/translation.html:41
-msgid "ハンガリー"
-msgstr "हंगरी"
+msgid "フランス"
+msgstr "法國"
 
 #: templates/others/translation.html:42
-msgid "ドイツ"
-msgstr "जर्मनी"
+msgid "ハンガリー"
+msgstr "匈牙利"
 
 #: templates/others/translation.html:43
-msgid "インド"
-msgstr "भारत"
+msgid "シンガポール"
+msgstr "新加坡"
 
 #: templates/others/translation.html:44
 msgid "香港"
-msgstr "हाँगकाँग"
+msgstr "香港"
 
 #: templates/others/translation.html:45
-msgid "シンガポール"
-msgstr "सिंगापुर"
+msgid "ドイツ"
+msgstr "德國"
 
 #: templates/others/translation.html:46
-msgid "スイス"
-msgstr "स्विट्जरलैंड"
+msgid "インド"
+msgstr "印度"
 
 #: templates/others/translation.html:47
 msgid "イギリス"
-msgstr "यूनाइटेड किंगडम"
+msgstr "英國"
 
 #: templates/others/translation.html:48
+msgid "スイス"
+msgstr "瑞士"
+
+#: templates/others/translation.html:49
 msgid "ニュージーランド"
-msgstr "न्यूजीलैंड"
+msgstr "紐西蘭"
 
-#: templates/others/translation.html:52
+#: templates/others/translation.html:53
 msgid "上記の提供対象国で話されている言語のうち、AI翻訳が可能な言語に対応しています。なお、提供対象国は、アクセス状況に応じて随時追加予定です。"
-msgstr ""
-"उपरोक्त देशों में बोली जाने वाली भाषाओं में से, यह उन भाषाओं का समर्थन करता "
-"है जिनमें एआई अनुवाद संभव है। कृपया ध्यान दें कि देशों को एक्सेस स्थिति के "
-"आधार पर समय-समय पर जोड़ा जाएगा।"
+msgstr "本公司的人工智能翻譯支援上述國家/地區使用的語言。 請注意，可用的國家/地區將根據存取情況隨時添加。"
 
-#: templates/others/translation.html:54
+#: templates/others/translation.html:55
 msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
-msgstr ""
-"वह पृष्ठ जो अनुवाद प्रदान नहीं करते हैं, मूल जापानी में प्रदर्शित होंगे।"
+msgstr "未提供翻譯的頁面會以原文日語顯示。"
