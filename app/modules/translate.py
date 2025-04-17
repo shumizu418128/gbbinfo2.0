@@ -34,20 +34,8 @@ SAFETY_SETTINGS = [
     },
 ]
 
-BASE_DIR = os.path.abspath("app")
-LOCALE_DIR = os.path.join(BASE_DIR, "translations")
-POT_FILE = os.path.join(BASE_DIR, "messages.pot")
-CONFIG_FILE = os.path.join(BASE_DIR, "babel.cfg")
-LANGUAGES = [
-    d for d in os.listdir(LOCALE_DIR) if os.path.isdir(os.path.join(LOCALE_DIR, d))
-]
-API_KEY = os.environ.get("GEMINI_API_KEY")
-
-prompt = "Translate the following text to {lang}. Return only the translated text: {source_text}"
-
 # 本当はconfig.pyにあるが、importの都合上ここに書く
 LANG_NAMES = {
-    "ja": "日本語",
     "ko": "한국어",
     "en": "English",
     "zh_Hant_TW": "繁體中文",
@@ -59,7 +47,19 @@ LANG_NAMES = {
     "de": "Deutsch",
     "no": "Norsk",
     "zh_Hant_HK": "廣東話",
+    "it": "Italiano",
+    "hi": "हिन्दी",
+    "th": "ไทย",
+    "es": "Español",
 }
+
+BASE_DIR = os.path.abspath("app")
+LOCALE_DIR = os.path.join(BASE_DIR, "translations")
+POT_FILE = os.path.join(BASE_DIR, "messages.pot")
+CONFIG_FILE = os.path.join(BASE_DIR, "babel.cfg")
+LANGUAGES = list(LANG_NAMES.keys())
+API_KEY = os.environ.get("GEMINI_API_KEY")
+prompt = "Translate the following text to {lang}. Return only the translated text, and do not translate the placeholders: {source_text}"
 
 
 def extract_placeholders(text):
@@ -140,6 +140,13 @@ def translate():
 
     for lang in LANGUAGES:
         po_file_path = os.path.join(LOCALE_DIR, lang, "LC_MESSAGES", "messages.po")
+
+        # ファイルが存在しない場合は新規作成
+        if not os.path.exists(po_file_path):
+            os.system(
+                f"cd {BASE_DIR} && pybabel init -i {POT_FILE} -d {LOCALE_DIR} -l {lang}"
+            )
+
         po = polib.pofile(po_file_path)
 
         # 既存の翻訳のプレースホルダーを検証
@@ -163,7 +170,7 @@ def translate():
 
             # geminiチャットを開始
             while True:
-                time.sleep(1.5)
+                time.sleep(1.6)
                 try:
                     # geminiに翻訳を依頼
                     chat = model.start_chat()
@@ -184,6 +191,12 @@ def translate():
                         if "fuzzy" in entry.flags:
                             entry.flags.remove("fuzzy")
                         break
+
+                    else:
+                        print(
+                            "プレースホルダーが一致しません。再試行します。", flush=True
+                        )
+                        print(translation, flush=True)
 
                 except Exception as e:
                     _, _, exc_tb = sys.exc_info()

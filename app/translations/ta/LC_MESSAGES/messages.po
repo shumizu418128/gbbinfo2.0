@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-16 18:13+0900\n"
+"POT-Creation-Date: 2025-04-17 23:59+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ta <LL@li.org>\n"
@@ -704,7 +704,8 @@ msgid "開催日"
 msgstr "நிகழ்ந்த தேதி"
 
 #: templates/2024/top.html:21 templates/2025/top.html:21
-msgid "は終了しました"
+#: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
+msgid "終了しました"
 msgstr "முடிந்தது"
 
 #: templates/2024/top.html:21 templates/2025/top.html:21
@@ -1370,10 +1371,6 @@ msgstr "இது இன்னும் தகவல் குறைவாக �
 msgid "GBB {year} の情報はこちら"
 msgstr "GBB {year} பற்றிய தகவல் இங்கே"
 
-#: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
-msgid "終了しました"
-msgstr "முடிந்தது"
-
 #: templates/includes/ended.html:3 templates/includes/popup_ended.html:5
 #, python-brace-format
 msgid "ここは、すでに終了したGBB {year} のページです"
@@ -1526,4 +1523,3 @@ msgstr ""
 msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
 msgstr ""
 "மொழிபெயர்ப்பு வழங்கப்படாத பக்கங்கள் அசல் ஜப்பானிய மொழியில் காட்டப்படும்."
-

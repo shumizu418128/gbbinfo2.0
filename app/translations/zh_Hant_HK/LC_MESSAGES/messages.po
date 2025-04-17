@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-16 18:13+0900\n"
+"POT-Creation-Date: 2025-04-17 23:59+0900\n"
 "PO-Revision-Date: 2025-04-16 11:54+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_Hant_HK <LL@li.org>\n"
@@ -678,7 +678,8 @@ msgid "開催日"
 msgstr "舉行日期"
 
 #: templates/2024/top.html:21 templates/2025/top.html:21
-msgid "は終了しました"
+#: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
+msgid "終了しました"
 msgstr "已完成"
 
 #: templates/2024/top.html:21 templates/2025/top.html:21
@@ -1262,10 +1263,6 @@ msgstr "這是一個關於GBB {year} 的頁面，資訊尚不充足"
 msgid "GBB {year} の情報はこちら"
 msgstr "GBB {year} 的資訊在這裡"
 
-#: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
-msgid "終了しました"
-msgstr "已完成"
-
 #: templates/includes/ended.html:3 templates/includes/popup_ended.html:5
 #, python-brace-format
 msgid "ここは、すでに終了したGBB {year} のページです"
@@ -1409,4 +1406,3 @@ msgstr "本公司的人工智能翻譯支援上述國家/地區使用的語言�
 #: templates/others/translation.html:55
 msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
 msgstr "未提供翻譯的頁面會以原文日語顯示。"
-

@@ -15,6 +15,10 @@ LANG_NAMES = {
     "de": "Deutsch",
     "no": "Norsk",
     "zh_Hant_HK": "廣東話",
+    "it": "Italiano",
+    "hi": "हिन्दी",
+    "th": "ไทย",
+    "es": "Español",
 }
 AVAILABLE_LANGS = list(LANG_NAMES.keys())
 

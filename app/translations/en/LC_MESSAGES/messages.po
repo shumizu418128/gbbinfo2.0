@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-16 18:13+0900\n"
+"POT-Creation-Date: 2025-04-17 23:59+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -172,7 +172,7 @@ msgstr "Results"
 
 #: templates/base.html:143
 msgid "年度選択"
-msgstr "Year Selection"
+msgstr "Year"
 
 #: templates/base.html:188
 msgid "GBBまでの残り時間"
@@ -703,8 +703,9 @@ msgid "開催日"
 msgstr "Event Date"
 
 #: templates/2024/top.html:21 templates/2025/top.html:21
-msgid "は終了しました"
-msgstr "has ended"
+#: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
+msgid "終了しました"
+msgstr "ended"
 
 #: templates/2024/top.html:21 templates/2025/top.html:21
 msgid "ページ 先行公開中！"
@@ -1355,10 +1356,6 @@ msgstr ""
 msgid "GBB {year} の情報はこちら"
 msgstr "Information about GBB {year} can be found here."
 
-#: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
-msgid "終了しました"
-msgstr "ended"
-
 #: templates/includes/ended.html:3 templates/includes/popup_ended.html:5
 #, python-brace-format
 msgid "ここは、すでに終了したGBB {year} のページです"
@@ -1513,4 +1510,3 @@ msgid "翻訳を提供していないページは、原文である日本語で�
 msgstr ""
 "Pages that do not provide translations are displayed in the original "
 "Japanese."
-

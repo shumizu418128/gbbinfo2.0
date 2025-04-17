@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-16 18:13+0900\n"
+"POT-Creation-Date: 2025-04-17 23:59+0900\n"
 "PO-Revision-Date: 2025-03-07 00:17+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ms <LL@li.org>\n"
@@ -702,8 +702,9 @@ msgid "開催日"
 msgstr "Tarikh"
 
 #: templates/2024/top.html:21 templates/2025/top.html:21
-msgid "は終了しました"
-msgstr "Telah selesai"
+#: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
+msgid "終了しました"
+msgstr "Selesai"
 
 #: templates/2024/top.html:21 templates/2025/top.html:21
 msgid "ページ 先行公開中！"
@@ -1363,10 +1364,6 @@ msgstr ""
 msgid "GBB {year} の情報はこちら"
 msgstr "Maklumat GBB {year} ada di sini"
 
-#: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
-msgid "終了しました"
-msgstr "Selesai"
-
 #: templates/includes/ended.html:3 templates/includes/popup_ended.html:5
 #, python-brace-format
 msgid "ここは、すでに終了したGBB {year} のページです"
@@ -1521,4 +1518,3 @@ msgid "翻訳を提供していないページは、原文である日本語で�
 msgstr ""
 "Laman yang tidak menyediakan terjemahan dipaparkan dalam bahasa asalnya, "
 "iaitu bahasa Jepun."
-
