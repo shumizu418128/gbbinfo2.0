@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-17 23:59+0900\n"
+"POT-Creation-Date: 2025-04-18 17:16+0900\n"
 "PO-Revision-Date: 2025-04-17 22:43+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: it <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:251 templates/base.html:115
 #: templates/base.html:140 templates/base.html:227
 msgid "これだけガイド"
-msgstr "Guida essenziale"
+msgstr "Guida"
 
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
