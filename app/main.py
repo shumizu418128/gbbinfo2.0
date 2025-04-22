@@ -163,6 +163,7 @@ def inject_variables():
         lang_names=LANG_NAMES,
         last_updated=LAST_UPDATED,
         current_url=g.current_url,
+        language=session.get("language"),
     )
 
 
@@ -439,6 +440,38 @@ def japan(year: int):
 
     return render_template(
         "/common/japan.html",
+        participants=participants_list,
+        year=year,
+        is_latest_year=is_latest_year(year),
+        is_early_access=is_early_access(year),
+    )
+
+
+####################################################################
+# MARK: 韓国代表
+####################################################################
+@sitemapper.include(
+    changefreq="yearly", priority=0.8, url_variables={"year": AVAILABLE_YEARS}
+)
+@app.route("/<int:year>/korea")
+def korea(year: int):
+    """
+    指定された年度の韓国代表の出場者一覧を表示します。
+
+    :param year: 表示する年度
+    :return: 韓国代表のHTMLテンプレート
+    """
+    # 2022年度の場合はトップページへリダイレクト
+    if year == 2022:
+        return redirect(url_for("content", year=year, content="top"))
+
+    # 参加者リストを取得（韓国のISOコードは410）
+    participants_list = get_participants_list(
+        year=year, category="all", ticket_class="all", cancel="show", iso_code=410
+    )
+
+    return render_template(
+        "/common/korea.html",
         participants=participants_list,
         year=year,
         is_latest_year=is_latest_year(year),
