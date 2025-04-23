@@ -143,9 +143,9 @@ CONTENT_OTHERS = [content.replace(".html", "") for content in CONTENT_OTHERS]
 def set_request_data():
     """
     リクエストごとに実行される関数。
-    リクエストのURLをグローバル変数に保存します。
 
-    :return: なし
+    Returns:
+        None
     """
     g.current_url = request.path
 
@@ -155,7 +155,8 @@ def inject_variables():
     """
     すべてのページに送る共通変数を設定します。
 
-    :return: 共通変数
+    Returns:
+        dict: 共通変数
     """
     return dict(
         available_years=AVAILABLE_YEARS,
@@ -176,8 +177,11 @@ def is_latest_year(year):
     """
     指定された年度が最新年度または今年であるかを判定します。
 
-    :param year: 判定する年度
-    :return: 最新年度または今年の場合はTrue、それ以外はFalse
+    Args:
+        year (int): 判定する年度
+
+    Returns:
+        bool: 最新年度または今年の場合はTrue、それ以外はFalse
     """
     dt_now = datetime.now()
     now = dt_now.year
@@ -188,8 +192,11 @@ def is_early_access(year):
     """
     指定された年度が、試験公開年度かを判定します。
 
-    :param year: 判定する年度
-    :return: 試験公開年度の場合はTrue、それ以外はFalse
+    Args:
+        year (int): 判定する年度
+
+    Returns:
+        bool: 試験公開年度の場合はTrue、それ以外はFalse
     """
     dt_now = datetime.now()
     now = dt_now.year
@@ -199,11 +206,12 @@ def is_early_access(year):
 @babel.localeselector
 def get_locale():
     """
-    この関数は、ユーザーの言語設定を取得します。
+    ユーザーの言語設定を取得します。
     利用可能な言語の中から、セッションに保存された言語を優先的に返します。
     セッションに言語が保存されていない場合は、リクエストの受け入れ言語の中から最適な言語を選択します。
 
-    :return: ユーザーの言語設定
+    Returns:
+        str: ユーザーの言語設定
     """
     user_lang = session.get("language")
     return (
@@ -221,7 +229,8 @@ def lang():
     """
     言語を切り替えます。
 
-    :return: リダイレクト先のURL
+    Returns:
+        Response: リダイレクト先のURL
     """
     # クエリパラメータを取得
     lang = request.args.get("lang")
@@ -268,7 +277,8 @@ def route_top():
     トップページへのルーティングを処理します。
     今年度または最新年度にリダイレクトします。
 
-    :return: トップページへのリダイレクト
+    Returns:
+        Response: トップページへのリダイレクト
     """
     dt_now = datetime.now()
     now = dt_now.year
@@ -290,8 +300,11 @@ def world_map(year: int):
     指定された年度の世界地図を表示します。
     年度が指定されていない場合は最新年度を表示します。
 
-    :param year: 表示する年度
-    :return: 世界地図のHTMLテンプレート
+    Args:
+        year (int): 表示する年度
+
+    Returns:
+        Response: 世界地図のHTMLテンプレート
     """
 
     # 世界地図作成
@@ -306,8 +319,8 @@ def all_participants_map():
     """
     全年度の出場者の世界地図を表示します。
 
-    :param year: 表示する年度
-    :return: 世界地図のHTMLテンプレート
+    Returns:
+        Response: 世界地図のHTMLテンプレート
     """
     # mapを作るために必要な関数
     _ = total_participant_analysis()
@@ -327,8 +340,11 @@ def participants(year: int):
     指定された年度の出場者一覧を表示します。
     年度が指定されていない場合は最新年度を表示します。
 
-    :param year: 表示する年度
-    :return: 出場者一覧のHTMLテンプレート
+    Args:
+        year (int): 表示する年度
+
+    Returns:
+        Response: 出場者一覧のHTMLテンプレート
     """
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
@@ -426,8 +442,11 @@ def japan(year: int):
     """
     指定された年度の日本代表の出場者一覧を表示します。
 
-    :param year: 表示する年度
-    :return: 日本代表のHTMLテンプレート
+    Args:
+        year (int): 表示する年度
+
+    Returns:
+        Response: 日本代表のHTMLテンプレート
     """
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
@@ -458,8 +477,11 @@ def korea(year: int):
     """
     指定された年度の韓国代表の出場者一覧を表示します。
 
-    :param year: 表示する年度
-    :return: 韓国代表のHTMLテンプレート
+    Args:
+        year (int): 表示する年度
+
+    Returns:
+        Response: 韓国代表のHTMLテンプレート
     """
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
@@ -492,8 +514,11 @@ def result(year: int):
     結果ページを表示します。
     年度が指定されていない場合は最新年度を表示します。
 
-    :param year: 表示する年度
-    :return: 結果のHTMLテンプレート
+    Args:
+        year (int): 表示する年度
+
+    Returns:
+        Response: 結果のHTMLテンプレート
     """
     # 引数を取得
     category = request.args.get("category")
@@ -538,10 +563,11 @@ def result(year: int):
 @app.route("/result")
 def result_redirect():
     """
-    すでに廃止したリンクのリダイレクト
+    すでに廃止したリンクのリダイレクト。
     指定された年度の結果ページにリダイレクトします。
 
-    :return: 指定された年度の結果ページへのリダイレクト
+    Returns:
+        Response: 指定された年度の結果ページへのリダイレクト
     """
     # クエリパラメータを取得
     year = request.args.get("year")
@@ -565,8 +591,11 @@ def rule(year: int):
     指定された年度のルールを表示します。
     年度が指定されていない場合は最新年度を表示します。
 
-    :param year: 表示する年度
-    :return: ルールのHTMLテンプレート
+    Args:
+        year (int): 表示する年度
+
+    Returns:
+        Response: ルールのHTMLテンプレート
     """
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
@@ -609,9 +638,12 @@ def content(year: int, content: str):
     指定された年度とコンテンツのページを表示します。
     年度が指定されていない場合は最新年度を表示します。
 
-    :param year: 表示する年度
-    :param content: 表示するコンテンツ
-    :return: コンテンツのHTMLテンプレート
+    Args:
+        year (int): 表示する年度
+        content (str): 表示するコンテンツ
+
+    Returns:
+        Response: コンテンツのHTMLテンプレート
     """
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022 and content != "top":
@@ -642,8 +674,11 @@ def others(content: str):
     """
     その他のページを表示します。
 
-    :param content: 表示するコンテンツ
-    :return: その他のコンテンツのHTMLテンプレート
+    Args:
+        content (str): 表示するコンテンツ
+
+    Returns:
+        Response: その他のコンテンツのHTMLテンプレート
     """
     # 年度は最新に設定
     year = max(AVAILABLE_YEARS)
@@ -671,8 +706,11 @@ def search(year: int):
     """
     指定された年度に対して質問を検索します。
 
-    :param year: 検索する年度
-    :return: 検索結果のJSONレスポンス
+    Args:
+        year (int): 検索する年度
+
+    Returns:
+        Response: 検索結果のJSONレスポンス
     """
     if year == 2022:
         return jsonify({"url": "/2022/top"})
@@ -695,8 +733,11 @@ def search_participants_by_keyword(year: int):
     """
     指定された年度に対して出場者を検索します。
 
-    :param year: 検索する年度
-    :return: 検索結果のJSONレスポンス
+    Args:
+        year (int): 検索する年度
+
+    Returns:
+        Response: 検索結果のJSONレスポンス
     """
     # 出場者を取得
     keyword = request.json.get("keyword")
@@ -712,7 +753,8 @@ def search_suggestions():
     """
     入力に基づいて検索候補を返します。
 
-    :return: 検索候補のJSONレスポンス
+    Returns:
+        Response: 検索候補のJSONレスポンス
     """
     input = request.json.get("input")
     suggestions = gemini.search_suggestions(input)
@@ -728,8 +770,11 @@ def analyze_data_yearly(year: int):
     """
     データで見るGBBのページを表示します。
 
-    :param year: 表示する年度
-    :return: データで見るGBBのHTMLテンプレート
+    Args:
+        year (int): 表示する年度
+
+    Returns:
+        Response: データで見るGBBのHTMLテンプレート
     """
     yearly_analysis = yearly_participant_analysis(year=year)
 
@@ -742,8 +787,8 @@ def analyze_data_total():
     """
     データで見るGBBのページを表示します。
 
-    :param year: 表示する年度
-    :return: データで見るGBBのHTMLテンプレート
+    Returns:
+        Response: データで見るGBBのHTMLテンプレート
     """
     total_analysis = total_participant_analysis()
 
@@ -758,7 +803,8 @@ def discord():
     """
     Discordの設定ファイルを返します。
 
-    :return: Discord設定ファイル
+    Returns:
+        Response: Discord設定ファイル
     """
     return send_file(".well-known/discord")
 
@@ -769,7 +815,8 @@ def sitemap():
     """
     サイトマップを生成して返します。
 
-    :return: サイトマップのXML
+    Returns:
+        Response: サイトマップのXML
     """
     return sitemapper.generate()
 
@@ -779,7 +826,8 @@ def robots_txt():
     """
     robots.txtファイルを返します。
 
-    :return: robots.txtファイル
+    Returns:
+        Response: robots.txtファイル
     """
     return send_file("robots.txt", mimetype="text/plain")
 
@@ -789,7 +837,8 @@ def ads_txt():
     """
     ads.txtファイルを返します。
 
-    :return: ads.txtファイル
+    Returns:
+        Response: ads.txtファイル
     """
     return send_file("ads.txt", mimetype="text/plain")
 
@@ -799,7 +848,8 @@ def naver_verification():
     """
     NAVERの認証ファイルを返します。
 
-    :return: NAVERの認証ファイル
+    Returns:
+        Response: NAVERの認証ファイル
     """
     return send_file("naverc158f3394cb78ff00c17f0a687073317.html")
 
@@ -812,7 +862,8 @@ def favicon_ico():
     """
     favicon.icoファイルを返します。
 
-    :return: favicon.icoファイル
+    Returns:
+        Response: favicon.icoファイル
     """
     return send_file("favicon.ico", mimetype="image/vnd.microsoft.icon")
 
@@ -830,7 +881,8 @@ def apple_touch_icon():
     """
     Appleタッチアイコンを返します。
 
-    :return: Appleタッチアイコンの画像
+    Returns:
+        Response: Appleタッチアイコンの画像
     """
     return send_file("icon_512.png", mimetype="image/png")
 
@@ -843,7 +895,8 @@ def manifest():
     """
     PWAのマニフェストファイルを返します。
 
-    :return: マニフェストファイル
+    Returns:
+        Response: マニフェストファイル
     """
     return send_file("manifest.json", mimetype="application/manifest+json")
 
@@ -853,7 +906,8 @@ def service_worker():
     """
     サービスワーカーのJavaScriptファイルを返します。
 
-    :return: サービスワーカーのJavaScript
+    Returns:
+        Response: サービスワーカーのJavaScript
     """
     return send_file("service-worker.js", mimetype="application/javascript")
 
@@ -866,6 +920,10 @@ def page_not_found(_):
     """
     404エラーページを表示します。
 
-    :return: 404エラーページのHTMLテンプレート
+    Args:
+        _ (Exception): 例外オブジェクト（未使用）
+
+    Returns:
+        tuple: 404エラーページのHTMLテンプレートとステータスコード
     """
     return render_template("/common/404.html"), 404
