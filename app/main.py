@@ -143,6 +143,8 @@ CONTENT_OTHERS = [content.replace(".html", "") for content in CONTENT_OTHERS]
 def set_request_data():
     """
     リクエストごとに実行される関数。
+    URLを取得して、グローバル変数に保存します。
+    これにより、リクエストのURLをグローバルにアクセスできるようにします。
 
     Returns:
         None
