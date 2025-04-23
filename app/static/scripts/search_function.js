@@ -2,8 +2,32 @@
 function handleSearchFormSubmit(event) {
     event.preventDefault();
     const formData = new FormData(this);
-    const question = formData.get('question');
+    const searchQuery = formData.get('question');
     const loadingElement = document.getElementById('loading');
+
+    // キーワードボタンのテキストと一致するかチェック
+    const keywordButtons = document.getElementById('keyword-buttons');
+    if (keywordButtons) {
+        // キーワードボタン内の全てのbuttonを取得
+        const buttons = keywordButtons.getElementsByTagName('button');
+        for (const button of buttons) {
+            // ボタンのテキストと検索クエリが一致する場合
+            if (button.textContent === searchQuery) {
+                // onclick属性から処理内容を取得して実行
+                const onclickAttr = button.getAttribute('onclick');
+                if (onclickAttr) {
+                    const match = onclickAttr.match(/showKeywordOptions\('(.+)'\)/);
+                    if (match) {
+                        const optionType = match[1];
+                        document.querySelector('.popup').style.display = 'block';
+                        document.querySelector('.background-popup-keyword').style.display = 'block';
+                        document.getElementById(`${optionType}Options`).style.display = 'block';
+                        return;
+                    }
+                }
+            }
+        }
+    }
 
     loadingElement.style.display = 'block';
 
@@ -160,6 +184,46 @@ function handleClickOutside(event) {
 function toggleMenu() {
     const menu = document.querySelector('.menu');
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+
+// キーワードオプションの表示処理
+function showKeywordOptions(type) {
+    const popup = document.querySelector('.popup');
+
+    // popup内の全てのdivを取得し、一旦全て非表示
+    const allOptions = popup.getElementsByTagName('div');
+    for (const option of allOptions) {
+        if (option.id && option.id.endsWith('Options')) {
+            option.style.display = 'none';
+        }
+    }
+
+    // 選択されたオプションを表示
+    const targetOptions = document.getElementById(type + 'Options');
+    if (targetOptions) {
+        targetOptions.style.display = 'block';
+    }
+
+    // ポップアップと背景を表示
+    popup.style.display = 'block';
+    document.querySelector('.background-popup-keyword').style.display = 'block';
+}
+
+// キーワードオプションを閉じる処理
+function closeKeywordOptions() {
+    const popup = document.querySelector('.popup');
+
+    // popup内の全てのdivを非表示
+    const allOptions = popup.getElementsByTagName('div');
+    for (const option of allOptions) {
+        if (option.id && option.id.endsWith('Options')) {
+            option.style.display = 'none';
+        }
+    }
+
+    // ポップアップと背景を非表示
+    popup.style.display = 'none';
+    document.querySelector('.background-popup-keyword').style.display = 'none';
 }
 
 // イベントリスナーの登録
