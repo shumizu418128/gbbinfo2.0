@@ -23,7 +23,6 @@
     "トーナメント": "/__year__/result",
     "優勝": "/__year__/result",
     "優勝者": "/__year__/result",
-    "結果": "/__year__/result",
     "rofu": "/__year__/participants?scroll=search_participants&value=ROFU",
     "ロフ": "/__year__/participants?scroll=search_participants&value=ROFU",
     "hikakin": "/__year__/participants?scroll=search_participants&value=HIKAKIN",
