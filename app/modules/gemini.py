@@ -308,10 +308,10 @@ def search(year: int, question: str):
     return {"url": response_url}
 
 
-# MARK: 出場者名類似度検索
+# MARK: サイト内検索候補
 def search_suggestions(input: str):
     """
-    ユーザーの入力に基づいて類似する出場者名のリストを取得します。
+    ユーザーの入力に基づいて、サイト内の検索候補を生成します。
 
     Args:
         input (str): ユーザーからの入力。
@@ -334,9 +334,9 @@ def search_suggestions(input: str):
 
     # rapidfuzzで類似度を計算し、上位3件を取得
     random.shuffle(cache_text)
-    suggestions = process.extract(input, cache_text, limit=3)
+    suggestions = process.extract(input, cache_text, limit=3, score_cutoff=1)
 
-    # rapidfuzzの結果から名前のリストを抽出
+    # rapidfuzzの結果から検索候補を取得
     suggestions = [result[0] for result in suggestions]
 
     # 結果を返す
