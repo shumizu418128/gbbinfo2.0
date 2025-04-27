@@ -4,7 +4,9 @@ import sys
 import time
 
 import google.generativeai as genai
+import pandas as pd
 import polib
+from googletrans import Translator
 from tqdm import tqdm
 
 SAFETY_SETTINGS = [
@@ -227,5 +229,51 @@ def translate():
     print("翻訳が完了しました！", flush=True)
 
 
+def translate_country_name(en_country_name: str, target_lang: str) -> str:
+    """
+    Google翻訳を使って国名を翻訳します。
+
+    Args:
+        country_name (str): 翻訳する国名（英語を想定）
+
+    Returns:
+        str: 翻訳された国名
+    """
+    translator = Translator()
+    translation = translator.translate(en_country_name, src="en", dest=target_lang)
+    return translation.text
+
+
+def add_country_translation():
+    """
+    database/country.csv に、LANGUAGES で指定された言語コードごとの国名翻訳列を追加します。
+
+    - 既に該当言語の列が存在する場合は何もせずスキップします。
+    - 存在しない場合は Google翻訳（英語→各言語）を用いて翻訳し、新しい列として追加します。
+    - 翻訳元は "en" 列の国名です。
+    """
+    # csvファイルを読み込む
+    country_csv = os.path.join(BASE_DIR, "database", "countries.csv")
+
+    # dataframeを作成
+    country_df = pd.read_csv(country_csv, encoding="utf-8")
+
+    # headersを取得
+    header_list = country_df.columns.tolist()
+
+    for language in tqdm(LANGUAGES, desc="言語ごとの国名翻訳処理"):
+        # ヘッダーが存在しない場合は追加
+        if language not in header_list:
+            country_df[language] = ""
+            for index, row in country_df.iterrows():
+                # 英語名はすべてあるので、それを翻訳する
+                en_country_name = row["en"]
+                country_df.at[index, language] = translate_country_name(en_country_name)
+
+    # 新しい列を追加したデータフレームを保存
+    country_df.to_csv(country_csv, index=False, encoding="utf-8")
+
+
 if __name__ == "__main__":
     translate()
+    add_country_translation()
