@@ -1,70 +1,70 @@
-iso_code,lat,lon,en,ja
-0,0.0,0.0,unknown,未定
-32,-34.6037,-58.3816,Argentina,アルゼンチン
-36,-35.2809,149.13,Australia,オーストラリア
-40,48.2082,16.3738,Austria,オーストリア
-31,40.3777,49.892,Azerbaijan,アゼルバイジャン
-56,50.8503,4.3517,Belgium,ベルギー
-76,-15.8267,-47.9218,Brazil,ブラジル
-100,42.6977,23.3219,Bulgaria,ブルガリア
-124,45.4215,-75.6972,Canada,カナダ
-152,-33.4489,-70.6693,Chile,チリ
-156,39.9042,116.4074,China,中国
-170,4.711,-74.0721,Colombia,コロンビア
-191,45.815,15.9819,Croatia,クロアチア
-196,35.1856,33.3823,Cyprus,キプロス
-203,50.0755,14.4378,Czech,チェコ
-208,55.6761,12.5683,Denmark,デンマーク
-818,30.0444,31.2357,Egypt,エジプト
-233,59.437,24.7535,Estonia,エストニア
-246,60.1695,24.9354,Finland,フィンランド
-250,48.8566,2.3522,France,フランス
-276,52.52,13.405,Germany,ドイツ
-300,37.9838,23.7275,Greece,ギリシャ
-344,22.3193,114.1694,Hong Kong,香港
-348,47.4979,19.0402,Hungary,ハンガリー
-352,64.1355,-21.8954,Iceland,アイスランド
-356,28.6139,77.209,India,インド
-360,-6.2088,106.8456,Indonesia,インドネシア
-364,35.6892,51.389,Iran,イラン
-372,53.3498,-6.2603,Ireland,アイルランド
-376,31.0461,34.8516,Israel,イスラエル
-380,41.8719,12.5674,Italy,イタリア
-392,35.6895,139.6917,Japan,日本
-398,48.0196,66.9237,Kazakhstan,カザフスタン
-414,29.3759,47.9774,Kuwait,クウェート
-428,56.9496,24.1052,Latvia,ラトビア
-440,54.6872,25.2797,Lithuania,リトアニア
-442,49.6117,6.13,Luxembourg,ルクセンブルク
-458,3.139,101.6869,Malaysia,マレーシア
-470,35.9375,14.3754,Malta,マルタ
-484,19.4326,-99.1332,Mexico,メキシコ
-504,33.9716,-6.8498,Morocco,モロッコ
-516,-22.9576,18.4904,Namibia,ナミビア
-528,52.1326,5.2913,Netherlands,オランダ
-554,-41.2865,174.7762,New Zealand,ニュージーランド
-578,59.9139,10.7522,Norway,ノルウェー
-586,30.3753,69.3451,Pakistan,パキスタン
-608,14.5995,120.9842,Philippines,フィリピン
-616,52.2297,21.0122,Poland,ポーランド
-620,38.7223,-9.1393,Portugal,ポルトガル
-642,44.4268,26.1025,Romania,ルーマニア
-643,55.7558,37.6176,Russia,ロシア
-682,24.7136,46.6753,Saudi Arabia,サウジアラビア
-688,44.7866,20.4489,Serbia,セルビア
-702,1.3521,103.8198,Singapore,シンガポール
-703,48.1486,17.1077,Slovakia,スロバキア
-705,46.0569,14.5058,Slovenia,スロベニア
-710,-25.7479,28.2293,South Africa,南アフリカ
-410,37.5665,126.978,South Korea,韓国
-724,40.4168,-3.7038,Spain,スペイン
-752,59.3293,18.0686,Sweden,スウェーデン
-756,46.9481,7.4474,Switzerland,スイス
-158,25.0329,121.5654,Taiwan,台湾
-764,13.7563,100.5018,Thailand,タイ
-792,39.9334,32.8597,Turkey,トルコ
-804,48.3794,31.1656,Ukraine,ウクライナ
-826,51.5074,-0.1278,United Kingdom,イギリス
-840,38.9072,-77.0369,United States,アメリカ
-860,41.3775,64.5853,Uzbekistan,ウズベキスタン
-704,21.0285,105.8542,Vietnam,ベトナム
+iso_code,lat,lon,en,ja,zh_Hant_HK,ko,zh_Hant_TW,fr,zh_Hans_CN,ta,ms,de,no,it,hi,th,es
+0,0,0,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+32,-34.6037,-58.3816,Argentina,アルゼンチン,阿根廷,아르헨티나,阿根廷,Argentine,阿根廷,அர்ஜென்டினா,Argentína,Argentinien,Argentina,Argentina,अर्जेंटीना,อาร์เจนตินา,Argentina
+36,-35.2809,149.13,Australia,オーストラリア,澳洲,호주,澳大利亞,Australie,澳大利亚,ஆஸ்திரேலியா,Ausztrália,Australien,Australia,Australia,ऑस्ट्रेलिया,ออสเตรเลีย,Australia
+40,48.2082,16.3738,Austria,オーストリア,奧地利,오스트리아,奧地利,Autriche,奥地利,ஆஸ்திரியா,Ausztria,Österreich,Østerrike,Austria,ऑस्ट्रिया,ออสเตรีย,Austria
+31,40.3777,49.892,Azerbaijan,アゼルバイジャン,阿塞拜疆,아제르바이잔,亞塞拜然,Azerbaïdjan,阿塞拜疆,அஜர்பைஜான்,Azerbajdzsán,Aserbaidschan,Aserbajdsjan,Azerbaigian,अज़रबैजान,อาเซอร์ไบจาน,Azerbaiyán
+56,50.8503,4.3517,Belgium,ベルギー,比利時,벨기에,比利時,Belgique,比利时,பெல்ஜியம்,Belgium,Belgien,Belgia,Belgio,बेल्जियम,เบลเยียม,Bélgica
+76,-15.8267,-47.9218,Brazil,ブラジル,巴西,브라질,巴西,Brésil,巴西,பிரேசில்,Brazília,Brasilien,Brasil,Brasile,ब्राज़ील,บราซิล,Brasil
+100,42.6977,23.3219,Bulgaria,ブルガリア,保加利亞,불가리아,保加利亞,Bulgarie,保加利亚,பல்கேரியா,Bulgária,Bulgarien,Bulgaria,Bulgaria,बल्गारिया,บัลแกเรีย,Bulgaria
+124,45.4215,-75.6972,Canada,カナダ,加拿大,캐나다,加拿大,Canada,加拿大,கனடா,Kanada,Kanada,Canada,Canada,कनाडा,แคนาดา,Canadá
+152,-33.4489,-70.6693,Chile,チリ,智利,칠레,智利,Chili,智利,சிலி,Chile,Chile,Chile,Cile,चिली,ชิลี,Chile
+156,39.9042,116.4074,China,中国,中國,중국,中國,Chine,中国,சீனா,Kína,China,Kina,Cina,चीन,จีน,China
+170,4.711,-74.0721,Colombia,コロンビア,哥倫比亞,콜롬비아,哥倫比亞,Colombie,哥伦比亚,கொலம்பியா,Colombia,Kolumbien,Colombia,Colombia,कोलम्बिया,โคลอมเบีย,Colombia
+191,45.815,15.9819,Croatia,クロアチア,克羅地亞,크로아티아,克羅埃西亞,Croatie,克罗地亚,குரோஷியா,Horvátország,Kroatien,Kroatia,Croazia,क्रोएशिया,โครเอเชีย,Croacia
+196,35.1856,33.3823,Cyprus,キプロス,塞浦路斯,키프로스,賽普勒斯,Chypre,塞浦路斯,சைப்ரஸ்,Ciprus,Zypern,Kypros,Cipro,साइप्रस,ไซปรัส,Chipre
+203,50.0755,14.4378,Czech Republic,チェコ,捷克共和國,체코,捷克共和國,République tchèque,捷克共和国,செக் குடியரசு,Csehország,Tschechische Republik,Tsjekkia,Repubblica Ceca,चेक गणराज्य,สาธารณรัฐเช็ก,República Checa
+208,55.6761,12.5683,Denmark,デンマーク,丹麥,덴마크,丹麥,Danemark,丹麦,டென்மார்க்,Dánia,Dänemark,Danmark,Danimarca,डेनमार्क,เดนมาร์ก,Dinamarca
+818,30.0444,31.2357,Egypt,エジプト,埃及,이집트,埃及,Egypte,埃及,எகிப்து,Egyiptom,Ägypten,Egypt,Egitto,मिस्र,อียิปต์,Egipto
+233,59.437,24.7535,Estonia,エストニア,愛沙尼亞,에스토니아,愛沙尼亞,Estonie,爱沙尼亚,எஸ்டோனியா,Észtország,Estland,Estland,Estonia,एस्टोनिया,เอสโตเนีย,Estonia
+246,60.1695,24.9354,Finland,フィンランド,芬蘭,핀란드,芬蘭,Finlande,芬兰,பின்லாந்து,Finnország,Finnland,Finland,Finlandia,फिनलैंड,ฟินแลนด์,Finlandia
+250,48.8566,2.3522,France,フランス,法國,프랑스,法國,France,法国,பிரான்ஸ்,Franciaország,Frankreich,Frankrike,Francia,फ्रांस,ฝรั่งเศส,Francia
+276,52.52,13.405,Germany,ドイツ,德國,독일,德國,Allemagne,德国,ஜெர்மனி,Németország,Deutschland,Tyskland,Germania,जर्मनी,เยอรมนี,Alemania
+300,37.9838,23.7275,Greece,ギリシャ,希臘,그리스,希臘,Grèce,希腊,கிரீஸ்,Görögország,Griechenland,Hellas,Grecia,ग्रीस,กรีซ,Grecia
+344,22.3193,114.1694,Hong Kong,香港,香港,홍콩,香港,Hong Kong,香港,ஹாங்காங்,Hong Kong,Hongkong,Hong Kong,Hong Kong,हाँग काँग,ฮ่องกง,Hong Kong
+348,47.4979,19.0402,Hungary,ハンガリー,匈牙利,헝가리,匈牙利,Hongrie,匈牙利,ஹங்கேரி,Magyarország,Ungarn,Ungarn,Ungheria,हंगरी,ฮังการี,Hungría
+352,64.1355,-21.8954,Iceland,アイスランド,冰島,아이슬란드,冰島,Islande,冰岛,ஐஸ்லாந்து,Izland,Island,Island,Islanda,आइसलैंड,ไอซ์แลนด์,Islandia
+356,28.6139,77.209,India,インド,印度,인도,印度,Inde,印度,இந்தியா,India,Indien,India,India,भारत,อินเดีย,India
+360,-6.2088,106.8456,Indonesia,インドネシア,印尼,인도네시아,印度尼西亞,Indonésie,印度尼西亚,இந்தோனேசியா,Indonézia,Indonesien,Indonesia,Indonesia,इंडोनेशिया,อินโดนีเซีย,Indonesia
+364,35.6892,51.389,Iran,イラン,伊朗,이란,伊朗,L'Iran,伊朗,ஈரான்,Irán,Iran,Iran,Iran,ईरान,อิหร่าน,Irán
+372,53.3498,-6.2603,Ireland,アイルランド,愛爾蘭,아일랜드,愛爾蘭,Irlande,爱尔兰,அயர்லாந்து,Írország,Irland,Irland,Irlanda,आयरलैंड,ไอร์แลนด์,Irlanda
+376,31.0461,34.8516,Israel,イスラエル,以色列,이스라엘,以色列,Israël,以色列,இஸ்ரேல்,Izrael,Israel,Israel,Israele,इज़राइल,อิสราเอล,Israel
+380,41.8719,12.5674,Italy,イタリア,意大利,이탈리아,義大利,Italie,意大利,இத்தாலி,Olaszország,Italien,Italia,Italia,इटली,อิตาลี,Italia
+392,35.6895,139.6917,Japan,日本,日本,일본,日本,Japon,日本,ஜப்பான்,Japán,Japan,Japan,Giappone,जापान,ญี่ปุ่น,Japón
+398,48.0196,66.9237,Kazakhstan,カザフスタン,哈薩克,카자흐스탄,哈薩克,Kazakhstan,哈萨克斯坦,கஜகஸ்தான்,Kazahsztán,Kasachstan,Kasakhstan,Kazakistan,कज़ाकिस्तान,คาซัคสถาน,Kazajistán
+414,29.3759,47.9774,Kuwait,クウェート,科威特,쿠웨이트,科威特,Koweit,科威特,குவைத்,Kuvait,Kuwait,Kuwait,Kuwait,कुवैत,คูเวต,Kuwait
+428,56.9496,24.1052,Latvia,ラトビア,拉脫維亞,라트비아,拉脫維亞,Lettonie,拉脱维亚,லாட்வியா,Lettország,Lettland,Latvia,Lettonia,लातविया,ลัตเวีย,Letonia
+440,54.6872,25.2797,Lithuania,リトアニア,立陶宛,리투아니아,立陶宛,Lituanie,立陶宛,லிதுவேனியா,Litvánia,Litauen,Litauen,Lituania,लिथुआनिया,ลิทัวเนีย,Lituania
+442,49.6117,6.13,Luxembourg,ルクセンブルク,盧森堡,룩셈부르크,盧森堡,Luxembourg,卢森堡,லக்சம்பர்க்,Luxemburg,Luxemburg,Luxembourg,Lussemburgo,लक्समबर्ग,ลักเซมเบิร์ก,Luxemburgo
+458,3.139,101.6869,Malaysia,マレーシア,馬來西亞,말레이시아,馬來西亞,Malaisie,马来西亚,மலேசியா,Malaysia,Malaysia,Malaysia,Malesia,मलेशिया,มาเลเซีย,Malasia
+470,35.9375,14.3754,Malta,マルタ,馬耳他,몰타,馬爾他,Malte,马耳他,மால்டா,Málta,Malta,Malta,Malta,माल्टा,มอลตา,Malta
+484,19.4326,-99.1332,Mexico,メキシコ,墨西哥,멕시코,墨西哥,Mexique,墨西哥,மெக்ஸிகோ,Mexikó,Mexiko,Mexico,Messico,मेक्सिको,เม็กซิโก,México
+504,33.9716,-6.8498,Morocco,モロッコ,摩洛哥,모로코,摩洛哥,Maroc,摩洛哥,மொராக்கோ,Marokkó,Marokko,Marokko,Marocco,मोरक्को,โมร็อกโก,Marruecos
+516,-22.9576,18.4904,Namibia,ナミビア,納米比亞,나미비아,納米比亞,Namibie,纳米比亚,நமீபியா,Namíbia,Namibia,Namibia,Namibia,नामिविया,นามิเบีย,Namibia
+528,52.1326,5.2913,Netherlands,オランダ,荷蘭,네덜란드,荷蘭,Pays-Bas,荷兰,நெதர்லாந்து,Hollandia,Niederlande,Nederland,Paesi Bassi,नीदरलैंड्स,เนเธอร์แลนด์,Países Bajos
+554,-41.2865,174.7762,New Zealand,ニュージーランド,新西蘭,뉴질랜드,紐西蘭,Nouvelle-Zélande,新西兰,நியூசிலாந்து,Új-Zéland,Neuseeland,New Zealand,Nuova Zelanda,न्यूजीलैंड,นิวซีแลนด์,Nueva Zelanda
+578,59.9139,10.7522,Norway,ノルウェー,挪威,노르웨이,挪威,Norvège,挪威,நோர்வே,Norvégia,Norwegen,Norge,Norvegia,नॉर्वे,นอร์เวย์,Noruega
+586,30.3753,69.3451,Pakistan,パキスタン,巴基斯坦,파키스탄,巴基斯坦,Pakistan,巴基斯坦,பாகிஸ்தான்,Pakisztán,Pakistan,Pakistan,Pakistan,पाकिस्तान,ปากีสถาน,Pakistán
+608,14.5995,120.9842,Philippines,フィリピン,菲律賓,필리핀,菲律賓,Philippines,菲律宾,பிலிப்பைன்ஸ்,Fülöp-szigeteki,Philippinen,Filippinene,Filippine,फिलिपीन्स,ฟิลิปปินส์,Filipinas
+616,52.2297,21.0122,Poland,ポーランド,波蘭,폴란드,波蘭,Pologne,波兰,போலந்து,Lengyelország,Polen,Polen,Polonia,पोलैंड,โปแลนด์,Polonia
+620,38.7223,-9.1393,Portugal,ポルトガル,葡萄牙,포르투갈,葡萄牙,Portugal,葡萄牙,போர்ச்சுகல்,Portugália,Portugal,Portugal,Portogallo,पुर्तगाल,โปรตุเกส,Portugal
+642,44.4268,26.1025,Romania,ルーマニア,羅馬尼亞,루마니아,羅馬尼亞,Roumanie,罗马尼亚,ருமேனியா,Románia,Rumänien,Romania,Romania,रोमानिया,โรมาเนีย,Rumania
+643,55.7558,37.6176,Russia,ロシア,俄羅斯,러시아,俄羅斯,Russie,俄罗斯,ரஷ்யா,Oroszország,Russland,Russland,Russia,रूस,รัสเซีย,Rusia
+682,24.7136,46.6753,Saudi Arabia,サウジアラビア,沙特阿拉伯,사우디아라비아,沙烏地阿拉伯,Arabie Saoudite,沙特阿拉伯,சவுதி அரேபியா,Szaúd-Arábia,Saudi-Arabien,Saudi-Arabia,Arabia Saudita,सऊदी अरब,ซาอุดีอาระเบีย,Arabia Saudita
+688,44.7866,20.4489,Serbia,セルビア,塞爾維亞,세르비아,塞爾維亞,Serbie,塞尔维亚,செர்பியா,Szerbia,Serbien,Serbia,Serbia,सर्बिया,เซอร์เบีย,Serbia
+702,1.3521,103.8198,Singapore,シンガポール,新加坡,싱가포르,新加坡,Singapour,新加坡,சிங்கப்பூர்,Szingapúr,Singapur,Singapore,Singapore,सिंगापुर,สิงคโปร์,Singapur
+703,48.1486,17.1077,Slovakia,スロバキア,斯洛伐克,슬로바키아,斯洛伐克,Slovaquie,斯洛伐克,ஸ்லோவாக்கியா,Szlovákia,Slowakei,Slovakia,Slovacchia,स्लोवाकिया,สโลวาเกีย,Eslovaquia
+705,46.0569,14.5058,Slovenia,スロベニア,斯洛文尼亞,슬로베니아,斯洛維尼亞,Slovène,斯洛文尼亚,ஸ்லோவேனியா,Szlovénia,Slowenien,Slovenia,Slovenia,स्लोवेनिया,สโลวีเนีย,Eslovenia
+710,-25.7479,28.2293,South Africa,南アフリカ,南非,남아프리카,南非,Afrique du Sud,南非,தென்னாப்பிரிக்கா,Dél-Afrika,Südafrika,Sør-Afrika,Sudafrica,दक्षिण अफ्रीका,แอฟริกาใต้,Sudáfrica
+410,37.5665,126.978,South Korea,韓国,南韓,한국,韓國,Corée du Sud,韩国,தென் கொரியா,Dél-Korea,Südkorea,Sør-Korea,Corea del Sud,दक्षिण कोरिया,เกาหลีใต้,Corea del Sur
+724,40.4168,-3.7038,Spain,スペイン,西班牙,스페인,西班牙,Espagne,西班牙,ஸ்பெயின்,Spanyolország,Spanien,Spania,Spagna,स्पेन,สเปน,España
+752,59.3293,18.0686,Sweden,スウェーデン,瑞典,스웨덴,瑞典,Suède,瑞典,ஸ்வீடன்,Svédország,Schweden,Sverige,Svezia,स्वीडन,สวีเดน,Suecia
+756,46.9481,7.4474,Switzerland,スイス,瑞士,스위스,瑞士,Suisse,瑞士,சுவிட்சர்லாந்து,Svájc,Schweiz,Sveits,Svizzera,स्विट्ज़रलैंड,สวิตเซอร์แลนด์,Suiza
+158,25.0329,121.5654,Taiwan,台湾,台灣,대만,台灣,Taïwan,台湾,தைவான்,Tajvani,Taiwan,Taiwan,Taiwan,ताइवान,ไต้หวัน,Taiwán
+764,13.7563,100.5018,Thailand,タイ,泰國,태국,泰國,Thaïlande,泰国,தாய்லாந்து,Thaiföld,Thailand,Thailand,Thailandia,थाईलैंड,ประเทศไทย,Tailandia
+792,39.9334,32.8597,Turkey,トルコ,土耳其,터키,土耳其,Turquie,土耳其,துருக்கி,Törökország,Türkei,Tyrkia,Turchia,तुर्की,ตุรกี,Turquía
+804,48.3794,31.1656,Ukraine,ウクライナ,烏克蘭,우크라이나,烏克蘭,Ukraine,乌克兰,உக்ரைன்,Ukrajna,Ukraine,Ukraina,Ucraina,यूक्रेन,ยูเครน,Ucrania
+826,51.5074,-0.1278,United Kingdom,イギリス,英國,영국,英國,Royaume-Uni,英国,ஐக்கிய இராச்சியம்,Egyesült Királyság,Vereinigtes Königreich,Storbritannia,Regno Unito,ब्रिटेन,สหราชอาณาจักร,Reino Unido
+840,38.9072,-77.0369,United States,アメリカ,美國,미국,美國,États-Unis,美国,யுனைடெட் ஸ்டேட்ஸ்,Egyesült Államok,Vereinigte Staaten,USA,Stati Uniti,अमेरिका,สหรัฐอเมริกา,Estados Unidos
+860,41.3775,64.5853,Uzbekistan,ウズベキスタン,烏茲別克,우즈베키스탄,烏茲別克,Ouzbékistan,乌兹别克斯坦,உஸ்பெகிஸ்தான்,Üzbegisztán,Usbekistan,Usbekistan,Uzbekistan,उज़्बेकिस्तान,อุซเบกิสถาน,Uzbekistán
+704,21.0285,105.8542,Vietnam,ベトナム,越南,베트남,越南,Vietnam,越南,வியட்நாம்,Vietnam,Vietnam,Vietnam,Viet Nam,वियतनाम,เวียดนาม,Vietnam
