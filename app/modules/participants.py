@@ -26,6 +26,7 @@ def get_participants_list(
     cancel: str,
     GBB: bool = None,
     iso_code: int = None,
+    user_lang: str = "ja",
 ):
     """
     GBB参加者のリストを取得します。
@@ -37,21 +38,20 @@ def get_participants_list(
         cancel (str, "show", "hide", "only_cancelled"): キャンセルの状態。
         GBB (bool, optional): GBBでのシード権の有無。
         iso_code (int, optional): 国コード。
+        user_lang (str, optional): ユーザーの言語。デフォルトは日本語。
 
     Returns:
         list: フィルタリングされた参加者のリスト。
     """
-    global COUNTRIES_DF
-
     # データを取得
     beatboxers_df = beatboxers_df_dict[year]
+    country_data = COUNTRIES_DF[["iso_code", "lat", "lon", user_lang]]
 
     # 国コードと出場者データをマージ
     merged_df = beatboxers_df.merge(
-        COUNTRIES_DF[["iso_code", "name", "name_ja"]],
+        country_data,
         on="iso_code",
         how="left",
-        suffixes=("", "_country"),
     )
     if merged_df.isnull().any().any():
         null_columns = merged_df.columns[merged_df.isnull().any()].tolist()
@@ -114,7 +114,7 @@ def get_participants_list(
         participant = {
             "name": row["name"].replace("[cancelled] ", "").upper(),
             "category": row["category"],
-            "country": f"{row['name_ja']} {row['name_country']}",
+            "country": row[user_lang],
             "ticket_class": row["ticket_class"],
             "is_cancelled": is_cancelled,
             "members": row["members"].upper(),
@@ -190,7 +190,7 @@ def search_participants(year: int, keyword: str):
     participants_members_list = [
         member.strip()
         for participant in participants_list
-        for member in participant["members"].split(",")
+        for member in participant["members"].split(", ")
     ]
 
     # キーワードで検索 (名前とmembers)
@@ -245,7 +245,7 @@ def search_participants(year: int, keyword: str):
 
 
 # MARK: 年度ごとの世界地図
-def create_world_map(year: int):
+def create_world_map(year: int, user_lang: str = "ja"):
     """
     指定された年の参加者の位置を示す世界地図を作成します。
 
@@ -287,12 +287,17 @@ def create_world_map(year: int):
         },
     )
 
+    # countries_dfからユーザーの言語に合わせて国名を取得
+    if user_lang == "en":
+        country_data = COUNTRIES_DF[["iso_code", "lat", "lon", "en"]]
+    else:
+        country_data = COUNTRIES_DF[["iso_code", "lat", "lon", user_lang, "en"]]
+
     # 国データをマージ
     beatboxers_df = beatboxers_df.merge(
-        COUNTRIES_DF[["iso_code", "lat", "lon", "name"]],
+        country_data,
         on="iso_code",
         how="left",
-        suffixes=("", "_country"),
     )
 
     # 国ごとに参加者をグループ化
@@ -320,13 +325,8 @@ def create_world_map(year: int):
         len_beatboxers = len(unique_beatboxers)
 
         # 国の情報を取得
-        country_name_en = group["name_country"].values[0]
-        iso_code = group["iso_code"].values[0]
-
-        # 国名を日本語に変換
-        # countries_dfからiso_codeが一致する行を取得
-        country_data = COUNTRIES_DF[COUNTRIES_DF["iso_code"] == iso_code]
-        country_name_ja = country_data["name_ja"].values[0]
+        country_name = group[user_lang].values[0]
+        country_name_en = group["en"].values[0]
 
         # マーカーの緯度経度とポップアップを設定
         location = (lat, lon)
@@ -334,12 +334,12 @@ def create_world_map(year: int):
         popup_content = "<div style=\"font-family: 'Noto sans JP'; font-size: 14px;\">"
         popup_content += f"""
         <h3 style="margin: 0; color: #ff6417;">
-            {country_name_en}
+            {country_name}
         </h3>
         """
         popup_content += f"""
         <h4 style="margin: 0; color: #ff6417;">
-            {len_group} teams<br>{len_beatboxers} beatboxers<br>{country_name_ja}
+            {len_group} teams<br>{len_beatboxers} beatboxers
         </h4>
         """
 
@@ -392,11 +392,11 @@ def create_world_map(year: int):
         folium.Marker(
             location=location,
             popup=popup,
-            tooltip=f"{country_name_en} / {country_name_ja}",
+            tooltip=country_name,
             icon=flag_icon,
         ).add_to(beatboxer_map)
 
-    beatboxer_map.save(f"app/templates/{year}/world_map.html")
+    beatboxer_map.save(f"app/templates/{year}/world_map_{user_lang}.html")
 
 
 # MARK: 年度ごとの出場者分析
@@ -477,7 +477,11 @@ def total_participant_analysis():
 
     for year in years_copy:
         participants_list = get_participants_list(
-            year=year, category="all", ticket_class="all", cancel="hide"
+            year=year,
+            category="all",
+            ticket_class="all",
+            cancel="hide",
+            user_lang="ja",
         )
 
         # 重複を除いた参加者名のセット
@@ -488,8 +492,15 @@ def total_participant_analysis():
             if name not in participant_names_set:
                 individual_counts[name] += 1
                 participant_names_set.add(name)
-                country = participant["country"].split(" ")[0]  # 国名は日本語のみ
-                country_counts[country] += 1
+                country = participant["country"]
+
+                if ", " in country:
+                    # 国名が複数ある場合、カンマで分割してカウント
+                    countries = country.split(", ")
+                    for c in countries:
+                        country_counts[c] += 1
+                else:
+                    country_counts[country] += 1
 
             # 各参加者のメンバーの出場回数をカウント
             members = participant["members"]
@@ -512,8 +523,15 @@ def total_participant_analysis():
             if name not in participant_names_set:
                 wildcard_individual_counts[name] += 1
                 participant_names_set.add(name)
-                country = participant["country"].split(" ")[0]  # 国名は日本語のみ
-                wildcard_country_count[country] += 1
+                country = participant["country"]
+
+                # 国名が複数ある場合、カンマで分割してカウント
+                if ", " in country:
+                    countries = country.split(", ")
+                    for c in countries:
+                        wildcard_country_count[c] += 1
+                else:
+                    wildcard_country_count[country] += 1
 
             # 各参加者のメンバーの出場回数をカウント
             members = participant["members"]
@@ -603,6 +621,7 @@ def total_participant_analysis():
 def create_all_participants_map(country_counts_all: dict):
     """
     全年度の出場者数ランキングを示す世界地図を作成します。
+    なお、言語は日本語固定です。
 
     Args:
         country_counts_all (dict): 国別出場者数ランキング。
@@ -630,16 +649,21 @@ def create_all_participants_map(country_counts_all: dict):
 
     # マーカーを地図に追加
     for _, data in country_counts_all.items():
-        country_name_ja = data["country"]
+        country_name = data["country"]
+        print(country_name)
         count = data["count"]
 
         # 出場者未定はスキップ
-        if country_name_ja == "未定":
+        if country_name == "-":
             continue
 
         # 国の情報を取得
-        country_data = COUNTRIES_DF[COUNTRIES_DF["name_ja"] == country_name_ja]
-        country_name_en = country_data["name"].values[0]
+        country_df_selected_lang = COUNTRIES_DF[["iso_code", "lat", "lon", "ja", "en"]]
+
+        country_data = country_df_selected_lang[
+            country_df_selected_lang["ja"] == country_name
+        ]
+        country_name_en = country_data["en"].values[0]
 
         # 経度、緯度
         lat = country_data["lat"].values[0]
@@ -649,9 +673,8 @@ def create_all_participants_map(country_counts_all: dict):
         # ポップアップコンテンツを作成
         popup_content = f"""
         <div style="font-family: 'Noto Sans JP', sans-serif; font-size: 14px;">
-            <h3 style="margin: 0; color: #ff6417;">{country_name_ja}</h3>
-            <h4 style="margin: 0; color: #ff6417;">{country_name_en}</h4>
-            <p style="margin: 5px 0;">出場者数：のべ{count}チーム
+            <h3 style="margin: 0; color: #ff6417;">{country_name}</h3>
+            <p style="margin: 5px 0;">{count} team(s)</p>
         </div>
         """
 
@@ -675,7 +698,7 @@ def create_all_participants_map(country_counts_all: dict):
         folium.Marker(
             location=location,
             popup=popup,
-            tooltip=f"{country_name_en} / {country_name_ja}",
+            tooltip=country_name,
             icon=flag_icon,
         ).add_to(all_participants_map)
 

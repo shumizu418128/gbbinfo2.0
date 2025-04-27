@@ -308,11 +308,16 @@ def world_map(year: int):
     Returns:
         Response: 世界地図のHTMLテンプレート
     """
+    # ユーザーの言語を取得
+    user_lang = session.get("language", "ja")  # セッションから言語を取得
 
-    # 世界地図作成
-    create_world_map(year)
+    # ファイルがすでに存在するか確認し、存在しない場合のみ地図を作成
 
-    return render_template(f"{year}/world_map.html")
+    map_path = f"app/templates/{year}/world_map_{user_lang}.html"
+    if not os.path.exists(map_path):
+        create_world_map(year=year, user_lang=user_lang)
+
+    return render_template(f"{year}/world_map_{user_lang}.html")
 
 
 @app.route("/others/all_participants_map")
@@ -348,6 +353,8 @@ def participants(year: int):
     Returns:
         Response: 出場者一覧のHTMLテンプレート
     """
+    user_lang = session.get("language", "ja")  # セッションから言語を取得
+
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
         return redirect(url_for("content", year=year, content="top"))
@@ -420,7 +427,13 @@ def participants(year: int):
         )
 
     # 参加者リストを取得
-    participants_list = get_participants_list(year, category, ticket_class, cancel)
+    participants_list = get_participants_list(
+        year=year,
+        category=category,
+        ticket_class=ticket_class,
+        cancel=cancel,
+        user_lang=user_lang,
+    )
 
     return render_template(
         "/common/participants.html",
