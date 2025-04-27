@@ -1,12 +1,10 @@
 import os
 import re
-import sys
 import time
 
 import google.generativeai as genai
 import pandas as pd
 import polib
-from googletrans import Translator
 from tqdm import tqdm
 
 SAFETY_SETTINGS = [
@@ -63,6 +61,16 @@ LANGUAGES = list(LANG_NAMES.keys())
 API_KEY = os.environ.get("GEMINI_API_KEY")
 prompt = "Translate the following text to {lang}. Return only the translated text, and do not translate the placeholders: {source_text}"
 
+# 設定
+if not API_KEY:
+    raise ValueError("Please set the GEMINI_API_KEY environment variable")
+genai.configure(api_key=API_KEY)
+
+model = genai.GenerativeModel(
+    model_name="gemini-2.0-flash-lite",
+    safety_settings=SAFETY_SETTINGS,
+)
+
 
 def extract_placeholders(text):
     """
@@ -84,6 +92,38 @@ def extract_placeholders(text):
     """
     pattern = r"\{([^}]+)\}"
     return set(re.findall(pattern, text))
+
+
+def gemini_translate(text: str, target_lang: str):
+    """
+    Google翻訳を使って国名を翻訳します。
+
+    Args:
+        country_name (str): 翻訳する国名（英語を想定）
+
+    Returns:
+        str: 翻訳された国名
+    """
+
+    while True:
+        time.sleep(1.6)  # レートリミット対策
+
+        # geminiに翻訳を依頼
+        chat = model.start_chat()
+        response = chat.send_message(prompt.format(lang=target_lang, source_text=text))
+        translation = response.text.replace("\n", "")
+
+        # プレースホルダーの検証
+        result = validate_placeholders(text, translation)
+        if not result:
+            print(
+                f"プレースホルダーが一致しません。元の文字列: {text}、翻訳後の文字列: {translation}",
+                flush=True,
+            )
+        else:
+            # プレースホルダーが一致する場合は翻訳を保存
+            break
+    return translation
 
 
 def validate_placeholders(msgid, msgstr):
@@ -124,15 +164,6 @@ def translate():
 
     ローカルでの実行を前提としています。
     """
-    # 設定
-    if not API_KEY:
-        raise ValueError("Please set the GEMINI_API_KEY environment variable")
-    genai.configure(api_key=API_KEY)
-
-    model = genai.GenerativeModel(
-        model_name="gemini-2.0-flash-lite-preview",
-        safety_settings=SAFETY_SETTINGS,
-    )
 
     # テンプレートファイルの再生成
     os.system(f"cd {BASE_DIR} && pybabel extract -F {CONFIG_FILE} -o {POT_FILE} .")
@@ -168,45 +199,22 @@ def translate():
         for entry in tqdm(
             po.untranslated_entries() + po.fuzzy_entries(), desc=f"{lang} の翻訳"
         ):
-            lang_name = LANG_NAMES.get(lang, lang)
+            # 翻訳先言語を取得
+            target_lang = LANG_NAMES.get(lang, lang)
 
-            # geminiチャットを開始
-            while True:
-                time.sleep(1.6)
-                try:
-                    # geminiに翻訳を依頼
-                    chat = model.start_chat()
-                    response = chat.send_message(
-                        prompt.format(lang=lang_name, source_text=entry.msgid)
-                    )
-                    translation = response.text.replace("\n", "")
+            # 翻訳を依頼
+            translation = gemini_translate(
+                text=entry.msgid,
+                target_lang=target_lang,
+            )
 
-                    # プレースホルダーの検証
-                    result = validate_placeholders(entry.msgid, translation)
+            # 翻訳結果を保存
+            entry.msgstr = translation
 
-                    # プレースホルダーが一致する場合は翻訳を保存
-                    # 明らかに不正な翻訳はスキップ
-                    if result:
-                        entry.msgstr = translation
-
-                        # fuzzy フラグを削除
-                        if "fuzzy" in entry.flags:
-                            entry.flags.remove("fuzzy")
-                        break
-
-                    else:
-                        print(
-                            "プレースホルダーが一致しません。再試行します。", flush=True
-                        )
-                        print(translation, flush=True)
-
-                except Exception as e:
-                    _, _, exc_tb = sys.exc_info()
-                    line_number = exc_tb.tb_lineno
-                    print(
-                        f"{e.__class__.__name__}: {e} (行番号: {line_number})\n再試行中...",
-                        flush=True,
-                    )
+            # fuzzy フラグを削除
+            if "fuzzy" in entry.flags:
+                entry.flags.remove("fuzzy")
+            break
 
         po.save(po_file_path)
 
@@ -229,21 +237,6 @@ def translate():
     print("翻訳が完了しました！", flush=True)
 
 
-def translate_country_name(en_country_name: str, target_lang: str) -> str:
-    """
-    Google翻訳を使って国名を翻訳します。
-
-    Args:
-        country_name (str): 翻訳する国名（英語を想定）
-
-    Returns:
-        str: 翻訳された国名
-    """
-    translator = Translator()
-    translation = translator.translate(en_country_name, src="en", dest=target_lang)
-    return translation.text
-
-
 def add_country_translation():
     """
     database/country.csv に、LANGUAGES で指定された言語コードごとの国名翻訳列を追加します。
@@ -261,19 +254,34 @@ def add_country_translation():
     # headersを取得
     header_list = country_df.columns.tolist()
 
-    for language in tqdm(LANGUAGES, desc="言語ごとの国名翻訳処理"):
+    for language in LANGUAGES:
         # ヘッダーが存在しない場合は追加
         if language not in header_list:
             country_df[language] = ""
-            for index, row in country_df.iterrows():
+
+            for index, row in tqdm(
+                country_df.iterrows(),
+                total=country_df.shape[0],
+                desc=f"{language} の国名翻訳",
+            ):
                 # 英語名はすべてあるので、それを翻訳する
                 en_country_name = row["en"]
-                country_df.at[index, language] = translate_country_name(en_country_name)
 
-    # 新しい列を追加したデータフレームを保存
-    country_df.to_csv(country_csv, index=False, encoding="utf-8")
+                # 国名が "-" の場合はスキップ
+                if en_country_name == "-":
+                    country_df.at[index, language] = "-"
+                    continue
+
+                # Google翻訳を使って国名を翻訳
+                country_df.at[index, language] = gemini_translate(
+                    text=en_country_name,
+                    target_lang=language,
+                )
+
+            # 新しい列を追加したデータフレームを保存
+            country_df.to_csv(country_csv, index=False, encoding="utf-8")
 
 
 if __name__ == "__main__":
-    translate()
+    # translate()
     add_country_translation()
