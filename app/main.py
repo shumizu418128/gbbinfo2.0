@@ -313,7 +313,10 @@ def world_map(year: int):
 
     # ファイルがすでに存在するか確認し、存在しない場合のみ地図を作成
 
-    map_path = f"app/templates/{year}/world_map_{user_lang}.html"
+    base_path = "app/templates"
+    map_path = os.path.normpath(os.path.join(base_path, f"{year}/world_map_{user_lang}.html"))
+    if not map_path.startswith(base_path):
+        raise ValueError("Invalid path: Access to the specified file is not allowed.")
     if not os.path.exists(map_path):
         create_world_map(year=year, user_lang=user_lang)
 
