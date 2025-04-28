@@ -312,11 +312,16 @@ def world_map(year: int):
     user_lang = session.get("language", "ja")  # セッションから言語を取得
 
     # ファイルがすでに存在するか確認し、存在しない場合のみ地図を作成
-
     base_path = "app/templates"
-    map_path = os.path.normpath(os.path.join(base_path, f"{year}/world_map_{user_lang}.html"))
+    map_path = os.path.normpath(
+        os.path.join(base_path, f"{year}/world_map_{user_lang}.html")
+    )
+
+    # セキュリティ対策: パスが正しいか確認
     if not map_path.startswith(base_path):
         raise ValueError("Invalid path: Access to the specified file is not allowed.")
+
+    # 地図が存在しない場合は作成
     if not os.path.exists(map_path):
         create_world_map(year=year, user_lang=user_lang)
 
