@@ -81,7 +81,7 @@ const ctxCountry = ctxCountryElement ? ctxCountryElement.getContext('2d') : null
 
 const categoryChart = new Chart(ctxCategory, {
     type: 'bar',
-    data: { labels: [], datasets: [{ label: 'チーム数', data: [], backgroundColor: 'rgb(255, 100, 23)' }] },
+    data: { labels: [], datasets: [{ label: 'team(s)', data: [], backgroundColor: 'rgb(255, 100, 23)' }] },
     options: {
         scales: {
             y: {
@@ -96,7 +96,7 @@ const countryChart = new Chart(ctxCountry, {
     data: {
         labels: [],
         datasets: [{
-            label: 'チーム数',
+            label: 'team(s)',
             data: [],
             backgroundColor: []
         }]

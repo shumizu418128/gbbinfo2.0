@@ -145,6 +145,7 @@ def set_request_data():
     リクエストごとに実行される関数。
     URLを取得して、グローバル変数に保存します。
     これにより、リクエストのURLをグローバルにアクセスできるようにします。
+    また、セッションに言語が設定されていない場合、デフォルトの言語を設定します。
 
     Returns:
         None
@@ -298,21 +299,27 @@ def route_top():
 @app.route("/<int:year>/world_map")
 @cache.cached(query_string=True)
 def world_map(year: int):
-    """
-    指定された年度の世界地図を表示します。
-    年度が指定されていない場合は最新年度を表示します。
+    # 年度・言語のバリデーション
+    if year not in AVAILABLE_YEARS:
+        return render_template("/common/404.html"), 404
+    user_lang = session.get("language", "ja")
+    if user_lang not in AVAILABLE_LANGS:
+        user_lang = "ja"
 
-    Args:
-        year (int): 表示する年度
+    base_path = "app/templates"
+    abs_base_path = os.path.abspath(base_path)
+    map_path = os.path.abspath(
+        os.path.join(base_path, f"{year}/world_map_{user_lang}.html")
+    )
 
-    Returns:
-        Response: 世界地図のHTMLテンプレート
-    """
+    # base_path からのパストラバーサル防止
+    if not map_path.startswith(abs_base_path):
+        return render_template("/common/404.html"), 404
 
-    # 世界地図作成
-    create_world_map(year)
+    if not os.path.exists(map_path):
+        create_world_map(year=year, user_lang=user_lang)
 
-    return render_template(f"{year}/world_map.html")
+    return render_template(f"{year}/world_map_{user_lang}.html")
 
 
 @app.route("/others/all_participants_map")
@@ -348,6 +355,8 @@ def participants(year: int):
     Returns:
         Response: 出場者一覧のHTMLテンプレート
     """
+    user_lang = session.get("language", "ja")  # セッションから言語を取得
+
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
         return redirect(url_for("content", year=year, content="top"))
@@ -420,7 +429,13 @@ def participants(year: int):
         )
 
     # 参加者リストを取得
-    participants_list = get_participants_list(year, category, ticket_class, cancel)
+    participants_list = get_participants_list(
+        year=year,
+        category=category,
+        ticket_class=ticket_class,
+        cancel=cancel,
+        user_lang=user_lang,
+    )
 
     return render_template(
         "/common/participants.html",
@@ -778,7 +793,8 @@ def analyze_data_yearly(year: int):
     Returns:
         Response: データで見るGBBのHTMLテンプレート
     """
-    yearly_analysis = yearly_participant_analysis(year=year)
+    user_lang = session.get("language", "ja")  # セッションから言語を取得
+    yearly_analysis = yearly_participant_analysis(year=year, user_lang=user_lang)
 
     return jsonify(yearly_analysis)
 
