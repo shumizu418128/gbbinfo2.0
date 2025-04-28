@@ -400,7 +400,7 @@ def create_world_map(year: int, user_lang: str = "ja"):
 
 
 # MARK: 年度ごとの出場者分析
-def yearly_participant_analysis(year: int):
+def yearly_participant_analysis(year: int, user_lang: str = "ja"):
     """
     出場者のデータから分析を行い、結果を保存します。
 
@@ -414,7 +414,11 @@ def yearly_participant_analysis(year: int):
         - country_count: 国ごとの出場者数
     """
     participants_list = get_participants_list(
-        year=year, category="all", ticket_class="all", cancel="hide"
+        year=year,
+        category="all",
+        ticket_class="all",
+        cancel="hide",
+        user_lang=user_lang,
     )
 
     # カテゴリーごとの出場者数
@@ -425,6 +429,12 @@ def yearly_participant_analysis(year: int):
 
     # 国ごとの出場者数
     countries = [participant["country"] for participant in participants_list]
+    for country in countries:
+        if ", " in country:
+            # 国名が複数ある場合、カンマで分割
+            countries.remove(country)
+            countries.extend(country.split(", "))
+
     country_count = {}
     for country in set(countries):
         country_count[country] = countries.count(country)

@@ -145,11 +145,18 @@ def set_request_data():
     リクエストごとに実行される関数。
     URLを取得して、グローバル変数に保存します。
     これにより、リクエストのURLをグローバルにアクセスできるようにします。
+    また、セッションに言語が設定されていない場合、デフォルトの言語を設定します。
 
     Returns:
         None
     """
     g.current_url = request.path
+
+    # セッションに言語が設定されていない場合、デフォルトの言語を設定
+    if "language" not in session:
+        session["language"] = (
+            request.accept_languages.best_match(AVAILABLE_LANGS) or "ja"
+        )
 
 
 @app.context_processor
@@ -799,7 +806,8 @@ def analyze_data_yearly(year: int):
     Returns:
         Response: データで見るGBBのHTMLテンプレート
     """
-    yearly_analysis = yearly_participant_analysis(year=year)
+    user_lang = session.get("language", "ja")  # セッションから言語を取得
+    yearly_analysis = yearly_participant_analysis(year=year, user_lang=user_lang)
 
     return jsonify(yearly_analysis)
 
