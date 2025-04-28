@@ -305,26 +305,23 @@ def route_top():
 @app.route("/<int:year>/world_map")
 @cache.cached(query_string=True)
 def world_map(year: int):
-    """
-    指定された年度の世界地図を表示します。
-    年度が指定されていない場合は最新年度を表示します。
+    # 年度・言語のバリデーション
+    if year not in AVAILABLE_YEARS:
+        return render_template("/common/404.html"), 404
+    user_lang = session.get("language", "ja")
+    if user_lang not in AVAILABLE_LANGS:
+        user_lang = "ja"
 
-    Args:
-        year (int): 表示する年度
-
-    Returns:
-        Response: 世界地図のHTMLテンプレート
-    """
-    # ユーザーの言語を取得
-    user_lang = session.get("language", "ja")  # セッションから言語を取得
-
-    # ファイルがすでに存在するか確認し、存在しない場合のみ地図を作成
     base_path = "app/templates"
-    map_path = os.path.normpath(
+    abs_base_path = os.path.abspath(base_path)
+    map_path = os.path.abspath(
         os.path.join(base_path, f"{year}/world_map_{user_lang}.html")
     )
 
-    # 地図が存在しない場合は作成
+    # base_path からのパストラバーサル防止
+    if not map_path.startswith(abs_base_path):
+        return render_template("/common/404.html"), 404
+
     if not os.path.exists(map_path):
         create_world_map(year=year, user_lang=user_lang)
 
