@@ -152,12 +152,6 @@ def set_request_data():
     """
     g.current_url = request.path
 
-    # セッションに言語が設定されていない場合、デフォルトの言語を設定
-    if "language" not in session:
-        session["language"] = (
-            request.accept_languages.best_match(AVAILABLE_LANGS) or "ja"
-        )
-
 
 @app.context_processor
 def inject_variables():
