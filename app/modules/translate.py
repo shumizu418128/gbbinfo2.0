@@ -283,5 +283,5 @@ def add_country_translation():
 
 
 if __name__ == "__main__":
-    # translate()
+    translate()
     add_country_translation()
