@@ -302,7 +302,6 @@ def route_top():
 # MARK: 世界地図
 ####################################################################
 @app.route("/<int:year>/world_map")
-@cache.cached(query_string=True)
 def world_map(year: int):
     # 年度・言語のバリデーション
     if year not in AVAILABLE_YEARS:
@@ -328,7 +327,6 @@ def world_map(year: int):
 
 
 @app.route("/others/all_participants_map")
-@cache.cached(query_string=True)
 def all_participants_map():
     """
     全年度の出場者の世界地図を表示します。
@@ -787,7 +785,6 @@ def search_suggestions():
 # MARK: データで見るGBB (API)
 ####################################################################
 @app.route("/analyze_data/<int:year>")
-@cache.cached()
 def analyze_data_yearly(year: int):
     """
     データで見るGBBのページを表示します。
