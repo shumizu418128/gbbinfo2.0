@@ -152,6 +152,11 @@ def set_request_data():
     """
     g.current_url = request.path
 
+    # 初回アクセス時の言語設定
+    if "language" not in session:
+        best_match = request.accept_languages.best_match(AVAILABLE_LANGS)
+        session["language"] = best_match if best_match else "ja"
+
 
 @app.context_processor
 def inject_variables():
@@ -216,12 +221,12 @@ def get_locale():
     Returns:
         str: ユーザーの言語設定
     """
-    user_lang = session.get("language")
-    return (
-        user_lang
-        if user_lang in AVAILABLE_LANGS
-        else request.accept_languages.best_match(AVAILABLE_LANGS)
-    )
+    # セッションに言語が設定されているか確認
+    if "language" not in session:
+        best_match = request.accept_languages.best_match(AVAILABLE_LANGS)
+        session["language"] = best_match if best_match else "ja"
+
+    return session["language"]
 
 
 ####################################################################
