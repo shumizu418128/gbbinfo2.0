@@ -1,25 +1,12 @@
+import json
 import os
 
 # 利用可能な年度と言語のリスト
 AVAILABLE_YEARS = [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
-LANG_NAMES = {
-    "ja": "日本語",
-    "ko": "한국어",
-    "en": "English",
-    "zh_Hant_TW": "繁體中文",
-    "fr": "Français",
-    "zh_Hans_CN": "简体中文",
-    "ms": "Bahasa MY",
-    "ta": "தமிழ்",
-    "hu": "Magyar",
-    "de": "Deutsch",
-    "no": "Norsk",
-    "zh_Hant_HK": "廣東話",
-    "it": "Italiano",
-    "hi": "हिन्दी",
-    "th": "ไทย",
-    "es": "Español",
-}
+
+# 言語名の読み込み
+with open(os.path.join(os.path.dirname(__file__), "..", "json", "languages.json"), "r", encoding="utf-8") as f:
+    LANG_NAMES = json.load(f)
 AVAILABLE_LANGS = list(LANG_NAMES.keys())
 
 

@@ -1,3 +1,4 @@
+import json
 import os
 import re
 import time
@@ -34,24 +35,10 @@ SAFETY_SETTINGS = [
     },
 ]
 
-# 本当はconfig.pyにあるが、importの都合上ここに書く
-LANG_NAMES = {
-    "ko": "한국어",
-    "en": "English",
-    "zh_Hant_TW": "繁體中文",
-    "fr": "Français",
-    "zh_Hans_CN": "简体中文",
-    "ms": "Bahasa MY",
-    "ta": "தமிழ்",
-    "hu": "Magyar",
-    "de": "Deutsch",
-    "no": "Norsk",
-    "zh_Hant_HK": "廣東話",
-    "it": "Italiano",
-    "hi": "हिन्दी",
-    "th": "ไทย",
-    "es": "Español",
-}
+# 言語名の読み込み（日本語を除外）
+with open(os.path.join(os.path.dirname(__file__), "..", "json", "languages.json"), "r", encoding="utf-8") as f:
+    all_languages = json.load(f)
+    LANG_NAMES = {k: v for k, v in all_languages.items() if k != "ja"}
 
 BASE_DIR = os.path.abspath("app")
 LOCALE_DIR = os.path.join(BASE_DIR, "translations")
