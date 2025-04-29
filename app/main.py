@@ -152,6 +152,11 @@ def set_request_data():
     """
     g.current_url = request.path
 
+    # 初回アクセス時の言語設定
+    if "language" not in session:
+        best_match = request.accept_languages.best_match(AVAILABLE_LANGS)
+        session["language"] = best_match if best_match else "ja"
+
 
 @app.context_processor
 def inject_variables():
@@ -216,12 +221,12 @@ def get_locale():
     Returns:
         str: ユーザーの言語設定
     """
-    user_lang = session.get("language")
-    return (
-        user_lang
-        if user_lang in AVAILABLE_LANGS
-        else request.accept_languages.best_match(AVAILABLE_LANGS)
-    )
+    # セッションに言語が設定されているか確認
+    if "language" not in session:
+        best_match = request.accept_languages.best_match(AVAILABLE_LANGS)
+        session["language"] = best_match if best_match else "ja"
+
+    return session["language"]
 
 
 ####################################################################
@@ -297,7 +302,6 @@ def route_top():
 # MARK: 世界地図
 ####################################################################
 @app.route("/<int:year>/world_map")
-@cache.cached(query_string=True)
 def world_map(year: int):
     # 年度・言語のバリデーション
     if year not in AVAILABLE_YEARS:
@@ -323,7 +327,6 @@ def world_map(year: int):
 
 
 @app.route("/others/all_participants_map")
-@cache.cached(query_string=True)
 def all_participants_map():
     """
     全年度の出場者の世界地図を表示します。
@@ -782,7 +785,6 @@ def search_suggestions():
 # MARK: データで見るGBB (API)
 ####################################################################
 @app.route("/analyze_data/<int:year>")
-@cache.cached()
 def analyze_data_yearly(year: int):
     """
     データで見るGBBのページを表示します。
