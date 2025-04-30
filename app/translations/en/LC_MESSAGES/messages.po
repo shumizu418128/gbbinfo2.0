@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-29 00:38+0900\n"
+"POT-Creation-Date: 2025-04-30 13:02+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -1326,11 +1326,11 @@ msgstr "All participants have been mapped on the map."
 
 #: templates/common/participants.html:136
 msgid "国別出場者数"
-msgstr "Number of contestants by country"
+msgstr "Number of participants by country"
 
 #: templates/common/participants.html:139
 msgid "カテゴリー別出場者数"
-msgstr "Number of contestants by category"
+msgstr "Number of participants by category"
 
 #: templates/common/result.html:12 templates/common/result.html:69
 #: templates/includes/participants_form.html:2

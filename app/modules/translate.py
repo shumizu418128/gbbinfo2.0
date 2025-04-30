@@ -36,7 +36,11 @@ SAFETY_SETTINGS = [
 ]
 
 # 言語名の読み込み（日本語を除外）
-with open(os.path.join(os.path.dirname(__file__), "..", "json", "languages.json"), "r", encoding="utf-8") as f:
+with open(
+    os.path.join(os.path.dirname(__file__), "..", "json", "languages.json"),
+    "r",
+    encoding="utf-8",
+) as f:
     all_languages = json.load(f)
     LANG_NAMES = {k: v for k, v in all_languages.items() if k != "ja"}
 
