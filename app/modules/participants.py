@@ -339,7 +339,7 @@ def create_world_map(year: int, user_lang: str = "ja"):
         """
         popup_content += f"""
         <h4 style="margin: 0; color: #ff6417;">
-            {len_group} teams<br>{len_beatboxers} beatboxers
+            {len_group} team(s)<br>{len_beatboxers} beatboxer(s)
         </h4>
         """
 
