@@ -136,7 +136,7 @@ def get_participants_list(
         participants_list,
         key=lambda x: (
             x["is_cancelled"],  # キャンセルした人を後ろに
-            "発表" in x["name"],  # 未定の出場枠を後ろに
+            x["country"] == "-",  # 未定の出場枠を後ろに
             x["category"],  # カテゴリー順
             # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
             not x["ticket_class"].startswith("GBB"),
