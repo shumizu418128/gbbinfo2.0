@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-02 20:05+0900\n"
+"POT-Creation-Date: 2025-05-23 22:36+0900\n"
 "PO-Revision-Date: 2024-11-12 00:01+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_Hant_TW <LL@li.org>\n"
@@ -63,7 +63,7 @@ msgstr "指南"
 #: templates/2025/wildcards.html:80 templates/base.html:116
 #: templates/common/participants.html:27 templates/common/result.html:90
 #: templates/includes/participants_form.html:12
-#: templates/others/result_stream.html:39
+#: templates/others/result_stream.html:38
 msgid "Wildcard結果"
 msgstr "Wildcard結果"
 
@@ -71,7 +71,7 @@ msgstr "Wildcard結果"
 #: templates/2025/rule.html:306 templates/2025/ticket.html:23
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:97
 #: templates/2025/wildcards.html:80 templates/base.html:116
-#: templates/common/result.html:90 templates/others/result_stream.html:39
+#: templates/common/result.html:90 templates/others/result_stream.html:38
 msgid "出場者"
 msgstr "參賽者"
 
@@ -721,7 +721,7 @@ msgstr "Wildcard結果發佈直播"
 #: templates/2025/wildcards.html:2 templates/2025/wildcards.html:3
 #: templates/2025/wildcards.html:4 templates/2025/wildcards.html:8
 #: templates/common/participants.html:107
-#: templates/others/result_stream.html:40 templates/others/translation.html:24
+#: templates/others/result_stream.html:39 templates/others/translation.html:24
 msgid "Wildcard一覧"
 msgstr "Wildcard列表"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-02 20:05+0900\n"
+"POT-Creation-Date: 2025-05-23 22:36+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ta <LL@li.org>\n"
@@ -65,7 +65,7 @@ msgstr "இந்த கையேடு"
 #: templates/2025/wildcards.html:80 templates/base.html:116
 #: templates/common/participants.html:27 templates/common/result.html:90
 #: templates/includes/participants_form.html:12
-#: templates/others/result_stream.html:39
+#: templates/others/result_stream.html:38
 msgid "Wildcard結果"
 msgstr "வைல்டு கார்டு முடிவு"
 
@@ -73,7 +73,7 @@ msgstr "வைல்டு கார்டு முடிவு"
 #: templates/2025/rule.html:306 templates/2025/ticket.html:23
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:97
 #: templates/2025/wildcards.html:80 templates/base.html:116
-#: templates/common/result.html:90 templates/others/result_stream.html:39
+#: templates/common/result.html:90 templates/others/result_stream.html:38
 msgid "出場者"
 msgstr "பங்கேற்பாளர்கள்"
 
@@ -747,7 +747,7 @@ msgstr "வைல்ட்கார்ட் முடிவு வெளிய�
 #: templates/2025/wildcards.html:2 templates/2025/wildcards.html:3
 #: templates/2025/wildcards.html:4 templates/2025/wildcards.html:8
 #: templates/common/participants.html:107
-#: templates/others/result_stream.html:40 templates/others/translation.html:24
+#: templates/others/result_stream.html:39 templates/others/translation.html:24
 msgid "Wildcard一覧"
 msgstr "வைல்டு கார்டு பட்டியல்"
 
