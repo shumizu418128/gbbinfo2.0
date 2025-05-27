@@ -471,6 +471,7 @@ def rank_and_limit(counts, limit):
     Returns:
         dict: ランキングされた名前とカウントの辞書。
         キーはランキングの順位、値は名前とカウントを含む辞書です。
+        ※同率順位が複数名いる場合、同じランクを付与、順位スキップも行わない
     """
     sorted_counts = sorted(counts.items(), key=lambda item: item[1], reverse=True)
     ranked_counts = {}
@@ -502,8 +503,11 @@ def count_participants(participants_list, individual_counts, country_counts, par
     Returns:
         tuple: (更新されたindividual_counts, 更新されたcountry_counts, 更新されたparticipant_names_set)
     """
+    # 重複チェック
     for participant in participants_list:
         name = participant["name"]
+
+        # 重複していない場合、カウントを増やす
         if name not in participant_names_set:
             individual_counts[name] += 1
             participant_names_set.add(name)
@@ -516,6 +520,7 @@ def count_participants(participants_list, individual_counts, country_counts, par
             else:
                 country_counts[country] += 1
 
+        # memberに関しては、個人の出場回数のみをカウントし、国別カウントは行わない
         members = participant["members"]
         if members:
             for member in members.split(", "):
