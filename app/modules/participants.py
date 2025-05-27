@@ -460,6 +460,76 @@ def yearly_participant_analysis(year: int, user_lang: str = "ja"):
 
 
 # MARK: 全年度の出場者分析
+def rank_and_limit(counts, limit):
+    """
+    ランキングを作成し、指定された数に制限します。
+
+    Args:
+        counts (dict): 名前とカウントの辞書。
+        limit (int): ランキングの制限数。
+
+    Returns:
+        dict: ランキングされた名前とカウントの辞書。
+        キーはランキングの順位、値は名前とカウントを含む辞書です。
+        ※同率順位が複数名いる場合、同じランクを付与、順位スキップも行わない
+    """
+    sorted_counts = sorted(counts.items(), key=lambda item: item[1], reverse=True)
+    ranked_counts = {}
+    rank = 1
+    previous_count = None
+
+    for i, (name, count) in enumerate(sorted_counts):
+        if i > 0 and count < previous_count:
+            rank += 1
+
+        if rank > limit:
+            break
+
+        ranked_counts[i + 1] = {"name": name, "count": count}
+        previous_count = count
+
+    return ranked_counts
+
+def count_participants(participants_list, individual_counts, country_counts, participant_names_set):
+    """
+    参加者の出場回数と国別カウントを行います。
+
+    Args:
+        participants_list (list): 参加者リスト
+        individual_counts (defaultdict): 個人別カウント用の辞書
+        country_counts (defaultdict): 国別カウント用の辞書
+        participant_names_set (set): 重複チェック用のセット
+
+    Returns:
+        tuple: (更新されたindividual_counts, 更新されたcountry_counts, 更新されたparticipant_names_set)
+    """
+    # 重複チェック
+    for participant in participants_list:
+        name = participant["name"]
+
+        # 重複していない場合、カウントを増やす
+        if name not in participant_names_set:
+            individual_counts[name] += 1
+            participant_names_set.add(name)
+            country = participant["country"]
+
+            if ", " in country:
+                countries = country.split(", ")
+                for c in countries:
+                    country_counts[c] += 1
+            else:
+                country_counts[country] += 1
+
+        # memberに関しては、個人の出場回数のみをカウントし、国別カウントは行わない
+        members = participant["members"]
+        if members:
+            for member in members.split(", "):
+                if member not in participant_names_set:
+                    individual_counts[member] += 1
+                    participant_names_set.add(member)
+
+    return individual_counts, country_counts, participant_names_set
+
 def total_participant_analysis():
     """
     全年度の出場者データを集計・分析し、以下のランキングを含む結果を返します。
@@ -473,19 +543,18 @@ def total_participant_analysis():
     """
     global AVAILABLE_YEARS
 
-    # 全年度の出場者データを取得 (2022年は除く)
     years_copy = AVAILABLE_YEARS.copy()
     years_copy.remove(2022)
     years_copy.remove(2020)
     years_copy += [2013, 2014, 2015, 2016]
 
-    individual_counts = defaultdict(int)  # 各参加者の出場回数を記録
-    country_counts = defaultdict(int)  # 国別出場者数ランキングの作成
-
-    wildcard_individual_counts = defaultdict(int)  # Wildcard勝者数ランキングの作成
-    wildcard_country_count = defaultdict(int)  # 国別Wildcard勝者数ランキングの作成
+    individual_counts = defaultdict(int)
+    country_counts = defaultdict(int)
+    wildcard_individual_counts = defaultdict(int)
+    wildcard_country_count = defaultdict(int)
 
     for year in years_copy:
+        # 通常の出場者カウント
         participants_list = get_participants_list(
             year=year,
             category="all",
@@ -493,100 +562,22 @@ def total_participant_analysis():
             cancel="hide",
             user_lang="ja",
         )
-
-        # 重複を除いた参加者名のセット
         participant_names_set = set()
-        for participant in participants_list:
-            # 各参加者の出場回数をカウント
-            name = participant["name"]
-            if name not in participant_names_set:
-                individual_counts[name] += 1
-                participant_names_set.add(name)
-                country = participant["country"]
+        individual_counts, country_counts, participant_names_set = count_participants(
+            participants_list, individual_counts, country_counts, participant_names_set
+        )
 
-                if ", " in country:
-                    # 国名が複数ある場合、カンマで分割してカウント
-                    countries = country.split(", ")
-                    for c in countries:
-                        country_counts[c] += 1
-                else:
-                    country_counts[country] += 1
-
-            # 各参加者のメンバーの出場回数をカウント
-            members = participant["members"]
-            if members:
-                for member in members.split(", "):
-                    if member not in participant_names_set:
-                        individual_counts[member] += 1
-                        participant_names_set.add(member)
-
-        # Wildcard勝者数ランキングの作成
+        # Wildcard勝者カウント
         participants_list = get_participants_list(
             year=year, category="all", ticket_class="wildcard", cancel="hide"
         )
-
-        # 重複を除いた参加者名のセット
         participant_names_set = set()
-        for participant in participants_list:
-            # 各参加者の出場回数をカウント
-            name = participant["name"]
-            if name not in participant_names_set:
-                wildcard_individual_counts[name] += 1
-                participant_names_set.add(name)
-                country = participant["country"]
+        wildcard_individual_counts, wildcard_country_count, _ = count_participants(
+            participants_list, wildcard_individual_counts, wildcard_country_count, participant_names_set
+        )
 
-                # 国名が複数ある場合、カンマで分割してカウント
-                if ", " in country:
-                    countries = country.split(", ")
-                    for c in countries:
-                        wildcard_country_count[c] += 1
-                else:
-                    wildcard_country_count[country] += 1
-
-            # 各参加者のメンバーの出場回数をカウント
-            members = participant["members"]
-            if members:
-                for member in members.split(", "):
-                    if member not in participant_names_set:
-                        wildcard_individual_counts[member] += 1
-                        participant_names_set.add(member)
-
-    def rank_and_limit(counts, limit):
-        """
-        ランキングを作成し、指定された数に制限します。
-
-        Args:
-            counts (dict): 名前とカウントの辞書。
-            limit (int): ランキングの制限数。
-
-        Returns:
-            dict: ランキングされた名前とカウントの辞書。
-            キーはランキングの順位、値は名前とカウントを含む辞書です。
-        """
-
-        # カウントを降順にソート
-        sorted_counts = sorted(counts.items(), key=lambda item: item[1], reverse=True)
-        ranked_counts = {}
-        rank = 1
-        previous_count = None
-
-        # ランキングを作成
-        for i, (name, count) in enumerate(sorted_counts):
-            if i > 0 and count < previous_count:
-                rank += 1
-
-            if rank > limit:
-                break
-
-            ranked_counts[i + 1] = {"name": name, "count": count}
-            previous_count = count
-
-        return ranked_counts
-
-    # 個人別出場回数ランキング
+    # ランキングの作成
     individual_counts = rank_and_limit(individual_counts, 3)
-
-    # 個人別Wildcard勝者数ランキング
     wildcard_individual_counts = rank_and_limit(wildcard_individual_counts, 3)
 
     # 全世界の出場者数一覧
@@ -598,7 +589,7 @@ def total_participant_analysis():
     }
     create_all_participants_map(country_counts_all)
 
-    # 国別出場者数ランキング
+    # 国別ランキングの作成
     country_counts = {
         i + 1: {"country": item[0], "count": item[1]}
         for i, item in enumerate(
@@ -606,25 +597,19 @@ def total_participant_analysis():
         )
     }
 
-    # 国別Wildcard勝者数ランキング
     wildcard_country_count = {
         i + 1: {"country": item[0], "count": item[1]}
         for i, item in enumerate(
-            sorted(
-                wildcard_country_count.items(), key=lambda item: item[1], reverse=True
-            )[:10]
+            sorted(wildcard_country_count.items(), key=lambda item: item[1], reverse=True)[:10]
         )
     }
 
-    # 結果を返す
-    total_analytics = {
+    return {
         "individual_counts": individual_counts,
         "country_counts": country_counts,
         "wildcard_individual_counts": wildcard_individual_counts,
         "wildcard_country_count": wildcard_country_count,
     }
-
-    return total_analytics
 
 
 # MARK: 全年度 出場者世界地図
