@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-05 11:54+0900\n"
+"POT-Creation-Date: 2025-06-05 15:06+0900\n"
 "PO-Revision-Date: 2024-11-12 13:58+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ko <LL@li.org>\n"
@@ -631,7 +631,7 @@ msgstr "종료"
 
 #: templates/2024/time_schedule.html:133 templates/2024/time_schedule.html:194
 msgid "準々決勝"
-msgstr "준준결승"
+msgstr "8강전"
 
 #: templates/2024/time_schedule.html:137 templates/2024/time_schedule.html:141
 msgid "決勝"
@@ -913,7 +913,7 @@ msgstr "결과 발표 방송"
 
 #: templates/2025/top.html:64
 msgid "出場枠の数"
-msgstr "출전 자격의 수"
+msgstr "출전 자리의 수"
 
 #: templates/2025/top.html:77 templates/common/japan.html:74
 #: templates/common/korea.html:74 templates/common/participants.html:31
@@ -1167,7 +1167,7 @@ msgstr "여러분의 Wildcard를 기대하고 있습니다!"
 #: templates/2025/wildcards.html:12
 #, python-brace-format
 msgid "各部門の詳細ルールに関しては、<a href=\"/{year}/rule\">ルール&審査員</a>をご確認ください。"
-msgstr "각 부서의 상세 규칙에 관해서는, <a href=\"/{year}/rule\">규칙 & 심사위원</a>을 확인하십시오."
+msgstr "각 부문의 상세 규칙에 관해서는, <a href=\"/{year}/rule\">규칙 & 심사위원</a>을 확인하십시오."
 
 #: templates/common/404.html:13
 msgid "まもなくトップページへリダイレクトされます"
