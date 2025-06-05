@@ -50,7 +50,14 @@ POT_FILE = os.path.join(BASE_DIR, "messages.pot")
 CONFIG_FILE = os.path.join(BASE_DIR, "babel.cfg")
 LANGUAGES = list(LANG_NAMES.keys())
 API_KEY = os.environ.get("GEMINI_API_KEY")
-prompt = "Translate the following text to {lang}. Return only the translated text, and do not translate the placeholders: {source_text}"
+prompt = """Translate the following text to {lang}.
+Important instructions:
+1. Return ONLY the translated text
+2. Do NOT add any placeholders or variables that weren't in the original text
+3. Do NOT translate any text that looks like {{variable_name}} - keep it exactly as is
+4. Do NOT add any explanatory text or notes
+
+Text to translate: {source_text}"""
 
 # 設定
 if not API_KEY:
@@ -82,7 +89,10 @@ def extract_placeholders(text):
              プレースホルダーが見つからない場合は、空のセットを返します。
     """
     pattern = r"\{([^}]+)\}"
-    return set(re.findall(pattern, text))
+
+    # placeholderという文字列がある場合、高確率で誤りなのでやり直しさせる
+    validation = set(re.findall(pattern, text)) or "placeholder" in text.lower()
+    return validation
 
 
 def gemini_translate(text: str, target_lang: str):
@@ -205,7 +215,6 @@ def translate():
             # fuzzy フラグを削除
             if "fuzzy" in entry.flags:
                 entry.flags.remove("fuzzy")
-            break
 
         po.save(po_file_path)
 
