@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-23 22:36+0900\n"
+"POT-Creation-Date: 2025-06-05 11:54+0900\n"
 "PO-Revision-Date: 2024-11-12 13:58+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ko <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgstr "필수 가이드"
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
 #: templates/2025/rule.html:66 templates/2025/rule.html:191
-#: templates/2025/rule.html:306 templates/2025/ticket.html:23
+#: templates/2025/rule.html:306 templates/2025/ticket.html:22
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:97
 #: templates/2025/wildcards.html:80 templates/base.html:116
 #: templates/common/participants.html:27 templates/common/result.html:90
@@ -69,7 +69,7 @@ msgid "Wildcard結果"
 msgstr "Wildcard 결과"
 
 #: templates/2024/top.html:53 templates/2025/rule.html:66
-#: templates/2025/rule.html:306 templates/2025/ticket.html:23
+#: templates/2025/rule.html:306 templates/2025/ticket.html:22
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:97
 #: templates/2025/wildcards.html:80 templates/base.html:116
 #: templates/common/result.html:90 templates/others/result_stream.html:38
@@ -118,7 +118,7 @@ msgstr "현지 관전 계획 세우기"
 #: templates/2024/time_schedule.html:2 templates/2024/time_schedule.html:3
 #: templates/2024/time_schedule.html:4 templates/2024/time_schedule.html:8
 #: templates/2024/top.html:16 templates/2024/top.html:65
-#: templates/2024/top_7tosmoke.html:35 templates/2025/ticket.html:25
+#: templates/2024/top_7tosmoke.html:35 templates/2025/ticket.html:24
 #: templates/2025/time_schedule.html:2 templates/2025/time_schedule.html:3
 #: templates/2025/time_schedule.html:4 templates/2025/time_schedule.html:9
 #: templates/2025/top.html:16 templates/2025/top.html:109
@@ -128,7 +128,7 @@ msgid "タイムスケジュール"
 msgstr "타임 스케줄"
 
 #: templates/2024/top.html:69 templates/2025/rule.html:204
-#: templates/2025/ticket.html:24 templates/2025/time_schedule.html:118
+#: templates/2025/ticket.html:23 templates/2025/time_schedule.html:118
 #: templates/2025/top.html:119 templates/2025/wildcards.html:110
 #: templates/base.html:120 templates/common/japan.html:2
 #: templates/common/japan.html:3 templates/common/japan.html:4
@@ -849,7 +849,23 @@ msgstr "Tag Team 부문・Crew 부문 참가 희망자는 주의해 주십시오
 msgid "GBB24では本番8日前公開"
 msgstr "GBB24에서는 본선 8일 전에 공개"
 
-#: templates/2025/ticket.html:22 templates/common/japan.html:76
+#: templates/2025/ticket.html:13
+msgid "譲渡希望ツイート"
+msgstr "양도 희망 트윗"
+
+#: templates/2025/ticket.html:15
+msgid "譲渡に関するトラブルについて、当サイトは一切の責任を負いません。また、連絡の仲介も一切行いません。"
+msgstr "양도에 관한 문제에 대해, 당 사이트는 일체의 책임을 지지 않습니다. 또한, 연락의 중개도 일절 하지 않습니다."
+
+#: templates/2025/ticket.html:16
+msgid "購入を希望する場合、ご本人様へ直接DM or リプライにてご連絡ください。"
+msgstr "구매를 원하시는 경우, 본인에게 직접 DM or 리플라이로 연락 주세요."
+
+#: templates/2025/ticket.html:18
+msgid "10月1日 掲載募集開始予定"
+msgstr "10월 1일 게재 모집 시작 예정"
+
+#: templates/2025/ticket.html:21 templates/common/japan.html:76
 #: templates/common/korea.html:76 templates/common/result.html:89
 #: templates/others/result_stream.html:17 templates/others/translation.html:18
 msgid "ルール&審査員"

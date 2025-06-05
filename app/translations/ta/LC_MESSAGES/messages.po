@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-23 22:36+0900\n"
+"POT-Creation-Date: 2025-06-05 11:54+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ta <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgstr "இந்த கையேடு"
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
 #: templates/2025/rule.html:66 templates/2025/rule.html:191
-#: templates/2025/rule.html:306 templates/2025/ticket.html:23
+#: templates/2025/rule.html:306 templates/2025/ticket.html:22
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:97
 #: templates/2025/wildcards.html:80 templates/base.html:116
 #: templates/common/participants.html:27 templates/common/result.html:90
@@ -70,7 +70,7 @@ msgid "Wildcard結果"
 msgstr "வைல்டு கார்டு முடிவு"
 
 #: templates/2024/top.html:53 templates/2025/rule.html:66
-#: templates/2025/rule.html:306 templates/2025/ticket.html:23
+#: templates/2025/rule.html:306 templates/2025/ticket.html:22
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:97
 #: templates/2025/wildcards.html:80 templates/base.html:116
 #: templates/common/result.html:90 templates/others/result_stream.html:38
@@ -119,7 +119,7 @@ msgstr "ஸ்தலத்திலே பார்க்கும் திட�
 #: templates/2024/time_schedule.html:2 templates/2024/time_schedule.html:3
 #: templates/2024/time_schedule.html:4 templates/2024/time_schedule.html:8
 #: templates/2024/top.html:16 templates/2024/top.html:65
-#: templates/2024/top_7tosmoke.html:35 templates/2025/ticket.html:25
+#: templates/2024/top_7tosmoke.html:35 templates/2025/ticket.html:24
 #: templates/2025/time_schedule.html:2 templates/2025/time_schedule.html:3
 #: templates/2025/time_schedule.html:4 templates/2025/time_schedule.html:9
 #: templates/2025/top.html:16 templates/2025/top.html:109
@@ -129,7 +129,7 @@ msgid "タイムスケジュール"
 msgstr "நேர அட்டவணை"
 
 #: templates/2024/top.html:69 templates/2025/rule.html:204
-#: templates/2025/ticket.html:24 templates/2025/time_schedule.html:118
+#: templates/2025/ticket.html:23 templates/2025/time_schedule.html:118
 #: templates/2025/top.html:119 templates/2025/wildcards.html:110
 #: templates/base.html:120 templates/common/japan.html:2
 #: templates/common/japan.html:3 templates/common/japan.html:4
@@ -892,7 +892,27 @@ msgstr ""
 msgid "GBB24では本番8日前公開"
 msgstr "GBB24 il 8 nāṭkaḷukku muṉpāka veḷiyīṭu"
 
-#: templates/2025/ticket.html:22 templates/common/japan.html:76
+#: templates/2025/ticket.html:13
+msgid "譲渡希望ツイート"
+msgstr "விருப்பம் தெரிவிக்கும் ட்வீட்"
+
+#: templates/2025/ticket.html:15
+msgid "譲渡に関するトラブルについて、当サイトは一切の責任を負いません。また、連絡の仲介も一切行いません。"
+msgstr ""
+"விற்பனை தொடர்பான பிரச்சனைகளுக்கு, எங்கள் தளம் எந்தப் பொறுப்பும் ஏற்காது. "
+"மேலும், தொடர்புகளை ஏற்படுத்துவதில் நாங்கள் எந்த உதவியும் செய்ய மாட்டோம்."
+
+#: templates/2025/ticket.html:16
+msgid "購入を希望する場合、ご本人様へ直接DM or リプライにてご連絡ください。"
+msgstr ""
+"நீங்கள் வாங்க விரும்பினால், நேரடியாக உங்களுக்கே DM or ரிப்ளை மூலம் தொடர்பு "
+"கொள்ளவும்."
+
+#: templates/2025/ticket.html:18
+msgid "10月1日 掲載募集開始予定"
+msgstr "அக்டோபர் 1 ஆம் தேதி வெளியீடு தொடங்க உள்ளது."
+
+#: templates/2025/ticket.html:21 templates/common/japan.html:76
 #: templates/common/korea.html:76 templates/common/result.html:89
 #: templates/others/result_stream.html:17 templates/others/translation.html:18
 msgid "ルール&審査員"
