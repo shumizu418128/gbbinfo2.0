@@ -178,3 +178,7 @@ footer p {
 label {
     color: rgb(34, 34, 34);
 }
+
+s {
+    text-decoration: line-through;
+}

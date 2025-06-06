@@ -104,11 +104,11 @@
             {% if participant.members != "" %}
 
             {% if participant.is_cancelled %}
-              【辞退】<br><a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';" style="text-decoration: line-through;">{{ participant.name }}</a>
-              <div class="member-list" style="display: none;"><s style="font-size: 12px">{{ participant.members }}</s></div>
+              【辞退】<br><s>{{ participant.name }}</s>
+              <div class="member-list"><s>[{{ participant.members }}]</s></div>
             {% else %}
-              <a href="javascript:void(0);" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">{{ participant.name }}</a>
-              <div class="member-list" style="display: none;">{{ participant.members }}</div>
+              {{ participant.name }}
+              <div class="member-list">[{{ participant.members }}]</div>
             {% endif %}
 
             {% else %}
