@@ -154,6 +154,10 @@ def set_request_data():
     """
     g.current_url = request.path
 
+    if 'X-Forwarded-For' in request.headers:
+        user_ip = request.headers['X-Forwarded-For'].split(',')[0].strip()
+        print(f"IPアドレス: {user_ip}", flush=True)
+
     # 初回アクセス時の言語設定
     if "language" not in session:
         best_match = request.accept_languages.best_match(AVAILABLE_LANGS)
