@@ -18,6 +18,7 @@ from flask import (
 from flask_babel import Babel, _
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 from .modules import gemini
 from .modules.config import (
@@ -38,6 +39,7 @@ from .modules.result import get_result
 from .modules.translate import translate
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 sitemapper = Sitemapper()
 sitemapper.init_app(app)
 
