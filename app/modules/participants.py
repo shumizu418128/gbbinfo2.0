@@ -53,11 +53,14 @@ def get_participants_list(
         on="iso_code",
         how="left",
     )
+
+    # マージ結果にNaNが含まれている場合はエラー
     if merged_df.isnull().any().any():
         null_columns = merged_df.columns[merged_df.isnull().any()].tolist()
         null_rows = merged_df[merged_df.isnull().any(axis=1)]
         error_message = f"Merge operation resulted in NaN values in columns: {null_columns}. Rows with NaN values:\n{null_rows}"
         raise ValueError(error_message)
+
     beatboxers_df = merged_df
 
     # フィルター処理

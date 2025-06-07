@@ -358,11 +358,12 @@ def participants(year: int):
     Returns:
         Response: 出場者一覧のHTMLテンプレート
     """
-    user_lang = session.get("language", "ja")  # セッションから言語を取得
-
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
         return redirect(url_for("content", year=year, content="top"))
+
+    # セッションから言語を取得
+    user_lang = session.get("language", "ja")
 
     # 引数を取得
     category = request.args.get("category")
@@ -540,12 +541,12 @@ def result(year: int):
     Returns:
         Response: 結果のHTMLテンプレート
     """
-    # 引数を取得
-    category = request.args.get("category")
-
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
         return redirect(url_for("content", year=year, content="top"))
+
+    # 引数を取得
+    category = request.args.get("category")
 
     # カテゴリを取得
     try:
