@@ -154,8 +154,6 @@ def set_request_data():
     """
     g.current_url = request.path
 
-    print(f"IPアドレス: {request.remote_addr}", flush=True)
-
     # 初回アクセス時の言語設定
     if "language" not in session:
         best_match = request.accept_languages.best_match(AVAILABLE_LANGS)
