@@ -132,41 +132,56 @@ def get_participants_list(
             participants_list.append(participant)
 
     # ソート
+    # 2020年は特別対応
+    if year == 2020:
+        participants_list = sorted(
+            participants_list,
+            key=lambda x:(
+                # 名前順
+                x["name"]
+            )
+        )
+        return participants_list
+
+    # 2021年は特別対応
+    if year == 2021:
+        participants_list = sorted(
+            participants_list,
+            key=lambda x: (
+                # キャンセルした人を後ろに
+                x["is_cancelled"],
+                # カテゴリー順
+                x["category"],
+                # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
+                not x["ticket_class"].startswith("GBB"),
+                # Wildcardから始まる人を後ろに
+                x["ticket_class"].startswith("Wildcard"),
+            ),
+        )
+        return participants_list
+
+    # それ以外の年
     participants_list = sorted(
         participants_list,
         key=lambda x: (
-            x["is_cancelled"],  # キャンセルした人を後ろに
-            x["country"] == "-",  # 未定の出場枠を後ろに
-            x["category"],  # カテゴリー順
+            # キャンセルした人を後ろに
+            x["is_cancelled"],
+            # 未定の出場枠を後ろに
+            x["country"] == "-",
+            # カテゴリー順
+            x["category"],
             # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
             not x["ticket_class"].startswith("GBB"),
-            x["ticket_class"].startswith("Wildcard"),  # Wildcardから始まる人を後ろに
+            # Wildcardから始まる人を後ろに
+            x["ticket_class"].startswith("Wildcard"),
             # Wildcardの場合、年度と順位でソート
             (
-                int(
-                    x["ticket_class"]
-                    .replace("Wildcard ", "")
-                    .replace("(", "")
-                    .replace(")", "")
-                    .split(" ")[1]
-                )
-                if len(x["ticket_class"].replace("Wildcard ", "").split(" ")) > 1
-                else float("inf"),
-                int(x["ticket_class"].replace("Wildcard ", "").split(" ")[0])
+                int(x["ticket_class"].replace("Wildcard ", ""))
                 if x["ticket_class"].startswith("Wildcard")
-                and len(x["ticket_class"].replace("Wildcard ", "").split(" ")) > 1
                 else float("inf"),
-            )
-            if x["ticket_class"].startswith("Wildcard")
-            else (float("inf"), float("inf")),
-            # Wildcard上位を前に
+            ),
         ),
     )
-
-    # 2020年のみ、名前順にソート
-    if year == 2020:
-        participants_list = sorted(participants_list, key=lambda x: x["name"])
-
     return participants_list
 
 
@@ -490,7 +505,10 @@ def rank_and_limit(counts, limit):
 
     return ranked_counts
 
-def count_participants(participants_list, individual_counts, country_counts, participant_names_set):
+
+def count_participants(
+    participants_list, individual_counts, country_counts, participant_names_set
+):
     """
     参加者の出場回数と国別カウントを行います。
 
@@ -529,6 +547,7 @@ def count_participants(participants_list, individual_counts, country_counts, par
                     participant_names_set.add(member)
 
     return individual_counts, country_counts, participant_names_set
+
 
 def total_participant_analysis():
     """
@@ -573,7 +592,10 @@ def total_participant_analysis():
         )
         participant_names_set = set()
         wildcard_individual_counts, wildcard_country_count, _ = count_participants(
-            participants_list, wildcard_individual_counts, wildcard_country_count, participant_names_set
+            participants_list,
+            wildcard_individual_counts,
+            wildcard_country_count,
+            participant_names_set,
         )
 
     # ランキングの作成
@@ -600,7 +622,9 @@ def total_participant_analysis():
     wildcard_country_count = {
         i + 1: {"country": item[0], "count": item[1]}
         for i, item in enumerate(
-            sorted(wildcard_country_count.items(), key=lambda item: item[1], reverse=True)[:10]
+            sorted(
+                wildcard_country_count.items(), key=lambda item: item[1], reverse=True
+            )[:10]
         )
     }
 
