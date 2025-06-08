@@ -220,8 +220,7 @@ def has_page_translation(url, target_lang=None):
     POファイルを読み込んで、指定されたページに翻訳が提供されているかをチェックします。
 
     Args:
-        year (int): 年度
-        page_name (str): ページ名
+        url (str): ページのURL
         target_lang (str): 対象言語（Noneの場合は現在のセッション言語）
 
     Returns:
@@ -231,13 +230,8 @@ def has_page_translation(url, target_lang=None):
     if target_lang == "ja":
         return True
 
-    # 2024年以降のみ翻訳対象
-    if year < 2024:
-        return False
-
-    # "#: templates/{year}/{page_name}.html" の形式で記載があるかチェック
-    target_template_path = "templates" + url + ".html"
-    return target_template_path in TRANSLATED_TEMPLATE_PATHS
+    # urlが翻訳対象のページに含まれているかチェック
+    return url in TRANSLATED_TEMPLATE_PATHS
 
 
 @app.context_processor
@@ -255,7 +249,7 @@ def inject_variables():
         last_updated=LAST_UPDATED,
         current_url=g.current_url,
         language=session.get("language"),
-        has_page_translation=has_page_translation(g.current_url),
+        has_page_translation=has_page_translation(g.current_url, session.get("language")),
     )
 
 

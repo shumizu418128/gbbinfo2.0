@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-05 15:06+0900\n"
+"POT-Creation-Date: 2025-06-08 23:00+0900\n"
 "PO-Revision-Date: 2025-04-16 13:02+0900\n"
 "Last-Translator: GBBINFO-JPN Translation Team <support@gbbinfo.com>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:191
 #: templates/2025/wildcard_regulation.html:250
 #: templates/2025/wildcard_regulation.html:251 templates/base.html:115
-#: templates/base.html:140 templates/base.html:227
+#: templates/base.html:140 templates/base.html:234
 msgid "これだけガイド"
 msgstr "Bare guiden"
 
@@ -174,79 +174,87 @@ msgstr "Konkurranseresultater"
 msgid "年度選択"
 msgstr "Årsvalg"
 
-#: templates/base.html:188
+#: templates/base.html:178
+msgid "翻訳未提供"
+msgstr "Oversettelse ikke tilgjengelig"
+
+#: templates/base.html:179
+msgid "このページは翻訳が提供されていません。"
+msgstr "Denne siden er ikke oversatt."
+
+#: templates/base.html:195
 msgid "GBBまでの残り時間"
 msgstr "Gjenstående tid til GBB"
 
-#: templates/base.html:193 templates/base.html:205
+#: templates/base.html:200 templates/base.html:212
 #: templates/includes/bottom_navigation.html:28
 #: templates/includes/bottom_navigation.html:42
 msgid "なんでも検索"
 msgstr "Søk etter hva som helst"
 
-#: templates/base.html:194 templates/includes/bottom_navigation.html:29
+#: templates/base.html:201 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} の検索のみ可能です"
 msgstr "Kun søk i GBB {year} er tillatt."
 
-#: templates/base.html:194 templates/includes/bottom_navigation.html:29
+#: templates/base.html:201 templates/includes/bottom_navigation.html:29
 #, python-brace-format
 msgid "GBB {year} は終了しました"
 msgstr "GBB {year} er over."
 
-#: templates/base.html:196 templates/includes/bottom_navigation.html:31
+#: templates/base.html:203 templates/includes/bottom_navigation.html:31
 #, python-brace-format
 msgid "例：GBB {year} の最終結果は？"
 msgstr "Eksempel: Hva er de endelige resultatene av GBB {year}?"
 
-#: templates/base.html:201 templates/includes/bottom_navigation.html:36
+#: templates/base.html:208 templates/includes/bottom_navigation.html:36
 msgid "GBB最新情報の検索はこちら"
 msgstr "Klikk her for å søke etter den siste GBB-informasjonen"
 
-#: templates/base.html:206 templates/includes/bottom_navigation.html:43
+#: templates/base.html:213 templates/includes/bottom_navigation.html:43
 #, python-brace-format
 msgid "GBB {year} について検索してみよう"
 msgstr "La oss søke etter GBB {year}"
 
 #: templates/2024/top.html:36 templates/2024/top_7tosmoke.html:16
 #: templates/2025/top.html:36 templates/2025/top_7tosmoke.html:16
-#: templates/base.html:208 templates/includes/bottom_navigation.html:45
+#: templates/base.html:215 templates/includes/bottom_navigation.html:45
 msgid "例：現地観戦計画のたてかた"
 msgstr "Eksempel: Hvordan planlegge å se arrangementet live"
 
-#: templates/base.html:218
+#: templates/base.html:225
 msgid "ホーム画面に追加"
 msgstr "Legg til på startskjermen"
 
-#: templates/base.html:221
+#: templates/base.html:228
 msgid "GBBINFO-JPNはPWAに対応しています。"
 msgstr "GBBINFO-JPN støtter PWA."
 
-#: templates/base.html:221
+#: templates/base.html:228
 msgid "ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。"
 msgstr ""
 "Du kan installere appen ved å åpne nettlesermenyen og trykke på \"Legg til "
 "på startskjermen\"."
 
-#: templates/base.html:227
+#: templates/base.html:234
 msgid "ホームへもどる"
 msgstr "Gå tilbake til startsiden"
 
-#: templates/base.html:232
+#: templates/base.html:239
 msgid "対応言語"
 msgstr "Støttede språk"
 
-#: templates/base.html:245
+#: templates/base.html:252
 msgid "GBBINFO-JPNについて"
 msgstr "Om GBBINFO-JPN"
 
-#: templates/base.html:249 templates/others/translation.html:2
+#: templates/base.html:256 templates/others/translation.html:2
 #: templates/others/translation.html:3 templates/others/translation.html:4
 #: templates/others/translation.html:9
 msgid "各ページの翻訳提供について"
 msgstr "Om oversettelser av hver side"
 
-#: templates/base.html:269
+#: templates/base.html:276
 msgid "いい景色だろ？"
 msgstr "Flott utsikt, ikke sant?"
 

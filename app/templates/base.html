@@ -173,6 +173,13 @@
         {% include 'includes/early_access.html' %}
       {% endif %}
 
+      {% if has_page_translation is false %}
+        <div class="post-it">
+          <strong>【{{ _('翻訳未提供') }}】</strong><br>
+          {{ _('このページは翻訳が提供されていません。') }}
+        </div>
+      {% endif %}
+
       {% block content %}{% endblock %}
 
       <div style="margin: 40px 0;"></div>
