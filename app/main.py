@@ -1,4 +1,5 @@
 import os
+import re
 import warnings
 from datetime import datetime
 
@@ -78,6 +79,7 @@ else:
 babel = Babel(app)
 test = _("test")  # テスト翻訳
 
+
 ####################################################################
 # MARK: 定数一覧
 ####################################################################
@@ -138,6 +140,55 @@ CONTENT_OTHERS = os.listdir("./app/templates/others")
 CONTENT_OTHERS = [content.replace(".html", "") for content in CONTENT_OTHERS]
 
 
+# 翻訳存在確認用のPOファイルのパス
+PO_FILE_PATH = "app/translations/en/LC_MESSAGES/messages.po"
+
+# 翻訳が存在するページのパスを取得
+TRANSLATED_TEMPLATE_PATHS = set()
+
+# POファイルを読み込んで、翻訳が存在するページのパスを取得
+with open(PO_FILE_PATH, "r", encoding="utf-8") as f:
+    PO_FILE = f.read()
+
+# 除外ワード
+EXCLUDE_WORDS = [
+    r":\d+",
+    "templates/",
+    ".html",
+]
+
+# ファイルを1行ずつ読み込んで、翻訳が存在するページのパスを取得
+for line in PO_FILE.split("\n"):
+    # 行の先頭が"#: templates/"で始まる場合、行の先頭の"#:"を除去して、パスを取得
+    if line.startswith("#: templates/"):
+        paths = line.replace("#:", "").split()
+
+        for path in paths:
+            # base.htmlは除外
+            if path.startswith("templates/base.html"):
+                continue
+            # includes/は除外
+            if path.startswith("templates/includes/"):
+                continue
+            # 404.htmlは除外
+            if "404.html" in path:
+                continue
+
+            # パスの先頭が"templates/"で始まる場合、除外ワードを除去
+            if path.startswith("templates/"):
+                for word in EXCLUDE_WORDS:
+                    path = re.sub(word, "", path)
+            # common/は年度がないので、年度を書いてあげる
+            if path.startswith("common/"):
+                for year in AVAILABLE_YEARS:
+                    formatted_template_path = f"/{year}/{path.replace('common/', '')}"
+                    TRANSLATED_TEMPLATE_PATHS.add(formatted_template_path)
+                continue
+
+            # パスを追加(先頭に"/"を追加)
+            TRANSLATED_TEMPLATE_PATHS.add("/" + path)
+
+
 ####################################################################
 # MARK: 共通変数
 ####################################################################
@@ -154,14 +205,39 @@ def set_request_data():
     """
     g.current_url = request.path
 
-    if 'X-Forwarded-For' in request.headers:
-        user_ip = request.headers['X-Forwarded-For'].split(',')[0].strip()
+    if "X-Forwarded-For" in request.headers:
+        user_ip = request.headers["X-Forwarded-For"].split(",")[0].strip()
         print(f"IPアドレス: {user_ip}", flush=True)
 
     # 初回アクセス時の言語設定
     if "language" not in session:
         best_match = request.accept_languages.best_match(AVAILABLE_LANGS)
         session["language"] = best_match if best_match else "ja"
+
+
+def has_page_translation(url, target_lang=None):
+    """
+    POファイルを読み込んで、指定されたページに翻訳が提供されているかをチェックします。
+
+    Args:
+        year (int): 年度
+        page_name (str): ページ名
+        target_lang (str): 対象言語（Noneの場合は現在のセッション言語）
+
+    Returns:
+        bool: 翻訳が提供されている場合True、されていない場合False
+    """
+    # 日本語の場合は常にTrue（元言語）
+    if target_lang == "ja":
+        return True
+
+    # 2024年以降のみ翻訳対象
+    if year < 2024:
+        return False
+
+    # "#: templates/{year}/{page_name}.html" の形式で記載があるかチェック
+    target_template_path = "templates" + url + ".html"
+    return target_template_path in TRANSLATED_TEMPLATE_PATHS
 
 
 @app.context_processor
@@ -179,6 +255,7 @@ def inject_variables():
         last_updated=LAST_UPDATED,
         current_url=g.current_url,
         language=session.get("language"),
+        has_page_translation=has_page_translation(g.current_url),
     )
 
 
