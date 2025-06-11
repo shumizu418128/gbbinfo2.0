@@ -672,7 +672,6 @@ def create_all_participants_map(country_counts_all: dict):
     # マーカーを地図に追加
     for _, data in country_counts_all.items():
         country_name = data["country"]
-        print(country_name)
         count = data["count"]
 
         # 出場者未定はスキップ
