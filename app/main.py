@@ -85,7 +85,7 @@ test = _("test")  # テスト翻訳
 ####################################################################
 # 現在時刻を読み込む(最終更新日時として使用)
 DT_NOW = datetime.now()
-LAST_UPDATED = "UPDATE " + DT_NOW.strftime("%Y/%m/%d %H:%M:%S")
+LAST_UPDATED = "UPDATE " + DT_NOW.strftime("%Y/%m/%d %H:%M:%S") + " JST"
 
 
 # 各年度の全カテゴリを取得
