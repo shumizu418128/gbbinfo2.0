@@ -35,6 +35,8 @@
     <div class="post-it">{{ _('出場者のみ') }}</div>
   {% elif request.args.get('cancel') == "only_cancelled" %}
     <div class="post-it">{{ _('辞退者のみ') }}</div>
+  {% elif request.args.get('cancel') == "show" %}
+    <div class="post-it">{{ _('出場者 & 辞退者を表示') }}</div>
   {% endif %}
 
   {% if participants %}
