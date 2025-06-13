@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}GBB {{ year }} {{ _('日本代表') }} - GBBINFO-JPN{% endblock %}
-{% block twitter_title %}GBB{{ year }}:{{ _('日本代表') }} - GBBINFO-JPN{% endblock %}
-{% block og_title %}GBB{{ year }}:{{ _('日本代表') }} - GBBINFO-JPN{% endblock %}
+{% block twitter_title %}GBB {{ year }} {{ _('日本代表') }} - GBBINFO-JPN{% endblock %}
+{% block og_title %}GBB {{ year }} {{ _('日本代表') }} - GBBINFO-JPN{% endblock %}
 {% block og_url %}https://gbbinfo-jpn.onrender.com/{{ year }}/japan{% endblock %}
 {% block canonical %}https://gbbinfo-jpn.onrender.com/{{ year }}/japan{% endblock %}
 {% block content %}
@@ -73,7 +73,7 @@
   {% endif %}
   <a href="/{{year}}/participants"><button>GBB {{ year }} {{ _('全出場者一覧') }}<br></button></a>
   <a href="/{{year}}/rule"><button>{{ _('出場権詳細') }}</button></a>
-  <a href="/{{year}}/rule"><button>GBB {{ year }} {{ _('ルール&審査員') }}</button></a>
+  <a href="/{{year}}/rule"><button>GBB {{ year }} {{ _('ルール & 審査員') }}</button></a>
   <a href="/{{year}}/rule?scroll=result_date"><button>{{ _('Wildcard結果発表日') }}</button></a>
 </div>
 
