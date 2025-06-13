@@ -57,8 +57,8 @@ button {
     justify-content: center;
     gap: 4px;
     font-family: 'Noto sans JP';
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .button-container a {

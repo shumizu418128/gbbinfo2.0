@@ -58,10 +58,14 @@
         <a href="/{{year}}/rule?scroll=result_date"><button>{{_('ワイルドカード')}}<br>{{ _('結果発表日') }}</button></a>
         <a href="/{{ year }}/wildcards"><button>{{_('ワイルドカード')}}<br>{{_('動画一覧')}}</button></a>
         <a href="/{{ year }}/rule"><button>{{_('ワイルドカード')}}<br>{{_('ルール')}}</button></a>
+      </div>
+      <div class="button-container">
         <a href="/{{ year }}/rule?scroll=result_date"><button>{{_('ワイルドカード')}}<br>{{_('提出締切')}}</button></a>
         <a href="/others/result_stream"><button>{{_('ワイルドカード')}}<br>{{_('結果発表配信')}}</button></a>
         <a href="/{{ year }}/rule?scroll=judge"><button>{{_('ワイルドカード')}}<br>{{_('審査員')}}</button></a>
         <a href="/{{ year }}/rule?scroll=category"><button>{{_('ワイルドカード')}}<br>{{_('出場枠の数')}}</button></a>
+      </div>
+      <div class="button-container">
         <a href="/{{ year }}/bitomori"><button style="background-image: url('/static/images/button/bitomori.webp');" class="bg-pic">
           <svg class="bg-pic" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044CC"><path d="m380-340 280-180-280-180v360Zm-60 220v-80H160q-33 0-56.5-23.5T80-280v-480q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v480q0 33-23.5 56.5T800-200H640v80H320Z"/></svg>
           <span class="button-text-with-icon">ビト森 GBB鑑賞会</span>
@@ -75,6 +79,8 @@
         <a href="/{{ year - 1 }}/result"><button>GBB {{ year - 1 }}<br>{{_('大会結果')}}</button></a>
         <a href="/{{ year }}/participants"><button>{{_('ワイルドカード')}}<br>{{_('結果')}}</button></a>
         <a href="/{{ year }}/participants"><button>{{_('全出場者一覧')}}</button></a>
+      </div>
+      <div class="button-container">
         <a href="/{{year}}/rule?scroll=result_date"><button>{{_('ワイルドカード')}}<br>{{ _('結果発表日') }}</button></a>
         <a href="/others/result_stream"><button>{{_('ワイルドカード')}}<br>{{_('結果発表配信')}}</button></a>
         <a href="/{{ year }}/bitomori"><button style="background-image: url('/static/images/button/bitomori.webp');" class="bg-pic">
@@ -108,6 +114,8 @@
     <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044CC"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v187q0 17-11.5 28.5T800-493q-17 0-28.5-11.5T760-533v-27H200v400h232q17 0 28.5 11.5T472-120q0 17-11.5 28.5T432-80H200Zm520 40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Zm67-105 28-28-75-75v-112h-40v128l87 87Z"/></svg>
     <span class="button-text-with-icon">{{ _('タイムスケジュール') }}</span>
   </button></a>
+</div>
+<div class="button-container">
   {% if language == 'ko' %}
     <a href="/{{ year }}/korea"><button style="background-image: url('/static/images/button/wing.webp');" class="bg-pic">
       <svg class="bg-pic" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0044cc"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
