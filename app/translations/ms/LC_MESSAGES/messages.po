@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 00:33+0900\n"
+"POT-Creation-Date: 2025-06-14 00:36+0900\n"
 "PO-Revision-Date: 2025-03-07 00:17+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ms <LL@li.org>\n"
@@ -1455,105 +1455,42 @@ msgid "AIによる翻訳のため、誤りがある可能性があります。"
 msgstr "Mungkin terdapat kesilapan disebabkan terjemahan AI."
 
 #: templates/others/translation.html:12
-msgid ""
-"翻訳を提供しているページ・提供対象国は、以下の通りです。なお、提供対象国は、2025年1月1日以降の当サイトへのアクセス記録から、対応すべきと判断された国を選定しています。"
-msgstr ""
-"Halaman yang menyediakan terjemahan dan negara yang dilayan adalah seperti "
-"berikut. Sila ambil perhatian bahawa negara yang dilayan dipilih berdasarkan"
-" rekod akses ke laman web kami selepas 1 Januari 2025, dan negara yang "
-"dianggap sesuai untuk disokong."
+msgid "翻訳を提供しているページは、以下の通りです。"
+msgstr "Halaman yang menyediakan terjemahan adalah seperti berikut."
 
 #: templates/others/translation.html:15
 msgid "対応年度：2024年以降"
 msgstr "Tahun yang berkaitan: 2024 dan seterusnya"
 
-#: templates/others/translation.html:30
-msgid "提供対象国"
-msgstr "Negara yang disediakan"
-
-#: templates/others/translation.html:32
-msgid "日本"
-msgstr "Jepun"
-
-#: templates/others/translation.html:33
-msgid "韓国"
-msgstr "Korea"
-
-#: templates/others/translation.html:34
-msgid "アメリカ"
-msgstr "Amerika"
-
-#: templates/others/translation.html:35
-msgid "オーストラリア"
-msgstr "Australia"
-
-#: templates/others/translation.html:36
-msgid "ノルウェー"
-msgstr "Norway"
-
-#: templates/others/translation.html:37
-msgid "台湾"
-msgstr "Taiwan"
-
-#: templates/others/translation.html:38
-msgid "中国"
-msgstr "China"
-
-#: templates/others/translation.html:39
-msgid "カナダ"
-msgstr "Kanada"
-
-#: templates/others/translation.html:40
-msgid "マレーシア"
-msgstr "Malaysia"
-
-#: templates/others/translation.html:41
-msgid "フランス"
-msgstr "Perancis"
-
-#: templates/others/translation.html:42
-msgid "ハンガリー"
-msgstr "Hungary"
-
-#: templates/others/translation.html:43
-msgid "シンガポール"
-msgstr "Singapura"
-
-#: templates/others/translation.html:44
-msgid "香港"
-msgstr "Hong Kong"
-
-#: templates/others/translation.html:45
-msgid "ドイツ"
-msgstr "Jerman"
-
-#: templates/others/translation.html:46
-msgid "インド"
-msgstr "India"
-
-#: templates/others/translation.html:47
-msgid "イギリス"
-msgstr "United Kingdom"
-
-#: templates/others/translation.html:48
-msgid "スイス"
-msgstr "Switzerland"
-
-#: templates/others/translation.html:49
-msgid "ニュージーランド"
-msgstr "New Zealand"
-
-#: templates/others/translation.html:53
-msgid "上記の提供対象国で話されている言語のうち、AI翻訳が可能な言語に対応しています。なお、提供対象国は、アクセス状況に応じて随時追加予定です。"
+#: templates/others/translation.html:29
+msgid "なお、翻訳対応言語は、アクセス状況に応じて随時追加予定です。"
 msgstr ""
-"Ia menyokong bahasa yang diterjemahkan oleh AI yang dituturkan di negara-"
-"negara yang disebut di atas. Negara-negara yang disebut di atas akan "
-"ditambah dari semasa ke semasa mengikut status akses."
+"Selain itu, bahasa terjemahan yang disokong akan ditambah dari semasa ke "
+"semasa bergantung pada status akses."
 
-#: templates/others/translation.html:55
+#: templates/others/translation.html:31
 msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
 msgstr ""
 "Laman yang tidak menyediakan terjemahan dipaparkan dalam bahasa asalnya, "
 "iaitu bahasa Jepun."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

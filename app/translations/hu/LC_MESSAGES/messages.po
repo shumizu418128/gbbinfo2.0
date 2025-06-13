@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 00:33+0900\n"
+"POT-Creation-Date: 2025-06-14 00:36+0900\n"
 "PO-Revision-Date: 2024-04-05 21:06+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: hu <LL@li.org>\n"
@@ -1452,105 +1452,42 @@ msgid "AIによる翻訳のため、誤りがある可能性があります。"
 msgstr "A mesterséges intelligencia fordítása miatt hibák fordulhatnak elő."
 
 #: templates/others/translation.html:12
-msgid ""
-"翻訳を提供しているページ・提供対象国は、以下の通りです。なお、提供対象国は、2025年1月1日以降の当サイトへのアクセス記録から、対応すべきと判断された国を選定しています。"
-msgstr ""
-"A fordításokat kínáló oldalak és célországok a következők. A célországokat "
-"2025. január 1-jétől a weboldalunkra érkező hozzáférési naplók alapján "
-"választjuk ki, figyelembe véve azokat az országokat, amelyekre a leginkább "
-"szükség van."
+msgid "翻訳を提供しているページは、以下の通りです。"
+msgstr "Fordításokat kínáló oldal a következő:"
 
 #: templates/others/translation.html:15
 msgid "対応年度：2024年以降"
 msgstr "Év: 2024 után"
 
-#: templates/others/translation.html:30
-msgid "提供対象国"
-msgstr "Célországok"
-
-#: templates/others/translation.html:32
-msgid "日本"
-msgstr "Japán"
-
-#: templates/others/translation.html:33
-msgid "韓国"
-msgstr "Korea"
-
-#: templates/others/translation.html:34
-msgid "アメリカ"
-msgstr "Amerika"
-
-#: templates/others/translation.html:35
-msgid "オーストラリア"
-msgstr "Ausztrália"
-
-#: templates/others/translation.html:36
-msgid "ノルウェー"
-msgstr "Norvégia"
-
-#: templates/others/translation.html:37
-msgid "台湾"
-msgstr "Tajvan"
-
-#: templates/others/translation.html:38
-msgid "中国"
-msgstr "Kína"
-
-#: templates/others/translation.html:39
-msgid "カナダ"
-msgstr "Kanada"
-
-#: templates/others/translation.html:40
-msgid "マレーシア"
-msgstr "Malajzia"
-
-#: templates/others/translation.html:41
-msgid "フランス"
-msgstr "Franciaország"
-
-#: templates/others/translation.html:42
-msgid "ハンガリー"
-msgstr "Magyarország"
-
-#: templates/others/translation.html:43
-msgid "シンガポール"
-msgstr "Szingapúr"
-
-#: templates/others/translation.html:44
-msgid "香港"
-msgstr "Hongkong"
-
-#: templates/others/translation.html:45
-msgid "ドイツ"
-msgstr "Németország"
-
-#: templates/others/translation.html:46
-msgid "インド"
-msgstr "India"
-
-#: templates/others/translation.html:47
-msgid "イギリス"
-msgstr "Egyesült Királyság"
-
-#: templates/others/translation.html:48
-msgid "スイス"
-msgstr "Svájc"
-
-#: templates/others/translation.html:49
-msgid "ニュージーランド"
-msgstr "Új-Zéland"
-
-#: templates/others/translation.html:53
-msgid "上記の提供対象国で話されている言語のうち、AI翻訳が可能な言語に対応しています。なお、提供対象国は、アクセス状況に応じて随時追加予定です。"
+#: templates/others/translation.html:29
+msgid "なお、翻訳対応言語は、アクセス状況に応じて随時追加予定です。"
 msgstr ""
-"A fenti, támogatott országokban beszélt nyelvek közül az AI fordítás által "
-"támogatottak a rendelkezésre állók. A támogatott országok a hozzáférhetőség "
-"függvényében folyamatosan bővülnek."
+"A fordítási támogatott nyelvek a hozzáférési feltételek függvényében "
+"folyamatosan bővülnek."
 
-#: templates/others/translation.html:55
+#: templates/others/translation.html:31
 msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
 msgstr ""
 "Azok az oldalak, amelyek nem nyújtanak fordítást, az eredeti japán nyelven "
 "jelennek meg."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
