@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-14 01:01+0900\n"
+"POT-Creation-Date: 2025-06-15 12:30+0900\n"
 "PO-Revision-Date: 2025-04-17 23:21+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: th <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgstr "คู่มือฉบับย่อ"
 #: templates/2024/rule.html:196 templates/2024/time_schedule.html:98
 #: templates/2024/time_schedule.html:228 templates/2024/top.html:53
 #: templates/2025/rule.html:66 templates/2025/rule.html:191
-#: templates/2025/rule.html:306 templates/2025/ticket.html:22
+#: templates/2025/rule.html:306 templates/2025/ticket.html:25
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:103
 #: templates/2025/wildcards.html:13 templates/2025/wildcards.html:82
 #: templates/base.html:116 templates/common/participants.html:27
@@ -71,7 +71,7 @@ msgid "Wildcard結果"
 msgstr "ผลลัพธ์ Wildcard"
 
 #: templates/2024/top.html:53 templates/2025/rule.html:66
-#: templates/2025/rule.html:306 templates/2025/ticket.html:22
+#: templates/2025/rule.html:306 templates/2025/ticket.html:25
 #: templates/2025/time_schedule.html:90 templates/2025/top.html:103
 #: templates/2025/wildcards.html:13 templates/2025/wildcards.html:82
 #: templates/base.html:116 templates/common/result.html:90
@@ -123,7 +123,7 @@ msgstr "วิธีวางแผนการชมการแข่งขั
 #: templates/2024/time_schedule.html:2 templates/2024/time_schedule.html:3
 #: templates/2024/time_schedule.html:4 templates/2024/time_schedule.html:8
 #: templates/2024/top.html:16 templates/2024/top.html:65
-#: templates/2024/top_7tosmoke.html:35 templates/2025/ticket.html:24
+#: templates/2024/top_7tosmoke.html:35 templates/2025/ticket.html:27
 #: templates/2025/time_schedule.html:2 templates/2025/time_schedule.html:3
 #: templates/2025/time_schedule.html:4 templates/2025/time_schedule.html:9
 #: templates/2025/top.html:16 templates/2025/top.html:115
@@ -133,7 +133,7 @@ msgid "タイムスケジュール"
 msgstr "ตารางเวลา"
 
 #: templates/2024/top.html:71 templates/2025/rule.html:204
-#: templates/2025/ticket.html:23 templates/2025/time_schedule.html:118
+#: templates/2025/ticket.html:26 templates/2025/time_schedule.html:118
 #: templates/2025/top.html:127 templates/2025/wildcards.html:112
 #: templates/base.html:122 templates/common/japan.html:2
 #: templates/common/japan.html:3 templates/common/japan.html:4
@@ -144,13 +144,14 @@ msgstr "ทีมชาติญี่ปุ่น"
 #: templates/2024/ticket.html:10 templates/2024/ticket.html:16
 #: templates/2024/top.html:75 templates/2024/top.html:131
 #: templates/2024/top.html:135 templates/2025/ticket.html:10
-#: templates/2025/top.html:132 templates/2025/top.html:211
-#: templates/2025/top.html:215 templates/base.html:123
+#: templates/2025/ticket.html:11 templates/2025/top.html:132
+#: templates/2025/top.html:211 templates/2025/top.html:215
+#: templates/base.html:123
 msgid "会場"
 msgstr "สถานที่จัดงาน"
 
 #: templates/2024/ticket.html:18 templates/2024/top.html:75
-#: templates/2025/ticket.html:11 templates/2025/top.html:132
+#: templates/2025/ticket.html:12 templates/2025/top.html:132
 #: templates/base.html:123
 msgid "チケット"
 msgstr "ตั๋ว"
@@ -242,7 +243,7 @@ msgstr "เปิดเมนูของเบราว์เซอร์ แ�
 msgid "ホームへもどる"
 msgstr "กลับไปหน้าแรก"
 
-#: templates/base.html:252
+#: templates/2025/ticket.html:21 templates/base.html:252
 msgid "GBBINFO-JPN開発者 Twitter"
 msgstr "GBBINFO-JPN開発者 Twitter"
 
@@ -887,25 +888,31 @@ msgstr "สำหรับผู้ที่ต้องการเข้าร
 msgid "GBB24では本番8日前公開"
 msgstr "GBB24 จะเปิดเผย 8 วันก่อนวันจริง"
 
-#: templates/2025/ticket.html:13
+#: templates/2025/ticket.html:14
 msgid "譲渡希望ツイート"
 msgstr "ทวีตต้องการโอนย้าย"
 
-#: templates/2025/ticket.html:15
+#: templates/2025/ticket.html:16
 msgid "譲渡に関するトラブルについて、当サイトは一切の責任を負いません。また、連絡の仲介も一切行いません。"
 msgstr ""
 "เกี่ยวกับปัญหาการโอนสิทธิ์ เว็บไซต์ของเราจะไม่รับผิดชอบใดๆ ทั้งสิ้น "
 "นอกจากนี้ เราจะไม่เป็นตัวกลางในการติดต่อสื่อสารใดๆ"
 
-#: templates/2025/ticket.html:16
+#: templates/2025/ticket.html:17
 msgid "購入を希望する場合、ご本人様へ直接DM or リプライにてご連絡ください。"
 msgstr "หากต้องการซื้อ กรุณาติดต่อผู้ขายโดยตรงทาง DM หรือ reply"
 
-#: templates/2025/ticket.html:18
+#: templates/2025/ticket.html:19
 msgid "10月1日 掲載募集開始予定"
 msgstr "1 ตุลาคม กำหนดเปิดรับสมัคร"
 
-#: templates/2025/ticket.html:21 templates/common/japan.html:73
+#: templates/2025/ticket.html:20
+msgid "譲渡希望ツイートの掲載をご希望の場合、GBBINFO-JPN開発者 TwitterへDMにてご連絡ください。"
+msgstr ""
+"หากท่านต้องการให้เราลงข้อความในทวีตเกี่ยวกับการส่งต่อ กรุณาติดต่อ GBBINFO-"
+"JPN開発者 ทาง Twitter ด้วยข้อความส่วนตัว (DM)"
+
+#: templates/2025/ticket.html:24 templates/common/japan.html:73
 #: templates/common/korea.html:73 templates/common/result.html:89
 #: templates/others/result_stream.html:17 templates/others/translation.html:18
 msgid "ルール & 審査員"
@@ -1430,4 +1437,3 @@ msgstr "なお, ภาษาที่รองรับการแปลจะ�
 #: templates/others/translation.html:31
 msgid "翻訳を提供していないページは、原文である日本語で表示されます。"
 msgstr "หน้าที่ที่ไม่มีการแปลจะแสดงเป็นภาษาญี่ปุ่นซึ่งเป็นภาษาต้นฉบับ"
-
