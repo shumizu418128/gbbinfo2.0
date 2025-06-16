@@ -100,9 +100,8 @@ for year in AVAILABLE_YEARS + [2013, 2014, 2015, 2016]:
         participants_csv_path = os.path.join(
             "app", "database", "participants", f"{year}.csv"
         )
-        valid_categories = (
-            pd.read_csv(participants_csv_path)["category"].unique().tolist()
-        )
+        participants_df = pd.read_csv(participants_csv_path)
+        valid_categories = participants_df["category"].unique().tolist()
         VALID_CATEGORIES_DICT[year] = valid_categories
 
 
@@ -398,9 +397,8 @@ def world_map(year: int):
 
     base_path = os.path.join("app", "templates")
     abs_base_path = os.path.abspath(base_path)
-    map_path = os.path.abspath(
-        os.path.join(base_path, str(year), f"world_map_{user_lang}.html")
-    )
+    map_filename = f"world_map_{user_lang}.html"
+    map_path = os.path.abspath(os.path.join(base_path, str(year), map_filename))
 
     # base_path からのパストラバーサル防止
     if not map_path.startswith(abs_base_path):
@@ -479,13 +477,10 @@ def participants(year: int):
     valid_cancel = ["show", "hide", "only_cancelled"]
 
     # 引数の正当性を確認
-    args_valid = all(
-        [
-            category in valid_categories,
-            ticket_class in valid_ticket_classes,
-            cancel in valid_cancel,
-        ]
-    )
+    category_is_valid = category in valid_categories
+    ticket_class_is_valid = ticket_class in valid_ticket_classes
+    cancel_is_valid = cancel in valid_cancel
+    args_valid = all([category_is_valid, ticket_class_is_valid, cancel_is_valid])
 
     # 引数が不正な場合はデフォルト値を設定
     if not args_valid:

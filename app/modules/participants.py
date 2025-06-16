@@ -15,7 +15,9 @@ COUNTRIES_DF = pd.read_csv(countries_csv_path)
 beatboxers_df_dict = {}
 for year in AVAILABLE_YEARS + [2013, 2014, 2015, 2016]:
     if year != 2022:
-        participants_csv_path = os.path.join("app", "database", "participants", f"{year}.csv")
+        participants_csv_path = os.path.join(
+            "app", "database", "participants", f"{year}.csv"
+        )
         beatboxers_df = pd.read_csv(participants_csv_path)
         beatboxers_df = beatboxers_df.fillna("")
         beatboxers_df_dict[year] = beatboxers_df
@@ -142,10 +144,10 @@ def get_participants_list(
     if year == 2020:
         participants_list = sorted(
             participants_list,
-            key=lambda x:(
+            key=lambda x: (
                 # 名前順
                 x["name"]
-            )
+            ),
         )
         return participants_list
 
@@ -167,27 +169,29 @@ def get_participants_list(
         return participants_list
 
     # それ以外の年
-    participants_list = sorted(
-        participants_list,
-        key=lambda x: (
-            # キャンセルした人を後ろに
-            x["is_cancelled"],
-            # 未定の出場枠を後ろに
-            x["country"] == "-",
-            # カテゴリー順
-            x["category"],
-            # GBBから始まる人 (= GBBトップ3 or 優勝) を前に
-            not x["ticket_class"].startswith("GBB"),
-            # Wildcardから始まる人を後ろに
-            x["ticket_class"].startswith("Wildcard"),
-            # Wildcardの場合、年度と順位でソート
-            (
-                int(x["ticket_class"].replace("Wildcard ", ""))
-                if x["ticket_class"].startswith("Wildcard")
-                else float("inf"),
-            ),
-        ),
-    )
+    def get_sort_key(participant):
+        is_cancelled = participant["is_cancelled"]
+        is_country_undetermined = participant["country"] == "-"
+        category = participant["category"]
+        is_not_gbb_seed = not participant["ticket_class"].startswith("GBB")
+        is_wildcard = participant["ticket_class"].startswith("Wildcard")
+
+        wildcard_priority = (
+            int(participant["ticket_class"].replace("Wildcard ", ""))
+            if is_wildcard
+            else float("inf")
+        )
+
+        return (
+            is_cancelled,
+            is_country_undetermined,
+            category,
+            is_not_gbb_seed,
+            is_wildcard,
+            wildcard_priority,
+        )
+
+    participants_list = sorted(participants_list, key=get_sort_key)
     return participants_list
 
 
@@ -353,16 +357,9 @@ def create_world_map(year: int, user_lang: str = "ja"):
         location = (lat, lon)
 
         popup_content = "<div style=\"font-family: 'Noto sans JP'; font-size: 14px;\">"
-        popup_content += f"""
-        <h3 style="margin: 0; color: #ff6417;">
-            {country_name}
-        </h3>
-        """
-        popup_content += f"""
-        <h4 style="margin: 0; color: #ff6417;">
-            {len_group} team(s)<br>{len_beatboxers} beatboxer(s)
-        </h4>
-        """
+        country_header = f'<h3 style="margin: 0; color: #ff6417;">{country_name}</h3>'
+        team_info = f'<h4 style="margin: 0; color: #ff6417;">{len_group} team(s)<br>{len_beatboxers} beatboxer(s)</h4>'
+        popup_content += country_header + team_info
 
         # 2020年のみ、名前順にソート
         if year == 2020:
@@ -401,7 +398,9 @@ def create_world_map(year: int, user_lang: str = "ja"):
         popup = folium.Popup(popup_content, max_width=1000)
 
         # アイコンを設定
-        flag_icon_path = os.path.join("app", "static", "images", "flags", f"{country_name_en}.webp")
+        flag_icon_path = os.path.join(
+            "app", "static", "images", "flags", f"{country_name_en}.webp"
+        )
         flag_icon = folium.CustomIcon(
             icon_image=flag_icon_path,
             icon_size=icon_size,  # アイコンのサイズ（幅、高さ）
@@ -416,7 +415,9 @@ def create_world_map(year: int, user_lang: str = "ja"):
             icon=flag_icon,
         ).add_to(beatboxer_map)
 
-    map_save_path = os.path.join("app", "templates", str(year), f"world_map_{user_lang}.html")
+    map_save_path = os.path.join(
+        "app", "templates", str(year), f"world_map_{user_lang}.html"
+    )
     beatboxer_map.save(map_save_path)
 
 
@@ -609,11 +610,12 @@ def total_participant_analysis():
     wildcard_individual_counts = rank_and_limit(wildcard_individual_counts, 3)
 
     # 全世界の出場者数一覧
+    sorted_country_counts = sorted(
+        country_counts.items(), key=lambda item: item[1], reverse=True
+    )
     country_counts_all = {
         i + 1: {"country": item[0], "count": item[1]}
-        for i, item in enumerate(
-            sorted(country_counts.items(), key=lambda item: item[1], reverse=True)
-        )
+        for i, item in enumerate(sorted_country_counts)
     }
     create_all_participants_map(country_counts_all)
 
@@ -710,7 +712,9 @@ def create_all_participants_map(country_counts_all: dict):
         popup = folium.Popup(popup_content, max_width=1000)
 
         # アイコンを設定
-        flag_icon_path = os.path.join("app", "static", "images", "flags", f"{country_name_en}.webp")
+        flag_icon_path = os.path.join(
+            "app", "static", "images", "flags", f"{country_name_en}.webp"
+        )
         flag_icon = folium.CustomIcon(
             icon_image=flag_icon_path,
             icon_size=icon_size,  # アイコンのサイズ（幅、高さ）
@@ -725,5 +729,7 @@ def create_all_participants_map(country_counts_all: dict):
             icon=flag_icon,
         ).add_to(all_participants_map)
 
-    map_save_path = os.path.join("app", "templates", "others", "all_participants_map.html")
+    map_save_path = os.path.join(
+        "app", "templates", "others", "all_participants_map.html"
+    )
     all_participants_map.save(map_save_path)

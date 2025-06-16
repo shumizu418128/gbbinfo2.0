@@ -20,7 +20,9 @@ def get_result(category: str, year: int):
             - ランキング表の場合: ラウンドごとの順位を含む辞書。
     """
     try:
-        result_csv_path = os.path.join("app", "database", "result", str(year), f"{category}.csv")
+        result_csv_path = os.path.join(
+            "app", "database", "result", str(year), f"{category}.csv"
+        )
         df = pd.read_csv(result_csv_path)
     except FileNotFoundError:
         return None

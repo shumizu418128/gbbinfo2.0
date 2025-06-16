@@ -11,39 +11,14 @@ import pykakasi
 from rapidfuzz import process
 
 from . import spreadsheet
-from .config import AVAILABLE_YEARS
+from .config import AVAILABLE_YEARS, create_safety_settings
 
 API_KEY = os.environ.get("GEMINI_API_KEY")
 if not API_KEY:
     raise ValueError("Please set the GEMINI_API_KEY environment variable")
 genai.configure(api_key=API_KEY)
 
-SAFETY_SETTINGS = [
-    {
-        "category": "HARM_CATEGORY_SEXUAL",
-        "threshold": "BLOCK_ONLY_HIGH",
-    },
-    {
-        "category": "HARM_CATEGORY_DANGEROUS",
-        "threshold": "BLOCK_ONLY_HIGH",
-    },
-    {
-        "category": "HARM_CATEGORY_HARASSMENT",
-        "threshold": "BLOCK_ONLY_HIGH",
-    },
-    {
-        "category": "HARM_CATEGORY_HATE_SPEECH",
-        "threshold": "BLOCK_ONLY_HIGH",
-    },
-    {
-        "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-        "threshold": "BLOCK_ONLY_HIGH",
-    },
-    {
-        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-        "threshold": "BLOCK_ONLY_HIGH",
-    },
-]
+SAFETY_SETTINGS = create_safety_settings("BLOCK_ONLY_HIGH")
 
 HIRAGANA = "H"
 KATAKANA = "K"
@@ -87,7 +62,9 @@ years_to_consider = sorted(AVAILABLE_YEARS, reverse=True)[:2]
 # 出場者名リストを作成
 name_list = []
 for year in years_to_consider:
-    participants_csv_path = os.path.join(os.getcwd(), "app", "database", "participants", f"{year}.csv")
+    participants_csv_path = os.path.join(
+        os.getcwd(), "app", "database", "participants", f"{year}.csv"
+    )
     beatboxers_df = pd.read_csv(participants_csv_path)
     beatboxers_df = beatboxers_df.fillna("")
 
@@ -188,9 +165,8 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
 
         # 英数字表記かどうか判定
         # 記号も対象・Ωは"Sound of Sony Ω"の入力対策
-        match_alphabet = re.match(
-            r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+', name
-        )
+        alphabet_pattern = r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+'
+        match_alphabet = re.match(alphabet_pattern, name)
 
         # 英数字表記の場合、大文字に変換して追加
         if match_alphabet:
@@ -201,9 +177,7 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
             romaji_name = converter.do(name)
 
             # 一応ちゃんと変換できたか確認
-            match_alphabet = re.match(
-                r'^[a-zA-Z0-9 \-!@#$%^&*()_+=~`<>?,.\/;:\'"\\|{}[\]Ω]+', romaji_name
-            )
+            match_alphabet = re.match(alphabet_pattern, romaji_name)
             if match_alphabet:
                 response_url += f"&value={romaji_name.upper()}"
             else:
@@ -285,14 +259,14 @@ def search(year: int, question: str):
         return {"url": f"/{year}/top", "parameter": "contact"}
 
     # othersのリンクであればリンクを変更
-    others_url = next(
-        (
-            f"/others/{link.replace('.html', '')}"
-            for link in others_link
-            if link.replace(".html", "") in response_dict["url"]
-        ),
-        None,
-    )
+    def find_others_url(response_url, others_links):
+        for link in others_links:
+            clean_link = link.replace(".html", "")
+            if clean_link in response_url:
+                return f"/others/{clean_link}"
+        return None
+
+    others_url = find_others_url(response_dict["url"], others_link)
     if others_url:
         response_dict["url"] = others_url
 

@@ -8,32 +8,9 @@ import pandas as pd
 import polib
 from tqdm import tqdm
 
-SAFETY_SETTINGS = [
-    {
-        "category": "HARM_CATEGORY_SEXUAL",
-        "threshold": "BLOCK_NONE",
-    },
-    {
-        "category": "HARM_CATEGORY_DANGEROUS",
-        "threshold": "BLOCK_NONE",
-    },
-    {
-        "category": "HARM_CATEGORY_HARASSMENT",
-        "threshold": "BLOCK_NONE",
-    },
-    {
-        "category": "HARM_CATEGORY_HATE_SPEECH",
-        "threshold": "BLOCK_NONE",
-    },
-    {
-        "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-        "threshold": "BLOCK_NONE",
-    },
-    {
-        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-        "threshold": "BLOCK_NONE",
-    },
-]
+from .config import create_safety_settings
+
+SAFETY_SETTINGS = create_safety_settings("BLOCK_NONE")
 
 # 言語名の読み込み（日本語を除外）
 with open(

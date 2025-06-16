@@ -5,9 +5,38 @@ import os
 AVAILABLE_YEARS = [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
 
 # 言語名の読み込み
-with open(os.path.join(os.path.dirname(__file__), "..", "json", "languages.json"), "r", encoding="utf-8") as f:
+with open(
+    os.path.join(os.path.dirname(__file__), "..", "json", "languages.json"),
+    "r",
+    encoding="utf-8",
+) as f:
     LANG_NAMES = json.load(f)
 AVAILABLE_LANGS = list(LANG_NAMES.keys())
+
+# Google Generative AI 安全設定用のカテゴリ一覧
+HARM_CATEGORIES = [
+    "HARM_CATEGORY_SEXUAL",
+    "HARM_CATEGORY_DANGEROUS",
+    "HARM_CATEGORY_HARASSMENT",
+    "HARM_CATEGORY_HATE_SPEECH",
+    "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+    "HARM_CATEGORY_DANGEROUS_CONTENT",
+]
+
+
+def create_safety_settings(threshold):
+    """
+    指定された閾値でHARM_CATEGORIESの全カテゴリの安全設定を作成します。
+
+    Args:
+        threshold (str): 安全レベルの閾値
+
+    Returns:
+        list: 安全設定のリスト
+    """
+    return [
+        {"category": category, "threshold": threshold} for category in HARM_CATEGORIES
+    ]
 
 
 # Flaskの設定
@@ -25,6 +54,7 @@ class Config:
         DEBUG (bool): デバッグモードの有効/無効。
         TEMPLATES_AUTO_RELOAD (bool): テンプレートの自動リロードの有効/無効。
     """
+
     SECRET_KEY = os.getenv("SECRET_KEY")
     GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
     BABEL_DEFAULT_LOCALE = "ja"
@@ -47,6 +77,7 @@ class TestConfig(Config):
         TEMPLATES_AUTO_RELOAD (bool): テンプレートの自動リロードを有効にします。
         SECRET_KEY (str): テスト用の秘密鍵を設定します。
     """
+
     CACHE_TYPE = "null"
     DEBUG = True
     TEMPLATES_AUTO_RELOAD = True
