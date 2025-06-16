@@ -52,12 +52,17 @@ class PersistentCache:
             str: キャッシュファイルの完全パス
 
         Raises:
-            ValueError: 正規化後のパスがキャッシュディレクトリ外の場合
+            ValueError: 危険なパス文字が含まれている場合
         """
-        normalized_key = os.path.normpath(f"{key}.pkl")
-        full_path = os.path.join(self.cache_dir, normalized_key)
-        if not full_path.startswith(os.path.abspath(self.cache_dir)):
+        # 危険なパス文字をチェック
+        if any(dangerous in key for dangerous in ['..', '/', '\\']):
             raise ValueError(f"Invalid cache key: {key}")
+
+        # 安全なファイル名のみ許可
+        safe_key = re.sub(r'[^\w\-_.]', '_', key)
+        cache_file = f"{safe_key}.pkl"
+        full_path = os.path.join(self.cache_dir, cache_file)
+
         return full_path
 
     def get(self, key: str) -> Any:
