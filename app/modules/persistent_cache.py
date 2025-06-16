@@ -43,14 +43,22 @@ class PersistentCache:
     def _get_cache_path(self, key: str) -> str:
         """
         指定されたキーに対応するキャッシュファイルのパスを取得します。
+        入力を正規化し、キャッシュディレクトリ内に限定します。
 
         Args:
             key (str): キャッシュキー
 
         Returns:
             str: キャッシュファイルの完全パス
+
+        Raises:
+            ValueError: 正規化後のパスがキャッシュディレクトリ外の場合
         """
-        return os.path.join(self.cache_dir, f"{key}.pkl")
+        normalized_key = os.path.normpath(f"{key}.pkl")
+        full_path = os.path.join(self.cache_dir, normalized_key)
+        if not full_path.startswith(os.path.abspath(self.cache_dir)):
+            raise ValueError(f"Invalid cache key: {key}")
+        return full_path
 
     def get(self, key: str) -> Any:
         """
