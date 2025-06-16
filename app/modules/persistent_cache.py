@@ -58,9 +58,11 @@ class PersistentCache:
         if any(dangerous in key for dangerous in ['..', '/', '\\']):
             raise ValueError(f"Invalid cache key: {key}")
 
-        # 安全なファイル名のみ許可
-        safe_key = re.sub(r'[^\w\-_.]', '_', key)
-        cache_file = f"{safe_key}.pkl"
+        # 安全なファイル名のみ許可（厳密な正規表現で検証）
+        if not re.match(r'^[a-zA-Z0-9_\-]+$', key):
+            raise ValueError(f"Cache key contains invalid characters: {key}")
+
+        cache_file = f"{key}.pkl"
         full_path = os.path.normpath(os.path.join(self.cache_dir, cache_file))
 
         # キャッシュディレクトリ内に限定
