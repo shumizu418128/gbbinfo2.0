@@ -1,7 +1,7 @@
 import os
-import re
 import warnings
 from datetime import datetime
+from functools import lru_cache
 
 import jinja2
 import pandas as pd
@@ -35,8 +35,9 @@ from .modules.participants import (
     total_participant_analysis,
     yearly_participant_analysis,
 )
+from .modules.persistent_cache import persistent_cache
 from .modules.result import get_result
-from .modules.translate import translate
+from .modules.translate import start_background_translation
 
 app = Flask(__name__)
 sitemapper = Sitemapper()
@@ -64,7 +65,15 @@ if os.getenv("ENVIRONMENT_CHECK") == "qawsedrftgyhujikolp":
 # 本番環境ではキャッシュを有効化
 # 多言語対応のため実際にはworld_mapのみキャッシュを有効化
 else:
-    translate()
+    # 軽量な翻訳処理（起動速度重視）
+    print("アプリケーション起動中...", flush=True)
+
+    # 常にバックグラウンドで翻訳処理を実行（起動をブロックしない）
+    print("バックグラウンドで翻訳処理を開始します...", flush=True)
+    translation_thread = start_background_translation()
+
+    print("アプリケーションを開始します", flush=True)
+
     app.config.from_object(Config)
     cache = Cache(
         app,
@@ -91,115 +100,151 @@ DT_NOW = datetime.now()
 LAST_UPDATED = "UPDATE " + DT_NOW.strftime("%Y/%m/%d %H:%M:%S") + " JST"
 
 
-# 各年度の全カテゴリを取得
-VALID_CATEGORIES_DICT = {}
-for year in AVAILABLE_YEARS + [2013, 2014, 2015, 2016]:
-    if year != 2022:
-        participants_csv_path = os.path.join(
-            "app", "database", "participants", f"{year}.csv"
-        )
-        participants_df = pd.read_csv(participants_csv_path)
-        valid_categories = participants_df["category"].unique().tolist()
-        VALID_CATEGORIES_DICT[year] = valid_categories
+# 最適化されたCSVデータ読み込み（永続的キャッシュ使用）
+def load_csv_optimized(year: int) -> pd.DataFrame:
+    """
+    指定された年度のCSVファイルを永続的キャッシュ機能付きで読み込みます。
+
+    Args:
+        year (int): 読み込む年度
+
+    Returns:
+        pd.DataFrame: CSVデータのDataFrame。ファイルが存在しない場合は空のDataFrameを返します。
+    """
+    return persistent_cache.get_csv_data(year)
 
 
-# 各年度の全カテゴリを取得
-ALL_CATEGORY_DICT = {}
-for year in AVAILABLE_YEARS:
-    # フォルダの中にあるCSVファイル一覧を取得
+def load_categories_parallel():
+    """
+    カテゴリデータを最小限で読み込みます（起動速度重視）。
+    最新2年度のデータのみを起動時に読み込み、他の年度は遅延読み込みで対応します。
+
+    Returns:
+        dict: 年度をキーとし、カテゴリリストを値とする辞書
+    """
+    categories_dict = {}
+
+    # 最新2年度のみを起動時に読み込み
+    priority_years = sorted(AVAILABLE_YEARS, reverse=True)[:2]
+
+    for year in priority_years:
+        categories_dict[year] = persistent_cache.get_categories(year)
+
+    return categories_dict
+
+
+# 各年度の全カテゴリを取得（最適化版）
+VALID_CATEGORIES_DICT = load_categories_parallel()
+
+
+def load_result_categories_optimized():
+    """
+    結果カテゴリを最小限で読み込みます（起動速度重視）。
+    最新2年度のデータのみを起動時に読み込み、他の年度は遅延読み込みで対応します。
+
+    Returns:
+        dict: 年度をキーとし、結果カテゴリリストを値とする辞書
+    """
+    categories_dict = {}
+    # 最新2年度のみを起動時に読み込み
+    priority_years = sorted(AVAILABLE_YEARS, reverse=True)[:2]
+
+    for year in priority_years:
+        categories_dict[year] = persistent_cache.get_result_categories(year)
+
+    return categories_dict
+
+
+# 各年度の全カテゴリを取得（最適化版）
+ALL_CATEGORY_DICT = load_result_categories_optimized()
+
+
+@lru_cache(maxsize=32)
+def get_template_contents(year: int) -> list:
+    """
+    指定された年度のテンプレートコンテンツ一覧をキャッシュ機能付きで取得します。
+    rule, world_mapテンプレートは除外されます。
+
+    Args:
+        year (int): 取得する年度
+
+    Returns:
+        list: テンプレートファイル名のリスト（拡張子なし）。
+              ディレクトリが存在しない場合は空のリストを返します。
+    """
     try:
-        result_dir_path = os.path.join(".", "app", "database", "result", str(year))
-        all_category = os.listdir(result_dir_path)
-    except Exception:
-        continue  # ファイルが存在しない場合はスキップ
+        templates_dir_path = os.path.join(".", "app", "templates", str(year))
+        contents = os.listdir(templates_dir_path)
+        contents = [content.replace(".html", "") for content in contents]
 
-    all_category = [category.replace(".csv", "") for category in all_category]
-
-    # Loopstation, Producerを先頭に
-    all_category.sort(
-        key=lambda x: (x == "Loopstation", x == "Producer"),
-        reverse=True,
-    )
-
-    ALL_CATEGORY_DICT[year] = all_category
+        # rule, world_mapは除外
+        contents = [c for c in contents if c not in ["rule", "world_map"]]
+        return contents
+    except OSError:
+        return []
 
 
-# 各年度のページを取得(ルール、world_mapは別関数で扱っているので除外)
-combinations = []
-for year in AVAILABLE_YEARS:  # 利用可能な年度をループ
-    templates_dir_path = os.path.join(".", "app", "templates", str(year))
-    contents = os.listdir(
-        templates_dir_path
-    )  # 年度に対応するテンプレートファイルを取得
-    contents = [content.replace(".html", "") for content in contents]  # 拡張子を除去
+@lru_cache(maxsize=1)
+def get_others_templates() -> list:
+    """
+    othersディレクトリのテンプレート一覧をキャッシュ機能付きで取得します。
 
-    # rule, world_mapは除外
-    if "rule" in contents:
-        contents.remove("rule")
-    if "world_map" in contents:
-        contents.remove("world_map")
-
-    for content in contents:  # 各コンテンツに対して
-        combinations.append((year, content))  # 年度とコンテンツの組み合わせを追加
-
-COMBINATIONS_YEAR = [year for year, _ in combinations]  # 年度のリストを作成
-COMBINATIONS_CONTENT = [
-    content for _, content in combinations
-]  # コンテンツのリストを作成
+    Returns:
+        list: othersテンプレートファイル名のリスト（拡張子なし）。
+              ディレクトリが存在しない場合は空のリストを返します。
+    """
+    try:
+        others_templates_path = os.path.join(".", "app", "templates", "others")
+        contents = os.listdir(others_templates_path)
+        return [content.replace(".html", "") for content in contents]
+    except OSError:
+        return []
 
 
-others_templates_path = os.path.join(".", "app", "templates", "others")
-CONTENT_OTHERS = os.listdir(others_templates_path)
-CONTENT_OTHERS = [content.replace(".html", "") for content in CONTENT_OTHERS]
+def load_template_combinations_optimized():
+    """
+    テンプレート組み合わせを最適化して読み込みます（起動速度重視）。
+    最新2年度のテンプレートのみを起動時に読み込み、他の年度は遅延読み込みで対応します。
+
+    Returns:
+        list: (年度, コンテンツ名) のタプルのリスト
+    """
+    combinations = []
+    # 最新2年度のみを優先読み込み
+    priority_years = sorted(AVAILABLE_YEARS, reverse=True)[:2]
+
+    for year in priority_years:
+        contents = get_template_contents(year)
+        for content in contents:
+            combinations.append((year, content))
+
+    return combinations
 
 
-# 翻訳存在確認用のPOファイルのパス
-PO_FILE_PATH = os.path.join("app", "translations", "en", "LC_MESSAGES", "messages.po")
+# 各年度のページを取得（最適化版）
+combinations = load_template_combinations_optimized()
+COMBINATIONS_YEAR = [year for year, _ in combinations]
+COMBINATIONS_CONTENT = [content for _, content in combinations]
 
-# 翻訳が存在するページのパスを取得
+# othersテンプレート（最適化版）
+CONTENT_OTHERS = get_others_templates()
+
+
+# 翻訳が存在するページのパスを取得（永続的キャッシュ使用）
+def get_translated_template_paths():
+    """
+    翻訳されたテンプレートパスを永続的キャッシュから取得します。
+    POファイルを解析して翻訳が存在するページのパス一覧を返します。
+
+    Returns:
+        set: 翻訳されたページのパスセット。
+             POファイルが存在しない場合は空のセットを返します。
+    """
+    return persistent_cache.get_translated_paths()
+
+
+# 起動時は空のセットで初期化（必要時に遅延読み込み）
 TRANSLATED_TEMPLATE_PATHS = set()
-
-# POファイルを読み込んで、翻訳が存在するページのパスを取得
-with open(PO_FILE_PATH, "r", encoding="utf-8") as f:
-    PO_FILE = f.read()
-
-# 除外ワード
-EXCLUDE_WORDS = [
-    r":\d+",
-    "templates/",
-    ".html",
-]
-
-# ファイルを1行ずつ読み込んで、翻訳が存在するページのパスを取得
-for line in PO_FILE.split("\n"):
-    # 行の先頭が"#: templates/"で始まる場合、行の先頭の"#:"を除去して、パスを取得
-    if line.startswith("#: templates/"):
-        paths = line.replace("#:", "").split()
-
-        for path in paths:
-            # base.htmlは除外
-            if path.startswith("templates/base.html"):
-                continue
-            # includes/は除外
-            if path.startswith("templates/includes/"):
-                continue
-            # 404.htmlは除外
-            if "404.html" in path:
-                continue
-
-            # パスの先頭が"templates/"で始まる場合、除外ワードを除去
-            if path.startswith("templates/"):
-                for word in EXCLUDE_WORDS:
-                    path = re.sub(word, "", path)
-            # common/は年度がないので、年度を書いてあげる
-            if path.startswith("common/"):
-                for year in AVAILABLE_YEARS:
-                    formatted_template_path = f"/{year}/{path.replace('common/', '')}"
-                    TRANSLATED_TEMPLATE_PATHS.add(formatted_template_path)
-                continue
-
-            # パスを追加(先頭に"/"を追加)
-            TRANSLATED_TEMPLATE_PATHS.add("/" + path)
 
 
 ####################################################################
@@ -243,8 +288,9 @@ def is_translated(url, target_lang=None):
     if target_lang == "ja":
         return True
 
-    # urlが翻訳対象のページに含まれているかチェック
-    return url in TRANSLATED_TEMPLATE_PATHS
+    # 遅延読み込みで翻訳パスを取得
+    translated_paths = get_translated_template_paths()
+    return url in translated_paths
 
 
 @app.context_processor
@@ -463,11 +509,19 @@ def participants(year: int):
     if value is None:
         value = ""
 
-    # カテゴリを取得
-    try:
-        valid_categories = VALID_CATEGORIES_DICT[year]
-    except KeyError:
-        # そもそもデータがない年度の場合は、空っぽのページを表示
+    # カテゴリを取得（遅延読み込み対応）
+    def get_categories_for_year(year):
+        if year in VALID_CATEGORIES_DICT:
+            return VALID_CATEGORIES_DICT[year]
+
+        # 遅延読み込み：永続的キャッシュから取得
+        categories = persistent_cache.get_categories(year)
+        VALID_CATEGORIES_DICT[year] = categories  # メモリキャッシュに保存
+        return categories
+
+    valid_categories = get_categories_for_year(year)
+    if not valid_categories:
+        # データがない年度の場合は、空っぽのページを表示
         return render_template(
             "/common/participants.html",
             participants=[],
@@ -634,10 +688,18 @@ def result(year: int):
     # 引数を取得
     category = request.args.get("category")
 
-    # カテゴリを取得
-    try:
-        all_category = ALL_CATEGORY_DICT[year]
-    except KeyError:
+    # カテゴリを取得（遅延読み込み対応）
+    def get_result_categories_for_year(year):
+        if year in ALL_CATEGORY_DICT:
+            return ALL_CATEGORY_DICT[year]
+
+        # 遅延読み込み：まだ読み込まれていない年度のデータを取得
+        categories = persistent_cache.get_result_categories(year)
+        ALL_CATEGORY_DICT[year] = categories  # キャッシュに保存
+        return categories
+
+    all_category = get_result_categories_for_year(year)
+    if not all_category:
         return render_template(
             "/common/result.html",
             year=year,

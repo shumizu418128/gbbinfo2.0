@@ -106,3 +106,4 @@ app/__pycache__/app.cpython-311.pyc
 **/world_map.html
 /cache-directory
 app/templates/others/all_participants_map.html
+/cache
