@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // スクロールバーの長さを更新
         progressElements.forEach(progress => {
-            const roundedScrollPercentage = Math.round(scrollPercentage / 10) * 10;
+            const roundedScrollPercentage = Math.round(scrollPercentage / 5) * 5;
             progress.style.width = roundedScrollPercentage + "%";
         });
     }
