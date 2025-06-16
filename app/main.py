@@ -19,7 +19,6 @@ from flask import (
 from flask_babel import Babel, _
 from flask_caching import Cache
 from flask_sitemapper import Sitemapper
-from werkzeug.middleware.proxy_fix import ProxyFix
 
 from .modules import gemini
 from .modules.config import (
@@ -40,7 +39,6 @@ from .modules.result import get_result
 from .modules.translate import translate
 
 app = Flask(__name__)
-app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 sitemapper = Sitemapper()
 sitemapper.init_app(app)
 
@@ -116,6 +114,13 @@ for year in AVAILABLE_YEARS:
         continue  # ファイルが存在しない場合はスキップ
 
     all_category = [category.replace(".csv", "") for category in all_category]
+
+    # Loopstation, Producerを先頭に
+    all_category.sort(
+        key=lambda x: (x == "Loopstation", x == "Producer"),
+        reverse=True,
+    )
+
     ALL_CATEGORY_DICT[year] = all_category
 
 
@@ -484,7 +489,7 @@ def participants(year: int):
 
     # 引数が不正な場合はデフォルト値を設定
     if not args_valid:
-        category = category if category in valid_categories else "Solo"
+        category = category if category in valid_categories else "Loopstation"
         ticket_class = ticket_class if ticket_class in valid_ticket_classes else "all"
         cancel = cancel if cancel in valid_cancel else "show"
 
@@ -641,9 +646,9 @@ def result(year: int):
         )
 
     # 引数が正しいか確認
-    # カテゴリが不正な場合はSoloへリダイレクト
+    # カテゴリが不正な場合はLoopstationへリダイレクト
     if category not in all_category:
-        category = "Solo"
+        category = "Loopstation"
         return redirect(url_for("result", year=year, category=category))
 
     # 結果を取得
