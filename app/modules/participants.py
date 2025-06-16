@@ -1,3 +1,4 @@
+import os
 from collections import defaultdict
 
 import folium
@@ -7,13 +8,15 @@ from rapidfuzz.process import extract
 from .config import AVAILABLE_YEARS
 
 # df事前準備
-COUNTRIES_DF = pd.read_csv("app/database/countries.csv")
+countries_csv_path = os.path.join("app", "database", "countries.csv")
+COUNTRIES_DF = pd.read_csv(countries_csv_path)
 
 # 出場者データを読み込む
 beatboxers_df_dict = {}
 for year in AVAILABLE_YEARS + [2013, 2014, 2015, 2016]:
     if year != 2022:
-        beatboxers_df = pd.read_csv(f"app/database/participants/{year}.csv")
+        participants_csv_path = os.path.join("app", "database", "participants", f"{year}.csv")
+        beatboxers_df = pd.read_csv(participants_csv_path)
         beatboxers_df = beatboxers_df.fillna("")
         beatboxers_df_dict[year] = beatboxers_df
 
@@ -398,10 +401,9 @@ def create_world_map(year: int, user_lang: str = "ja"):
         popup = folium.Popup(popup_content, max_width=1000)
 
         # アイコンを設定
+        flag_icon_path = os.path.join("app", "static", "images", "flags", f"{country_name_en}.webp")
         flag_icon = folium.CustomIcon(
-            icon_image=r"app/static/images/flags/"
-            + country_name_en
-            + ".webp",  # アイコン画像のパス
+            icon_image=flag_icon_path,
             icon_size=icon_size,  # アイコンのサイズ（幅、高さ）
             icon_anchor=icon_anchor,  # アイコンのアンカー位置
         )
@@ -414,7 +416,8 @@ def create_world_map(year: int, user_lang: str = "ja"):
             icon=flag_icon,
         ).add_to(beatboxer_map)
 
-    beatboxer_map.save(f"app/templates/{year}/world_map_{user_lang}.html")
+    map_save_path = os.path.join("app", "templates", str(year), f"world_map_{user_lang}.html")
+    beatboxer_map.save(map_save_path)
 
 
 # MARK: 年度ごとの出場者分析
@@ -707,10 +710,9 @@ def create_all_participants_map(country_counts_all: dict):
         popup = folium.Popup(popup_content, max_width=1000)
 
         # アイコンを設定
+        flag_icon_path = os.path.join("app", "static", "images", "flags", f"{country_name_en}.webp")
         flag_icon = folium.CustomIcon(
-            icon_image=r"app/static/images/flags/"
-            + country_name_en
-            + ".webp",  # アイコン画像のパス
+            icon_image=flag_icon_path,
             icon_size=icon_size,  # アイコンのサイズ（幅、高さ）
             icon_anchor=icon_anchor,  # アイコンのアンカー位置
         )
@@ -723,4 +725,5 @@ def create_all_participants_map(country_counts_all: dict):
             icon=flag_icon,
         ).add_to(all_participants_map)
 
-    all_participants_map.save("app/templates/others/all_participants_map.html")
+    map_save_path = os.path.join("app", "templates", "others", "all_participants_map.html")
+    all_participants_map.save(map_save_path)

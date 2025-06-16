@@ -83,6 +83,11 @@ test = _("test")  # テスト翻訳
 ####################################################################
 # MARK: 定数一覧
 ####################################################################
+# ISO 3166-1 numeric
+JAPAN = 392
+KOREA = 410
+
+
 # 現在時刻を読み込む(最終更新日時として使用)
 DT_NOW = datetime.now()
 LAST_UPDATED = "UPDATE " + DT_NOW.strftime("%Y/%m/%d %H:%M:%S") + " JST"
@@ -92,10 +97,11 @@ LAST_UPDATED = "UPDATE " + DT_NOW.strftime("%Y/%m/%d %H:%M:%S") + " JST"
 VALID_CATEGORIES_DICT = {}
 for year in AVAILABLE_YEARS + [2013, 2014, 2015, 2016]:
     if year != 2022:
+        participants_csv_path = os.path.join(
+            "app", "database", "participants", f"{year}.csv"
+        )
         valid_categories = (
-            pd.read_csv(f"app/database/participants/{year}.csv")["category"]
-            .unique()
-            .tolist()
+            pd.read_csv(participants_csv_path)["category"].unique().tolist()
         )
         VALID_CATEGORIES_DICT[year] = valid_categories
 
@@ -105,7 +111,8 @@ ALL_CATEGORY_DICT = {}
 for year in AVAILABLE_YEARS:
     # フォルダの中にあるCSVファイル一覧を取得
     try:
-        all_category = os.listdir(f"./app/database/result/{year}")
+        result_dir_path = os.path.join(".", "app", "database", "result", str(year))
+        all_category = os.listdir(result_dir_path)
     except Exception:
         continue  # ファイルが存在しない場合はスキップ
 
@@ -116,8 +123,9 @@ for year in AVAILABLE_YEARS:
 # 各年度のページを取得(ルール、world_mapは別関数で扱っているので除外)
 combinations = []
 for year in AVAILABLE_YEARS:  # 利用可能な年度をループ
+    templates_dir_path = os.path.join(".", "app", "templates", str(year))
     contents = os.listdir(
-        f"./app/templates/{year}"
+        templates_dir_path
     )  # 年度に対応するテンプレートファイルを取得
     contents = [content.replace(".html", "") for content in contents]  # 拡張子を除去
 
@@ -136,12 +144,13 @@ COMBINATIONS_CONTENT = [
 ]  # コンテンツのリストを作成
 
 
-CONTENT_OTHERS = os.listdir("./app/templates/others")
+others_templates_path = os.path.join(".", "app", "templates", "others")
+CONTENT_OTHERS = os.listdir(others_templates_path)
 CONTENT_OTHERS = [content.replace(".html", "") for content in CONTENT_OTHERS]
 
 
 # 翻訳存在確認用のPOファイルのパス
-PO_FILE_PATH = "app/translations/en/LC_MESSAGES/messages.po"
+PO_FILE_PATH = os.path.join("app", "translations", "en", "LC_MESSAGES", "messages.po")
 
 # 翻訳が存在するページのパスを取得
 TRANSLATED_TEMPLATE_PATHS = set()
@@ -215,7 +224,7 @@ def set_request_data():
         session["language"] = best_match if best_match else "ja"
 
 
-def has_page_translation(url, target_lang=None):
+def is_translated(url, target_lang=None):
     """
     POファイルを読み込んで、指定されたページに翻訳が提供されているかをチェックします。
 
@@ -249,7 +258,7 @@ def inject_variables():
         last_updated=LAST_UPDATED,
         current_url=g.current_url,
         language=session.get("language"),
-        has_page_translation=has_page_translation(g.current_url, session.get("language")),
+        is_translated=is_translated(g.current_url, session.get("language")),
     )
 
 
@@ -387,10 +396,10 @@ def world_map(year: int):
     if user_lang not in AVAILABLE_LANGS:
         user_lang = "ja"
 
-    base_path = "app/templates"
+    base_path = os.path.join("app", "templates")
     abs_base_path = os.path.abspath(base_path)
     map_path = os.path.abspath(
-        os.path.join(base_path, f"{year}/world_map_{user_lang}.html")
+        os.path.join(base_path, str(year), f"world_map_{user_lang}.html")
     )
 
     # base_path からのパストラバーサル防止
@@ -552,7 +561,7 @@ def japan(year: int):
 
     # 参加者リストを取得
     participants_list = get_participants_list(
-        year=year, category="all", ticket_class="all", cancel="show", iso_code=392
+        year=year, category="all", ticket_class="all", cancel="show", iso_code=JAPAN
     )
 
     return render_template(
@@ -587,7 +596,7 @@ def korea(year: int):
 
     # 参加者リストを取得（韓国のISOコードは410）
     participants_list = get_participants_list(
-        year=year, category="all", ticket_class="all", cancel="show", iso_code=410
+        year=year, category="all", ticket_class="all", cancel="show", iso_code=KOREA
     )
 
     return render_template(

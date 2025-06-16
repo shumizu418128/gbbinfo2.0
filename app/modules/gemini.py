@@ -45,6 +45,11 @@ SAFETY_SETTINGS = [
     },
 ]
 
+HIRAGANA = "H"
+KATAKANA = "K"
+KANJI = "J"
+ALPHABET = "a"
+
 model = genai.GenerativeModel(
     model_name="gemini-2.0-flash-lite-preview",
     safety_settings=SAFETY_SETTINGS,
@@ -53,22 +58,24 @@ model = genai.GenerativeModel(
 
 # プロンプトを読み込む
 if "prompt" not in locals():
-    file_path = os.getcwd() + "/app/prompt.txt"
-    with open(file_path, "r", encoding="utf-8") as f:
+    prompt_file_path = os.path.join(os.getcwd(), "app", "prompt.txt")
+    with open(prompt_file_path, "r", encoding="utf-8") as f:
         PROMPT = f.read()
 
 # othersファイルを読み込む
 if "others_link" not in locals():
-    others_link = os.listdir(os.getcwd() + "/app/templates/others")
+    others_templates_path = os.path.join(os.getcwd(), "app", "templates", "others")
+    others_link = os.listdir(others_templates_path)
 
 kakasi = pykakasi.kakasi()
-kakasi.setMode("H", "a")  # ひらがなをローマ字に変換
-kakasi.setMode("K", "a")  # カタカナをローマ字に変換
-kakasi.setMode("J", "a")  # 漢字をローマ字に変換
+kakasi.setMode(HIRAGANA, ALPHABET)  # ひらがなをローマ字に変換
+kakasi.setMode(KATAKANA, ALPHABET)  # カタカナをローマ字に変換
+kakasi.setMode(KANJI, ALPHABET)  # 漢字をローマ字に変換
 converter = kakasi.getConverter()
 
 # URLのキャッシュを辞書として読み込む
-with open(os.getcwd() + "/app/json/cache.json", "r", encoding="utf-8") as f:
+cache_file_path = os.path.join(os.getcwd(), "app", "json", "cache.json")
+with open(cache_file_path, "r", encoding="utf-8") as f:
     cache = json.load(f)
 
 # cacheのkeyをすべて大文字に変換しておく
@@ -80,7 +87,8 @@ years_to_consider = sorted(AVAILABLE_YEARS, reverse=True)[:2]
 # 出場者名リストを作成
 name_list = []
 for year in years_to_consider:
-    beatboxers_df = pd.read_csv(f"app/database/participants/{year}.csv")
+    participants_csv_path = os.path.join(os.getcwd(), "app", "database", "participants", f"{year}.csv")
+    beatboxers_df = pd.read_csv(participants_csv_path)
     beatboxers_df = beatboxers_df.fillna("")
 
     # まずは個人出場者・チーム名のリストを読み込む

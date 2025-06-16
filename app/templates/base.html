@@ -177,7 +177,7 @@
         {% include 'includes/early_access.html' %}
       {% endif %}
 
-      {% if has_page_translation is false %}
+      {% if is_translated is false %}
         <div class="post-it">
           <strong>【{{ _('翻訳未提供') }}】</strong><br>
           {{ _('このページは翻訳が提供されていません。現在は原文の日本語を表示しています。') }}
