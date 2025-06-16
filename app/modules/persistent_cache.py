@@ -183,7 +183,13 @@ class PersistentCache:
             list: 結果カテゴリ名のリスト（Loopstation, Producerが先頭に配置）。
                   ディレクトリが存在しない場合は空のリストを返します。
         """
-        result_dir = os.path.join(".", "app", "database", "result", str(year))
+        base_dir = os.path.join(".", "app", "database", "result")
+        result_dir = os.path.normpath(os.path.join(base_dir, str(year)))
+
+        # Validate that result_dir is within base_dir
+        if not result_dir.startswith(os.path.abspath(base_dir)):
+            raise ValueError(f"Invalid year parameter: {year}")
+
         cache_key = f"result_categories_{year}"
 
         # キャッシュから取得を試行
