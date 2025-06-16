@@ -61,7 +61,11 @@ class PersistentCache:
         # 安全なファイル名のみ許可
         safe_key = re.sub(r'[^\w\-_.]', '_', key)
         cache_file = f"{safe_key}.pkl"
-        full_path = os.path.join(self.cache_dir, cache_file)
+        full_path = os.path.normpath(os.path.join(self.cache_dir, cache_file))
+
+        # キャッシュディレクトリ内に限定
+        if not full_path.startswith(os.path.abspath(self.cache_dir)):
+            raise ValueError(f"Cache path is outside the allowed directory: {full_path}")
 
         return full_path
 
