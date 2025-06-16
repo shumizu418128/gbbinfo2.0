@@ -52,56 +52,28 @@ class PersistentCache:
         """
         return os.path.join(self.cache_dir, f"{key}.pkl")
 
-    def _get_file_mtime(self, file_path: str) -> float:
-        """
-        指定されたファイルの最終更新時間を取得します。
-
-        Args:
-            file_path (str): ファイルパス
-
-        Returns:
-            float: ファイルの最終更新時間（Unixタイムスタンプ）。
-                   ファイルが存在しない場合は0を返します。
-        """
-        try:
-            return os.path.getmtime(file_path)
-        except OSError:
-            return 0
-
-    def get(self, key: str, source_file: Optional[str] = None) -> Any:
+    def get(self, key: str) -> Any:
         """
         キャッシュからデータを取得します。
-        メモリキャッシュとファイルキャッシュの両方をチェックし、
-        ソースファイルが更新されている場合は自動的にキャッシュを無効化します。
+        メモリキャッシュを最優先し、一度キャッシュされたデータは永続的に使用します。
 
         Args:
             key (str): 取得するデータのキー
-            source_file (Optional[str]): 元データファイルのパス。
-                                       指定された場合、キャッシュの有効性をチェックします。
 
         Returns:
-            Any: キャッシュされたデータ。キャッシュが存在しないか無効な場合はNoneを返します。
+            Any: キャッシュされたデータ。キャッシュが存在しない場合はNoneを返します。
         """
-        # メモリキャッシュから確認
+        # メモリキャッシュから確認（最優先、ファイルは見ない）
         if key in self.memory_cache:
             return self.memory_cache[key]
 
+        # メモリにない場合のみファイルキャッシュから読み込み
         cache_path = self._get_cache_path(key)
-
-        # ファイルキャッシュが存在し、ソースファイルより新しい場合
         if os.path.exists(cache_path):
-            cache_mtime = self._get_file_mtime(cache_path)
-
-            if source_file:
-                source_mtime = self._get_file_mtime(source_file)
-                if cache_mtime < source_mtime:
-                    # ソースファイルの方が新しい場合はキャッシュを削除
-                    os.remove(cache_path)
-                    return None
-
             try:
                 with open(cache_path, "rb") as f:
                     data = pickle.load(f)
+                    # メモリにキャッシュして今後はファイルを見ない
                     self.memory_cache[key] = data
                     return data
             except Exception:
@@ -112,7 +84,7 @@ class PersistentCache:
 
     def set(self, key: str, data: Any) -> None:
         """
-        データをメモリキャッシュとファイルキャッシュの両方に保存します。
+        データをメモリキャッシュに保存し、永続化のためファイルにも保存します。
 
         Args:
             key (str): 保存するデータのキー
@@ -121,10 +93,10 @@ class PersistentCache:
         Returns:
             None
         """
-        # メモリキャッシュに保存
+        # メモリキャッシュに保存（最優先）
         self.memory_cache[key] = data
 
-        # ファイルキャッシュに保存
+        # ファイルキャッシュに保存（永続化のため）
         cache_path = self._get_cache_path(key)
         try:
             with open(cache_path, "wb") as f:
@@ -148,7 +120,7 @@ class PersistentCache:
         cache_key = f"csv_{year}"
 
         # キャッシュから取得を試行
-        cached_data = self.get(cache_key, csv_path)
+        cached_data = self.get(cache_key)
         if cached_data is not None:
             return cached_data
 
@@ -207,7 +179,7 @@ class PersistentCache:
         cache_key = f"result_categories_{year}"
 
         # キャッシュから取得を試行
-        cached_categories = self.get(cache_key, result_dir)
+        cached_categories = self.get(cache_key)
         if cached_categories is not None:
             return cached_categories
 
@@ -243,7 +215,7 @@ class PersistentCache:
         cache_key = "translated_paths"
 
         # キャッシュから取得を試行
-        cached_paths = self.get(cache_key, po_file_path)
+        cached_paths = self.get(cache_key)
         if cached_paths is not None:
             return cached_paths
 
