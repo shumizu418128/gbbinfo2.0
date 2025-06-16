@@ -64,8 +64,10 @@ class PersistentCache:
         full_path = os.path.normpath(os.path.join(self.cache_dir, cache_file))
 
         # キャッシュディレクトリ内に限定
-        if not full_path.startswith(os.path.abspath(self.cache_dir)):
-            raise ValueError(f"Cache path is outside the allowed directory: {full_path}")
+        abs_full_path = os.path.abspath(full_path)
+        abs_cache_dir = os.path.abspath(self.cache_dir)
+        if not abs_full_path.startswith(abs_cache_dir):
+            raise ValueError(f"Cache path is outside the allowed directory: {abs_full_path}")
 
         return full_path
 
