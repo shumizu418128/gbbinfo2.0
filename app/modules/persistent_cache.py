@@ -133,8 +133,12 @@ class PersistentCache:
 
         Returns:
             Optional[pd.DataFrame]: CSVデータのDataFrame。
-                                   ファイルが存在しない場合は空のDataFrameを返します。
+                                       ファイルが存在しない場合は空のDataFrameを返します。
         """
+        # 年度が許容範囲内か検証
+        if year not in AVAILABLE_YEARS:
+            raise ValueError(f"Invalid year specified: {year}")
+
         csv_path = os.path.join("app", "database", "participants", f"{year}.csv")
         cache_key = f"csv_{year}"
 

@@ -493,6 +493,10 @@ def participants(year: int):
     Returns:
         Response: 出場者一覧のHTMLテンプレート
     """
+    # 年度が許容範囲内か検証
+    if year not in AVAILABLE_YEARS:
+        return render_template("error.html", message="Invalid year specified.")
+
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
         return redirect(url_for("content", year=year, content="top"))
