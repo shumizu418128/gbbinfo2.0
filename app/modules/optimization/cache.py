@@ -202,12 +202,11 @@ class PersistentCache:
         """
         # ディレクトリの範囲チェック
         base_dir = os.path.join(".", "app", "database", "result")
-        result_dir = os.path.normpath(os.path.join(base_dir, str(year)))
-        abs_result_dir = os.path.abspath(result_dir)
-        abs_base_dir = os.path.abspath(base_dir)
+        result_dir = os.path.realpath(os.path.join(base_dir, str(year)))
+        base_dir = os.path.realpath(base_dir)
 
         # Validate that the result directory is within the base directory
-        if os.path.commonpath([abs_result_dir, abs_base_dir]) != abs_base_dir:
+        if not result_dir.startswith(base_dir + os.sep):
             empty_list = []
             self.set(f"result_categories_{year}", empty_list)
             return empty_list
