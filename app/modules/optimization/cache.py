@@ -56,21 +56,19 @@ class PersistentCache:
         Raises:
             ValueError: 危険なパス文字が含まれている場合
         """
-        # 危険なパス文字をチェック
-        if any(dangerous in key for dangerous in ["..", "/", "\\"]):
+        # 安全なファイル名のみ許可（英数字、ハイフン、アンダースコア、ドット）
+        if not re.match(r'^[\w\-_.]+$', key):
             raise ValueError(f"Invalid cache key: {key}")
 
-        # 安全なファイル名のみ許可
-        safe_key = re.sub(r'[^\w\-_.]', '_', key)
-        cache_file = f"{safe_key}.pkl"
-        full_path = os.path.normpath(os.path.join(self.cache_dir, cache_file))
+        # キャッシュファイル名を生成
+        cache_file = f"{key}.pkl"
 
-        # キャッシュディレクトリ内に限定
-        abs_full_path = os.path.abspath(full_path)
-        abs_cache_dir = os.path.abspath(self.cache_dir)
-        if not abs_full_path.startswith(abs_cache_dir):
+        # フルパスを生成し、キャッシュディレクトリ内に限定
+        full_path = os.path.realpath(os.path.join(self.cache_dir, cache_file))
+        cache_dir_realpath = os.path.realpath(self.cache_dir)
+        if not full_path.startswith(cache_dir_realpath + os.sep):
             raise ValueError(
-                f"Cache path is outside the allowed directory: {abs_full_path}"
+                f"Cache path is outside the allowed directory: {full_path}"
             )
 
         return full_path
