@@ -29,6 +29,7 @@ from .modules.config import (
     Config,
     TestConfig,
 )
+from .modules.core.decorators import validate_year
 from .modules.core.utils import (
     get_current_timestamp,
     get_others_templates,
@@ -262,11 +263,8 @@ def route_top():
 # MARK: 世界地図
 ####################################################################
 @app.route("/<int:year>/world_map")
+@validate_year
 def world_map(year: int):
-    # 年度が公開範囲内か検証
-    if year not in AVAILABLE_YEARS:
-        abort(404)
-
     # 言語のバリデーション
     user_lang = session.get("language", "ja")
     if user_lang not in AVAILABLE_LANGS:
@@ -309,6 +307,7 @@ def all_participants_map():
     changefreq="monthly", priority=1.0, url_variables={"year": AVAILABLE_YEARS}
 )
 @app.route("/<int:year>/participants", methods=["GET"])
+@validate_year
 def participants(year: int):
     """
     指定された年度の出場者一覧を表示します。
@@ -320,10 +319,6 @@ def participants(year: int):
     Returns:
         Response: 出場者一覧のHTMLテンプレート
     """
-    # 年度が公開範囲内か検証
-    if year not in AVAILABLE_YEARS:
-        abort(404)
-
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
         return redirect(url_for("content", year=year, content="top"))
@@ -426,6 +421,7 @@ def participants(year: int):
     changefreq="yearly", priority=0.8, url_variables={"year": AVAILABLE_YEARS}
 )
 @app.route("/<int:year>/japan")
+@validate_year
 def japan(year: int):
     """
     指定された年度の日本代表の出場者一覧を表示します。
@@ -436,14 +432,6 @@ def japan(year: int):
     Returns:
         Response: 日本代表のHTMLテンプレート
     """
-    # 年度が公開範囲内か検証
-    if year not in AVAILABLE_YEARS:
-        abort(404)
-
-    # 2022年度の場合はトップページへリダイレクト
-    if year == 2022:
-        return redirect(url_for("content", year=year, content="top"))
-
     # 参加者リストを取得
     participants_list = get_participants_list(
         year=year, category="all", ticket_class="all", cancel="show", iso_code=JAPAN
@@ -463,6 +451,7 @@ def japan(year: int):
     changefreq="yearly", priority=0.8, url_variables={"year": AVAILABLE_YEARS}
 )
 @app.route("/<int:year>/korea")
+@validate_year
 def korea(year: int):
     """
     指定された年度の韓国代表の出場者一覧を表示します。
@@ -473,14 +462,6 @@ def korea(year: int):
     Returns:
         Response: 韓国代表のHTMLテンプレート
     """
-    # 年度が公開範囲内か検証
-    if year not in AVAILABLE_YEARS:
-        abort(404)
-
-    # 2022年度の場合はトップページへリダイレクト
-    if year == 2022:
-        return redirect(url_for("content", year=year, content="top"))
-
     # 参加者リストを取得（韓国のISOコードは410）
     participants_list = get_participants_list(
         year=year, category="all", ticket_class="all", cancel="show", iso_code=KOREA
@@ -501,6 +482,7 @@ def korea(year: int):
     changefreq="yearly", priority=0.8, url_variables={"year": AVAILABLE_YEARS}
 )
 @app.route("/<int:year>/result")
+@validate_year
 def result(year: int):
     """
     結果ページを表示します。
@@ -512,14 +494,6 @@ def result(year: int):
     Returns:
         Response: 結果のHTMLテンプレート
     """
-    # 年度が公開範囲内か検証
-    if year not in AVAILABLE_YEARS:
-        abort(404)
-
-    # 2022年度の場合はトップページへリダイレクト
-    if year == 2022:
-        return redirect(url_for("content", year=year, content="top"))
-
     # 引数を取得
     category = request.args.get("category")
 
@@ -586,6 +560,7 @@ def result_redirect():
     changefreq="weekly", priority=0.8, url_variables={"year": AVAILABLE_YEARS}
 )
 @app.route("/<int:year>/rule")
+@validate_year
 def rule(year: int):
     """
     指定された年度のルールを表示します。
@@ -597,14 +572,6 @@ def rule(year: int):
     Returns:
         Response: ルールのHTMLテンプレート
     """
-    # 年度が公開範囲内か検証
-    if year not in AVAILABLE_YEARS:
-        abort(404)
-
-    # 2022年度の場合はトップページへリダイレクト
-    if year == 2022:
-        return redirect(url_for("content", year=year, content="top"))
-
     participants_GBB = get_participants_list(  # 昨年度成績上位者
         year=year, category="all", ticket_class="seed_right", cancel="hide", GBB=True
     )
@@ -635,6 +602,7 @@ def rule(year: int):
     url_variables={"year": COMBINATIONS_YEAR, "content": COMBINATIONS_CONTENT},
 )
 @app.route("/<int:year>/<string:content>")
+@validate_year
 def content(year: int, content: str):
     """
     指定された年度とコンテンツのページを表示します。
@@ -647,14 +615,6 @@ def content(year: int, content: str):
     Returns:
         Response: コンテンツのHTMLテンプレート
     """
-    # 年度が公開範囲内か検証
-    if year not in AVAILABLE_YEARS:
-        abort(404)
-
-    # 2022年度の場合はトップページへリダイレクト
-    if year == 2022 and content != "top":
-        return redirect(url_for("content", year=year, content="top"))
-
     # その他のページはそのまま表示
     try:
         return render_template(
@@ -715,10 +675,6 @@ def search(year: int):
     Returns:
         Response: 検索結果のJSONレスポンス
     """
-    # 年度が公開範囲内か検証
-    if year not in AVAILABLE_YEARS:
-        abort(404)
-
     if year == 2022:
         return jsonify({"url": "/2022/top"})
 
@@ -746,10 +702,6 @@ def search_participants_by_keyword(year: int):
     Returns:
         Response: 検索結果のJSONレスポンス
     """
-    # 年度が公開範囲内か検証
-    if year not in AVAILABLE_YEARS:
-        abort(404)
-
     # 出場者を取得
     keyword = request.json.get("keyword")
 
@@ -786,10 +738,6 @@ def analyze_data_yearly(year: int):
     Returns:
         Response: データで見るGBBのHTMLテンプレート
     """
-    # 年度が公開範囲内か検証
-    if year not in AVAILABLE_YEARS:
-        abort(404)
-
     user_lang = session.get("language", "ja")  # セッションから言語を取得
     yearly_analysis = yearly_participant_analysis(year=year, user_lang=user_lang)
 
