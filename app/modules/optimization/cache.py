@@ -57,7 +57,7 @@ class PersistentCache:
             ValueError: 危険なパス文字が含まれている場合
         """
         # 安全なファイル名のみ許可（英数字、ハイフン、アンダースコア、ドット）
-        if not re.match(r'^[\w\-_.]+$', key):
+        if not re.match(r"^[\w\-_.]+$", key):
             raise ValueError(f"Invalid cache key: {key}")
 
         # キャッシュファイル名を生成

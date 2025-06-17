@@ -35,6 +35,7 @@ def is_translated(url, target_lang=None, translated_paths=None):
     # 遅延読み込みで翻訳パスを取得
     if translated_paths is None:
         from .optimization.cache import persistent_cache
+
         translated_paths = persistent_cache.get_translated_paths()
 
     return url in translated_paths

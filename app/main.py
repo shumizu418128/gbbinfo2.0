@@ -29,7 +29,6 @@ from .modules.config import (
     Config,
     TestConfig,
 )
-from .modules.translate import is_translated
 from .modules.core.utils import (
     get_current_timestamp,
     get_others_templates,
@@ -50,7 +49,7 @@ from .modules.participants import (
     yearly_participant_analysis,
 )
 from .modules.result import get_result
-from .modules.translate import start_background_translation
+from .modules.translate import is_translated, start_background_translation
 
 app = Flask(__name__)
 sitemapper = Sitemapper()

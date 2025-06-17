@@ -10,8 +10,8 @@ from typing import Any, Dict, List
 
 import pandas as pd
 
-from .cache import persistent_cache
 from ..config import AVAILABLE_YEARS
+from .cache import persistent_cache
 
 
 class StartupOptimizer:
