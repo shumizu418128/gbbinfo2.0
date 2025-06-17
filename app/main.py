@@ -7,6 +7,7 @@ import jinja2
 import pandas as pd
 from flask import (
     Flask,
+    abort,
     g,
     jsonify,
     redirect,
@@ -263,10 +264,6 @@ def set_request_data():
     """
     g.current_url = request.path
 
-    if "X-Forwarded-For" in request.headers:
-        user_ip = request.headers["X-Forwarded-For"].split(",")[0].strip()
-        print(f"IPアドレス: {user_ip}", flush=True)
-
     # 初回アクセス時の言語設定
     if "language" not in session:
         best_match = request.accept_languages.best_match(AVAILABLE_LANGS)
@@ -293,30 +290,6 @@ def is_translated(url, target_lang=None):
     return url in translated_paths
 
 
-@app.context_processor
-def inject_variables():
-    """
-    すべてのページに送る共通変数を設定します。
-
-    Returns:
-        dict: 共通変数
-    """
-    return dict(
-        available_years=AVAILABLE_YEARS,
-        available_langs=AVAILABLE_LANGS,
-        lang_names=LANG_NAMES,
-        last_updated=LAST_UPDATED,
-        current_url=g.current_url,
-        language=session.get("language"),
-        is_translated=is_translated(g.current_url, session.get("language")),
-    )
-
-
-####################################################################
-# MARK: ヘルパー関数
-####################################################################
-# 最新年度かを判定
-# 今年 or 最新年度のみTrue
 def is_latest_year(year):
     """
     指定された年度が最新年度または今年であるかを判定します。
@@ -345,6 +318,41 @@ def is_early_access(year):
     dt_now = datetime.now()
     now = dt_now.year
     return year > now
+
+
+@app.context_processor
+def inject_variables():
+    """
+    すべてのページに送る共通変数を設定します。
+
+    Returns:
+        dict: 共通変数
+    """
+    # 年度が公開範囲内か検証
+    year_str = g.current_url.split("/")[1]
+    is_latest_year = None
+    is_early_access = None
+
+    # 年度が最新 or 試験公開年度か検証
+    try:
+        year = int(year_str)
+        if year in AVAILABLE_YEARS:
+            is_latest_year = is_latest_year(year)
+            is_early_access = is_early_access(year)
+    except Exception:
+        pass
+
+    return dict(
+        available_years=AVAILABLE_YEARS,
+        available_langs=AVAILABLE_LANGS,
+        lang_names=LANG_NAMES,
+        last_updated=LAST_UPDATED,
+        current_url=g.current_url,
+        language=session.get("language"),
+        is_translated=is_translated(g.current_url, session.get("language")),
+        is_latest_year=is_latest_year,
+        is_early_access=is_early_access,
+    )
 
 
 @babel.localeselector
@@ -439,13 +447,16 @@ def route_top():
 ####################################################################
 @app.route("/<int:year>/world_map")
 def world_map(year: int):
-    # 年度・言語のバリデーション
+    # 年度が公開範囲内か検証
     if year not in AVAILABLE_YEARS:
-        return render_template("/common/404.html"), 404
+        abort(404)
+
+    # 言語のバリデーション
     user_lang = session.get("language", "ja")
     if user_lang not in AVAILABLE_LANGS:
         user_lang = "ja"
 
+    # マップファイルのパスを作成
     base_path = os.path.join("app", "templates")
     abs_base_path = os.path.abspath(base_path)
     map_filename = f"world_map_{user_lang}.html"
@@ -453,7 +464,7 @@ def world_map(year: int):
 
     # base_path からのパストラバーサル防止
     if not map_path.startswith(abs_base_path):
-        return render_template("/common/404.html"), 404
+        abort(404)
 
     if not os.path.exists(map_path):
         create_world_map(year=year, user_lang=user_lang)
@@ -493,9 +504,9 @@ def participants(year: int):
     Returns:
         Response: 出場者一覧のHTMLテンプレート
     """
-    # 年度が許容範囲内か検証
-    if year not in AVAILABLE_YEARS or not isinstance(year, int):
-        return render_template("error.html", message="Invalid year specified.")
+    # 年度が公開範囲内か検証
+    if year not in AVAILABLE_YEARS:
+        abort(404)
 
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
@@ -532,9 +543,7 @@ def participants(year: int):
             year=year,
             all_category=[],
             result_url=None,
-            is_latest_year=is_latest_year(year),
             value=value,
-            is_early_access=is_early_access(year),
         )
     valid_ticket_classes = ["all", "wildcard", "seed_right"]
     valid_cancel = ["show", "hide", "only_cancelled"]
@@ -590,9 +599,7 @@ def participants(year: int):
         participants=participants_list,
         year=year,
         all_category=valid_categories,
-        is_latest_year=is_latest_year(year),
         value=value,
-        is_early_access=is_early_access(year),
     )
 
 
@@ -613,6 +620,10 @@ def japan(year: int):
     Returns:
         Response: 日本代表のHTMLテンプレート
     """
+    # 年度が公開範囲内か検証
+    if year not in AVAILABLE_YEARS:
+        abort(404)
+
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
         return redirect(url_for("content", year=year, content="top"))
@@ -626,8 +637,6 @@ def japan(year: int):
         "/common/japan.html",
         participants=participants_list,
         year=year,
-        is_latest_year=is_latest_year(year),
-        is_early_access=is_early_access(year),
     )
 
 
@@ -648,6 +657,10 @@ def korea(year: int):
     Returns:
         Response: 韓国代表のHTMLテンプレート
     """
+    # 年度が公開範囲内か検証
+    if year not in AVAILABLE_YEARS:
+        abort(404)
+
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
         return redirect(url_for("content", year=year, content="top"))
@@ -661,8 +674,6 @@ def korea(year: int):
         "/common/korea.html",
         participants=participants_list,
         year=year,
-        is_latest_year=is_latest_year(year),
-        is_early_access=is_early_access(year),
     )
 
 
@@ -685,6 +696,10 @@ def result(year: int):
     Returns:
         Response: 結果のHTMLテンプレート
     """
+    # 年度が公開範囲内か検証
+    if year not in AVAILABLE_YEARS:
+        abort(404)
+
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
         return redirect(url_for("content", year=year, content="top"))
@@ -707,8 +722,6 @@ def result(year: int):
         return render_template(
             "/common/result.html",
             year=year,
-            is_latest_year=is_latest_year(year),
-            is_early_access=is_early_access(year),
         )
 
     # 引数が正しいか確認
@@ -723,8 +736,6 @@ def result(year: int):
     return render_template(
         "/common/result.html",
         year=year,
-        is_latest_year=is_latest_year(year),
-        is_early_access=is_early_access(year),
         result=result,
         all_category=all_category,
         category=category,
@@ -770,6 +781,10 @@ def rule(year: int):
     Returns:
         Response: ルールのHTMLテンプレート
     """
+    # 年度が公開範囲内か検証
+    if year not in AVAILABLE_YEARS:
+        abort(404)
+
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022:
         return redirect(url_for("content", year=year, content="top"))
@@ -791,9 +806,7 @@ def rule(year: int):
     return render_template(
         f"/{year}/rule.html",
         year=year,
-        is_latest_year=is_latest_year(year),
         participants_list=participants_list,
-        is_early_access=is_early_access(year),
     )
 
 
@@ -818,6 +831,10 @@ def content(year: int, content: str):
     Returns:
         Response: コンテンツのHTMLテンプレート
     """
+    # 年度が公開範囲内か検証
+    if year not in AVAILABLE_YEARS:
+        abort(404)
+
     # 2022年度の場合はトップページへリダイレクト
     if year == 2022 and content != "top":
         return redirect(url_for("content", year=year, content="top"))
@@ -827,8 +844,6 @@ def content(year: int, content: str):
         return render_template(
             f"/{year}/{content}.html",
             year=year,
-            is_latest_year=is_latest_year(year),
-            is_early_access=is_early_access(year),
         )
 
     # エラーが出たら404を表示
@@ -860,7 +875,6 @@ def others(content: str):
         return render_template(
             f"/others/{content}.html",
             year=year,
-            is_latest_year=is_latest_year(year),
         )
 
     # エラー
@@ -885,6 +899,10 @@ def search(year: int):
     Returns:
         Response: 検索結果のJSONレスポンス
     """
+    # 年度が公開範囲内か検証
+    if year not in AVAILABLE_YEARS:
+        abort(404)
+
     if year == 2022:
         return jsonify({"url": "/2022/top"})
 
@@ -912,6 +930,10 @@ def search_participants_by_keyword(year: int):
     Returns:
         Response: 検索結果のJSONレスポンス
     """
+    # 年度が公開範囲内か検証
+    if year not in AVAILABLE_YEARS:
+        abort(404)
+
     # 出場者を取得
     keyword = request.json.get("keyword")
 
@@ -948,6 +970,10 @@ def analyze_data_yearly(year: int):
     Returns:
         Response: データで見るGBBのHTMLテンプレート
     """
+    # 年度が公開範囲内か検証
+    if year not in AVAILABLE_YEARS:
+        abort(404)
+
     user_lang = session.get("language", "ja")  # セッションから言語を取得
     yearly_analysis = yearly_participant_analysis(year=year, user_lang=user_lang)
 

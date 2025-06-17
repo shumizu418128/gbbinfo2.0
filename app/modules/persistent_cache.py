@@ -10,6 +10,8 @@ from typing import Any, Optional
 
 import pandas as pd
 
+from app.modules.config import AVAILABLE_YEARS
+
 
 class PersistentCache:
     """
@@ -55,21 +57,21 @@ class PersistentCache:
             ValueError: 危険なパス文字が含まれている場合
         """
         # 危険なパス文字をチェック
-        if any(dangerous in key for dangerous in ['..', '/', '\\']):
+        if any(dangerous in key for dangerous in ["..", "/", "\\"]):
             raise ValueError(f"Invalid cache key: {key}")
 
-        # 安全なファイル名のみ許可（厳密な正規表現で検証）
-        if not re.match(r'^[a-zA-Z0-9_\-]+$', key):
-            raise ValueError(f"Cache key contains invalid characters: {key}")
-
-        cache_file = f"{key}.pkl"
+        # 安全なファイル名のみ許可
+        safe_key = re.sub(r'[^\w\-_.]', '_', key)
+        cache_file = f"{safe_key}.pkl"
         full_path = os.path.normpath(os.path.join(self.cache_dir, cache_file))
 
         # キャッシュディレクトリ内に限定
         abs_full_path = os.path.abspath(full_path)
         abs_cache_dir = os.path.abspath(self.cache_dir)
         if not abs_full_path.startswith(abs_cache_dir):
-            raise ValueError(f"Cache path is outside the allowed directory: {abs_full_path}")
+            raise ValueError(
+                f"Cache path is outside the allowed directory: {abs_full_path}"
+            )
 
         return full_path
 
@@ -137,7 +139,7 @@ class PersistentCache:
             Optional[pd.DataFrame]: CSVデータのDataFrame。
                                        ファイルが存在しない場合は空のDataFrameを返します。
         """
-        # 年度が許容範囲内か検証
+        # 年度が公開範囲内か検証
         if year not in AVAILABLE_YEARS:
             raise ValueError(f"Invalid year specified: {year}")
 
@@ -200,12 +202,17 @@ class PersistentCache:
             list: 結果カテゴリ名のリスト（Loopstation, Producerが先頭に配置）。
                   ディレクトリが存在しない場合は空のリストを返します。
         """
+        # ディレクトリの範囲チェック
         base_dir = os.path.join(".", "app", "database", "result")
         result_dir = os.path.normpath(os.path.join(base_dir, str(year)))
+        abs_result_dir = os.path.abspath(result_dir)
+        abs_base_dir = os.path.abspath(base_dir)
 
-        # Validate that result_dir is within base_dir
-        if not result_dir.startswith(os.path.abspath(base_dir)):
-            raise ValueError(f"Invalid year parameter: {year}")
+        # ファイルが存在しない場合は空リストを返す
+        if not abs_result_dir.startswith(abs_base_dir):
+            empty_list = []
+            self.set(f"result_categories_{year}", empty_list)
+            return empty_list
 
         cache_key = f"result_categories_{year}"
 

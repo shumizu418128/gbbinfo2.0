@@ -11,7 +11,7 @@
 
 <h1>GBB {{ year }} {{ _('Wildcard結果 & 出場者') }}</h1>
 
-{% if is_latest_year %}
+{% if is_latest_year is true %}
   <div style="text-align: center;">
     <p>{{ last_updated }}</p>
   </div>
