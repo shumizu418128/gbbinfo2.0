@@ -724,7 +724,7 @@ msgstr "Veranstaltungsdatum"
 #: templates/2024/top.html:21 templates/2025/top.html:21
 #: templates/includes/ended.html:4 templates/includes/popup_ended.html:7
 msgid "終了しました"
-msgstr "Fertig"
+msgstr "Beendet"
 
 #: templates/2024/top.html:21 templates/2025/top.html:21
 msgid "ページ 先行公開中！"
@@ -1429,7 +1429,7 @@ msgstr "Informationen zu GBB {year} finden Sie hier."
 
 #: templates/includes/ended.html:2 templates/includes/popup_ended.html:5
 msgid "中止"
-msgstr "Abbruch"
+msgstr "Abgesagt"
 
 #: templates/includes/ended.html:5 templates/includes/popup_ended.html:8
 #, python-brace-format

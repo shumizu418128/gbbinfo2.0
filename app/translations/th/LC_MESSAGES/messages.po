@@ -1373,7 +1373,7 @@ msgstr "ข้อมูลเกี่ยวกับ GBB {year} คือ"
 
 #: templates/includes/ended.html:2 templates/includes/popup_ended.html:5
 msgid "中止"
-msgstr "中止"
+msgstr "ยกเลิก"
 
 #: templates/includes/ended.html:5 templates/includes/popup_ended.html:8
 #, python-brace-format
