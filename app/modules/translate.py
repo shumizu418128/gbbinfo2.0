@@ -9,11 +9,19 @@ from typing import Optional
 import google.generativeai as genai
 import pandas as pd
 import polib
+from limits import RateLimitItemPerSecond
+from limits.storage import MemoryStorage
+from limits.strategies import FixedWindowRateLimiter
 from tqdm import tqdm
 
 from .config import create_safety_settings
 
 SAFETY_SETTINGS = create_safety_settings("BLOCK_NONE")
+
+# limitsによるレートリミット制御の初期化
+storage = MemoryStorage()
+rate_limit = RateLimitItemPerSecond(0.5)  # 2秒に1回
+limiter = FixedWindowRateLimiter(storage)
 
 
 def is_translated(url, target_lang=None, translated_paths=None):
@@ -78,22 +86,43 @@ model = genai.GenerativeModel(
 # 非同期処理用のThreadPoolExecutor
 _executor: Optional[ThreadPoolExecutor] = None
 
+# レートリミット制御用のロック
+_rate_limit_lock = None
+_last_api_call_time = 0
+RATE_LIMIT_INTERVAL = 2  # Geminiのレートリミット（2秒）に余裕を持たせる
+
 
 def get_executor():
     """
     グローバルなThreadPoolExecutorを取得または作成します。
 
     非同期翻訳処理で使用するThreadPoolExecutorのインスタンスを管理します。
-    まだ作成されていない場合は、最大3ワーカーのThreadPoolExecutorを新規作成します。
+    レートリミット対策のため、最大1ワーカーに制限しています。
 
     Returns:
         ThreadPoolExecutor: 非同期処理用のThreadPoolExecutorインスタンス。
-                           最大3つのワーカースレッドで並行処理を実行します。
+                           レートリミット遵守のため1つのワーカーで順次処理を実行します。
     """
     global _executor
     if _executor is None:
-        _executor = ThreadPoolExecutor(max_workers=3)
+        # レートリミット対策のため、max_workers=1に変更
+        _executor = ThreadPoolExecutor(max_workers=1)
     return _executor
+
+
+def get_rate_limit_lock():
+    """
+    グローバルなレートリミット制御用のロックを取得または作成します。
+
+    Returns:
+        threading.Lock: レートリミット制御用のロックインスタンス。
+    """
+    global _rate_limit_lock
+    if _rate_limit_lock is None:
+        import threading
+
+        _rate_limit_lock = threading.Lock()
+    return _rate_limit_lock
 
 
 def cleanup_executor():
@@ -107,10 +136,11 @@ def cleanup_executor():
         この関数は通常、アプリケーションの終了時やバックグラウンド翻訳処理の
         完了時に呼び出されます。
     """
-    global _executor
+    global _executor, _rate_limit_lock
     if _executor is not None:
         _executor.shutdown(wait=False)
         _executor = None
+    _rate_limit_lock = None
 
 
 def extract_placeholders(text):
@@ -154,12 +184,14 @@ def gemini_translate(text: str, target_lang: str):
         str: 翻訳されたテキスト。元のテキストのプレースホルダーが保持されます。
 
     Note:
-        - レートリミット対策として各リクエスト間に1.6秒の待機時間があります。
+        - limitsライブラリによるレートリミット制御を使用します。
         - プレースホルダーの検証に失敗した場合は自動的に再翻訳を実行します。
     """
-
     while True:
-        time.sleep(1.6)  # レートリミット対策
+        # limitsによるレートリミット制御
+        while not limiter.hit(rate_limit, "gemini_api"):  # "gemini_api"はキー
+            print("レートリミット待機中...", flush=True)
+            time.sleep(0.5)
 
         # geminiに翻訳を依頼
         chat = model.start_chat()
@@ -241,36 +273,12 @@ def translate():
 
     ローカルでの実行を前提としています。
     """
-    if asyncio.iscoroutinefunction(translate):
-        # 非同期環境では async_translate を実行
-        return asyncio.run(async_translate())
-    else:
-        # 同期実行
-        return _sync_translate()
+    print("同期翻訳処理を開始します...", flush=True)
 
+    # 共通の前処理
+    _prepare_translation_files()
 
-def _sync_translate():
-    """
-    同期版の翻訳処理を実行します。
-
-    以下のステップを順次実行します：
-    1. Babelを使用してテンプレートファイル（.pot）を再生成
-    2. 既存の翻訳ファイル（.po）をテンプレートファイルとマージ
-    3. 各言語について未翻訳エントリをGemini AIで翻訳
-    4. プレースホルダーの検証とfuzzyフラグの管理
-    5. 翻訳ファイルのコンパイル（.mo形式）
-    6. 不要な翻訳エントリの削除
-
-    Note:
-        - 各言語の翻訳は順次処理されます（非並行）。
-        - ローカル環境での実行を前提としています。
-    """
-    # テンプレートファイルの再生成
-    os.system(f"cd {BASE_DIR} && pybabel extract -F {CONFIG_FILE} -o {POT_FILE} .")
-
-    # 翻訳ファイルのマージ
-    os.system(f"cd {BASE_DIR} && pybabel update -i {POT_FILE} -d {LOCALE_DIR}")
-
+    # 各言語の翻訳処理（同期版）
     for lang in LANGUAGES:
         po_file_path = os.path.join(LOCALE_DIR, lang, "LC_MESSAGES", "messages.po")
 
@@ -280,60 +288,92 @@ def _sync_translate():
                 f"cd {BASE_DIR} && pybabel init -i {POT_FILE} -d {LOCALE_DIR} -l {lang}"
             )
 
-        po = polib.pofile(po_file_path)
+        # 翻訳処理を実行
+        _process_po_file(lang, po_file_path)
 
-        # 既存の翻訳のプレースホルダーを検証
-        print(f"\n{lang}の翻訳を検証中...")
-
-        for entry in po:
-            if entry.msgstr:  # 翻訳が存在する場合のみチェック
-                result = validate_placeholders(entry.msgid, entry.msgstr)
-
-                # プレースホルダーが一致しない場合は fuzzy フラグを追加
-                if not result:
-                    entry.flags.append("fuzzy")
-
-        po.save(po_file_path)  # プレースホルダーの検証結果を保存
-        po = polib.pofile(po_file_path)  # 再度ファイルを読み込む
-
-        for entry in tqdm(
-            po.untranslated_entries() + po.fuzzy_entries(), desc=f"{lang} の翻訳"
-        ):
-            # 翻訳先言語を取得
-            target_lang = LANG_NAMES.get(lang, lang)
-
-            # 翻訳を依頼
-            translation = gemini_translate(
-                text=entry.msgid,
-                target_lang=target_lang,
-            )
-
-            # 翻訳結果を保存
-            entry.msgstr = translation
-
-            # fuzzy フラグを削除
-            if "fuzzy" in entry.flags:
-                entry.flags.remove("fuzzy")
-
-        po.save(po_file_path)
-
-    # 再コンパイル
-    os.system(f"cd {BASE_DIR} && pybabel compile -d {LOCALE_DIR}")
-
-    # 不要な翻訳を削除
-    for lang in LANGUAGES:
-        # ファイルを読み込む
-        po_file_path = os.path.join(LOCALE_DIR, lang, "LC_MESSAGES", "messages.po")
-        with open(po_file_path, "r", encoding="utf-8") as f:
-            lines = f.readlines()
-
-        with open(po_file_path, "w", encoding="utf-8") as f:
-            for line in lines:
-                if not line.startswith("#~ "):
-                    f.write(line)
-        print(f"{lang} の不要な翻訳を削除しました。", flush=True)
+    # 共通の後処理
+    _finalize_translation()
 
     print("翻訳が完了しました！", flush=True)
+
+
+def _prepare_translation_files():
+    """
+    翻訳ファイルの準備処理を実行します。
+
+    以下の処理を実行します:
+    1. テンプレートファイル (.pot) を再生成
+    2. 既存の翻訳ファイル (.po) をテンプレートファイルとマージ
+
+    Note:
+        - 同期版・非同期版共通の前処理です。
+    """
+    print("テンプレートファイルを生成中...", flush=True)
+    os.system(f"cd {BASE_DIR} && pybabel extract -F {CONFIG_FILE} -o {POT_FILE} .")
+
+    print("翻訳ファイルをマージ中...", flush=True)
+    os.system(f"cd {BASE_DIR} && pybabel update -i {POT_FILE} -d {LOCALE_DIR}")
+
+
+async def _async_prepare_translation_files():
+    """
+    翻訳ファイルの準備処理を非同期で実行します。
+
+    以下の処理を実行します:
+    1. テンプレートファイル (.pot) を再生成
+    2. 既存の翻訳ファイル (.po) をテンプレートファイルとマージ
+
+    Note:
+        - 非同期版の前処理です。
+    """
+    print("テンプレートファイルを生成中...", flush=True)
+    await asyncio.create_subprocess_shell(
+        f"cd {BASE_DIR} && pybabel extract -F {CONFIG_FILE} -o {POT_FILE} ."
+    )
+
+    print("翻訳ファイルをマージ中...", flush=True)
+    await asyncio.create_subprocess_shell(
+        f"cd {BASE_DIR} && pybabel update -i {POT_FILE} -d {LOCALE_DIR}"
+    )
+
+
+def _finalize_translation():
+    """
+    翻訳処理の後処理を実行します。
+
+    以下の処理を実行します:
+    1. 翻訳ファイルのコンパイル (.mo形式)
+    2. 不要な翻訳エントリの削除
+
+    Note:
+        - 同期版・非同期版共通の後処理です。
+    """
+    print("翻訳ファイルをコンパイル中...", flush=True)
+    os.system(f"cd {BASE_DIR} && pybabel compile -d {LOCALE_DIR}")
+
+    print("不要な翻訳を削除中...", flush=True)
+    for lang in LANGUAGES:
+        _cleanup_language_translation(lang)
+
+
+async def _async_finalize_translation():
+    """
+    翻訳処理の後処理を非同期で実行します。
+
+    以下の処理を実行します:
+    1. 翻訳ファイルのコンパイル (.mo形式)
+    2. 不要な翻訳エントリの削除
+
+    Note:
+        - 非同期版の後処理です。
+    """
+    print("翻訳ファイルをコンパイル中...", flush=True)
+    await asyncio.create_subprocess_shell(
+        f"cd {BASE_DIR} && pybabel compile -d {LOCALE_DIR}"
+    )
+
+    print("不要な翻訳を削除中...", flush=True)
+    await _async_cleanup_translations()
 
 
 async def async_translate():
@@ -341,18 +381,12 @@ async def async_translate():
     非同期版翻訳プロセス。
 
     起動時の軽量化のために、重い翻訳処理を非同期で実行します。
+    本番環境でstart_background_translation()から呼び出されます。
     """
     print("非同期翻訳処理を開始します...", flush=True)
 
-    # テンプレートファイルの再生成（同期処理）
-    await asyncio.create_subprocess_shell(
-        f"cd {BASE_DIR} && pybabel extract -F {CONFIG_FILE} -o {POT_FILE} ."
-    )
-
-    # 翻訳ファイルのマージ（同期処理）
-    await asyncio.create_subprocess_shell(
-        f"cd {BASE_DIR} && pybabel update -i {POT_FILE} -d {LOCALE_DIR}"
-    )
+    # 共通の前処理（非同期版）
+    await _async_prepare_translation_files()
 
     # 各言語の翻訳処理を並行実行
     tasks = []
@@ -363,13 +397,8 @@ async def async_translate():
     # 全ての言語の翻訳を並行実行
     await asyncio.gather(*tasks)
 
-    # 再コンパイル（同期処理）
-    await asyncio.create_subprocess_shell(
-        f"cd {BASE_DIR} && pybabel compile -d {LOCALE_DIR}"
-    )
-
-    # 不要な翻訳を削除
-    await _async_cleanup_translations()
+    # 共通の後処理（非同期版）
+    await _async_finalize_translation()
 
     print("非同期翻訳が完了しました！", flush=True)
 
@@ -594,10 +623,11 @@ def add_country_translation():
                     country_df.at[index, language] = "-"
                     continue
 
-                # Google翻訳を使って国名を翻訳
+                # Gemini AIを使って国名を翻訳
+                target_lang_name = LANG_NAMES.get(language, language)
                 country_df.at[index, language] = gemini_translate(
                     text=en_country_name,
-                    target_lang=language,
+                    target_lang=target_lang_name,
                 )
 
             # 新しい列を追加したデータフレームを保存
