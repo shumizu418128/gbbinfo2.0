@@ -274,7 +274,7 @@ def world_map(year: int):
     base_path = os.path.join("app", "templates")
     abs_base_path = os.path.abspath(base_path)
     map_filename = f"world_map_{user_lang}.html"
-    map_path = os.path.normpath(os.path.join(base_path, str(year), map_filename))
+    map_path = os.path.realpath(os.path.normpath(os.path.join(base_path, str(year), map_filename)))
 
     # base_path からのパストラバーサル防止
     if not map_path.startswith(abs_base_path) or not os.path.commonpath([abs_base_path, map_path]) == abs_base_path:
