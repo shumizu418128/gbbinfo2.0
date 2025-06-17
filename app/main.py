@@ -49,7 +49,7 @@ from .modules.participants import (
     yearly_participant_analysis,
 )
 from .modules.result import get_result
-from .modules.translate import is_translated, start_background_translation
+from .modules.translate import is_translated
 
 app = Flask(__name__)
 sitemapper = Sitemapper()
@@ -75,17 +75,8 @@ if os.getenv("ENVIRONMENT_CHECK") == "qawsedrftgyhujikolp":
     cache = Cache(app, config={"CACHE_TYPE": "null"})
 
 # 本番環境ではキャッシュを有効化
-# 多言語対応のため実際にはworld_mapのみキャッシュを有効化
+# 翻訳は無し
 else:
-    # 軽量な翻訳処理（起動速度重視）
-    print("アプリケーション起動中...", flush=True)
-
-    # 常にバックグラウンドで翻訳処理を実行（起動をブロックしない）
-    print("バックグラウンドで翻訳処理を開始します...", flush=True)
-    translation_thread = start_background_translation()
-
-    print("アプリケーションを開始します", flush=True)
-
     app.config.from_object(Config)
     cache = Cache(
         app,
