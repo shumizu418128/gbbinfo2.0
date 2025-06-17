@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-15 12:30+0900\n"
+"POT-Creation-Date: 2025-06-17 23:25+0900\n"
 "PO-Revision-Date: 2025-04-16 13:02+0900\n"
 "Last-Translator: GBBINFO-JPN Translation Team <support@gbbinfo.com>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -719,7 +719,7 @@ msgid "開催日"
 msgstr "Dato"
 
 #: templates/2024/top.html:21 templates/2025/top.html:21
-#: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
+#: templates/includes/ended.html:4 templates/includes/popup_ended.html:7
 msgid "終了しました"
 msgstr "Ferdig."
 
@@ -985,7 +985,7 @@ msgid "全出場者一覧"
 msgstr "Liste over alle deltakere"
 
 #: templates/2025/top.html:92 templates/includes/popup_early_access.html:9
-#: templates/includes/popup_ended.html:9
+#: templates/includes/popup_ended.html:13
 #: templates/includes/popup_no_info.html:8
 msgid "閉じる"
 msgstr "Lukk"
@@ -1399,12 +1399,16 @@ msgstr "Dette er en side for GBB {year}, som fortsatt har lite informasjon."
 msgid "GBB {year} の情報はこちら"
 msgstr "Informasjon om GBB {year} er her"
 
-#: templates/includes/ended.html:3 templates/includes/popup_ended.html:5
+#: templates/includes/ended.html:2 templates/includes/popup_ended.html:5
+msgid "中止"
+msgstr "Avbryte"
+
+#: templates/includes/ended.html:5 templates/includes/popup_ended.html:8
 #, python-brace-format
 msgid "ここは、すでに終了したGBB {year} のページです"
 msgstr "Dette er en side for den allerede avsluttede GBB {year}"
 
-#: templates/includes/ended.html:5 templates/includes/popup_ended.html:7
+#: templates/includes/ended.html:8 templates/includes/popup_ended.html:11
 msgid "GBB最新情報はこちら"
 msgstr "Her er de siste GBB-oppdateringene"
 

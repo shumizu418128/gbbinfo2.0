@@ -1,8 +1,12 @@
 
 <div class="background-popup" onclick="closePopup()"></div>
 <div class="popup">
-    <p style="font-size: 36px; font-weight: bold;">☆<br>GBB {{ year }}<br>{{ _('終了しました') }}<br>☆</p>
-    <p>{{ _('ここは、すでに終了したGBB {year} のページです').format(year=year) }}</p>
+    {% if year == 2022 %}
+        <p style="font-size: 36px; font-weight: bold;">☆<br>GBB {{ year }}<br>{{ _('中止') }}<br>☆</p>
+    {% else %}
+        <p style="font-size: 36px; font-weight: bold;">☆<br>GBB {{ year }}<br>{{ _('終了しました') }}<br>☆</p>
+        <p>{{ _('ここは、すでに終了したGBB {year} のページです').format(year=year) }}</p>
+    {% endif %}
     <div class="button-container" style="margin-bottom: 8px">
         <a href="/"><button type="button">{{ _('GBB最新情報はこちら') }}</button></a>
     </div>

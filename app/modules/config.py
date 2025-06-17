@@ -23,6 +23,10 @@ HARM_CATEGORIES = [
     "HARM_CATEGORY_DANGEROUS_CONTENT",
 ]
 
+# ISO 3166-1 numeric
+JAPAN = 392
+KOREA = 410
+
 
 def create_safety_settings(threshold):
     """

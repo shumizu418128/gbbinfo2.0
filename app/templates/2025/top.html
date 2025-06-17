@@ -147,7 +147,7 @@
   <li><a href="/{{ year }}/wildcards">{{_('Wildcard一覧')}}</a></li>
 </ul>
 
-{% if is_latest_year %}
+{% if is_latest_year is true %}
   <div style="text-align: center;">
     <p>{{ last_updated }}</p>
   </div>

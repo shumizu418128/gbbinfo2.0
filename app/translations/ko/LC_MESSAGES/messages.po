@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-15 12:30+0900\n"
+"POT-Creation-Date: 2025-06-17 23:25+0900\n"
 "PO-Revision-Date: 2024-11-12 13:58+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ko <LL@li.org>\n"
@@ -695,7 +695,7 @@ msgid "開催日"
 msgstr "개최일"
 
 #: templates/2024/top.html:21 templates/2025/top.html:21
-#: templates/includes/ended.html:2 templates/includes/popup_ended.html:4
+#: templates/includes/ended.html:4 templates/includes/popup_ended.html:7
 msgid "終了しました"
 msgstr "종료되었습니다"
 
@@ -938,7 +938,7 @@ msgid "全出場者一覧"
 msgstr "전체 출전자 목록"
 
 #: templates/2025/top.html:92 templates/includes/popup_early_access.html:9
-#: templates/includes/popup_ended.html:9
+#: templates/includes/popup_ended.html:13
 #: templates/includes/popup_no_info.html:8
 msgid "閉じる"
 msgstr "닫기"
@@ -1312,12 +1312,16 @@ msgstr "여기는 아직 정보가 적은 GBB {year}의 페이지입니다"
 msgid "GBB {year} の情報はこちら"
 msgstr "GBB {year}의 정보는 여기에서"
 
-#: templates/includes/ended.html:3 templates/includes/popup_ended.html:5
+#: templates/includes/ended.html:2 templates/includes/popup_ended.html:5
+msgid "中止"
+msgstr "중지"
+
+#: templates/includes/ended.html:5 templates/includes/popup_ended.html:8
 #, python-brace-format
 msgid "ここは、すでに終了したGBB {year} のページです"
 msgstr "여기는 이미 종료된 GBB {year}의 페이지입니다"
 
-#: templates/includes/ended.html:5 templates/includes/popup_ended.html:7
+#: templates/includes/ended.html:8 templates/includes/popup_ended.html:11
 msgid "GBB最新情報はこちら"
 msgstr "GBB 최신 정보는 여기에서"
 

@@ -21,7 +21,7 @@
 
 <h2>{{ _('これだけガイド') }}</h2>
 
-{% if is_latest_year %}
+{% if is_latest_year is true %}
   <div style="text-align: center;">
     <p>{{ last_updated }}</p>
   </div>
@@ -41,7 +41,7 @@
 <p>{{ _('7toSmokeは、GBB本戦に比べて最新情報の公開が非常に遅い傾向にあり、そもそも情報が発表されないまま本番を迎えてしまったケースもあります。') }}</p>
 <p>{{ _('諦めましょう。') }}</p>
 
-{% if is_latest_year %}
+{% if is_latest_year is true %}
   <div class="button-container">
     <a href="/{{ year }}/top#contact"><button>{{ _('お問い合わせ') }}</button></a>
   </div>
