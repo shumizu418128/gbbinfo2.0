@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import sys
 import time
 
 import google.generativeai as genai
@@ -8,7 +9,11 @@ import pandas as pd
 import polib
 from tqdm import tqdm
 
-from .config import create_safety_settings
+# プロジェクトルートをPythonパスに追加
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+from app.modules.config import create_safety_settings
+from app.modules.optimization.cache import persistent_cache
 
 SAFETY_SETTINGS = create_safety_settings("BLOCK_NONE")
 
@@ -31,8 +36,6 @@ def is_translated(url, target_lang=None, translated_paths=None):
 
     # 遅延読み込みで翻訳パスを取得
     if translated_paths is None:
-        from .optimization.cache import persistent_cache
-
         translated_paths = persistent_cache.get_translated_paths()
 
     return url in translated_paths
@@ -64,16 +67,6 @@ Important instructions:
 4. Do NOT add any explanatory text or notes
 
 Text to translate: {source_text}"""
-
-# 設定
-if not API_KEY:
-    raise ValueError("Please set the GEMINI_API_KEY environment variable")
-genai.configure(api_key=API_KEY)
-
-model = genai.GenerativeModel(
-    model_name="gemini-2.0-flash-lite",
-    safety_settings=SAFETY_SETTINGS,
-)
 
 
 def extract_placeholders(text):
@@ -121,6 +114,15 @@ def gemini_translate(text: str, target_lang: str):
     Returns:
         str: 翻訳されたテキスト。
     """
+    # 設定
+    if not API_KEY:
+        raise ValueError("Please set the GEMINI_API_KEY environment variable")
+    genai.configure(api_key=API_KEY)
+
+    model = genai.GenerativeModel(
+        model_name="gemini-2.0-flash-lite",
+        safety_settings=SAFETY_SETTINGS,
+    )
     if not model:
         raise ValueError("Gemini API key not configured")
 
