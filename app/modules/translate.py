@@ -105,7 +105,8 @@ def get_executor():
     """
     global _executor
     if _executor is None:
-        # レートリミット対策のため、max_workers=1に変更
+        # Gemini APIレートリミット（2秒に1回）を確実に順守するため、max_workers=1に設定
+        # これにより全ての翻訳処理が単一スレッドで順次実行され、レートリミットが守られる
         _executor = ThreadPoolExecutor(max_workers=1)
     return _executor
 
@@ -184,30 +185,39 @@ def gemini_translate(text: str, target_lang: str):
         str: 翻訳されたテキスト。元のテキストのプレースホルダーが保持されます。
 
     Note:
-        - limitsライブラリによるレートリミット制御を使用します。
+        - limitsライブラリによるレートリミット制御（2秒に1回）を厳密に順守します。
         - プレースホルダーの検証に失敗した場合は自動的に再翻訳を実行します。
+        - ThreadPoolExecutor(max_workers=1)との組み合わせで確実なレート制御を実現します。
     """
     while True:
-        # limitsによるレートリミット制御
-        while not limiter.hit(rate_limit, "gemini_api"):  # "gemini_api"はキー
-            print("レートリミット待機中...", flush=True)
+        # limitsによるレートリミット制御（2秒に1回）
+        while not limiter.hit(rate_limit, "gemini_api"):
+            print("Gemini APIレートリミット待機中（2秒に1回制限）...", flush=True)
             time.sleep(0.5)
 
-        # geminiに翻訳を依頼
-        chat = model.start_chat()
-        response = chat.send_message(prompt.format(lang=target_lang, source_text=text))
-        translation = response.text.replace("\n", "")
+        try:
+            # geminiに翻訳を依頼
+            chat = model.start_chat()
+            response = chat.send_message(prompt.format(lang=target_lang, source_text=text))
+            translation = response.text.replace("\n", "")
 
-        # プレースホルダーの検証
-        result = validate_placeholders(text, translation)
-        if not result:
-            print(
-                f"プレースホルダーが一致しません。元の文字列: {text}、翻訳後の文字列: {translation}",
-                flush=True,
-            )
-        else:
-            # プレースホルダーが一致する場合は翻訳を保存
-            break
+            # プレースホルダーの検証
+            result = validate_placeholders(text, translation)
+            if not result:
+                print(
+                    f"プレースホルダーが一致しません。再翻訳します。元の文字列: {text}、翻訳後の文字列: {translation}",
+                    flush=True,
+                )
+                # 再翻訳の場合もレートリミットを適用
+                continue
+            else:
+                # プレースホルダーが一致する場合は翻訳完了
+                break
+        except Exception as e:
+            print(f"Gemini API呼び出し中にエラーが発生しました: {e}。再試行します...", flush=True)
+            # エラーの場合もレートリミットを適用してリトライ
+            continue
+
     return translation
 
 
@@ -382,6 +392,11 @@ async def async_translate():
 
     起動時の軽量化のために、重い翻訳処理を非同期で実行します。
     本番環境でstart_background_translation()から呼び出されます。
+
+    Note:
+        - Gemini API翻訳が完了してから後処理を実行するように順序を制御しています。
+        - レートリミット（2秒に1回）を順守するため、ThreadPoolExecutor(max_workers=1)を使用。
+        - 実際のAPI呼び出しはlimitsライブラリで厳密に制御されています。
     """
     print("非同期翻訳処理を開始します...", flush=True)
 
@@ -389,15 +404,18 @@ async def async_translate():
     await _async_prepare_translation_files()
 
     # 各言語の翻訳処理を並行実行
+    # 注意: max_workers=1により、実際は順次実行でレートリミットを順守
     tasks = []
     for lang in LANGUAGES:
         task = asyncio.create_task(_async_translate_language(lang))
         tasks.append(task)
 
-    # 全ての言語の翻訳を並行実行
+    # 全ての言語の翻訳を並行実行し、完了を待機
+    print("Gemini API翻訳処理を開始します（レートリミット: 2秒に1回）...", flush=True)
     await asyncio.gather(*tasks)
+    print("Gemini API翻訳処理が完了しました。後処理を開始します...", flush=True)
 
-    # 共通の後処理（非同期版）
+    # 共通の後処理（非同期版）- 翻訳完了後に実行
     await _async_finalize_translation()
 
     print("非同期翻訳が完了しました！", flush=True)
