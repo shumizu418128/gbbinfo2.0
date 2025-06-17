@@ -1,10 +1,8 @@
 import os
 import warnings
 from datetime import datetime
-from functools import lru_cache
 
 import jinja2
-import pandas as pd
 from flask import (
     Flask,
     abort,
@@ -25,9 +23,24 @@ from .modules import gemini
 from .modules.config import (
     AVAILABLE_LANGS,
     AVAILABLE_YEARS,
+    JAPAN,
+    KOREA,
     LANG_NAMES,
     Config,
     TestConfig,
+)
+from .modules.translate import is_translated
+from .modules.core.utils import (
+    get_current_timestamp,
+    get_others_templates,
+    is_early_access,
+    is_latest_year,
+    load_template_combinations_optimized,
+)
+from .modules.optimization.cache import persistent_cache
+from .modules.optimization.startup import (
+    load_categories_parallel,
+    load_result_categories_optimized,
 )
 from .modules.participants import (
     create_world_map,
@@ -36,7 +49,6 @@ from .modules.participants import (
     total_participant_analysis,
     yearly_participant_analysis,
 )
-from .modules.persistent_cache import persistent_cache
 from .modules.result import get_result
 from .modules.translate import start_background_translation
 
@@ -91,136 +103,14 @@ test = _("test")  # テスト翻訳
 ####################################################################
 # MARK: 定数一覧
 ####################################################################
-# ISO 3166-1 numeric
-JAPAN = 392
-KOREA = 410
-
-
 # 現在時刻を読み込む(最終更新日時として使用)
-DT_NOW = datetime.now()
-LAST_UPDATED = "UPDATE " + DT_NOW.strftime("%Y/%m/%d %H:%M:%S") + " JST"
-
-
-# 最適化されたCSVデータ読み込み（永続的キャッシュ使用）
-def load_csv_optimized(year: int) -> pd.DataFrame:
-    """
-    指定された年度のCSVファイルを永続的キャッシュ機能付きで読み込みます。
-
-    Args:
-        year (int): 読み込む年度
-
-    Returns:
-        pd.DataFrame: CSVデータのDataFrame。ファイルが存在しない場合は空のDataFrameを返します。
-    """
-    return persistent_cache.get_csv_data(year)
-
-
-def load_categories_parallel():
-    """
-    カテゴリデータを最小限で読み込みます（起動速度重視）。
-    最新2年度のデータのみを起動時に読み込み、他の年度は遅延読み込みで対応します。
-
-    Returns:
-        dict: 年度をキーとし、カテゴリリストを値とする辞書
-    """
-    categories_dict = {}
-
-    # 最新2年度のみを起動時に読み込み
-    priority_years = sorted(AVAILABLE_YEARS, reverse=True)[:2]
-
-    for year in priority_years:
-        categories_dict[year] = persistent_cache.get_categories(year)
-
-    return categories_dict
-
+DT_NOW, LAST_UPDATED = get_current_timestamp()
 
 # 各年度の全カテゴリを取得（最適化版）
 VALID_CATEGORIES_DICT = load_categories_parallel()
 
-
-def load_result_categories_optimized():
-    """
-    結果カテゴリを最小限で読み込みます（起動速度重視）。
-    最新2年度のデータのみを起動時に読み込み、他の年度は遅延読み込みで対応します。
-
-    Returns:
-        dict: 年度をキーとし、結果カテゴリリストを値とする辞書
-    """
-    categories_dict = {}
-    # 最新2年度のみを起動時に読み込み
-    priority_years = sorted(AVAILABLE_YEARS, reverse=True)[:2]
-
-    for year in priority_years:
-        categories_dict[year] = persistent_cache.get_result_categories(year)
-
-    return categories_dict
-
-
 # 各年度の全カテゴリを取得（最適化版）
 ALL_CATEGORY_DICT = load_result_categories_optimized()
-
-
-@lru_cache(maxsize=32)
-def get_template_contents(year: int) -> list:
-    """
-    指定された年度のテンプレートコンテンツ一覧をキャッシュ機能付きで取得します。
-    rule, world_mapテンプレートは除外されます。
-
-    Args:
-        year (int): 取得する年度
-
-    Returns:
-        list: テンプレートファイル名のリスト（拡張子なし）。
-              ディレクトリが存在しない場合は空のリストを返します。
-    """
-    try:
-        templates_dir_path = os.path.join(".", "app", "templates", str(year))
-        contents = os.listdir(templates_dir_path)
-        contents = [content.replace(".html", "") for content in contents]
-
-        # rule, world_mapは除外
-        contents = [c for c in contents if c not in ["rule", "world_map"]]
-        return contents
-    except OSError:
-        return []
-
-
-@lru_cache(maxsize=1)
-def get_others_templates() -> list:
-    """
-    othersディレクトリのテンプレート一覧をキャッシュ機能付きで取得します。
-
-    Returns:
-        list: othersテンプレートファイル名のリスト（拡張子なし）。
-              ディレクトリが存在しない場合は空のリストを返します。
-    """
-    try:
-        others_templates_path = os.path.join(".", "app", "templates", "others")
-        contents = os.listdir(others_templates_path)
-        return [content.replace(".html", "") for content in contents]
-    except OSError:
-        return []
-
-
-def load_template_combinations_optimized():
-    """
-    テンプレート組み合わせを最適化して読み込みます（起動速度重視）。
-    最新2年度のテンプレートのみを起動時に読み込み、他の年度は遅延読み込みで対応します。
-
-    Returns:
-        list: (年度, コンテンツ名) のタプルのリスト
-    """
-    combinations = []
-    # 最新2年度のみを優先読み込み
-    priority_years = sorted(AVAILABLE_YEARS, reverse=True)[:2]
-
-    for year in priority_years:
-        contents = get_template_contents(year)
-        for content in contents:
-            combinations.append((year, content))
-
-    return combinations
-
 
 # 各年度のページを取得（最適化版）
 combinations = load_template_combinations_optimized()
@@ -229,20 +119,6 @@ COMBINATIONS_CONTENT = [content for _, content in combinations]
 
 # othersテンプレート（最適化版）
 CONTENT_OTHERS = get_others_templates()
-
-
-# 翻訳が存在するページのパスを取得（永続的キャッシュ使用）
-def get_translated_template_paths():
-    """
-    翻訳されたテンプレートパスを永続的キャッシュから取得します。
-    POファイルを解析して翻訳が存在するページのパス一覧を返します。
-
-    Returns:
-        set: 翻訳されたページのパスセット。
-             POファイルが存在しない場合は空のセットを返します。
-    """
-    return persistent_cache.get_translated_paths()
-
 
 # 起動時は空のセットで初期化（必要時に遅延読み込み）
 TRANSLATED_TEMPLATE_PATHS = set()
@@ -270,56 +146,6 @@ def set_request_data():
         session["language"] = best_match if best_match else "ja"
 
 
-def is_translated(url, target_lang=None):
-    """
-    POファイルを読み込んで、指定されたページに翻訳が提供されているかをチェックします。
-
-    Args:
-        url (str): ページのURL
-        target_lang (str): 対象言語（Noneの場合は現在のセッション言語）
-
-    Returns:
-        bool: 翻訳が提供されている場合True、されていない場合False
-    """
-    # 日本語の場合は常にTrue（元言語）
-    if target_lang == "ja":
-        return True
-
-    # 遅延読み込みで翻訳パスを取得
-    translated_paths = get_translated_template_paths()
-    return url in translated_paths
-
-
-def is_latest_year(year):
-    """
-    指定された年度が最新年度または今年であるかを判定します。
-
-    Args:
-        year (int): 判定する年度
-
-    Returns:
-        bool: 最新年度または今年の場合はTrue、それ以外はFalse
-    """
-    dt_now = datetime.now()
-    now = dt_now.year
-    return year == max(AVAILABLE_YEARS) or year == now
-
-
-def is_early_access(year):
-    """
-    指定された年度が、試験公開年度かを判定します。
-
-    Args:
-        year (int): 判定する年度
-
-    Returns:
-        bool: 試験公開年度の場合はTrue、それ以外はFalse
-    """
-    dt_now = datetime.now()
-    now = dt_now.year
-    return year > now
-
-
 @app.context_processor
 def inject_variables():
     """
@@ -330,15 +156,15 @@ def inject_variables():
     """
     # 年度が公開範囲内か検証
     year_str = g.current_url.split("/")[1]
-    is_latest_year = None
-    is_early_access = None
+    is_latest_year_flag = None
+    is_early_access_flag = None
 
     # 年度が最新 or 試験公開年度か検証
     try:
         year = int(year_str)
         if year in AVAILABLE_YEARS:
-            is_latest_year = is_latest_year(year)
-            is_early_access = is_early_access(year)
+            is_latest_year_flag = is_latest_year(year)
+            is_early_access_flag = is_early_access(year)
     except Exception:
         pass
 
@@ -350,8 +176,8 @@ def inject_variables():
         current_url=g.current_url,
         language=session.get("language"),
         is_translated=is_translated(g.current_url, session.get("language")),
-        is_latest_year=is_latest_year,
-        is_early_access=is_early_access,
+        is_latest_year=is_latest_year_flag,
+        is_early_access=is_early_access_flag,
     )
 
 

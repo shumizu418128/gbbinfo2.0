@@ -10,7 +10,7 @@ from typing import Any, Optional
 
 import pandas as pd
 
-from app.modules.config import AVAILABLE_YEARS
+from ..config import AVAILABLE_YEARS
 
 
 class PersistentCache:
@@ -258,8 +258,6 @@ class PersistentCache:
             return cached_paths
 
         # キャッシュにない場合は読み込み
-        from .config import AVAILABLE_YEARS
-
         translated_paths = set()
 
         try:

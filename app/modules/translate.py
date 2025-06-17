@@ -15,6 +15,31 @@ from .config import create_safety_settings
 
 SAFETY_SETTINGS = create_safety_settings("BLOCK_NONE")
 
+
+def is_translated(url, target_lang=None, translated_paths=None):
+    """
+    POファイルを読み込んで、指定されたページに翻訳が提供されているかをチェックします。
+
+    Args:
+        url (str): ページのURL
+        target_lang (str): 対象言語（Noneの場合は現在のセッション言語）
+        translated_paths (set): 翻訳されたパスのセット（Noneの場合は遅延読み込み）
+
+    Returns:
+        bool: 翻訳が提供されている場合True、されていない場合False
+    """
+    # 日本語の場合は常にTrue（元言語）
+    if target_lang == "ja":
+        return True
+
+    # 遅延読み込みで翻訳パスを取得
+    if translated_paths is None:
+        from .optimization.cache import persistent_cache
+        translated_paths = persistent_cache.get_translated_paths()
+
+    return url in translated_paths
+
+
 # 言語名の読み込み（日本語を除外）
 with open(
     os.path.join(os.path.dirname(__file__), "..", "json", "languages.json"),

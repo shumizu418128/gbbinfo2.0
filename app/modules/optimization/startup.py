@@ -10,6 +10,9 @@ from typing import Any, Dict, List
 
 import pandas as pd
 
+from .cache import persistent_cache
+from ..config import AVAILABLE_YEARS
+
 
 class StartupOptimizer:
     """
@@ -105,13 +108,10 @@ class StartupOptimizer:
         except OSError:
             return []
 
-    def preload_essential_data(self, available_years: List[int]) -> Dict[str, Any]:
+    def preload_essential_data(self) -> Dict[str, Any]:
         """
         起動速度向上のため、必要最小限のデータを事前読み込みします。
         最新2年度のデータのみを優先的に読み込み、他の年度は遅延読み込みに委ねます。
-
-        Args:
-            available_years (List[int]): 利用可能な年度のリスト
 
         Returns:
             Dict[str, Any]: 事前読み込みされたデータを含む辞書。
@@ -121,7 +121,7 @@ class StartupOptimizer:
                            - loaded_years: 読み込み済み年度のリスト
         """
         # 最新2年度のみを優先的に読み込み
-        priority_years = sorted(available_years, reverse=True)[:2]
+        priority_years = sorted(AVAILABLE_YEARS, reverse=True)[:2]
 
         # 並列でCSVデータを読み込み
         csv_data = self.load_csvs_parallel(priority_years)
@@ -137,6 +137,56 @@ class StartupOptimizer:
             "categories": categories_dict,
             "loaded_years": priority_years,
         }
+
+
+def load_csv_optimized(year: int) -> pd.DataFrame:
+    """
+    指定された年度のCSVファイルを永続的キャッシュ機能付きで読み込みます。
+
+    Args:
+        year (int): 読み込む年度
+
+    Returns:
+        pd.DataFrame: CSVデータのDataFrame。ファイルが存在しない場合は空のDataFrameを返します。
+    """
+    return persistent_cache.get_csv_data(year)
+
+
+def load_categories_parallel():
+    """
+    カテゴリデータを最小限で読み込みます（起動速度重視）。
+    最新2年度のデータのみを起動時に読み込み、他の年度は遅延読み込みで対応します。
+
+    Returns:
+        dict: 年度をキーとし、カテゴリリストを値とする辞書
+    """
+    categories_dict = {}
+
+    # 最新2年度のみを起動時に読み込み
+    priority_years = sorted(AVAILABLE_YEARS, reverse=True)[:2]
+
+    for year in priority_years:
+        categories_dict[year] = persistent_cache.get_categories(year)
+
+    return categories_dict
+
+
+def load_result_categories_optimized():
+    """
+    結果カテゴリを最小限で読み込みます（起動速度重視）。
+    最新2年度のデータのみを起動時に読み込み、他の年度は遅延読み込みで対応します。
+
+    Returns:
+        dict: 年度をキーとし、結果カテゴリリストを値とする辞書
+    """
+    categories_dict = {}
+    # 最新2年度のみを起動時に読み込み
+    priority_years = sorted(AVAILABLE_YEARS, reverse=True)[:2]
+
+    for year in priority_years:
+        categories_dict[year] = persistent_cache.get_result_categories(year)
+
+    return categories_dict
 
 
 # グローバルインスタンス
