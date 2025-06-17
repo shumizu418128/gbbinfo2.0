@@ -206,8 +206,8 @@ class PersistentCache:
         abs_result_dir = os.path.abspath(result_dir)
         abs_base_dir = os.path.abspath(base_dir)
 
-        # ファイルが存在しない場合は空リストを返す
-        if not abs_result_dir.startswith(abs_base_dir):
+        # Validate that the result directory is within the base directory
+        if os.path.commonpath([abs_result_dir, abs_base_dir]) != abs_base_dir:
             empty_list = []
             self.set(f"result_categories_{year}", empty_list)
             return empty_list
