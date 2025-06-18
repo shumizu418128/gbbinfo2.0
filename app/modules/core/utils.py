@@ -7,6 +7,8 @@ import os
 from datetime import datetime
 from functools import lru_cache
 
+from app.modules.optimization.cache import persistent_cache
+
 from ..config import AVAILABLE_YEARS
 
 
@@ -94,21 +96,46 @@ def is_early_access(year):
     return year > now
 
 
+def is_translated(url, target_lang=None, translated_paths=None):
+    """
+    POファイルを読み込んで、指定されたページに翻訳が提供されているかをチェックします。
+
+    Args:
+        url (str): ページの内部URL
+        target_lang (str): 対象言語（Noneの場合は現在のセッション言語）
+        translated_paths (set): 翻訳されたパスのセット（Noneの場合は遅延読み込み）
+
+    Returns:
+        bool: 翻訳が提供されている場合True、されていない場合False
+    """
+    # 日本語の場合は常にTrue（元言語）
+    if target_lang == "ja":
+        return True
+
+    # 遅延読み込みで翻訳パスを取得
+    if translated_paths is None:
+        translated_paths = persistent_cache.get_translated_paths()
+
+    return url in translated_paths
+
+
 def load_template_combinations_optimized():
     """
-    テンプレート組み合わせを最適化して読み込みます（起動速度重視）。
-    最新2年度のテンプレートのみを起動時に読み込み、他の年度は遅延読み込みで対応します。
+    サイトマップ生成のため全年度の組み合わせを取得します。
 
     Returns:
         list: (年度, コンテンツ名) のタプルのリスト
     """
     combinations = []
-    # 最新2年度のみを優先読み込み
-    priority_years = sorted(AVAILABLE_YEARS, reverse=True)[:2]
 
-    for year in priority_years:
+    # 全年度の組み合わせを取得（サイトマップ生成用）
+    for year in AVAILABLE_YEARS:
         contents = get_template_contents(year)
         for content in contents:
             combinations.append((year, content))
 
-    return combinations
+    # 年度とコンテンツ名のリストを取得
+    COMBINATIONS_YEAR = [year for year, _ in combinations]
+    COMBINATIONS_CONTENT = [content for _, content in combinations]
+
+    return (COMBINATIONS_YEAR, COMBINATIONS_CONTENT)

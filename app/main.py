@@ -35,6 +35,7 @@ from .modules.core.utils import (
     get_others_templates,
     is_early_access,
     is_latest_year,
+    is_translated,
     load_template_combinations_optimized,
 )
 from .modules.optimization.cache import persistent_cache
@@ -50,7 +51,6 @@ from .modules.participants import (
     yearly_participant_analysis,
 )
 from .modules.result import get_result
-from .modules.translate import is_translated
 
 app = Flask(__name__)
 sitemapper = Sitemapper()
@@ -103,16 +103,11 @@ VALID_CATEGORIES_DICT = load_categories_parallel()
 # 各年度の全カテゴリを取得（最適化版）
 ALL_CATEGORY_DICT = load_result_categories_optimized()
 
-# 各年度のページを取得（最適化版）
-combinations = load_template_combinations_optimized()
-COMBINATIONS_YEAR = [year for year, _ in combinations]
-COMBINATIONS_CONTENT = [content for _, content in combinations]
+# 各年度のページを取得
+COMBINATIONS_YEAR, COMBINATIONS_CONTENT = load_template_combinations_optimized()
 
 # othersテンプレート（最適化版）
 CONTENT_OTHERS = get_others_templates()
-
-# 起動時は空のセットで初期化（必要時に遅延読み込み）
-TRANSLATED_TEMPLATE_PATHS = set()
 
 
 ####################################################################
@@ -278,10 +273,15 @@ def world_map(year: int):
     base_path = os.path.join("app", "templates")
     abs_base_path = os.path.abspath(base_path)
     map_filename = f"world_map_{user_lang}.html"
-    map_path = os.path.realpath(os.path.normpath(os.path.join(base_path, str(year), map_filename)))
+    map_path = os.path.realpath(
+        os.path.normpath(os.path.join(base_path, str(year), map_filename))
+    )
 
     # base_path からのパストラバーサル防止
-    if not map_path.startswith(abs_base_path) or not os.path.commonpath([abs_base_path, map_path]) == abs_base_path:
+    if (
+        not map_path.startswith(abs_base_path)
+        or not os.path.commonpath([abs_base_path, map_path]) == abs_base_path
+    ):
         abort(404)
 
     if not os.path.exists(map_path):
