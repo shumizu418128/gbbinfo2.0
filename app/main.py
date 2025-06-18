@@ -278,10 +278,12 @@ def world_map(year: int):
     )
 
     # base_path からのパストラバーサル防止
-    if (
-        not map_path.startswith(abs_base_path)
-        or not os.path.commonpath([abs_base_path, map_path]) == abs_base_path
-    ):
+    try:
+        # Ensure map_path is strictly within abs_base_path
+        if os.path.commonpath([abs_base_path, map_path]) != abs_base_path:
+            abort(404)
+    except ValueError:
+        # Handle invalid paths that could cause os.path.commonpath to fail
         abort(404)
 
     if not os.path.exists(map_path):
