@@ -31,14 +31,15 @@ from .modules.config import (
 )
 from .modules.core.decorators import validate_year
 from .modules.core.utils import (
+    get_categories_for_year,
     get_current_timestamp,
     get_others_templates,
+    get_result_categories_for_year,
     is_early_access,
     is_latest_year,
     is_translated,
     load_template_combinations_optimized,
 )
-from .modules.optimization.cache import persistent_cache
 from .modules.optimization.startup import (
     load_categories_parallel,
     load_result_categories_optimized,
@@ -342,16 +343,7 @@ def participants(year: int):
         value = ""
 
     # カテゴリを取得（遅延読み込み対応）
-    def get_categories_for_year(year):
-        if year in VALID_CATEGORIES_DICT:
-            return VALID_CATEGORIES_DICT[year]
-
-        # 遅延読み込み：永続的キャッシュから取得
-        categories = persistent_cache.get_categories(year)
-        VALID_CATEGORIES_DICT[year] = categories  # メモリキャッシュに保存
-        return categories
-
-    valid_categories = get_categories_for_year(year)
+    valid_categories = get_categories_for_year(year, VALID_CATEGORIES_DICT)
     if not valid_categories:
         # データがない年度の場合は、空っぽのページを表示
         return render_template(
@@ -504,16 +496,7 @@ def result(year: int):
     category = request.args.get("category")
 
     # カテゴリを取得（遅延読み込み対応）
-    def get_result_categories_for_year(year):
-        if year in ALL_CATEGORY_DICT:
-            return ALL_CATEGORY_DICT[year]
-
-        # 遅延読み込み：まだ読み込まれていない年度のデータを取得
-        categories = persistent_cache.get_result_categories(year)
-        ALL_CATEGORY_DICT[year] = categories  # キャッシュに保存
-        return categories
-
-    all_category = get_result_categories_for_year(year)
+    all_category = get_result_categories_for_year(year, ALL_CATEGORY_DICT)
     if not all_category:
         return render_template(
             "/common/result.html",

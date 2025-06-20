@@ -139,3 +139,43 @@ def load_template_combinations_optimized():
     COMBINATIONS_CONTENT = [content for _, content in combinations]
 
     return (COMBINATIONS_YEAR, COMBINATIONS_CONTENT)
+
+
+def get_categories_for_year(year, valid_categories_dict):
+    """
+    指定された年度のカテゴリを取得します（遅延読み込み対応）。
+
+    Args:
+        year (int): 取得する年度
+        valid_categories_dict (dict): カテゴリのキャッシュ辞書
+
+    Returns:
+        list: 該当年度のカテゴリリスト
+    """
+    if year in valid_categories_dict:
+        return valid_categories_dict[year]
+
+    # 遅延読み込み：永続的キャッシュから取得
+    categories = persistent_cache.get_categories(year)
+    valid_categories_dict[year] = categories  # メモリキャッシュに保存
+    return categories
+
+
+def get_result_categories_for_year(year, all_category_dict):
+    """
+    指定された年度の結果カテゴリを取得します（遅延読み込み対応）。
+
+    Args:
+        year (int): 取得する年度
+        all_category_dict (dict): 結果カテゴリのキャッシュ辞書
+
+    Returns:
+        list: 該当年度の結果カテゴリリスト
+    """
+    if year in all_category_dict:
+        return all_category_dict[year]
+
+    # 遅延読み込み：まだ読み込まれていない年度のデータを取得
+    categories = persistent_cache.get_result_categories(year)
+    all_category_dict[year] = categories  # キャッシュに保存
+    return categories
