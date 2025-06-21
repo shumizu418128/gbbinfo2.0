@@ -81,7 +81,7 @@
 <form method="GET" class="participants_form">
 <label for="year">{{ _('その他の年度を確認：') }}</label>
 <select name="year" id="year" class="filter-select" onchange="redirect_year('korea')">
-  {% for y in available_years %}
+  {% for y in available_years|reverse %}
     <option value="{{ y }}" {% if year == y %}selected{% endif %}>{{ y }}</option>
   {% endfor %}
 </select>
