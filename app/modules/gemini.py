@@ -8,10 +8,12 @@ from threading import Thread
 import google.generativeai as genai
 import pandas as pd
 import pykakasi
+import ratelimit
 from rapidfuzz import process
 
 from . import spreadsheet
 from .config import AVAILABLE_YEARS, create_safety_settings
+from .core.utils import find_others_url
 from .prompts import get_prompt
 
 API_KEY = os.environ.get("GEMINI_API_KEY")
@@ -182,6 +184,8 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
 
 
 # MARK: gemini ページ内検索
+# 2秒間に1回のリクエストを許可
+@ratelimit.limits(calls=1, period=2, raise_on_limit=False)
 def search(year: int, question: str):
     """
     指定された年と質問に基づいてチャットを開始し、モデルからの応答を取得します。
@@ -254,13 +258,6 @@ def search(year: int, question: str):
         return {"url": f"/{year}/top", "parameter": "contact"}
 
     # othersのリンクであればリンクを変更
-    def find_others_url(response_url, others_links):
-        for link in others_links:
-            clean_link = link.replace(".html", "")
-            if clean_link in response_url:
-                return f"/others/{clean_link}"
-        return None
-
     others_url = find_others_url(response_dict["url"], others_link)
     if others_url:
         response_dict["url"] = others_url

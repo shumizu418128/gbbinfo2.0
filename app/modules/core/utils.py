@@ -179,3 +179,21 @@ def get_result_categories_for_year(year, all_category_dict):
     categories = persistent_cache.get_result_categories(year)
     all_category_dict[year] = categories  # キャッシュに保存
     return categories
+
+
+def find_others_url(response_url, others_links):
+    """
+    レスポンスURLがothersリンクに含まれるかチェックし、適切なURLに変換します。
+
+    Args:
+        response_url (str): チェックするレスポンスURL
+        others_links (list): othersリンクのリスト
+
+    Returns:
+        str | None: 変換されたURL、該当しない場合はNone
+    """
+    for link in others_links:
+        clean_link = link.replace(".html", "")
+        if clean_link in response_url:
+            return f"/others/{clean_link}"
+    return None
