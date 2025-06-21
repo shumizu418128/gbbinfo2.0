@@ -12,6 +12,7 @@ from rapidfuzz import process
 
 from . import spreadsheet
 from .config import AVAILABLE_YEARS, create_safety_settings
+from .prompts import get_prompt
 
 API_KEY = os.environ.get("GEMINI_API_KEY")
 if not API_KEY:
@@ -30,12 +31,6 @@ model = genai.GenerativeModel(
     safety_settings=SAFETY_SETTINGS,
     generation_config={"response_mime_type": "application/json"},
 )
-
-# プロンプトを読み込む
-if "prompt" not in locals():
-    prompt_file_path = os.path.join(os.getcwd(), "app", "prompt.txt")
-    with open(prompt_file_path, "r", encoding="utf-8") as f:
-        PROMPT = f.read()
 
 # othersファイルを読み込む
 if "others_link" not in locals():
@@ -198,7 +193,7 @@ def search(year: int, question: str):
     Returns:
         dict: モデルからの応答を含む辞書。URLが含まれます。
     """
-    global PROMPT, others_link
+    global others_link
 
     # 年度を推定：数字を検出
     detect_year = re.search(r"\d{4}", question)
@@ -224,7 +219,7 @@ def search(year: int, question: str):
     chat = model.start_chat()
 
     # プロンプトに必要事項を埋め込む
-    prompt_formatted = PROMPT.format(year=year, question=question)
+    prompt_formatted = get_prompt(year, question)
     print(question, flush=True)
 
     # n回トライ

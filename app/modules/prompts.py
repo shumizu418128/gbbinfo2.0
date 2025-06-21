@@ -1,4 +1,9 @@
-# あなたの仕事
+"""
+GBB情報検索用のプロンプト管理モジュール
+"""
+
+# メインプロンプトテンプレート
+MAIN_PROMPT = """# あなたの仕事
 以下の文は、Grand Beatbox Battle {year} (略称: GBB{year})に興味があるユーザーから来た質問です。
 「{question}」
 
@@ -76,4 +81,18 @@ https://gbbinfo-jpn.onrender.com/{year}/
 {{"url": "https://gbbinfo-jpn.onrender.com/{year}/top", "parameter": "contact", "name": "None"}}
 
 # 回答例2
-{{"url": "https://gbbinfo-jpn.onrender.com/{year}/participants", "parameter": "search_participants", "name": "ROFU"}}
+{{"url": "https://gbbinfo-jpn.onrender.com/{year}/participants", "parameter": "search_participants", "name": "ROFU"}}"""
+
+
+def get_prompt(year: int, question: str) -> str:
+    """
+    指定された年と質問に基づいてフォーマットされたプロンプトを取得する
+
+    Args:
+        year (int): 対象年
+        question (str): ユーザーからの質問
+
+    Returns:
+        str: フォーマット済みプロンプト
+    """
+    return MAIN_PROMPT.format(year=year, question=question)
