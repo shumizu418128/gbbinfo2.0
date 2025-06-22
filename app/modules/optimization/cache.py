@@ -150,15 +150,10 @@ class PersistentCache:
             return cached_data
 
         # キャッシュにない場合は読み込み
-        try:
-            df = pd.read_csv(csv_path)
-            df = df.fillna("")
-            self.set(cache_key, df)
-            return df
-        except FileNotFoundError:
-            empty_df = pd.DataFrame()
-            self.set(cache_key, empty_df)
-            return empty_df
+        df = pd.read_csv(csv_path)
+        df = df.fillna("")
+        self.set(cache_key, df)
+        return df
 
     def get_categories(self, year: int) -> list:
         """
@@ -257,13 +252,8 @@ class PersistentCache:
         # キャッシュにない場合は読み込み
         translated_paths = set()
 
-        try:
-            with open(po_file_path, "r", encoding="utf-8") as f:
-                po_content = f.read()
-        except FileNotFoundError:
-            self.set(cache_key, translated_paths)
-            return translated_paths
-
+        with open(po_file_path, "r", encoding="utf-8") as f:
+            po_content = f.read()
         exclude_words = [r":\d+", "templates/", ".html"]
 
         for line in po_content.split("\n"):

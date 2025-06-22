@@ -37,16 +37,13 @@ def get_template_contents(year: int) -> list:
         list: テンプレートファイル名のリスト（拡張子なし）。
               ディレクトリが存在しない場合は空のリストを返します。
     """
-    try:
-        templates_dir_path = os.path.join(".", "app", "templates", str(year))
-        contents = os.listdir(templates_dir_path)
-        contents = [content.replace(".html", "") for content in contents]
+    templates_dir_path = os.path.join(".", "app", "templates", str(year))
+    contents = os.listdir(templates_dir_path)
+    contents = [content.replace(".html", "") for content in contents]
 
-        # rule, world_mapは除外
-        contents = [c for c in contents if c not in ["rule", "world_map"]]
-        return contents
-    except OSError:
-        return []
+    # rule, world_mapは除外
+    contents = [c for c in contents if c not in ["rule", "world_map"]]
+    return contents
 
 
 @lru_cache(maxsize=1)
@@ -58,12 +55,9 @@ def get_others_templates() -> list:
         list: othersテンプレートファイル名のリスト（拡張子なし）。
               ディレクトリが存在しない場合は空のリストを返します。
     """
-    try:
-        others_templates_path = os.path.join(".", "app", "templates", "others")
-        contents = os.listdir(others_templates_path)
-        return [content.replace(".html", "") for content in contents]
-    except OSError:
-        return []
+    others_templates_path = os.path.join(".", "app", "templates", "others")
+    contents = os.listdir(others_templates_path)
+    return [content.replace(".html", "") for content in contents]
 
 
 def is_latest_year(year):
