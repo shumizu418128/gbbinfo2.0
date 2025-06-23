@@ -9,7 +9,7 @@ from functools import lru_cache
 
 from app.modules.optimization.cache import persistent_cache
 
-from ..config import AVAILABLE_YEARS
+from ..config import AVAILABLE_YEARS, VALID_TICKET_CLASSES, VALID_CANCEL
 
 
 def get_current_timestamp():
@@ -197,3 +197,50 @@ def find_others_url(response_url, others_links):
         if clean_link in response_url:
             return f"/others/{clean_link}"
     return None
+
+
+def validate_params(category, ticket_class, cancel, valid_categories):
+    """
+    出場者一覧取得時のパラメータの妥当性を検証します。
+
+    Args:
+        category (str): カテゴリ名
+        ticket_class (str): チケットクラス
+        cancel (str): キャンセル状態
+        valid_categories (list): 有効なカテゴリのリスト
+
+    Returns:
+        bool: すべてのパラメータが有効な場合はTrue、いずれかが無効な場合はFalse
+    """
+    # カテゴリ、出場権、キャンセル状態の妥当性を検証
+    are_params_valid = [
+        category in valid_categories,
+        ticket_class in VALID_TICKET_CLASSES,
+        cancel in VALID_CANCEL,
+    ]
+
+    return all(are_params_valid)
+
+
+def create_valid_params(category, ticket_class, cancel, valid_categories):
+    """
+    パラメータが不正な場合に有効な値へ修正します。
+
+    Args:
+        category (str): カテゴリ名
+        ticket_class (str): チケットクラス
+        cancel (str): キャンセル状態
+        valid_categories (list): 有効なカテゴリのリスト
+
+    Returns:
+        tuple: (修正後のカテゴリ, チケットクラス, キャンセル状態)
+    """
+
+    # Loopを最優先に
+    category = "Loopstation" if "Loopstation" in valid_categories else "Solo"
+
+    # ほかは既定値を優先
+    ticket_class = ticket_class if ticket_class in VALID_TICKET_CLASSES else "all"
+    cancel = cancel if cancel in VALID_CANCEL else "show"
+
+    return category, ticket_class, cancel

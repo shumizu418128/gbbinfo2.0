@@ -23,6 +23,9 @@ HARM_CATEGORIES = [
     "HARM_CATEGORY_DANGEROUS_CONTENT",
 ]
 
+VALID_TICKET_CLASSES = ["all", "wildcard", "seed_right"]
+VALID_CANCEL = ["show", "hide", "only_cancelled"]
+
 # ISO 3166-1 numeric
 JAPAN = 392
 KOREA = 410

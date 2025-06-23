@@ -31,6 +31,7 @@ from .modules.config import (
 )
 from .modules.core.decorators import validate_year
 from .modules.core.utils import (
+    create_valid_params,
     get_categories_for_year,
     get_current_timestamp,
     get_others_templates,
@@ -39,6 +40,7 @@ from .modules.core.utils import (
     is_latest_year,
     is_translated,
     load_template_combinations_optimized,
+    validate_params,
 )
 from .modules.optimization.startup import (
     load_categories_parallel,
@@ -354,20 +356,24 @@ def participants(year: int):
             result_url=None,
             value=value,
         )
-    valid_ticket_classes = ["all", "wildcard", "seed_right"]
-    valid_cancel = ["show", "hide", "only_cancelled"]
 
     # 引数の正当性を確認
-    category_is_valid = category in valid_categories
-    ticket_class_is_valid = ticket_class in valid_ticket_classes
-    cancel_is_valid = cancel in valid_cancel
-    args_valid = all([category_is_valid, ticket_class_is_valid, cancel_is_valid])
+    are_params_valid = validate_params(
+        category=category,
+        ticket_class=ticket_class,
+        cancel=cancel,
+        valid_categories=valid_categories,
+    )
 
-    # 引数が不正な場合はデフォルト値を設定
-    if not args_valid:
-        category = category if category in valid_categories else "Loopstation"
-        ticket_class = ticket_class if ticket_class in valid_ticket_classes else "all"
-        cancel = cancel if cancel in valid_cancel else "show"
+    # 引数が不正な場合は修正
+    if not are_params_valid:
+        # 引数を修正
+        category, ticket_class, cancel = create_valid_params(
+            category=category,
+            ticket_class=ticket_class,
+            cancel=cancel,
+            valid_categories=valid_categories,
+        )
 
         # スクロール引数がある場合、引数の情報を保持してリダイレクト
         if scroll is not None:
