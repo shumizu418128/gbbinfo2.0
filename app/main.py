@@ -683,7 +683,7 @@ def search(year: int):
     if response_dict is None:
         response_dict = gemini.search(year=year, question=question)
 
-    return redirect(response_dict["url"])
+    return jsonify(response_dict)
 
 
 @app.route("/<int:year>/search_participants", methods=["POST"])
