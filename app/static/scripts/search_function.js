@@ -38,10 +38,6 @@ function handleSearchFormSubmit(event) {
         },
         body: JSON.stringify(Object.fromEntries(formData))
     })
-    .then(response => response.json())
-    .then(data => {
-        window.location.href = data.url;
-    });
 }
 
 // ナビゲーションメニューの開閉処理
