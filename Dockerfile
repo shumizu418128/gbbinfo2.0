@@ -5,14 +5,14 @@ ENV TZ=Asia/Tokyo
 RUN apt-get update && apt-get install -y tzdata
 
 # uvをインストール
-RUN pip install uv
+RUN pip install --no-cache-dir uv
 
 # アプリケーションの作業ディレクトリを設定
 WORKDIR /app
 
 # Pythonの依存関係をインストール
 COPY requirements.txt .
-RUN uv pip install -r requirements.txt
+RUN uv pip install --no-cache --system -r requirements.txt
 
 # アプリケーションのソースコードをコピー
 COPY . .
