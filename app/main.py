@@ -77,6 +77,7 @@ if os.getenv("ENVIRONMENT_CHECK") == "qawsedrftgyhujikolp":
     print("******************************************************************")
     app.config.from_object(TestConfig)
     cache = Cache(app, config={"CACHE_TYPE": "null"})
+    IS_LOCAL = True
 
 # 本番環境ではキャッシュを有効化
 # 翻訳は無し
@@ -89,6 +90,7 @@ else:
             "CACHE_DIR": app.config["CACHE_DIR"],
         },
     )
+    IS_LOCAL = False
 
 babel = Babel(app)
 test = _("test")  # テスト翻訳
@@ -111,6 +113,9 @@ COMBINATIONS_YEAR, COMBINATIONS_CONTENT = load_template_combinations_optimized()
 
 # othersテンプレート（最適化版）
 CONTENT_OTHERS = get_others_templates()
+
+# プルリクエストかどうか
+IS_PULL_REQUEST = os.getenv("IS_PULL_REQUEST") == "true"
 
 
 ####################################################################
@@ -171,6 +176,8 @@ def inject_variables():
         is_translated=is_translated(g.current_url, session.get("language")),
         is_latest_year=is_latest_year_flag,
         is_early_access=is_early_access_flag,
+        is_local=IS_LOCAL,
+        is_pull_request=IS_PULL_REQUEST,
     )
 
 
