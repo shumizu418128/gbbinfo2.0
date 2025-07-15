@@ -31,6 +31,7 @@ function handleSearchFormSubmit(event) {
 
     loadingElement.style.display = 'block';
 
+    console.log(JSON.stringify(Object.fromEntries(formData)));
     fetch(this.action, {
         method: "POST",
         headers: {
@@ -40,6 +41,7 @@ function handleSearchFormSubmit(event) {
     })
     .then(response => response.json())
     .then(data => {
+        console.log(data);
         window.location.href = data.url;
     });
 }
