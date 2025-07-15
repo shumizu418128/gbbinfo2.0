@@ -1,14 +1,13 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     // ヘッダーdropdown
     const headers = document.querySelectorAll('h1, h2');
     const lastHeader = headers[headers.length - 1];
     const headerArray = lastHeader && lastHeader.id === "bottom-search-menu" ? Array.from(headers).slice(0, -1) : Array.from(headers);
     const dropdown = document.querySelector('.headerDropdown');
-    let offsetTops = [];
 
     // すべてのコンテンツがロードされた後に位置情報を計算
-    window.addEventListener('load', function() {
-        offsetTops = headerArray.map(header => header.offsetTop);
+    window.addEventListener('load', () => {
+        headerArray.map(header => header.offsetTop);
     });
 
     headerArray.forEach((header, index) => {
@@ -41,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // スクロールイベントでドロップダウンの選択を更新 + スクロールバー
     window.addEventListener('scroll', () => {
-        updateDropdownSelection(headerArray, dropdown, offsetTops);
+        updateDropdownSelection(headerArray, dropdown);
         updateProgressBar();
     });
 
@@ -58,21 +57,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // スクロール位置が最初の<h1>要素より上にある場合、プログレスバーと背景を非表示にする
         if (scrollAbsolute <= h1_position) {
-            background.forEach(bg => bg.style.display = "none");
-            progressElements.forEach(progress => progress.style.display = "none");
+            for (let i = 0; i < background.length; i += 1) {
+                background[i].style.display = "none";
+            }
+            for (let i = 0; i < progressElements.length; i += 1) {
+                progressElements[i].style.display = "none";
+            }
         } else {
-            background.forEach(bg => bg.style.display = "block");
-            progressElements.forEach(progress => progress.style.display = "block");
+            for (let i = 0; i < background.length; i += 1) {
+                background[i].style.display = "block";
+            }
+            for (let i = 0; i < progressElements.length; i += 1) {
+                progressElements[i].style.display = "block";
+            }
         }
 
         // スクロールバーの長さを更新
         progressElements.forEach(progress => {
             const roundedScrollPercentage = Math.round(scrollPercentage / 5) * 5;
-            progress.style.width = roundedScrollPercentage + "%";
+            progress.style.width = `${roundedScrollPercentage}%`;
         });
     }
 
-    function updateDropdownSelection(headerArray, dropdown, offsetTops) {
+    function updateDropdownSelection(headerArray, dropdown) {
         // 現在の位置情報を取得
         const currentOffsetTops = headerArray.map(header => header.offsetTop);
         const scrollPosition = window.scrollY + 51;
@@ -80,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (scrollPosition < currentOffsetTops[0]) {
             dropdown.style.display = 'none';
         } else {
-            for (let index = headerArray.length - 1; index >= 0; index--) {
+            for (let index = headerArray.length - 1; index >= 0; index -= 1) {
                 if ((scrollPosition >= currentOffsetTops[index])) {
                     dropdown.value = index;
                     dropdown.style.display = '';
@@ -122,11 +129,12 @@ document.addEventListener('DOMContentLoaded', function() {
     parameterScroll();
 });
 
+// biome-ignore lint/correctness/noUnusedVariables: 複数のファイルにまたがって使用されている
 function redirect_year(page_name) {
     const year = document.getElementById("year").value;
     if (/^\d+$/.test(year)) {
-        window.location.href = '/' + year + '/' + page_name;
+        window.location.href = `/${year}/${page_name}`;
     } else {
-        console.error('Invalid year input');
+        console.error("Invalid year input");
     }
 }

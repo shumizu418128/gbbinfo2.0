@@ -12,7 +12,7 @@ function updateTimerDisplay(endTime, elementId, message) {
     }
 
     function update() {
-        const nowTime = new Date().getTime();
+        const nowTime = Date.now();
         const timeLeft = endTime - nowTime;
         const element = document.getElementById(elementId);
         if (element) {

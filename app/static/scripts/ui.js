@@ -9,6 +9,7 @@ function showPopup() {
 }
 
 // ポップアップの非表示
+// biome-ignore lint/correctness/noUnusedVariables: 複数のファイルにまたがって使用されている
 function closePopup() {
     const backgroundPopup = document.querySelector(".background-popup");
     const popup = document.querySelector(".popup");
@@ -19,6 +20,7 @@ function closePopup() {
 }
 
 // ドロップダウンの開閉
+// biome-ignore lint/correctness/noUnusedVariables: bottom_navigation.htmlで使用
 function toggleDropdown() {
     var dropdownContent = document.getElementById("dropdown-content");
     dropdownContent.style.display = dropdownContent.style.display === "none" ? "block" : "none";
@@ -52,7 +54,7 @@ function handleAppInstalled() {
 }
 
 // イベントリスナーの登録
-window.onload = function() {
+window.onload = () => {
     showPopup();
 };
 
@@ -77,6 +79,7 @@ if (installButton) {
 }
 
 // 注目キーワードの表示
+// biome-ignore lint/correctness/noUnusedVariables: top.htmlで使用
 function showKeywordOptions(keyword) {
     document.querySelector(".background-popup-keyword").style.display = "block";
     document.querySelector(".popup").style.display = "block";
@@ -91,6 +94,7 @@ function showKeywordOptions(keyword) {
 }
 
 // 注目キーワードの非表示
+// biome-ignore lint/correctness/noUnusedVariables: top.htmlで使用
 function closeKeywordOptions() {
     document.querySelector(".background-popup-keyword").style.display = "none";
     document.querySelector(".popup").style.display = "none";
