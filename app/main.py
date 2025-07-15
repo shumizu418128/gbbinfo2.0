@@ -683,6 +683,8 @@ def search(year: int):
     if response_dict is None:
         response_dict = gemini.search(year=year, question=question)
 
+    print(response_dict)
+
     return jsonify(response_dict)
 
 
