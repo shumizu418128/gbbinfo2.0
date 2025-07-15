@@ -41,7 +41,6 @@ function handleSearchFormSubmit(event) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         window.location.href = data.url;
     });
 }
@@ -241,15 +240,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const navSearchForm = document.getElementById('search-form-nav');
 
     if (topSearchForm) {
-        topSearchForm.onsubmit = handleSearchFormSubmit;
+        topSearchForm.addEventListener('submit', handleSearchFormSubmit);
         setupSearchSuggestions(topSearchForm);
     }
     if (bottomSearchForm) {
-        bottomSearchForm.onsubmit = handleSearchFormSubmit;
+        bottomSearchForm.addEventListener('submit', handleSearchFormSubmit);
         setupSearchSuggestions(bottomSearchForm);
     }
     if (navSearchForm) {
-        navSearchForm.onsubmit = handleSearchFormSubmit;
+        navSearchForm.addEventListener('submit', handleSearchFormSubmit);
         setupSearchSuggestions(navSearchForm);
     }
 
