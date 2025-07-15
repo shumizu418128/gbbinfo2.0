@@ -65,6 +65,7 @@ function toggleSearchMenu() {
 }
 
 // 参加者検索処理
+// biome-ignore lint/correctness/noUnusedVariables: base.htmlで使ってる
 function searchParticipants(year) {
     const input = document.getElementById('keyword').value;
     const loadingElement = document.getElementById('loading');
@@ -148,7 +149,7 @@ function setupSearchSuggestions(searchForm) {
                         const suggestionItem = document.createElement('div');
                         suggestionItem.classList.add('suggestion-item');
                         suggestionItem.textContent = item;
-                        suggestionItem.addEventListener('click', function() {
+                        suggestionItem.addEventListener('click', () => {
                             searchForm.querySelector('input').value = item;
                             suggestionsContainer.style.display = 'none';
                             searchForm.querySelector('button').click();
@@ -181,19 +182,22 @@ function handleClickOutside(event) {
     }
 }
 
+// メニューの開閉処理
+// biome-ignore lint/correctness/noUnusedVariables: base.htmlで使ってる
 function toggleMenu() {
     const menu = document.querySelector('.menu');
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
 }
 
 // キーワードオプションの表示処理
+// biome-ignore lint/correctness/noUnusedVariables: top.htmlで使ってる
 function showKeywordOptions(type) {
     const popup = document.querySelector('.popup');
 
     // popup内の全てのdivを取得し、一旦全て非表示
     const allOptions = popup.getElementsByTagName('div');
     for (const option of allOptions) {
-        if (option.id && option.id.endsWith('Options')) {
+        if (option.id?.endsWith('Options')) {
             option.style.display = 'none';
         }
     }
@@ -210,13 +214,14 @@ function showKeywordOptions(type) {
 }
 
 // キーワードオプションを閉じる処理
+// biome-ignore lint/correctness/noUnusedVariables: top.htmlで使ってる
 function closeKeywordOptions() {
     const popup = document.querySelector('.popup');
 
     // popup内の全てのdivを非表示
     const allOptions = popup.getElementsByTagName('div');
     for (const option of allOptions) {
-        if (option.id && option.id.endsWith('Options')) {
+        if (option.id?.endsWith('Options')) {
             option.style.display = 'none';
         }
     }
@@ -227,7 +232,7 @@ function closeKeywordOptions() {
 }
 
 // イベントリスナーの登録
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     // 検索フォーム
     const topSearchForm = document.getElementById('search-form-top');
     const bottomSearchForm = document.getElementById('search-form-bottom');
