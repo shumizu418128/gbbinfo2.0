@@ -13,3 +13,4 @@ Levenshtein==0.26.1
 pykakasi==2.3.0
 ratelimit==2.2.1
 polib==1.2.0
+aiohttp==3.9.1
