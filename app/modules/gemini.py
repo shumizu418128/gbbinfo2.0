@@ -316,7 +316,7 @@ async def ask_gemini(year: int, question: str):
             # メッセージを送信
             response = chat.send_message(prompt_formatted)
 
-            print(response, flush=True)
+            print(response.text, flush=True)
 
             # レスポンスをダブルクォーテーションに置き換え
             response_text = response.text.replace("'", '"')

@@ -31,18 +31,33 @@ function handleSearchFormSubmit(event) {
 
     loadingElement.style.display = 'block';
 
-    console.log(JSON.stringify(Object.fromEntries(formData)));
-    fetch(this.action, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(Object.fromEntries(formData))
-    })
-    .then(response => response.json())
-    .then(data => {
-        window.location.href = data.url;
-    });
+    const sendRequest = (retryCount = 0) => {
+        console.log(JSON.stringify(Object.fromEntries(formData)));
+        fetch(this.action, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Object.fromEntries(formData))
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data?.url) {
+                window.location.href = data.url;
+            } else if (retryCount === 0) {
+                // 1回目でdataが無い場合、もう一度リクエスト
+                sendRequest(1);
+            } else {
+                loadingElement.style.display = 'none';
+            }
+        })
+        .catch(() => {
+            loadingElement.style.display = 'none';
+            alert('エラーが発生しました。もう一度お試しください。');
+        });
+    };
+
+    sendRequest();
 }
 
 // ナビゲーションメニューの開閉処理
