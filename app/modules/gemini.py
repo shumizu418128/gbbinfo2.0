@@ -9,7 +9,7 @@ import google.generativeai as genai
 import pandas as pd
 import pykakasi
 import ratelimit
-from main import gemini_cache
+from cachetools import TTLCache
 from rapidfuzz import process
 
 from . import spreadsheet
@@ -53,6 +53,9 @@ with open(cache_file_path, "r", encoding="utf-8") as f:
 
 # cacheのkeyをすべて大文字に変換しておく
 cache = {key.upper(): value for key, value in cache.items()}
+
+# gemini検索のキャッシュ
+gemini_cache = TTLCache(maxsize=100000, ttl=60)
 
 # 最新年度と1年前の出場者一覧を読み込む
 years_to_consider = sorted(AVAILABLE_YEARS, reverse=True)[:2]
