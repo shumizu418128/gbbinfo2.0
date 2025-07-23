@@ -9,7 +9,7 @@ import google.generativeai as genai
 import pandas as pd
 import pykakasi
 import ratelimit
-from cachetools import TTLCache
+from main import gemini_cache
 from rapidfuzz import process
 
 from . import spreadsheet
@@ -104,22 +104,24 @@ def search_cache(year: int, question: str):
     Returns:
         dict: キャッシュにユーザーの入力がある場合、回答を含む辞書。ない場合はNone。
     """
+    global gemini_cache
 
     # 前処理
     question_edited = question.strip().upper()
 
     # キャッシュにユーザーの入力があるか確認
-    if question_edited in cache:
+    if question_edited in cache or question_edited in gemini_cache:
         print("Cache hit", flush=True)
 
         # キャッシュにユーザーの入力がある場合、回答を確定
         response_url = cache[question_edited].replace("__year__", str(year))
 
-        # スプシに記録
-        Thread(
-            target=spreadsheet.record_question,
-            args=(year, question, response_url),
-        ).start()
+        # スプシに記録 (gemini_cacheの場合は記録しない)
+        if question_edited in cache:
+            Thread(
+                target=spreadsheet.record_question,
+                args=(year, question, response_url),
+            ).start()
 
         return {"url": response_url}
 
@@ -186,7 +188,6 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
 
 # MARK: gemini ページ内検索
 # 同じ質問が2回来ることがあるので、簡易キャッシュを保存
-last_question_cache = TTLCache(maxsize=100000, ttl=60)
 
 
 @ratelimit.limits(calls=1, period=2, raise_on_limit=False)
@@ -201,12 +202,12 @@ def search(year: int, question: str):
     Returns:
         dict: モデルからの応答を含む辞書。URLが含まれます。
     """
-    global others_link, last_question_cache
+    global others_link, gemini_cache
 
     # 前回の質問と同じ場合はキャッシュを返す
-    if question in last_question_cache:
+    if question in gemini_cache:
         print("Internal cache hit", flush=True)
-        return last_question_cache[question]
+        return gemini_cache[question]
 
     # 年度を推定：数字を検出
     detect_year = re.search(r"\d{4}", question)
@@ -264,7 +265,7 @@ def search(year: int, question: str):
 
     # n回試行しても成功しなかった場合
     else:
-        return {"url": f"/{year}/top", "parameter": "contact"}
+        return
 
     # othersのリンクであればリンクを変更
     others_url = find_others_url(response_dict["url"], others_link)
@@ -290,7 +291,7 @@ def search(year: int, question: str):
 
     # キャッシュに保存
     try:
-        last_question_cache[question] = {"url": response_url}
+        gemini_cache[question] = {"url": response_url}
     except Exception:
         pass
 

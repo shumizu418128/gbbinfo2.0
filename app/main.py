@@ -3,6 +3,7 @@ import warnings
 from datetime import datetime
 
 import jinja2
+from cachetools import TTLCache
 from flask import (
     Flask,
     abort,
@@ -116,6 +117,8 @@ CONTENT_OTHERS = get_others_templates()
 
 # プルリクエストかどうか
 IS_PULL_REQUEST = os.getenv("IS_PULL_REQUEST") == "true"
+
+gemini_cache = TTLCache(maxsize=100000, ttl=60)
 
 
 ####################################################################
