@@ -9,6 +9,7 @@ from threading import Lock, Thread
 import google.generativeai as genai
 import pandas as pd
 import pykakasi
+from cachetools import TTLCache
 from rapidfuzz import process
 
 from . import spreadsheet
@@ -56,6 +57,9 @@ with open(cache_file_path, "r", encoding="utf-8") as f:
 
 # cacheのkeyをすべて大文字に変換しておく
 cache = {key.upper(): value for key, value in cache.items()}
+
+# 同じ質問が2回来ることがあるので、簡易キャッシュを保存
+last_question_cache = TTLCache(maxsize=100000, ttl=60)
 
 # 最新年度と1年前の出場者一覧を読み込む
 years_to_consider = sorted(AVAILABLE_YEARS, reverse=True)[:2]
@@ -126,6 +130,11 @@ def search_cache(year: int, question: str):
 
         return {"url": response_url}
 
+    # 前回の質問と同じ場合はキャッシュを返す
+    if question in last_question_cache:
+        print("Cache hit", flush=True)
+        return last_question_cache[question]
+
     return None
 
 
@@ -188,10 +197,6 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
 
 
 # MARK: gemini ページ内検索
-# 同じ質問が2回来ることがあるので、簡易キャッシュを保存
-last_question_cache = {}
-
-
 def search(year: int, question: str):
     """
     指定された年と質問に基づいてチャットを開始し、モデルからの応答を取得します。
@@ -203,12 +208,7 @@ def search(year: int, question: str):
     Returns:
         dict: モデルからの応答を含む辞書。URLが含まれます。
     """
-    global others_link, last_question_cache
-
-    # 前回の質問と同じ場合はキャッシュを返す
-    if question in last_question_cache:
-        print("Cache hit", flush=True)
-        return last_question_cache[question]
+    global others_link
 
     # 年度を推定：数字を検出
     detect_year = re.search(r"\d{4}", question)
