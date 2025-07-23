@@ -131,7 +131,7 @@ def search_cache(year: int, question: str):
     # gemini_cacheにおいては質問の正規化をしていない
     if question in gemini_cache:
         print("Gemini cache hit", flush=True)
-        return gemini_cache[question_edited]
+        return gemini_cache[question]
 
     return None
 
@@ -214,7 +214,7 @@ def search(year: int, question: str):
 
     # 前回の質問と同じ場合はキャッシュを返す
     if question in gemini_cache:
-        print("Internal cache hit", flush=True)
+        print("Gemini cache hit", flush=True)
         return gemini_cache[question]
 
     # 年度を推定：数字を検出
@@ -273,7 +273,11 @@ def search(year: int, question: str):
 
     # n回試行しても成功しなかった場合
     else:
-        return
+        # もう一度gemini_cacheを確認
+        if question in gemini_cache:
+            print("Gemini cache hit", flush=True)
+            return gemini_cache[question]
+        return None
 
     # othersのリンクであればリンクを変更
     others_url = find_others_url(response_dict["url"], others_link)
