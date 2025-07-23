@@ -59,7 +59,7 @@ with open(cache_file_path, "r", encoding="utf-8") as f:
 cache = {key.upper(): value for key, value in cache.items()}
 
 # 同じ質問が2回来ることがあるので、簡易キャッシュを保存
-last_question_cache = TTLCache(maxsize=100000, ttl=60)
+last_question_cache = TTLCache(maxsize=100, ttl=60)
 
 # 最新年度と1年前の出場者一覧を読み込む
 years_to_consider = sorted(AVAILABLE_YEARS, reverse=True)[:2]
