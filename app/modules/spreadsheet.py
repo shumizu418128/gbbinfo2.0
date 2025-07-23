@@ -66,7 +66,10 @@ def record_question(year: int, question: str, answer: str):
     """
 
     # ローカル環境の場合は記録しない
-    if ENVIRONMENT_CHECK != "qawsedrftgyhujikolp":
+    if (
+        ENVIRONMENT_CHECK != "qawsedrftgyhujikolp"
+        or os.getenv("IS_PULL_REQUEST") == "true"
+    ):
         year_str = str(year)
         dt_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 

@@ -186,7 +186,7 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
 
 # MARK: gemini ページ内検索
 # 同じ質問が2回来ることがあるので、簡易キャッシュを保存
-last_question_cache = TTLCache(maxsize=100, ttl=60)
+last_question_cache = TTLCache(maxsize=100000, ttl=60)
 
 
 @ratelimit.limits(calls=1, period=2, raise_on_limit=False)
