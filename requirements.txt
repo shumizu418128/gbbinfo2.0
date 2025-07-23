@@ -13,3 +13,4 @@ pykakasi==2.3.0
 ratelimit==2.2.1
 polib==1.2.0
 rapidfuzz==3.13.0
+cachetools==6.1.0
