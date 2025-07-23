@@ -113,20 +113,24 @@ def search_cache(year: int, question: str):
     question_edited = question.strip().upper()
 
     # キャッシュにユーザーの入力があるか確認
-    if question_edited in cache or question_edited in gemini_cache:
+    if question_edited in cache:
         print("Cache hit", flush=True)
 
         # キャッシュにユーザーの入力がある場合、回答を確定
         response_url = cache[question_edited].replace("__year__", str(year))
 
-        # スプシに記録 (gemini_cacheの場合は記録しない)
-        if question_edited in cache:
-            Thread(
-                target=spreadsheet.record_question,
-                args=(year, question, response_url),
-            ).start()
+        # スプシに記録
+        Thread(
+            target=spreadsheet.record_question,
+            args=(year, question, response_url),
+        ).start()
 
         return {"url": response_url}
+
+    # gemini関数ですでに回答確定している場合はそれを返す
+    if question_edited in gemini_cache:
+        print("Gemini cache hit", flush=True)
+        return gemini_cache[question_edited]
 
     return None
 
