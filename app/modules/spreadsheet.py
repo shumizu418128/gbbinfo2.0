@@ -65,15 +65,20 @@ def record_question(year: int, question: str, answer: str):
         None: (結果を記録)
     """
 
-    # ローカル環境の場合は記録しない
-    if ENVIRONMENT_CHECK != "qawsedrftgyhujikolp":
-        year_str = str(year)
-        dt_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # ローカル環境・プルリクエストの場合は記録しない
+    if (
+        ENVIRONMENT_CHECK == "qawsedrftgyhujikolp"
+        or os.getenv("IS_PULL_REQUEST") == "true"
+    ):
+        return
 
-        client = get_client()
+    year_str = str(year)
+    dt_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        # スプレッドシートを開く
-        sheet = client.open("gbbinfo-jpn").worksheet("questions")
+    client = get_client()
 
-        # 質問と年を記録
-        sheet.insert_row([dt_now, year_str, question, answer], 2)
+    # スプレッドシートを開く
+    sheet = client.open("gbbinfo-jpn").worksheet("questions")
+
+    # 質問と年を記録
+    sheet.insert_row([dt_now, year_str, question, answer], 2)
