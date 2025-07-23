@@ -128,7 +128,8 @@ def search_cache(year: int, question: str):
         return {"url": response_url}
 
     # gemini関数ですでに回答確定している場合はそれを返す
-    if question_edited in gemini_cache:
+    # gemini_cacheにおいては質問の正規化をしていない
+    if question in gemini_cache:
         print("Gemini cache hit", flush=True)
         return gemini_cache[question_edited]
 
