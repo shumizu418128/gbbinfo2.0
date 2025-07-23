@@ -3,12 +3,13 @@ import os
 import random
 import re
 import time
-from threading import Lock, Thread
+from threading import Thread
 
 import google.generativeai as genai
 import pandas as pd
 import pykakasi
 import ratelimit
+from cachetools import TTLCache
 from rapidfuzz import process
 
 from . import spreadsheet
@@ -33,10 +34,6 @@ model = genai.GenerativeModel(
     safety_settings=SAFETY_SETTINGS,
     generation_config={"response_mime_type": "application/json"},
 )
-
-# グローバルなレート制限のための変数
-_last_call_time = 0
-_rate_limit_lock = Lock()
 
 # othersファイルを読み込む
 if "others_link" not in locals():
@@ -189,7 +186,7 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
 
 # MARK: gemini ページ内検索
 # 同じ質問が2回来ることがあるので、簡易キャッシュを保存
-last_question_cache = {}
+last_question_cache = TTLCache(maxsize=100, ttl=60)
 
 
 @ratelimit.limits(calls=1, period=2, raise_on_limit=False)
