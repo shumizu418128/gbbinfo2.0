@@ -1,4 +1,3 @@
-import asyncio
 import json
 import os
 import random
@@ -9,6 +8,7 @@ from threading import Lock, Thread
 import google.generativeai as genai
 import pandas as pd
 import pykakasi
+import ratelimit
 from rapidfuzz import process
 
 from . import spreadsheet
@@ -192,6 +192,7 @@ def create_url(year: int, url: str, parameter: str | None, name: str | None):
 last_question_cache = {}
 
 
+@ratelimit.limits(calls=1, period=2, raise_on_limit=False)
 def search(year: int, question: str):
     """
     指定された年と質問に基づいてチャットを開始し、モデルからの応答を取得します。
@@ -207,7 +208,7 @@ def search(year: int, question: str):
 
     # 前回の質問と同じ場合はキャッシュを返す
     if question in last_question_cache:
-        print("Cache hit", flush=True)
+        print("Internal cache hit", flush=True)
         return last_question_cache[question]
 
     # 年度を推定：数字を検出
@@ -230,17 +231,43 @@ def search(year: int, question: str):
         if detect_year in AVAILABLE_YEARS and detect_year != year:
             year = detect_year
 
-    # ask_gemini関数を使用してAPIを呼び出し
-    # 非同期関数を同期的に実行
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    try:
-        response_dict = loop.run_until_complete(ask_gemini(year, question))
-    except Exception as e:
-        print(f"Gemini API呼び出しに失敗しました: {e}", flush=True)
+    # チャットを開始
+    chat = model.start_chat()
+
+    # プロンプトに必要事項を埋め込む
+    prompt_formatted = get_prompt(year, question)
+    print(question, flush=True)
+
+    # n回トライ
+    n = 5
+
+    for _ in range(n):
+        try:
+            # メッセージを送信
+            response = chat.send_message(prompt_formatted)
+
+            # レスポンスをダブルクォーテーションに置き換え
+            response_text = response.text.replace("'", '"')
+
+            # レスポンスをJSONに変換
+            response_dict = json.loads(
+                response_text.replace("https://gbbinfo-jpn.onrender.com", "")
+            )
+            if isinstance(response_dict, list) and len(response_dict) > 0:
+                response_dict = response_dict[0]
+
+        # エラーが発生した場合は2秒待ってリトライ
+        except Exception as e:
+            print(e)
+            time.sleep(2)
+
+        # 成功したらループを抜ける
+        else:
+            break
+
+    # n回試行しても成功しなかった場合
+    else:
         return {"url": f"/{year}/top", "parameter": "contact"}
-    finally:
-        loop.close()
 
     # othersのリンクであればリンクを変更
     others_url = find_others_url(response_dict["url"], others_link)
@@ -271,72 +298,6 @@ def search(year: int, question: str):
         pass
 
     return {"url": response_url}
-
-
-# MARK: gemini API呼び出し関数
-async def ask_gemini(year: int, question: str):
-    """
-    Gemini APIに質問を送信する関数。
-    グローバルなレート制限で2秒間隔を保証し、最大5回リトライします。
-
-    Args:
-        year (int): 質問が関連する年。
-        question (str): ユーザーからの質問。
-
-    Returns:
-        dict: Gemini APIからのレスポンスを辞書形式で返す
-
-    Raises:
-        Exception: 5回リトライしても失敗した場合に発生
-    """
-    global _last_call_time, _rate_limit_lock
-
-    # グローバルなレート制限（2秒間隔を保証）
-    with _rate_limit_lock:
-        current_time = time.time()
-        time_since_last_call = current_time - _last_call_time
-
-        if time_since_last_call < 2.0:
-            sleep_time = 2.0 - time_since_last_call
-            print(f"レート制限のため{sleep_time:.2f}秒待機中...", flush=True)
-            time.sleep(sleep_time)
-
-        _last_call_time = time.time()
-
-    # 最大5回リトライ
-    for attempt in range(5):
-        try:
-            # チャットを開始
-            chat = model.start_chat()
-
-            # プロンプトに必要事項を埋め込む
-            prompt_formatted = get_prompt(year, question)
-            print(f"question: {question}", flush=True)
-
-            # メッセージを送信
-            response = chat.send_message(prompt_formatted)
-
-            print(response.text, flush=True)
-
-            # レスポンスをダブルクォーテーションに置き換え
-            response_text = response.text.replace("'", '"')
-
-            # レスポンスをJSONに変換
-            response_dict = json.loads(
-                response_text.replace("https://gbbinfo-jpn.onrender.com", "")
-            )
-
-            # リスト形式の場合は最初の要素を取得
-            if isinstance(response_dict, list) and len(response_dict) > 0:
-                response_dict = response_dict[0]
-
-            return response_dict
-
-        except Exception as e:
-            print(f"Gemini API呼び出し失敗 (試行 {attempt + 1}/5): {e}", flush=True)
-            if attempt == 4:  # 最後の試行
-                raise e
-            time.sleep(2)  # 次の試行まで2秒待機
 
 
 # MARK: サイト内検索候補
