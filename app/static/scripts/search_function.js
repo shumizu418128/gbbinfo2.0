@@ -44,8 +44,8 @@ function handleSearchFormSubmit(event) {
         .then(data => {
             if (data?.url) {
                 window.location.href = data.url;
-            } else if (retryCount < 2) {
-                // 2回まで再試行
+            } else if (retryCount < 5) {
+                // 5回まで再試行
                 sendRequest(retryCount + 1);
             } else {
                 loadingElement.style.display = 'none';
@@ -53,8 +53,8 @@ function handleSearchFormSubmit(event) {
             }
         })
         .catch(() => {
-            if (retryCount < 2) {
-                // 通信エラーも2回まで再試行
+            if (retryCount < 5) {
+                // 通信エラーも5回まで再試行
                 sendRequest(retryCount + 1);
             } else {
                 loadingElement.style.display = 'none';
