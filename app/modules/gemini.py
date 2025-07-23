@@ -111,6 +111,7 @@ def search_cache(year: int, question: str):
     Returns:
         dict: キャッシュにユーザーの入力がある場合、回答を含む辞書。ない場合はNone。
     """
+    global last_question_cache
 
     # 前処理
     question_edited = question.strip().upper()
@@ -208,7 +209,7 @@ def search(year: int, question: str):
     Returns:
         dict: モデルからの応答を含む辞書。URLが含まれます。
     """
-    global others_link
+    global others_link, last_question_cache
 
     # 年度を推定：数字を検出
     detect_year = re.search(r"\d{4}", question)
