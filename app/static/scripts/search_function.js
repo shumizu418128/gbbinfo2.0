@@ -44,16 +44,21 @@ function handleSearchFormSubmit(event) {
         .then(data => {
             if (data?.url) {
                 window.location.href = data.url;
-            } else if (retryCount === 0) {
-                // 1回目でdataが無い場合、もう一度リクエスト
-                sendRequest(1);
+            } else if (retryCount < 5) {
+                // 5回まで再試行
+                sendRequest(retryCount + 1);
             } else {
                 loadingElement.style.display = 'none';
             }
         })
         .catch(() => {
-            loadingElement.style.display = 'none';
-            alert('エラーが発生しました。もう一度お試しください。');
+            if (retryCount < 5) {
+                // エラーの場合も5回まで再試行
+                sendRequest(retryCount + 1);
+            } else {
+                loadingElement.style.display = 'none';
+                alert('エラーが発生しました。もう一度お試しください。');
+            }
         });
     };
 
