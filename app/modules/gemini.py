@@ -3,13 +3,13 @@ import json
 import os
 import random
 import re
-import time
-from threading import Lock, Thread
+from threading import Thread
 
-import google.generativeai as genai
 import pandas as pd
 import pykakasi
+from asyncio_throttle import Throttler
 from cachetools import TTLCache
+from google import genai
 from rapidfuzz import process
 
 from . import spreadsheet
@@ -20,7 +20,7 @@ from .prompts import get_prompt
 API_KEY = os.environ.get("GEMINI_API_KEY")
 if not API_KEY:
     raise ValueError("Please set the GEMINI_API_KEY environment variable")
-genai.configure(api_key=API_KEY)
+client = genai.Client(api_key=API_KEY)
 
 SAFETY_SETTINGS = create_safety_settings("BLOCK_ONLY_HIGH")
 
@@ -29,15 +29,7 @@ KATAKANA = "K"
 KANJI = "J"
 ALPHABET = "a"
 
-model = genai.GenerativeModel(
-    model_name="gemini-2.0-flash-lite-preview",
-    safety_settings=SAFETY_SETTINGS,
-    generation_config={"response_mime_type": "application/json"},
-)
-
-# グローバルなレート制限のための変数
-_last_call_time = 0
-_rate_limit_lock = Lock()
+limiter = Throttler(rate_limit=1, period=2)
 
 # othersファイルを読み込む
 if "others_link" not in locals():
@@ -232,16 +224,14 @@ def search(year: int, question: str):
             year = detect_year
 
     # ask_gemini関数を使用してAPIを呼び出し
-    # 非同期関数を同期的に実行
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
+    # 最も安全なイベントループ処理
     try:
-        response_dict = loop.run_until_complete(ask_gemini(year, question))
+        response_dict = asyncio.run(ask_gemini(year, question))
+    except RuntimeError:
+        return None
     except Exception as e:
-        print(f"Gemini API呼び出しに失敗しました: {e}", flush=True)
-        return {"url": f"/{year}/top", "parameter": "contact"}
-    finally:
-        loop.close()
+        print(f"イベントループエラー: {e}", flush=True)
+        return None
 
     # othersのリンクであればリンクを変更
     others_url = find_others_url(response_dict["url"], others_link)
@@ -290,54 +280,46 @@ async def ask_gemini(year: int, question: str):
     Raises:
         Exception: 5回リトライしても失敗した場合に発生
     """
-    global _last_call_time, _rate_limit_lock
-
-    # グローバルなレート制限（2秒間隔を保証）
-    with _rate_limit_lock:
-        current_time = time.time()
-        time_since_last_call = current_time - _last_call_time
-
-        if time_since_last_call < 2.0:
-            sleep_time = 2.0 - time_since_last_call
-            print(f"レート制限のため{sleep_time:.2f}秒待機中...", flush=True)
-            time.sleep(sleep_time)
-
-        _last_call_time = time.time()
 
     # 最大5回リトライ
-    for attempt in range(5):
-        try:
-            # チャットを開始
-            chat = model.start_chat()
+    async with limiter:
+        for attempt in range(5):
+            try:
+                # チャットを開始
+                chat = client.chats.create(
+                    model="gemini-2.0-flash-lite",
+                    config={
+                        "response_mime_type": "application/json",
+                        "safety_settings": SAFETY_SETTINGS,
+                    },
+                )
 
-            # プロンプトに必要事項を埋め込む
-            prompt_formatted = get_prompt(year, question)
-            print(f"question: {question}", flush=True)
+                # プロンプトに必要事項を埋め込む
+                prompt_formatted = get_prompt(year, question)
+                print(f"question: {question}", flush=True)
 
-            # メッセージを送信
-            response = chat.send_message(prompt_formatted)
+                # メッセージを送信
+                response = chat.send_message(prompt_formatted)
 
-            print(response.text, flush=True)
+                # レスポンスをダブルクォーテーションに置き換え
+                response_text = response.text.replace("'", '"')
 
-            # レスポンスをダブルクォーテーションに置き換え
-            response_text = response.text.replace("'", '"')
+                # レスポンスをJSONに変換
+                response_dict = json.loads(
+                    response_text.replace("https://gbbinfo-jpn.onrender.com", "")
+                )
 
-            # レスポンスをJSONに変換
-            response_dict = json.loads(
-                response_text.replace("https://gbbinfo-jpn.onrender.com", "")
-            )
+                # リスト形式の場合は最初の要素を取得
+                if isinstance(response_dict, list) and len(response_dict) > 0:
+                    response_dict = response_dict[0]
 
-            # リスト形式の場合は最初の要素を取得
-            if isinstance(response_dict, list) and len(response_dict) > 0:
-                response_dict = response_dict[0]
+                return response_dict
 
-            return response_dict
-
-        except Exception as e:
-            print(f"Gemini API呼び出し失敗 (試行 {attempt + 1}/5): {e}", flush=True)
-            if attempt == 4:  # 最後の試行
-                raise e
-            time.sleep(2)  # 次の試行まで2秒待機
+            except Exception as e:
+                print(f"Gemini API呼び出し失敗 (試行 {attempt + 1}/5): {e}", flush=True)
+                if attempt == 4:  # 最後の試行
+                    raise e
+                await asyncio.sleep(2)
 
 
 # MARK: サイト内検索候補
