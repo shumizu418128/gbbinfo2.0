@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-17 23:25+0900\n"
+"POT-Creation-Date: 2025-07-30 00:09+0900\n"
 "PO-Revision-Date: 2024-11-10 17:33+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:191
 #: templates/2025/wildcard_regulation.html:250
 #: templates/2025/wildcard_regulation.html:251 templates/base.html:115
-#: templates/base.html:144 templates/base.html:238
+#: templates/base.html:144 templates/base.html:251
 msgid "これだけガイド"
 msgstr "Quick Guide"
 
@@ -179,88 +179,88 @@ msgstr "Results"
 msgid "年度選択"
 msgstr "Year"
 
-#: templates/base.html:182
+#: templates/base.html:195
 msgid "翻訳未提供"
 msgstr "Translation not provided"
 
-#: templates/base.html:183
+#: templates/base.html:196
 msgid "このページは翻訳が提供されていません。現在は原文の日本語を表示しています。"
 msgstr ""
 "This page does not have a translation available. It is currently displaying "
 "the original Japanese."
 
-#: templates/base.html:199
+#: templates/base.html:212
 msgid "GBBまでの残り時間"
 msgstr "Time until GBB"
 
-#: templates/base.html:204 templates/base.html:216
+#: templates/base.html:217 templates/base.html:229
 #: templates/includes/bottom_navigation.html:29
 #: templates/includes/bottom_navigation.html:46
 msgid "なんでも検索"
 msgstr "Search Anything"
 
-#: templates/base.html:205 templates/includes/bottom_navigation.html:31
+#: templates/base.html:218 templates/includes/bottom_navigation.html:31
 #, python-brace-format
 msgid "GBB {year} の検索のみ可能です"
 msgstr "Only searches for GBB {year} are possible."
 
-#: templates/base.html:205 templates/includes/bottom_navigation.html:32
+#: templates/base.html:218 templates/includes/bottom_navigation.html:32
 #, python-brace-format
 msgid "GBB {year} は終了しました"
 msgstr "GBB {year} has ended."
 
-#: templates/base.html:207 templates/includes/bottom_navigation.html:35
+#: templates/base.html:220 templates/includes/bottom_navigation.html:35
 #, python-brace-format
 msgid "例：GBB {year} の最終結果は？"
 msgstr "Example: What was the final result of GBB {year}?"
 
-#: templates/base.html:212 templates/includes/bottom_navigation.html:40
+#: templates/base.html:225 templates/includes/bottom_navigation.html:40
 msgid "GBB最新情報の検索はこちら"
 msgstr "Search for the latest GBB information here."
 
-#: templates/base.html:217 templates/includes/bottom_navigation.html:47
+#: templates/base.html:230 templates/includes/bottom_navigation.html:47
 #, python-brace-format
 msgid "GBB {year} について検索してみよう"
 msgstr "Let's search for information about GBB {year}."
 
 #: templates/2024/top.html:36 templates/2024/top_7tosmoke.html:16
 #: templates/2025/top.html:36 templates/2025/top_7tosmoke.html:16
-#: templates/base.html:219 templates/includes/bottom_navigation.html:49
+#: templates/base.html:232 templates/includes/bottom_navigation.html:49
 msgid "例：現地観戦計画のたてかた"
 msgstr "Example: How to Plan for On-Site Viewing"
 
-#: templates/base.html:229
+#: templates/base.html:242
 msgid "ホーム画面に追加"
 msgstr "Add to Home Screen"
 
-#: templates/base.html:232
+#: templates/base.html:245
 msgid "GBBINFO-JPNはPWAに対応しています。"
 msgstr "GBBINFO-JPN is compatible with PWA."
 
-#: templates/base.html:232
+#: templates/base.html:245
 msgid "ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。"
 msgstr ""
 "Open the browser menu and tap 'Add to Home Screen' to install it as an app."
 
-#: templates/base.html:238
+#: templates/base.html:251
 msgid "ホームへもどる"
 msgstr "Return to Home"
 
-#: templates/2025/ticket.html:21 templates/base.html:252
+#: templates/2025/ticket.html:21 templates/base.html:265
 msgid "GBBINFO-JPN開発者 Twitter"
 msgstr "GBBINFO-JPN developer Twitter"
 
-#: templates/base.html:254
+#: templates/base.html:267
 msgid "GBBINFO-JPNについて"
 msgstr "About GBBINFO-JPN"
 
-#: templates/base.html:256 templates/others/translation.html:2
+#: templates/base.html:269 templates/others/translation.html:2
 #: templates/others/translation.html:3 templates/others/translation.html:4
 #: templates/others/translation.html:9
 msgid "各ページの翻訳提供について"
 msgstr "Translation service for each page"
 
-#: templates/base.html:281
+#: templates/base.html:294
 msgid "いい景色だろ？"
 msgstr "It's a nice view, isn't it?"
 
@@ -440,9 +440,7 @@ msgid "出場者一覧"
 msgstr "List of Participants"
 
 #: templates/2024/rule.html:200 templates/2025/rule.html:195
-#: templates/2025/rule.html:279 templates/2025/rule.html:283
-#: templates/2025/rule.html:287 templates/2025/rule.html:291
-#: templates/2025/rule.html:295 templates/2025/stream.html:14
+#: templates/2025/rule.html:291 templates/2025/stream.html:14
 #: templates/2025/time_schedule.html:55 templates/2025/time_schedule.html:83
 #: templates/2025/time_schedule.html:111 templates/2025/time_schedule.html:131
 #: templates/2025/time_schedule.html:135 templates/2025/time_schedule.html:139
@@ -1055,10 +1053,10 @@ msgid ""
 "    As a result, there may be instances of inaccurate translation.\n"
 "    For any questions or concerns, please refer to the official website or social media channels."
 msgstr ""
-"For Non-Japanese Users:\n"
-"    Please note that this article was originally written in Japanese and subsequently translated using AI.\n"
-"    As a result, there may be instances of inaccurate translation.\n"
-"    For any questions or concerns, please refer to the official website or social media channels."
+"For Non-Japanese Users:Please note that this article was originally written "
+"in Japanese and subsequently translated using AI.As a result, there may be "
+"instances of inaccurate translation.For any questions or concerns, please "
+"refer to the official website or social media channels."
 
 #: templates/2025/wildcard_regulation.html:122
 msgid "年齢制限: 本番当日、16歳以上であること"

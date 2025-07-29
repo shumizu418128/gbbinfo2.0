@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-17 23:25+0900\n"
+"POT-Creation-Date: 2025-07-30 00:09+0900\n"
 "PO-Revision-Date: 2024-04-05 21:06+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: hu <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 #: templates/2025/wildcard_regulation.html:191
 #: templates/2025/wildcard_regulation.html:250
 #: templates/2025/wildcard_regulation.html:251 templates/base.html:115
-#: templates/base.html:144 templates/base.html:238
+#: templates/base.html:144 templates/base.html:251
 msgid "これだけガイド"
 msgstr "Útmutató"
 
@@ -179,88 +179,88 @@ msgstr "Eredmények"
 msgid "年度選択"
 msgstr "Év választása"
 
-#: templates/base.html:182
+#: templates/base.html:195
 msgid "翻訳未提供"
 msgstr "Fordítás nem biztosított"
 
-#: templates/base.html:183
+#: templates/base.html:196
 msgid "このページは翻訳が提供されていません。現在は原文の日本語を表示しています。"
 msgstr ""
 "Ezen az oldalon nincs fordítás. Jelenleg az eredeti japán szöveg látható."
 
-#: templates/base.html:199
+#: templates/base.html:212
 msgid "GBBまでの残り時間"
 msgstr "A GBB-ig hátralévő idő"
 
-#: templates/base.html:204 templates/base.html:216
+#: templates/base.html:217 templates/base.html:229
 #: templates/includes/bottom_navigation.html:29
 #: templates/includes/bottom_navigation.html:46
 msgid "なんでも検索"
 msgstr "keresés bármire"
 
-#: templates/base.html:205 templates/includes/bottom_navigation.html:31
+#: templates/base.html:218 templates/includes/bottom_navigation.html:31
 #, python-brace-format
 msgid "GBB {year} の検索のみ可能です"
 msgstr "Csak a GBB {year} keresés lehetséges."
 
-#: templates/base.html:205 templates/includes/bottom_navigation.html:32
+#: templates/base.html:218 templates/includes/bottom_navigation.html:32
 #, python-brace-format
 msgid "GBB {year} は終了しました"
 msgstr "GBB {year} véget ért"
 
-#: templates/base.html:207 templates/includes/bottom_navigation.html:35
+#: templates/base.html:220 templates/includes/bottom_navigation.html:35
 #, python-brace-format
 msgid "例：GBB {year} の最終結果は？"
 msgstr "Mi a végeredménye a GBB {year}-nek?"
 
-#: templates/base.html:212 templates/includes/bottom_navigation.html:40
+#: templates/base.html:225 templates/includes/bottom_navigation.html:40
 msgid "GBB最新情報の検索はこちら"
 msgstr "Itt kereshet a GBB legfrissebb információira."
 
-#: templates/base.html:217 templates/includes/bottom_navigation.html:47
+#: templates/base.html:230 templates/includes/bottom_navigation.html:47
 #, python-brace-format
 msgid "GBB {year} について検索してみよう"
 msgstr "Keresek valamit a GBB {year} -hoz."
 
 #: templates/2024/top.html:36 templates/2024/top_7tosmoke.html:16
 #: templates/2025/top.html:36 templates/2025/top_7tosmoke.html:16
-#: templates/base.html:219 templates/includes/bottom_navigation.html:49
+#: templates/base.html:232 templates/includes/bottom_navigation.html:49
 msgid "例：現地観戦計画のたてかた"
 msgstr "Példa: Hogyan tervezzünk egy helyszíni nézési tervet"
 
-#: templates/base.html:229
+#: templates/base.html:242
 msgid "ホーム画面に追加"
 msgstr "Hozzáadás a kezdőképernyőhöz"
 
-#: templates/base.html:232
+#: templates/base.html:245
 msgid "GBBINFO-JPNはPWAに対応しています。"
 msgstr "A GBBINFO-JPN támogatja a PWA-t."
 
-#: templates/base.html:232
+#: templates/base.html:245
 msgid "ブラウザメニューを開き、「ホーム画面に追加」をタップすると、アプリとしてインストールできます。"
 msgstr ""
 "A böngésző menüjének megnyitásával és a \"Hozzáadás a kezdőképernyőhöz\" "
 "elemre koppintva telepítheti alkalmazásként."
 
-#: templates/base.html:238
+#: templates/base.html:251
 msgid "ホームへもどる"
 msgstr "Vissza a főoldalra"
 
-#: templates/2025/ticket.html:21 templates/base.html:252
+#: templates/2025/ticket.html:21 templates/base.html:265
 msgid "GBBINFO-JPN開発者 Twitter"
 msgstr "GBBINFO-JPN fejlesztők Twittere"
 
-#: templates/base.html:254
+#: templates/base.html:267
 msgid "GBBINFO-JPNについて"
 msgstr "GBBINFO-JPN-ről"
 
-#: templates/base.html:256 templates/others/translation.html:2
+#: templates/base.html:269 templates/others/translation.html:2
 #: templates/others/translation.html:3 templates/others/translation.html:4
 #: templates/others/translation.html:9
 msgid "各ページの翻訳提供について"
 msgstr "A fordítás nyújtása az egyes oldalakon"
 
-#: templates/base.html:281
+#: templates/base.html:294
 msgid "いい景色だろ？"
 msgstr "Ugye szép a kilátás?"
 
@@ -439,9 +439,7 @@ msgid "出場者一覧"
 msgstr "Résztvevők listája"
 
 #: templates/2024/rule.html:200 templates/2025/rule.html:195
-#: templates/2025/rule.html:279 templates/2025/rule.html:283
-#: templates/2025/rule.html:287 templates/2025/rule.html:291
-#: templates/2025/rule.html:295 templates/2025/stream.html:14
+#: templates/2025/rule.html:291 templates/2025/stream.html:14
 #: templates/2025/time_schedule.html:55 templates/2025/time_schedule.html:83
 #: templates/2025/time_schedule.html:111 templates/2025/time_schedule.html:131
 #: templates/2025/time_schedule.html:135 templates/2025/time_schedule.html:139
